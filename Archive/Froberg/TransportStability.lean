@@ -5,7 +5,12 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Order.Filter.Finite
+public import Mathlib.Topology.Algebra.Ring.Real
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.SplitIfs
 
 /-! Stability of a strictly positive finite transport. The allowed graph
 has a column adjacent to every row; every other column has a chosen parent.

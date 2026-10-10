@@ -5,7 +5,8 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Lean.Elab.Tactic.Omega
 
 /-! The exact rank bound for restricting coefficient equations to an
 injected homology space, as used in Proposition C.6. -/

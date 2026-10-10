@@ -5,7 +5,7 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-! Weighted incidence summation with uniformly bounded exceptional projections. -/
 

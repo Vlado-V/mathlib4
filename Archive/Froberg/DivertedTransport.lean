@@ -5,7 +5,11 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
 
 /-! A constructive positive transport obtained by diverting a marked part
 of each row to one new row. This is the finite transport used for the core

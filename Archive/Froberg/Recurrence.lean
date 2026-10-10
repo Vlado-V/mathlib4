@@ -5,7 +5,11 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib
+public import Mathlib.Data.Finset.Lattice.Fold
+public import Mathlib.Data.Fintype.Fin
+public import Mathlib.Data.Nat.ModEq
+public import Mathlib.Tactic.Choose
+public import Lean.Elab.Tactic.Omega
 
 /-!
 # The numerical recurrence argument for the two endpoint defects

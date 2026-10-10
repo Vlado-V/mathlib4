@@ -5,7 +5,11 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.Convert
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
 
 /-! Finite weighted variance and the mixing estimate used for strict
 outer-module shadows. All identities concern explicit finite sums. -/

@@ -6,7 +6,6 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.OAI.Geometry.PeriodicTiling.PolynomialWeyl
-public import Mathlib
 
 /-!
 # Arbitrarily late interval hits for polynomial fractional parts
