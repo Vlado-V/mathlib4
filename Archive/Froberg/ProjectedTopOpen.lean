@@ -29,6 +29,7 @@ def projectedTopLinearAction (P : Forms K h (1 + e) →ₗ[K] (Fin b → K)) :
   tensorFormProduct ((gradedMultiplication (d := 1) (e := e)).compr₂ₛₗ P)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem projected_top_linear_growth (hh : 0 < h) (hm : 0 < m)
     (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤

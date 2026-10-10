@@ -15,7 +15,7 @@ variables. This supplies the distinct-degree tags in Lemma B.4. -/
 noncomputable section
 namespace Froberg
 open Module MvPolynomial TensorProduct
-variable {K : Type} [Field K] [Infinite K]
+variable {K : Type} [Field K]
 variable {σ τ M : Type*} [AddCommMonoid M]
 
 def leftTensorWeight (w : σ → M) : σ ⊕ τ → M := Sum.elim w (fun _ => 0)

@@ -47,6 +47,8 @@ def twoFamilyBilinear
       LinearMap.smul_apply,LinearMap.add_apply,smul_add,RingHom.id_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K P₁] [FiniteDimensional K P₂]
+  [FiniteDimensional K W] in
 @[simp] theorem twoFamilyBilinear_apply
     (mu₁ : P₁ →ₗ[K] (Fin a₁ → K) →ₗ[K] W)
     (mu₂ : P₂ →ₗ[K] (Fin a₂ → K) →ₗ[K] W)
@@ -56,6 +58,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
       BilinearImage.tupleMap mu₁ x.1 p.1+BilinearImage.tupleMap mu₂ x.2 p.2 := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K P₁] [FiniteDimensional K P₂]
+  [FiniteDimensional K W] in
 theorem twoFamilyBilinear_left_range
     (mu₁ : P₁ →ₗ[K] (Fin a₁ → K) →ₗ[K] W)
     (mu₂ : P₂ →ₗ[K] (Fin a₂ → K) →ₗ[K] W)
@@ -67,6 +71,8 @@ theorem twoFamilyBilinear_left_range
   exact ⟨(p,0),by simp⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K P₁] [FiniteDimensional K P₂]
+  [FiniteDimensional K W] in
 theorem twoFamilyBilinear_right_range
     (mu₁ : P₁ →ₗ[K] (Fin a₁ → K) →ₗ[K] W)
     (mu₂ : P₂ →ₗ[K] (Fin a₂ → K) →ₗ[K] W)

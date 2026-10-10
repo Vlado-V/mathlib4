@@ -25,6 +25,7 @@ variable {K I E W T : Type*} [Field K] [Infinite K]
   [AddCommGroup T] [Module K T] [FiniteDimensional K T] {b : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem kernel_bilinear_surjective_open
     (P : (I → K) → W →ₗ[K] (Fin b → K)) (hP : IsPolynomialFamily P)
     (p₀ : I → K) (hP₀ : Function.Surjective (P p₀))

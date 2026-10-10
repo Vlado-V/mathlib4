@@ -54,7 +54,7 @@ theorem span_generators_le_projectedProduct_kernel
   congr 1
   apply Subtype.ext
   simp only [endpointMultiplication_val,Pi.single_apply,apply_ite,Submodule.coe_zero,
-    mul_ite,mul_zero,Finset.sum_ite_eq',Finset.mem_univ,ite_true]
+    mul_zero,Finset.sum_ite_eq',Finset.mem_univ,ite_true]
   exact mul_comm _ _
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

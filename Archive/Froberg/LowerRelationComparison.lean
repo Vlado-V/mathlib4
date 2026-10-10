@@ -18,7 +18,7 @@ noncomputable section
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
-variable {K I J : Type*} [Field K] [Fintype I] [Fintype J] {n : ℕ}
+variable {K I J : Type*} [Field K] [Fintype I] {n : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual multiplication of vector polynomial columns by linear coefficients. -/
@@ -70,7 +70,7 @@ theorem lower_relation_comparison (E : I → J → Poly K n)
     have hz : ∑ j, c j • ell j=0 := by
       have h := congrFun haz i
       change c₀ i • ell 1-c₁ i • ell 0=0 at h
-      simp only [Fin.sum_univ_two, c, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+      simp only [Fin.sum_univ_two, c, Matrix.cons_val_zero, Matrix.cons_val_one]
       change (-(c₁ i)) • ell 0 + (c₀ i) • ell 1=0
       calc
         _ = c₀ i • ell 1-c₁ i • ell 0 := by module

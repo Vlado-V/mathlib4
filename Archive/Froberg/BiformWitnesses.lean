@@ -9,6 +9,7 @@ public import Archive.Froberg.FourBlockVariables
 public import Archive.Froberg.CrossCoefficientSpaces
 public import Archive.Froberg.PairedDiagonalSpace
 public import Mathlib.LinearAlgebra.TensorProduct.Finiteness
+public import Mathlib.RingTheory.TensorProduct.Finite
 
 /-! Actual four-block polynomial witnesses for individual cross and
 diagonal factors in the product row. -/
@@ -29,6 +30,7 @@ def biformImage (O : Submodule K (MvPolynomial σ K))
     (MvPolynomial.tensorEquivSum K σ τ K).toLinearMap
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Full finite tensor capacity in the sum-variable polynomial model. -/
 theorem exists_independent_sum_biforms (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) [Module.Finite K O] [Module.Finite K C]
@@ -41,6 +43,7 @@ theorem exists_independent_sum_biforms (O : Submodule K (MvPolynomial σ K))
   exact hi.map' e.toLinearMap (LinearMap.ker_eq_bot.mpr e.injective)
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Homogeneous biforms have the sum of their two total degrees. -/
 theorem biformImage_homogeneous (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {j t : ℕ}
@@ -55,6 +58,7 @@ theorem biformImage_homogeneous (O : Submodule K (MvPolynomial σ K))
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Scalar weight, complementary to output weight, in a sum of variables. -/
 theorem biformImage_scalar_weight (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {t : ℕ}
@@ -78,6 +82,7 @@ theorem biformImage_scalar_weight (O : Submodule K (MvPolynomial σ K))
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Output degree of every biform, independently of scalar coefficients. -/
 theorem biformImage_output_weight (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {j : ℕ}
@@ -87,6 +92,7 @@ theorem biformImage_output_weight (O : Submodule K (MvPolynomial σ K))
   tensorImage_weighted (fun _ => 1) O C hO
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- A finite cross-pair witness, with exact output and scalar half-degrees
 and genuinely independent products in one common four-block variable set. -/
 theorem exists_fourBlock_cross_pair
@@ -123,19 +129,20 @@ theorem exists_fourBlock_cross_pair
       FourBlocks.rightVar_weighted_output (g i),FourBlocks.rightVar_weighted_scalar (g i)⟩
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Project a pair-valued weight grading to its first coordinate. -/
-theorem weightedHomogeneous_fst {υ : Type*} [Fintype υ]
+theorem weightedHomogeneous_fst {υ : Type*}
     (w : υ → ℕ × ℕ) {p : MvPolynomial υ K} {a b : ℕ}
     (hp : p.IsWeightedHomogeneous w (a, b)) :
     p.IsWeightedHomogeneous (fun i => (w i).1) a := by
   intro α hα
   have he : Finsupp.weight (fun i => (w i).1) α = (Finsupp.weight w α).1 := by
     change _ = (AddMonoidHom.fst ℕ ℕ) (Finsupp.weight w α)
-    rw [Finsupp.weight_eq_sum,Finsupp.weight_eq_sum,map_sum]
-    simp
+    simp [Finsupp.weight_apply, Finsupp.sum]
   rw [he,hp hα]
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Arbitrary scalar weight is preserved by the second tensor factor. -/
 theorem biformImage_right_weight (w : τ → ℕ)
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (MvPolynomial τ K))
@@ -176,15 +183,15 @@ theorem exists_fourBlock_diagonal_pair (w v j t m : ℕ)
   classical
   obtain ⟨O,C,E,hOh,hOb,hOT,hCh,hCb,hE,hEd,hEi⟩ :=
     paired_diagonal_space_exists (K := K) w v j t m T hm
-  letI : Module.Finite K (homogeneousSubmodule (Fin w × Bool) K j) :=
+  let : Module.Finite K (homogeneousSubmodule (Fin w × Bool) K j) :=
     Module.Finite.of_fg (homogeneousSubmodule_fg _ _ _)
-  letI : Module.Finite K (homogeneousSubmodule (Fin v × Bool) K t) :=
+  let : Module.Finite K (homogeneousSubmodule (Fin v × Bool) K t) :=
     Module.Finite.of_fg (homogeneousSubmodule_fg _ _ _)
-  letI : Module.Finite K O := Submodule.finiteDimensional_of_le hOh
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hCh
-  letI : Module.Finite K E := Submodule.finiteDimensional_of_le hE
+  let : Module.Finite K O := Submodule.finiteDimensional_of_le hOh
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hCh
+  let : Module.Finite K E := Submodule.finiteDimensional_of_le hE
   subst m
-  letI : AddCommGroup E := Module.addCommMonoidToAddCommGroup K
+  let : AddCommGroup E := Module.addCommMonoidToAddCommGroup K
   let b := Module.finBasis K E
   let e := MvPolynomial.tensorEquivSum K (Fin w × Bool) (Fin v × Bool) K
   let f := fun i : Fin (finrank K E) => e (b i).val

@@ -21,7 +21,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical map between the projected parts of two nested quotients. -/
 def projectedRangeExtension (P : V →ₗ[K] V) (R E : Submodule K V) :
     (R.mkQ.comp P).range →ₗ[K] ((R ⊔ E).mkQ.comp P).range :=
-  ((Submodule.mapQ R (R ⊔ E) LinearMap.id (by simpa using (le_sup_left : R≤R⊔E))).comp
+  ((Submodule.mapQ R (R ⊔ E) LinearMap.id (by simp)).comp
     (R.mkQ.comp P).range.subtype).codRestrict _ (by
       rintro x
       obtain ⟨v,hv⟩ := x.property
@@ -43,8 +43,7 @@ theorem projectedRangeExtension_bijective (P : V →ₗ[K] V) (R E : Submodule K
     obtain ⟨v,hv⟩ := x.property
     have he : (R ⊔ E).mkQ (P v)=0 := by
       have hh := congrArg Subtype.val hx
-      change (Submodule.mapQ R (R ⊔ E) LinearMap.id (by simpa using (le_sup_left :
-        R≤R⊔E))) x.val=0 at hh
+      change (Submodule.mapQ R (R ⊔ E) LinearMap.id (by simp)) x.val=0 at hh
       rw [← hv] at hh
       exact hh
     have hm : P v∈R⊔E := (Submodule.Quotient.mk_eq_zero _).mp he

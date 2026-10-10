@@ -21,6 +21,7 @@ variable {K : Type} {V W : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K W] in
 theorem exists_supported_target_deletion (j : V →ₗ[K] W) (hj : Function.Injective j)
     (U : Submodule K V) :
     ∃ Z : Submodule K W,

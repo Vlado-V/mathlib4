@@ -19,6 +19,7 @@ namespace Froberg
 open Module Finset MvPolynomial MonomialExpansion PairedMonomials
 variable {K : Type} [Field K] [Infinite K]
 
+omit [Infinite K] in
 /-- Renaming variables transports a weight grading along the variable map. -/
 theorem rename_weightedHomogeneous {σ τ M : Type*} [AddCommMonoid M]
     (f : σ ↪ τ) (u : σ → M) (v : τ → M) (hweight : ∀ i, v (f i) = u i)
@@ -93,9 +94,9 @@ theorem paired_scalar_space_exists {n : ℕ} (S : Finset (Fin n))
   classical
   obtain ⟨e,he⟩ := exists_split_pair_embedding S hS
   obtain ⟨W,hWh,hWb,hWd,hWi⟩ := paired_space_exists (K := K) S.card t
-  letI : Module.Finite K (homogeneousSubmodule (Fin S.card × Bool) K t) :=
+  let : Module.Finite K (homogeneousSubmodule (Fin S.card × Bool) K t) :=
     Module.Finite.of_fg (homogeneousSubmodule_fg _ _ _)
-  letI : Module.Finite K W := Submodule.finiteDimensional_of_le hWh
+  let : Module.Finite K W := Submodule.finiteDimensional_of_le hWh
   let f := (MvPolynomial.rename e : MvPolynomial (Fin S.card × Bool) K →ₐ[K] Poly K n)
   let C := W.map f.toLinearMap
   have hfh : Function.Injective f := MvPolynomial.rename_injective e e.injective

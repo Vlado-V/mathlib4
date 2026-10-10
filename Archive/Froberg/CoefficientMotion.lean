@@ -28,6 +28,7 @@ variable (E : H →ₗ[K] (Fin f → Fin a → K))
 def motion (z : Fin f → Fin b → K) : H →ₗ[K] (Fin T → K) :=
   (BilinearScalarFamily.multiplication mu z).comp E
 
+omit [FiniteDimensional K H] in
 @[simp] theorem motion_apply (z : Fin f → Fin b → K) (x : H) :
     motion mu E z x = ∑ i, mu (z i) (E x i) :=
   BilinearScalarFamily.multiplication_apply mu z (E x)

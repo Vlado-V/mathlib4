@@ -44,7 +44,7 @@ lemma generator_expands_of_quotient (e : Fin c → Fin n →₀ ℕ)
   have hd : finrank K S=ell+finrank K (relationSpace (d := 0) e v he) := by rwa [hsrc]
   simpa only [htgt,VectorMultiplicationCoordinates.multiplication] using hamb S hES' hd
 
-theorem principal_open_attached_witness [IsAlgClosed L] {A : Type*} [Fintype A]
+theorem principal_open_attached_witness [IsAlgClosed L] {A : Type*} [Finite A]
     (e : Fin c → Fin n →₀ ℕ) (v : Fin c → Fin h → K)
     (he : ∀ i, (e i).degree = s) (hn : 0 < n)
     (g : (P → K) → Fin c → Rows K h n s)

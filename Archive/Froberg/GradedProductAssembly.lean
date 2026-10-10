@@ -23,13 +23,15 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Independent polynomial fibers in distinct weight degrees have an
 independent union. No dimensions are discarded in assembling product rows. -/
 theorem linearIndependent_weighted_fibers {σ M δ : Type*} [AddCommMonoid M]
-    [Fintype δ] {I : δ → Type*} [∀ d, Fintype (I d)]
+    [Finite δ] {I : δ → Type*} [∀ d, Finite (I d)]
     (w : σ → M) (degree : δ → M) (hdegree : Function.Injective degree)
     (q : (d : δ) → I d → MvPolynomial σ K)
     (hq : ∀ d, LinearIndependent K (q d))
     (hhom : ∀ d i, (q d i).IsWeightedHomogeneous w (degree d)) :
     LinearIndependent K (fun z : Sigma I => q z.1 z.2) := by
   classical
+  let : Fintype δ := Fintype.ofFinite δ
+  let : ∀ d, Fintype (I d) := fun d => Fintype.ofFinite (I d)
   apply Fintype.linearIndependent_iff.mpr
   intro c hc z
   rcases z with ⟨d,i⟩
@@ -48,9 +50,11 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Tensor products of two independent finite families are independent. -/
 theorem linearIndependent_cross_tensors {A B α β : Type*}
     [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
-    [Fintype α] [Fintype β] (a : α → A) (b : β → B)
+    [Finite α] [Finite β] (a : α → A) (b : β → B)
     (ha : LinearIndependent K a) (hb : LinearIndependent K b) :
     LinearIndependent K (fun p : α × β => a p.1 ⊗ₜ[K] b p.2) := by
+  let : Fintype α := Fintype.ofFinite α
+  let : Fintype β := Fintype.ofFinite β
   have h := linearIndependent_tensor_fibers a ha (fun _ => b) (fun _ => hb)
   let f (p : α × β) : Σ _ : α, β := ⟨p.1,p.2⟩
   have hf : Function.Injective f := by
@@ -64,7 +68,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Cross products of independent families supported in disjoint variables
 are independent in the actual polynomial ring. -/
 theorem linearIndependent_cross_products_disjoint {σ τ α β : Type*}
-    [Fintype α] [Fintype β]
+    [Finite α] [Finite β]
     (a : α → MvPolynomial σ K) (b : β → MvPolynomial τ K)
     (ha : LinearIndependent K a) (hb : LinearIndependent K b) :
     LinearIndependent K (fun p : α × β =>

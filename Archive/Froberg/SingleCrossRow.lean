@@ -28,19 +28,20 @@ theorem multiplication_single_cross_row
     have hr := honly r c
     have hcross : r.val.val≠R-r.val.val := by simpa only [hr] using hj
     have hlocal : LinearIndependent K (products e q r) := by
-      let c : Columns e r ≃ Fin (e r.val.val) × Fin (e (R-r.val.val)) := Equiv.cast (if_neg hcross)
+      let c : Columns e r ≃ Fin (e r.val.val) × Fin (e (R-r.val.val)) :=
+        Equiv.cast (ite_eq_right hcross)
       have hq : LinearIndependent K (fun p : Fin (e r.val.val) × Fin (e (R-r.val.val)) =>
           q r.val.val p.1*q (R-r.val.val) p.2) := by rwa [hr]
       convert hq.comp c c.injective using 1
       funext a
-      simp only [products,dif_neg hcross,Function.comp_apply]
+      simp only [products,dite_eq_right hcross,Function.comp_apply]
       rfl
     apply linearIndependent_sigma_one_fiber (products e q) r _ hlocal
     intro s a
     apply Subtype.ext
     apply Fin.ext
     exact (honly s a).trans hr.symm
-  · letI : IsEmpty (Σ r : Row J R,Columns e r) := not_nonempty_iff.mp hnon
+  · let : IsEmpty (Σ r : Row J R,Columns e r) := not_nonempty_iff.mp hnon
     exact linearIndependent_empty_type
 
 theorem multiplication_single_cross_row_range
@@ -60,7 +61,7 @@ theorem multiplication_single_cross_row_range
     rwa [hr]
   unfold products
   dsimp only
-  rw [dif_neg hcross]
+  rw [dite_eq_right hcross]
   exact hq _
 
 theorem sixth_row_only_second

@@ -22,6 +22,7 @@ variable {K U V A W I J I' J' : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [Fintype I] [Fintype J] [Fintype I'] [Fintype J']
 
+omit [FiniteDimensional K U] [FiniteDimensional K V] [FiniteDimensional K W] in
 /-- Reindex both the scalar and the new-layer generators. -/
 theorem bilinearKoszulRow_exact_reindex (eI : I' ≃ I) (eJ : J' ≃ J)
     (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → V) (E : J → U) (P : W →ₗ[K] A)

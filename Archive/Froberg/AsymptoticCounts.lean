@@ -44,7 +44,6 @@ theorem shifted_monomial_count_limit (k : ℕ) :
   have hl := polynomial_div_pow_nat_tendsto (taylor (1 : ℝ) (monomialCountPolynomial k)) k hdeg
   rw [hc] at hl
   convert hl using 1
-  congr 1
   funext n
   rw [taylor_eval, show (n : ℝ) + 1 = ((n + 1 : ℕ) : ℝ) by push_cast; rfl,
     monomialCountPolynomial_eval]

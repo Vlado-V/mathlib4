@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.AttachedReindexedOpen
 public import Archive.Froberg.VectorQuotientDimensions
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-! The real strict-shadow inequality persists on an actual common open. -/
 

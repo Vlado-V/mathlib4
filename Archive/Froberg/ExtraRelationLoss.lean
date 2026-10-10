@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.TensorFormCoordinates
 public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.RingTheory.TensorProduct.Finite
 
 /-! The exact loss from imposing the remaining mixed-pure equations.
 No extension or consistency assumption is made for these equations. -/

@@ -40,6 +40,7 @@ def appendScalarParameters :
     · funext i
       refine Fin.addCases ?_ ?_ i <;> intro j <;> simp
 
+omit [Infinite K] [FiniteDimensional K P₁] [FiniteDimensional K P₂] in
 theorem appendScalarParameters_surjective : Function.Surjective
     (appendScalarParameters (K := K) (P₁ := P₁) (P₂ := P₂)
       (q₁ := q₁) (q₂ := q₂) (t := t)) := by

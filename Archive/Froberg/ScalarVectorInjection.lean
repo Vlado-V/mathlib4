@@ -19,14 +19,15 @@ open MvPolynomial
 variable {K J : Type*} [Field K] [Fintype J] {n d s q : ℕ}
 
 theorem prefix_injective_of_projected
-    (P : (Fin n →₀ ℕ) → Prop) [DecidablePred P] (Q : Fin q → Forms K n d)
+    (P : (Fin n →₀ ℕ) → Prop) (Q : Fin q → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication P Q s)) :
     Function.Injective (prefixMultiplication Q s) := by
   intro a b hab
   apply hQ
   apply Subtype.ext
-  simpa only [ProjectedPrefix.multiplication_val,hab]
+  simp only [ProjectedPrefix.multiplication_val,hab]
 
+omit [Fintype J] in
 theorem vector_scalar_injective_of_prefix (Q : Fin q → Forms K n d)
     (hQ : Function.Injective (prefixMultiplication Q s)) :
     Function.Injective (BilinearScalarFamily.multiplication
@@ -41,8 +42,9 @@ theorem vector_scalar_injective_of_prefix (Q : Fin q → Forms K n d)
       Submodule.coe_sum,AttachedMultiplication.vectorMultiply_val,prefixMultiplication_val] using h
   exact congrFun (hQ hj) i
 
+omit [Fintype J] in
 theorem vector_scalar_injective_of_projected
-    (P : (Fin n →₀ ℕ) → Prop) [DecidablePred P] (Q : Fin q → Forms K n d)
+    (P : (Fin n →₀ ℕ) → Prop) (Q : Fin q → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication P Q s)) :
     Function.Injective (BilinearScalarFamily.multiplication
       (AttachedMultiplication.vectorMultiply (J := J) (s := s)) Q) :=

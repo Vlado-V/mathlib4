@@ -48,7 +48,7 @@ theorem detected_linear_pair_relation (hn : 0 < n)
   classical
   let a : Fin 2 → Forms K n 1 := ![x,y]
   have ha : endpointMultiplication q a=mulForm (q 0) x+mulForm (q 1) y := by
-    simp only [endpointMultiplication,LinearMap.sum_apply,LinearMap.add_apply,
+    simp only [endpointMultiplication,LinearMap.add_apply,
       LinearMap.comp_apply,LinearMap.proj_apply,Fin.sum_univ_two,a,
       Matrix.cons_val_zero,Matrix.cons_val_one,Matrix.cons_val_fin_one]
   have hz : (⟨endpointMultiplication q a,LinearMap.mem_range_self _ a⟩ : (endpointMultiplication

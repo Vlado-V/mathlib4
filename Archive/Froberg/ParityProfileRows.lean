@@ -141,7 +141,7 @@ theorem exists_parity_profile_row_threshold {d : ℕ} (hd : 9 ≤ d) (e : ℕ) :
   let ε := Sᶜ.card-S.card
   have hε : ε≤1 := by dsimp [ε]; omega
   have hsplit : Sᶜ.card = S.card+ε := by dsimp [ε]; omega
-  have hcard : S.card+Sᶜ.card=n := by simpa using card_add_card_compl S
+  have hcard : S.card+Sᶜ.card=n := by simp
   have hn' : n=2*S.card+ε := by omega
   have hi : partialDegree S a≤e := ha ▸ partialDegree_le_degree S a
   apply profile_row_bound_of_count_bound S hS hSc a ha p j

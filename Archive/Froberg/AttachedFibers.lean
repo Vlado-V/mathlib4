@@ -17,7 +17,7 @@ noncomputable section
 namespace Froberg.AttachedMultiplication
 open MvPolynomial
 open Quartic.HomogeneousCoefficientCoordinates
-variable {K I J : Type*} [Field K] [Fintype I] [Fintype J]
+variable {K I J : Type*} [Field K] [Fintype I]
 variable {n s d : ℕ}
 
 /-- Literal polynomial coefficients, regrouped by monomial rather than output row. -/
@@ -31,7 +31,6 @@ def rowCoordinates : (J → Forms K n d) ≃ₗ[K] (Exponent n d → J → K) wh
   map_add' p q := by ext β j; simp
   map_smul' c p := by ext β j; simp
 
-omit [Fintype J] in
 @[simp] theorem rowCoordinates_apply (p : J → Forms K n d) (β : Exponent n d) (j : J) :
     rowCoordinates p β j = (p j).val.coeff β.val := rfl
 
@@ -39,7 +38,6 @@ omit [Fintype J] in
 def relationFiber (e : I → Fin n →₀ ℕ) (v : I → J → K) (β : Fin n →₀ ℕ) :
     Submodule K (J → K) := Submodule.span K (Set.range (fun i : {i // e i ≤ β} => v i.val))
 
-omit [Fintype J] in
 private theorem multiplication_single [DecidableEq I] (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (i : I) (f : Forms K n d) (j : J) :
     multiplication e v (Pi.single i f) j = monomial (e i) (v i j) * f.val := by

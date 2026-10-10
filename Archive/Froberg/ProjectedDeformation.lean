@@ -78,6 +78,7 @@ theorem projectedEndpointMultiplication_motion (π : Forms K n (2 * d) →ₗ[K]
     LinearMap.comp_add, LinearMap.comp_smul]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The first-order rank gain for the actual projected polynomial complex. -/
 theorem projected_normal_rank_gain_principal_open
     (π : Forms K n (2 * d) →ₗ[K] W) (q p : Fin r → Forms K n d) :

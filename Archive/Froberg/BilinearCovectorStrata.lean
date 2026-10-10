@@ -113,7 +113,7 @@ theorem surjective_of_covectors
   change ell (BilinearScalarFamily.multiplication mu Q (Pi.single i x)) = 0 at hh
   rw [BilinearScalarFamily.multiplication_apply] at hh
   simpa only [Pi.single_apply,apply_ite,map_zero,Finset.sum_ite_eq',Finset.mem_univ,
-    if_true] using hh
+    ite_true] using hh
 
 /-- Intersecting all kernel-dimension strata produces an actual nonempty open
 of surjective scalar-family maps. -/

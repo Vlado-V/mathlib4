@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.BinomialProfiles
+public import Mathlib.Tactic.FieldSimp
 
 /-! Explicit strictly positive transport for every allowed outer-module
 profile pair. The construction diverts a marked Bernoulli event to the last

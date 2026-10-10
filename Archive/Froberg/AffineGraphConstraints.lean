@@ -31,6 +31,7 @@ def tupleProductConstraint
     (H (finProdFinEquiv.symm l).1))
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem tupleProductConstraint_apply
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → K) (ell : Fin T → K) (l : Fin (N * b)) :
@@ -103,6 +104,7 @@ theorem affineGraphConstraint_rank
   exact affineHomogenization_rank _ _
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Fintype I] in
 theorem affineGraphConstraint_polynomial
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))

@@ -14,11 +14,12 @@ public import Archive.Froberg.UniversalMixedPosition
 noncomputable section
 namespace Froberg.MixedExterior
 open MvPolynomial Matrix
-variable {K α C : Type*} [Field K] [Infinite K] [Fintype α] [DecidableEq α] [Fintype C]
+variable {K α C : Type*} [Field K]
 
 /-- Simultaneous specialization for an arbitrary finite list of disjoint-label
 mixed-minor certificates, possibly in different exterior degrees. -/
-theorem common_mixed_vectors_principal_open (h : ℕ) (r l : C → ℕ) (hr : ∀ c, r c + l c = h)
+theorem common_mixed_vectors_principal_open [Finite α] [Finite C]
+    (h : ℕ) (r l : C → ℕ) (hr : ∀ c, r c + l c = h)
     (t : (c : C) → Set.powersetCard (Fin (r c + l c)) (r c) → ℕ)
     (ht : ∀ c I, t c I ≤ l c)
     (label : (c : C) → (Σ I, Fin (t c I)) ↪ α) :
@@ -27,6 +28,8 @@ theorem common_mixed_vectors_principal_open (h : ℕ) (r l : C → ℕ) (hr : �
       ∀ c, Matrix.det (fun I J => mixedRow
         (paddedVectors (t c) (label c) (fun a j => values (a,Fin.cast (hr c) j)) I) J) ≠ 0 := by
   classical
+  let : Fintype α := Fintype.ofFinite α
+  let : Fintype C := Fintype.ofFinite C
   let coord (c : C) : α × Fin (r c+l c) → α × Fin h :=
     fun p => (p.1,Fin.cast (hr c) p.2)
   have hcoord (c : C) : Function.Injective (coord c) := by
@@ -99,11 +102,12 @@ theorem common_mixed_vectors_principal_open (h : ℕ) (r l : C → ℕ) (hr : �
 
 /-- One principal open simultaneously enforces all full-spark and mixed
 exterior conditions, and can therefore be intersected with other opens. -/
-theorem universal_mixed_vectors_principal_open (h : ℕ) :
+theorem universal_mixed_vectors_principal_open [Finite α] (h : ℕ) :
     ∃ P : MvPolynomial (α × Fin h) K, P≠0 ∧ ∀ values,eval values P≠0 →
       (∀ S : Finset α,S.card ≤ h → LinearIndependent K (fun i : S => fun j => values (i.val,j))) ∧
       UniversalMixedPosition (fun a j => values (a,j)) := by
   classical
+  let : Fintype α := Fintype.ofFinite α
   let r : MixedConfiguration h α → ℕ := fun c => c.1.val
   let l : MixedConfiguration h α → ℕ := fun c => h-c.1.val
   have hr : ∀ c,r c+l c=h := fun c => Nat.add_sub_of_le (Nat.le_of_lt_succ c.1.isLt)

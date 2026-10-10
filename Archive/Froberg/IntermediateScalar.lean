@@ -21,6 +21,7 @@ open Quartic.HomogeneousCoefficientCoordinates
 variable {K I : Type*} [Field K] [Infinite K] [Fintype I] [DecidableEq I]
 variable {n s d h q B : ℕ}
 
+omit [DecidableEq I] in
 /-- B.11 plus the finite scalar budget supplies the actual incidence bound. -/
 theorem intermediate_scalar_injective_of_budget
     (hn : 0 < n) (hh : 0 < h) (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
@@ -35,6 +36,7 @@ theorem intermediate_scalar_injective_of_budget
       ∀ Q : Fin q → Forms K n d, eval (coordinates K _ Q) P ≠ 0 →
         Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he)
           Q) := by
+  classical
   apply BilinearScalarFamily.generic_injective_of_shadow
   intro L
   let N := h*(n+s-1).choose s
@@ -49,8 +51,7 @@ theorem intermediate_scalar_injective_of_budget
   have hc := (Nat.mul_le_mul_right (finrank K L) hcount).trans hshadow
   have hplain : (q+N)*finrank K L ≤ finrank K (outerImage (d := d) e v he L) := by
     apply Nat.le_of_mul_le_mul_left (c := C)
-    · change C*((q+N)*finrank K L) ≤ C*finrank K (outerImage (d := d) e v he L)
-      change C*(q+N+E)*finrank K L ≤ C*(finrank K (outerImage (d := d) e v he L)+E*finrank K
+    · change C*(q+N+E)*finrank K L ≤ C*(finrank K (outerImage (d := d) e v he L)+E*finrank K
         L) at hc
       nlinarith
     · exact hC

@@ -19,7 +19,7 @@ namespace Froberg
 open Module Finset
 variable {K : Type} [Field K]
 variable {B : Type*} [CommRing B] [Algebra K B]
-variable {ι : Type*} [Fintype ι] [DecidableEq ι] {r : ℕ}
+variable {ι : Type*} [Finite ι] [DecidableEq ι] {r : ℕ}
 
 /-- The source products attached to a specified unordered output pair. -/
 abbrev ScalarPairFiber (δ : Sym2 ι) :=
@@ -28,11 +28,13 @@ abbrev ScalarPairFiber (δ : Sym2 ι) :=
 def scalarFiberLabels (δ : Sym2 ι) : Finset (ι × Fin r) :=
   δ.toFinset.product Finset.univ
 
+omit [Finite ι] in
 theorem card_scalarFiberLabels (δ : Sym2 ι) : (scalarFiberLabels (r := r) δ).card ≤ 2*r := by
   simp only [scalarFiberLabels, Finset.product_eq_sprod]
   rw [card_product, card_univ, Fintype.card_fin, Sym2.card_toFinset]
   split_ifs <;> omega
 
+omit [Finite ι] in
 @[simp] theorem mem_scalarFiberLabels (δ : Sym2 ι) (i : ι × Fin r) :
     i ∈ scalarFiberLabels δ ↔ i.1 ∈ δ := by
   simp [scalarFiberLabels, Sym2.mem_toFinset]
@@ -41,6 +43,7 @@ theorem pairProducts_map {α β : Type*} (q : β → B) (f : α → β) (p : Sym
     pairProducts q (Sym2.map f p) = pairProducts (q ∘ f) p := by
   induction p using Sym2.inductionOn with | _ i j => rfl
 
+omit [Finite ι] [DecidableEq ι] in
 /-- A full-spark scalar family gives all diagonal and cross-product injections
 needed by the separated coefficient construction. -/
 theorem scalar_pair_fiber_independent (C : Submodule K B)
@@ -72,6 +75,7 @@ theorem scalar_pair_fiber_independent (C : Submodule K B)
   rw [← hback p, pairProducts_map]
   rfl
 
+omit [DecidableEq ι] in
 /-- Arbitrarily many scalar groups, each of size r, with pairwise independent
 unions exist whenever 2r is at most the scalar-space dimension. -/
 theorem exists_scalar_pair_fiber_independent [Infinite K] (C : Submodule K B)

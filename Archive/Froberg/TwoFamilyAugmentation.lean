@@ -27,6 +27,7 @@ variable {K P₁ P₂ V₁ V₂ W : Type*} [Field K]
 variable {q₁ q₂ t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K P₁] [FiniteDimensional K V₁] in
 theorem twoFamily_append_coprod_injective
     (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W) (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W)
     (F : Fin q₁ → P₁) (Q : Fin q₂ → P₂) (A : Fin t → P₂)

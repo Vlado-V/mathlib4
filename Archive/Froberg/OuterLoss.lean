@@ -63,6 +63,7 @@ def idealShadow
   exact univ.sup (fun a : Exponent n s => if a.val ≤ b.val then
     min (finrank K (C a)) (finrank K ((Fin h → K) ⧸ relationFiber e v b.val)) else 0)
 
+omit [Fintype I] [DecidableEq I] in
 /-- Every divisible source contributes its maximal possible projection rank
 to the ideal shadow. -/
 theorem min_le_idealShadow
@@ -77,6 +78,7 @@ theorem min_le_idealShadow
   unfold idealShadow
   simpa only [ite_eq_left hab] using hh
 
+omit [Fintype I] [DecidableEq I] in
 /-- Coarse target capacities are valid in the same ideal lower bound. -/
 theorem coarse_min_le_idealShadow
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
@@ -85,6 +87,7 @@ theorem coarse_min_le_idealShadow
     min (finrank K (C a)) c ≤ idealShadow e v C b :=
   (min_le_min_left _ hc).trans (min_le_idealShadow e v C a b hab)
 
+omit [Fintype I] [DecidableEq I] in
 theorem idealShadow_le (C : (a : Exponent n s) → Submodule K
     ((Fin h → K) ⧸ relationFiber e v a.val)) (b : Exponent n (s + (s + 1))) :
     idealShadow e v C b ≤ h := by
@@ -116,6 +119,7 @@ theorem idealShadow_le_actual_of_no_exceptions
     exact hgood a hproper.1 hproper.2 (mem_filter.mpr ⟨mem_univ _,hab,hfail⟩)
   · exact Nat.zero_le _
 
+omit [DecidableEq I] in
 /-- Summing the actual uniform exception bound gives the required smaller-of-
 dimension-and-codimension loss. All shadows and images are actual quotient spaces. -/
 theorem idealShadow_sum_le_actual_image_add_loss (hn : 0 < n)
@@ -131,6 +135,7 @@ theorem idealShadow_sum_le_actual_image_add_loss (hn : 0 < n)
         min (∑ a, finrank K (C a))
           ((∑ a : Exponent n s, finrank K ((Fin h → K) ⧸ relationFiber e v a.val)) -
             ∑ a, finrank K (C a)) := by
+  classical
   have hbudget := ExceptionBudget.sum_loss_le
     (fun a : Exponent n s => finrank K ((Fin h → K) ⧸ relationFiber e v a.val))
     (fun a => finrank K (C a)) (fun a => Submodule.finrank_le (C a))

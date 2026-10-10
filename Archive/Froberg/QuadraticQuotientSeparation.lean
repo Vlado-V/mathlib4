@@ -22,6 +22,7 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 variable {h n j t m : ℕ}
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Pointwise annihilation of old polynomial products annihilates the full
 formal mixed-product image. -/
 theorem formalMixed_polynomial_map_le_ker (W : Submodule K (Forms K n j))
@@ -37,6 +38,7 @@ theorem formalMixed_polynomial_map_le_ker (W : Submodule K (Forms K n j))
   exact hW a ha b
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [DecidableEq ι] in
 /-- The tensor-space construction supplies actual homogeneous forms with
 independent products after the output/scalar detector. -/
 theorem exists_detected_homogeneous_family
@@ -50,7 +52,7 @@ theorem exists_detected_homogeneous_family
       LinearIndependent K (fun p => splitPolynomialDetector T Q
         ((formalPolynomialMultiplication (formalPair (K := K) f p)).val)) := by
   classical
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hCt
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hCt
   let o' : ι → Poly K h := fun i => (o i).val
   obtain ⟨q,hq,hp⟩ := exists_detected_separated_family o' T ho C P Q hC hCP hPQ hm
   let e := splitPolynomialEquiv (K := K) h n
@@ -72,6 +74,7 @@ theorem exists_detected_homogeneous_family
       e,AlgEquiv.symm_apply_apply]
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [DecidableEq ι] in
 /-- Appendix C.2's separation conclusion, in actual homogeneous polynomial
 spaces. Taking j=1 and t=d−1 gives exactly the new generator family F. -/
 theorem exists_separated_homogeneous_family
@@ -89,6 +92,7 @@ theorem exists_separated_homogeneous_family
         formalSquare (Submodule.span K (Set.range f)) ⊓
           ((formalMixed W).map formalPolynomialMultiplication).comap
             (formalPolynomialMultiplication (K := K) (n := h+n) (d := j+t)) = ⊥ := by
+  classical
   obtain ⟨f,hf⟩ := exists_detected_homogeneous_family o T ho C P Q hCt hC hCP hPQ hm
   have hprod : LinearIndependent K (pairProducts (fun i => (f i).val)) := by
     apply LinearIndependent.of_comp (splitPolynomialDetector T Q)

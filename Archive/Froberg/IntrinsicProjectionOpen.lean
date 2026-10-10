@@ -37,6 +37,7 @@ def coordinateProjection {b : ℕ} (x : ProjectionParameter K W b → K) :
     (coordinates K W).toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem coordinateProjection_surjective (b : ℕ) :
     Function.Surjective (coordinateProjection (K := K) (W := W) (b := b)) := by
   intro P
@@ -47,6 +48,7 @@ theorem coordinateProjection_surjective (b : ℕ) :
     LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem coordinateProjection_polynomial (b : ℕ) :
     IsPolynomialFamily (coordinateProjection (K := K) (W := W) (b := b)) := by
   let L : (ProjectionParameter K W b → K) →ₗ[K] (W →ₗ[K] (Fin b → K)) :=

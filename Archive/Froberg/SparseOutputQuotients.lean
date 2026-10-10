@@ -27,14 +27,14 @@ def relationProjection (R : Submodule K V) : V →ₗ[K] V :=
   (Classical.choose R.exists_isCompl).projection R
     (Classical.choose_spec R.exists_isCompl).symm
 
-omit [Infinite K] [FiniteDimensional K V] in
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K V] in
 @[simp] theorem relationProjection_kernel (R : Submodule K V) :
     (relationProjection R).ker=R := by
   exact Submodule.ker_projection _
 
-omit [Infinite K] in
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Restricting a relation space to an output subspace can only reduce its dimension. -/
 theorem restricted_relation_finrank (O R : Submodule K V) :
     finrank K (R.comap O.subtype)≤finrank K R := by
@@ -44,6 +44,7 @@ theorem restricted_relation_finrank (O R : Submodule K V) :
   simpa only [Submodule.finrank_map_subtype_eq] using Submodule.finrank_mono hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The quotient output dimension loses at most the ambient relation dimension. -/
 theorem relationProjection_restricted_rank (O R : Submodule K V) :
     finrank K O-finrank K R≤finrank K (relationProjection (R.comap O.subtype)).range := by
@@ -84,6 +85,7 @@ def sparseOutputCoefficient {n m d : ℕ} (e : Fin m → Fin n →₀ ℕ)
   ∑ i : {i // e i≤β},(p i.val).val.coeff (β-e i.val) • v i.val
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Projected sparse injectivity excludes every polynomial combination whose
 output coefficients all lie in the specified output relation space. -/
 theorem sparse_zero_of_relation_coefficients {n m d : ℕ}

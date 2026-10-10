@@ -41,10 +41,13 @@ theorem tuple_update_span (Q : I → V) (i : I) (M : V) :
       rintro _ rfl
       exact Submodule.subset_span ⟨i,Function.update_self _ _ _⟩
 
+omit [DecidableEq I] in
 theorem tuple_span_split (Q : I → V) (i : I) :
     Submodule.span K (Set.range Q)=puncturedTupleSpan Q i ⊔ Submodule.span K {Q i} := by
+  classical
   simpa only [Function.update_eq_self] using tuple_update_span Q i (Q i)
 
+omit [DecidableEq I] in
 theorem tuple_slot_not_mem_punctured (Q : I → V) (hQ : LinearIndependent K Q) (i : I) :
     Q i∉puncturedTupleSpan (K := K) Q i :=
   hQ.notMem_span_image (by simp)
@@ -70,7 +73,7 @@ theorem transverse_tuple_replacement_independent (Q : I → V) (hQ : LinearIndep
     by_cases hj : j=i
     · subst j
       simp
-    · simp [Function.comp_def,Function.update_of_ne hj,F,hj]
+    · simp [F,hj]
   rwa [heq] at hh
 
 end Froberg

@@ -23,6 +23,7 @@ variable [AddCommGroup X] [Module K X]
 variable [AddCommGroup Y] [Module K Y]
 variable {f : ℕ}
 
+omit [Infinite K] in
 theorem formalSquare_separated_of_coefficient_row
     (mu : SymmetricSquare K V →ₗ[K] W) (R : W →ₗ[K] Y)
     (A : X →ₗ[K] Y) (q : Fin f → V) (L : Submodule K V)

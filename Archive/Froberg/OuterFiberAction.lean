@@ -17,6 +17,7 @@ namespace Froberg.AttachedMultiplication
 open MvPolynomial Quartic.HomogeneousCoefficientCoordinates
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s d h : ℕ}
 
+omit [DecidableEq I] in
 @[simp] theorem quotientFiberEquiv_mk (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
     (he : ∀ i, (e i).degree = s) (p : Fin h → Forms K n (s + d))
     (β : Exponent n (s + d)) :
@@ -27,6 +28,7 @@ variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s d h : ℕ}
 def monomialVector (a : Exponent n s) (u : Fin h → K) : Fin h → Forms K n s :=
   fun j => ⟨monomial a.val (u j),isHomogeneous_monomial (u j) a.property⟩
 
+omit [DecidableEq I] in
 theorem quotientFiberEquiv_symm_single_mk (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
     (he : ∀ i, (e i).degree = s) (a : Exponent n s) (u : Fin h → K) :
     (quotientFiberEquiv (d := 0) e v he).symm
@@ -40,7 +42,8 @@ theorem quotientFiberEquiv_symm_single_mk (e : I → Fin n →₀ ℕ) (v : I �
   · subst b
     simp [monomialVector]
   · have hval : a.val ≠ b.val := fun he => hab (Subtype.ext he.symm)
-    simp [Pi.single_eq_of_ne hab,monomialVector,coeff_monomial,hval]
+    simp only [Pi.single_eq_of_ne hab,monomialVector,coeff_monomial,
+      ite_eq_right hval,Nat.add_zero]
     exact (map_zero (relationFiber e v b.val).mkQ).symm
 
 /-- The genuine multiplication conjugated by the proved coefficient-quotient equivalences. -/
@@ -86,8 +89,9 @@ theorem fiberMultiply_monomial_single (e : I → Fin n →₀ ℕ) (v : I → Fi
       apply Subtype.ext
       simpa [addExponent,add_comm] using hh.symm
     rw [Pi.single_eq_of_ne hca]
-    simp [monomialVector,monomialForm,vectorMultiply_val,
-      monomial_mul_monomial,coeff_monomial,hval]
+    simp only [monomialVector,monomialForm,vectorMultiply_val,
+      monomial_mul_monomial,coeff_monomial,ite_eq_right hval,one_mul,
+      Submodule.mkQ_apply,Submodule.Quotient.mk_eq_zero]
     exact (relationFiber e v c.val).zero_mem
 
 end Froberg.AttachedMultiplication

@@ -62,8 +62,6 @@ theorem component_quotient_family_independent
     (hg : ∀ j,LinearIndependent K (g j)) :
     LinearIndependent K (fun i => A.mkQ (v i)) := by
   classical
-  let := Fintype.ofFinite I
-  let := Fintype.ofFinite L
   apply Fintype.linearIndependent_iff.mpr
   intro c hc i
   have hmem : (∑ k,c k • v k)∈A := by

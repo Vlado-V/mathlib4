@@ -57,8 +57,7 @@ theorem affine_kernel_normalized_joint
         r≤finrank K (BilinearImage.image muH (relationMap mu ell).ker) →
         KernelCovectorExcluded mu B y ell := by
   have hdim : finrank K ((Fin H → K) × K)=H+1 := by
-    simp only [Module.finrank_prod,Module.finrank_pi,Module.finrank_self,Fintype.card_fin,
-      Finset.sum_const,Finset.card_univ,smul_eq_mul,mul_one]
+    simp only [Module.finrank_prod,Module.finrank_pi,Module.finrank_self,Fintype.card_fin]
   have hc : s₀+graphParameterCount j+finrank K ((Fin H → K) × K)<r+q*(a-k)+s := by
     rw [hdim]
     have := graphParameterCount_bound j

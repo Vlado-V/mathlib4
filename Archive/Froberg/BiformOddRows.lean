@@ -6,6 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.BiformDimensions
+public import Mathlib.RingTheory.Finiteness.Prod
+public import Mathlib.RingTheory.TensorProduct.Finite
 
 /-! Actual nonempty rank opens for the scalar-plus-linear higher odd rows.
 Every dimension is the cardinality of the corresponding homogeneous monomials. -/

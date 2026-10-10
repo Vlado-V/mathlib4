@@ -39,7 +39,7 @@ theorem assembledFamily_eq (e : ℕ → ℕ)
     (r : Row J R) {j : ℕ} (hj : j = r.val.val ∨ j = R - r.val.val) :
     assembledFamily e q j = q r j := by
   have h : ∃ r : Row J R, j=r.val.val ∨ j=R-r.val.val := ⟨r,hj⟩
-  rw [assembledFamily,dif_pos h]
+  rw [assembledFamily,dite_eq_left h]
   rw [row_eq_of_common_layer h.choose r h.choose_spec hj]
 
 theorem products_congr (e : ℕ → ℕ)

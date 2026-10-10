@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.OuterLoss
 public import Archive.Froberg.OuterInitialFibers
+public import Mathlib.Basic.Real.Basic
 
 /-! Transfer from the finite ideal-shadow estimate to actual outer-module growth. -/
 
@@ -18,9 +19,11 @@ open Module Finset Quartic.HomogeneousCoefficientCoordinates
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s h : ℕ}
 variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s)
 
+omit [DecidableEq I] in
 theorem sum_source_fiber_finrank :
     (∑ a : Exponent n s, finrank K ((Fin h → K) ⧸ relationFiber e v a.val)) =
       finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he) := by
+  classical
   simpa only [Nat.add_zero, Module.finrank_pi_fintype] using (quotientFiberEquiv (d := 0) e v
     he).finrank_eq.symm
 

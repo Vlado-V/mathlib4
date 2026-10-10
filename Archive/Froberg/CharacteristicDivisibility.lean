@@ -50,7 +50,7 @@ theorem genericCokernel_divisibility_of_divisor_primitiveRoot (hn : 0 < n)
     rw [central_pair_target_matrix]
     apply Matrix.ext
     intro i j
-    by_cases hij : i=j <;> simp [Matrix.smul_apply,Matrix.one_apply,ι,φ,hij]
+    by_cases hij : i=j <;> simp [Matrix.smul_apply,ι,φ,hij]
   have himage := invariant_subspace_weight_divisibility (universalTargetAction (d := d))
     (LinearMap.range M.mulVecLin)
     (fun g w hw => universalMultiplication_image_invariant g w hw)
@@ -65,9 +65,9 @@ extension, and the resulting rank divisibility descends to the original field. -
 theorem genericCokernel_divisibility_of_cast_ne_zero (hn : 0 < n)
     (hℓ : ℓ ∣ Nat.gcd n (d * r)) (hne : (ℓ : K) ≠ 0) :
     ℓ∣(2*d)*genericCokernel K n d r := by
-  letI : NeZero (ℓ : K) := ⟨hne⟩
+  let : NeZero (ℓ : K) := ⟨hne⟩
   let L := AlgebraicClosure K
-  obtain ⟨ζ,hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot L ℓ
+  obtain ⟨ζ,hζ⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot L ℓ
   have h := genericCokernel_divisibility_of_divisor_primitiveRoot (K := L) hn hℓ ζ hζ
   rwa [←GenericFieldDescent.genericCokernel_baseChange (algebraMap K L) hn] at h
 
@@ -93,6 +93,7 @@ theorem genericHomology_divisibility_of_cast_ne_zero (hn : 0 < n)
   genericHomology_divisor_of_genericCokernel hn hr hℓ
     (genericCokernel_divisibility_of_cast_ne_zero hn hℓ hne)
 
+omit [Infinite K] in
 /-- A positive integer is nonzero in the field when its prime divisors avoid
 the characteristic.  The zero-characteristic case is stated separately. -/
 theorem natCast_ne_zero_of_characteristic_coprime (hℓ : 0 < ℓ)
@@ -123,18 +124,22 @@ characteristic zero, `ordCompl[0] m` is simply `m`. -/
 def primeToCharacteristicPart (K : Type*) [Field K] (m : ℕ) : ℕ :=
   ordCompl[ringChar K] m
 
+omit [Infinite K] in
 theorem primeToCharacteristicPart_dvd (m : ℕ) :
     primeToCharacteristicPart K m∣m := Nat.ordCompl_dvd _ _
 
+omit [Infinite K] in
 theorem primeToCharacteristicPart_pos {m : ℕ} (hm : 0 < m) :
     0<primeToCharacteristicPart K m := Nat.ordCompl_pos _ hm.ne'
 
+omit [Infinite K] in
 theorem primeToCharacteristicPart_eq_of_charZero [CharZero K] (m : ℕ) :
     primeToCharacteristicPart K m=m := by
   unfold primeToCharacteristicPart
   rw [ringChar.eq_zero]
   exact Nat.ordCompl_of_not_prime m 0 (by decide)
 
+omit [Infinite K] in
 theorem primeToCharacteristicPart_cast_ne_zero {m : ℕ} (hm : 0 < m) :
     (primeToCharacteristicPart K m : K)≠0 := by
   apply natCast_ne_zero_of_characteristic_coprime (primeToCharacteristicPart_pos hm)
@@ -142,6 +147,7 @@ theorem primeToCharacteristicPart_cast_ne_zero {m : ℕ} (hm : 0 < m) :
   · exact Or.inr (Nat.coprime_ordCompl hp hm.ne').symm
   · exact Or.inl hp
 
+omit [Infinite K] in
 /-- Every divisor nonzero in the field divides the prime-to-characteristic
 part, giving its maximality in the sense needed by Lemma 7.1. -/
 theorem dvd_primeToCharacteristicPart {m : ℕ} (hℓm : ℓ ∣ m) (hne : (ℓ : K) ≠ 0) :

@@ -67,6 +67,7 @@ def parityEnumeratedForms (v : σ ≃ Fin n) (j : I ≃ Fin r)
   fun i => (parityPolynomialToFormsEquiv v w (e (j.symm i)) (g (j.symm i))).val
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Fintype I] in
 theorem parityEnumeratedForms_homogeneous (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (i : Fin r) :
@@ -91,6 +92,7 @@ def parityEnumeratedCoefficients (v : σ ≃ Fin n) (j : I ≃ Fin r)
   (parityEnumeratedCoefficientsEquiv v j w e p).toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Fintype I] in
 theorem parityEnumeratedCoefficients_surjective (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2) (p : ZMod 2) :
     Function.Surjective (parityEnumeratedCoefficients (K := K) (d := d) v j w e p) :=

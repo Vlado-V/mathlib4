@@ -16,7 +16,7 @@ public import Archive.Froberg.AttachedFibers
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module MixedExterior
-variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n h : ℕ}
+variable {K I : Type*} [Field K] [Fintype I] {n h : ℕ}
 
 /-- Labels of attached monomials dividing a given monomial. -/
 def labelsBelow (e : I → Fin n →₀ ℕ) (b : Fin n →₀ ℕ) : Finset I :=
@@ -41,10 +41,12 @@ theorem relationFiber_eq_blockSpan (e : I → Fin n →₀ ℕ) (v : I → Fin h
   · rintro ⟨i,hi,rfl⟩
     exact ⟨⟨i,(mem_labelsBelow e b i).mp hi⟩,rfl⟩
 
+omit [Fintype I] in
 theorem relationFiber_mono (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
     {a b : Fin n →₀ ℕ} (hab : a ≤ b) : relationFiber e v a ≤ relationFiber e v b := by
-  rw [relationFiber_eq_blockSpan,relationFiber_eq_blockSpan]
-  exact blockSpan_mono v (labelsBelow_mono e hab)
+  apply Submodule.span_mono
+  rintro _ ⟨i,rfl⟩
+  exact ⟨⟨i.val,i.property.trans hab⟩,rfl⟩
 
 /-- The genuine quotient projection from a source monomial fiber to a divisible
 higher-degree monomial fiber. -/
@@ -70,6 +72,7 @@ theorem card_deficient_fiber_projections_le {s : ℕ} (hn : 0 < n)
       min (finrank K (U.map (relationFiber e v a).mkQ))
         (finrank K ((Fin h → K) ⧸ relationFiber e v b))) :
     E.card ≤ (h*2^h) * (n+s-1).choose s := by
+  classical
   apply card_deficient_targets_le hn v hm U a ha e he E hE
     (fun b => labelsBelow e b \ labelsBelow e a)
   · intro b hb i hi

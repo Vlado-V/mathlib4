@@ -18,12 +18,14 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K]
 
-theorem linearIndependent_sigma_one_fiber {I : Type*} [Fintype I]
-    {J : I → Type*} [∀ i, Fintype (J i)] {V : Type*} [AddCommGroup V] [Module K V]
+theorem linearIndependent_sigma_one_fiber {I : Type*} [Finite I]
+    {J : I → Type*} [∀ i, Finite (J i)] {V : Type*} [AddCommGroup V] [Module K V]
     (f : (i : I) → J i → V) (i₀ : I)
     (honly : ∀ i, J i → i = i₀) (hi : LinearIndependent K (f i₀)) :
     LinearIndependent K (fun p : Sigma J => f p.1 p.2) := by
   classical
+  let : Fintype I := Fintype.ofFinite I
+  let : ∀ i, Fintype (J i) := fun i => Fintype.ofFinite (J i)
   apply Fintype.linearIndependent_iff.mpr
   intro c hc p
   obtain ⟨i,x⟩ := p
@@ -80,15 +82,15 @@ theorem multiplication_single_layer (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
     have hdiag : r.val.val=R-r.val.val := by omega
     have hlocal : LinearIndependent K (products e q r) := by
       unfold products
-      rw [dif_pos hdiag]
+      rw [dite_eq_left hdiag]
       have hq : LinearIndependent K (pairProducts (q r.val.val)) := by rwa [hr.1]
-      exact hq.comp (cast (if_pos hdiag)) (Equiv.cast _).injective
+      exact hq.comp (cast (ite_eq_left hdiag)) (Equiv.cast _).injective
     apply linearIndependent_sigma_one_fiber (products e q) r _ hlocal
     intro s b
     apply Subtype.ext
     apply Fin.ext
     exact (hindex s b).1.trans hr.1.symm
-  · letI : IsEmpty (Σ r : Row J R,Columns e r) := not_nonempty_iff.mp hnon
+  · let : IsEmpty (Σ r : Row J R,Columns e r) := not_nonempty_iff.mp hnon
     exact linearIndependent_empty_type
 
 theorem single_layer_product_mem (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
@@ -110,7 +112,7 @@ theorem single_layer_product_mem (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
   have hdiag : r.val.val=R-r.val.val := hleft.trans hright.symm
   have hh : ∀ a,pairProducts (q r.val.val) a∈P := by rwa [hleft]
   unfold products
-  rw [dif_pos hdiag]
+  rw [dite_eq_left hdiag]
   exact hh _
 
 theorem multiplication_single_layer_range (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)

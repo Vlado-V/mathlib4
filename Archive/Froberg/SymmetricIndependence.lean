@@ -24,7 +24,7 @@ variable {ι : Type*}
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Formal products of a vector family, indexed without an order on the labels. -/
 def formalPair (q : ι → V) : Sym2 ι → SymmetricSquare K V :=
-  Sym2.lift ⟨fun i j => symProd (q i) (q j), fun i j => symProd_comm _ _⟩
+  Sym2.lift ⟨fun i j => symProd (q i) (q j), fun _ _ => symProd_comm _ _⟩
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 @[simp] theorem formalPair_mk (q : ι → V) (i j : ι) :
@@ -33,7 +33,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def unorderedPairExponent : Sym2 ι → (ι →₀ ℕ) :=
   Sym2.lift ⟨fun i j => Finsupp.single i 1 + Finsupp.single j 1,
-    fun i j => add_comm _ _⟩
+    fun _ _ => add_comm _ _⟩
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem unorderedPairExponent_injective : Function.Injective (unorderedPairExponent (ι := ι)) := by

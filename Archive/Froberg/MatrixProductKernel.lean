@@ -26,10 +26,10 @@ theorem sum_unordered_pair_fiber (B : I → I → K) (a b : I) :
   classical
   by_cases hab : a=b
   · subst b
-    simp only [Sym2.eq_iff,or_self,if_pos rfl]
+    simp only [Sym2.eq_iff,or_self]
     simp only [ite_and]
     simp
-  · rw [if_neg hab]
+  · rw [ite_eq_right hab]
     have hterm (i j : I) :
         (if s(i,j)=s(a,b) then B i j else 0)=
           (if i=a then if j=b then B i j else 0 else 0)+
@@ -43,7 +43,7 @@ theorem sum_unordered_pair_fiber (B : I → I → K) (a b : I) :
 /-- The coefficient of any independent selected unordered product must be
 zero in a vanishing constant-matrix product. -/
 theorem matrix_product_pair_coefficient_zero
-    (q : I → A) (P : Sym2 I → Prop) [DecidablePred P]
+    (q : I → A) (P : Sym2 I → Prop)
     (hP : LinearIndependent K (fun p : {p : Sym2 I // P p} => pairProducts q p.val))
     (B : I → I → K) (hB : ∀ i j,¬P s(i,j) → B i j=0)
     (hzero : ∑ i,∑ j,B i j • (q i*q j)=0)
@@ -71,7 +71,7 @@ theorem matrix_product_pair_coefficient_zero
 
 /-- A zero product matrix is alternating on every selected pair. -/
 theorem matrix_product_alternating
-    (q : I → A) (P : Sym2 I → Prop) [DecidablePred P]
+    (q : I → A) (P : Sym2 I → Prop)
     (hP : LinearIndependent K (fun p : {p : Sym2 I // P p} => pairProducts q p.val))
     (B : I → I → K) (hB : ∀ i j,¬P s(i,j) → B i j=0)
     (hzero : ∑ i,∑ j,B i j • (q i*q j)=0) :
@@ -85,12 +85,12 @@ theorem matrix_product_alternating
     rw [sum_unordered_pair_fiber] at h
     by_cases heq : i=j
     · subst j
-      simp only [if_true] at h
+      simp only [ite_true] at h
       simp [h]
-    · rw [if_neg heq] at h
+    · rw [ite_eq_right heq] at h
       exact eq_neg_of_add_eq_zero_left h
   · intro i hii
     have h := hcoeff i i hii
-    simpa only [sum_unordered_pair_fiber,if_true] using h
+    simpa only [sum_unordered_pair_fiber,ite_true] using h
 
 end Froberg

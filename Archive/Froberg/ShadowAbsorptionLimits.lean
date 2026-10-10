@@ -40,7 +40,7 @@ theorem normalized_limit_eventually_pos (A : ℕ → ℝ) {a : ℝ} (ha : 0 < a)
 /-- In codimension at least `δ n^s`, both the target discrepancy and exceptional
 projection error are smaller than any fixed positive part of the shadow surplus. -/
 theorem far_shadow_gap_eventually (A T₀ D E : ℕ → ℝ) (s : ℕ)
-    {a t c δ g : ℝ} (ha : 0 < a) (hδ : 0 < δ) (hg : g < c * (t / a))
+    {a t c δ g : ℝ} (ha : 0 < a) (_hδ : 0 < δ) (hg : g < c * (t / a))
     (hA : Tendsto (fun n : ℕ => A n / (n : ℝ) ^ s) atTop (𝓝 a))
     (hT : Tendsto (fun n : ℕ => T₀ n / (n : ℝ) ^ (2 * s + 1)) atTop (𝓝 t))
     (hD : Tendsto (fun n : ℕ => D n / (n : ℝ) ^ (2 * s + 1)) atTop (𝓝 0))

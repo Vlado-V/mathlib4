@@ -37,8 +37,8 @@ theorem products_scalar_weighted (e : ℕ → ℕ)
     have ht : assignedScalarDegree R d r.val.val = (d-r.val.val)/2 := by
       simp [assignedScalarDegree,htwo]
     unfold products
-    simp only [dif_pos hd,if_pos hd]
-    generalize hc : cast (if_pos hd) c = p
+    simp only [dite_eq_left hd,ite_eq_left hd]
+    generalize hc : cast (ite_eq_left hd) c = p
     induction p using Sym2.inductionOn with
     | _ a b =>
       have h := (hq _ hj.1 a).mul (hq _ hj.1 b)
@@ -51,8 +51,8 @@ theorem products_scalar_weighted (e : ℕ → ℕ)
       simp [assignedScalarDegree,show ¬2*(R-r.val.val)<R by omega,
         show ¬2*(R-r.val.val)=R by omega]
     unfold products
-    simp only [dif_neg hd,if_neg hd]
-    let p : Fin (e r.val.val) × Fin (e (R-r.val.val)) := cast (if_neg hd) c
+    simp only [dite_eq_right hd,ite_eq_right hd]
+    let p : Fin (e r.val.val) × Fin (e (R-r.val.val)) := cast (ite_eq_right hd) c
     change (q r.val.val p.1 * q (R-r.val.val) p.2).IsWeightedHomogeneous w (d-r.val.val)
     simpa only [hl,hr,add_zero] using (hq _ hj.1 p.1).mul (hq _ hj.2.1 p.2)
 
@@ -92,7 +92,7 @@ theorem retained_profile_zero {n k p j : ℕ} (S : Finset (Fin n))
   ext a
   rw [coeff_retainMonomials]
   by_cases hP : parityProfileRetained S p j a
-  · rw [if_pos hP]
+  · rw [ite_eq_left hP]
     by_contra hc
     have h := hf hc
     rw [weight_halfWeight] at h

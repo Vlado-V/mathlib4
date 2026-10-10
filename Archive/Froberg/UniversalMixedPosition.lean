@@ -19,7 +19,7 @@ abbrev MixedConfiguration (h : ℕ) (α : Type*) :=
     Σ t : Set.powersetCard (Fin (r.val+(h-r.val))) r.val → Fin ((h-r.val)+1),
       ((Σ I, Fin (t I).val) ↪ α)
 
-variable {K α : Type*} [Field K] [Fintype α] [DecidableEq α]
+variable {K α : Type*} [Field K] [Finite α]
 
 /-- Every possible exterior degree, every size of added-vector block, and every
 pairwise disjoint assignment of its labels satisfies the actual mixed determinant condition. -/
@@ -36,6 +36,7 @@ theorem exists_universal_mixed_vectors [Infinite K] (h : ℕ) :
       (∀ S : Finset α, S.card ≤ h → LinearIndependent K (fun i : S => v i.val)) ∧
       UniversalMixedPosition v := by
   classical
+  let : Fintype α := Fintype.ofFinite α
   let r : MixedConfiguration h α → ℕ := fun c => c.1.val
   let l : MixedConfiguration h α → ℕ := fun c => h-c.1.val
   have hr : ∀ c, r c+l c=h := fun c => Nat.add_sub_of_le (Nat.le_of_lt_succ c.1.isLt)

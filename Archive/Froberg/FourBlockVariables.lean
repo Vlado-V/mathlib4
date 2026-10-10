@@ -16,7 +16,7 @@ in a fixed product row. -/
 noncomputable section
 namespace Froberg.FourBlocks
 open MvPolynomial
-variable {K : Type} [Field K] [Infinite K]
+variable {K : Type} [Field K]
 variable {A B : Type*}
 
 abbrev Variables (A B : Type*) := (A × Bool) ⊕ (B × Bool)
@@ -40,19 +40,19 @@ def regroup : ((A ⊕ B) ⊕ (A ⊕ B)) ≃ Variables A B where
     rintro (⟨x,b⟩|⟨y,b⟩) <;> cases b <;> rfl
 
 def xHalfWeight : Variables A B → ℕ
-  | .inl (x,b) => if b then 1 else 0
+  | .inl (_,b) => if b then 1 else 0
   | .inr _ => 0
 
 def yHalfWeight : Variables A B → ℕ
   | .inl _ => 0
-  | .inr (y,b) => if b then 1 else 0
+  | .inr (_,b) => if b then 1 else 0
 
 def outputWeight : A ⊕ B → ℕ := Sum.elim (fun _ => 1) (fun _ => 0)
 def scalarWeight : A ⊕ B → ℕ := Sum.elim (fun _ => 0) (fun _ => 1)
 
 /-- One cross-pair witness has independent products in the same variable
 model used for all diagonal-pair witnesses. -/
-theorem cross_products_independent {α β : Type*} [Fintype α] [Fintype β]
+theorem cross_products_independent {α β : Type*} [Finite α] [Finite β]
     (a : α → MvPolynomial (A ⊕ B) K) (b : β → MvPolynomial (A ⊕ B) K)
     (ha : LinearIndependent K a) (hb : LinearIndependent K b) :
     LinearIndependent K (fun p : α × β => rename leftVar (a p.1) * rename rightVar (b p.2)) := by

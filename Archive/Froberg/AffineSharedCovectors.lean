@@ -34,6 +34,7 @@ def affineSharedConstraint
   affineHomogenization (SharedCovectorConstraints.constraint mu ell) (fixedCovectorTerms B ell)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Fixed positive components cannot reduce the independent conditions
 from the shared scalar family and the auxiliary slices. -/
 theorem affineSharedConstraint_rank
@@ -45,6 +46,7 @@ theorem affineSharedConstraint_rank
   exact affineHomogenization_rank _ _
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- At homogenizing coordinate one these are precisely annihilation of the
 actual shifted generators, with the common scalar tuple unchanged. -/
 theorem affineSharedConstraint_kernel_iff
@@ -67,7 +69,7 @@ theorem affineSharedConstraint_kernel_iff
       rw [← (Pi.basisFun K (Fin a)).sum_equivFun v]
       simp only [map_sum,map_smul,Pi.basisFun_apply,Pi.basisFun_equivFun,
         ← Finset.sum_add_distrib,← smul_add]
-      simp only [map_sum,map_smul,hb,smul_zero,Finset.sum_const_zero]
+      simp only [hb,smul_zero,Finset.sum_const_zero]
     · intro j
       have hh := congrFun (congrArg Prod.snd hx) j
       simpa [affineSharedConstraint,affineHomogenization,fixedCovectorTerms,

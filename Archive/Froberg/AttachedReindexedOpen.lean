@@ -56,7 +56,7 @@ lemma generator_expands_reindexed (r : Fin c ≃ I) (e : I → Fin n →₀ ℕ)
   have hd : finrank K S=ell+finrank K (relationSpace (d := 0) e v he) := by rwa [hsrc]
   simpa only [htgt,VectorMultiplicationCoordinates.multiplication] using hamb S hES' hd
 
-theorem principal_open_reindexed_attached [IsAlgClosed L] {A : Type*} [Fintype A]
+theorem principal_open_reindexed_attached [IsAlgClosed L] {A : Type*} [Finite A]
     (r : Fin c ≃ I) (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
     (he : ∀ i, (e i).degree = s) (hn : 0 < n)
     (g : (P → K) → Fin c → Rows K h n s)
@@ -80,6 +80,7 @@ theorem principal_open_reindexed_attached [IsAlgClosed L] {A : Type*} [Fintype A
         finrank K U=ell i → bound i ≤ finrank K (BilinearImage.image
           (QuotientBilinearImage.quotientMap (vectorMultiply (d := d))
             (Submodule.span K (Set.range (g p)))) U) := by
+  let : Fintype A := Fintype.ofFinite A
   apply quotient_principal_open (L := L) g hg p₀
   · rw [hp₀]
     exact (generator_independent e v he hi₀ hn).comp r r.injective

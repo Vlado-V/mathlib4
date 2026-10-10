@@ -51,6 +51,7 @@ theorem column_equations (M₀ M₁ : V →ₗ[K] W) (a : (equations M₀ M₁).
   exact ⟨congrArg Prod.fst h, eq_neg_of_add_eq_zero_right (congrArg Prod.snd h)⟩
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Corrected source columns give the rank gain of their actual cokernel responses. -/
 theorem rank_gain_principal_open (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J)
     (hπ : π.comp M₀ = 0) :

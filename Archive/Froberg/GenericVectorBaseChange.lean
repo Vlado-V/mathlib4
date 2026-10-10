@@ -18,9 +18,12 @@ namespace Froberg.MixedExterior
 open Matrix
 
 lemma linearIndependent_map_coordinates {K L I J : Type*} [Field K] [Field L]
-    [Fintype I] [Fintype J] [DecidableEq I] [DecidableEq J]
+    [Finite I] [Finite J]
     (f : K →+* L) (v : I → J → K) (hv : LinearIndependent K v) :
     LinearIndependent L (fun i j => f (v i j)) := by
+  classical
+  let : Fintype I := Fintype.ofFinite I
+  let : Fintype J := Fintype.ofFinite J
   let A : Matrix J I K := fun j i => v i j
   have hA : Function.Injective A.mulVec := Matrix.mulVec_injective_iff.mpr hv
   obtain ⟨g,hg⟩ := (Matrix.toLin' A).exists_leftInverse_of_injective
@@ -39,14 +42,14 @@ lemma linearIndependent_map_coordinates {K L I J : Type*} [Field K] [Field L]
   simpa only [Matrix.mulVec_mulVec,hmap,Matrix.one_mulVec] using he
 
 lemma full_spark_map_coordinates {K L α : Type*} [Field K] [Field L]
-    [Fintype α] [DecidableEq α] {h : ℕ} (f : K →+* L) (v : α → Fin h → K)
+    {h : ℕ} (f : K →+* L) (v : α → Fin h → K)
     (hv : ∀ S : Finset α,S.card ≤ h → LinearIndependent K (fun i : S => v i.val)) :
     ∀ S : Finset α,S.card ≤ h → LinearIndependent L (fun i : S => fun j => f (v i.val j)) := by
   intro S hS
   exact linearIndependent_map_coordinates f _ (hv S hS)
 
 lemma UniversalMixedPosition.map_coordinates {K L α : Type*} [Field K] [Field L]
-    [Fintype α] [DecidableEq α] {h : ℕ} (f : K →+* L) {v : α → Fin h → K}
+    {h : ℕ} (f : K →+* L) {v : α → Fin h → K}
     (hv : UniversalMixedPosition v) : UniversalMixedPosition (fun i j => f (v i j)) := by
   intro c
   have hm : (fun I J => mixedRow

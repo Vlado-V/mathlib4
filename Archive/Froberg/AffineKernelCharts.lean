@@ -23,15 +23,18 @@ open Quartic.BilinearCoefficientKernel
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-private theorem polynomial_pi {I J V : Type*} [Fintype J]
+omit [Infinite K] in
+private theorem polynomial_pi {I J V : Type*} [Finite J]
     [AddCommGroup V] [Module K V] (f : (I → K) → J → V)
     (hf : ∀ j, IsPolynomialFamily (fun p => f p j)) : IsPolynomialFamily f := by
   classical
+  let := Fintype.ofFinite J
   have h := IsPolynomialFamily.sum (fun j =>
     (hf j).linear_comp (LinearMap.single K (fun _ : J => V) j))
   simpa only [LinearMap.single_apply,Finset.univ_sum_single] using h
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem graphVector_polynomial {a k : ℕ} (j : Fin k ↪ Fin a) :
     IsPolynomialFamily (graphVector (K := K) j) := by
   apply polynomial_pi
@@ -49,6 +52,7 @@ def graphFromFin {a k : ℕ} (j : Fin k ↪ Fin a) (u : Fin (graphParameterCount
     Fin k → Fin a → K := graphVector j (u ∘ Fintype.equivFin (GraphParameters j))
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem graphFromFin_polynomial {a k : ℕ} (j : Fin k ↪ Fin a) :
     IsPolynomialFamily (graphFromFin (K := K) j) :=
   polynomial_family_reindex (graphVector_polynomial j) (Fintype.equivFin (GraphParameters j))
@@ -60,6 +64,7 @@ theorem graphParameterCount_bound {a k : ℕ} (j : Fin k ↪ Fin a) :
   nlinarith [Nat.sub_le a k]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_graphFromFin {a k : ℕ} (S : Submodule K (Fin a → K)) (hk : finrank K S = k) :
     ∃ j : Fin k ↪ Fin a,∃ u : Fin (graphParameterCount j) → K,
       Submodule.span K (Set.range (graphFromFin j u))=S := by
@@ -87,12 +92,14 @@ def chartGraphCoordinates (j : Fin k ↪ Fin a) :
   LinearMap.pi fun i => LinearMap.proj (Fin.natAdd T₀ i)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem chartBottom_append (j : Fin k ↪ Fin a) (t : Fin T₀ → K)
     (u : Fin (graphParameterCount j) → K) : chartBottom j (Fin.append t u)=t := by
   ext i
   exact Fin.append_left t u i
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem chartGraphCoordinates_append (j : Fin k ↪ Fin a) (t : Fin T₀ → K)
     (u : Fin (graphParameterCount j) → K) : chartGraphCoordinates j (Fin.append t u)=u := by
   ext i
@@ -122,6 +129,7 @@ def chartCovector (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T �
   res (x.2 • chartBottom j p,x.1)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem chartCovector_polynomial
     (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T → K)) (j : Fin k ↪ Fin a) :
     IsPolynomialFamily (fun p : (Fin (T₀+graphParameterCount j) ⊕

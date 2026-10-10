@@ -26,7 +26,7 @@ theorem centralHalfBinomial_double_step {d : ℕ} (hd : 0 < d) :
   rw [centralBinomial_eq_twice_half hd] at hp
   have hnext : centralHalfBinomial (d + 1) = (2 * d + 1).choose d := by
     unfold centralHalfBinomial
-    congr 1 <;> omega
+    congr 1
   rw [hnext]
   omega
 
@@ -120,8 +120,7 @@ theorem deletedTargetCount_limit {d : ℕ} (hd : 3 ≤ d) :
     funext h
     simp only [deletedTargetCount, Nat.cast_choose_two, Nat.cast_add, Nat.cast_one]
     ring
-  · congr 1
-    ring
+  · ring
 
 theorem block_parameters_eventually {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,
@@ -133,8 +132,8 @@ theorem block_parameters_eventually {d : ℕ} (hd : 3 ≤ d) :
     (by simpa using scaled_power_normalized_limit (1 : ℝ) 1)
     (outerColumnRate_bounds hd).2
   have hTwo : Tendsto (fun h : ℕ => (2 * (h : ℝ)) / (h : ℝ) ^ 2) atTop (𝓝 0) := by
-    have hp := polynomial_div_pow_nat_tendsto (C 2 * X : Polynomial ℝ) 2 (by compute_degree <;>
-      norm_num)
+    have hp := polynomial_div_pow_nat_tendsto (C 2 * X : Polynomial ℝ) 2
+      (by compute_degree; norm_num)
     simpa using hp
   have hcpos : 0 < outerColumnRate d ^ 2 / 2 := by
     have hh := (outerColumnRate_bounds hd).1

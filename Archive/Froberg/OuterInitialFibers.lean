@@ -15,7 +15,7 @@ public import Archive.Froberg.SeparatedSubspace
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module Quartic.HomogeneousCoefficientCoordinates
-variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s d h : ℕ}
+variable {K I : Type*} [Field K] [Fintype I] {n s d h : ℕ}
 variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s)
 
 def initialMonomialFibers
@@ -28,6 +28,7 @@ theorem map_initial_monomial_fibers
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     (outerInitial e v he L).map (quotientFiberEquiv (d := 0) e v he).toLinearMap =
       Submodule.pi Set.univ (initialMonomialFibers e v he L) := by
+  classical
   apply eq_pi_of_reindex_eq_pi (OrderedMonomials.enumerate n s) _ (initialFibers e v he L)
   rw [← Submodule.map_comp]
   exact map_outerInitial e v he L
@@ -35,6 +36,7 @@ theorem map_initial_monomial_fibers
 theorem sum_initialMonomialFibers_finrank
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     (∑ a, finrank K (initialMonomialFibers e v he L a)) = finrank K L := by
+  classical
   have hh := (quotientFiberEquiv (d := 0) e v he).finrank_map_eq (outerInitial e v he L)
   rw [map_initial_monomial_fibers,finrank_coordinate_pi] at hh
   exact hh.trans (outerInitial_finrank e v he L)
@@ -45,6 +47,7 @@ theorem map_outerImage_fibers
     (outerImage (d := d) e v he L).map (quotientFiberEquiv e v he).toLinearMap =
       Quartic.BilinearImage.image (fiberMultiply (d := d) e v he)
         (L.map (quotientFiberEquiv (d := 0) e v he).toLinearMap) := by
+  classical
   rw [outerImage,Quartic.BilinearImage.image,Quartic.BilinearImage.image,Submodule.map_iSup]
   congr 1
   funext f
@@ -60,6 +63,7 @@ theorem initial_monomial_image_finrank_le
     finrank K (Quartic.BilinearImage.image (fiberMultiply (d := d) e v he)
       (Submodule.pi Set.univ (initialMonomialFibers e v he L))) ≤
       finrank K (outerImage (d := d) e v he L) := by
+  classical
   rw [← map_initial_monomial_fibers,← map_outerImage_fibers,
     (quotientFiberEquiv (d := d) e v he).finrank_map_eq]
   exact outerImage_initial_finrank_le e v he L

@@ -201,7 +201,7 @@ theorem ker_formalCoefficientMap_anyChar
     exact formalCoefficientMap_koszul q p
 
 /-- Compatibility wrapper for the previous characteristic-not-two interface. -/
-theorem ker_formalCoefficientMap (htwo : (2 : K) ≠ 0)
+theorem ker_formalCoefficientMap (_htwo : (2 : K) ≠ 0)
     (q : Fin r → V) (hq : LinearIndependent K q) :
     LinearMap.ker (formalCoefficientMap (K := K) q) =
       Submodule.span K (Set.range (koszulVector q)) :=

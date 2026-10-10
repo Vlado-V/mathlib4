@@ -57,10 +57,12 @@ def scalarModulo (old : U →ₗ[K] W) (mu : P →ₗ[K] V →ₗ[K] W) :
   (LinearMap.llcomp K V W (W ⧸ old.range) old.range.mkQ).comp mu
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K V] [FiniteDimensional K W] in
 @[simp] theorem scalarModulo_apply (old : U →ₗ[K] W) (mu : P →ₗ[K] V →ₗ[K] W)
     (p : P) (v : V) : scalarModulo old mu p v=old.range.mkQ (mu p v) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K V] [FiniteDimensional K W] in
 /-- Injectivity before quotienting gives actual scalar-family injectivity
 in the old quotient; no rank equality is assumed. -/
 theorem scalarModulo_family_injective (old : U →ₗ[K] W)

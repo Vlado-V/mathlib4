@@ -30,29 +30,29 @@ theorem layerLabel_injective {J : Finset ℕ} (e : ℕ → ℕ) (j : ℕ) (hj : 
 def rowPair {J : Finset ℕ} (e : ℕ → ℕ) {R : ℕ} (r : Row J R) :
     Columns e r → Sym2 (LayerLabel J e) :=
   if h : r.val.val=R-r.val.val then fun c =>
-    Sym2.map (layerLabel e r.val.val r.property.1) (cast (if_pos h) c)
+    Sym2.map (layerLabel e r.val.val r.property.1) (cast (ite_eq_left h) c)
   else fun c =>
-    let p : Fin (e r.val.val) × Fin (e (R-r.val.val)) := cast (if_neg h) c
+    let p : Fin (e r.val.val) × Fin (e (R-r.val.val)) := cast (ite_eq_right h) c
     s(layerLabel e r.val.val r.property.1 p.1,
       layerLabel e (R-r.val.val) r.property.2.1 p.2)
 
 def pairMinimum {J : Finset ℕ} {e : ℕ → ℕ} : Sym2 (LayerLabel J e) → ℕ :=
-  Sym2.lift ⟨fun a b => min a.1.val b.1.val,fun a b => min_comm _ _⟩
+  Sym2.lift ⟨fun a b => min a.1.val b.1.val,fun _ _ => min_comm _ _⟩
 
 def pairDegree {J : Finset ℕ} {e : ℕ → ℕ} : Sym2 (LayerLabel J e) → ℕ :=
-  Sym2.lift ⟨fun a b => a.1.val+b.1.val,fun a b => add_comm _ _⟩
+  Sym2.lift ⟨fun a b => a.1.val+b.1.val,fun _ _ => add_comm _ _⟩
 
 theorem rowPair_minimum {J : Finset ℕ} (e : ℕ → ℕ) {R : ℕ}
     (r : Row J R) (c : Columns e r) : pairMinimum (rowPair e r c)=r.val.val := by
   classical
   by_cases h : r.val.val=R-r.val.val
   · unfold rowPair
-    simp only [dif_pos h]
-    generalize hc : cast (if_pos h) c=p
+    simp only [dite_eq_left h]
+    generalize hc : cast (ite_eq_left h) c=p
     induction p using Sym2.inductionOn with
     | _ i k => simp [pairMinimum,layerLabel]
   · unfold rowPair
-    simp only [dif_neg h,pairMinimum,Sym2.lift_mk,layerLabel]
+    simp only [dite_eq_right h,pairMinimum,Sym2.lift_mk,layerLabel]
     apply min_eq_left
     have hh := r.property.2.2
     omega
@@ -63,12 +63,12 @@ theorem rowPair_degree {J : Finset ℕ} (e : ℕ → ℕ) {R : ℕ}
   have hr := r.property.2.2
   by_cases h : r.val.val=R-r.val.val
   · unfold rowPair
-    simp only [dif_pos h]
-    generalize hc : cast (if_pos h) c=p
+    simp only [dite_eq_left h]
+    generalize hc : cast (ite_eq_left h) c=p
     induction p using Sym2.inductionOn with
     | _ i k => simp only [Sym2.map_mk,pairDegree,Sym2.lift_mk,layerLabel]; omega
   · unfold rowPair
-    simp only [dif_neg h,pairDegree,Sym2.lift_mk,layerLabel]
+    simp only [dite_eq_right h,pairDegree,Sym2.lift_mk,layerLabel]
     omega
 
 theorem rowPair_injective {J : Finset ℕ} (e : ℕ → ℕ) {R : ℕ} (r : Row J R) :
@@ -76,12 +76,12 @@ theorem rowPair_injective {J : Finset ℕ} (e : ℕ → ℕ) {R : ℕ} (r : Row 
   classical
   intro c c' hcc
   by_cases h : r.val.val=R-r.val.val
-  · simp only [rowPair,dif_pos h] at hcc
+  · simp only [rowPair,dite_eq_left h] at hcc
     have hp := Sym2.map.injective (layerLabel_injective e r.val.val r.property.1) hcc
-    exact (Equiv.cast (if_pos h)).injective hp
-  · simp only [rowPair,dif_neg h] at hcc
+    exact (Equiv.cast (ite_eq_left h)).injective hp
+  · simp only [rowPair,dite_eq_right h] at hcc
     rcases Sym2.eq_iff.mp hcc with hd|hs
-    · apply (Equiv.cast (if_neg h)).injective
+    · apply (Equiv.cast (ite_eq_right h)).injective
       exact Prod.ext ((layerLabel_injective e _ _) hd.1) ((layerLabel_injective e _ _) hd.2)
     · have hx := congrArg (fun a : LayerLabel J e => a.1.val) hs.1
       exact False.elim (h hx)
@@ -114,17 +114,17 @@ theorem exists_rowPair_of_le {J : Finset ℕ} (e : ℕ → ℕ)
   by_cases heq : j=k
   · subst k
     have hd : r.val.val=j+j-r.val.val := by dsimp [r]; omega
-    let c : Columns e r := (Equiv.cast (if_pos hd)).symm s(i,l)
+    let c : Columns e r := (Equiv.cast (ite_eq_left hd)).symm s(i,l)
     refine ⟨⟨r,c⟩,?_⟩
-    have hc : cast (if_pos hd) c=s(i,l) := (Equiv.cast (if_pos hd)).apply_symm_apply _
-    rw [rowPair,dif_pos hd,hc]
+    have hc : cast (ite_eq_left hd) c=s(i,l) := (Equiv.cast (ite_eq_left hd)).apply_symm_apply _
+    rw [rowPair,dite_eq_left hd,hc]
     rfl
   · have hd : r.val.val≠j+k-r.val.val := by rw [hrj,hrk]; exact heq
     let l' : Fin (e (j+k-r.val.val)) := Fin.cast (congrArg e hrk.symm) l
-    let c : Columns e r := (Equiv.cast (if_neg hd)).symm (i,l')
+    let c : Columns e r := (Equiv.cast (ite_eq_right hd)).symm (i,l')
     refine ⟨⟨r,c⟩,?_⟩
-    have hc : cast (if_neg hd) c=(i,l') := (Equiv.cast (if_neg hd)).apply_symm_apply _
-    rw [rowPair,dif_neg hd,hc]
+    have hc : cast (ite_eq_right hd) c=(i,l') := (Equiv.cast (ite_eq_right hd)).apply_symm_apply _
+    rw [rowPair,dite_eq_right hd,hc]
     apply congrArg (fun b => s(layerLabel e j hj i,b))
     apply Sigma.ext (Subtype.ext hrk)
     exact (Fin.heq_ext_iff (congrArg e hrk)).mpr rfl
@@ -152,11 +152,11 @@ theorem products_eq_pairProducts {K : Type} {σ : Type*} [Field K]
     products e q r c=pairProducts (fun a : LayerLabel J e => q a.1.val a.2) (rowPair e r c) := by
   classical
   by_cases h : r.val.val=R-r.val.val
-  · simp only [products,rowPair,dif_pos h]
-    generalize hc : cast (if_pos h) c=p
+  · simp only [products,rowPair,dite_eq_left h]
+    generalize hc : cast (ite_eq_left h) c=p
     induction p using Sym2.inductionOn with
     | _ i k => rfl
-  · simp only [products,rowPair,dif_neg h]
+  · simp only [products,rowPair,dite_eq_right h]
     rfl
 
 /-- Product columns and unordered pairs of the prescribed degree are exactly

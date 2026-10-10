@@ -28,12 +28,14 @@ def orderedFiberEquiv (c : ℕ) :
   (quotientFiberEquiv e v he).trans
     (LinearEquiv.piCongrLeft' K _ (OrderedMonomials.enumerate n (s+c)).symm)
 
+omit [DecidableEq I] in
 @[simp] theorem orderedFiberEquiv_apply (c : ℕ)
     (x : (Fin h → Forms K n (s + c)) ⧸ relationSpace (d := c) e v he)
     (i : Fin (Fintype.card (Exponent n (s + c)))) :
     orderedFiberEquiv e v he c x i =
       quotientFiberEquiv e v he x (OrderedMonomials.enumerate n (s+c) i) := rfl
 
+omit [DecidableEq I] in
 theorem orderedFiberEquiv_symm_single (c : ℕ)
     (i : Fin (Fintype.card (Exponent n (s + c)))) (x : OrderedFiber e v c i) :
     (orderedFiberEquiv e v he c).symm (Pi.single i x) =
@@ -70,6 +72,7 @@ private theorem coefficient_single (b : Exponent n d) (c : K) :
   · have hval : b.val ≠ a.val := fun hh => hab (Subtype.ext hh.symm)
     simp [Pi.single_eq_of_ne hab,equiv_apply,monomialForm,coeff_monomial,hval]
 
+omit [DecidableEq I] in
 /-- The required graded support follows from literal monomial multiplication
 and the exact quotient-fiber formula. -/
 theorem orderedMultiply_support (b : Exponent n d)
@@ -101,6 +104,7 @@ def outerImage
     Submodule K ((Fin h → Forms K n (s+d)) ⧸ relationSpace (d := d) e v he) :=
   Quartic.BilinearImage.image (quotientMultiply e v he) L
 
+omit [DecidableEq I] in
 theorem map_outerImage
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     (outerImage (d := d) e v he L).map (orderedFiberEquiv e v he d).toLinearMap =
@@ -138,6 +142,7 @@ def outerInitial
   (initialSubspace (OrderedFiber e v 0) (L.map (orderedFiberEquiv e v he 0).toLinearMap)).map
     (orderedFiberEquiv e v he 0).symm.toLinearMap
 
+omit [DecidableEq I] in
 theorem map_outerInitial
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     (outerInitial e v he L).map (orderedFiberEquiv e v he 0).toLinearMap =
@@ -147,18 +152,21 @@ theorem map_outerInitial
     LinearEquiv.refl_toLinearMap,Submodule.map_id]
   rfl
 
+omit [DecidableEq I] in
 theorem outerInitial_finrank
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     finrank K (outerInitial e v he L) = finrank K L := by
   exact ((orderedFiberEquiv e v he 0).symm.finrank_map_eq _).trans
     ((initialSubspace_finrank _ _).trans ((orderedFiberEquiv e v he 0).finrank_map_eq L))
 
+omit [DecidableEq I] in
 theorem sum_initialFibers_finrank
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     ∑ i, finrank K (initialFibers e v he L i) = finrank K L := by
   exact (Quartic.FilteredImage.sum_initialPiece_finrank _ _).trans
     ((orderedFiberEquiv e v he 0).finrank_map_eq L)
 
+omit [DecidableEq I] in
 /-- The concrete block initial replacement preserves dimension and cannot
 increase the actual multiplication image. -/
 theorem outerImage_initial_finrank_le

@@ -8,6 +8,7 @@ module
 public import Archive.Froberg.Quartic.MarkedCoefficient
 public import Archive.Froberg.Quartic.PolynomialRankOpen
 public import Archive.Froberg.Quartic.UniformEndpoint
+public import Mathlib.Algebra.CharZero.Infinite
 
 /-! One actual child flag, chosen on a common principal open. -/
 

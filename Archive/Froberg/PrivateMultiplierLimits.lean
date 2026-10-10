@@ -79,7 +79,7 @@ theorem private_multiplier_raw_limit {s : ℕ} (hs : 2 ≤ s) (b : ℕ) (a z : �
     have hs1 : (s : ℝ)+1≠0 := by positivity
     dsimp only [σ]
     field_simp
-    <;> ring
+    ring
   rw [hc] at h
   simpa only [sub_div,add_div] using h
 

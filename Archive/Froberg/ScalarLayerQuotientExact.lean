@@ -24,6 +24,7 @@ variable {K U V A : Type*} [Field K]
   [AddCommGroup A] [Module K A] [FiniteDimensional K A]
 variable {q c : ℕ}
 
+omit [FiniteDimensional K U] [FiniteDimensional K V] [FiniteDimensional K A] in
 theorem scalar_layer_constants_of_quotient_injective
     (mu : V →ₗ[K] U →ₗ[K] A) (Q : Fin q → V) (E : Fin c → U)
     (hE : Function.Injective (BilinearImage.tupleMap mu E))

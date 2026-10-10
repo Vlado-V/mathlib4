@@ -14,7 +14,7 @@ public import Archive.Froberg.IntermediateKoszul
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module MvPolynomial
-variable {K I J : Type*} [Field K] [Fintype I] [Fintype J]
+variable {K I J : Type*} [Field K] [Fintype I] [Finite J]
 variable {n s d q : ℕ}
 
 theorem intermediateRow_kernel_finrank (hn : 0 < n)
@@ -24,6 +24,7 @@ theorem intermediateRow_kernel_finrank (hn : 0 < n)
     (hE₀ : Function.Injective (multiplication (d := 0) e v))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply e v he) Q)) :
     finrank K (intermediateRow e v he Q).ker=q*Fintype.card I := by
+  let : Fintype J := Fintype.ofFinite J
   rw [intermediateRow_ker_eq_koszul e v he Q hE hQ,
     LinearMap.finrank_range_of_inj (intermediateKoszul_injective e v he Q hE₀)]
   simp only [Module.finrank_pi_fintype,finrank_forms K n 0 hn,Nat.choose_zero_right,

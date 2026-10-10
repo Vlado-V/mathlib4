@@ -45,6 +45,7 @@ def fixedCovectorTermsLinear
   (LinearMap.pi fun i => LinearMap.pi fun j => covector (B i (Pi.single j 1))).prod 0
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem fixedCovectorTermsLinear_apply
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) :
     fixedCovectorTermsLinear (s := s) B ell=fixedCovectorTerms B ell := by
@@ -65,6 +66,7 @@ def affineSharedFamily
     ((SharedCovectorPolynomial.family mu).prod (fixedCovectorTermsLinear B))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem affineSharedFamily_apply
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) :
@@ -75,9 +77,10 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Polynomial graph or affine-extension coordinates give polynomial matrices
 for exactly the same common scalar family. -/
-theorem affineSharedConstraint_polynomial {I : Type*} [Fintype I]
+theorem affineSharedConstraint_polynomial {I : Type*}
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : (I → K) → (Fin T → K)) (hell : IsPolynomialFamily ell) :

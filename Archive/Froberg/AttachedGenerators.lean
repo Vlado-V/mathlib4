@@ -24,6 +24,7 @@ def generator (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i
     (i : I) : J → Forms K n s :=
   fun j => ⟨monomial (e i) (v i j),isHomogeneous_monomial _ (he i)⟩
 
+omit [Fintype J] in
 lemma generator_mem (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (i : I) : generator e v he i ∈ relationSpace (d := 0) e v he := by
   classical
@@ -33,6 +34,7 @@ lemma generator_mem (e : I → Fin n →₀ ℕ) (v : I → J → K)
   apply Subtype.ext
   simp [homogeneousMultiplication_val,multiplication,Pi.single_apply,generator,one,apply_ite]
 
+omit [Fintype J] in
 lemma relationSpace_zero_eq_span (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) :
     relationSpace (d := 0) e v he=Submodule.span K (Set.range (generator e v he)) := by
@@ -57,6 +59,7 @@ lemma relationSpace_zero_eq_span (e : I → Fin n →₀ ℕ) (v : I → J → K
     rintro _ ⟨i,rfl⟩
     exact generator_mem e v he i
 
+omit [Fintype J] in
 lemma tupleMap_generator (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) :
     BilinearImage.tupleMap (vectorMultiply (d := d)) (generator e v

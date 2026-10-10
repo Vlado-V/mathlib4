@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.SeparatedCoefficientSpaces
 public import Archive.Froberg.DetectedSymmetricProducts
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! Scalar disjointness and independent output products give genuine
 symmetric-product separation after quotienting a tensor factor. -/
@@ -21,6 +22,7 @@ variable {A B : Type*} [CommRing A] [Algebra K A] [CommRing B] [Algebra K B]
 variable {X : Type*} [AddCommGroup X] [Module K X]
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {r : ℕ}
 
+omit [Fintype ι] [DecidableEq ι] in
 /-- The scalar quotient preserves each independent output-pair fiber when
 all scalar products lie in a space disjoint from the scalar relations. -/
 theorem scalar_pair_fiber_independent_quotient (c : ι × Fin r → B)
@@ -34,9 +36,10 @@ theorem scalar_pair_fiber_independent_quotient (c : ι × Fin r → B)
     rintro _ ⟨p,rfl⟩
     exact hP p.val)))
 
+omit [Fintype ι] [DecidableEq ι] in
 /-- The detected products in a tensor quotient are independent. This is the
 linear-algebra part of the quadratic separation argument in Appendix C.2. -/
-theorem linearIndependent_detected_tensor_products
+theorem linearIndependent_detected_tensor_products [Finite ι]
     (o : ι → A) (T : A →ₗ[K] X)
     (ho : LinearIndependent K (fun p => T (pairProducts o p)))
     (c : ι × Fin r → B)
@@ -47,6 +50,7 @@ theorem linearIndependent_detected_tensor_products
     LinearIndependent K (fun p => TensorProduct.map T Q.mkQ
       (pairProducts (tensorFamily (K := K) o c) p)) := by
   classical
+  let := Fintype.ofFinite ι
   have h := linearIndependent_tensor_fibers (fun p => T (pairProducts o p)) ho
     (fun δ (p : ScalarPairFiber (r := r) δ) => Q.mkQ (pairProducts c p.val))
     (scalar_pair_fiber_independent_quotient c hc P Q hPQ hP)
@@ -61,9 +65,10 @@ theorem linearIndependent_detected_tensor_products
   rw [pairProducts_tensorFamily, TensorProduct.map_tmul]
   rfl
 
+omit [Fintype ι] [DecidableEq ι] in
 /-- Choose the scalar groups needed for the detected tensor-product
 construction; the only dimension bound is twice the group size. -/
-theorem exists_detected_tensor_family [Infinite K]
+theorem exists_detected_tensor_family [Infinite K] [Finite ι]
     (o : ι → A) (T : A →ₗ[K] X)
     (ho : LinearIndependent K (fun p => T (pairProducts o p)))
     (C P Q : Submodule K B) [Module.Finite K C]
@@ -71,12 +76,15 @@ theorem exists_detected_tensor_family [Infinite K]
     (hCP : C * C ≤ P) (hPQ : Disjoint P Q) (hr : 2 * r ≤ finrank K C) :
     ∃ c : ι × Fin r → C, LinearIndependent K (fun p => TensorProduct.map T Q.mkQ
       (pairProducts (tensorFamily (K := K) o (fun i => (c i).val)) p)) := by
+  classical
+  let := Fintype.ofFinite ι
   obtain ⟨c,hc⟩ := exists_scalar_pair_fiber_independent (ι := ι) C hC hr
   refine ⟨c, linearIndependent_detected_tensor_products o T ho _ hc P Q hPQ ?_⟩
   intro p
   induction p using Sym2.inductionOn with
   | _ i j => exact hCP (Submodule.mul_mem_mul (c i).property (c j).property)
 
+omit [DecidableEq ι] in
 /-- Every dimension up to the separated coefficient capacity is attained by
 an actual tensor family whose symmetric products survive the detector. -/
 theorem exists_detected_separated_family [Infinite K]
@@ -107,6 +115,7 @@ theorem exists_detected_separated_family [Infinite K]
     simp only [Function.comp_apply, pairProducts_map]
     rfl
 
+omit [DecidableEq ι] in
 /-- Actual tensor-algebra version of quadratic separation: it supplies the
 exact formal-square condition required by the homology coefficient map. -/
 theorem exists_separated_tensor_space [Infinite K]
@@ -123,6 +132,7 @@ theorem exists_separated_tensor_space [Infinite K]
       finrank K (Submodule.span K (Set.range q)) = m ∧
       formalSquare (Submodule.span K (Set.range q)) ⊓
         J.comap symmetricMultiplication = ⊥ := by
+  classical
   obtain ⟨q,hq,hp⟩ := exists_detected_separated_family o T ho C P Q hC hCP hPQ hm
   have hp' : LinearIndependent K (pairProducts q) :=
     LinearIndependent.of_comp (TensorProduct.map T Q.mkQ) hp

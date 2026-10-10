@@ -14,7 +14,7 @@ public import Archive.Froberg.AttachedGenerators
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module
-variable {K I I' J : Type*} [Field K] [Fintype I] [Fintype I'] [Fintype J]
+variable {K I I' J : Type*} [Field K] [Fintype I] [Fintype I']
   {n s d : ℕ}
 
 lemma multiplication_reindex (r : I' ≃ I) (e : I → Fin n →₀ ℕ) (v : I → J → K)

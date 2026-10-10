@@ -15,8 +15,9 @@ public import Archive.Froberg.SurjectiveImage
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module MvPolynomial
-variable {K I J : Type*} [Field K] [Fintype I] [Fintype J] {n s d : ℕ}
+variable {K I J : Type*} [Field K] [Fintype I] [Finite J] {n s d : ℕ}
 
+omit [Finite J] in
 lemma image_relationSpace (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) :
     Quartic.BilinearImage.image (vectorMultiply (d := d)) (relationSpace (d := 0) e v he) =
@@ -52,6 +53,7 @@ lemma image_quotient_finrank_add (e : I → Fin n →₀ ℕ) (v : I → J → K
       finrank K (relationSpace (d := d) e v he) =
     finrank K (Quartic.BilinearImage.image (vectorMultiply (d := d))
       (L.comap (relationSpace (d := 0) e v he).mkQ)) := by
+  let : Fintype J := Fintype.ofFinite J
   rw [Quartic.QuotientBilinearImage.image_eq_map (vectorMultiply (d := d))
     (relationSpace (d := 0) e v he) (relationSpace (d := d) e v he)
     (quotientMultiply e v he) (quotientMultiply_mk e v he)]
@@ -69,6 +71,7 @@ lemma expansion_iff_ambient (e : I → Fin n →₀ ℕ) (v : I → J → K)
       finrank K S=ell+finrank K (relationSpace (d := 0) e v he) →
       q+finrank K (relationSpace (d := d) e v he) ≤
         finrank K (Quartic.BilinearImage.image (vectorMultiply (d := d)) S)) := by
+  let : Fintype J := Fintype.ofFinite J
   constructor
   · intro hb S hES hS
     let E := relationSpace (d := 0) e v he

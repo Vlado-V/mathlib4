@@ -81,7 +81,7 @@ lemma divisibilityCoupling_pos_iff {n e d : ℕ} (hn : 0 < n) (hed : e ≤ d)
     positivity
   rw [divisibilityCoupling, div_pos_iff_of_pos_right hden, Nat.cast_pos, weight_pos_iff]
 
-lemma divisibilityCoupling_lower {n e d : ℕ} (hn : 0 < n) (hed : e ≤ d)
+lemma divisibilityCoupling_lower {n e d : ℕ} (_hn : 0 < n) (_hed : e ≤ d)
     (a : Degree n e) (b : Degree n d) (hab : a.val ≤ b.val) :
     1 / (((n + d - 1).choose d : ℝ) * d.choose e) ≤ divisibilityCoupling a b := by
   have hw : (1 : ℝ) ≤ weight b.val a.val := by

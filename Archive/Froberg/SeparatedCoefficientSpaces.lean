@@ -19,11 +19,12 @@ namespace Froberg
 open Module TensorProduct
 variable {K : Type} [Field K]
 variable {A B : Type*} [CommRing A] [Algebra K A] [CommRing B] [Algebra K B]
-variable {ι : Type*} [Fintype ι] [DecidableEq ι] {r : ℕ}
+variable {ι : Type*} [Finite ι] {r : ℕ}
 
 def tensorFamily (o : ι → A) (c : ι × Fin r → B) : ι × Fin r → A ⊗[K] B :=
   fun i => o i.1 ⊗ₜ[K] c i
 
+omit [Finite ι] in
 theorem pairProducts_tensorFamily (o : ι → A) (c : ι × Fin r → B)
     (p : Sym2 (ι × Fin r)) :
     pairProducts (tensorFamily (K := K) o c) p =

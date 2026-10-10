@@ -17,7 +17,7 @@ namespace Froberg
 open Matrix Module
 
 variable {R F J : Type*} [CommRing R] [Field F]
-  [Algebra R F] [IsFractionRing R F] [Fintype J] [DecidableEq J]
+  [Algebra R F] [IsFractionRing R F] [Fintype J]
 
 /-- Changing a nonzero scalar representative of a semilinearly invariant
 line preserves its invariance, with the scalar twist accounted for. -/

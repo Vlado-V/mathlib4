@@ -36,6 +36,7 @@ private theorem vectorOutputMap_vectorMultiply
   vectorOutputMap_natural L (coefficientMultiply f) p
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Fintype J] in
 private theorem homogeneousMultiplication_sum
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (p : I → Forms K n d) :
@@ -72,9 +73,10 @@ theorem vectorOutputMap_scalarFamily
   simp only [BilinearScalarFamily.multiplication_apply,map_sum,vectorOutputMap_vectorMultiply]
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Fintype J] [Fintype H] in
 /-- Embedding an output space adds only free scalar summands, so it creates no
 new row relations whenever the scalar family itself is injective. -/
-theorem intermediateRow_ker_output_embedding
+theorem intermediateRow_ker_output_embedding [Finite J] [Finite H]
     (L : (J → K) →ₗ[K] (H → K)) (hL : Function.Injective L)
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d)
@@ -84,6 +86,9 @@ theorem intermediateRow_ker_output_embedding
       (vectorMultiply (J := H) (s := s)) Q)) :
     (intermediateRow e (fun i => L (v i)) he Q).ker =
       (intermediateKoszul e (fun i => L (v i)) he Q).range := by
+  classical
+  let := Fintype.ofFinite J
+  let := Fintype.ofFinite H
   obtain ⟨N,hN⟩ := L.exists_leftInverse_of_injective (LinearMap.ker_eq_bot.mpr hL)
   have hNv (i : I) : N (L (v i))=v i := LinearMap.congr_fun hN (v i)
   apply le_antisymm

@@ -18,7 +18,7 @@ degree-`2*d` forms, not by a field-dependent maximum of generic ranks. -/
 noncomputable section
 namespace Froberg
 
-variable {K : Type} [Field K] [Infinite K] {n d h n₀ : ℕ}
+variable {K : Type} [Field K] {n d h n₀ : ℕ}
 
 theorem genericCokernel_le_target_dimension (hn : 0 < n) (r : ℕ) :
     genericCokernel K n d r≤(n+2*d-1).choose (2*d) := by

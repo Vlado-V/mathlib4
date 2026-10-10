@@ -21,7 +21,7 @@ def coordinateLinearForms (hL : L ≤ h) : Fin L → Forms K h 1 :=
   fun i => ⟨X (Fin.castLE hL i),isHomogeneous_X _ _⟩
 
 def quadraticPairForms (o : Fin L → Forms K h 1) : Sym2 (Fin L) → Forms K h 2 :=
-  Sym2.lift ⟨fun i j => mulForm (o i) (o j),fun i j => Subtype.ext (mul_comm _ _)⟩
+  Sym2.lift ⟨fun i j => mulForm (o i) (o j),fun _ _ => Subtype.ext (mul_comm _ _)⟩
 
 @[simp] theorem quadraticPairForms_val (o : Fin L → Forms K h 1) (p : Sym2 (Fin L)) :
     (quadraticPairForms o p).val=pairProducts (fun i => (o i).val) p := by

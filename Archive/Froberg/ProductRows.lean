@@ -46,9 +46,9 @@ variable {σ : Type*}
 def products (e : ℕ → ℕ) (q : (j : ℕ) → Fin (e j) → MvPolynomial σ K)
     {J R} (j : Row J R) : Columns e j → MvPolynomial σ K :=
   if h : j.val.val = R-j.val.val then
-    fun c => pairProducts (q j.val.val) (cast (if_pos h) c)
+    fun c => pairProducts (q j.val.val) (cast (ite_eq_left h) c)
   else fun c =>
-    let p : Fin (e j.val.val) × Fin (e (R-j.val.val)) := cast (if_neg h) c
+    let p : Fin (e j.val.val) × Fin (e (R-j.val.val)) := cast (ite_eq_right h) c
     q j.val.val p.1 * q (R-j.val.val) p.2
 
 /-- The polynomial multiplication matrix on all formal product blocks. -/
@@ -74,8 +74,8 @@ theorem products_weighted (e : ℕ → ℕ)
       simp [assignedDegree,htwo]
     have hev : 2*(j.val.val/2)=j.val.val := Nat.two_mul_div_two_of_even (heven _ hj.1)
     unfold products
-    simp only [dif_pos hd]
-    generalize hc : cast (if_pos hd) c = p
+    simp only [dite_eq_left hd]
+    generalize hc : cast (ite_eq_left hd) c = p
     induction p using Sym2.inductionOn with
     | _ a b =>
       have h := (hq _ hj.1 a).mul (hq _ hj.1 b)
@@ -86,8 +86,8 @@ theorem products_weighted (e : ℕ → ℕ)
     have hr : assignedDegree R (R-j.val.val) = 0 := by
       simp [assignedDegree,show ¬2*(R-j.val.val)<R by omega,show ¬2*(R-j.val.val)=R by omega]
     unfold products
-    simp only [dif_neg hd]
-    let p : Fin (e j.val.val) × Fin (e (R-j.val.val)) := cast (if_neg hd) c
+    simp only [dite_eq_right hd]
+    let p : Fin (e j.val.val) × Fin (e (R-j.val.val)) := cast (ite_eq_right hd) c
     change (q j.val.val p.1 * q (R-j.val.val) p.2).IsWeightedHomogeneous w j.val.val
     have h := (hq _ hj.1 p.1).mul (hq _ hj.2.1 p.2)
     simpa only [hl,hr,add_zero] using h

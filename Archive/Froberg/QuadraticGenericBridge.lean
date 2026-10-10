@@ -18,6 +18,7 @@ namespace Froberg.QuadraticGenericBridge
 open Module
 variable {K : Type} [Field K] [Infinite K] {n r : ℕ}
 
+omit [Infinite K] in
 theorem endpoint_of_witness (hn : 0 < n) (hw : Quartic.QuarticWitness K n r) :
     GenericEndpoint K n 2 r := by
   obtain ⟨Q,hQ,hQr,hdim⟩ := hw

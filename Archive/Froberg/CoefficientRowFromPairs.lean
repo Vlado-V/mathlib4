@@ -27,6 +27,7 @@ def positiveDegreePair (j : I → ℕ) (r : ℕ) : Sym2 I → Prop :=
     apply propext
     constructor <;> rintro ⟨hi,hk,hik⟩ <;> exact ⟨hk,hi,by omega⟩⟩
 
+omit [Fintype I] in
 @[simp] theorem positiveDegreePair_mk (j : I → ℕ) (r : ℕ) (i k : I) :
     positiveDegreePair j r s(i,k) ↔ 0<j i ∧ 0<j k ∧ j i+j k=r := Iff.rfl
 

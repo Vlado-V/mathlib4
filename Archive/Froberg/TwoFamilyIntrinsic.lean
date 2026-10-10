@@ -30,6 +30,8 @@ def twoFamilyMultiplication (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W)
   (BilinearScalarFamily.multiplication mu₁ p.1).coprod
     (BilinearScalarFamily.multiplication mu₂ p.2)
 
+omit [FiniteDimensional K P₁] [FiniteDimensional K P₂]
+  [FiniteDimensional K V₁] [FiniteDimensional K V₂] [FiniteDimensional K W] in
 @[simp] theorem twoFamilyMultiplication_apply (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W)
     (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W) (p : (Fin q₁ → P₁) × (Fin q₂ → P₂))
     (x : (Fin q₁ → V₁) × (Fin q₂ → V₂)) :
@@ -49,6 +51,8 @@ theorem bilinearImage_compl₂ {P V V' W : Type*} [AddCommGroup P] [Module K P]
   rw [←Submodule.map_comp]
   rfl
 
+omit [FiniteDimensional K P₁] [FiniteDimensional K P₂]
+  [FiniteDimensional K V₁] [FiniteDimensional K V₂] [FiniteDimensional K W] in
 /-- Choosing bases of the coefficient spaces preserves injectivity of the
 actual sum of products; generator coordinates do not change. -/
 theorem twoFamilyMultiplication_injective_of_coordinates {V₁' V₂' : Type*}
@@ -89,6 +93,7 @@ theorem two_family_ratio_of_natural_budget {a₁ a₂ q₁ q₂ T : ℕ}
   have ha₂R : (0 : ℝ)<a₂ := by exact_mod_cast ha₂
   have hc : (((q₁+a₁ : ℕ) : ℝ)*a₁+((q₂+a₂ : ℕ) : ℝ)*a₂)/(T : ℝ) ≤ 1 :=
     (div_le_one hTR).mpr (by exact_mod_cast hcount)
-  convert hc using 1 <;> field_simp [hTR.ne',ha₁R.ne',ha₂R.ne']
+  convert hc using 1
+  field_simp [hTR.ne',ha₁R.ne',ha₂R.ne']
 
 end Froberg

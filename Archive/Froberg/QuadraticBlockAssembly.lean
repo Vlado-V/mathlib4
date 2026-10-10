@@ -79,7 +79,7 @@ theorem fiberCertificate_nonempty (k : Finset X × Finset X) :
         (congrArg Prod.snd (key_left_right r)) he
     · intro q
       exact ⟨_, hc _ (hleft q), _, hc _ (hright q), rfl⟩
-  · letI : IsEmpty (Columns k) := not_nonempty_iff.mp h
+  · let : IsEmpty (Columns k) := not_nonempty_iff.mp h
     refine ⟨⟨isEmptyElim, ?_, isEmptyElim⟩⟩
     simp
 
@@ -95,6 +95,7 @@ theorem key_eq_of_permitted_products {k l : Finset X × Finset X}
   have h := (product_indexDegree_eq_iff _ _ _ _ A B C D).mp (congrArg indexDegree he)
   exact (key_left_right p).symm.trans ((Prod.ext h.1 h.2).trans (key_left_right q))
 
+omit [Nontrivial K] in
 theorem FiberCertificate.cross {k l : Finset X × Finset X} (cert : FiberCertificate K k)
     (hkl : k ≠ l) (p : Columns k) (q : Columns l) :
     ((genericForm (K := K) terms (left q)) * genericForm terms (right q)).coeff
@@ -108,18 +109,20 @@ def specializedForm (values : Label X × ((X × Bool) →₀ ℕ) → K) (l : La
     MvPolynomial (X × Bool) K :=
   MvPolynomial.map (MvPolynomial.eval values) (genericForm terms l)
 
+omit [Nontrivial K] in
 theorem specializedForm_homogeneous (values : Label X × ((X × Bool) →₀ ℕ) → K)
     (l : Label X) : specializedForm values l ∈
       MvPolynomial.homogeneousSubmodule (X × Bool) K 2 := by
   classical
   unfold specializedForm genericForm
-  simp only [map_sum, map_mul, MvPolynomial.map_C, MvPolynomial.eval_X,
-    MvPolynomial.map_monomial, map_one, MvPolynomial.C_mul_monomial, mul_one]
+  simp only [map_sum, MvPolynomial.eval_X,
+    MvPolynomial.map_monomial, MvPolynomial.C_mul_monomial, mul_one]
   apply Submodule.sum_mem
   intro m hm
   obtain ⟨A, hA, rfl⟩ := mem_image.mp hm
   exact MvPolynomial.isHomogeneous_monomial _ ((degree_pairedExponent _ _).trans (card_support l))
 
+omit [Nontrivial K] in
 /-- Two generic bilinear quadrics per unordered pair of blocks have independent
 unordered products over every infinite field. -/
 theorem exists_independent_pairProducts [IsDomain K] [Infinite K] :

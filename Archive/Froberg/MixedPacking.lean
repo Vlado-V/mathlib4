@@ -21,6 +21,7 @@ variable {K α T : Type*} [Field K] [DecidableEq α] [DecidableEq T]
 def blockSpan {h : ℕ} (v : α → Fin h → K) (S : Finset α) :
     Submodule K (Fin h → K) := Submodule.span K (v '' (S : Set α))
 
+omit [DecidableEq α] [DecidableEq T] in
 /-- A generic mixed-position family has fewer disjoint deficient blocks than
 there are coordinates of the exterior power of the lifted subspace. -/
 theorem card_disjoint_deficient_lt {h : ℕ}
@@ -104,6 +105,7 @@ theorem card_disjoint_deficient_lt {h : ℕ}
   change finrank K S < min (r + (sets (row I).val).card) h at hf
   omega
 
+omit [DecidableEq α] [DecidableEq T] in
 /-- A convenient exterior-degree-independent bound for the exceptional packing. -/
 theorem card_disjoint_deficient_le {h : ℕ}
     (v : α → Fin h → K) (hv : UniversalMixedPosition v)
@@ -111,6 +113,7 @@ theorem card_disjoint_deficient_le {h : ℕ}
     (hdis : ∀ i ∈ B, ∀ j ∈ B, i ≠ j → Disjoint (sets i) (sets j))
     (hfail : ∀ i ∈ B, finrank K ↥(U ⊔ blockSpan v (sets i)) <
       min (finrank K U + (sets i).card) h) : B.card ≤ 2^h := by
+  classical
   have hr : finrank K U ≤ h := by simpa using Submodule.finrank_le U
   have hc := card_disjoint_deficient_lt v hv U sets B hdis hfail
   have he : Fintype.card (Set.powersetCard
@@ -121,6 +124,7 @@ theorem card_disjoint_deficient_le {h : ℕ}
       _ = 2^h := by simp [Nat.add_sub_of_le hr]
   omega
 
+omit [DecidableEq α] [DecidableEq T] in
 /-- Uniform deficient blocks are all hit by a set of at most `h*2^h` labels. -/
 theorem exists_deficient_hitting_set {h : ℕ}
     (v : α → Fin h → K) (hv : UniversalMixedPosition v)
@@ -129,6 +133,7 @@ theorem exists_deficient_hitting_set {h : ℕ}
     (hfail : ∀ i ∈ E, finrank K ↥(U ⊔ blockSpan v (sets i)) <
       min (finrank K U + (sets i).card) h) :
     ∃ L : Finset α, L.card ≤ h*2^h ∧ ∀ i ∈ E, ∃ a ∈ L, a ∈ sets i := by
+  classical
   apply ExceptionalFamilies.exists_hitting_set sets E h (2^h) hsize
   · intro i hi
     by_contra hn

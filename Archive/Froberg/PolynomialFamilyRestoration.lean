@@ -59,6 +59,7 @@ def boundaryInFamily (M : Fin r → Fin r → K) : (Fin r → V) →ₗ[K] (Fin 
     simp only [coefficientBoundary,Pi.smul_apply,smul_smul,smul_sub,
       Finset.smul_sum,mul_comm,RingHom.id_apply]
 
+omit [FiniteDimensional K V] in
 lemma row_boundary (j : V →ₗ[K] MvPolynomial σ K) (pi : MvPolynomial σ K →ₗ[K] Z)
     (q : Fin r → V) (M : Fin r → Fin r → K) : row j pi q (boundary q M)=0 := by
   change pi (∑ i,j (q i)*j (coefficientBoundary q M i))=0
@@ -72,6 +73,7 @@ lemma row_polynomial (j : V →ₗ[K] MvPolynomial σ K) (pi : MvPolynomial σ K
   have hh := hq.linear_comp (row j pi c)
   simpa only [row,LinearMap.coe_mk,AddHom.coe_mk,mul_comm] using hh
 
+omit [FiniteDimensional K V] in
 lemma boundary_polynomial (q : (I → K) → Fin r → V) (hq : IsPolynomialFamily q)
     (S : B →ₗ[K] (Fin r → V)) :
     IsPolynomialFamily (fun p => (boundary (q p)).coprod S) := by

@@ -17,6 +17,7 @@ namespace Froberg.MixedExterior
 open Module
 variable {K α : Type*} [Field K] [DecidableEq α]
 
+omit [DecidableEq α] in
 /-- All targets meeting one of finitely many additional monomials are bounded by
 the common-multiple count, with no genericity hypothesis in this counting step. -/
 theorem card_targets_hit_by_labels_le {n s : ℕ} (hn : 0 < n)
@@ -44,6 +45,7 @@ theorem card_targets_hit_by_labels_le {n s : ℕ} (hn : 0 < n)
   exact (Finset.card_le_card hsub).trans
     (Finset.card_biUnion_le_card_mul L targets _ hcard)
 
+omit [DecidableEq α] in
 /-- The generic mixed-minor condition yields a bound uniform in the lifted
 subspace. Every additional monomial must differ from the source monomial. -/
 theorem card_deficient_targets_le {n s h : ℕ} (hn : 0 < n)
@@ -58,6 +60,7 @@ theorem card_deficient_targets_le {n s h : ℕ} (hn : 0 < n)
     (hfail : ∀ b ∈ E, finrank K ↥(U ⊔ blockSpan v (sets b)) <
       min (finrank K U + (sets b).card) h) :
     E.card ≤ (h*2^h) * (n+s-1).choose s := by
+  classical
   obtain ⟨L,hL,hits⟩ := exists_deficient_hitting_set v hv U sets E hsize hfail
   have hc := card_targets_hit_by_labels_le hn a ha e he E hE L (by
     intro b hb

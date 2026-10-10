@@ -17,6 +17,7 @@ namespace Froberg.MixedExterior
 open Module
 variable {K α : Type*} [Field K] [DecidableEq α] {h : ℕ}
 
+omit [DecidableEq α] in
 @[simp] theorem blockSpan_empty (v : α → Fin h → K) : blockSpan v ∅ = ⊥ := by
   have heq : v '' ((∅ : Finset α) : Set α) = ∅ := by
     apply Set.eq_empty_iff_forall_notMem.mpr
@@ -24,6 +25,7 @@ variable {K α : Type*} [Field K] [DecidableEq α] {h : ℕ}
     exact Finset.notMem_empty y hy
   rw [blockSpan,heq,Submodule.span_empty]
 
+omit [DecidableEq α] in
 theorem blockSpan_mono (v : α → Fin h → K) {S T : Finset α} (hST : S ⊆ T) :
     blockSpan v S ≤ blockSpan v T :=
   Submodule.span_mono (Set.image_mono hST)
@@ -32,6 +34,7 @@ theorem blockSpan_union (v : α → Fin h → K) (S T : Finset α) :
     blockSpan v (S ∪ T) = blockSpan v S ⊔ blockSpan v T := by
   simp [blockSpan,Set.image_union,Submodule.span_union]
 
+omit [DecidableEq α] in
 theorem blockSpan_finrank (v : α → Fin h → K) (S : Finset α)
     (hi : LinearIndependent K (fun i : S => v i.val)) :
     finrank K (blockSpan v S) = S.card := by

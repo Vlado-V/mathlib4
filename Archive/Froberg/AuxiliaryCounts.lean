@@ -24,12 +24,12 @@ def activeEvenIndices (d : ℕ) : Finset ℕ :=
 def activeHigherIndices (d : ℕ) : Finset ℕ :=
   (activeEvenIndices d).filter (fun j => 4 ≤ j)
 
-theorem activeEvenIndices_bounds {d j : ℕ} (hd : 3 ≤ d) (hj : j ∈ activeEvenIndices d) :
+theorem activeEvenIndices_bounds {d j : ℕ} (_hd : 3 ≤ d) (hj : j ∈ activeEvenIndices d) :
     2 ≤ j ∧ j < d ∧ Even j := by
   unfold activeEvenIndices at hj
   split_ifs at hj with hd8
   · simp only [mem_filter, mem_insert, mem_singleton] at hj
-    rcases hj with ⟨rfl | rfl, hlt⟩ <;> norm_num at * <;> omega
+    rcases hj with ⟨rfl | rfl, hlt⟩ <;> exact ⟨by omega, hlt, by decide⟩
   · simp only [mem_filter, mem_range] at hj
     exact ⟨hj.2.2, by omega, hj.2.1⟩
 

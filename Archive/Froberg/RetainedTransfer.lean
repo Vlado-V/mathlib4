@@ -27,6 +27,7 @@ variable {m n d r t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem projected_retained_old_finrank (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms K n
   d) (hq
   : LinearIndependent K q)

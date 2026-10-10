@@ -75,7 +75,7 @@ theorem prepared_pair_independence {J : Finset ℕ} {counts : ℕ → ℕ}
   rw [← he]
   generalize (e.symm p).val=a
   induction a using Sym2.inductionOn with
-  | _ i k => simp only [Sym2.map_mk,pairProducts_mk,hE,Function.comp_apply]
+  | _ i k => simp only [Sym2.map_mk,pairProducts_mk,hE]
 
 /-- Every positive product belongs to the actual product-row image. -/
 theorem prepared_pair_mem_product_range {J : Finset ℕ} {counts : ℕ → ℕ}

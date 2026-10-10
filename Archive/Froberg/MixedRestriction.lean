@@ -15,13 +15,13 @@ subfamily. -/
 noncomputable section
 namespace Froberg.MixedExterior
 open Finset
-variable {K α β : Type*} [Field K] [Fintype α] [Fintype β]
-  [DecidableEq α] [DecidableEq β] {h : ℕ}
+variable {K α β : Type*} [Field K] {h : ℕ}
 
 lemma full_spark_comp (v : β → Fin h → K)
     (hv : ∀ S : Finset β, S.card ≤ h → LinearIndependent K (fun i : S => v i.val))
     (e : α ↪ β) :
     ∀ S : Finset α, S.card ≤ h → LinearIndependent K (fun i : S => v (e i.val)) := by
+  classical
   intro S hS
   let f : S → S.image e := fun i => ⟨e i.val, mem_image.mpr ⟨i.val,i.property,rfl⟩⟩
   have hf : Function.Injective f := by

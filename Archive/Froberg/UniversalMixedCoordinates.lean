@@ -18,7 +18,7 @@ nonempty open in the same actual vector coordinates. -/
 noncomputable section
 namespace Froberg.MixedExterior
 open Module MvPolynomial Quartic.PolynomialBilinearCoordinates
-variable {K α : Type*} [Field K] [Infinite K] [Fintype α] [DecidableEq α]
+variable {K α : Type*} [Field K] [Infinite K] [Finite α]
 
 theorem universal_mixed_coordinates_open (h : ℕ) :
     ∃ D : MvPolynomial (Fin (finrank K (α → Fin h → K))) K,
@@ -27,6 +27,7 @@ theorem universal_mixed_coordinates_open (h : ℕ) :
           (fun i : S => (coordinates K (α → Fin h → K)).symm x i.val)) ∧
         UniversalMixedPosition ((coordinates K (α → Fin h → K)).symm x) := by
   classical
+  let : Fintype α := Fintype.ofFinite α
   obtain ⟨P,hP,hgood⟩ := universal_mixed_vectors_principal_open (K := K) (α := α) h
   let e := coordinates K (α → Fin h → K)
   let flat : (α → Fin h → K) →ₗ[K] (α × Fin h → K) :=
@@ -62,6 +63,8 @@ theorem exists_universal_mixed_vectors_in_open (h : ℕ)
       eval (coordinates K _ v) D≠0 ∧
       (∀ S : Finset α,S.card ≤ h → LinearIndependent K (fun i : S => v i.val)) ∧
       UniversalMixedPosition v := by
+  classical
+  let : Fintype α := Fintype.ofFinite α
   obtain ⟨P,hP,hgood⟩ := universal_mixed_coordinates_open (K := K) (α := α) h
   obtain ⟨x,hxD,hxP⟩ := principal_opens_intersect hD hP
   refine ⟨(coordinates K _).symm x,?_,(hgood x hxP).1,(hgood x hxP).2⟩

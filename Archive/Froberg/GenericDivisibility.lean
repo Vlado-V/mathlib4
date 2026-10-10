@@ -62,7 +62,7 @@ theorem central_pair_target_matrix (ζ : K) (hn : ζ ^ n = 1) (hr : (ζ ^ d) ^ r
   rw [ht, map_smul, Module.End.one_eq_id, LinearMap.toMatrix'_id]
   apply Matrix.ext
   intro i j
-  by_cases hij : i = j <;> simp [Matrix.smul_apply, Matrix.one_apply, hij]
+  by_cases hij : i = j <;> simp [Matrix.smul_apply, hij]
 
 /-- Over a field containing the required root of unity, the divisor
 follows from the actual universal image, with no rank-divisibility premise. -/
@@ -90,7 +90,7 @@ theorem genericCokernel_divisibility_of_primitiveRoot (hn : 0 < n)
     rw [central_pair_target_matrix]
     apply Matrix.ext
     intro i j
-    by_cases hij : i = j <;> simp [Matrix.smul_apply, Matrix.one_apply, ι, φ, hij]
+    by_cases hij : i = j <;> simp [Matrix.smul_apply, ι, φ, hij]
   have himage := invariant_subspace_weight_divisibility (universalTargetAction (d := d))
     (LinearMap.range M.mulVecLin)
     (fun g w hw => universalMultiplication_image_invariant g w hw)
@@ -103,8 +103,8 @@ theorem genericCokernel_divisibility [CharZero K] (hn : 0 < n) :
     Nat.gcd n (d * r) ∣ (2 * d) * genericCokernel K n d r := by
   let L := AlgebraicClosure K
   have hg : Nat.gcd n (d * r) ≠ 0 := (Nat.gcd_pos_of_pos_left _ hn).ne'
-  letI : NeZero (Nat.gcd n (d * r) : L) := ⟨by exact_mod_cast hg⟩
-  obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot L (Nat.gcd n (d * r))
+  let : NeZero (Nat.gcd n (d * r) : L) := ⟨by exact_mod_cast hg⟩
+  obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot L (Nat.gcd n (d * r))
   have h := genericCokernel_divisibility_of_primitiveRoot (K := L) hn ζ hζ
   rwa [← GenericFieldDescent.genericCokernel_baseChange (algebraMap K L) hn] at h
 

@@ -46,6 +46,7 @@ theorem exists_projected_general_vectors (F : V →ₗ[K] W) :
     hv] using hli
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K W] in
 /-- Projected general position holds on a principal open in the actual
 vector coefficients; its bound is the rank of the specified projection. -/
 theorem projected_general_vectors_open (F : V →ₗ[K] W) :

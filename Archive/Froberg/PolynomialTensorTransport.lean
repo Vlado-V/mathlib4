@@ -120,7 +120,7 @@ def splitPolynomialDetector {h n : ℕ} (T : Poly K h →ₗ[K] X)
     splitPolynomialDetector T Q (rename (Fin.castAdd n) a * rename (Fin.natAdd h) b) =
       T a ⊗ₜ[K] Q.mkQ b := by
   rw [← splitPolynomialEquiv_tmul]
-  simp only [splitPolynomialDetector,LinearMap.comp_apply,LinearEquiv.coe_coe,
+  simp only [splitPolynomialDetector,LinearMap.comp_apply,
     AlgEquiv.toLinearMap_apply,AlgEquiv.symm_apply_apply,TensorProduct.map_tmul]
 
 end Froberg

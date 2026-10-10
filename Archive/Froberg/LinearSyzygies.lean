@@ -53,7 +53,7 @@ theorem independent_linear_product_overlap (hn : 0 < n)
   let v : Fin 2 → Forms K n 1 := ![a,-b]
   have hv : v ∈ (endpointMultiplication q).ker := by
     change endpointMultiplication q v = 0
-    simp only [endpointMultiplication,LinearMap.sum_apply,LinearMap.add_apply,LinearMap.comp_apply,
+    simp only [endpointMultiplication,LinearMap.add_apply,LinearMap.comp_apply,
       LinearMap.proj_apply,Fin.sum_univ_two,v,Matrix.cons_val_zero,Matrix.cons_val_one,
       Matrix.cons_val_fin_one,map_neg]
     simpa only [sub_eq_add_neg] using sub_eq_zero.mpr hprod
@@ -61,7 +61,8 @@ theorem independent_linear_product_overlap (hn : 0 < n)
   let p : GeneratorPair 2 := ⟨(0,1),by decide⟩
   have hp : ∀ x : GeneratorPair 2, x=p := by
     intro x
-    fin_cases x <;> rfl
+    fin_cases x
+    rfl
   have hspan : koszulSpace q = Submodule.span K {koszulVector q p} := by
     unfold koszulSpace
     congr 1

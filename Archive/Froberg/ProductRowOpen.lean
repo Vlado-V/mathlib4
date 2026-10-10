@@ -49,23 +49,24 @@ theorem products_polynomial (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K
   classical
   by_cases h : r.val.val=R-r.val.val
   · unfold products
-    simp only [dif_pos h]
-    generalize hc : cast (if_pos h) c = p
+    simp only [dite_eq_left h]
+    generalize hc : cast (ite_eq_left h) c = p
     induction p using Sym2.inductionOn with
     | _ i j =>
       exact (hq _ r.property.1 i).bilinear (hq _ r.property.1 j) (embeddedProduct L)
   · unfold products
-    simp only [dif_neg h]
+    simp only [dite_eq_right h]
     exact (hq _ r.property.1 _).bilinear (hq _ r.property.2.1 _) (embeddedProduct L)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 private theorem polynomial_family_open_fintype
-    {I V : Type*} [Fintype I] [AddCommGroup V] [Module K V]
+    {I V : Type*} [Finite I] [AddCommGroup V] [Module K V]
     (f : I → (ι → K) → V) (hf : ∀ i, IsPolynomialFamily (f i))
     (a₀ : ι → K) (hli : LinearIndependent K (fun i => f i a₀)) :
     ∃ D : MvPolynomial ι K,eval a₀ D≠0 ∧
       ∀ a,eval a D≠0 → LinearIndependent K (fun i => f i a) := by
   classical
+  let : Fintype I := Fintype.ofFinite I
   let E := (Fintype.equivFin I).symm
   obtain ⟨D,hD,hopen⟩ := independent_polynomial_principal_open
     (fun i => f (E i)) (fun i => hf (E i)) a₀ (hli.comp E E.injective)

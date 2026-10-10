@@ -22,14 +22,14 @@ variable {ι : Type*}
 
 /-- The actual product indexed by an unordered pair of generators. -/
 def pairProducts (q : ι → A) : Sym2 ι → A :=
-  Sym2.lift ⟨fun i j => q i * q j, fun i j => mul_comm _ _⟩
+  Sym2.lift ⟨fun i j => q i * q j, fun _ _ => mul_comm _ _⟩
 
 @[simp] theorem pairProducts_mk (q : ι → A) (i j : ι) :
     pairProducts q s(i,j) = q i * q j := rfl
 
 /-- The corresponding formal product in the symmetric square. -/
 def pairFormal (q : ι → A) : Sym2 ι → SymmetricSquare K A :=
-  Sym2.lift ⟨fun i j => symProd (q i) (q j), fun i j => symProd_comm _ _⟩
+  Sym2.lift ⟨fun i j => symProd (q i) (q j), fun _ _ => symProd_comm _ _⟩
 
 @[simp] theorem pairFormal_mk (q : ι → A) (i j : ι) :
     pairFormal (K := K) q s(i,j) = symProd (q i) (q j) := rfl
@@ -137,7 +137,7 @@ theorem linearIndependent_of_pairProducts (q : ι → A)
   classical
   cases isEmpty_or_nonempty ι with
   | inl h =>
-    letI := h
+    let := h
     exact linearIndependent_empty_type
   | inr h =>
     obtain ⟨i₀⟩ := h

@@ -51,8 +51,8 @@ theorem exists_independent_biforms {h n j t m : ℕ}
     ∃ q : Fin m → Forms K (h+n) (j+t), LinearIndependent K q ∧
       ∀ i, (q i).val ∈ (LinearMap.range (TensorProduct.map O.subtype C.subtype)).map
         (splitPolynomialEquiv (K := K) h n).toLinearMap := by
-  letI : Module.Finite K O := Submodule.finiteDimensional_of_le hO
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hC
+  let : Module.Finite K O := Submodule.finiteDimensional_of_le hO
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hC
   obtain ⟨a,ha,hai⟩ := exists_independent_tensor_family O C hm
   let e := splitPolynomialEquiv (K := K) h n
   have ha' (i) : e (a i) ∈ Forms K (h+n) (j+t) :=

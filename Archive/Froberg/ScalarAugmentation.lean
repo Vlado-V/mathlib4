@@ -23,6 +23,7 @@ variable {K P V W A : Type*} [Field K]
   [AddCommGroup A] [Module K A]
 variable {q r : ℕ}
 
+omit [FiniteDimensional K P] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem scalar_family_append (mu : P →ₗ[K] V →ₗ[K] W)
     (Q : Fin q → P) (R : Fin r → P) (x : Fin q → V) (y : Fin r → V) :
     BilinearScalarFamily.multiplication mu (Fin.append Q R) (Fin.append x y)=

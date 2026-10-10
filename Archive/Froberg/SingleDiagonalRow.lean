@@ -30,15 +30,15 @@ theorem multiplication_single_diagonal_row
     have hdiag : r.val.val=2*j-r.val.val := by omega
     have hlocal : LinearIndependent K (products e q r) := by
       unfold products
-      rw [dif_pos hdiag]
+      rw [dite_eq_left hdiag]
       have hq : LinearIndependent K (pairProducts (q r.val.val)) := by rwa [hr]
-      exact hq.comp (cast (if_pos hdiag)) (Equiv.cast _).injective
+      exact hq.comp (cast (ite_eq_left hdiag)) (Equiv.cast _).injective
     apply linearIndependent_sigma_one_fiber (products e q) r _ hlocal
     intro s b
     apply Subtype.ext
     apply Fin.ext
     exact (honly s b).trans hr.symm
-  · letI : IsEmpty (Σ r : Row J (2*j),Columns e r) := not_nonempty_iff.mp hnon
+  · let : IsEmpty (Σ r : Row J (2*j),Columns e r) := not_nonempty_iff.mp hnon
     exact linearIndependent_empty_type
 
 theorem multiplication_single_diagonal_row_range
@@ -55,7 +55,7 @@ theorem multiplication_single_diagonal_row_range
   have hq : ∀ a,pairProducts (q r.val.val) a∈P := by rwa [hr]
   unfold products
   dsimp only
-  rw [dif_pos hdiag]
+  rw [dite_eq_left hdiag]
   exact hq _
 
 theorem eighth_row_only_fourth

@@ -32,6 +32,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
     (constantMul f c).val=f.val*c.val := rfl
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Fintype J] in
 theorem vectorMultiply_constantRelation (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (f : Forms K n d) (c : I → Forms K n 0) :
     vectorMultiply f (homogeneousMultiplication (d := 0) e v he c) =
@@ -92,6 +93,7 @@ def intermediateKoszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
         map_smul,← Finset.smul_sum,smul_neg]
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Fintype J] in
 /-- Every prescribed constant Koszul vector is an actual polynomial relation. -/
 theorem intermediateRow_koszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K n d)
@@ -105,6 +107,7 @@ theorem intermediateRow_koszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
   exact add_neg_cancel _
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Fintype J] in
 /-- Scalar injectivity in the quotient and layer injectivity give precisely
 the constant Koszul kernel, with no other relations. -/
 theorem intermediateRow_ker_eq_koszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
@@ -149,6 +152,7 @@ theorem intermediateRow_ker_eq_koszul (e : I → Fin n →₀ ℕ) (v : I → J 
     exact intermediateRow_koszul e v he Q c
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Fintype J] in
 /-- Independence of the layer at coefficient degree zero also proves that
 the prescribed constant Koszul source has its stated dimension. -/
 theorem intermediateKoszul_injective (e : I → Fin n →₀ ℕ) (v : I → J → K)

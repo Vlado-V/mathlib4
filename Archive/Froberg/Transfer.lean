@@ -48,6 +48,7 @@ theorem transfer_bounds_of_projected_normal
   have hGE := generic_euler (K := K) hn hr
   constructor <;> rw [hχ] <;> omega
 
+omit [Infinite K] in
 /-- The sign at each critical count turns the two transfer bounds into the
 single decreasing-defect recurrence used by the arithmetic argument. -/
 theorem criticalDefect_step_of_transfer {m h d : ℕ}

@@ -44,7 +44,7 @@ theorem natural_division_normalized_limit (f : ℕ → ℕ) {k q : ℕ}
   rw [← heq n]
   have hq0 : (q : ℝ) ≠ 0 := by exact_mod_cast hq.ne'
   field_simp
-  <;> ring
+  ring
 
 theorem half_index_choose_limit (s : ℕ) :
     Tendsto (fun n : ℕ => ((n / 2).choose s : ℝ) / (n : ℝ) ^ s)
@@ -113,7 +113,7 @@ theorem eventually_critical_paired_capacity {d h : ℕ} (hd : 3 ≤ d) (hh : 0 <
   apply (lt_div_iff₀ (mul_pos hpow hfac)).mpr
   calc
     (h : ℝ) * criticalRatio d / ((d - 1).factorial : ℝ) *
-        (2 ^ d * ((d - 1).factorial : ℝ)) = 2 ^ d * criticalRatio d * h := by field_simp <;> ring
+        (2 ^ d * ((d - 1).factorial : ℝ)) = 2 ^ d * criticalRatio d * h := by field_simp
     _ < outerColumnCount d h := hL
 
 end Froberg

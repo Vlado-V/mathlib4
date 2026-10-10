@@ -104,7 +104,7 @@ def tensorFormProduct (μ : B →ₗ[K] V →ₗ[K] W) :
     gradedMultiplication (K := K) (monomialForm a) (monomialForm b) = monomialForm (addExponent a
       b) := by
   apply Subtype.ext
-  simp [gradedMultiplication,monomialForm,addExponent,monomial_mul_monomial]
+  simp [gradedMultiplication,monomialForm,monomial_mul_monomial]
 
 /-- Multiplication conjugated into ordered, vector-valued monomial coordinates. -/
 def orderedTensorFormProduct (μ : B →ₗ[K] V →ₗ[K] W) :

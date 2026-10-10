@@ -64,6 +64,7 @@ namespace Froberg.MixedExterior
 open Module
 variable {K α : Type*} [Field K] [DecidableEq α]
 
+omit [DecidableEq α] in
 theorem card_targets_hit_by_labels_general {n s d : ℕ} (hn : 0 < n)
     (a : Fin n →₀ ℕ) (ha : a.degree = s)
     (e : α → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
@@ -87,6 +88,7 @@ theorem card_targets_hit_by_labels_general {n s d : ℕ} (hn : 0 < n)
   exact (Finset.card_le_card hsub).trans
     (Finset.card_biUnion_le_card_mul L targets _ hcard)
 
+omit [DecidableEq α] in
 theorem card_deficient_targets_general {n s d h : ℕ} (hn : 0 < n)
     (v : α → Fin h → K) (hv : UniversalMixedPosition v)
     (U : Submodule K (Fin h → K)) (a : Fin n →₀ ℕ) (ha : a.degree = s)
@@ -98,6 +100,7 @@ theorem card_deficient_targets_general {n s d h : ℕ} (hn : 0 < n)
     (hfail : ∀ b ∈ E, finrank K ↥(U ⊔ blockSpan v (sets b)) <
       min (finrank K U + (sets b).card) h) :
     E.card ≤ (h*2^h) * (n+(d-1)-1).choose (d-1) := by
+  classical
   obtain ⟨L,hL,hits⟩ := exists_deficient_hitting_set v hv U sets E hsize hfail
   have hc := card_targets_hit_by_labels_general hn a ha e he E hE L (by
     intro b hb
@@ -109,6 +112,7 @@ namespace Froberg.AttachedMultiplication
 open Module MixedExterior
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n h s d : ℕ}
 
+omit [DecidableEq I] in
 theorem card_deficient_fiber_projections_general (hn : 0 < n)
     (e : I → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s) (v : I → Fin h → K)
     (hv : ∀ S : Finset I, S.card ≤ h → LinearIndependent K (fun i : S => v i.val))
@@ -120,6 +124,7 @@ theorem card_deficient_fiber_projections_general (hn : 0 < n)
       min (finrank K (U.map (relationFiber e v a).mkQ))
         (finrank K ((Fin h → K) ⧸ relationFiber e v b))) :
     E.card ≤ (h*2^h) * (n+(d-1)-1).choose (d-1) := by
+  classical
   apply card_deficient_targets_general hn v hm U a ha e he E hE
     (fun b => labelsBelow e b \ labelsBelow e a)
   · intro b hb i hi

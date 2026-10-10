@@ -66,7 +66,7 @@ theorem exists_independent_quartics {h w m : ℕ}
 theorem fourth_power_le_thirtytwo_choose_four {w : ℕ} (hw : 24 ≤ w) :
     w^4 ≤ 32*w.choose 4 := by
   have hc := Nat.descFactorial_eq_factorial_mul_choose w 4
-  norm_num [Nat.descFactorial_succ, Nat.descFactorial_zero] at hc
+  norm_num [Nat.descFactorial_succ, Nat.descFactorial_zero, Nat.factorial] at hc
   have hcZ : 24*(w.choose 4 : ℤ) =
       (w : ℤ)*((w : ℤ)-1)*((w : ℤ)-2)*((w : ℤ)-3) := by
     have h := congrArg (fun n : ℕ => (n : ℤ)) hc

@@ -15,7 +15,7 @@ public import Archive.Froberg.GeneralPositionVectors
 noncomputable section
 namespace Froberg.MixedExterior
 open MvPolynomial Matrix
-variable {K α C : Type*} [Field K] [Infinite K] [Fintype α] [DecidableEq α] [Fintype C]
+variable {K α C : Type*} [Field K] [Infinite K] [Finite α] [Finite C]
 
 /-- Simultaneous specialization for an arbitrary finite list of disjoint-label
 mixed-minor certificates, possibly in different exterior degrees. -/
@@ -28,6 +28,8 @@ theorem exists_common_mixed_vectors (h : ℕ) (r l : C → ℕ) (hr : ∀ c, r c
       ∀ c, Matrix.det (fun I J => mixedRow
         (paddedVectors (t c) (label c) (fun a j => v a (Fin.cast (hr c) j)) I) J) ≠ 0 := by
   classical
+  let := Fintype.ofFinite α
+  let := Fintype.ofFinite C
   let coord (c : C) : α × Fin (r c+l c) → α × Fin h :=
     fun p => (p.1,Fin.cast (hr c) p.2)
   have hcoord (c : C) : Function.Injective (coord c) := by

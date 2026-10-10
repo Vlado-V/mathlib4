@@ -18,6 +18,7 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type*} [Field K] [Infinite K]
 
+omit [Infinite K] in
 lemma quotient_restrict_injective_of_disjoint
     {V : Type*} [AddCommGroup V] [Module K V]
     (D R : Submodule K V) (hDR : Disjoint D R) :

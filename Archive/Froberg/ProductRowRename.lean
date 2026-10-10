@@ -23,12 +23,12 @@ theorem products_rename (e : ℕ → ℕ)
   classical
   by_cases h : r.val.val=R-r.val.val
   · unfold products
-    simp only [dif_pos h]
-    generalize hc : cast (if_pos h) c = p
+    simp only [dite_eq_left h]
+    generalize hc : cast (ite_eq_left h) c = p
     induction p using Sym2.inductionOn with
     | _ i j => exact (map_mul (rename f) (q _ i) (q _ j)).symm
   · unfold products
-    simp only [dif_neg h]
+    simp only [dite_eq_right h]
     exact (map_mul (rename f) _ _).symm
 
 theorem multiplication_rename (e : ℕ → ℕ)

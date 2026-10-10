@@ -38,14 +38,14 @@ theorem paired_diagonal_space_exists (w v j t m : ℕ)
       finrank K E = m ∧ Function.Injective (subspaceSymmetricMultiplication E) := by
   obtain ⟨O₀,hOh,hOb,hOd,hOi⟩ := paired_space_exists (K := K) w j
   obtain ⟨C,hCh,hCb,hCd,hCi⟩ := paired_space_exists (K := K) v t
-  letI : Module.Finite K (MvPolynomial.homogeneousSubmodule (Fin w × Bool) K j) :=
+  let : Module.Finite K (MvPolynomial.homogeneousSubmodule (Fin w × Bool) K j) :=
     Module.Finite.of_fg (MvPolynomial.homogeneousSubmodule_fg _ _ _)
-  letI : Module.Finite K (MvPolynomial.homogeneousSubmodule (Fin v × Bool) K t) :=
+  let : Module.Finite K (MvPolynomial.homogeneousSubmodule (Fin v × Bool) K t) :=
     Module.Finite.of_fg (MvPolynomial.homogeneousSubmodule_fg _ _ _)
-  letI : Module.Finite K O₀ := Submodule.finiteDimensional_of_le hOh
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hCh
+  let : Module.Finite K O₀ := Submodule.finiteDimensional_of_le hOh
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hCh
   let O := O₀ ⊓ T.ker
-  letI : Module.Finite K O := Submodule.finiteDimensional_of_le (show O ≤ O₀ from inf_le_left)
+  let : Module.Finite K O := Submodule.finiteDimensional_of_le (show O ≤ O₀ from inf_le_left)
   have hO : w.choose j - finrank K X ≤ finrank K O := by
     simpa only [hOd] using finrank_intersection_kernel_lower_bound O₀ T
   have hOi' : Function.Injective (subspaceSymmetricMultiplication O) :=

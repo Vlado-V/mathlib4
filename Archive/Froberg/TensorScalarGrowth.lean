@@ -16,8 +16,8 @@ noncomputable section
 namespace Froberg
 open Module TensorProduct Quartic
 variable {K V P : Type*} [Field K]
-  [AddCommGroup V] [Module K V] [FiniteDimensional K V]
-  [AddCommGroup P] [Module K P] [FiniteDimensional K P]
+  [AddCommGroup V] [Module K V]
+  [AddCommGroup P] [Module K P]
 local instance tensorScalarGroup : AddCommGroup (V ⊗[K] P) := Module.addCommMonoidToAddCommGroup K
 
 def tensorScalarProduct : P →ₗ[K] V →ₗ[K] (V ⊗[K] P) := (TensorProduct.mk K V P).flip
@@ -31,8 +31,7 @@ theorem tensorScalarProduct_image (L : Submodule K V) :
     rintro _ ⟨v,hv,rfl⟩
     exact ⟨(⟨v,hv⟩ : L) ⊗ₜ[K] p,rfl⟩
   · rintro _ ⟨v,rfl⟩
-    induction v using TensorProduct.induction_on with
-    | zero => exact Submodule.zero_mem _
+    induction v using TensorProduct.inductionOn with
     | tmul v p => exact BilinearImage.product_mem _ L p v.val v.property
     | add x y hx hy => simpa only [map_add] using Submodule.add_mem _ hx hy
 

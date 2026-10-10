@@ -32,7 +32,7 @@ The hypotheses only involve finite sums and pointwise inequalities. -/
 theorem capacity_transport_growth (d ell : I → ℝ) (c b : J → ℝ)
     (P : I → J → ℝ) (q : I → ℝ) (A T η κ : ℝ)
     (hA : 0 < A) (hT : 0 < T) (hd : ∀ i, 0 < d i) (hc : ∀ j, 0 < c j)
-    (hdsum : ∑ i, d i = A) (hcsum : ∑ j, c j = T)
+    (hdsum : ∑ i, d i = A) (_hcsum : ∑ j, c j = T)
     (hell : ∀ i, 0 ≤ ell i ∧ ell i ≤ d i)
     (hP : ∀ i j, 0 ≤ P i j)
     (hrow : ∀ i, ∑ j, P i j = d i / A)

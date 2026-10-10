@@ -104,6 +104,7 @@ theorem quotient_finrank (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
   rw [LinearMap.finrank_range_of_inj hQ, Module.finrank_pi_fintype] at he
   simpa using Nat.eq_sub_of_add_eq (by simpa using he)
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 /-- Injectivity also certifies that the scalar forms themselves are independent
 as soon as the source contains a nonzero vector. -/
 theorem independent_of_injective (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
