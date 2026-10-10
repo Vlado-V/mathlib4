@@ -34,6 +34,7 @@ def HasRestoredOuterOddOpen {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ �
         (fun j => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 j)))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_outer_odd_open_of_rows {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (Poly K h)} (hd : 3 ≤ d) (hdeven : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈

@@ -20,6 +20,7 @@ open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem filtered_even_odd_exact (hd : 3 ≤ d)
     (A : Fin q → biformParitySpace K h m d 0)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))

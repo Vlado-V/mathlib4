@@ -37,6 +37,7 @@ def quadraticTensorFamily (h2 : 2 ∈ J) (hO2 : O 2 ≤ Forms K h 2)
   preparedLayerTensor ⟨2,h2⟩ hO2 p.1
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem all_prepared_target_lifts (hd : 3 ≤ d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, 0 < j ∧ j ≤ d) (h2 : 2 ∈ J)
     (S : Submodule K (Poly K h)) (hS : S ≤ Forms K h d)

@@ -93,6 +93,7 @@ theorem pairedFrameConstraint_space (f : (Fin w × Bool) ≃ Fin h)
     simpa only [rename_rename,Equiv.symm_comp_self,rename_id_apply] using hh
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_space_map (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -117,6 +118,7 @@ theorem pairedFrameConstraint_space_map_ne_two (f : (Fin w × Bool) ≃ Fin h)
     exact (renameEquiv K f).right_inv p
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_spaces_map (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -129,6 +131,7 @@ theorem pairedFrameConstraint_spaces_map (f : (Fin w × Bool) ≃ Fin h)
   · simpa only [ite_eq_right hj] using pairedFrameConstraint_space_map_ne_two f L hj
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_space_finrank (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2) (hframe : LinearIndependent K frame)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))

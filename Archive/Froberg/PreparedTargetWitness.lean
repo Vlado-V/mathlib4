@@ -23,6 +23,7 @@ set_option backward.isDefEq.respectTransparency false
 
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_prepared_target_witness (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2)
     (low : LowRowCoefficients K h m (d - 1) (d - 2) H f r)

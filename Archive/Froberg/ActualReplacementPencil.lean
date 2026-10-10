@@ -76,6 +76,7 @@ theorem oddEvenRelativeMap_smul
   simp only [oddEvenRelativeMap_apply,map_smul,LinearMap.smul_apply,Finset.smul_sum]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_even_pencil_slices_open [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

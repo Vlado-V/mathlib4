@@ -44,6 +44,7 @@ theorem evenReductionOpen_congr_counts {σ : Type*}
   rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem eventually_even_reduction_from_paired {d : ℕ} (_hd : 3 ≤ d)
     (hp : ∀ᶠ w : ℕ in atTop, 4 ∣ 2 * w → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (2 * (w : ℝ)) ^ 2 * (n : ℝ) ^ (d - 2)) →

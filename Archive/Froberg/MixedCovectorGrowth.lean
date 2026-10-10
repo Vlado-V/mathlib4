@@ -47,6 +47,7 @@ local notation "ν" => bottomCoordinateScalarAction hdp Q g
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
+omit [Infinite K] in
 theorem mixed_full_bottom_compat
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
@@ -76,6 +77,7 @@ theorem mixed_full_bottom_compat
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
+omit [Infinite K] in
 theorem mixed_full_bottom_kernel
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
@@ -92,6 +94,7 @@ theorem mixed_full_bottom_kernel
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
+omit [Infinite K] in
 theorem mixed_full_bottom_kernel_finrank_le
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
@@ -107,6 +110,7 @@ theorem mixed_full_bottom_kernel_finrank_le
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
+omit [Infinite K] in
 theorem mixed_full_higher_kernel_growth
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =

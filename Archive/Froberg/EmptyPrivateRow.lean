@@ -24,6 +24,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 3200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem empty_row_core_extended_exact
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (R : J) (hRd : R.val < d)
@@ -97,6 +98,7 @@ theorem empty_row_core_extended_exact
   exact hext'
 
 set_option maxHeartbeats 3200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem empty_private_row_exact {t R hi ho : ℕ}
     (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 < d) (hRJ : R + 1 ∈ J)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

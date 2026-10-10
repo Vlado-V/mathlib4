@@ -46,6 +46,7 @@ theorem scalarCoefficientRow_mem (Q : Fin q → Forms K n d)
   exact Submodule.mul_mem_mul (Submodule.subset_span ⟨i,rfl⟩) (x i k).property
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalar_detected_biform_separation
     (Q : Fin q → Forms K n d) (T : Poly K h →ₗ[K] (Fin c → K))
     (F : Fin f → FullBiform K (Fin h) n R s)

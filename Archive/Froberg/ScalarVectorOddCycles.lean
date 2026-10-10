@@ -41,6 +41,7 @@ omit [Infinite K] in
     (linearOddForm hd g).val=sumBiformMap (linearOutputTensorEquiv g) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalar_vector_odd_exact (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d)) g))

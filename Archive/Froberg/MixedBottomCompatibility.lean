@@ -39,6 +39,7 @@ local notation "hQ₀" => fun i => scalarEvenBiform_weighted (h := h) (Q i)
 local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem mixedAmbientScalar_bottom
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =

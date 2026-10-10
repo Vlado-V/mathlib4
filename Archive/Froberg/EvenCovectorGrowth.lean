@@ -32,6 +32,7 @@ local notation "μ" => evenBackgroundScalar hdp Q F
 local notation "ν" => bottomCoordinateScalarAction hdp Q g
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_full_bottom_compat (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K)
     (p : Forms K m d) (x : OddBottomQuotient F) :
     ell (μ p ((eV).symm (x,0)))=splitTargetBottom eW ell (ν p x) := by
@@ -40,6 +41,7 @@ theorem even_full_bottom_compat (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K)
   rw [←he,LinearEquiv.symm_apply_apply]
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_full_bottom_kernel (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K) :
     (QuotientCovectorKernel.relation μ ell).ker.comap
       ((eV).symm.toLinearMap.comp (LinearMap.inl K (OddBottomQuotient F)
@@ -49,6 +51,7 @@ theorem even_full_bottom_kernel (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K)
     (even_full_bottom_compat hd3 Q g ell)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_full_bottom_kernel_finrank_le (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K) :
     finrank K (QuotientCovectorKernel.relation ν (splitTargetBottom eW ell)).ker≤
       finrank K (QuotientCovectorKernel.relation μ ell).ker :=
@@ -56,6 +59,7 @@ theorem even_full_bottom_kernel_finrank_le (ell : EvenBackgroundTarget hdp Q F �
     (even_full_bottom_compat hd3 Q g ell)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_full_higher_kernel_growth
     (t : ℕ)
     (hmid : ∀ (j : ℕ) (hj : 3 ≤ j) (hjd : j ≤ d), j % 2 = 1 →

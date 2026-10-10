@@ -96,6 +96,7 @@ theorem typed_private_quadratic_row_separation (hd : 3 ≤ d)
   exact ⟨hh.1,hrow.trans hh.2⟩
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The actual quadratic nuisance row has exactly its constant private
 Koszul boundary as kernel. -/
 theorem typed_private_quadratic_row_exact (hd : 3 ≤ d)

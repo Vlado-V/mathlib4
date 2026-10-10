@@ -139,6 +139,7 @@ def topGrowthScalarAction (hdp : 1 ≤ d)
     (topGrowthDegree hdp m).symm.toLinearMap
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientTopGrowthProjection_product (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

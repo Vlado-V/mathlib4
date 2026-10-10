@@ -52,6 +52,7 @@ def bottomVectorTargetEquiv (hd : 1 ≤ d)
       (bottomRow_range_comparison hd Q g).symm)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem bottomVectorTargetEquiv_mk (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (v : Rows K h m ((d - 1) + d)) :
@@ -75,6 +76,7 @@ def bottomTensorScalarAction (hd : 1 ≤ d)
       g).toLinearMap
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem bottomTensorScalarAction_mk (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (p : Forms K m d) (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
@@ -98,6 +100,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
   rw [bottomVectorTargetEquiv_mk,bottom_vector_scalar_action]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottomTensorScalarAction_compatible (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (p : Forms K m d) (v : VectorExpansionOpen.Source g) :

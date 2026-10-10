@@ -39,6 +39,7 @@ theorem preparedScalarSpace_eq_familySpace
     exact ⟨idx i,rfl⟩
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_outer_separation_of_quadratic_row
     (hd : 3 ≤ d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -60,6 +61,7 @@ theorem prepared_outer_separation_of_quadratic_row
   rw [add_zero]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_outer_separation_principal_open
     (hd : 3 ≤ d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -90,6 +92,7 @@ theorem prepared_outer_separation_principal_open
     hd ho hO hJ heven hmin idx T hT hO₂ U p (hgood p hp)⟩
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_outer_separation_principal_open_uniform
     (hd : 3 ≤ d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)

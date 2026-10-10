@@ -128,6 +128,7 @@ theorem private_product_mem_quadratic_row
     simpa only [smul_mul_assoc,map_smul] using Submodule.smul_mem _ r ih
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_denominator_mem_quadratic_row
     (hd : 2 ≤ d) (T : Poly K h →ₗ[K] (Fin c → K))
     (Q : Fin q → Forms K m d) (P : Fin b → FullBiform K (Fin h) m 1 (d - 1))
@@ -175,6 +176,7 @@ theorem prepared_denominator_mem_quadratic_row
     exact Submodule.zero_mem _
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_background_mem_quadratic_row
     (hd : 2 ≤ d) (T : Poly K h →ₗ[K] (Fin c → K))
     (hT : T.comp (homogeneousComponent 2) = T)

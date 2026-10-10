@@ -102,6 +102,7 @@ def ambientTopProjection (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
   Submodule.mapQ _ _ ambientTopMap (ambientTopMap_relations hdp hd hd1 Q F U P)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem ambientTopProjection_mk (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

@@ -48,6 +48,7 @@ def bottomCoordinateScalarAction (hd : 1 ≤ d)
   (bottomTensorScalarAction hd Q g).compr₂ₛₗ (bottomCoordinateTargetEquiv hd Q g).toLinearMap
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem bottomCoordinateScalarAction_mk (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (p : Forms K m d) (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
@@ -62,6 +63,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
   rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottomCoordinateScalarAction_closed_slices (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (s : ℕ → ℕ)

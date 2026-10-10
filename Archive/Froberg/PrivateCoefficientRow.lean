@@ -25,6 +25,7 @@ variable {σ : Type*} [Fintype σ] {a z b h c m q d R : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem private_coefficient_row_separation [Finite σ] (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
@@ -121,6 +122,7 @@ theorem private_coefficient_row_separation [Finite σ] (hd : 3 ≤ d) (hR : 2 �
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 /-- The last possible private coefficient lies in pure output degree d.
 Its private variable support separates it from every core product. -/
 theorem private_coefficient_boundary_row [Finite σ] (hd : 3 ≤ d)

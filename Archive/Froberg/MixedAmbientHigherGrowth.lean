@@ -42,6 +42,7 @@ local notation "hQ₀" => fun i => scalarEvenBiform_weighted (h := h) (Q i)
 local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
 
  set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem mixedHigherProjection_kills_bottom
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
@@ -56,6 +57,7 @@ theorem mixedHigherProjection_kills_bottom
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include hR hker in
+ omit [Infinite K] in
  theorem mixedAmbientHigher_growth
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =

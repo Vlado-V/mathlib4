@@ -25,6 +25,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_first_core_row_exact
     (hd : 3 ≤ d) (h2J : 2 ∈ J)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

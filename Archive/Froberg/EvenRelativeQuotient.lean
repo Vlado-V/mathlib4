@@ -70,6 +70,7 @@ theorem evenRelativeQuotient_compatible (hdp : 1 ≤ d)
   rw [evenBackgroundEquiv_scalar]
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenRelative_closed_slices (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) (s : ℕ → ℕ)

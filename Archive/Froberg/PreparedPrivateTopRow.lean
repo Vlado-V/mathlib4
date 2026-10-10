@@ -31,6 +31,7 @@ def privateTopRow (p : Space n d q J counts O)
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem private_top_core_injective [Finite σ]
     (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d)

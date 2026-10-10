@@ -23,6 +23,7 @@ variable {h m d q r f c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- C.2 in exactly the endpoint coordinates used by the restored comparison. -/
 theorem restored_quadratic_formal_separation
     (hd : 3 ≤ d) (hdp : 1 ≤ d) (he : d % 2 = 0)
@@ -55,6 +56,7 @@ theorem restored_quadratic_formal_separation
     exact restoredEndpointFamily_lowComponents hd he hO hJ heven hmin idx slot p
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem QuadraticSeparated.restored_formal
     (hd : 3 ≤ d) (hdp : 1 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)

@@ -89,6 +89,7 @@ def bottomRowCoefficients (hd : 1 ≤ d) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency true in
+omit [Infinite K] in
 theorem bottomRow_map_comparison (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     (oddTensorRowMap (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
@@ -104,6 +105,7 @@ theorem bottomRow_map_comparison (hd : 1 ≤ d)
     bottom_vector_scalar_action,bottomVectorRow,BilinearImage.tupleMap_apply,map_add,map_sum]
 
  set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottomRow_range_comparison (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     (oddTensorRowMap (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))

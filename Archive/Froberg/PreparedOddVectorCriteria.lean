@@ -57,6 +57,7 @@ omit [Infinite K] in
   cases finSumFinEquiv.symm i <;> rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_cycles_of_vector_criteria (hd : 3 ≤ d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -91,6 +92,7 @@ theorem odd_cycles_of_vector_criteria (hd : 3 ≤ d) (hdodd : d % 2 = 1)
       hrel
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_cycles_of_first_higher_rows (hd : 3 ≤ d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)

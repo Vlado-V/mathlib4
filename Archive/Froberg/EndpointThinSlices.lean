@@ -35,6 +35,7 @@ theorem oddEndpointScalarAction_target_finrank
   exact Nat.eq_sub_of_add_eq (injective_pi_quotient_finrank (oddEvenRelativeMap Q F G E) hi).symm
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEndpointScalarAction_closed_thin_slices
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

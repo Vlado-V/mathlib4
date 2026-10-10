@@ -71,6 +71,7 @@ local instance privateFrameConstrainedSpaceFinite {X : Type*} [AddCommGroup X] [
   finite_space (fun _ _ => inf_le_left)
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Transport a private coefficient open to the full finite-variable
 frame family. The private columns in the conclusion are fixed in the
 original finite-variable coordinates. -/

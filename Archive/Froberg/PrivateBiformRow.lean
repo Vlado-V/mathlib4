@@ -29,6 +29,7 @@ lemma polynomialVector_core_extension (o : Fin c → MvPolynomial σ K)
   rfl
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem private_biform_row_zero [Finite σ] (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
@@ -103,6 +104,7 @@ theorem private_biform_row_zero [Finite σ] (hs : 2 ≤ s) (hr : r < s) (ht : t 
   exact map_zero _
 
 omit [Fintype σ] in
+omit [Infinite K] in
 /-- A core-only term cannot cancel a private-power row below its endpoint. -/
 theorem private_biform_core_zero [Finite σ] (hs : 2 ≤ s) (hr : r < s)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))

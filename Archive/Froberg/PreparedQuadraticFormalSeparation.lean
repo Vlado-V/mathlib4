@@ -25,6 +25,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d c q b f : ℕ}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_quadratic_formal_separation
     (hd : 2 ≤ d) (T : Poly K h →ₗ[K] (Fin c → K))
     (hT : T.comp (homogeneousComponent 2) = T)

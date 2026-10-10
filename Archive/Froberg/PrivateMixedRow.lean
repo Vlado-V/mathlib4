@@ -36,6 +36,7 @@ theorem mixed_residual_avoids_private_powers (hs : 0 < s) (ht : t < s)
   simp only [map_add,map_sum,freeCoeff_rename_mul,hx,mul_zero,Finset.sum_const_zero,
     freeCoeff_rename_core,ite_eq_right hbn,add_zero]
 
+omit [Infinite K] in
 /-- Every later private coefficient is zero in the literal mixed row. The
 only rank hypothesis concerns the same chosen sparse E family modulo each
 private output image. -/

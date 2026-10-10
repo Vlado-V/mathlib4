@@ -30,6 +30,7 @@ local notation "eW" => oddTargetBaseEquiv hdp Q₀ F₁ hQ₀ hF₁
 local notation "eV" => oddSourceBaseEquiv hdp F
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenBackgroundScalar_bottom (p : Forms K m d) (x : OddBottomQuotient F) :
     eW (evenBackgroundScalar hdp Q F p ((eV).symm (x,0)))=
       (bottomCoordinateScalarAction hdp Q g p x,0) := by

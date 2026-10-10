@@ -96,6 +96,7 @@ theorem detectedSymmetricProductRow_core_extension
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 /-- Core scalar/outer separation survives the addition of private variables
 and the fixed private nuisance block. -/
 theorem typed_private_quadratic_extended_products_separation [Finite σ] (hd : 3 ≤ d)

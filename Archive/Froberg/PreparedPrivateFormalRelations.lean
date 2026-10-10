@@ -157,6 +157,7 @@ theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0 < d) (ho : d % 2 = 
     exact ((renameEquiv K finSumFinEquiv).left_inv _).symm
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateEndpointFamily_flag_span {f : ℕ} (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
