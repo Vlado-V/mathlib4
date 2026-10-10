@@ -56,6 +56,7 @@ theorem evenHigherProjection_scalar (p : Forms K m d)
   exact biformTensorComponent_eq_oddCoordinates v r.val
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenHigherProjection_kills_bottom (r : MixedHigherIndex d hd3)
     (x : OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp)) :
     evenHigherProjection hd3 Q F r ((eW).symm (x,0))=0 := by

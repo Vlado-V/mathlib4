@@ -121,6 +121,7 @@ theorem backgroundSplitIndex_back
         rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_split_background_endpoint
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

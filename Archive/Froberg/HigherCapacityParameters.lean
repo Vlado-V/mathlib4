@@ -38,6 +38,7 @@ theorem targetLayerLabel_count_limit {d : ℕ} (hd : 3 ≤ d) (h extra : ℕ)
   unfold preparedScalarCount
   omega
 
+omit [Module.Finite K X] in
 theorem eventually_higher_row_capacity {d R : ℕ} (hd : 9 ≤ d)
     (hR : R ∈ activeHigherIndices d) :
     ∀ᶠ w : ℕ in atTop,

@@ -36,6 +36,7 @@ def evenBackgroundProduct (hdp : 1 ≤ d)
       RingHom.id_apply]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenBackgroundProduct_scalar (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : EvenBackgroundSource hdp F) :
@@ -61,6 +62,7 @@ omit [Infinite K] in
   simp only [evenRelativeFamily,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenRelativeFamily_compatible (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) (a : Fin e → EvenBackgroundSource hdp F) :

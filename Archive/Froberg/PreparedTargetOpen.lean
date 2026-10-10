@@ -36,6 +36,7 @@ local instance targetRestrictedSpaceFinite (frame : Fin H → Forms K h 2) :
   unfold OuterSpace
   infer_instance
 
+omit [CharZero K] in
 /-- A literal successful point, suitable for a larger polynomial parameter
 space in which the private terms and the pure tuple also vary. -/
 theorem HasUpperWitness.exists_upperTarget_surjective (hd : 3 ≤ d)

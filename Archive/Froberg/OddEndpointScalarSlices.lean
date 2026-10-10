@@ -41,6 +41,7 @@ def oddEndpointScalarAction
       (scalarEvenBiform (K := K) (h := h) (m := m) (d := d))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEndpointScalarAction_eq
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :

@@ -118,6 +118,7 @@ omit [Infinite K] in
   · rfl
   · rfl
 
+omit [Infinite K] in
 theorem zeroLayers_target_lifts (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
     (hz : ∀ j ∈ J', j ∉ J → c' j = 0) (p : Space m d q f u J c O)
     (U : Fin u → Forms K h d) (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)

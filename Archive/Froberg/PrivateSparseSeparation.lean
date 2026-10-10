@@ -89,6 +89,7 @@ theorem private_coefficient_mem_range (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
   · simp
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Projected linear and constant injectivity separate the new sparse layer
 from every private column, even with arbitrary private-variable coefficients. -/
 theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)

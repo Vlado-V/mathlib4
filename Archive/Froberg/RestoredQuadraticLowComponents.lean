@@ -47,6 +47,7 @@ theorem restoredEndpointFamily_lowComponents (hd : 3 ≤ d) (he : d % 2 = 0)
   exact PreparedTarget.renamed_restored_low_components hd he hO hJ heven hmin idx slot p.1 i
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddPolynomialToForms_linearOuter_val (hd : 1 ≤ d)
     (F : FullBiform K (Fin h) m 1 (d - 1)) :
     (oddPolynomialToForms (linearOddForm hd (PreparedTarget.outerVectorEquiv.symm F))).val=

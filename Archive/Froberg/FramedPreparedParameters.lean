@@ -120,6 +120,7 @@ theorem sumBiform_framed (frame : Fin H → Forms K h j)
     polynomialVector_apply]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem framed_coefficients_mem_prepared (frame : Fin H → Forms K h j)
     (c : Fin r → Fin H → Forms K m e) (i : Fin r) :
     sumBiform (framedBiformFamily frame c i)∈biformImage (outputFrameSpace frame) (Forms K m

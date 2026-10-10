@@ -82,6 +82,7 @@ theorem oddGenerator_component_one (hd : 1 < d) (U : Fin u → Forms K h d)
     ite_eq_right (by omega),add_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_family_independent (hd : 1 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

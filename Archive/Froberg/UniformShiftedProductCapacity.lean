@@ -18,6 +18,7 @@ open Froberg Filter Module
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+omit [Infinite K] in
 theorem eventually_allEven_product_capacities_shift_uniform {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,
       ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],∀ r : ℕ,

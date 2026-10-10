@@ -31,6 +31,7 @@ variable (hd : 1 ≤ d)
     oddAmbientBottomRelationMap hd Q F hQ hF G)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddAmbientCoordinates_weighted_bottom
     (p : biformParitySpace K h m (2 * d) 1)
     (hp : p.val.IsWeightedHomogeneous (blockWeight h m) 1) :

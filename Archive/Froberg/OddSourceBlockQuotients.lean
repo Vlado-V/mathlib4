@@ -102,6 +102,7 @@ theorem oddHigherRelationMap_mixed_top (hd : Odd d) (hd3 : 3 ≤ d)
     map_sum,map_smul,mixedPureOddGenerator_top hd (by omega : 1<d)]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherCoordinateRelation_top (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

@@ -51,6 +51,7 @@ omit [Infinite K] in
     (restoredCountScalarFiberLinear hc (a,p)).2=p.2 := rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredCountScalarFiberLinear_extra_generator (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :
@@ -59,6 +60,7 @@ theorem restoredCountScalarFiberLinear_extra_generator (hc : ∀ j ∈ J, c j �
   countScalarFiberLinear_extra_generator hc a p.1.1 j i hi
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O) :
     restoredRestrictCounts hc (restoredCountScalarFiberLinear hc (a,p))=
@@ -83,6 +85,7 @@ theorem restoredCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
   · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem principal_open_restored_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     let : Module.Finite K (Space m d q J c' O) := finite_space hO

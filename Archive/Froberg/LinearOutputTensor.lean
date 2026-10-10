@@ -62,6 +62,7 @@ omit [Infinite K] in
     TensorProduct.comm_tmul,TensorProduct.congr_tmul,LinearEquiv.refl_apply]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem linearOutputTensorEquiv_sum (v : Rows K h m s) :
     linearOutputTensorEquiv v=∑ i,linearCutEquiv (Pi.single i (1 : K)) ⊗ₜ[K] v i := by
   classical

@@ -101,6 +101,7 @@ def preparedJointFromCoordinates (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
   exact preparedJointCoordinates.symm.toLinearMap.comp (g.prod (Q.prod R))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (pF : VectorParameters.Index h m (d - 1) f → K) (pQ : CoefficientIndex m d q → K)
     (pR : Fin (finrank K (JointRest m d q f u J counts O)) → K) :

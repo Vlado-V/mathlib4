@@ -29,6 +29,7 @@ omit [Infinite K] in
   exact (renameEquiv K finSumFinEquiv).left_inv (g i).val
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biform_restoration_odd_cycle_zero
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (hinj : Function.Injective (PreparedParameters.restoredOddRowLinear g))
@@ -62,6 +63,7 @@ variable {q f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredOuterEndpoint_castAdd (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

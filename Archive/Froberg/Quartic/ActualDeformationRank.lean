@@ -64,6 +64,7 @@ theorem response_realized (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q
     exact add_comm _ _
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- A concrete principal open gives the actual split-rank plus response-rank bound. -/
 theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)

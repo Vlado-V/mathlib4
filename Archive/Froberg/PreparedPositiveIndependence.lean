@@ -52,6 +52,7 @@ theorem positivePerturbedFamily_component
   · rw [ite_eq_right (fun h => hk (Subtype.ext h.symm)),ite_eq_right hk]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem positivePerturbedFamily_scalar_independent
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hpos : ∀ j ∈ J, 0 < j) (hJ : ∀ j ∈ J, 0 < counts j → j < d)
     (p : Space m d q J counts O)

@@ -71,6 +71,7 @@ theorem allEven_product_capacities {d w v h n e : ℕ} (hd : 9 ≤ d)
       exact (hi j ha).2
     · simp only [allEvenCount_inactive h n e ha,Nat.zero_le]
 
+omit [Infinite K] [Module.Finite K X] in
 theorem eventually_allEven_product_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*(2*(v : ℝ))^(d-2) →

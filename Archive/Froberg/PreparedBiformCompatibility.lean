@@ -19,6 +19,7 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+omit [Infinite K] in
 theorem preparedBaseBiform_eq_scalar (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : PreparedParameters.Space m d q J counts O) (i : Fin q) :
@@ -27,6 +28,7 @@ theorem preparedBaseBiform_eq_scalar (hO : ∀ j ∈ J, O j ≤ Forms K h j)
   simp [preparedBaseBiform,preparedEvenBiform,PreparedParameters.generator,
     PreparedParameters.scalar,PreparedParameters.high]
 
+omit [Infinite K] in
 theorem preparedOddBiform_outer (hd : 0 < d) (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (i : Fin f) :
@@ -55,6 +57,7 @@ def preparedHighBiform (hO : ∀ j ∈ J, O j ≤ Forms K h j)
   preparedPositiveBiform hO hJ heven p i-
     scalarEvenBiform (p.1 (Sum.inr ((Fintype.equivFin _).symm i)))
 
+omit [Infinite K] in
 theorem preparedHighBiform_val (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : PreparedParameters.Space m d q J counts O)
@@ -64,6 +67,7 @@ theorem preparedHighBiform_val (hO : ∀ j ∈ J, O j ≤ Forms K h j)
   simp only [preparedHighBiform,Submodule.coe_sub,preparedPositiveBiform,preparedEvenBiform,
     scalarEvenBiform_val,PreparedParameters.generator,PreparedParameters.scalar,add_sub_cancel_left]
 
+omit [Infinite K] in
 theorem preparedPositiveBiform_eq_affine (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : PreparedParameters.Space m d q J counts O) :

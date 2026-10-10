@@ -47,8 +47,8 @@ theorem restored_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
             (coefficientCoordinates (fun i => p.1.1.1 (Sum.inl i))) := by
   have hn := strictThinCoefficientOpen_joint hnpos houter
   intro J counts O hO
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-  letI : Module.Finite K (RestoredJointRest n d J counts O) := finite_restoredJointRest hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (RestoredJointRest n d J counts O) := finite_restoredJointRest hO
   intro D hD
   let L := restoredJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f) (counts :=
     counts) hO
@@ -113,8 +113,8 @@ theorem restored_restricted_fiber_of_strict_thin_open
               (coefficientCoordinates (fun i => p'.1.1.1 (Sum.inl i))) := by
   have hn := restored_joint_of_strict_thin_open hnpos houter
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-  letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgood⟩ := principal_open_linear_pullback (restoredRestrictCounts hcounts)
     (restoredRestrictCounts_surjective hcounts) A hA Good hGood
@@ -145,7 +145,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 all restored-family parameters. Only uniform input opens are assumed. -/
 theorem field_uniform_restored_c4_selection {d h : ℕ}
     (hd : 3 ≤ d) (hdeven : d % 2 = 0) (hhpos : 0 < h)
-    (f e : ℕ → ℕ) (extra : ℕ) {G C : ℝ} (hG : 0 < G) (hC : 0 < C)
+    (f e : ℕ → ℕ) (extra : ℕ) {G C : ℝ} (_hG : 0 < G) (hC : 0 < C)
     (he : ∀ᶠ n : ℕ in atTop,
       (e n : ℝ) < countBeta d * (h : ℝ) ^ 2 * (n : ℝ) ^ (d - 2))
     (houter : ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
@@ -159,7 +159,7 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
         (heven : ∀ j ∈ J, j%2=0) (hcounts : ∀ j ∈ J, counts j ≤ counts' j)
         (r : ℕ) (idx : Fin r ≃ Label (upperCount n d) J counts)
         (slot : Fin (finrank K (Forms K h d)) → Fin r)
-        (hslot : ∀ i, 0 < degree (idx (slot i))),
+        (_hslot : ∀ i, 0 < degree (idx (slot i))),
       Fintype.card (ProductRows.LayerLabel J counts) ≤
         Fintype.card (ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h n (e n+extra))) →
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
@@ -203,8 +203,8 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
   have hn := restored_restricted_fiber_of_strict_thin_open hnpos (ho K)
   have hgn := hg K
   intro J counts counts' O hO hJ heven hcounts r idx slot hslot hcard
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-  letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgrowth⟩ := restored_base_ordinary_growth_open (counts := counts) hO hgn
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection
@@ -281,7 +281,7 @@ theorem uniform_exact_counts_restored_c4_selection {d k h lo : ℕ}
         (heven : ∀ j ∈ J, j%2=0) (hcounts : ∀ j ∈ J, counts j ≤ counts' j)
         (r : ℕ) (idx : Fin r ≃ Label (upperCount n d) J counts)
         (slot : Fin (finrank K (Forms K h d)) → Fin r)
-        (hslot : ∀ i, 0 < degree (idx (slot i))),
+        (_hslot : ∀ i, 0 < degree (idx (slot i))),
       Fintype.card (ProductRows.LayerLabel J counts) ≤
         Fintype.card (ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h n (e n+extra))) →
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO

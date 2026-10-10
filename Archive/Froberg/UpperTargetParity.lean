@@ -108,6 +108,7 @@ theorem scalar_range_odd_zero {k : ℕ}
   exact weighted_homogeneous_has_parity (coreWeight h m) _ (scalar_rename_core_weight_zero b)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The exact supported deletion used by transfer automatically has no odd
 part and fills every pure scalar target modulo the embedded old products. -/
 theorem supported_scalar_deletion_properties {s : ℕ}

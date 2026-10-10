@@ -49,6 +49,7 @@ def scalarRestoredPoint (idx : Fin r ≃ Label q J counts) (Q : Fin r → Forms 
     RestoredSpace m d q J counts O := ((fun i => Q (idx.symm i),0),0)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredFamily_scalar_point (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)

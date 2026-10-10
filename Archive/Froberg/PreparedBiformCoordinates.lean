@@ -65,6 +65,7 @@ def preparedLayerTensor (a : J) (hO : O a.val ≤ Forms K h a.val) :
     funext i
     exact map_smul (constrainedBiformCoordinates (O a.val) hO) c (p.2 a i)
 
+omit [Infinite K] in
 @[simp] theorem preparedLayerTensor_sum (a : J) (hO : O a.val ≤ Forms K h a.val)
     (p : PreparedParameters.Space m d q J counts O) (i : Fin (counts a.val)) :
     sumBiform (preparedLayerTensor a hO p i)=(p.2 a i).val :=

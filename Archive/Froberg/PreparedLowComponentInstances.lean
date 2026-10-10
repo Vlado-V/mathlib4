@@ -188,6 +188,7 @@ theorem renamed_private_low_components (hd : 3 ≤ d)
   exact ⟨trivial,trivial,trivial⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The literal prepared private background has exactly the required low pieces. -/
 theorem prepared_private_background_lowComponents (hd : 3 ≤ d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
@@ -230,6 +231,7 @@ theorem prepared_private_background_lowComponents (hd : 3 ≤ d) (ho : d % 2 = 1
         hh.2.2 ▸ Submodule.zero_mem _⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Pure restoration changes none of the three low components. -/
 theorem renamed_restored_low_components (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)

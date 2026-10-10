@@ -40,7 +40,7 @@ theorem exact_counts_restored_c4_selection {d k h lo : ℕ}
         (heven : ∀ j ∈ J, j%2=0) (hcounts : ∀ j ∈ J, counts j ≤ counts' j)
         (r : ℕ) (idx : Fin r ≃ Label (upperCount n d) J counts)
         (slot : Fin (finrank K (Forms K h d)) → Fin r)
-        (hslot : ∀ i, 0 < degree (idx (slot i))),
+        (_hslot : ∀ i, 0 < degree (idx (slot i))),
       Fintype.card (ProductRows.LayerLabel J counts) ≤
         Fintype.card (ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h n (e n+extra))) →
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
@@ -85,8 +85,8 @@ theorem exact_counts_restored_c4_selection {d k h lo : ℕ}
   refine ⟨G,C,ξ,hG,hC,hξ,?_⟩
   filter_upwards [hselect,hgrowth,hbudget,eventually_gt_atTop (0 : ℕ)] with n hn hgn hbgt hnpos
   intro J counts counts' O hO hJ heven hcounts r idx slot hslot hcard
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-  letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgrowth⟩ := restored_base_ordinary_growth_open (counts := counts) hO hgn
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection

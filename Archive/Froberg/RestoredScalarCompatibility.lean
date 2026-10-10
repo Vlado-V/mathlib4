@@ -41,6 +41,7 @@ def restoredPositiveBiform (hd : d % 2 = 0)
     (idx.symm (Sum.inr ((Fintype.equivFin _).symm i)))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredBaseBiform_eq_scalar (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -60,6 +61,7 @@ theorem restoredBaseBiform_eq_scalar (hd : d % 2 = 0)
   simp [generator,scalar,high]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredScalarFiber_positive (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -90,6 +92,7 @@ def restoredEvenIndex (idx : Fin r ≃ Label q J counts) :
   idx.trans ((Equiv.sumCongr (Equiv.refl (Fin q)) (Fintype.equivFin _)).trans finSumFinEquiv)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_split_value (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

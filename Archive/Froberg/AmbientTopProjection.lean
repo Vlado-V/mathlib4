@@ -111,6 +111,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
       (ambientTopRelations hdp Q F U).mkQ (ambientTopMap v) := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientTopMap_scalar_product (p : Forms K m d)
     (v : biformParitySpace K h m d 1) :
     ambientTopMap (evenScalarOddProduct (scalarEvenBiform (h := h) p) v)=

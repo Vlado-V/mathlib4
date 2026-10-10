@@ -40,6 +40,7 @@ omit [Infinite K] in
     exact congrArg p.1 (idx.symm_apply_apply i)
   · rfl
 
+omit [Infinite K] in
 theorem restoredC2Projection_surjective (idx : Fin r ≃ Label q J counts) :
     Function.Surjective (restoredC2Projection (m := m) (d := d) (f := f) (O := O) idx) :=
   fun p => ⟨restoredC2Point idx p,restoredC2Projection_point idx p⟩

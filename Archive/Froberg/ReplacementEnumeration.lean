@@ -89,6 +89,7 @@ theorem backgroundEnumeratedForms_update
     rw [Equiv.symm_apply_apply]
     rfl
 
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_slot_pencil
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

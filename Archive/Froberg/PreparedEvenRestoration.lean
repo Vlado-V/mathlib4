@@ -50,6 +50,7 @@ def evenGenerator (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
 
 omit [Fintype σ] in
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem evenGenerator_scalar (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (p : Space n d q J counts O) (i : Label q J counts) (hi : degree i = 0) :
@@ -61,6 +62,7 @@ theorem evenGenerator_scalar (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ 
 
 omit [Fintype σ] in
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem evenGenerator_reduction (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p)

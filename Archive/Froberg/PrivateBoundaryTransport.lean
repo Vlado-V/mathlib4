@@ -56,6 +56,7 @@ theorem privateGenerator_polynomial (o : Fin h → MvPolynomial σ K)
         rename Sum.inr (monomial (privateExponent a s ι i) (1:K)) :=
   attachedPolynomialFamily_factor o (privateExponent a s ι) w i
 
+omit [Infinite K] in
 theorem private_boundary_polynomial
     (o : Fin h → MvPolynomial σ K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) (w : Fin b → Fin h → K)

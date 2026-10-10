@@ -40,6 +40,7 @@ theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1 + e) →ₗ[K] (Fin b 
     projectedTensorFamily]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem top_tensor_scalar_growth (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : Function.Surjective P) (p : ProjectedTopParameters K h m e qF qS)
     (hgrowth : ∀ L : Submodule K (Fin b → K),

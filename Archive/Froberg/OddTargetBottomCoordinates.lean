@@ -46,6 +46,7 @@ theorem oddTargetBaseMap_weighted_higher_zero (hd : 1 ≤ d)
   rfl
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddTargetBaseMap_bottom_product (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

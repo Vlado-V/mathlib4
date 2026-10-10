@@ -165,6 +165,7 @@ theorem rawTopFamily_apply (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency true in
+omit [Infinite K] in
 theorem topRow_map_comparison (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (topRowTarget (K := K) (h := h) (m := m) (d := d)).toLinearMap.comp

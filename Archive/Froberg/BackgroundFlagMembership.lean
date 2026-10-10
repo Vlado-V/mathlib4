@@ -36,6 +36,7 @@ end General
 
 variable {h m d q f u e : ℕ}
 
+omit [Infinite K] in
 theorem background_replaced_even_mem
     (Q : Fin q → Forms K m d) (hq : 0 < q)
     (E : Fin e → biformParitySpace K h m d 0)

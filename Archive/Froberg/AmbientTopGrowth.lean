@@ -103,6 +103,7 @@ def topGrowthQuotientProjection (hdp : 1 ≤ d)
     (topGrowthTensorMap_relations hdp R Q F U hU)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem topGrowthQuotientProjection_tmul (hdp : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

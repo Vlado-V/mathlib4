@@ -21,6 +21,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u b : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherBlocksEquiv_mk (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
@@ -33,6 +34,7 @@ theorem oddHigherBlocksEquiv_mk (hd : Odd d) (hd3 : 3 ≤ d)
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r).mkQ (v r) := rfl
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddMixedSourceBlockCoordinates_higher (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

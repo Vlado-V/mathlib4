@@ -147,6 +147,7 @@ def fullCountScalarFiberLinear (hc : ∀ j ∈ J, c j ≤ c' j) :
     · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem fullCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :
@@ -172,6 +173,7 @@ theorem fullCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
   · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem principal_open_full_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :=

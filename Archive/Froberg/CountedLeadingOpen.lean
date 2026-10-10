@@ -44,6 +44,7 @@ theorem eventually_private_dimension {h d u : ℕ} (hh : 0 < h) (hd : 2 ≤ d) :
     finrank_forms K n (d-1) hnpos,Finset.sum_const,Finset.card_univ,
     nsmul_eq_mul,Nat.cast_id] using hn
 
+omit [Infinite K] in
 theorem eventually_private_tuple_independent {h d u : ℕ} (hh : 0 < h) (hd : 2 ≤ d) :
     ∀ᶠ n : ℕ in atTop,
       ∃ P₀ : OuterSpace K (Fin h) n d u, LinearIndependent K P₀ := by

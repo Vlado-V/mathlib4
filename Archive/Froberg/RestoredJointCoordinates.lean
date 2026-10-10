@@ -98,6 +98,7 @@ def restoredJointFromCoordinates (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
   exact restoredJointCoordinates.symm.toLinearMap.comp (g.prod (Q.prod R))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (pF : VectorParameters.Index h m (d - 1) f → K) (pQ : CoefficientIndex m d q → K)
     (pR : Fin (finrank K (RestoredJointRest m d J counts O)) → K) :

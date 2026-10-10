@@ -44,6 +44,7 @@ theorem exists_small_cross_profile_parameter_equiv {a b v : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Module.Finite K X] in
 theorem exists_strong_fourth_profile_parameter_equiv {h : ℕ}
     (e : Fin h ≃ σ) (hh : 144 ≤ h) (hfour : 4 ∣ h)
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4 = 0)
@@ -80,6 +81,7 @@ theorem exists_quintic_fourth_product_parameter {h : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Module.Finite K X] in
 theorem exists_quintic_fourth_product_parameter_equiv {h : ℕ}
     (e : Fin h ≃ σ) (hh : 144 ≤ h) (hfour : 4 ∣ h)
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4 = 0)

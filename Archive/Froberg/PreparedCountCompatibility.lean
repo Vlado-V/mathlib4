@@ -48,6 +48,7 @@ theorem countIndexMap_injective (hc : ∀ j ∈ J, c j ≤ c' j)
   idx'.symm.injective.comp ((countLabelMap_injective hc).comp idx.injective)
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredFamilyLinear_restrictCounts (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (hc : ∀ j ∈ J, c j ≤ c' j)
@@ -89,6 +90,7 @@ variable [Infinite K] {h m d q : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedEvenBiform_restrictCounts
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (hc : ∀ j ∈ J, c j ≤ c' j) (p : PreparedParameters.Space m d q J c' O)

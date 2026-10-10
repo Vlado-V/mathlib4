@@ -42,6 +42,7 @@ theorem biformDegreeTransport_disjoint
   simpa only [hx,hy,Submodule.map_id] using hE
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem top_degree_separation (hd : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin n → K))
     (Q : Fin q → Forms K m d)

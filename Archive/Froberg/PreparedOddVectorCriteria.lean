@@ -46,6 +46,7 @@ def combinedVectorEnumeration (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K
   fun i => outerVectorEquiv.symm (Sum.elim F P (finSumFinEquiv.symm i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem combinedVectorEnumeration_val
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (i : Fin (f + u)) :
     sumBiformMap (linearOutputTensorEquiv (combinedVectorEnumeration P F i))=

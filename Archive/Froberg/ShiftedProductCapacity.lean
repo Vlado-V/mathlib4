@@ -107,6 +107,7 @@ theorem eventually_product_row_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     simpa only [crossProductCount,show 2*w/2=w by omega,show 2*v/2=v by omega,hX]
       using (hcap j hj).2
 
+omit [Infinite K] [Module.Finite K X] in
 theorem eventually_allEven_product_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*((2*v+z : ℕ) : ℝ)^(d-2) →

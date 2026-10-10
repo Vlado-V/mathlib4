@@ -135,6 +135,7 @@ private theorem background_sup_reorder {α : Type*} [SemilatticeSup α]
   ac_rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem background_replaced_flag_span
     (Q : Fin q → Forms K m d) (hq : 0 < q)
     (E : Fin e → biformParitySpace K h m d 0)

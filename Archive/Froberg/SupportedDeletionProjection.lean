@@ -30,6 +30,7 @@ theorem supported_deletion_positive_zero
   obtain ⟨b,rfl⟩ := hD hm
   exact positiveWeightProjection_zero _ _ _ (scalar_rename_core_weight_zero b)
 
+omit [Infinite K] in
 theorem supported_deletion_odd_zero
     (D : Submodule K (Forms K (h + m) (2 * d)))
     (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)

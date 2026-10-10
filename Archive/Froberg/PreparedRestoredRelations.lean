@@ -30,6 +30,7 @@ def restoredEndpointFamily (hd : d % 2 = 0)
   biformRestorationForms (restoredFamilyLinear hd hO hJ heven idx slot p)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredEndpointFamily_scalar (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)

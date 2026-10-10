@@ -50,6 +50,7 @@ theorem oddGenerator_parity (hdodd : d % 2 = 1)
         (⟨Sum.inl,Sum.inl_injective⟩ : Fin h ↪ Fin h ⊕ Fin m)
         (fun _ => 1) (blockWeight h m) (fun _ => rfl) (U k).property
 
+omit [Infinite K] in
 theorem zeroScalarEndpointFamily_parity (hd : 0 < d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

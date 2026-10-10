@@ -40,6 +40,7 @@ theorem layers_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial �
   · simp only [layers,dite_eq_left hj,renameOutputParameter]
   · simp only [layers,dite_eq_right hj,map_zero]
 
+omit [Infinite K] in
 theorem products_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial τ K →ₗ[K] X)
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j ⊓
       ((T j).comp (rename e).toLinearMap).ker)) (R : ℕ) :

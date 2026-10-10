@@ -21,6 +21,7 @@ variable (ω : K)
 
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The retained target projection kills every initial augmented column. -/
 theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (ζ : MiddleCoordinates.Mixed K m)

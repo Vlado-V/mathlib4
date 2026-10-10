@@ -44,6 +44,7 @@ def privateOutputMatrix
   ho.equivFun.toLinearMap.comp (F.comp hi.equivFun.symm.toLinearMap)
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Each column is exactly the product of its lower basis element with w. -/
 theorem privateOutputMatrix_column
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))

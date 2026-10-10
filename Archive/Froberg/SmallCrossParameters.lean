@@ -53,6 +53,7 @@ theorem exists_cross_row_profile_parameter [Finite σ]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_small_cross_profile_parameter {a b v : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hv : 0 < v)
     (T : ℕ → Poly K (a + b) →ₗ[K] X) (hT : T 4 = 0)

@@ -35,6 +35,7 @@ def restoredAppendedFamily (hd : 3 ≤ d) (he : d % 2 = 0)
 
 omit [Fintype σ] in
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem restoredAppendedFamily_at_slot (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
@@ -56,6 +57,7 @@ theorem restoredAppendedFamily_at_slot (hd : 3 ≤ d) (he : d % 2 = 0)
 
 omit [Fintype σ] in
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem restoredAppendedFamily_away (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)

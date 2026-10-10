@@ -44,7 +44,7 @@ theorem restored_count_joint_scalar_fiber_at {h m d q f : ℕ}
           ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p'.2 i)) d)
             (outerScalarDeficit (fun i => outerVectorEquiv.symm (p'.2 i))) C
             (coefficientCoordinates (fun i => p'.1.1.1 (Sum.inl i))) := by
-  letI : Module.Finite K (Space m d q J c' O) := finite_space hO
+  let : Module.Finite K (Space m d q J c' O) := finite_space hO
   intro D p hp hmodel hchild
   obtain ⟨P₀,hP₀,hgood⟩ := principal_open_restored_count_scalar_fiber_at hc hO D p hp
   exact ⟨P₀,hP₀,fun a ha => ⟨hgood a ha,hmodel,hchild⟩⟩
@@ -91,8 +91,8 @@ theorem exact_counts_restored_restricted_certified_fiber {d k h lo : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-  letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgood⟩ := principal_open_linear_pullback (restoredRestrictCounts hcounts)
     (restoredRestrictCounts_surjective hcounts) A hA Good hGood
