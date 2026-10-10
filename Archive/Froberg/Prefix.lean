@@ -10,13 +10,16 @@ public import Archive.Froberg.Statement
 /-!
 # Multiplication and incidence fibers before the endpoint
 
-The linear-algebraic part of Boij–Dannetun–Lundqvist,
-"Independence of generic forms and the Fröberg conjecture", §2
-(https://arxiv.org/html/2605.03872v1), for arbitrary generating and multiplier
-degrees. Every space here consists of actual homogeneous polynomials.
+The linear-algebraic part of [BoijDannetunLundqvist2026], §2, for arbitrary generating
+and multiplier degrees. Every space here consists of actual homogeneous polynomials.
 
 The incidence-fiber identity below is unconditional. It does not assume the
 Macaulay growth estimate or the existence of a maximal-rank tuple.
+
+## References
+
+* [Mats Boij, Eric Dannetun and Samuel Lundqvist, *Independence of generic forms and the
+  Fröberg conjecture*][BoijDannetunLundqvist2026], §2
 -/
 
 @[expose] public section

@@ -15,9 +15,35 @@ public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 public import Mathlib.RingTheory.MvPolynomial.HomogeneousBasis
 public import Mathlib.RingTheory.PowerSeries.WellKnown
 
-/-! An independent statement of the manuscript's conclusion. This module
-imports only Mathlib and describes the actual homogeneous pieces of the
-polynomial quotient and the positively truncated predicted Hilbert series. -/
+/-!
+# An independent statement of Fröberg's prediction through degree `2d`
+
+This file states Theorem 1.1 of [VojdanovskiFroberg] using only Mathlib imports. It describes
+homogeneous generators by their monomial coefficients and computes each homogeneous dimension
+from the image of homogeneous polynomials in the quotient by the generated ideal.
+
+## Main definitions
+
+* `FrobergPaper.hilbertFunction`: the dimension of the degree-`j` image in the polynomial quotient.
+* `FrobergPaper.predictedHilbertFunction`: the coefficients of `(1 - t^d)^r / (1 - t)^n`,
+  truncated at the first nonpositive coefficient.
+* `FrobergPaper.GenericHilbertThrough`: agreement in every degree up to a bound on one nonempty
+  principal open in the space of ordered generator tuples.
+* `FrobergPaper.Statement`: a threshold depending only on the positive generating degree,
+  valid over all infinite fields and for every generator count, through degree `2 * d`.
+
+## Implementation notes
+
+The threshold quantifier precedes both the coefficient-field and generator-count quantifiers.
+Genericity is expressed by a polynomial that is nonzero at some coefficient tuple; all tuples
+where that polynomial is nonzero satisfy the complete degree range simultaneously.
+The proof is supplied by `Froberg.paperStatement` in `Archive.Froberg.UniformMain`.
+
+## References
+
+* [Vlado Vojdanovski, *Fröberg's conjecture through degree 2d in sufficiently many
+  variables*][VojdanovskiFroberg]
+-/
 
 @[expose] public section
 
@@ -82,14 +108,17 @@ def positiveTruncation (a : ℕ → ℤ) (j : ℕ) : ℕ := by
 def predictedHilbertFunction (n d r j : ℕ) : ℕ :=
   positiveTruncation (predictionCoefficient n d r) j
 
-/-- A single nonempty principal open gives all asserted homogeneous dimensions. -/
+/-- Agreement with the predicted Hilbert function in every degree `j ≤ bound`, on one
+nonempty principal open in the coefficient space of ordered degree-`d` generator tuples. -/
 def GenericHilbertThrough (K : Type*) [Field K] (n d r bound : ℕ) : Prop :=
   ∃ D : MvPolynomial (CoefficientIndex n d r) K,
     (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → ∀ j≤bound,
       hilbertFunction (coefficientSpace K n d r a) j=predictedHilbertFunction n d r j
 
-/-- The threshold depends only on the positive generating degree, uniformly
-over all infinite fields and every number of generators. -/
+/-- The statement of [VojdanovskiFroberg], Theorem 1.1: for each positive generating degree
+there is a positive variable threshold, independent of the infinite coefficient field and
+the number of generators, above which the predicted Hilbert function holds through degree `2 * d`.
+Agreement holds simultaneously in all these degrees on one nonempty principal open. -/
 def Statement : Prop :=
   ∀ d : ℕ,1≤d → ∃ N : ℕ,1≤N ∧ ∀ (K : Type) [Field K] [Infinite K],
     ∀ n : ℕ,N≤n → ∀ r : ℕ,GenericHilbertThrough K n d r (2*d)
