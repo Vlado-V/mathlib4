@@ -133,6 +133,8 @@ target frobergCertificateInputs pkg : Unit := do
 
 lean_lib Archive where
   leanOptions := mathlibLeanOptions
+  -- Parallelize modules while keeping each certificate compiler single-threaded.
+  weakLeanArgs := #["-j1", "-DElab.async=false"]
   needs := #[frobergCertificateInputs]
 
 lean_lib Counterexamples where
