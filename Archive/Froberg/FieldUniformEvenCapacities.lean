@@ -205,8 +205,8 @@ theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9�
         (fun n => allEvenCount_inactive _ _ _ ha) hcount
       filter_upwards [hempty,hp] with v hv hpv
       intro K _ _ X _ _ _ T hX hT
-      exact hv K X T (hT _ hR4) (hpv K X hX R.val) (fun j hj => by have := (mem_allEvenIndices.mp
-        hj).1;omega)
+      exact hv K X T (hT _ hR4) (hpv K X hX R.val)
+        (fun j hj => by have := (mem_allEvenIndices.mp hj).1;omega)
   filter_upwards [hq,hp,eventually_all.mpr (fun R : {R : allEvenIndices d // R.val≠2} =>
     hRcap R.val R.property)] with v hqv hpv hRv
   intro K _ _ X _ _ _ T hX hO hT
