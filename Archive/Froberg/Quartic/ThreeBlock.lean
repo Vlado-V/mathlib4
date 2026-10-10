@@ -179,17 +179,16 @@ theorem cubicCoefficientMap_kernel (a : Fin 4 → Fin 3 → K) :
     cubicCoefficientMap a = 0 ↔ ∃ r s, a = cubicKernelElement r s := by
   constructor
   · intro h
-    have h0 := congrFun h 0
-    have h1 := congrFun h 1
-    have h2 := congrFun h 2
-    have h3 := congrFun h 3
-    have h4 := congrFun h 4
-    have h5 := congrFun h 5
-    have h6 := congrFun h 6
-    have h7 := congrFun h 7
-    have h8 := congrFun h 8
-    have h9 := congrFun h 9
-    simp [cubicCoefficientMap] at h0 h1 h2 h3 h4 h5 h6 h7 h8 h9
+    have h0 : a 3 0 = 0 := congrFun h 0
+    have h1 : a 0 0 + a 3 1 = 0 := congrFun h 1
+    have h2 : a 1 0 + a 3 2 = 0 := congrFun h 2
+    have h3 : a 0 1 + a 3 0 = 0 := congrFun h 3
+    have h4 : a 0 2 + a 1 1 + a 2 0 = 0 := congrFun h 4
+    have h5 : a 1 2 + a 3 0 = 0 := congrFun h 5
+    have h6 : a 3 1 = 0 := congrFun h 6
+    have h7 : a 2 1 + a 3 2 = 0 := congrFun h 7
+    have h8 : a 2 2 + a 3 1 = 0 := congrFun h 8
+    have h9 : a 3 2 = 0 := congrFun h 9
     simp only [h0, h6, h9, add_zero] at h1 h2 h3 h5 h7 h8
     refine ⟨-a 1 1, -a 2 0, ?_⟩
     have hc : a 0 2 = -a 1 1 + -a 2 0 := by
@@ -414,10 +413,9 @@ theorem crossCokernel_vanishes (a : Fin 3 → K) :
 
 theorem crossMap_injective : Function.Injective (crossMap (K := K)) := by
   intro a b h
-  have h0 := congrFun h 0
-  have h1 := congrFun h 1
-  have h3 := congrFun h 3
-  simp [crossMap] at h0 h1 h3
+  have h0 : a 0 - a 2 = b 0 - b 2 := congrFun h 0
+  have h1 : a 2 = b 2 := neg_inj.mp (congrFun h 1)
+  have h3 : a 1 - a 2 = b 1 - b 2 := congrFun h 3
   funext i
   fin_cases i
   · exact (sub_left_inj).mp (h1 ▸ h0)

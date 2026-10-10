@@ -143,7 +143,7 @@ theorem liftCoeff_homogeneous (b : Fin w →₀ ℕ) (p : Quartic.Poly K t)
   simp only [freeCoeff_coeff, merge_core_free] at hc
   have hb : b = freeExponent e := by
     by_contra h
-    simp [h] at hc
+    rw [ite_eq_right h] at hc
     exact he hc
   rw [ite_eq_left_iff.mpr (fun h => (h hb).elim)] at hc
   have hcore := hp (by rwa [← hc])
