@@ -30,7 +30,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem unpack_xor (n x y : ℕ) : unpack n (x ^^^ y) = unpack n x + unpack n y := by
   funext i
   cases hx : x.testBit i.val <;> cases hy : y.testBit i.val <;>
-    norm_num [unpack,Nat.testBit_xor,hx,hy] <;> decide
+    norm_num [unpack,Nat.testBit_xor,hx,hy]; decide
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem unpack_zero (n : ℕ) : unpack n 0 = 0 := by

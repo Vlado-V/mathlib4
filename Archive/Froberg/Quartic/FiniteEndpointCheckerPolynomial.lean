@@ -54,7 +54,7 @@ theorem integral_rows_independent (A : Fin n → List (Fin n)) (B : Fin n → �
     MinorLift.charZero_det_ne_zero_of_binary (integerMatrix A) (by
       rw [integerMatrix_binary]
       exact determinant_ne_zero A B h)
-  have hi := Matrix.linearIndependent_rows_iff_isUnit.mpr
+  have hi := Matrix.linearIndependent_row_iff_isUnit.mpr
     ((Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hd))
   have he : ((integerMatrix A).map (Int.castRingHom K)).row =
       fun i => ((A i).map (fun j => Pi.single j (1 : K))).sum := by
@@ -68,6 +68,7 @@ def rowPolynomial (E : Fin n → Fin v →₀ ℕ) (s : List (Fin n)) : Poly K v
   (s.map (fun j => monomial (E j) (1 : K))).sum
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [CharZero K] in
 theorem coefficients_rowPolynomial (E : Fin n → Fin v →₀ ℕ) (hE : Function.Injective E)
     (s : List (Fin n)) :
     (fun j => (rowPolynomial (K := K) E s).coeff (E j)) =
@@ -159,6 +160,7 @@ theorem support_identity_of_lists {b : ℕ} (V : Fin n → List (Fin v))
   simpa only [List.map_map,Function.comp_def,listExponent_sort,listExponent_append] using hh
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [CharZero K] in
 theorem rowPolynomial_mul_monomial (E : Fin n → Fin v →₀ ℕ) (s : List (Fin n))
     (e : Fin v →₀ ℕ) :
     rowPolynomial (K := K) E s * monomial e 1 =
@@ -209,7 +211,7 @@ theorem sparse_count (s : List (Fin n)) (j : Fin n) :
       simp only [Pi.single_eq_same,List.count_cons_self,Nat.cast_add,Nat.cast_one]
       exact add_comm _ _
     · rw [List.count_cons_of_ne h]
-      simp [Pi.single_apply,h,Ne.symm h]
+      simp [Ne.symm h]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem rowPolynomial_coeff_count (E : Fin n → Fin v →₀ ℕ) (hE : Function.Injective E)
@@ -235,6 +237,7 @@ theorem rowForms_independent {d : ℕ} (E : Fin n → Fin v →₀ ℕ)
   LinearIndependent.of_comp (Forms K v d).subtype (rowPolynomials_independent E hE A B h)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [CharZero K] in
 theorem product_mem_range {r : ℕ} (q : Fin r → Forms K v 2) (i : Fin r)
     (a : Forms K v 2) : mulQuadratic (q i) a ∈ LinearMap.range (quadraticMultiplication q) := by
   classical
@@ -248,6 +251,7 @@ theorem product_mem_range {r : ℕ} (q : Fin r → Forms K v 2) (i : Fin r)
   · simp
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [CharZero K] in
 theorem rank_lower_bound {r s : ℕ} (q : Fin r → Forms K v 2)
     (f : Fin s → Forms K v 4) (hf : LinearIndependent K f)
     (hmem : ∀ i, f i ∈ LinearMap.range (quadraticMultiplication q)) :
