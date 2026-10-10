@@ -26,7 +26,7 @@ theorem weightedComponent_homogeneous_left (w : σ → ℕ)
   classical
   rw [weightedHomogeneousComponent_product]
   by_cases hj : j≤r
-  · rw [if_pos hj]
+  · rw [ite_eq_left hj]
     have hmem : (j,r-j)∈antidiagonal r := mem_antidiagonal.mpr (Nat.add_sub_of_le hj)
     rw [sum_eq_single (j,r-j)]
     · simp [weightedHomogeneousComponent_of_mem hp]
@@ -38,14 +38,14 @@ theorem weightedComponent_homogeneous_left (w : σ → ℕ)
         apply Prod.ext
         · exact h.symm
         · omega
-      simp [weightedHomogeneousComponent_of_mem hp,hne,Ne.symm hne]
+      simp [weightedHomogeneousComponent_of_mem hp,Ne.symm hne]
     · exact fun h => False.elim (h hmem)
-  · rw [if_neg hj]
+  · rw [ite_eq_right hj]
     apply sum_eq_zero
     intro b hb
     have hb' := mem_antidiagonal.mp hb
     have hne : j≠b.1 := by omega
-    simp [weightedHomogeneousComponent_of_mem hp,hne,Ne.symm hne]
+    simp [weightedHomogeneousComponent_of_mem hp,Ne.symm hne]
 
 /-- The literal row of a polynomial relation among scalar-plus-homogeneous
 columns. This is the coefficient identity used in B.5's increasing-row induction. -/
@@ -57,7 +57,7 @@ theorem mixed_generator_component_row (w : σ → ℕ)
       (∑ i,a i*weightedHomogeneousComponent w r (c i)) +
       ∑ i,if j i≤r then E i*weightedHomogeneousComponent w (r-j i) (c i) else 0 := by
   simp only [map_sum,add_mul,map_add,Finset.sum_add_distrib,
-    weightedComponent_homogeneous_left w (ha _),Nat.zero_le,Nat.sub_zero,if_true,
+    weightedComponent_homogeneous_left w (ha _),Nat.zero_le,Nat.sub_zero,ite_true,
     weightedComponent_homogeneous_left w (hE _)]
 
 /-- Every actual cycle satisfies the displayed row equation in every degree. -/

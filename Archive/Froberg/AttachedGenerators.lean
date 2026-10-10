@@ -69,9 +69,11 @@ lemma tupleMap_generator (e : I → Fin n →₀ ℕ) (v : I → J → K)
     homogeneousMultiplication_val,multiplication_apply,generator]
   exact Finset.sum_congr rfl (fun i _ => mul_comm _ _)
 
-lemma generator_independent (e : I → Fin n →₀ ℕ) (v : I → J → K)
+omit [Fintype J] in
+lemma generator_independent [Finite J] (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (hi : Function.Injective (multiplication (d := 0) e v))
     (hn : 0 < n) : LinearIndependent K (generator e v he) := by
+  let := Fintype.ofFinite J
   apply linearIndependent_iff_card_eq_finrank_span.mpr
   change Fintype.card I=finrank K (Submodule.span K (Set.range (generator e v he)))
   rw [← relationSpace_zero_eq_span]
@@ -79,6 +81,7 @@ lemma generator_independent (e : I → Fin n →₀ ℕ) (v : I → J → K)
   rw [LinearMap.finrank_range_of_inj (homogeneousMultiplication_injective e v he hi)]
   simp [Module.finrank_pi_fintype,finrank_forms K n 0 hn]
 
+omit [Fintype I] in
 lemma map_generator {h : ℕ} (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
     (he : ∀ i, (e i).degree = s) (i : I) :
     VectorMultiplicationCoordinates.mapRows (L := L) (generator e v he i)=

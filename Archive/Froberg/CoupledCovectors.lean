@@ -81,8 +81,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Restriction of a linear functional along the specified map. -/
 def precomposeDual (C : U →ₗ[K] Y) : (Y →ₗ[K] K) →ₗ[K] (U →ₗ[K] K) where
   toFun ell := ell.comp C
-  map_add' ell eta := rfl
-  map_smul' c ell := rfl
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The direction of the extension fiber is literally the dual of the top

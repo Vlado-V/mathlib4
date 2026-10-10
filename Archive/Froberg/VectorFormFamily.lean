@@ -36,7 +36,7 @@ def vectorFormFamilyMap (o : ι → W) (f : ι → Forms K m e) :
   rw [vectorFormFamilyMap_apply, Finset.sum_eq_single i]
   · simp
   · intro j hj hji
-    simp [Pi.single_apply, hji]
+    simp [hji]
   · simp
 
 theorem vectorFormFamilyMap_single_mem (o : ι → W) (f : ι → Forms K m e)

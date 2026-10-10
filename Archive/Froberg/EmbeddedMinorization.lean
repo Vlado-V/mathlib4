@@ -22,6 +22,7 @@ def embeddedUniform (e : A ↪ I) (i : I) : ℝ := by
   classical
   exact ∑ a, if e a = i then 1 / (Fintype.card A : ℝ) else 0
 
+omit [Fintype I] in
 lemma embeddedUniform_nonneg (e : A ↪ I) (i : I) : 0 ≤ embeddedUniform e i := by
   unfold embeddedUniform
   apply sum_nonneg
@@ -36,16 +37,19 @@ lemma embeddedUniform_sum [Nonempty A] (e : A ↪ I) : ∑ i, embeddedUniform e 
   simp only [sum_ite_eq, mem_univ, ite_true, sum_const, card_univ, nsmul_eq_mul]
   field_simp
 
+omit [Fintype I] in
 lemma embeddedUniform_at (e : A ↪ I) (a : A) :
     embeddedUniform e (e a) = 1 / (Fintype.card A : ℝ) := by
   classical
   simp [embeddedUniform, e.injective.eq_iff]
 
+omit [Fintype I] in
 lemma embeddedUniform_off (e : A ↪ I) (i : I) (hi : i ∉ Set.range e) : embeddedUniform e i = 0 := by
   apply sum_eq_zero
   intro a _
-  exact if_neg (fun h => hi ⟨a, h⟩)
+  exact ite_eq_right (fun h => hi ⟨a, h⟩)
 
+omit [Fintype I] in
 lemma embedded_family_minorization [Nonempty A] (e : A ↪ I)
     (W : I → I → ℝ) (p : I → ℝ) (B M : ℝ) (hB : 0 ≤ B) (hM : 0 < M)
     (hW : ∀ i k, 0 ≤ W i k) (hp : ∀ i, p i ≤ M)

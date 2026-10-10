@@ -46,7 +46,7 @@ theorem linearSubstitution_mul (A B : Matrix (Fin n) (Fin n) K) :
   intro i
   simp only [AlgHom.comp_apply, linearSubstitution_X, map_sum, map_mul,
     linearSubstitution_C, Matrix.mul_apply]
-  simp only [map_sum, map_mul, Finset.sum_mul, Finset.mul_sum]
+  simp only [Finset.sum_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   apply Finset.sum_congr rfl
   intro j _
