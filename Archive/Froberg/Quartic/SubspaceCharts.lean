@@ -41,7 +41,8 @@ theorem coordinate_span (S : Submodule K (Fin n → K)) :
   let b := (Pi.basisFun K (Fin n)).dualBasis
   have hb := congrArg (Submodule.map S.subtype.dualMap) b.span_eq
   rw [Submodule.map_span, ← Set.range_comp, Submodule.map_top,
-    LinearMap.range_eq_top.mpr (LinearMap.dualMap_surjective_of_injective S.injective_subtype)] at hb
+    LinearMap.range_eq_top.mpr
+      (LinearMap.dualMap_surjective_of_injective S.injective_subtype)] at hb
   have heq : S.subtype.dualMap ∘ b = coordinate S := by
     funext i
     apply LinearMap.ext
@@ -120,7 +121,8 @@ theorem coordinateForm_eq_sum {S : Submodule K (Fin n → K)}
     (e : S ≃ₗ[K] (Fin r → K)) (k : Fin n) (u : Fin r → K) :
     coordinateForm e k u = ∑ i, coordinateForm e k (Pi.single i 1)*u i := by
   have h := congrArg (coordinateForm e k) ((Pi.basisFun K (Fin r)).sum_equivFun u)
-  simpa [Pi.basisFun_apply, Pi.basisFun_equivFun, map_sum, map_smul, smul_eq_mul, mul_comm] using h.symm
+  simpa [Pi.basisFun_apply, Pi.basisFun_equivFun, map_sum, map_smul, smul_eq_mul, mul_comm] using
+    h.symm
 
 /-- Values of the selected coordinates determine every vector of the subspace. -/
 theorem determined_by_coordinates {S : Submodule K (Fin n → K)} (j : Fin r ↪ Fin n)
@@ -226,7 +228,8 @@ def chartLift (j : Fin r ↪ Fin n) (A : Parameters K j) :
 @[simp] theorem chartLift_outside (j : Fin r ↪ Fin n) (A : Parameters K j)
     (u : Fin r → K) (k : Outside j) : chartLift j A u k.val=parameterMap A u k := by
   classical
-  simp only [chartLift,LinearMap.pi_apply,dite_eq_right k.property,LinearMap.comp_apply,LinearMap.proj_apply]
+  simp only [chartLift,LinearMap.pi_apply,dite_eq_right
+    k.property,LinearMap.comp_apply,LinearMap.proj_apply]
 
  theorem chartLift_mem (j : Fin r ↪ Fin n) (A : Parameters K j) (u : Fin r → K) :
     chartLift j A u ∈ chartSubspace j A := by

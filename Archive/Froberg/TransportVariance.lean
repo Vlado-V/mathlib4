@@ -64,7 +64,8 @@ theorem averaged_center_lower_bound (p q u : I → ℝ)
   calc
     weightedVariance p u = ∑ j, q j * weightedVariance p u := by rw [← sum_mul, hq, one_mul]
     _ ≤ ∑ j, q j * ∑ i, p i * (u i - u j) ^ 2 := by
-      exact sum_le_sum fun j _ => mul_le_mul_of_nonneg_left (weightedVariance_le_centered p u hp _) (hqpos j)
+      exact sum_le_sum fun j _ => mul_le_mul_of_nonneg_left (weightedVariance_le_centered p u hp _)
+        (hqpos j)
     _ = _ := by
       rw [sum_comm]
       simp only [mul_sum]

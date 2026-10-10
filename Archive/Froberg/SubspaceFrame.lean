@@ -39,11 +39,13 @@ theorem exists_subspace_frame (W : Submodule K E) (hW : finrank K W=H)
     · intro x hx
       have he : (∑ a,b.equivFun (⟨x,hx⟩ : W) a • frame a)=x := by
         have hh := congrArg Subtype.val (b.equivFun_symm_apply (b.equivFun (⟨x,hx⟩ : W)))
-        simpa only [LinearEquiv.symm_apply_apply,Submodule.coe_sum,Submodule.coe_smul,frame] using hh.symm
+        simpa only [LinearEquiv.symm_apply_apply,Submodule.coe_sum,Submodule.coe_smul,frame] using
+          hh.symm
       rw [←he]
       exact Submodule.sum_mem _ (fun a _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨a,rfl⟩))
   · intro i
     have hh := congrArg Subtype.val (b.equivFun_symm_apply (b.equivFun (o i)))
-    simpa only [LinearEquiv.symm_apply_apply,Submodule.coe_sum,Submodule.coe_smul,frame,c] using hh.symm
+    simpa only [LinearEquiv.symm_apply_apply,Submodule.coe_sum,Submodule.coe_smul,frame,c] using
+      hh.symm
 
 end Froberg

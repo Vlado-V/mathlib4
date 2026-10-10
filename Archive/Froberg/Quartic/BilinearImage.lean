@@ -50,7 +50,8 @@ theorem range_tupleMap (mu : F →ₗ[K] V →ₗ[K] W) (v : ι → V) :
   apply le_antisymm
   · rintro _ ⟨f, rfl⟩
     rw [tupleMap_apply]
-    exact Submodule.sum_mem _ (fun i _ => product_mem mu _ (f i) (v i) (Submodule.subset_span ⟨i, rfl⟩))
+    exact Submodule.sum_mem _ (fun i _ => product_mem mu _ (f i) (v i) (Submodule.subset_span ⟨i,
+      rfl⟩))
   · apply iSup_le
     intro f
     rintro _ ⟨x, hx, rfl⟩
