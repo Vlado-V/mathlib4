@@ -5,6 +5,8 @@ Authors: Vlado Vojdanovski
 -/
 module
 
+public meta import Lean.Elab.Tactic.ElabTerm
+
 public import Archive.Froberg.Quartic.CertificateBinaryIO
 
 public import Archive.Froberg.Quartic.FiniteEndpointCheckerLoad
@@ -58,6 +60,39 @@ theorem rowEquation {g d : Nat}
 
 open Lean Meta Elab Command
 meta section
+
+/-- Close a row-wrapper case with a previously kernel-checked, closed row theorem.
+
+This deliberately leaves definitional equality of the concrete row indices to the
+kernel, avoiding a duplicate elaborator reduction of the large power of two.
+No new theorem is trusted: the enclosing declaration still undergoes ordinary
+kernel checking, and an incompatible row theorem makes that declaration fail. -/
+elab "exact_checked_row " row:ident : tactic => do
+  let name ← Lean.Elab.realizeGlobalConstNoOverloadWithInfo row
+  match name with
+  | .str (.str _ "certificate") suffix =>
+    unless suffix.startsWith "row_" && suffix.length > 4 &&
+        (suffix.toList.drop 4).all Char.isDigit do
+      throwError "expected a generated certificate.row_N theorem"
+  | _ => throwError "expected a generated certificate.row_N theorem"
+  let info ← getConstInfo name
+  unless getOriginalConstKind? (← getEnv) name == some .thm do
+    throwError "expected an existing theorem, not a definition or axiom"
+  unless info.levelParams.isEmpty && !info.type.hasMVar && !info.type.hasFVar &&
+      !info.type.hasLooseBVars && !info.type.hasLevelParam do
+    throwError "expected a closed monomorphic row theorem"
+  -- Imported theorem values may be omitted from the exported environment.
+  -- Every original theorem body was already checked when its module was built.
+  if let .thmInfo thm := info then
+    unless !thm.value.hasMVar && !thm.value.hasFVar &&
+        !thm.value.hasLooseBVars && !thm.value.hasLevelParam do
+      throwError "expected a closed monomorphic row theorem"
+  unless info.type.isAppOfArity ``Eq 3 &&
+      info.type.getAppArgs[0]!.isConstOf ``Nat do
+    throwError "expected a closed equality of natural numbers"
+  Lean.Elab.Tactic.closeMainGoalUsing `exact_checked_row fun _ _ =>
+    pure (mkConst name)
+
 
 def u64 (a : ByteArray) (o : Nat) : UInt64 :=
   (a.get! (o+7)).toUInt64 <<< 56 ||| (a.get! (o+6)).toUInt64 <<< 48 |||
