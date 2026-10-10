@@ -44,7 +44,7 @@ theorem restored_outer_independent (hdp : 1≤d) (hd : d%2=0)
     exact LinearMap.ker_eq_bot.mpr (rename_injective _ Sum.inr_injective)
   apply biformSplitEndpoint_independent
   · simpa only [restoredBiformFamily_scalar_component (by omega) hd hO hJ heven hpos idx
-    slot] using hs
+      slot] using hs
   · simpa only [linearOddForm_component,ite_true] using linearOddForm_independent hdp _ hlinear
   · intro i
     rw [linearOddForm_component,if_neg (by decide)]

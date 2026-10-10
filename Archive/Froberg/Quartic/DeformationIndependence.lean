@@ -64,8 +64,9 @@ theorem principal_open (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q �
         (isPolynomialFamily_const (motionFamily p r s i)))
   obtain ⟨D,hD,hgood⟩ := independent_polynomial_principal_open
     (fun i (a : Fin 1 → K) => deformedFamily g h p r s (a 0) i) hpoly 0
-    (by simpa only [Pi.zero_apply,deformedFamily,zero_smul,add_zero] using split_independent g h hg
-      hh)
+    (by
+      simpa only [Pi.zero_apply,deformedFamily,zero_smul,add_zero] using
+        split_independent g h hg hh)
   exact ⟨D,hD,fun ε hε => hgood (fun _ => ε) hε⟩
 
 end Quartic.DeformationIndependence

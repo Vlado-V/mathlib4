@@ -56,8 +56,8 @@ theorem exists_fourth_row_parameter {w v d q b : ℕ} {J : Finset ℕ} {counts :
       (row (fun _ _ => inf_le_left) ⟨4,h4⟩ p).ker=
         (rowConstants (fun _ _ => inf_le_left) ⟨4,h4⟩ p).range := by
   obtain ⟨o,e,z,he,Q,E,ho,hdeg,hER,hRdeg,hrest,hzero,hker⟩ :=
-    exists_finite_fourth_row h.hw h.hv counts J (fun j hj => by have := h.low j hj;
-      omega) h.even h.degree T
+    exists_finite_fourth_row h.hw h.hv counts J
+      (fun j hj => by have := h.low j hj; omega) h.even h.degree T
       h.low h.diagonal h.output_positive h.enough_generators h.divisor_capacity h.incidence
         h.scalar_open
   have hmem : ∀ j∈J,∀ i,E j i∈biformImage (constrainedOutputs T j) (Forms K (v+v) (d-j)) := by

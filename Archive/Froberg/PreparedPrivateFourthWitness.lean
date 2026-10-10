@@ -51,8 +51,8 @@ theorem exists_fourth_private_row_parameter {w v z d q b t : ℕ}
   obtain ⟨e,zv,he,Q,E,hproj,hER,hRdeg,hrest,hfull,hker⟩ :=
     exists_finite_fourth_projected_row h.hw h.hv bo
       (fun i => (privateOutputMatrix bi bo (l i)).range) hrelations counts J
-      (fun j hj => by have := h.low j hj;
-        omega) h.even h.degree T h.low h.diagonal h.output_positive
+      (fun j hj => by have := h.low j hj; omega)
+      h.even h.degree T h.low h.diagonal h.output_positive
       h.enough_generators h.divisor_capacity h.incidence h.scalar_open
   let o := fun j => (bo j).val
   have ho : LinearIndependent K o := bo.linearIndependent.map'

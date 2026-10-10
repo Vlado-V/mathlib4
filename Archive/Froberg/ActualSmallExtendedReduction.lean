@@ -142,7 +142,7 @@ theorem eventually_actual_quartic_extended_reduction_open :
     (by simp only [balancedScalarHalf_card,balancedScalarHalf_compl_card];omega) 2
   exact finite_quartic_extended_reduction_open T ell hell
     (fun j _ hj => allEvenCount_off_two_small (Or.inr rfl) _ _ _ hj)
-    (balancedScalarHalf v) hbal hpv' ⟨_,hqv'⟩ Q (by simpa only [show 4-4=0 by omega] using hgood Q
-      hQ)
+    (balancedScalarHalf v) hbal hpv' ⟨_,hqv'⟩ Q
+    (by simpa only [show 4-4=0 by omega] using hgood Q hQ)
 
 end Froberg.PreparedParameters

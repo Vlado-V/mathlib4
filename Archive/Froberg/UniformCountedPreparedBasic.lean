@@ -49,8 +49,8 @@ theorem eventually_uniform_counted_basic_frames {d : ℕ} (hd : 3 ≤ d) (hdodd 
   have hupper := hh f (exact_conditions_outer_limit hd upper a f e hc)
   filter_upwards [hi,ho,hupper,hc] with n hnI hnO hnU hnC
   intro K _ _
-  obtain ⟨D,hD,hframe⟩ := hnU K (e n+extra) (hnC.quadratic_lower.trans (by exact_mod_cast
-    Nat.le_add_right (e n) extra))
+  obtain ⟨D,hD,hframe⟩ := hnU K (e n+extra)
+    (hnC.quadratic_lower.trans (by exact_mod_cast Nat.le_add_right (e n) extra))
   refine ⟨D,hD,?_⟩
   intro frame hf
   obtain ⟨hfi,hfw⟩ := hframe frame hf
