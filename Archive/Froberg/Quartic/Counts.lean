@@ -12,6 +12,7 @@ public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.LinearCombination
 public import Mathlib.Tactic.NormNum
 public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic
 
 /-!
 # Integer dimension counts for quartic multiplication

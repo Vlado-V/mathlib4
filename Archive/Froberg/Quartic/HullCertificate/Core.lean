@@ -6,6 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.Quartic.ProfileCertificate.Core
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Data.Fintype.Basic
 
 /-!
 # Exact arithmetic infrastructure for the weak-vertex hull certificates
