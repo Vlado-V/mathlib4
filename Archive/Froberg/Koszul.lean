@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Graded
 public import Mathlib.LinearAlgebra.Basis.VectorSpace
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 public import Mathlib.Data.Fintype.Prod
 
 /-!
