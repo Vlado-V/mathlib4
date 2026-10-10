@@ -15,7 +15,6 @@ public import Archive.Froberg.BiformOutputConstraint
 noncomputable section
 namespace Froberg
 open MvPolynomial TensorProduct
-open scoped Classical
 variable {K : Type} [Field K] {σ τ : Type*}
 
 def biformOutputEndomorphism (T : MvPolynomial σ K →ₗ[K] MvPolynomial σ K) :
@@ -40,6 +39,7 @@ def outputExponent (a : (σ ⊕ τ) →₀ ℕ) : σ →₀ ℕ :=
 theorem biformOutputEndomorphism_retain (P : (σ →₀ ℕ) → Prop) :
     biformOutputEndomorphism (K := K) (τ := τ) (retainMonomials P) =
       retainMonomials (fun a => P (outputExponent a)) := by
+  classical
   apply LinearMap.ext
   intro f
   induction f using MvPolynomial.induction_on' with
@@ -83,6 +83,7 @@ theorem retainMonomials_preserves_homogeneous
   · exact hf ha
   · exact False.elim (ha rfl)
 
+open scoped Classical in
 /-- A half-degree projection acts as identity on its retained homogeneous
 profile, and as zero on every deleted profile. -/
 theorem retainMonomials_weighted (w : σ → ℕ) (P : ℕ → Prop)

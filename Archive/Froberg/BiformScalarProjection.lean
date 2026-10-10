@@ -18,7 +18,6 @@ output coefficients. -/
 noncomputable section
 namespace Froberg
 open MvPolynomial TensorProduct
-open scoped Classical
 variable {K : Type} [Field K] {σ τ : Type*}
 
 /-- Apply a scalar-space linear map coefficientwise in the output variables. -/
@@ -42,6 +41,7 @@ theorem monomial_sumElim (a : σ →₀ ℕ) (b : τ →₀ ℕ) (c : K) :
       rename Sum.inl (monomial a c) * rename Sum.inr (monomial b 1) := by
   rw [rename_monomial,rename_monomial,monomial_mul, mul_one,Finsupp.sumElim_eq_add]
 
+open scoped Classical in
 theorem retainMonomials_monomial (P : (τ →₀ ℕ) → Prop) (a : τ →₀ ℕ) (c : K) :
     retainMonomials P (monomial a c) = if P a then monomial a c else 0 := by
   classical

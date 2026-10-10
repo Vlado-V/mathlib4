@@ -17,11 +17,11 @@ public import Mathlib.LinearAlgebra.TensorProduct.Finiteness
 noncomputable section
 namespace Froberg
 open TensorProduct
-open scoped Classical
 variable {K : Type*} [Field K]
 variable {I J H : Type*} [Fintype I] [Fintype J] [Fintype H]
 variable {V W : Type*} [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
 
+open scoped Classical in
 /-- Apply a linear change of output coordinates without changing coefficients. -/
 def vectorOutputMap (L : (I → K) →ₗ[K] (J → K)) : (I → V) →ₗ[K] (J → V) :=
   (piScalarRight K K V J).toLinearMap.comp
@@ -30,6 +30,7 @@ def vectorOutputMap (L : (I → K) →ₗ[K] (J → K)) : (I → V) →ₗ[K] (J
 @[simp] theorem vectorOutputMap_pure (L : (I → K) →ₗ[K] (J → K))
     (v : I → K) (c : V) :
     vectorOutputMap L (fun i => v i • c) = fun j => L v j • c := by
+  classical
   have hi : (piScalarRight K K V I).symm (fun i => v i • c)=c ⊗ₜ[K] v := by
     apply (piScalarRight K K V I).injective
     simp [piScalarRightHom_tmul]
@@ -39,6 +40,7 @@ def vectorOutputMap (L : (I → K) →ₗ[K] (J → K)) : (I → V) →ₗ[K] (J
 @[simp] theorem vectorOutputMap_comp
     (L : (I → K) →ₗ[K] (J → K)) (M : (J → K) →ₗ[K] (H → K)) :
     (vectorOutputMap (V := V) M).comp (vectorOutputMap L) = vectorOutputMap (M.comp L) := by
+  classical
   apply LinearMap.ext
   intro p
   obtain ⟨z,rfl⟩ := (piScalarRight K K V I).surjective p
@@ -48,6 +50,7 @@ def vectorOutputMap (L : (I → K) →ₗ[K] (J → K)) : (I → V) →ₗ[K] (J
 
 @[simp] theorem vectorOutputMap_id :
     vectorOutputMap (V := V) (LinearMap.id (R := K) (M := I → K)) = LinearMap.id := by
+  classical
   apply LinearMap.ext
   intro p
   obtain ⟨z,rfl⟩ := (piScalarRight K K V I).surjective p
@@ -58,6 +61,7 @@ def vectorOutputMap (L : (I → K) →ₗ[K] (J → K)) : (I → V) →ₗ[K] (J
 /-- Coefficient maps commute with output maps. -/
 theorem vectorOutputMap_natural (L : (I → K) →ₗ[K] (J → K)) (f : V →ₗ[K] W) (p : I → V) :
     vectorOutputMap L (fun i => f (p i)) = fun j => f (vectorOutputMap L p j) := by
+  classical
   obtain ⟨z,rfl⟩ := (piScalarRight K K V I).surjective p
   induction z using TensorProduct.inductionOn with
   | tmul c v => simp [piScalarRightHom_tmul,map_smul,vectorOutputMap_pure]
@@ -70,8 +74,9 @@ theorem vectorOutputMap_natural (L : (I → K) →ₗ[K] (J → K)) (f : V →�
 
 /-- No information is lost when the output-space map is injective. -/
 theorem vectorOutputMap_injective (L : (I → K) →ₗ[K] (J → K))
-    (hL : Function.Injective L) : Function.Injective (vectorOutputMap (V := V) L) :=
-  (piScalarRight K K V J).injective.comp
+    (hL : Function.Injective L) : Function.Injective (vectorOutputMap (V := V) L) := by
+  classical
+  exact (piScalarRight K K V J).injective.comp
     ((TensorProduct.map_injective_of_flat_flat _ _ Function.injective_id hL).comp
       (piScalarRight K K V I).symm.injective)
 

@@ -15,12 +15,12 @@ all homogeneous output directions. -/
 noncomputable section
 namespace Froberg
 open Module MvPolynomial
-open scoped Classical
 variable {K : Type} [Field K]
 
 /-- The monomial basis, for any finite variable type. -/
 def finiteVariableFormsBasis (σ : Type*) [Fintype σ] (R : ℕ) :
     Basis (Sym σ R) K (homogeneousSubmodule σ K R) := by
+  classical
   rw [homogeneousSubmodule_eq_finsupp_supported]
   exact (MvPolynomial.basisRestrictSupport K {e : σ →₀ ℕ | e.degree=R}).reindex
     (Sym.equivNatSum σ R).symm
