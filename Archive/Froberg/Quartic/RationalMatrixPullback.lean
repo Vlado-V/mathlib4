@@ -76,7 +76,7 @@ theorem Data.ker_eq {F : J → MvPolynomial I K} {G : MvPolynomial I K}
   rw [D.eval_matrix p hp]
   exact ker_smul _ _ (pow_ne_zero _ hp)
 
- theorem Data.mulVec_eq_zero_iff {F : J → MvPolynomial I K} {G : MvPolynomial I K}
+theorem Data.mulVec_eq_zero_iff {F : J → MvPolynomial I K} {G : MvPolynomial I K}
     {B : Matrix (Fin a) (Fin n) (MvPolynomial J K)} (D : Data F G B)
     (p : I → K) (hp : eval p G ≠ 0) (x : Fin n → K) :
     evaluated D.matrix p *ᵥ x = 0 ↔ evaluated B (rationalMap F G p) *ᵥ x = 0 := by

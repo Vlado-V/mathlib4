@@ -33,7 +33,7 @@ def splitDiagonalMatrix (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) 
   | _,_ => 0
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem coefficientBoundary_split_left (q : Fin (r+b) → V)
+theorem coefficientBoundary_split_left (q : Fin (r + b) → V)
     (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (i : Fin r) :
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inl i))=
       coefficientBoundary (fun j => q (finSumFinEquiv (Sum.inl j))) M i := by
@@ -45,7 +45,7 @@ theorem coefficientBoundary_split_left (q : Fin (r+b) → V)
   simp [Fintype.sum_sum_type,splitDiagonalMatrix]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem coefficientBoundary_split_right (q : Fin (r+b) → V)
+theorem coefficientBoundary_split_right (q : Fin (r + b) → V)
     (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (i : Fin b) :
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inr i))=
       coefficientBoundary (fun j => q (finSumFinEquiv (Sum.inr j))) C i := by
@@ -91,8 +91,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
   m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d)
     (hi : LinearIndependent K (privateSplitEndpoint g p))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (hodd : ∀ a : (endpointMultiplication (privateSplitEndpoint g p)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
         (1-biformSplitEndpointParity (q := r) (f := b) i)) →

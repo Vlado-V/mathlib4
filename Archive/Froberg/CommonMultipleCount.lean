@@ -40,8 +40,8 @@ theorem degree_sup_ge_succ {n s : ℕ} {a b : Fin n →₀ ℕ}
 /-- All degree-(2s+1) multiples of one monomial of degree at least s+1
 number at most the degree-s monomials. -/
 theorem card_targets_above_le {n s : ℕ} (hn : 0 < n) (p : Fin n →₀ ℕ)
-    (hp : s+1 ≤ p.degree) (T : Finset (Fin n →₀ ℕ))
-    (hT : ∀ b ∈ T, b.degree = 2*s+1 ∧ p ≤ b) :
+    (hp : s + 1 ≤ p.degree) (T : Finset (Fin n →₀ ℕ))
+    (hT : ∀ b ∈ T, b.degree = 2 * s + 1 ∧ p ≤ b) :
     T.card ≤ (n+s-1).choose s := by
   classical
   let d := 2*s+1-p.degree
@@ -76,7 +76,7 @@ theorem card_targets_above_le {n s : ℕ} (hn : 0 < n) (p : Fin n →₀ ℕ)
 theorem card_common_targets_le {n s : ℕ} (hn : 0 < n) (a b : Fin n →₀ ℕ)
     (ha : a.degree = s) (hb : b.degree = s) (hne : a ≠ b)
     (T : Finset (Fin n →₀ ℕ))
-    (hT : ∀ c ∈ T, c.degree = 2*s+1 ∧ a ≤ c ∧ b ≤ c) :
+    (hT : ∀ c ∈ T, c.degree = 2 * s + 1 ∧ a ≤ c ∧ b ≤ c) :
     T.card ≤ (n+s-1).choose s :=
   card_targets_above_le hn (a ⊔ b) (degree_sup_ge_succ ha hb hne) T
     (fun c hc => ⟨(hT c hc).1,sup_le (hT c hc).2.1 (hT c hc).2.2⟩)

@@ -22,7 +22,7 @@ variable {K : Type*} [Field K] [Infinite K] {a b T q s : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
-theorem graph_covered {d : ℕ} (S : Submodule K (Fin a → K)) (hd : finrank K S=d) :
+theorem graph_covered {d : ℕ} (S : Submodule K (Fin a → K)) (hd : finrank K S = d) :
     PolynomialSubspaceCovectorCharts.Covered
       (fun j : Fin d ↪ Fin a => BilinearCovectorCharts.graphPolynomial j) S := by
   obtain ⟨j,p,hp⟩ := SubspaceCharts.exists_chart S hd
@@ -134,7 +134,7 @@ omit [Infinite K] in
 kernels are handled by source generation and the auxiliary-column budget. -/
 theorem strict_count_of_scalar
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (k h c : ℕ) (hqa : q*a ≤ T) (hfull : BilinearImage.image mu ⊤=⊤)
+    (k h c : ℕ) (hqa : q * a ≤ T) (hfull : BilinearImage.image mu ⊤ = ⊤)
     (hscalar : ∀ S : Submodule K (Fin a → K),0 < finrank K S → finrank K S < a →
       UniformScalar.covectorR ((T-q*a:ℕ):ℝ) (finrank K (BilinearImage.image mu S)) q a (finrank K S)
         < 0 ∨
@@ -177,7 +177,7 @@ abbrev Input (K : Type*) [Field K] (a b T q : ℕ) (slices : ℕ → ℕ) :=
   (Fin q → Fin b → K) × ((d : Fin (a+1)) → Fin (slices d.val) → Fin T → K)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def projection (slices : ℕ → ℕ) (d : Fin (a+1)) :
+def projection (slices : ℕ → ℕ) (d : Fin (a + 1)) :
     Input K a b T q slices →ₗ[K] SharedCovectorPolynomial.Input K b T q (slices d.val) where
   toFun x := (x.1,x.2 d)
   map_add' _ _ := rfl
@@ -185,7 +185,7 @@ def projection (slices : ℕ → ℕ) (d : Fin (a+1)) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
-theorem projection_surjective (slices : ℕ → ℕ) (d : Fin (a+1)) :
+theorem projection_surjective (slices : ℕ → ℕ) (d : Fin (a + 1)) :
     Function.Surjective (projection (K := K) (b := b) (T := T) (q := q) slices d) := by
   classical
   intro x

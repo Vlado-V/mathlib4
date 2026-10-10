@@ -52,7 +52,7 @@ theorem appendScalarParameters_surjective : Function.Surjective
 
 theorem two_family_augmentation_open
     (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W) (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W)
-    (ha₁ : 0<finrank K V₁) (ha₂ : 0<finrank K V₂)
+    (ha₁ : 0 < finrank K V₁) (ha₂ : 0 < finrank K V₂)
     (h₁ : ∀ L : Submodule K V₁,
       T*finrank K L ≤ finrank K V₁*finrank K (BilinearImage.image mu₁ L))
     (h₂ : ∀ L : Submodule K V₂,

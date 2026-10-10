@@ -19,8 +19,8 @@ open Froberg Module MvPolynomial PreparedParameters
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
-def PreparedOuterSeparation (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def PreparedOuterSeparation (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) : Prop :=
   ∀ (D : Submodule K (Forms K (h+m) (2*d))),

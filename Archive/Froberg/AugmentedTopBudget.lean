@@ -17,8 +17,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem eventually_augmented_top_budget {d h a b : ℕ} (hd : 3≤d)
-    (ha : 0<a) (hb : 0<b) (hratio : (h : ℝ)/(2*(d : ℝ))≤(b : ℝ)/a)
+theorem eventually_augmented_top_budget {d h a b : ℕ} (hd : 3 ≤ d)
+    (ha : 0 < a) (hb : 0 < b) (hratio : (h : ℝ) / (2 * (d : ℝ)) ≤ (b : ℝ) / a)
     (qF qS : ℕ → ℕ)
     (hF : Tendsto (fun m : ℕ => (qF m : ℝ)/(m : ℝ)^(d-1)) atTop
       (𝓝 ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))))

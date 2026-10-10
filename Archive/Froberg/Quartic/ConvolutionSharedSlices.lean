@@ -70,7 +70,7 @@ def coordinateProjection (m : ℕ) (upper : Bool) (d : Threshold m upper) :
 /-- A nonempty principal open in one shared parameter space excludes every
 closed relation-kernel threshold, including both endpoint thresholds. -/
 theorem principal_open_all_thresholds [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
-    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
+    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1) :
     ∃ P : MvPolynomial (Fin (finrank K (Input K m upper))) K,
       (∃ x : Input K m upper,
         eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0) ∧
@@ -111,7 +111,7 @@ theorem principal_open_all_thresholds [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
 
 /-- An actual witness with the same child coefficients at every threshold. -/
 theorem exists_all_thresholds [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
-    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
+    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1) :
     ∃ x : Input K m upper,
       ∀ d : Threshold m upper,∀ ell : Fin (finrank K (Tgt K m upper)) → K,
         d.val ≤ finrank K (LinearMap.ker (relationMap (actualMu m upper ht) ell)) →
@@ -124,7 +124,7 @@ theorem exists_all_thresholds [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
 geometric empty sections of the unsliced minor-and-child loci. The slice
 equations remain separate, as required by SliceMotionAvoidance. -/
 theorem principal_open_all_empty_sections [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m)
-    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
+    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1) :
     ∃ P : MvPolynomial (Fin (finrank K (Input K m upper))) K,
       (∃ x : Input K m upper,
         eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0) ∧
@@ -147,7 +147,7 @@ theorem principal_open_all_empty_sections [IsAlgClosed K] (m : ℕ) (hmlo : 28 �
 one child tuple, every prescribed slice count, and geometric emptiness for
 all closed thresholds. -/
 theorem exists_all_empty_sections [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m)
-    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
+    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1) :
     ∃ x : Input K m upper,
       ∀ d : Threshold m upper,∀ ell : Fin (finrank K (Tgt K m upper)) → K,
         (∀ i,aeval ell (finiteEquations (d := d.val)

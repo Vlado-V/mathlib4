@@ -19,9 +19,9 @@ open Module MvPolynomial
 variable {K : Type} [Field K]
 
 theorem linearIndependent_sigma_one_fiber {I : Type*} [Fintype I]
-    {J : I → Type*} [∀ i,Fintype (J i)] {V : Type*} [AddCommGroup V] [Module K V]
+    {J : I → Type*} [∀ i, Fintype (J i)] {V : Type*} [AddCommGroup V] [Module K V]
     (f : (i : I) → J i → V) (i₀ : I)
-    (honly : ∀ i,J i → i=i₀) (hi : LinearIndependent K (f i₀)) :
+    (honly : ∀ i, J i → i = i₀) (hi : LinearIndependent K (f i₀)) :
     LinearIndependent K (fun p : Sigma J => f p.1 p.2) := by
   classical
   apply Fintype.linearIndependent_iff.mpr
@@ -55,7 +55,7 @@ theorem counts_positive_of_column (e : ℕ → ℕ) {J R} (r : Row J R) (c : Col
       lt_of_le_of_lt (Nat.zero_le _) c.2.isLt⟩
 
 theorem multiplication_single_layer (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
-    (hz : ∀ k∈J,k≠j → e k=0)
+    (hz : ∀ k ∈ J, k ≠ j → e k = 0)
     (q : (k : ℕ) → Fin (e k) → MvPolynomial σ K)
     (hi : LinearIndependent K (pairProducts (q j))) (R : ℕ) :
     Function.Injective (multiplication e q J R) := by
@@ -92,10 +92,10 @@ theorem multiplication_single_layer (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
     exact linearIndependent_empty_type
 
 theorem single_layer_product_mem (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
-    (hz : ∀ k∈J,k≠j → e k=0)
+    (hz : ∀ k ∈ J, k ≠ j → e k = 0)
     (q : (k : ℕ) → Fin (e k) → MvPolynomial σ K)
     (P : Submodule K (MvPolynomial σ K))
-    (hp : ∀ a,pairProducts (q j) a∈P)
+    (hp : ∀ a, pairProducts (q j) a ∈ P)
     {R : ℕ} (r : Row J R) (c : Columns e r) : products e q r c∈P := by
   classical
   have hpos := counts_positive_of_column e r c
@@ -114,10 +114,10 @@ theorem single_layer_product_mem (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
   exact hh _
 
 theorem multiplication_single_layer_range (e : ℕ → ℕ) (J : Finset ℕ) (j : ℕ)
-    (hz : ∀ k∈J,k≠j → e k=0)
+    (hz : ∀ k ∈ J, k ≠ j → e k = 0)
     (q : (k : ℕ) → Fin (e k) → MvPolynomial σ K)
     (P : Submodule K (MvPolynomial σ K))
-    (hp : ∀ a,pairProducts (q j) a∈P) (R : ℕ) :
+    (hp : ∀ a, pairProducts (q j) a ∈ P) (R : ℕ) :
     (multiplication e q J R).range≤P := by
   rw [multiplication,Finsupp.range_linearCombination]
   apply Submodule.span_le.mpr

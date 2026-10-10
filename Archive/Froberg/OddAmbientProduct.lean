@@ -120,7 +120,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddAmbientToFull_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
-    (v : biformParitySpace K h m (2*d) 1) :
+    (v : biformParitySpace K h m (2 * d) 1) :
     oddAmbientToFull Q F G ((ambientOddRelations Q F G).mkQ v)=
       (fullOddRelations Q F G).mkQ v := rfl
 

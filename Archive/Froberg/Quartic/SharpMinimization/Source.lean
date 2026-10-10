@@ -45,7 +45,7 @@ theorem edgePoint_ordered (w s : ℝ) (e : Fin 6) (_hw : 0 ≤ w) (he : EdgeFeas
 profile admits a no-larger sharp value on an edge, preserving the source sum. -/
 theorem source_edge_reduction (m c i : ℕ) (hi : i ≤ ProfileCertificate.coreA c)
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m c:ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m c : ℝ)) :
     ∃e:Fin 6, EdgeFeasible (ProfileCertificate.freeW m c) (n₁+n₂+n₃) e ∧
       sourceSharp m c i (edgePoint (ProfileCertificate.freeW m c) (n₁+n₂+n₃) e 0)
         (edgePoint (ProfileCertificate.freeW m c) (n₁+n₂+n₃) e 1)
@@ -58,8 +58,8 @@ theorem source_edge_reduction (m c i : ℕ) (hi : i ≤ ProfileCertificate.coreA
 is attained at one of the six feasible prefix edges. -/
 theorem source_minimum_on_edge (m c i : ℕ) (hi : i ≤ ProfileCertificate.coreA c)
     (s n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m c:ℝ))
-    (hs : n₁+n₂+n₃=s) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m c : ℝ))
+    (hs : n₁ + n₂ + n₃ = s) :
     ∃e:Fin 6, EdgeFeasible (ProfileCertificate.freeW m c) s e ∧
       ∀x₁ x₂ x₃:ℝ,
         (0 ≤ x₃ ∧ x₃ ≤ x₂ ∧ x₂ ≤ x₁ ∧ x₁ ≤ (ProfileCertificate.freeW m c:ℝ)) →

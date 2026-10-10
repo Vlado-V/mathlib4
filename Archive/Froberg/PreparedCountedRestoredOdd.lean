@@ -20,9 +20,9 @@ open Froberg Module MvPolynomial Filter
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K] {h d : ℕ}
 
-theorem eventually_counted_restored_odd_open (hd : 3 ≤ d) (heven : d%2=0)
+theorem eventually_counted_restored_odd_open (hd : 3 ≤ d) (heven : d % 2 = 0)
     (h extra : ℕ) (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     ∀ᶠ m : ℕ in atTop,
       ∀ (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)

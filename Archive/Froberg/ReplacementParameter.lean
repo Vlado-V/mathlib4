@@ -27,7 +27,7 @@ theorem exists_nonzero_replacement_parameter (P : MvPolynomial Unit K)
   rwa [he]
 
 theorem exists_nonzero_replacement_intersection {S : Type*} [Fintype S]
-    (P : S → MvPolynomial Unit K) (hP : ∀ i,eval (fun _ => 0) (P i) ≠ 0) :
+    (P : S → MvPolynomial Unit K) (hP : ∀ i, eval (fun _ => 0) (P i) ≠ 0) :
     ∃ e : K,e ≠ 0 ∧ ∀ i,eval (fun _ => e) (P i) ≠ 0 := by
   classical
   obtain ⟨e,he,hgood⟩ := exists_nonzero_replacement_parameter (∏ i,P i)
@@ -48,7 +48,7 @@ theorem exists_nonzero_replacement_fin (P : MvPolynomial (Fin 1) K)
   rwa [he]
 
 theorem exists_nonzero_replacement_fin_intersection {S : Type*} [Fintype S]
-    (P : S → MvPolynomial (Fin 1) K) (hP : ∀ i,eval 0 (P i) ≠ 0) :
+    (P : S → MvPolynomial (Fin 1) K) (hP : ∀ i, eval 0 (P i) ≠ 0) :
     ∃ e : K,e ≠ 0 ∧ ∀ i,eval (fun _ => e) (P i) ≠ 0 := by
   classical
   obtain ⟨e,he,hgood⟩ := exists_nonzero_replacement_fin (∏ i,P i)

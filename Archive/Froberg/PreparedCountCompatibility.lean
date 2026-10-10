@@ -37,20 +37,20 @@ variable [Infinite K] {h m d q f r r' : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
-def countIndexMap (hc : ∀ j∈J,c j≤c' j)
+def countIndexMap (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c') : Fin r → Fin r' :=
   fun i => idx'.symm (countLabelMap hc (idx i))
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
-theorem countIndexMap_injective (hc : ∀ j∈J,c j≤c' j)
+theorem countIndexMap_injective (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c') :
     Function.Injective (countIndexMap hc idx idx') :=
   idx'.symm.injective.comp ((countLabelMap_injective hc).comp idx.injective)
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
-theorem restoredFamilyLinear_restrictCounts (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+theorem restoredFamilyLinear_restrictCounts (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J c' O) (i : Fin r) :
@@ -67,9 +67,9 @@ theorem restoredFamilyLinear_restrictCounts (hd : d%2=0)
     pureShift_injective_index _ _ _ (countIndexMap_injective hc idx idx')]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
-theorem restoredEndpointFamily_restrictCounts (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+theorem restoredEndpointFamily_restrictCounts (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J c' O) (i : Fin r) :
@@ -90,8 +90,8 @@ variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K 
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem preparedEvenBiform_restrictCounts
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j) (p : PreparedParameters.Space m d q J c' O)
     (i : PreparedParameters.Label q J c) :
     preparedEvenBiform hO hJ heven (PreparedParameters.restrictCounts hc p) i=
       preparedEvenBiform hO hJ heven p (PreparedParameters.countLabelMap hc i) := by

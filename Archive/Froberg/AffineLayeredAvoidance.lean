@@ -31,8 +31,8 @@ set_option maxHeartbeats 2500000 in -- Preserve the budget during this port.
 the exact shared-scalar budget give fixed cuts and a nonempty scalar-only
 open. The first vector and all graph coordinates remain universal. -/
 theorem affine_layered_covectors_joint
-    (degrees : Fin nf → ℕ) (f : ∀ i,Forms K q₀ (degrees i))
-    (ell : Fin (s₀+1) → Forms K q₀ 1)
+    (degrees : Fin nf → ℕ) (f : ∀ i, Forms K q₀ (degrees i))
+    (ell : Fin (s₀ + 1) → Forms K q₀ 1)
     (hempty : ∀ t : Fin q₀ → K,(∀ i,eval t (f i).val=0) →
       (∀ j,eval t (ell j).val=0) → t=0)
     (A : (Fin (q₀+N) → K) → X →ₗ[K] U)
@@ -99,8 +99,8 @@ theorem affine_layered_covectors_joint
 set_option maxHeartbeats 2500000 in -- Preserve the budget during this port.
 /-- Fix the auxiliary cuts only after the desired joint parameter open is formed. -/
 theorem affine_layered_covectors_avoid
-    (degrees : Fin nf → ℕ) (f : ∀ i,Forms K q₀ (degrees i))
-    (ell : Fin (s₀+1) → Forms K q₀ 1)
+    (degrees : Fin nf → ℕ) (f : ∀ i, Forms K q₀ (degrees i))
+    (ell : Fin (s₀ + 1) → Forms K q₀ 1)
     (hempty : ∀ t : Fin q₀ → K,(∀ i,eval t (f i).val=0) →
       (∀ j,eval t (ell j).val=0) → t=0)
     (A : (Fin (q₀+N) → K) → X →ₗ[K] U)

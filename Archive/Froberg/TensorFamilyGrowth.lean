@@ -23,7 +23,7 @@ variable {K U V W P : Type*} [Field K]
   [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
   [AddCommGroup W] [Module K W] [AddCommGroup P] [Module K P]
 
-theorem scalarModulo_growth_of_eq (f g : U →ₗ[K] W) (hfg : f=g)
+theorem scalarModulo_growth_of_eq (f g : U →ₗ[K] W) (hfg : f = g)
     (mu : P →ₗ[K] V →ₗ[K] W) (c : ℕ)
     (hf : ∀ L : Submodule K V,c*finrank K L≤
       finrank K (BilinearImage.image (scalarModulo f mu) L)) :

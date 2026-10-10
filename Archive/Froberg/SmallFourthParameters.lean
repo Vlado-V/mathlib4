@@ -49,10 +49,10 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_strong_fourth_profile_parameter {h : ℕ}
-    (hh : 144≤h) (hfour : 4∣h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
-    (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
-    (hm : counts 4≤(h^4/256)*(S.card.choose (d-4)/2)) :
+    (hh : 144 ≤ h) (hfour : 4 ∣ h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
+    (hm : counts 4 ≤ (h ^ 4 / 256) * (S.card.choose (d - 4) / 2)) :
     ∃ p : Space n d q J counts (fun j => Forms K h j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 8) ∧
       ∀ a,(ProductRows.multiplication counts (layers p) J 8 a).IsWeightedHomogeneous

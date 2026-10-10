@@ -66,10 +66,10 @@ theorem background_even_mem_of
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1)
-    (T : Submodule K (Forms K (h+m) d))
-    (hQ : ∀ i,evenPolynomialToForms (Q i)∈T)
+    (T : Submodule K (Forms K (h + m) d))
+    (hQ : ∀ i, evenPolynomialToForms (Q i) ∈ T)
     (i : Fin (Fintype.card (BackgroundLabel q f u)))
-    (hi : indexedSplitParity (backgroundSplitIndex (q := q) (f := f) (u := u)) i=0) :
+    (hi : indexedSplitParity (backgroundSplitIndex (q := q) (f := f) (u := u)) i = 0) :
     backgroundEnumeratedForms Q F G i∈T := by
   rw [background_split_parity_eq] at hi
   obtain ⟨j,rfl⟩ := (Fintype.equivFin (BackgroundLabel q f u)).surjective i

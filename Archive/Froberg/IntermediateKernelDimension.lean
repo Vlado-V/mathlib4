@@ -17,8 +17,8 @@ open Module MvPolynomial
 variable {K I J : Type*} [Field K] [Fintype I] [Fintype J]
 variable {n s d q : ℕ}
 
-theorem intermediateRow_kernel_finrank (hn : 0<n)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree=s)
+theorem intermediateRow_kernel_finrank (hn : 0 < n)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d)
     (hE : Function.Injective (multiplication (d := d) e v))
     (hE₀ : Function.Injective (multiplication (d := 0) e v))

@@ -34,7 +34,7 @@ local instance fieldUniformPreparedWitnessFinite {h H m d q : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem eventually_uniform_counted_all_odd_private_prepared_all_scalars {d : ℕ}
-    (hd : 3≤d) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
       ∀ u : ℕ,∀ᶠ n : ℕ in atTop,

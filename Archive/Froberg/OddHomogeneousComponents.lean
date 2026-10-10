@@ -16,9 +16,9 @@ namespace Froberg
 open MvPolynomial Finset
 variable {K σ : Type*} [Field K] {d : ℕ}
 
-theorem odd_homogeneous_components (w : σ → ℕ) (hw : ∀ x,w x≤1)
+theorem odd_homogeneous_components (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
     (f : MvPolynomial σ K) (hf : f.IsHomogeneous d)
-    (hodd : ∀ a,f.coeff a≠0 → Finsupp.weight w a%2=1) :
+    (hodd : ∀ a, f.coeff a ≠ 0 → Finsupp.weight w a % 2 = 1) :
     f=∑ r : Fin ((d+1)/2),weightedHomogeneousComponent w (2*r.val+1) f := by
   classical
   ext a

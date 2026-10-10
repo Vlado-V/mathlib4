@@ -22,7 +22,7 @@ namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem eventually_field_uniform_all_degree_even_data {d : ℕ} (hd : 3≤d) :
+theorem eventually_field_uniform_all_degree_even_data {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       ∀ᶠ n : ℕ in atTop,

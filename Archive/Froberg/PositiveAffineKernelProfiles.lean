@@ -31,25 +31,26 @@ variable
     (bottom : (Fin T → K) →ₗ[K] (Fin T₀ → K))
     (higher : (Fin T → K) →ₗ[K] (Fin H → K))
     (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T → K))
-    (hres : ∀ ell,res (bottom ell,higher ell)=ell)
-    (hcompat : ∀ ell p v,covector ell (mu p v)=
-      covector (bottom ell) (mu₀ p v)+covector (higher ell) (muH p v))
-    (s₀ nf : Fin (a₀+1) → ℕ)
-    (degrees : (k₀ : Fin (a₀+1)) → Fin (nf k₀) → ℕ)
-    (f : (k₀ : Fin (a₀+1)) → (i : Fin (nf k₀)) → Forms K T₀ (degrees k₀ i))
-    (cuts : (k₀ : Fin (a₀+1)) → Fin (s₀ k₀) → Forms K T₀ 1)
-    (hempty : ∀ k₀ (t : Fin T₀ → K),(∀ i,eval t (f k₀ i).val=0) →
-      (∀ i,eval t (cuts k₀ i).val=0) → t=0)
+    (hres : ∀ ell, res (bottom ell, higher ell) = ell)
+    (hcompat : ∀ ell p v, covector ell (mu p v) =
+      covector (bottom ell) (mu₀ p v) + covector (higher ell) (muH p v))
+    (s₀ nf : Fin (a₀ + 1) → ℕ)
+    (degrees : (k₀ : Fin (a₀ + 1)) → Fin (nf k₀) → ℕ)
+    (f : (k₀ : Fin (a₀ + 1)) → (i : Fin (nf k₀)) → Forms K T₀ (degrees k₀ i))
+    (cuts : (k₀ : Fin (a₀ + 1)) → Fin (s₀ k₀) → Forms K T₀ 1)
+    (hempty : ∀ k₀ (t : Fin T₀ → K), (∀ i, eval t (f k₀ i).val = 0) →
+      (∀ i, eval t (cuts k₀ i).val = 0) → t = 0)
     (hpresentation : ∀ k₀ (t : Fin T₀ → K),
-      finrank K (relationMap nu t).ker=k₀.val → ∀ i,eval t (f k₀ i).val=0)
-    (hmono : ∀ ell : Fin T → K,bottom ell≠0 →
-      finrank K (relationMap nu (bottom ell)).ker≤finrank K (relationMap mu ell).ker)
-    (hgrowth : ∀ ell : Fin T → K,bottom ell≠0 →
-      M*(finrank K (relationMap mu ell).ker-finrank K (relationMap nu (bottom ell)).ker)≤
+      finrank K (relationMap nu t).ker = k₀.val → ∀ i, eval t (f k₀ i).val = 0)
+    (hmono : ∀ ell : Fin T → K, bottom ell ≠ 0 →
+      finrank K (relationMap nu (bottom ell)).ker ≤ finrank K (relationMap mu ell).ker)
+    (hgrowth : ∀ ell : Fin T → K, bottom ell ≠ 0 →
+      M * (finrank K (relationMap mu ell).ker - finrank K (relationMap nu (bottom ell)).ker) ≤
         finrank K (BilinearImage.image muH (relationMap mu ell).ker))
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K))
-    (hcount : ∀ k : Fin (a+1),∀ k₀ : Fin (a₀+1),threshold≤k.val → k₀.val≤k.val → 0<s₀ k₀ →
-      s₀ k₀+a*k.val+H<M*(k.val-k₀.val)+q*(a-k.val)+s)
+    (hcount : ∀ k : Fin (a + 1), ∀ k₀ : Fin (a₀ + 1), threshold ≤ k.val → k₀.val ≤ k.val → 0 < s₀ k₀
+      →
+      s₀ k₀ + a * k.val + H < M * (k.val - k₀.val) + q * (a - k.val) + s)
 
 include nu mu₀ muH higher res hres hcompat s₀ nf degrees f cuts hempty hpresentation hmono hgrowth
   hcount

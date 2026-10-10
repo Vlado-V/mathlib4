@@ -22,21 +22,21 @@ variable {h m d q r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredEndpointFamily (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def restoredEndpointFamily (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) : Fin r → Forms K (h+m) d :=
   biformRestorationForms (restoredFamilyLinear hd hO hJ heven idx slot p)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredEndpointFamily_scalar (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restoredEndpointFamily_scalar (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p : RestoredSpace m d q J counts O) (i : Fin r) (j : Fin q)
-    (hidx : idx i=Sum.inl j) :
+    (hidx : idx i = Sum.inl j) :
     restoredEndpointFamily hd hO hJ heven idx slot p i=
       renameForm (Fin.natAdd h) (p.1.1 (Sum.inl j)) := by
   have haw : ∀ k,slot k≠i := by
@@ -59,15 +59,15 @@ theorem restoredEndpointFamily_scalar (hd : d%2=0)
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem prepared_restored_formal_relations (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)
+theorem prepared_restored_formal_relations (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p : RestoredSpace m d q J counts O)
     (hi : LinearIndependent K (restoredEndpointFamily hd hO hJ heven idx slot p))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (hodd : ∀ a : (endpointMultiplication (restoredEndpointFamily hd hO hJ heven idx slot p)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m) 1) →
       a.val∈oppositeKoszulSpace (restoredEndpointFamily hd hO hJ heven idx slot p) (fun _ => 0))

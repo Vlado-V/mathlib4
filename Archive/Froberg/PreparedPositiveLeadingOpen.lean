@@ -39,7 +39,7 @@ def fullPrivateLinear (i : Fin u) :
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem positive_leading_principal_open
-    (hO : ∀ j∈J,O j≤Forms K h j)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hw : ∀ j : J,∃ p : Space m d q J counts O,LinearIndependent K (p.2 j))
     (P₀ : PreparedTarget.OuterSpace K (Fin h) m d u) (hP₀ : LinearIndependent K P₀) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=

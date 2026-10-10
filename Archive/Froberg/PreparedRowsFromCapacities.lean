@@ -28,8 +28,8 @@ instance constrainedSpaceFinite {w n d q : ℕ} {J : Finset ℕ} {counts : ℕ �
 /-- The finite B.4 row constructor in a single coefficient space. -/
 theorem rows_open_of_capacities {w v d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
-    (hJ : ∀ j∈J,2≤j) (hdegree : ∀ j∈J,j≤d) (h2 : 2∈J)
-    (hquad : ∃ b,QuadraticRowCapacity (v+v) d q b J counts (constrainedOutputs T))
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hdegree : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
+    (hquad : ∃ b, QuadraticRowCapacity (v + v) d q b J counts (constrainedOutputs T))
     (hhigher : ∀ R : J,R.val≠2 → ∃ b,HigherRowCapacity w v d q b J counts T R) :
     let S := Space (v+v) d q J counts (constrainedOutputs T)
     ∃ D : MvPolynomial (Fin (finrank K S)) K,

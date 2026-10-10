@@ -19,7 +19,7 @@ variable {σ τ : Type*} {n e : ℕ}
 
 theorem biformImage_output_rename (f : σ → τ)
     (O : Submodule K (MvPolynomial σ K))
-    {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p∈biformImage O (Forms K n e)) :
+    {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p ∈ biformImage O (Forms K n e)) :
     rename (Sum.map f id) p∈biformImage (O.map (rename f).toLinearMap) (Forms K n e) := by
   have hh := biformImage_rename f (id : Fin n → Fin n) O (Forms K n e) ⟨p,hp,rfl⟩
   simpa only [rename_id,AlgHom.toLinearMap_id,Submodule.map_id,AlgHom.toLinearMap_apply] using hh

@@ -36,7 +36,7 @@ theorem scalar_span_private_product_mem
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (g : biformParitySpace K h m d 1)
     (v : Forms K h 0 ⊗[K] Forms K m d)
-    (hv : v∈Submodule.span K (Set.range Q)) :
+    (hv : v ∈ Submodule.span K (Set.range Q)) :
     oddPrivateProduct g (evenBiformEmbedding (Nat.zero_le d) (by decide) v)∈
       (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q
         i))).range := by
@@ -67,7 +67,7 @@ theorem privateScalarRelations_mem_scalar_background
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (G : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d)
-    (hv : ∀ i,v i∈Submodule.span K (Set.range Q)) :
+    (hv : ∀ i, v i ∈ Submodule.span K (Set.range Q)) :
     privateScalarRelations G v∈
       (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q
         i))).range := by

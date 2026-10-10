@@ -26,9 +26,9 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 common scalar open. Every remaining hypothesis is an explicit finite capacity
 or the retained-scalar open already established asymptotically. -/
 theorem exists_finite_even_row
-    {w v d R s b r : ℕ} (hw : 0<w) (hv : 0<v)
+    {w v d R s b r : ℕ} (hw : 0 < w) (hv : 0 < v)
     (counts : ℕ → ℕ) (J : Finset ℕ)
-    (hpositive : ∀ j∈J,0<j) (heven : ∀ j∈J,Even j) (hdegree : ∀ j∈J,j≤d)
+    (hpositive : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
     (hdiag : ∀ p : ProductRows.Row J R,p.val.val=R-p.val.val →
       counts p.val.val≤(w.choose p.val.val-finrank K X)*(v.choose (d-p.val.val)/2))

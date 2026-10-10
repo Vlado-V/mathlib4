@@ -32,9 +32,9 @@ def generatorsEquiv : (Index h n s c → K) ≃ₗ[K] (Fin c → Rows K h n s) w
     exact rowFiniteEquiv.symm.map_smul a _
 
 theorem principal_open_in_finite_coordinates
-    (D : MvPolynomial (Index h n s c) K) (hD : ∃ p,eval p D≠0)
+    (D : MvPolynomial (Index h n s c) K) (hD : ∃ p, eval p D ≠ 0)
     (Good : (Fin c → Rows K h n s) → Prop)
-    (hgood : ∀ p,eval p D≠0 → Good (generators p)) :
+    (hgood : ∀ p, eval p D ≠ 0 → Good (generators p)) :
     ∃ P : MvPolynomial (Fin (finrank K (Fin c → Rows K h n s))) K,
       (∃ g : Fin c → Rows K h n s,eval ((Module.finBasis K _).equivFun g) P≠0) ∧
       ∀ g : Fin c → Rows K h n s,eval ((Module.finBasis K _).equivFun g) P≠0 → Good g := by

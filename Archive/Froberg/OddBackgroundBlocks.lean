@@ -28,7 +28,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p) :
+def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p < 2) (ht : t % 2 = p) :
     biformParitySpace K h m d e →ₗ[K] biformParitySpace K h m d (p : ZMod 2) where
   toFun v := ⟨weightedHomogeneousComponent (blockWeight h m) t v.val,⟨
     weightedComponent_preserves_homogeneous _ v.property.1 t,by
@@ -41,7 +41,7 @@ def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-@[simp] theorem biformParityComponent_val (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p)
+@[simp] theorem biformParityComponent_val (e : ZMod 2) (t p : ℕ) (hp : p < 2) (ht : t % 2 = p)
     (v : biformParitySpace K h m d e) :
     (biformParityComponent e t p hp ht v).val=
       weightedHomogeneousComponent (blockWeight h m) t v.val := rfl
@@ -51,9 +51,9 @@ set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during t
 theorem odd_background_component_preserves
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
-    (t : ℕ) (ht : t%2=1) :
+    (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+    (t : ℕ) (ht : t % 2 = 1) :
     (oddBackgroundRelations Q F).map (biformParityComponent 1 t 1 (by omega) ht)≤
       oddBackgroundRelations Q F := by
   have htpos : 1≤t := by omega
@@ -91,7 +91,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The coordinate singleton is precisely the actual weighted component. -/
 theorem oddBiformCoordinates_component_single
-    (v : biformParitySpace K h m d 1) (r : Fin ((d+1)/2)) :
+    (v : biformParitySpace K h m d 1) (r : Fin ((d + 1) / 2)) :
     oddBiformCoordinatesEquiv (biformParityComponent 1 (2*r.val+1) 1 (by omega) (by omega) v)=
       Pi.single r (oddBiformCoordinatesEquiv v r) := by
   apply oddBiformCoordinatesEquiv.symm.injective
@@ -116,8 +116,8 @@ set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during t
 theorem oddBackgroundBlockRelations_single
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1) :
+    (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1) :
     ∀ x∈oddBackgroundBlockRelations Q F,∀ r,Pi.single r (x r)∈oddBackgroundBlockRelations Q F := by
   rintro _ ⟨v,hv,rfl⟩ r
   refine ⟨biformParityComponent 1 (2*r.val+1) 1 (by omega) (by omega) v,?_,?_⟩
@@ -126,19 +126,19 @@ theorem oddBackgroundBlockRelations_single
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-abbrev OddTargetBlock (K : Type) [Field K] (h m d : ℕ) (r : Fin ((2*d+1)/2)) :=
+abbrev OddTargetBlock (K : Type) [Field K] (h m d : ℕ) (r : Fin ((2 * d + 1) / 2)) :=
   Forms K h (2*r.val+1) ⊗[K] Forms K m (2*d-(2*r.val+1))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 instance oddTargetBlockGroup (K : Type) [Field K] (h m d : ℕ)
-    (r : Fin ((2*d+1)/2)) : AddCommGroup (OddTargetBlock K h m d r) :=
+    (r : Fin ((2 * d + 1) / 2)) : AddCommGroup (OddTargetBlock K h m d r) :=
   tensorFormGroup
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 instance oddTargetBlockModule (K : Type) [Field K] (h m d : ℕ)
-    (r : Fin ((2*d+1)/2)) : Module K (OddTargetBlock K h m d r) :=
+    (r : Fin ((2 * d + 1) / 2)) : Module K (OddTargetBlock K h m d r) :=
   TensorProduct.leftModule
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -146,8 +146,8 @@ set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during t
 def oddBackgroundBlocksEquiv
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1) :
+    (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1) :
     (biformParitySpace K h m (2*d) 1 ⧸ oddBackgroundRelations Q F) ≃ₗ[K]
       ((r : Fin ((2*d+1)/2)) →
         (OddTargetBlock K h m d r ⧸

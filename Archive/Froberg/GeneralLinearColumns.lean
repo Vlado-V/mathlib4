@@ -21,7 +21,7 @@ variable {K : Type*} [Field K] [Infinite K] {h b c : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Arbitrarily many private linear columns may be put in pairwise general position. -/
-theorem exists_pairwise_independent_linear_columns (hh : 2≤h) (b : ℕ) :
+theorem exists_pairwise_independent_linear_columns (hh : 2 ≤ h) (b : ℕ) :
     ∃ w : Fin b → Forms K h 1,
       (∀ i, w i ≠ 0) ∧ (∀ p : GeneratorPair b,
         LinearIndependent K (![w p.val.1,w p.val.2] : Fin 2 → Forms K h 1)) := by
@@ -61,7 +61,7 @@ theorem exists_pairwise_independent_linear_columns (hh : 2≤h) (b : ℕ) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The private detector exists with exactly the manuscript's 2h−1 target
 bound; its columns and pair relations are the actual quadratic products. -/
-theorem exists_general_detected_private_outputs (hh : 2≤h) (hc : 2*h-1≤c) (b : ℕ) :
+theorem exists_general_detected_private_outputs (hh : 2 ≤ h) (hc : 2 * h - 1 ≤ c) (b : ℕ) :
     ∃ (w : Fin b → Forms K h 1) (L : Forms K h 2 →ₗ[K] (Fin c → K)),
       (∀ i, w i ≠ 0) ∧
       (∀ i, Function.Injective (L.comp (mulForm (w i)))) ∧

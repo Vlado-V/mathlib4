@@ -37,7 +37,7 @@ variable {n d q r b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-def privateOddEmbed (hd : 0<d) : FullBiform K σ n 1 (d-1) →ₗ[K]
+def privateOddEmbed (hd : 0 < d) : FullBiform K σ n 1 (d-1) →ₗ[K]
     oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d where
   toFun P := ⟨P.val,by
     have hh := biformImage_homogeneous _ _ le_rfl le_rfl P.property
@@ -49,7 +49,7 @@ def privateOddEmbed (hd : 0<d) : FullBiform K σ n 1 (d-1) →ₗ[K]
   map_smul' := by intros; rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-def pureOddEmbed (hd : d%2=1) : homogeneousSubmodule σ K d →ₗ[K]
+def pureOddEmbed (hd : d % 2 = 1) : homogeneousSubmodule σ K d →ₗ[K]
     oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d where
   toFun U := ⟨rename Sum.inl U.val,U.property.rename_isHomogeneous,by
     apply IsWeightedHomogeneous.mem_parity (j := d) _ hd
@@ -60,31 +60,31 @@ def pureOddEmbed (hd : d%2=1) : homogeneousSubmodule σ K d →ₗ[K]
   map_smul' c U := Subtype.ext (map_smul (rename Sum.inl) c U.val)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-def privateOddFamily (hd : 0<d) (ho : d%2=1)
-    (P : Fin b → FullBiform K σ n 1 (d-1))
+def privateOddFamily (hd : 0 < d) (ho : d % 2 = 1)
+    (P : Fin b → FullBiform K σ n 1 (d - 1))
     (U : Fin b → homogeneousSubmodule σ K d) :
     Fin b → oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d :=
   fun i => privateOddEmbed hd (P i)+pureOddEmbed ho (U i)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-@[simp] theorem privateOddFamily_val (hd : 0<d) (ho : d%2=1)
-    (P : Fin b → FullBiform K σ n 1 (d-1))
+@[simp] theorem privateOddFamily_val (hd : 0 < d) (ho : d % 2 = 1)
+    (P : Fin b → FullBiform K σ n 1 (d - 1))
     (U : Fin b → homogeneousSubmodule σ K d) (i : Fin b) :
     (privateOddFamily hd ho P U i).val=(P i).val+rename Sum.inl (U i).val := rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_typed_reduction
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d-1))
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d - 1))
     (hp : PrivatePositiveReduction p P)
     (U : Fin b → homogeneousSubmodule σ K d) (e : Fin r ≃ Label q J counts)
     (c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d)
     (v : Fin b → oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d)
     (hc : SplitRestoration.row (evenRestorationSpace outputWeight d).subtype
       (oddRestorationSpace outputWeight d).subtype (positiveWeightProjection outputWeight d)
-      (fun i => evenGenerator hO hJ heven p (e i)) (privateOddFamily hd ho P U) (c,v)=0) :
+      (fun i => evenGenerator hO hJ heven p (e i)) (privateOddFamily hd ho P U) (c, v) = 0) :
     ∃ (M : Fin r → Fin r → K) (C : Fin b → Fin b → K)
       (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (e i))),
       c-coefficientBoundary (fun i => evenGenerator hO hJ heven p (e i)) M=z.val ∧

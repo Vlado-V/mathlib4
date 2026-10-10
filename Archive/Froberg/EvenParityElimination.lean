@@ -20,17 +20,17 @@ variable {K σ I : Type*} [Field K] [Fintype I] [LinearOrder I]
 /-- A genuine even cycle reduces to an embedded scalar cycle using only the
 positive even row exactness conditions. -/
 theorem polynomial_even_positive_rows_reduce_to_scalar
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ)
     (a E c : I → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i))
-    (hEzero : ∀ i,j i=0 → E i=0) (hj : ∀ i,j i≤d)
-    (hjeven : ∀ i,j i%2=0)
-    (hc : ∀ i,(c i).IsHomogeneous d)
-    (hceven : ∀ i α,(c i).coeff α≠0 → Finsupp.weight w α%2=0)
-    (hpositive : ∀ r,0<r → r≤2*d →
-      weightedHomogeneousComponent w r (∑ i,(a i+E i)*c i)=0)
-    (hexact : ∀ r,0<r → r≤2*d → r%2=0 →
+    (ha : ∀ i, (a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
+    (hEzero : ∀ i, j i = 0 → E i = 0) (hj : ∀ i, j i ≤ d)
+    (hjeven : ∀ i, j i % 2 = 0)
+    (hc : ∀ i, (c i).IsHomogeneous d)
+    (hceven : ∀ i α, (c i).coeff α ≠ 0 → Finsupp.weight w α % 2 = 0)
+    (hpositive : ∀ r, 0 < r → r ≤ 2 * d →
+      weightedHomogeneousComponent w r (∑ i, (a i + E i) * c i) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d → r % 2 = 0 →
       CoefficientRowExact (coefficientComponentSpace w d) a E j r) :
     ∃ (M : I → I → K) (z : I → MvPolynomial σ K),
       c-matrixBoundary (fun i => a i+E i) M=z ∧

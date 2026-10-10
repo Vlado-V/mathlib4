@@ -30,7 +30,7 @@ def restoredHighLinear (j : J) (i : Fin (counts j.val)) :
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restored_leading_principal_open
-    (hO : ∀ j∈J,O j≤Forms K h j)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hw : ∀ j : J,∃ p : Space m d q J counts O,LinearIndependent K (p.2 j)) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∃ D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,

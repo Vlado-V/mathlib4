@@ -20,8 +20,8 @@ namespace Froberg
 open Module Quartic.FilteredImage
 variable {K P : Type*} [Field K] [AddCommGroup P] [Module K P]
 variable {n : ℕ} {V W : Fin n → Type*}
-  [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)]
-  [∀ i,AddCommGroup (W i)] [∀ i,Module K (W i)]
+  [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+  [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def blockBilinear (mu : (i : Fin n) → P →ₗ[K] V i →ₗ[K] W i) :
@@ -59,7 +59,7 @@ theorem blockBilinear_initial_image
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The higher-layer condition ranks add: their coefficient blocks have
 distinct leading target degrees. -/
-theorem blockBilinear_image_finrank [∀ i,FiniteDimensional K (W i)]
+theorem blockBilinear_image_finrank [∀ i, FiniteDimensional K (W i)]
     (mu : (i : Fin n) → P →ₗ[K] V i →ₗ[K] W i)
     (L : Submodule K ((i : Fin n) → V i)) :
     (∑ i,finrank K (Quartic.BilinearImage.image (mu i) (initialPiece V L i))) ≤
@@ -72,10 +72,10 @@ theorem blockBilinear_image_finrank [∀ i,FiniteDimensional K (W i)]
     _ = _ := sum_initialPiece_finrank W _
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem blockBilinear_weighted_growth [∀ i,FiniteDimensional K (V i)]
-    [∀ i,FiniteDimensional K (W i)]
+theorem blockBilinear_weighted_growth [∀ i, FiniteDimensional K (V i)]
+    [∀ i, FiniteDimensional K (W i)]
     (mu : (i : Fin n) → P →ₗ[K] V i →ₗ[K] W i) (rate : Fin n → ℕ)
-    (hmu : ∀ i (S : Submodule K (V i)),rate i*finrank K S≤
+    (hmu : ∀ i (S : Submodule K (V i)), rate i * finrank K S ≤
       finrank K (Quartic.BilinearImage.image (mu i) S))
     (L : Submodule K ((i : Fin n) → V i)) :
     (∑ i,rate i*finrank K (initialPiece V L i)) ≤

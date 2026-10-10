@@ -19,15 +19,15 @@ open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
-theorem upper_target_open_of_witness (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+theorem upper_target_open_of_witness (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     [Module.Finite K (Space m d q f u J counts O)]
     (U : Fin u → Forms K h d)
-    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i,(P i).IsHomogeneous d)
+    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (p₀ : Space m d q f u J counts O)
-    (hlift : ∀ b,2≤b → b≤2*d →
+    (hlift : ∀ b, 2 ≤ b → b ≤ 2 * d →
       TargetLift ((Submodule.span K (Set.range (fun i =>
-        (enumerateForms (forms hd hO hJ U P hP p₀) i).val)))*Forms K (h+m) d) d b) :
+        (enumerateForms (forms hd hO hJ U P hP p₀) i).val))) * Forms K (h + m) d) d b) :
     ∃ D : MvPolynomial (Fin (finrank K (Space m d q f u J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧
       ∀ a,eval a D≠0 → Function.Surjective (upperTargetMap
@@ -41,14 +41,14 @@ theorem upper_target_open_of_witness (hd : 0<d)
 
 theorem upper_target_open_linear_parameters {V : Type*}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
-    (L : V →ₗ[K] Space m d q f u J counts O) (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+    (L : V →ₗ[K] Space m d q f u J counts O) (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d)
-    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i,(P i).IsHomogeneous d)
+    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (v₀ : V)
-    (hlift : ∀ b,2≤b → b≤2*d →
+    (hlift : ∀ b, 2 ≤ b → b ≤ 2 * d →
       TargetLift ((Submodule.span K (Set.range (fun i =>
-        (enumerateForms (forms hd hO hJ U P hP (L v₀)) i).val)))*Forms K (h+m) d) d b) :
+        (enumerateForms (forms hd hO hJ U P hP (L v₀)) i).val))) * Forms K (h + m) d) d b) :
     ∃ D : MvPolynomial (Fin (finrank K V)) K,
       eval ((Module.finBasis K V).equivFun v₀) D≠0 ∧
       ∀ a,eval a D≠0 → Function.Surjective (upperTargetMap

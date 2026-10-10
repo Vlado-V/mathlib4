@@ -39,7 +39,7 @@ theorem endpoint_of_generic (hn : 0 < n) (hg : Quartic.GenericQuartic K n r) :
   endpoint_of_witness hn (Quartic.generic_implies_witness K n r hg)
 
 theorem criticalDefect_zero (hn : 0 < n)
-    (hg : ∀ r,r ≤ (n+1).choose 2 → Quartic.GenericQuartic K n r) :
+    (hg : ∀ r, r ≤ (n + 1).choose 2 → Quartic.GenericQuartic K n r) :
     criticalDefect K n 2=0 := by
   have hlbound := lowerCount_le_monomial_count hn 2
   have hubound := upperCount_le_monomial_count hn 2

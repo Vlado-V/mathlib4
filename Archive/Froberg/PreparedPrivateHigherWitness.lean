@@ -28,17 +28,17 @@ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_higher_private_row_parameter {w v z d q b t : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
-    (R : ℕ) (hRJ : R+1∈J) (hd : 3≤d) (hR : 2≤R) (hRd : R+1<d)
-    (h : HigherRowCapacity w v d q b J counts T (⟨R+1,hRJ⟩ : J))
+    (R : ℕ) (hRJ : R + 1 ∈ J) (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 < d)
+    (h : HigherRowCapacity w v d q b J counts T (⟨R + 1, hRJ⟩ : J))
     (bi : Basis (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K (R))))
       K (homogeneousSubmodule (Fin w × Bool) K (R)))
-    (bo : Basis (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K (R+1))))
-      K (homogeneousSubmodule (Fin w × Bool) K (R+1)))
-    (l : Fin t → homogeneousSubmodule (Fin w × Bool) K 1) (hl : ∀ i,l i≠0)
+    (bo : Basis (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K (R + 1))))
+      K (homogeneousSubmodule (Fin w × Bool) K (R + 1)))
+    (l : Fin t → homogeneousSubmodule (Fin w × Bool) K 1) (hl : ∀ i, l i ≠ 0)
     (ι : Fin t ↪ Fin z)
-    (hrelations : ∀ i,b*((d-(R+1))+1).choose (d-(R+1))≤oddOutputDimension w (R+1)-
+    (hrelations : ∀ i, b * ((d - (R + 1)) + 1).choose (d - (R + 1)) ≤ oddOutputDimension w (R + 1) -
       finrank K (privateOutputMatrix bi bo (l i)).range)
-    (ell : Fin 2 → Forms K (v+v) 1) (hell : LinearIndependent K ell) :
+    (ell : Fin 2 → Forms K (v + v) 1) (hell : LinearIndependent K ell) :
     let r : J := ⟨R+1,hRJ⟩
     let hO : ∀ j∈J,constrainedOutputs T j≤homogeneousSubmodule (Fin w ×
       Bool) K j := fun _ _ => inf_le_left

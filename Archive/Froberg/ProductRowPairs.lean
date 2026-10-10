@@ -17,10 +17,10 @@ open Froberg MvPolynomial
 
 abbrev LayerLabel (J : Finset ℕ) (e : ℕ → ℕ) := (j : J) × Fin (e j.val)
 
-def layerLabel {J : Finset ℕ} (e : ℕ → ℕ) (j : ℕ) (hj : j∈J) (i : Fin (e j)) :
+def layerLabel {J : Finset ℕ} (e : ℕ → ℕ) (j : ℕ) (hj : j ∈ J) (i : Fin (e j)) :
     LayerLabel J e := ⟨⟨j,hj⟩,i⟩
 
-theorem layerLabel_injective {J : Finset ℕ} (e : ℕ → ℕ) (j : ℕ) (hj : j∈J) :
+theorem layerLabel_injective {J : Finset ℕ} (e : ℕ → ℕ) (j : ℕ) (hj : j ∈ J) :
     Function.Injective (layerLabel e j hj) := by
   intro i k h
   cases h
@@ -103,7 +103,7 @@ theorem allRowPairs_injective {J : Finset ℕ} (e : ℕ → ℕ) (R : ℕ) :
 
 /-- Every ordered pair of layers in increasing order gives a product column. -/
 theorem exists_rowPair_of_le {J : Finset ℕ} (e : ℕ → ℕ)
-    (j k : ℕ) (hj : j∈J) (hk : k∈J) (hjk : j≤k)
+    (j k : ℕ) (hj : j ∈ J) (hk : k ∈ J) (hjk : j ≤ k)
     (i : Fin (e j)) (l : Fin (e k)) :
     ∃ p : (r : Row J (j+k)) × Columns e r,
       rowPair e p.1 p.2=s(layerLabel e j hj i,layerLabel e k hk l) := by
@@ -131,7 +131,7 @@ theorem exists_rowPair_of_le {J : Finset ℕ} (e : ℕ → ℕ)
 
 /-- Every unordered pair of the required total degree occurs in the source. -/
 theorem exists_rowPair {J : Finset ℕ} (e : ℕ → ℕ) {R : ℕ}
-    (p : Sym2 (LayerLabel J e)) (hp : pairDegree p=R) :
+    (p : Sym2 (LayerLabel J e)) (hp : pairDegree p = R) :
     ∃ a : (r : Row J R) × Columns e r,rowPair e a.1 a.2=p := by
   induction p using Sym2.inductionOn with
   | _ a b =>

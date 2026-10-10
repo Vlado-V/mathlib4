@@ -24,7 +24,7 @@ variable {h m d t c q b : ℕ}
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem mem_scalarCoefficientRow_range
     (Q : Fin q → Forms K m d) (g : Fin c → Poly K m)
-    (hg : ∀ k,g k∈familySpace Q*Forms K m t) :
+    (hg : ∀ k, g k ∈ familySpace Q * Forms K m t) :
     g∈(scalarCoefficientRow (t := t) Q).range := by
   have hx (k : Fin c) : ∃ x : Fin q → Forms K m t,
       (prefixMultiplication Q t x).val=g k := by
@@ -41,7 +41,7 @@ set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_product_scalar_range
     (T : Poly K h →ₗ[K] (Fin c → K)) (Q : Fin q → Forms K m d)
     (A C : Submodule K (Poly K h)) (B D : Submodule K (Poly K m))
-    (hBD : B*D≤familySpace Q*Forms K m t) :
+    (hBD : B * D ≤ familySpace Q * Forms K m t) :
     polynomialTensorSpace A B*polynomialTensorSpace C D≤
       (scalarCoefficientRow (t := t) Q).range.comap (preparedQuadraticDetector T) := by
   apply Submodule.mul_le.mpr
@@ -67,7 +67,7 @@ theorem polynomialTensorSpace_product_scalar_range
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_rename_back
     (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m))
-    {p : Poly K (h+m)} (hp : p∈polynomialTensorSpace A B) :
+    {p : Poly K (h + m)} (hp : p ∈ polynomialTensorSpace A B) :
     rename finSumFinEquiv.symm p∈biformImage A B := by
   obtain ⟨v,rfl⟩ := hp
   induction v using TensorProduct.inductionOn with
@@ -88,7 +88,7 @@ theorem polynomialTensorSpace_rename_back
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_product_mem_quadratic_row
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (P : Fin b → FullBiform K (Fin h) m 1 (d-1)) :
+    (P : Fin b → FullBiform K (Fin h) m 1 (d - 1)) :
     Submodule.span K (Set.range (fun i => rename finSumFinEquiv (P i).val))*
       polynomialTensorSpace (Forms K h 1) (Forms K m (d-1))≤
       (PolynomialRestoration.row (FullBiform K (Fin h) m 1 (d-1)).subtype
@@ -127,9 +127,9 @@ theorem private_product_mem_quadratic_row
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem prepared_denominator_mem_quadratic_row
-    (hd : 2≤d) (T : Poly K h →ₗ[K] (Fin c → K))
-    (Q : Fin q → Forms K m d) (P : Fin b → FullBiform K (Fin h) m 1 (d-1))
-    (D : Submodule K (Poly K h)) (hD : D≤T.ker) :
+    (hd : 2 ≤ d) (T : Poly K h →ₗ[K] (Fin c → K))
+    (Q : Fin q → Forms K m d) (P : Fin b → FullBiform K (Fin h) m 1 (d - 1))
+    (D : Submodule K (Poly K h)) (hD : D ≤ T.ker) :
     preparedProductDenominator (d := d)
       (polynomialTensorSpace (Forms K h 0) (familySpace Q))
       (Submodule.span K (Set.range (fun i => rename finSumFinEquiv (P i).val)))
@@ -174,14 +174,14 @@ theorem prepared_denominator_mem_quadratic_row
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem prepared_background_mem_quadratic_row
-    (hd : 2≤d) (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T)
-    (Q : Fin q → Forms K m d) (P : Fin b → FullBiform K (Fin h) m 1 (d-1))
-    (D : Submodule K (Poly K h)) (hD : D≤T.ker)
-    (W : Submodule K (Forms K (h+m) d))
+    (hd : 2 ≤ d) (T : Poly K h →ₗ[K] (Fin c → K))
+    (hT : T.comp (homogeneousComponent 2) = T)
+    (Q : Fin q → Forms K m d) (P : Fin b → FullBiform K (Fin h) m 1 (d - 1))
+    (D : Submodule K (Poly K h)) (hD : D ≤ T.ker)
+    (W : Submodule K (Forms K (h + m) d))
     (H : PreparedLowComponents W (polynomialTensorSpace (Forms K h 0) (familySpace Q))
       (Submodule.span K (Set.range (fun i => rename finSumFinEquiv (P i).val)))
-      (polynomialTensorSpace D (Forms K m (d-2)))) :
+      (polynomialTensorSpace D (Forms K m (d - 2)))) :
     ∀ w : Forms K (h+m) d,w∈W → ∀ a : Forms K (h+m) d,
       preparedQuadraticDetector T (w.val*a.val)∈
         (quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) m 1 (d-1)).subtype

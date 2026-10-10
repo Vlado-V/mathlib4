@@ -16,7 +16,7 @@ noncomputable section
 namespace Froberg
 
 /-- The critical ratio is uniformly below `1/19` from degree three on. -/
-theorem criticalRatio_lt_one_nineteenth {d : ℕ} (hd : 3≤d) :
+theorem criticalRatio_lt_one_nineteenth {d : ℕ} (hd : 3 ≤ d) :
     criticalRatio d < 1/19 := by
   have hH : (10 : ℝ) ≤ centralHalfBinomial d := by
     exact_mod_cast centralHalfBinomial_ge_ten hd
@@ -25,8 +25,8 @@ theorem criticalRatio_lt_one_nineteenth {d : ℕ} (hd : 3≤d) :
   nlinarith [mul_le_mul_of_nonneg_right hH hp.le]
 
 /-- A power greater than one half controls the first-order loss. -/
-theorem power_half_first_order_loss {s : ℕ} {σ : ℝ} (hσ : 0<σ)
-    (hp : (1/2 : ℝ) < σ^s) : (s : ℝ)*(1-σ) < 7/10 := by
+theorem power_half_first_order_loss {s : ℕ} {σ : ℝ} (hσ : 0 < σ)
+    (hp : (1 / 2 : ℝ) < σ ^ s) : (s : ℝ)*(1-σ) < 7/10 := by
   have hlog := Real.log_le_sub_one_of_pos hσ
   have hscaled := mul_le_mul_of_nonneg_left hlog (Nat.cast_nonneg s : (0 : ℝ) ≤ s)
   have hloghalf := Real.log_lt_log (by norm_num : (0 : ℝ) < 1/2) hp
@@ -41,7 +41,7 @@ def privateColumnDensity (d : ℕ) : ℝ :=
     (d : ℝ)*limitingCoreFraction d ^ (d-1)*(1-limitingCoreFraction d)
 
 /-- Probability of selecting at least two variables outside the core. -/
-theorem privateColumnDensity_lower_bound {d : ℕ} (hd : 3≤d) :
+theorem privateColumnDensity_lower_bound {d : ℕ} (hd : 3 ≤ d) :
     (29/250 : ℝ) < privateColumnDensity d := by
   let σ := limitingCoreFraction d
   let p := (centralHalfBinomial d : ℝ)*criticalRatio d
@@ -63,7 +63,7 @@ theorem privateColumnDensity_lower_bound {d : ℕ} (hd : 3≤d) :
   nlinarith
 
 /-- The available private-column density strictly exceeds the endpoint ratio. -/
-theorem criticalRatio_lt_privateColumnDensity {d : ℕ} (hd : 3≤d) :
+theorem criticalRatio_lt_privateColumnDensity {d : ℕ} (hd : 3 ≤ d) :
     criticalRatio d < privateColumnDensity d := by
   have h₁ := criticalRatio_lt_one_nineteenth hd
   have h₂ := privateColumnDensity_lower_bound hd

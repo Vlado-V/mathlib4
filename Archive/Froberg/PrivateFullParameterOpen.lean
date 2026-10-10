@@ -29,25 +29,25 @@ abbrev PrivateParameterSpace (n d q b : ℕ) (J : Finset ℕ) (counts : ℕ → 
   Space n d q J counts O × (Fin b → FullBiform K σ n 1 (d-1))
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-def privateParameterCoordinates (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+def privateParameterCoordinates (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     PrivateParameterSpace n d q b J counts O ≃ₗ[K]
       (Fin (finrank K (PrivateParameterSpace n d q b J counts O)) → K) := by
   letI : Module.Finite K (Space n d q J counts O) := finite_space hO
   exact (Module.finBasis K (PrivateParameterSpace n d q b J counts O)).equivFun
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-def privateOddLinear (hd : 0<d) :
+def privateOddLinear (hd : 0 < d) :
     (Fin b → FullBiform K σ n 1 (d-1)) →ₗ[K]
       (Fin b → oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d) :=
   LinearMap.pi (fun i => (privateOddEmbed hd).comp (LinearMap.proj i))
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_full_parameter_principal_open
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (e : Fin r ≃ Label q J counts)
-    (p₀ : Space n d q J counts O) (P₀ : Fin b → FullBiform K σ n 1 (d-1))
+    (p₀ : Space n d q J counts O) (P₀ : Fin b → FullBiform K σ n 1 (d - 1))
     (hp₀ : PrivatePositiveReduction p₀ P₀)
     (U : Fin b → homogeneousSubmodule σ K d) :
     let S := PrivateParameterSpace n d q b J counts O

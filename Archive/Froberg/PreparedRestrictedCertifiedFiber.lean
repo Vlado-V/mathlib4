@@ -55,11 +55,11 @@ set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 /-- The temporary extra columns remain fixed, while the final base family
 keeps its supplied certificate and the enlarged family keeps its own open. -/
 theorem exact_counts_prepared_restricted_certified_fiber {d k h lo u : ℕ}
-    (hd : 3 ≤ d) (hk : 0 < k) (hh : h = k*centralHalfBinomial d) (hhpos : 0 < h)
+    (hd : 3 ≤ d) (hk : 0 < k) (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
     (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
     (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
     {δ : ℝ} (hδ : 0 < δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop, δ*(n : ℝ)^(2*d-2) < dimensionReserve d h n (f n)) :
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∃ G C : ℝ, 0 < G ∧ 0 < C ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (J : Finset ℕ) (counts counts' : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hcounts : ∀ j ∈ J, counts j ≤ counts' j),

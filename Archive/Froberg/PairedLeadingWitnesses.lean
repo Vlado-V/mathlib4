@@ -21,9 +21,9 @@ universe u
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem eventually_leading_witnesses_from_paired {d : ℕ} (hd : 3≤d)
-    (hp : ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (e : ℕ → ℕ),
-      (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
+theorem eventually_leading_witnesses_from_paired {d : ℕ} (hd : 3 ≤ d)
+    (hp : ∀ᶠ w : ℕ in atTop, 4 ∣ 2 * w → ∀ (extra : ℕ) (e : ℕ → ℕ),
+      (∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (2 * (w : ℝ)) ^ 2 * (n : ℝ) ^ (d - 2)) →
       ∀ᶠ n : ℕ in atTop,
       ∀ (X : Type u) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

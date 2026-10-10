@@ -23,8 +23,8 @@ open Module MvPolynomial
 variable {K : Type} [Field K] {h m d r : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem lowTarget_even_weight_zero (p : Forms K (h+m) (2*d))
-    (hp : p∈lowTargetSubspace (K := K) (h := h) (m := m) (d := d)) :
+theorem lowTarget_even_weight_zero (p : Forms K (h + m) (2 * d))
+    (hp : p ∈ lowTargetSubspace (K := K) (h := h) (m := m) (d := d)) :
     (parityForm (coreParity h m) 0 p).val.IsWeightedHomogeneous (coreWeight h m) 0 := by
   intro a ha
   have hcoeff : p.val.coeff a≠0 := by
@@ -49,10 +49,10 @@ theorem lowTarget_even_weight_zero (p : Forms K (h+m) (2*d))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem upperTarget_even_coverage
-    (e : Fin r → ZMod 2) (q : Fin r → Forms K (h+m) d)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
+    (e : Fin r → ZMod 2) (q : Fin r → Forms K (h + m) d)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
     (hupper : Function.Surjective (upperTargetMap q))
-    (D : Submodule K (Forms K (h+m) (2*d)))
+    (D : Submodule K (Forms K (h + m) (2 * d)))
     (hscalar : ∀ p : Forms K (h+m) (2*d),
       p.val.IsWeightedHomogeneous (coreWeight h m) 0 →
         p∈D ⊔ (endpointMultiplication q).range) :
@@ -79,7 +79,7 @@ theorem upperTarget_even_coverage
 variable [Infinite K]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h+m) k)
+theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h + m) k)
     (hp : p.val.IsWeightedHomogeneous (coreWeight h m) 0) :
     p∈(renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
   let v := rename (finSumFinEquiv.symm : Fin (h+m) → Fin h ⊕ Fin m) p.val
@@ -98,8 +98,8 @@ theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h+m) k)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem scalar_range_odd_zero {k : ℕ}
-    (p : Forms K (h+m) k)
-    (hp : p∈(renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h+m))).range) :
+    (p : Forms K (h + m) k)
+    (hp : p ∈ (renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h + m))).range) :
     parityForm (coreParity h m) 1 p=0 := by
   obtain ⟨b,rfl⟩ := hp
   apply parityForm_other (coreParity h m) 1 0 _ _ (by decide)
@@ -109,12 +109,13 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The exact supported deletion used by transfer automatically has no odd
 part and fills every pure scalar target modulo the embedded old products. -/
 theorem supported_scalar_deletion_properties {s : ℕ}
-    (Q : Fin s → Forms K m d) (q : Fin r → Forms K (h+m) d)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
-    (hfill : (renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range.map D.mkQ=
+    (Q : Fin s → Forms K m d) (q : Fin r → Forms K (h + m) d)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
+    (hfill : (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range.map D.mkQ
+      =
       ((endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))).map D.mkQ)
-    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))≤
+    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h)) ≤
       (endpointMultiplication q).range) :
     D≤(parityForm (coreParity h m) 1).ker ∧
       ∀ p : Forms K (h+m) (2*d),p.val.IsWeightedHomogeneous (coreWeight h m) 0 →

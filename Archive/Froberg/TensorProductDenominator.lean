@@ -83,7 +83,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_product_le_ker_left {X : Type*} [AddCommGroup X] [Module K X]
     (T : Poly K h →ₗ[K] X) (Q : Submodule K (Poly K m))
     (A C : Submodule K (Poly K h)) (B D : Submodule K (Poly K m))
-    (hAC : A*C ≤ T.ker) :
+    (hAC : A * C ≤ T.ker) :
     polynomialTensorSpace A B * polynomialTensorSpace C D ≤ (splitPolynomialDetector T Q).ker := by
   apply polynomialTensorSpace_product_killed T Q A C B D
   intro a b c e
@@ -96,7 +96,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_product_le_ker_right {X : Type*} [AddCommGroup X] [Module K X]
     (T : Poly K h →ₗ[K] X) (Q : Submodule K (Poly K m))
     (A C : Submodule K (Poly K h)) (B D : Submodule K (Poly K m))
-    (hBD : B*D ≤ Q) :
+    (hBD : B * D ≤ Q) :
     polynomialTensorSpace A B * polynomialTensorSpace C D ≤ (splitPolynomialDetector T Q).ker := by
   apply polynomialTensorSpace_product_killed T Q A C B D
   intro a b c e

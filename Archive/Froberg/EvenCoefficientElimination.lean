@@ -25,14 +25,14 @@ def coefficientComponentSpace (w : σ → ℕ) (d t : ℕ) : Submodule K (MvPoly
 /-- Exactness of all scalar/new-layer/product rows leaves precisely a scalar
 cycle, modulo an explicit constant Koszul boundary of the actual generators. -/
 theorem polynomial_cycle_reduces_to_scalar
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ)
     (a E c : I → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i))
-    (hEzero : ∀ i,j i=0 → E i=0) (hj : ∀ i,j i≤d)
-    (hc : ∀ i,(c i).IsHomogeneous d)
-    (hcycle : ∑ i,(a i+E i)*c i=0)
-    (hexact : ∀ r,0<r → r≤2*d →
+    (ha : ∀ i, (a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
+    (hEzero : ∀ i, j i = 0 → E i = 0) (hj : ∀ i, j i ≤ d)
+    (hc : ∀ i, (c i).IsHomogeneous d)
+    (hcycle : ∑ i, (a i + E i) * c i = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d →
       CoefficientRowExact (coefficientComponentSpace w d) a E j r) :
     ∃ (M : I → I → K) (z : I → MvPolynomial σ K),
       c-matrixBoundary (fun i => a i+E i) M=z ∧

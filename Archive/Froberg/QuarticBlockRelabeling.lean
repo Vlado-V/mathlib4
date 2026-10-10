@@ -23,7 +23,7 @@ theorem card_initialSet {k : ℕ} (hk : k ≤ 8) : (initialSet k).card = k := by
 /-- The relabeling is an embedding into the fixed eight-vertex certificate,
 with both relevant finite subsets mapped exactly, not merely cardinalities. -/
 theorem exists_normalizing_embedding (I : Finset X) (r : Fin 5)
-    (hcard : Fintype.card X = 8-r.val) (hI : I.card = r.val) :
+    (hcard : Fintype.card X = 8 - r.val) (hI : I.card = r.val) :
     ∃ e : X ↪ Fin 8, I.map e = initialSet r.val ∧
       (Finset.univ : Finset X).map e = initialSet (8-r.val) := by
   classical

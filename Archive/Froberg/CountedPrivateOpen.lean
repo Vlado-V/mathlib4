@@ -18,9 +18,9 @@ open Filter Module MvPolynomial VectorExpansionOpen
 open scoped Topology
 
 theorem exact_counts_private_strict_open {K : Type*} [Field K] [Infinite K]
-    {d k h lo b : ℕ} (hd : 3 ≤ d) (hk : 0 < k) (hh : h=k*centralHalfBinomial d)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    {d k h lo b : ℕ} (hd : 3 ≤ d) (hk : 0 < k) (hh : h = k * centralHalfBinomial d)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     ∃ G : ℝ,0 < G ∧ ∀ᶠ n in atTop,
       ∃ D : MvPolynomial (VectorParameters.Index h n (d-1) (f n+b)) K,
         (∃ p,eval p D ≠ 0) ∧ ∀ p,eval p D ≠ 0 →

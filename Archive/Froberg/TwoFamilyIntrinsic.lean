@@ -77,8 +77,8 @@ theorem twoFamilyMultiplication_injective_of_coordinates {V₁' V₂' : Type*}
 
 /-- The natural two-family count is exactly the normalized ratio condition. -/
 theorem two_family_ratio_of_natural_budget {a₁ a₂ q₁ q₂ T : ℕ}
-    (ha₁ : 0<a₁) (ha₂ : 0<a₂)
-    (hcount : (q₁+a₁)*a₁+(q₂+a₂)*a₂ ≤ T) :
+    (ha₁ : 0 < a₁) (ha₂ : 0 < a₂)
+    (hcount : (q₁ + a₁) * a₁ + (q₂ + a₂) * a₂ ≤ T) :
     0<(T : ℝ) ∧
       ((q₁+a₁ : ℕ) : ℝ)/((T : ℝ)/a₁)+
         ((q₂+a₂ : ℕ) : ℝ)/((T : ℝ)/a₂) ≤ 1 := by

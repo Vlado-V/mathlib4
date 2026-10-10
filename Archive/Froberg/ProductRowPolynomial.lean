@@ -20,7 +20,7 @@ variable {ι σ U : Type*} [AddCommGroup U] [Module K U] [FiniteDimensional K U]
 /-- The same coefficient parameters control every column of the linear map. -/
 theorem product_row_polynomial (counts : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K)
     (q : (j : ℕ) → Fin (counts j) → (ι → K) → U) (J : Finset ℕ) (R : ℕ)
-    (hq : ∀ j∈J,∀ i,IsPolynomialFamily (q j i)) :
+    (hq : ∀ j ∈ J, ∀ i, IsPolynomialFamily (q j i)) :
     IsPolynomialFamily (fun a => multiplication counts (fun j i => L (q j i a)) J R) := by
   classical
   apply isPolynomialFamily_linearMap

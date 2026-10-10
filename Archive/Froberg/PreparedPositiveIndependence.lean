@@ -28,11 +28,11 @@ def positivePerturbedFamily (p : Space m d q J counts O)
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positivePerturbedFamily_component
-    (hO : ∀ j∈J,O j≤Forms K h j) (hpos : ∀ j∈J,0<j) (hJ : ∀ j∈J,0<counts j → j<d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hpos : ∀ j ∈ J, 0 < j) (hJ : ∀ j ∈ J, 0 < counts j → j < d)
     (p : Space m d q J counts O)
     (U : ProductRows.LayerLabel J counts → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous (blockWeight h m) d)
-    (j k : J) (i : Fin (counts k.val)) (hj : 0<counts j.val) :
+    (hU : ∀ i, (U i).IsWeightedHomogeneous (blockWeight h m) d)
+    (j k : J) (i : Fin (counts k.val)) (hj : 0 < counts j.val) :
     weightedHomogeneousComponent (blockWeight h m) j.val (positivePerturbedFamily p U ⟨k,i⟩)=
       if k=j then (p.2 k i).val else 0 := by
   have hs : (scalar p (Sum.inr ⟨k,i⟩)).IsWeightedHomogeneous (blockWeight h m) 0 :=
@@ -51,11 +51,11 @@ theorem positivePerturbedFamily_component
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positivePerturbedFamily_scalar_independent
-    (hO : ∀ j∈J,O j≤Forms K h j) (hpos : ∀ j∈J,0<j) (hJ : ∀ j∈J,0<counts j → j<d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hpos : ∀ j ∈ J, 0 < j) (hJ : ∀ j ∈ J, 0 < counts j → j < d)
     (p : Space m d q J counts O)
-    (hp : ∀ j,LinearIndependent K (p.2 j))
+    (hp : ∀ j, LinearIndependent K (p.2 j))
     (U : ProductRows.LayerLabel J counts → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous (blockWeight h m) d) :
+    (hU : ∀ i, (U i).IsWeightedHomogeneous (blockWeight h m) d) :
     LinearIndependent K (fun i => (weightedHomogeneousSubmodule K (blockWeight h m) 0).mkQ
       (positivePerturbedFamily p U i)) := by
   apply component_quotient_family_independent _ (fun j i => (p.2 j i).val)
@@ -67,11 +67,11 @@ theorem positivePerturbedFamily_scalar_independent
       (Submodule.ker_subtype (biformImage (O j.val) (Forms K m (d-j.val))))
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
-theorem positivePerturbedFamily_component_one (hd : 1<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j)
+theorem positivePerturbedFamily_component_one (hd : 1 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hmin : ∀ j ∈ J, 2 ≤ j)
     (p : Space m d q J counts O)
     (U : ProductRows.LayerLabel J counts → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous (blockWeight h m) d)
+    (hU : ∀ i, (U i).IsWeightedHomogeneous (blockWeight h m) d)
     (i : ProductRows.LayerLabel J counts) :
     weightedHomogeneousComponent (blockWeight h m) 1 (positivePerturbedFamily p U i)=0 := by
   have hs : (scalar p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h m) 0 := scalar_weight p _
@@ -83,14 +83,14 @@ theorem positivePerturbedFamily_component_one (hd : 1<d)
     weightedHomogeneousComponent_of_mem (hU _),if_neg (by omega),zero_add,zero_add]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
-theorem positive_private_scalar_independent (hd : 1<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j) (hJ : ∀ j∈J,0<counts j → j<d)
-    (p : Space m d q J counts O) (hp : ∀ j,LinearIndependent K (p.2 j))
+theorem positive_private_scalar_independent (hd : 1 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hmin : ∀ j ∈ J, 2 ≤ j) (hJ : ∀ j ∈ J, 0 < counts j → j < d)
+    (p : Space m d q J counts O) (hp : ∀ j, LinearIndependent K (p.2 j))
     (U : ProductRows.LayerLabel J counts → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous (blockWeight h m) d)
+    (hU : ∀ i, (U i).IsWeightedHomogeneous (blockWeight h m) d)
     (P W : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hP : ∀ i,(P i).IsWeightedHomogeneous (blockWeight h m) 1)
-    (hW : ∀ i,(W i).IsWeightedHomogeneous (blockWeight h m) d)
+    (hP : ∀ i, (P i).IsWeightedHomogeneous (blockWeight h m) 1)
+    (hW : ∀ i, (W i).IsWeightedHomogeneous (blockWeight h m) d)
     (hPi : LinearIndependent K P) :
     LinearIndependent K (fun i : ProductRows.LayerLabel J counts ⊕ Fin u =>
       (weightedHomogeneousSubmodule K (blockWeight h m) 0).mkQ

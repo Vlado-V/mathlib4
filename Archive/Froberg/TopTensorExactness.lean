@@ -31,7 +31,7 @@ def rawTopFamily (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
       e))) F
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem projectedTopFamily_eq (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem projectedTopFamily_eq (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
     BilinearScalarFamily.multiplication (K := K)
       (F := Forms K h 1 ⊗[K] Forms K m e)
@@ -46,12 +46,12 @@ theorem projectedTopFamily_eq (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     LinearMap.comp_apply,LinearMap.compr₂ₛₗ_apply,map_sum]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem top_tensor_separation (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
-    (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) (Q : Fin qS → Forms K m (1+e))
+theorem top_tensor_separation (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
+    (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) (Q : Fin qS → Forms K m (1 + e))
     (hinj : Function.Injective (twoFamilyMultiplication (K := K)
       (V₁ := Forms K h e ⊗[K] Forms K m 1) (V₂ := Fin b → K)
       (projectedTopLinearAction (m := m) P)
-      (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) (F,Q))) :
+      (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1 + e))) (F, Q))) :
     Disjoint (rawTopFamily F).range
       (leftRelations P.ker ⊔ rightRelations (Submodule.span K (Set.range Q))) := by
   apply tensor_projected_relations_disjoint (K := K)

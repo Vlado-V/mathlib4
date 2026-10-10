@@ -25,10 +25,10 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 3200000 in -- Preserve the budget during this port.
 theorem empty_row_core_extended_exact
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : J) (hRd : R.val<d)
-    (hz : counts R.val=0) (p₀ : Space a d q J counts O)
-    (hcore : (row hO R p₀).ker=(rowConstants hO R p₀).range)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : J) (hRd : R.val < d)
+    (hz : counts R.val = 0) (p₀ : Space a d q J counts O)
+    (hcore : (row hO R p₀).ker = (rowConstants hO R p₀).range)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     (row hO R (coreExtension z p₀)).ker=
       (rowConstants hO R (coreExtension z p₀)).range := by
@@ -98,14 +98,14 @@ theorem empty_row_core_extended_exact
 
 set_option maxHeartbeats 3200000 in -- Preserve the budget during this port.
 theorem empty_private_row_exact {t R hi ho : ℕ}
-    (hd : 3≤d) (hR : 2≤R) (hRd : R+1<d) (hRJ : R+1∈J)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hz : counts (R+1)=0)
+    (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 < d) (hRJ : R + 1 ∈ J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hz : counts (R + 1) = 0)
     (bi : Basis (Fin hi) K (homogeneousSubmodule σ K R))
-    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R+1)))
-    (l : Fin t → homogeneousSubmodule σ K 1) (hl : ∀ i,l i≠0)
+    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R + 1)))
+    (l : Fin t → homogeneousSubmodule σ K 1) (hl : ∀ i, l i ≠ 0)
     (ι : Fin t ↪ Fin z) (p₀ : Space a d q J counts O)
-    (hcore : (row hO ⟨R+1,hRJ⟩ p₀).ker=(rowConstants hO ⟨R+1,hRJ⟩ p₀).range)
+    (hcore : (row hO ⟨R + 1, hRJ⟩ p₀).ker = (rowConstants hO ⟨R + 1, hRJ⟩ p₀).range)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     let p := coreExtension z p₀
     let P := fun i => rename Sum.inl (l i).val*

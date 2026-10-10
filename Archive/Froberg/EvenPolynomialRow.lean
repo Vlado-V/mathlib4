@@ -29,17 +29,18 @@ the actual ambient polynomial ring. -/
 theorem even_polynomial_row_kernel
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdegree : ∀ j,(o j).IsHomogeneous R)
+    (hdegree : ∀ j, (o j).IsHomogeneous R)
     (L : (Fin h → K) →ₗ[K] (Fin H → K)) (hL : Function.Injective L)
-    (hLodd : ∀ z,retainMonomials (fun a => Finsupp.weight w a%2=0) (outputCombination o (L z))=0)
-    (e : Fin m → Fin n →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i,(e i).degree=s)
+    (hLodd : ∀ z, retainMonomials (fun a => Finsupp.weight w a % 2 = 0) (outputCombination o (L z))
+      = 0)
+    (e : Fin m → Fin n →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin r → Forms K n d)
     (hE : Function.Injective (AttachedMultiplication.multiplication (d := d) e v))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply e v he) Q))
     (counts : ℕ → ℕ)
     (q : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (J : Finset ℕ) (heven : ∀ j∈J,Even j) (hJ : ∀ j∈J,j≤d)
-    (hqX : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
+    (J : Finset ℕ) (heven : ∀ j ∈ J, Even j) (hJ : ∀ j ∈ J, j ≤ d)
+    (hqX : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous
       (Sum.elim w (fun _ : Fin n => 0)) (ProductRows.assignedDegree R j))
     (hqY : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight Yhalf))

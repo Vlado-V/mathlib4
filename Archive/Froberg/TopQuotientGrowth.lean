@@ -23,7 +23,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS t : ℕ}
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :
     projectedTopMap P p=projectedTensorFamily (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m
       1) P (rawTopFamily p.1) p.2 := by
@@ -39,7 +39,7 @@ theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1+e) →ₗ[K] (Fin b �
     projectedTensorFamily]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem top_tensor_scalar_growth (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem top_tensor_scalar_growth (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : Function.Surjective P) (p : ProjectedTopParameters K h m e qF qS)
     (hgrowth : ∀ L : Submodule K (Fin b → K),
       t*finrank K L≤finrank K (BilinearImage.image (projectedTopScalarAction P p) L))
@@ -61,7 +61,7 @@ theorem top_tensor_scalar_growth (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
   exact hg
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem top_tensor_growth_open (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem top_tensor_growth_open (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : Function.Surjective P) (hopen : ProjectedTopGrowthOpen P m qF qS t) :
     ∃ D : MvPolynomial (Fin (finrank K (ProjectedTopParameters K h m e qF qS))) K,
       (∃ p : ProjectedTopParameters K h m e qF qS,

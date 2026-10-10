@@ -18,9 +18,9 @@ namespace Froberg.PrivateColumns
 open Filter Module OuterInjection AttachedMultiplication
 open scoped Topology
 
- theorem eventually_exists_geometric_private_model {K L : Type*} [Field K] [Infinite K]
+theorem eventually_exists_geometric_private_model {K L : Type*} [Field K] [Infinite K]
     [Field L] [Algebra K L]
-    {k s h b : ℕ} (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
+    {k s h b : ℕ} (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
     (a z : ℕ → ℕ) (ha : Tendsto a atTop atTop) (hz : Tendsto z atTop atTop)
     (har : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 (limitingCoreFraction (s+1))))
     (hzr : Tendsto (fun n : ℕ => (z n : ℝ)/n) atTop (𝓝 (1-limitingCoreFraction (s+1))))

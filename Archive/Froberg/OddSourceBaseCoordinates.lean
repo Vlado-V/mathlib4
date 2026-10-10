@@ -39,29 +39,29 @@ instance oddBottomTensorModule (K : Type) [Field K] (h m d : ℕ) :
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-def oddBottomIndex (hd : 1≤d) : Fin ((d+1)/2) := ⟨0,by omega⟩
+def oddBottomIndex (hd : 1 ≤ d) : Fin ((d+1)/2) := ⟨0,by omega⟩
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-abbrev HigherOddCoordinates (K : Type) [Field K] (h m d : ℕ) (hd : 1≤d) :=
+abbrev HigherOddCoordinates (K : Type) [Field K] (h m d : ℕ) (hd : 1 ≤ d) :=
   (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) →
     Forms K h (2*r.val.val+1) ⊗[K] Forms K m (d-(2*r.val.val+1))
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-instance higherOddCoordinatesGroup (K : Type) [Field K] (h m d : ℕ) (hd : 1≤d) :
+instance higherOddCoordinatesGroup (K : Type) [Field K] (h m d : ℕ) (hd : 1 ≤ d) :
     AddCommGroup (HigherOddCoordinates K h m d hd) :=
   Pi.addCommGroup
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-instance higherOddCoordinatesModule (K : Type) [Field K] (h m d : ℕ) (hd : 1≤d) :
+instance higherOddCoordinatesModule (K : Type) [Field K] (h m d : ℕ) (hd : 1 ≤ d) :
     Module K (HigherOddCoordinates K h m d hd) :=
   Pi.module _ _ K
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-def oddSplitCoordinates (hd : 1≤d) : biformParitySpace K h m d 1 ≃ₗ[K]
+def oddSplitCoordinates (hd : 1 ≤ d) : biformParitySpace K h m d 1 ≃ₗ[K]
     (Forms K h 1 ⊗[K] Forms K m (d-1)) × HigherOddCoordinates K h m d hd :=
   (oddBiformCoordinatesEquiv (K := K) (h := h) (m := m) (d := d)).trans
     (piSplitAtLinear (K := K)
@@ -70,8 +70,8 @@ def oddSplitCoordinates (hd : 1≤d) : biformParitySpace K h m d 1 ≃ₗ[K]
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-theorem oddSplitCoordinates_bottom (hd : 1≤d)
-    (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
+theorem oddSplitCoordinates_bottom (hd : 1 ≤ d)
+    (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     oddSplitCoordinates hd (oddBiformEmbedding (t := 1) hd (by decide) v)=(v,0) := by
   have hw : (sumBiformMap v).IsWeightedHomogeneous (blockWeight h m) 1 :=
     biformImage_output_weight (Forms K h 1) (Forms K m (d-1)) le_rfl
@@ -96,8 +96,8 @@ theorem oddSplitCoordinates_bottom (hd : 1≤d)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-theorem oddSplitCoordinates_outer_relations (hd : 1≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+theorem oddSplitCoordinates_outer_relations (hd : 1 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i)))).map
       (oddSplitCoordinates hd).toLinearMap=
     (Submodule.span K (Set.range F)).map
@@ -110,8 +110,8 @@ theorem oddSplitCoordinates_outer_relations (hd : 1≤d)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-def oddSourceBaseEquiv (hd : 1≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+def oddSourceBaseEquiv (hd : 1 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (biformParitySpace K h m d 1 ⧸ Submodule.span K
       (Set.range (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i)))) ≃ₗ[K]
     (OddBottomTensor K h m d ⧸ Submodule.span K (Set.range F)) ×
@@ -123,8 +123,8 @@ def oddSourceBaseEquiv (hd : 1≤d)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 100000 in -- Preserve the budget during this port.
-@[simp] theorem oddSourceBaseEquiv_mk (hd : 1≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) (p : biformParitySpace K h m d 1) :
+@[simp] theorem oddSourceBaseEquiv_mk (hd : 1 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) (p : biformParitySpace K h m d 1) :
     oddSourceBaseEquiv hd F ((Submodule.span K
       (Set.range (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i)))).mkQ p)=
       ((Submodule.span K (Set.range F)).mkQ (oddSplitCoordinates hd p).1,

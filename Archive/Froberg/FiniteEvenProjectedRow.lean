@@ -24,7 +24,7 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
  set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem homogeneous_output_embedding_basis {σ : Type*} [Fintype σ] {R H : ℕ}
     (bo : Basis (Fin H) K (homogeneousSubmodule σ K R))
-    (O : Submodule K (MvPolynomial σ K)) (hO : O≤homogeneousSubmodule σ K R)
+    (O : Submodule K (MvPolynomial σ K)) (hO : O ≤ homogeneousSubmodule σ K R)
     [FiniteDimensional K O] :
     ∃ L : (Fin (finrank K O) → K) →ₗ[K] (Fin H → K),
       Function.Injective L ∧ ∀ z,outputCombination (fun j => (bo j).val) (L z)∈O := by
@@ -50,12 +50,12 @@ theorem homogeneous_output_embedding_basis {σ : Type*} [Fintype σ] {R H : ℕ}
  set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_finite_even_projected_row
     {w v d R s b r H : ℕ} {I : Type*} [Fintype I]
-    (hw : 0<w) (hv : 0<v)
+    (hw : 0 < w) (hv : 0 < v)
     (bo : Basis (Fin H) K (homogeneousSubmodule (Fin w × Bool) K R))
     (Relations : I → Submodule K (Fin H → K))
-    (hrelations : ∀ i,b*(s+1).choose s≤oddOutputDimension w R-finrank K (Relations i))
+    (hrelations : ∀ i, b * (s + 1).choose s ≤ oddOutputDimension w R - finrank K (Relations i))
     (counts : ℕ → ℕ) (J : Finset ℕ)
-    (hpositive : ∀ j∈J,0<j) (heven : ∀ j∈J,Even j) (hdegree : ∀ j∈J,j≤d)
+    (hpositive : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
     (hdiag : ∀ p : ProductRows.Row J R,p.val.val=R-p.val.val →
       counts p.val.val≤(w.choose p.val.val-finrank K X)*(v.choose (d-p.val.val)/2))

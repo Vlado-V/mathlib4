@@ -28,8 +28,8 @@ variable {q N s fcount r₁ r₂ : ℕ}
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem intrinsic_second_stage_with_parameters
     {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
-    (degrees : Fin fcount → ℕ) (f : ∀ i,Forms K q (degrees i))
-    (ell : Fin (s+1) → Forms K q 1)
+    (degrees : Fin fcount → ℕ) (f : ∀ i, Forms K q (degrees i))
+    (ell : Fin (s + 1) → Forms K q 1)
     (hempty : ∀ t : Fin q → L,(∀ i,aeval t (f i).val=0) →
       (∀ j,aeval t (ell j).val=0) → t=0)
     (A : (Fin (q+N) → K) → X →ₗ[K] U)

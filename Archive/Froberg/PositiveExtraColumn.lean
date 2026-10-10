@@ -18,7 +18,7 @@ namespace Froberg
 variable {K V I J : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 theorem independent_extra_reindex (g : J → V) (hg : LinearIndependent K g)
-    (M : J) (b : I → J) (hb : Function.Injective b) (hM : ∀ i,b i≠M) :
+    (M : J) (b : I → J) (hb : Function.Injective b) (hM : ∀ i, b i ≠ M) :
     LinearIndependent K (fun i : Option I => i.elim (g M) (fun j => g (b j))) := by
   let f : Option I → J := fun i => i.elim M b
   have hf : Function.Injective f := by
@@ -38,7 +38,7 @@ theorem independent_extra_reindex (g : J → V) (hg : LinearIndependent K g)
   cases i <;> rfl
 
 theorem quotient_extra_even_column {e u : ℕ}
-    (A : Submodule K V) (E : Fin (e+1) → V) (G : Fin u → V)
+    (A : Submodule K V) (E : Fin (e + 1) → V) (G : Fin u → V)
     (h : LinearIndependent K (fun i : Fin (e+1) ⊕ Fin u => A.mkQ (Sum.elim E G i)))
     (M : Fin (e+1)) :
     LinearIndependent K (fun i : Option (Fin e ⊕ Fin u) =>

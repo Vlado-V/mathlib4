@@ -53,10 +53,10 @@ theorem renamedGenerator_private (U : Fin u → Forms K h d)
   simp only [constantOneForm,map_one,mul_one]
   rfl
 
-theorem lower_biform_components {e s : ℕ} (hed : e<d)
+theorem lower_biform_components {e s : ℕ} (hed : e < d)
     (P : MvPolynomial (Fin h ⊕ Fin m) K)
-    (hP : P∈biformImage (Forms K h e) (Forms K m s))
-    (k : ℕ) (hk : d≤k) : coreComponent h m k (rename finSumFinEquiv P)=0 := by
+    (hP : P ∈ biformImage (Forms K h e) (Forms K m s))
+    (k : ℕ) (hk : d ≤ k) : coreComponent h m k (rename finSumFinEquiv P)=0 := by
   let g := sumBiformEquiv.symm (⟨P,hP⟩ : biformImage (Forms K h e) (Forms K m s))
   have hg : sumBiform g=P := by
     change (sumBiformEquiv (sumBiformEquiv.symm (⟨P,hP⟩ : biformImage (Forms K h e) (Forms K m
@@ -65,9 +65,9 @@ theorem lower_biform_components {e s : ℕ} (hed : e<d)
   rw [←hg,rename_sumBiform]
   exact (ambientBiform_weighted g).weightedHomogeneousComponent_ne k (by omega)
 
-theorem private_components (hd : 0<d) (U : Fin u → Forms K h d)
+theorem private_components (hd : 0 < d) (U : Fin u → Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hP : ∀ i k,d≤k → coreComponent h m k (rename finSumFinEquiv (P i))=0)
+    (hP : ∀ i k, d ≤ k → coreComponent h m k (rename finSumFinEquiv (P i)) = 0)
     (p : Space m d q f u J counts O) (i : Fin u) :
     coreComponent h m d (renamedGenerator U P p (Sum.inr (Sum.inr i)))=
       ambientBiform (U i ⊗ₜ[K] constantOneForm K m) ∧

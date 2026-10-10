@@ -25,9 +25,9 @@ variable {n s d m H : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_sparse_injection_open
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i,(e i).degree=s)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
     (F : I → V →ₗ[K] (Fin H → K))
-    (hcap : ∀ i (c : ℕ),c≤d → ∀ β : Fin n →₀ ℕ,β.degree=s+c →
+    (hcap : ∀ i (c : ℕ), c ≤ d → ∀ β : Fin n →₀ ℕ,β.degree=s+c →
       Fintype.card {j : Fin m // e j≤β}≤finrank K (F i).range) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin m → V))) K,
       (∃ x,eval x D≠0) ∧ ∀ x,eval x D≠0 → ∀ i (c : ℕ),c≤d →
@@ -53,7 +53,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A uniform divisor bound gives the projected open without checking each
 coefficient degree separately. -/
 theorem projected_sparse_injection_open_of_divisor_bound
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i,(e i).degree=s) (b : ℕ)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s) (b : ℕ)
     (hdiv : ∀ β : Fin n →₀ ℕ,Fintype.card {j : Fin m // e j≤β}≤b*β.degree.choose s)
     (F : I → V →ₗ[K] (Fin H → K))
     (hcap : ∀ i,b*(s+d).choose s≤finrank K (F i).range) :

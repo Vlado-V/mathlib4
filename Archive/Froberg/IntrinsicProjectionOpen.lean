@@ -64,8 +64,8 @@ theorem coordinateProjection_polynomial (b : ℕ) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem normalized_projection_principal_open {u b : ℕ}
-    (ha : 0 < finrank K V) (hW : finrank K W = u+b)
-    (hmargin : finrank K V*finrank K V < u*b)
+    (ha : 0 < finrank K V) (hW : finrank K W = u + b)
+    (hmargin : finrank K V * finrank K V < u * b)
     (mu : F →ₗ[K] V →ₗ[K] W)
     (hmu : ∀ L : Submodule K V,
       finrank K W * finrank K L ≤ finrank K V * finrank K (BilinearImage.image mu L)) :

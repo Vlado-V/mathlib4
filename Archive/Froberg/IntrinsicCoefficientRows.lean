@@ -30,12 +30,12 @@ theorem intrinsic_row_relation_constants
     (Q : I → Forms K n d) (E : J → FullBiform K σ n R s)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
     (hker : (bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d :=
-      d)) Q E P).ker=
+      d)) Q E P).ker =
       (bilinearKoszulConstants (K := K) (W := W) Q E).range)
-    (u : I → MvPolynomial (σ ⊕ Fin n) K) (hu : ∀ i,u i∈FullBiform K σ n R s)
-    (b : J → Forms K n d) (p : MvPolynomial (σ ⊕ Fin n) K) (hp : p∈P.range)
-    (hrel : (∑ i,rename Sum.inr (Q i).val*u i)+
-      (∑ j,(E j).val*rename Sum.inr (b j).val)+p=0) :
+    (u : I → MvPolynomial (σ ⊕ Fin n) K) (hu : ∀ i, u i ∈ FullBiform K σ n R s)
+    (b : J → Forms K n d) (p : MvPolynomial (σ ⊕ Fin n) K) (hp : p ∈ P.range)
+    (hrel : (∑ i, rename Sum.inr (Q i).val * u i) +
+      (∑ j, (E j).val * rename Sum.inr (b j).val) + p = 0) :
     ∃ C : I → J → K,
       (∀ i,u i=∑ j,C i j • (E j).val) ∧
       (∀ j,(b j).val= -∑ i,C i j • (Q i).val) ∧ p=0 := by
@@ -68,7 +68,7 @@ set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- Exactness of the full intrinsic row is exactly the coefficient-row rule
 needed by the increasing-degree induction. -/
 theorem intrinsic_polynomial_coefficient_row_exact
-    (hRs : R+s=d) (j : I → ℕ) (Q : I → Forms K n d)
+    (hRs : R + s = d) (j : I → ℕ) (Q : I → Forms K n d)
     (E : I → MvPolynomial (σ ⊕ Fin n) K)
     (Erow : {i : I // j i=R} → FullBiform K σ n R s)
     (hE : ∀ i : {i : I // j i=R},E i.val=(Erow i).val)

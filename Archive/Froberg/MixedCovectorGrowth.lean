@@ -26,12 +26,12 @@ attribute [local
   irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 attribute [local irreducible] oddMixedSourceBlockCoordinates mixedAmbientScalar
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
-variable (hd : Odd d) (hd3 : 3≤d)
-  (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
-  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-  (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-  (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) (bottomTensorFamily g)
-    (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id)
+variable (hd : Odd d) (hd3 : 3 ≤ d)
+  (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
+  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+  (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+  (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) (bottomTensorFamily g)
+    (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id)
 local notation "hdp" => Nat.le_trans (by decide : 1≤3) hd3
 local notation "F" => bottomTensorFamily g
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
@@ -49,9 +49,9 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_bottom_compat
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
-  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
+  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)
-    (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K)
+    (ell : (biformParitySpace K h m (2 * d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K)
     (p : Forms K m d) (x : OddBottomQuotient F) :
     ell (μ p ((eV).symm (x,0)))=
       quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f :=
@@ -78,9 +78,9 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_bottom_kernel
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
-  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
+  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)
-    (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K) :
+    (ell : (biformParitySpace K h m (2 * d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K) :
     (QuotientCovectorKernel.relation μ ell).ker.comap
       ((eV).symm.toLinearMap.comp (LinearMap.inl K (OddBottomQuotient F)
         (OddMixedBlockCoordinates hd hd3 F U P)))=
@@ -94,9 +94,9 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_bottom_kernel_finrank_le
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
-  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
+  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)
-    (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K) :
+    (ell : (biformParitySpace K h m (2 * d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K) :
     finrank K (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K :=
       K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π
       ell)).ker≤
@@ -109,10 +109,10 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_higher_kernel_growth
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
-  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
+  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) {b : ℕ}
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
       (topGrowthDegree hdp h).symm.toLinearMap)
     (t : ℕ)
     (htop : ∀ L : Submodule K (Fin b → K), t*finrank K L≤finrank K

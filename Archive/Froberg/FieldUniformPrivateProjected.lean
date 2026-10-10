@@ -17,7 +17,7 @@ noncomputable section
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 
-theorem eventually_field_uniform_private_projected_capacity {d : ℕ} (hd : 3≤d) :
+theorem eventually_field_uniform_private_projected_capacity {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K],∀ R : allEvenIndices d,R.val≠2 →
       (if R.val∈activeEvenIndices d then
         sparseBlockCount ((101/100 : ℝ)*higherCountGamma d R.val) R.val (d-R.val) w else 0)*

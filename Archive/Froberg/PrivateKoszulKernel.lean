@@ -27,7 +27,7 @@ def privateGenerator (ι : Fin b ↪ Fin z) (w : Fin b → Fin h → K)
     isHomogeneous_monomial _ (privateExponent_degree ι i)⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-lemma privateGenerator_coefficient (hs : 0<s) (ι : Fin b ↪ Fin z)
+lemma privateGenerator_coefficient (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (w : Fin b → Fin h → K) (i j : Fin b) :
     (fun k => (privateGenerator (a := a) (s := s) ι w j k).val.coeff
       (privateExponent a s ι i)) = if i=j then w i else 0 := by
@@ -43,9 +43,9 @@ lemma privateGenerator_coefficient (hs : 0<s) (ι : Fin b ↪ Fin z)
     simp [coeff_monomial,he,hij]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-lemma privateGenerator_linearIndependent (hs : 0<s) (ι : Fin b ↪ Fin z)
+lemma privateGenerator_linearIndependent (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (w : Fin b → Fin h → K) (dual : Fin b → (Fin h → K) →ₗ[K] K)
-    (hdual : ∀ i, dual i (w i)=1) :
+    (hdual : ∀ i, dual i (w i) = 1) :
     LinearIndependent K (privateGenerator (a := a) (s := s) ι w) := by
   classical
   apply Fintype.linearIndependent_iff.mpr
@@ -85,7 +85,7 @@ lemma private_product_expansion (ι : Fin b ↪ Fin z)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma privatePolynomialMap_single (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (i : Fin b) (v : Fin h → Forms K (a+z) s) (k : Fin c) :
+    (i : Fin b) (v : Fin h → Forms K (a + z) s) (k : Fin c) :
     privatePolynomialMap ι A (Pi.single i v) k =
       ∑ l,monomial (privateExponent a s ι i) (A i (Pi.single l 1) k)*(v l).val := by
   classical
@@ -100,7 +100,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Commutativity of the detected output products gives actual private-row boundaries. -/
 theorem privatePolynomialMap_koszul (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) (w : Fin b → Fin h → K)
-    (hcomm : ∀ i j, A i (w j)=A j (w i)) (p : GeneratorPair b) :
+    (hcomm : ∀ i j, A i (w j) = A j (w i)) (p : GeneratorPair b) :
     privatePolynomialMap (a := a) (s := s) ι A
       (koszulVector (privateGenerator (a := a) (s := s) ι w) p)=0 := by
   classical
@@ -119,11 +119,11 @@ theorem privatePolynomialMap_koszul (ι : Fin b ↪ Fin z)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact endpoint kernel of the private-power row. -/
-theorem privatePolynomialMap_kernel_eq_koszul (hs : 0<s) (ι : Fin b ↪ Fin z)
+theorem privatePolynomialMap_kernel_eq_koszul (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (hA : ∀ i, Function.Injective (A i)) (w : Fin b → Fin h → K)
-    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i)=1)
-    (hcomm : ∀ i j, A i (w j)=A j (w i))
+    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i) = 1)
+    (hcomm : ∀ i j, A i (w j) = A j (w i))
     (hpair : ∀ p : GeneratorPair b, ∀ x y,
       A p.val.1 x+A p.val.2 y=0 → ∃ t : K,
         x=t • w p.val.2 ∧ y=(-t) • w p.val.1) :
@@ -141,11 +141,11 @@ theorem privatePolynomialMap_kernel_eq_koszul (hs : 0<s) (ι : Fin b ↪ Fin z)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Explicit alternating coefficient vector for every private-row cycle. -/
-theorem privatePolynomialMap_cycle_coefficients (hs : 0<s) (ι : Fin b ↪ Fin z)
+theorem privatePolynomialMap_cycle_coefficients (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (hA : ∀ i, Function.Injective (A i)) (w : Fin b → Fin h → K)
-    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i)=1)
-    (hcomm : ∀ i j, A i (w j)=A j (w i))
+    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i) = 1)
+    (hcomm : ∀ i j, A i (w j) = A j (w i))
     (hpair : ∀ p : GeneratorPair b, ∀ x y,
       A p.val.1 x+A p.val.2 y=0 → ∃ t : K,
         x=t • w p.val.2 ∧ y=(-t) • w p.val.1)

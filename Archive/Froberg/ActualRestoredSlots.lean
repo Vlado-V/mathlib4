@@ -45,84 +45,84 @@ def actualRestoredIndex (d h n e extra : ℕ) :
 variable {K} {d h n e : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredCounts_le (hd : 3≤d) :
+theorem actualRestoredCounts_le (hd : 3 ≤ d) :
     ∀ j∈allEvenIndices d,
       actualRestoredCounts K d h n e 0 j≤actualRestoredCounts K d h n e 1 j :=
   allEvenCount_le_append hd h n (e+actualRestoredPureCount K d h) 1
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def actualRestoredBaseSlot (hd : 3≤d) :
+def actualRestoredBaseSlot (hd : 3 ≤ d) :
     Fin (actualRestoredPureCount K d h) → Fin (actualRestoredSize K d h n e 0) :=
   fun i => (actualRestoredIndex K d h n e 0).symm
     (quadraticTailSlot hd (upperCount n d) h n e (actualRestoredPureCount K d h) i)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def actualRestoredInclusion (hd : 3≤d) :
+def actualRestoredInclusion (hd : 3 ≤ d) :
     Fin (actualRestoredSize K d h n e 0) → Fin (actualRestoredSize K d h n e 1) :=
   countIndexMap (actualRestoredCounts_le hd)
     (actualRestoredIndex K d h n e 0) (actualRestoredIndex K d h n e 1)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- This definition is the exact transported slot expression used by restriction. -/
-def actualRestoredEnlargedSlot (hd : 3≤d) :
+def actualRestoredEnlargedSlot (hd : 3 ≤ d) :
     Fin (actualRestoredPureCount K d h) → Fin (actualRestoredSize K d h n e 1) :=
   actualRestoredInclusion hd ∘ actualRestoredBaseSlot hd
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def actualRestoredExtraLayer (hd : 3≤d) :
+def actualRestoredExtraLayer (hd : 3 ≤ d) :
     ProductRows.LayerLabel (allEvenIndices d) (actualRestoredCounts K d h n e 1) :=
   quadraticExtraLayer hd h n (e+actualRestoredPureCount K d h)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def actualRestoredExtraIndex (hd : 3≤d) : Fin (actualRestoredSize K d h n e 1) :=
+def actualRestoredExtraIndex (hd : 3 ≤ d) : Fin (actualRestoredSize K d h n e 1) :=
   (actualRestoredIndex K d h n e 1).symm (Sum.inr (actualRestoredExtraLayer hd))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredIndex_baseSlot (hd : 3≤d)
+@[simp] theorem actualRestoredIndex_baseSlot (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     actualRestoredIndex K d h n e 0 (actualRestoredBaseSlot hd i)=
       quadraticTailSlot hd (upperCount n d) h n e (actualRestoredPureCount K d h) i := by
   exact (actualRestoredIndex K d h n e 0).apply_symm_apply _
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredBaseSlot_degree (hd : 3≤d)
+@[simp] theorem actualRestoredBaseSlot_degree (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     degree (actualRestoredIndex K d h n e 0 (actualRestoredBaseSlot hd i))=2 := by
   rw [actualRestoredIndex_baseSlot]
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredBaseSlot_positive (hd : 3≤d)
+theorem actualRestoredBaseSlot_positive (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     0<degree (actualRestoredIndex K d h n e 0 (actualRestoredBaseSlot hd i)) := by
   rw [actualRestoredBaseSlot_degree]
   decide
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredBaseSlot_injective (hd : 3≤d) :
+theorem actualRestoredBaseSlot_injective (hd : 3 ≤ d) :
     Function.Injective (actualRestoredBaseSlot (K := K) (h := h) (n := n) (e := e) hd) :=
   (actualRestoredIndex K d h n e 0).symm.injective.comp
     (quadraticTailSlot_injective hd (upperCount n d) h n e (actualRestoredPureCount K d h))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredInclusion_injective (hd : 3≤d) :
+theorem actualRestoredInclusion_injective (hd : 3 ≤ d) :
     Function.Injective (actualRestoredInclusion (K := K) (h := h) (n := n) (e := e) hd) :=
   countIndexMap_injective (actualRestoredCounts_le hd) _ _
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredEnlargedSlot_injective (hd : 3≤d) :
+theorem actualRestoredEnlargedSlot_injective (hd : 3 ≤ d) :
     Function.Injective (actualRestoredEnlargedSlot (K := K) (h := h) (n := n) (e := e) hd) :=
   (actualRestoredInclusion_injective hd).comp (actualRestoredBaseSlot_injective hd)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredIndex_inclusion (hd : 3≤d)
+@[simp] theorem actualRestoredIndex_inclusion (hd : 3 ≤ d)
     (i : Fin (actualRestoredSize K d h n e 0)) :
     actualRestoredIndex K d h n e 1 (actualRestoredInclusion hd i)=
       countLabelMap (actualRestoredCounts_le hd) (actualRestoredIndex K d h n e 0 i) := by
   exact (actualRestoredIndex K d h n e 1).apply_symm_apply _
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredEnlargedSlot_degree (hd : 3≤d)
+@[simp] theorem actualRestoredEnlargedSlot_degree (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     degree (actualRestoredIndex K d h n e 1 (actualRestoredEnlargedSlot hd i))=2 := by
   change degree (actualRestoredIndex K d h n e 1
@@ -131,23 +131,23 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredEnlargedSlot_positive (hd : 3≤d)
+theorem actualRestoredEnlargedSlot_positive (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     0<degree (actualRestoredIndex K d h n e 1 (actualRestoredEnlargedSlot hd i)) := by
   rw [actualRestoredEnlargedSlot_degree]
   decide
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredExtraLayer_degree (hd : 3≤d) :
+@[simp] theorem actualRestoredExtraLayer_degree (hd : 3 ≤ d) :
     (actualRestoredExtraLayer (K := K) (h := h) (n := n) (e := e) hd).1.val=2 := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredExtraLayer_position (hd : 3≤d) :
+@[simp] theorem actualRestoredExtraLayer_position (hd : 3 ≤ d) :
     (actualRestoredExtraLayer (K := K) (h := h) (n := n) (e := e) hd).2.val=
       e+actualRestoredPureCount K d h := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-@[simp] theorem actualRestoredEnlargedSlot_position (hd : 3≤d)
+@[simp] theorem actualRestoredEnlargedSlot_position (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     Sum.elim (fun _ => 0) (fun a => a.2.val)
       (actualRestoredIndex K d h n e 1 (actualRestoredEnlargedSlot hd i))=e+i.val := by
@@ -159,7 +159,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The temporary column follows every pure slot in the quadratic layer. -/
-theorem actualRestoredExtraLayer_after_pure (hd : 3≤d)
+theorem actualRestoredExtraLayer_after_pure (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     Sum.elim (fun _ => 0) (fun a => a.2.val)
       (actualRestoredIndex K d h n e 1 (actualRestoredEnlargedSlot hd i))<
@@ -168,19 +168,19 @@ theorem actualRestoredExtraLayer_after_pure (hd : 3≤d)
   exact Nat.add_lt_add_left i.isLt e
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredExtraLayer_not_old (hd : 3≤d)
+theorem actualRestoredExtraLayer_not_old (hd : 3 ≤ d)
     (i : ProductRows.LayerLabel (allEvenIndices d) (actualRestoredCounts K d h n e 0)) :
     countLayerMap (actualRestoredCounts_le hd) i≠actualRestoredExtraLayer hd :=
   quadraticExtraLayer_not_old hd h n (e+actualRestoredPureCount K d h) i
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredExtraLayer_cover (hd : 3≤d)
+theorem actualRestoredExtraLayer_cover (hd : 3 ≤ d)
     (i : ProductRows.LayerLabel (allEvenIndices d) (actualRestoredCounts K d h n e 1)) :
     i=actualRestoredExtraLayer hd ∨ ∃ j,countLayerMap (actualRestoredCounts_le hd) j=i := by
   exact (quadraticExtraLayer_cover hd h n (e+actualRestoredPureCount K d h) i).symm
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredExtraIndex_not_old (hd : 3≤d)
+theorem actualRestoredExtraIndex_not_old (hd : 3 ≤ d)
     (i : Fin (actualRestoredSize K d h n e 0)) :
     actualRestoredInclusion hd i≠actualRestoredExtraIndex hd := by
   intro heq
@@ -199,13 +199,13 @@ theorem actualRestoredExtraIndex_not_old (hd : 3≤d)
     exact actualRestoredExtraLayer_not_old hd j (Sum.inr.inj heq')
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredExtraIndex_ne_pure (hd : 3≤d)
+theorem actualRestoredExtraIndex_ne_pure (hd : 3 ≤ d)
     (i : Fin (actualRestoredPureCount K d h)) :
     actualRestoredEnlargedSlot hd i≠actualRestoredExtraIndex (n := n) (e := e) hd :=
   actualRestoredExtraIndex_not_old hd (actualRestoredBaseSlot hd i)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem actualRestoredExtraIndex_cover (hd : 3≤d)
+theorem actualRestoredExtraIndex_cover (hd : 3 ≤ d)
     (i : Fin (actualRestoredSize K d h n e 1)) :
     i=actualRestoredExtraIndex hd ∨ ∃ j,actualRestoredInclusion hd j=i := by
   cases hi : actualRestoredIndex K d h n e 1 i with
@@ -229,8 +229,8 @@ theorem actualRestoredExtraIndex_cover (hd : 3≤d)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A positive slot count always belongs to a layer strictly below d. -/
-theorem actualRestoredCounts_positive_lt (hd : 3≤d) (extra j : ℕ)
-    (hj : 0<actualRestoredCounts K d h n e extra j) : j<d := by
+theorem actualRestoredCounts_positive_lt (hd : 3 ≤ d) (extra j : ℕ)
+    (hj : 0 < actualRestoredCounts K d h n e extra j) : j<d := by
   have ha : j∈activeEvenIndices d := by
     by_contra hn
     change 0<allEvenCount d h n (e+actualRestoredPureCount K d h+extra) j at hj
@@ -241,7 +241,7 @@ theorem actualRestoredCounts_positive_lt (hd : 3≤d) (extra j : ℕ)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The actual base has the critical size; the enlarged family has one extra. -/
 theorem actualRestored_card {k lo a f : ℕ} {upper : Bool}
-    (hd : 3≤d) (hh : 0<h) (he : d%2=0)
+    (hd : 3 ≤ d) (hh : 0 < h) (he : d % 2 = 0)
     (hc : ExactCountConditions d k h lo n a f e upper) (extra : ℕ) :
     actualRestoredSize K d h n e extra+f=
       adjacentCriticalCount upper (n+h) d+extra := by
@@ -251,7 +251,7 @@ theorem actualRestored_card {k lo a f : ℕ} {upper : Bool}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem actualRestored_final_card {k lo a f : ℕ} {upper : Bool}
-    (hd : 3≤d) (hh : 0<h) (he : d%2=0)
+    (hd : 3 ≤ d) (hh : 0 < h) (he : d % 2 = 0)
     (hc : ExactCountConditions d k h lo n a f e upper) :
     upperCount n d+Fintype.card (ProductRows.LayerLabel (allEvenIndices d)
       (actualRestoredCounts K d h n e 0))+f=adjacentCriticalCount upper (h+n) d := by

@@ -21,16 +21,16 @@ open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def FirstVectorRowExact (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) : Prop :=
+def FirstVectorRowExact (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) : Prop :=
   (bilinearKoszulRow multiplication Q g
     (0 : (Fin 0 → K) →ₗ[K] Rows K h m ((d-1)+d))).ker=
     (bilinearKoszulConstants (W := Fin 0 → K) Q g).range
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem firstVectorRow_constants (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+theorem firstVectorRow_constants (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hex : FirstVectorRowExact Q g)
-    (x : Fin q → Rows K h m (d-1)) (y : Fin f → Forms K m d)
-    (hr : (∑ i,multiplication (Q i) (x i))+(∑ j,multiplication (y j) (g j))=0) :
+    (x : Fin q → Rows K h m (d - 1)) (y : Fin f → Forms K m d)
+    (hr : (∑ i, multiplication (Q i) (x i)) + (∑ j, multiplication (y j) (g j)) = 0) :
     ∃ C : Fin q → Fin f → K,
       (∀ i,x i=∑ j,C i j • g j) ∧ (∀ j,y j = -∑ i,C i j • Q i) := by
   have hw : ((x,y),(0 : Fin 0 → K))∈(bilinearKoszulRow multiplication Q g
@@ -43,7 +43,7 @@ theorem firstVectorRow_constants (Q : Fin q → Forms K m d) (g : Fin f → Rows
     fun j => (congrArg (fun z => z.1.2 j) hC).symm⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem firstVectorRowExact_of_quotient (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+theorem firstVectorRowExact_of_quotient (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d)) g))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication
       (VectorExpansionOpen.quotientMultiplication g d) Q)) : FirstVectorRowExact Q g := by

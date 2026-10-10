@@ -18,8 +18,8 @@ open MvPolynomial Quartic.HomogeneousCoefficientCoordinates
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s d h : ℕ}
 
 @[simp] theorem quotientFiberEquiv_mk (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
-    (he : ∀ i, (e i).degree = s) (p : Fin h → Forms K n (s+d))
-    (β : Exponent n (s+d)) :
+    (he : ∀ i, (e i).degree = s) (p : Fin h → Forms K n (s + d))
+    (β : Exponent n (s + d)) :
     quotientFiberEquiv e v he ((relationSpace (d := d) e v he).mkQ p) β =
       (relationFiber e v β.val).mkQ (fun j => (p j).val.coeff β.val) := rfl
 

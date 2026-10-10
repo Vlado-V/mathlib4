@@ -22,9 +22,9 @@ variable {K : Type} [Field K] {I σ : Type*}
 pairs, even when the ambient list also has scalar generator labels. -/
 def positivePairEquiv {J : Finset ℕ} {counts : ℕ → ℕ}
     (degree : I → ℕ) (ι : LayerLabel J counts → I)
-    (hι : Function.Injective ι) (hdegree : ∀ a,degree (ι a)=a.1.val)
-    (hpositive : ∀ j∈J,0<j)
-    (hcover : ∀ i,0<degree i → ∃ a,ι a=i) (R : ℕ) :
+    (hι : Function.Injective ι) (hdegree : ∀ a, degree (ι a) = a.1.val)
+    (hpositive : ∀ j ∈ J, 0 < j)
+    (hcover : ∀ i, 0 < degree i → ∃ a, ι a = i) (R : ℕ) :
     {p : Sym2 (LayerLabel J counts) // pairDegree p=R} ≃
       {p : Sym2 I // positiveDegreePair degree R p} := by
   let f : {p : Sym2 (LayerLabel J counts) // pairDegree p=R} →
@@ -57,10 +57,10 @@ unordered products in the common generator enumeration. -/
 theorem prepared_pair_independence {J : Finset ℕ} {counts : ℕ → ℕ}
     (q : (j : ℕ) → Fin (counts j) → MvPolynomial σ K)
     (degree : I → ℕ) (ι : LayerLabel J counts → I)
-    (hι : Function.Injective ι) (hdegree : ∀ a,degree (ι a)=a.1.val)
-    (hpositive : ∀ j∈J,0<j)
-    (hcover : ∀ i,0<degree i → ∃ a,ι a=i)
-    (E : I → MvPolynomial σ K) (hE : ∀ a,E (ι a)=q a.1.val a.2)
+    (hι : Function.Injective ι) (hdegree : ∀ a, degree (ι a) = a.1.val)
+    (hpositive : ∀ j ∈ J, 0 < j)
+    (hcover : ∀ i, 0 < degree i → ∃ a, ι a = i)
+    (E : I → MvPolynomial σ K) (hE : ∀ a, E (ι a) = q a.1.val a.2)
     (R : ℕ) (hq : Function.Injective (multiplication counts q J R)) :
     LinearIndependent K (fun p : {p : Sym2 I // positiveDegreePair degree R p} =>
       pairProducts E p.val) := by
@@ -81,10 +81,10 @@ theorem prepared_pair_independence {J : Finset ℕ} {counts : ℕ → ℕ}
 theorem prepared_pair_mem_product_range {J : Finset ℕ} {counts : ℕ → ℕ}
     (q : (j : ℕ) → Fin (counts j) → MvPolynomial σ K)
     (degree : I → ℕ) (ι : LayerLabel J counts → I)
-    (hι : Function.Injective ι) (hdegree : ∀ a,degree (ι a)=a.1.val)
-    (hpositive : ∀ j∈J,0<j)
-    (hcover : ∀ i,0<degree i → ∃ a,ι a=i)
-    (E : I → MvPolynomial σ K) (hE : ∀ a,E (ι a)=q a.1.val a.2)
+    (hι : Function.Injective ι) (hdegree : ∀ a, degree (ι a) = a.1.val)
+    (hpositive : ∀ j ∈ J, 0 < j)
+    (hcover : ∀ i, 0 < degree i → ∃ a, ι a = i)
+    (E : I → MvPolynomial σ K) (hE : ∀ a, E (ι a) = q a.1.val a.2)
     (R : ℕ) (p : {p : Sym2 I // positiveDegreePair degree R p}) :
     pairProducts E p.val∈(multiplication counts q J R).range := by
   classical

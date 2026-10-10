@@ -36,7 +36,7 @@ instance fullBiformFinite : Module.Finite K (FullBiform K σ n R s) := by
 /-- Full homogeneous output coordinates, viewed intrinsically. -/
 def fullBiformCoordinates
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R) :
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R) :
     (Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s) ≃ₗ[K]
       FullBiform K σ n R s :=
   LinearEquiv.ofBijective
@@ -52,7 +52,7 @@ def fullBiformCoordinates
 
 @[simp] theorem fullBiformCoordinates_val
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (u : Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s) :
     (fullBiformCoordinates o ho hdeg u).val=polynomialFormVector o s u := rfl
 
@@ -70,12 +70,12 @@ def fullBiformScalarProduct :
 /-- The actual intrinsic row has exactly the expected constant relations. -/
 theorem sparse_witness_intrinsic_exact
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (e : I → Fin n →₀ ℕ)
     (v : I → Fin (finrank K (homogeneousSubmodule σ K R)) → K)
-    (he : ∀ i,(e i).degree=s) (Q : Fin q → Forms K n d)
+    (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K n d)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K
         ((Fin q → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s) ×
           (I → Forms K n d)) W).comp (intermediateKoszul e v he Q)).range) :

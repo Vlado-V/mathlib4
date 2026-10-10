@@ -33,15 +33,15 @@ theorem surjective_polynomial_principal_open (A : (P → K) → E →ₗ[K] T)
 section FiniteRows
 variable [Fintype J]
 variable {E T : J → Type*}
-  [∀ j,AddCommGroup (E j)] [∀ j,Module K (E j)] [∀ j,Module.Finite K (E j)]
-  [∀ j,AddCommGroup (T j)] [∀ j,Module K (T j)] [∀ j,Module.Finite K (T j)]
+  [∀ j, AddCommGroup (E j)] [∀ j, Module K (E j)] [∀ j, Module.Finite K (E j)]
+  [∀ j, AddCommGroup (T j)] [∀ j, Module K (T j)] [∀ j, Module.Finite K (T j)]
 
 /-- Each row may have a different successful specialization, but all rows
 are simultaneously surjective on a single nonempty polynomial open. -/
 theorem surjective_polynomial_common_open
     (A : (j : J) → (P → K) → E j →ₗ[K] T j)
-    (hA : ∀ j,IsPolynomialFamily (A j))
-    (hwit : ∀ j,∃ a,Function.Surjective (A j a)) :
+    (hA : ∀ j, IsPolynomialFamily (A j))
+    (hwit : ∀ j, ∃ a, Function.Surjective (A j a)) :
     ∃ D : MvPolynomial P K, (∃ a,eval a D≠0) ∧
       ∀ a,eval a D≠0 → ∀ j,Function.Surjective (A j a) := by
   classical
@@ -63,9 +63,9 @@ open. This makes the passage from separate output planes to one shared plane
 explicit at the level of polynomials. -/
 theorem surjective_polynomial_base_fiber_open {B : Type*}
     (A : (j : J) → (B → K) → (P → K) → E j →ₗ[K] T j)
-    (hbase : ∀ j p,IsPolynomialFamily (fun b => A j b p))
-    (hfiber : ∀ j b,IsPolynomialFamily (A j b))
-    (hwit : ∀ j,∃ b p,Function.Surjective (A j b p)) :
+    (hbase : ∀ j p, IsPolynomialFamily (fun b => A j b p))
+    (hfiber : ∀ j b, IsPolynomialFamily (A j b))
+    (hwit : ∀ j, ∃ b p, Function.Surjective (A j b p)) :
     ∃ D : MvPolynomial B K, (∃ b,eval b D≠0) ∧
       ∀ b,eval b D≠0 → ∃ F : MvPolynomial P K, (∃ p,eval p F≠0) ∧
         ∀ p,eval p F≠0 → ∀ j,Function.Surjective (A j b p) := by

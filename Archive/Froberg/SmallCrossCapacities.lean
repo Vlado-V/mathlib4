@@ -18,12 +18,12 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-private theorem beta_nonnegative {d : ℕ} (hd : 3≤d) : 0≤countBeta d := by
+private theorem beta_nonnegative {d : ℕ} (hd : 3 ≤ d) : 0≤countBeta d := by
   have hG := (countTauFour_pos hd).trans_le (countTauFour_le_gamma d)
   unfold countBeta
   positivity
 
-theorem small_quadratic_diagonal_output_limit {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem small_quadratic_diagonal_output_limit {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     Tendsto (fun h : ℕ => (((h/2).choose 2-deletedTargetCount d h : ℕ) : ℝ)/(h : ℝ)^2)
       atTop (𝓝 ((1/8 : ℝ)-outerColumnRate d^2/2)) := by
   have hc := small_quadratic_symmetric_capacity hd hd8
@@ -36,7 +36,7 @@ theorem small_quadratic_diagonal_output_limit {d : ℕ} (hd : 5≤d) (hd8 : d≤
   exact nat_sub_normalized_limit _ _ (by omega) _ _ hN
     (deletedTargetCount_limit (by omega)) (by linarith)
 
-theorem eventually_small_quadratic_diagonal_capacity {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_small_quadratic_diagonal_capacity {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ n : ℕ in atTop, ∀ r : ℕ,
       (r : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2) →
       r≤((h/2).choose 2-deletedTargetCount d h)*((n/2).choose (d-2)/2) := by
@@ -50,7 +50,7 @@ theorem eventually_small_quadratic_diagonal_capacity {d : ℕ} (hd : 5≤d) (hd8
     (beta_nonnegative (by omega)) (small_quadratic_diagonal_output_limit hd hd8)
     (paired_monomial_capacity_limit (by omega)) hgap
 
-theorem small_quadratic_cross_output_limit {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem small_quadratic_cross_output_limit {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     Tendsto (fun h : ℕ => (((2*h/5+2-1).choose 2-deletedTargetCount d h : ℕ) : ℝ)/(h : ℝ)^2)
       atTop (𝓝 ((2/25 : ℝ)-outerColumnRate d^2/2)) := by
   have hc := small_quadratic_cross_capacity hd hd8
@@ -63,7 +63,7 @@ theorem small_quadratic_cross_output_limit {d : ℕ} (hd : 5≤d) (hd8 : d≤8) 
   exact nat_sub_normalized_limit _ _ (by omega) _ _ hN
     (deletedTargetCount_limit (by omega)) (by linarith)
 
-theorem eventually_small_quadratic_cross_capacity {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_small_quadratic_cross_capacity {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ n : ℕ in atTop, ∀ r : ℕ,
       (r : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2) →
       r≤((2*h/5+2-1).choose 2-deletedTargetCount d h)*(n/2+(d-2)-1).choose (d-2) := by
@@ -77,7 +77,7 @@ theorem eventually_small_quadratic_cross_capacity {d : ℕ} (hd : 5≤d) (hd8 : 
     (beta_nonnegative (by omega)) (small_quadratic_cross_output_limit hd hd8)
     (half_monomial_count_limit _) hgap
 
-theorem eventually_small_quartic_cross_capacity {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_small_quartic_cross_capacity {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ n : ℕ in atTop,
       higherGeneratorCount d h n 4≤(h-2*h/5+4-1).choose 4*(n/2+(d-4)-1).choose (d-4) := by
   have hgap : smallGamma d < ((3/5 : ℝ)^4/((4 : ℕ).factorial : ℝ))*

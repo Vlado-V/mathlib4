@@ -57,11 +57,11 @@ every earlier coefficient and every earlier alternating relation. -/
 theorem CoefficientRowsSolved.step
     {a E : I → A} {j : I → ℕ} {c : ℕ → I → A} {N : ℕ} {B : I → I → K}
     (hB : CoefficientRowsSolved a E j c N B)
-    (V : ℕ → Submodule K A) (hcV : ∀ t i,c t i∈V t)
-    (hE : ∀ i,j i=0 → E i=0)
-    (hrow : (∑ i,a i*c (N+1) i)+
-      (∑ i,if j i≤N+1 then E i*c (N+1-j i) i else 0)=0)
-    (hexact : CoefficientRowExact V a E j (N+1)) :
+    (V : ℕ → Submodule K A) (hcV : ∀ t i, c t i ∈ V t)
+    (hE : ∀ i, j i = 0 → E i = 0)
+    (hrow : (∑ i, a i * c (N + 1) i) +
+      (∑ i, if j i ≤ N + 1 then E i * c (N + 1 - j i) i else 0) = 0)
+    (hexact : CoefficientRowExact V a E j (N + 1)) :
     ∃ C : I → I → K,CoefficientRowsSolved a E j c (N+1) C := by
   classical
   have hsub := coefficient_row_substitution E j c B (N+1) (by omega) hE (by
@@ -127,10 +127,10 @@ theorem CoefficientRowsSolved.step
 theorem exists_solved_coefficient_matrix
     (V : ℕ → Submodule K A) (a E : I → A) (j : I → ℕ)
     (c : ℕ → I → A) (N : ℕ)
-    (hcV : ∀ t i,c t i∈V t) (hE : ∀ i,j i=0 → E i=0)
-    (hrow : ∀ r,0<r → r≤N → (∑ i,a i*c r i)+
-      (∑ i,if j i≤r then E i*c (r-j i) i else 0)=0)
-    (hexact : ∀ r,0<r → r≤N → CoefficientRowExact V a E j r) :
+    (hcV : ∀ t i, c t i ∈ V t) (hE : ∀ i, j i = 0 → E i = 0)
+    (hrow : ∀ r, 0 < r → r ≤ N → (∑ i, a i * c r i) +
+      (∑ i, if j i ≤ r then E i * c (r - j i) i else 0) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ N → CoefficientRowExact V a E j r) :
     ∃ B : I → I → K,CoefficientRowsSolved a E j c N B := by
   induction N with
   | zero => exact ⟨0,coefficientRowsSolved_zero a E j c⟩

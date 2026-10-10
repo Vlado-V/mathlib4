@@ -23,13 +23,13 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)
-    (slot : Fin (finrank K (Forms K h d)) → Fin r) (hslot : ∀ k,0<degree (idx (slot k)))
+theorem restored_certificate_principal_open (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (idx : Fin r ≃ Label q J counts)
+    (slot : Fin (finrank K (Forms K h d)) → Fin r) (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p₀ : Space m d q J counts O) (hp₀ : EvenPositiveReduction p₀)
     (D : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K)
-    (hD : ∃ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0)
+    (hD : ∃ p : RestoredSpace m d q J counts O, eval (restoredCoordinates hO p) D ≠ 0)
     (hodd : ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →
       Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot p)))
     (hi : HasRestoredIndependentOpen (m := m) (f := f) hdp hd hO hJ heven idx slot)
@@ -91,8 +91,8 @@ theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A fully restored certificate together with the generic lower-degree
 child flag and the strict outer vector model, at the same parameter point. -/
-def RestoredGenericCertificate (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def RestoredGenericCertificate (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (G C : ℝ) (p : RestoredOuterSpace m d q f J counts O) : Prop :=
   RestoredCertificate hdp hd hO hJ heven idx slot p ∧
@@ -111,11 +111,12 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The exact-count child flag, all restored certificate conditions, and any
 additional full open survive together on one nonempty positive-scalar fiber. -/
 theorem exact_counts_restored_certified_fiber {d k h lo : ℕ}
-    (hd : 3≤d) (hdeven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hd : 3 ≤ d) (hdeven : d % 2 = 0) (hk : 0 < k) (hh : h = k * centralHalfBinomial d) (hhpos : 0 <
+      h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∃ G C : ℝ,0<G ∧ 0<C ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (J : Finset ℕ) (counts : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)

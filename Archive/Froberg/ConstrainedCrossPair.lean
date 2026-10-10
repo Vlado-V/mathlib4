@@ -27,7 +27,7 @@ instance (w j : ℕ) (b : Bool) (T : MvPolynomial (Fin w × Bool) K →ₗ[K] X)
     Module.Finite K (halfConstrainedSpace w j b T) :=
   Submodule.finiteDimensional_of_le inf_le_left
 
-theorem halfConstrainedSpace_dimension [Module.Finite K X] {w : ℕ} (hw : 0<w)
+theorem halfConstrainedSpace_dimension [Module.Finite K X] {w : ℕ} (hw : 0 < w)
     (j : ℕ) (b : Bool) (T : MvPolynomial (Fin w × Bool) K →ₗ[K] X) :
     (w+j-1).choose j - finrank K X ≤ finrank K (halfConstrainedSpace w j b T) := by
   have h := finrank_intersection_kernel_lower_bound (Forms K w j)
@@ -65,11 +65,11 @@ in each half-space; all cross products remain independent. -/
 theorem exists_constrained_fourBlock_cross_pair
     {X₁ X₂ : Type*} [AddCommGroup X₁] [Module K X₁] [Module.Finite K X₁]
     [AddCommGroup X₂] [Module K X₂] [Module.Finite K X₂]
-    {w v j l s t a b : ℕ} (hw : 0<w) (hv : 0<v)
+    {w v j l s t a b : ℕ} (hw : 0 < w) (hv : 0 < v)
     (T₁ : MvPolynomial (Fin w × Bool) K →ₗ[K] X₁)
     (T₂ : MvPolynomial (Fin w × Bool) K →ₗ[K] X₂)
-    (ha : a ≤ ((w+j-1).choose j - finrank K X₁) * (v+s-1).choose s)
-    (hb : b ≤ ((w+l-1).choose l - finrank K X₂) * (v+t-1).choose t) :
+    (ha : a ≤ ((w + j - 1).choose j - finrank K X₁) * (v + s - 1).choose s)
+    (hb : b ≤ ((w + l - 1).choose l - finrank K X₂) * (v + t - 1).choose t) :
     ∃ (f : Fin a → MvPolynomial (FourBlocks.Variables (Fin w) (Fin v)) K)
       (g : Fin b → MvPolynomial (FourBlocks.Variables (Fin w) (Fin v)) K),
       (∀ i, (f i).IsHomogeneous (j+s) ∧

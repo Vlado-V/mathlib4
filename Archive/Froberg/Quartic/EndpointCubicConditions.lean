@@ -53,7 +53,7 @@ def childPullback (P : MvPolynomial (Fin (finrank K (Fin q → Forms K m 2))) K)
 without changing any of its mixed coefficients, quadrics, or motions. -/
 theorem generic_blocks_and_cubic [Infinite K]
     (hblocks : GenericBlockConditions K m c q) (hm : 3 ≤ m)
-    (hq : m*q ≤ (m+2).choose 3) :
+    (hq : m * q ≤ (m + 2).choose 3) :
     ∃ D : MvPolynomial (ParameterIndex m c q) K,
       (∃ a, eval a D ≠ 0) ∧ ∀ a, eval a D ≠ 0 →
         BlockConditions a ∧ Function.Injective (CubicGeneric.cubicMap (coefficientChild a)) ∧

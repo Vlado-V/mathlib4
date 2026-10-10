@@ -27,9 +27,9 @@ variable {K U U' V A W I J : Type*} [Field K]
 theorem bilinearKoszulRow_exact_transport
     (e : U ≃ₗ[K] U') (μ : V →ₗ[K] U →ₗ[K] A)
     (μ' : V →ₗ[K] U' →ₗ[K] A)
-    (hμ : ∀ v u,μ' v (e u)=μ v u)
+    (hμ : ∀ v u, μ' v (e u) = μ v u)
     (Q : I → V) (E : J → U) (P : W →ₗ[K] A)
-    (hexact : (bilinearKoszulRow μ Q E P).ker=
+    (hexact : (bilinearKoszulRow μ Q E P).ker =
       (bilinearKoszulConstants (K := K) (W := W) Q E).range) :
     (bilinearKoszulRow μ' Q (fun j => e (E j)) P).ker=
       (bilinearKoszulConstants (K := K) (W := W) Q (fun j => e (E j))).range := by

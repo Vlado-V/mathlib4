@@ -25,7 +25,7 @@ variable {K : Type} [Field K] {h m i j : ℕ}
   simp [coreWeight]
 
 /-- Taking a free-variable coefficient commutes with X-degree extraction. -/
-theorem freeCoeff_coreComponent (b : Fin m →₀ ℕ) (p : Poly K (h+m)) (i : ℕ) :
+theorem freeCoeff_coreComponent (b : Fin m →₀ ℕ) (p : Poly K (h + m)) (i : ℕ) :
     freeCoeff b (coreComponent h m i p) = homogeneousComponent i (freeCoeff b p) := by
   ext a
   simp [coreComponent,freeCoeff_coeff,coeff_weightedHomogeneousComponent,
@@ -50,7 +50,7 @@ theorem coreComponent_blockPolynomial (u : Block K h m i j) (k : ℕ) :
     · simp
 
 /-- The total-degree component projects onto its genuine tensor biform. -/
-theorem coreComponent_exists_block (p : Forms K (h+m) (i+j)) :
+theorem coreComponent_exists_block (p : Forms K (h + m) (i + j)) :
     ∃ u : Block K h m i j, coreComponent h m i p.val = blockPolynomial u := by
   let u : Block K h m i j := fun b => ⟨freeCoeff b.val p.val, by
     change (freeCoeff b.val p.val).IsHomogeneous i

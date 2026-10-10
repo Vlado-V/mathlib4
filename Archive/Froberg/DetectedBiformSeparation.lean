@@ -48,12 +48,12 @@ theorem scalar_detected_biform_separation
     (Q : Fin q → Forms K n d) (T : Poly K h →ₗ[K] (Fin c → K))
     (F : Fin f → FullBiform K (Fin h) n R s)
     (hF : LinearIndependent K (fun p =>
-      TensorProduct.map (LinearMap.id : (Fin c → K) →ₗ[K] _) (familySpace Q*Forms K n t).mkQ
+      TensorProduct.map (LinearMap.id : (Fin c → K) →ₗ[K] _) (familySpace Q * Forms K n t).mkQ
         (biformOutputMap T (pairProducts (fun i => (F i).val) p))))
     (x : Fin q → Fin c → Forms K n t) (a : Sym2 (Fin f) → K)
-    (hrel : scalarCoefficientRow Q x+
+    (hrel : scalarCoefficientRow Q x +
       detectedSymmetricProductRow (FullBiform K (Fin h) n R s).subtype
-        (biformVectorDetector T) F a=0) : a=0 := by
+        (biformVectorDetector T) F a = 0) : a=0 := by
   exact detected_biform_vector_relation_coefficients T (familySpace Q*Forms K n t)
     (pairProducts (fun i => (F i).val)) hF (scalarCoefficientRow Q x)
     (scalarCoefficientRow_mem Q x) a hrel
@@ -64,10 +64,10 @@ theorem exists_scalar_separated_biform_family
     (Q : Fin q → Forms K n d)
     (o : ι → Forms K h 1) (T : Poly K h →ₗ[K] (Fin c → K))
     (ho : LinearIndependent K (fun p => T (pairProducts (fun i => (o i).val) p)))
-    (C : Submodule K (Poly K n)) (hCdeg : C≤Forms K n (d-1))
+    (C : Submodule K (Poly K n)) (hCdeg : C ≤ Forms K n (d - 1))
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCQ : Disjoint (C*C) (familySpace Q*Forms K n (d-2)))
-    (hf : f≤Fintype.card ι*(finrank K C/2)) :
+    (hCQ : Disjoint (C * C) (familySpace Q * Forms K n (d - 2)))
+    (hf : f ≤ Fintype.card ι * (finrank K C / 2)) :
     ∃ F : Fin f → FullBiform K (Fin h) n 1 (d-1),
       LinearIndependent K F ∧
       ∀ (x : Fin q → Fin c → Forms K n (d-2)) (a : Sym2 (Fin f) → K),

@@ -25,10 +25,10 @@ variable {h m d e f u : ℕ}
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem exists_critical_comparison_of_concrete_background
     (hm : 0 < m) (upper : Bool)
-    (hcard : upperCount m d+e+f+u=adjacentCriticalCount upper (h+m) d)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d)
-      (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (hcard : upperCount m d + e + f + u = adjacentCriticalCount upper (h + m) d)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d)
+      (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (Q : Fin (upperCount m d) → Forms K m d) (hQ : LinearIndependent K Q)
     (E : Fin e → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

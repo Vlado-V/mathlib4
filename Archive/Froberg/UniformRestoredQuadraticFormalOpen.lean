@@ -22,9 +22,9 @@ open Froberg Module Filter MvPolynomial
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_restored_formal_quadratic_open {d k h lo : ℕ}
-    (hd : 3≤d) (he : d%2=0) (hh : 0<h)
+    (hd : 3 ≤ d) (he : d % 2 = 0) (hh : 0 < h)
     (upper : Bool) (a f e : ℕ → ℕ) (extra : ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
       (slot : Fin (actualRestoredPureCount K d h) →
@@ -55,9 +55,9 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The quadratic quotient supplied by the common frame open satisfies
 all detector assumptions, so no further choice of output space is needed. -/
 theorem uniform_exact_counts_restored_frame_quadratic_open {d k h lo : ℕ}
-    (hd : 3≤d) (he : d%2=0) (hh : 0<h)
+    (hd : 3 ≤ d) (he : d % 2 = 0) (hh : 0 < h)
     (upper : Bool) (a f e : ℕ → ℕ) (extra : ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ frame : Fin (quadraticOutputDimension
       d h) → Forms K h 2,
       ∀ slot : Fin (actualRestoredPureCount K d h) →

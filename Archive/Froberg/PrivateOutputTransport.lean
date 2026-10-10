@@ -26,8 +26,8 @@ theorem private_output_transport
     (o : Fin c → MvPolynomial σ K) (u : Fin h → MvPolynomial σ K)
     (w : Fin b → MvPolynomial σ K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,outputCombination o (A i (Pi.single j 1))=w i*u j)
-    (v : Fin b → Fin h → Forms K (a+z) t) :
+    (hA : ∀ i j, outputCombination o (A i (Pi.single j 1)) = w i * u j)
+    (v : Fin b → Fin h → Forms K (a + z) t) :
     polynomialVector o (privatePolynomialMapAt (s := s) ι A v)=
       ∑ i,(rename Sum.inl (w i)*rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*
         polynomialVector u (fun j => (v i j).val) := by
@@ -52,9 +52,9 @@ theorem private_output_transport
 nonzero output form is injective and the lower output basis is independent. -/
 theorem private_output_map_injective
     (o : Fin c → MvPolynomial σ K) (u : Fin h → MvPolynomial σ K)
-    (hu : LinearIndependent K u) (w : MvPolynomial σ K) (hw : w≠0)
+    (hu : LinearIndependent K u) (w : MvPolynomial σ K) (hw : w ≠ 0)
     (A : (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ j,outputCombination o (A (Pi.single j 1))=w*u j) :
+    (hA : ∀ j, outputCombination o (A (Pi.single j 1)) = w * u j) :
     Function.Injective A := by
   apply LinearMap.ker_eq_bot.mp
   apply LinearMap.ker_eq_bot'.mpr
@@ -81,7 +81,7 @@ theorem private_output_map_injective
 after adjoining private variables. -/
 theorem extended_matrix_output_transport {m : ℕ}
     (o : Fin c → MvPolynomial σ K) (E : Fin c → Fin m → Poly K a)
-    (p : Fin m → Forms K (a+z) t) :
+    (p : Fin m → Forms K (a + z) t) :
     polynomialVector o (extendedCorePolynomialMatrix E p)=
       ∑ i,polynomialVector o (fun k => rename (Fin.castAdd z) (E k i))*
         rename Sum.inr (p i).val := by
@@ -102,9 +102,9 @@ theorem private_polynomial_row_image_zero {m r : ℕ}
     (u : Fin h → MvPolynomial σ K)
     (w : Fin b → MvPolynomial σ K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,outputCombination o (A i (Pi.single j 1))=w i*u j)
+    (hA : ∀ i j, outputCombination o (A i (Pi.single j 1)) = w i * u j)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
-    (hprojected : ∀ j d,d≤1 → ∀ p : Fin m → Forms K a d,
+    (hprojected : ∀ j d, d ≤ 1 → ∀ p : Fin m → Forms K a d,
       (∀ α,sparseOutputCoefficient e v p α∈(A j).range) → p=0)
     (p : Fin m → Forms K (a+z) (s+1))
     (zeta : Fin b → Fin h → Forms K (a+z) r)
@@ -123,15 +123,15 @@ theorem private_polynomial_row_image_zero {m r : ℕ}
 
 /-! Below the private endpoint, the separated private image has zero kernel. -/
 theorem private_polynomial_row_lower_zero {m r : ℕ}
-    (hs : 2 ≤ s) (hr : r<s)
+    (hs : 2 ≤ s) (hr : r < s)
     (o : Fin c → MvPolynomial σ K) (ho : LinearIndependent K o)
     (u : Fin h → MvPolynomial σ K) (hu : LinearIndependent K u)
-    (w : Fin b → MvPolynomial σ K) (hw : ∀ i,w i≠0)
+    (w : Fin b → MvPolynomial σ K) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,outputCombination o (A i (Pi.single j 1))=w i*u j)
+    (hA : ∀ i j, outputCombination o (A i (Pi.single j 1)) = w i * u j)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
-    (hprojected : ∀ j d,d≤1 → ∀ p : Fin m → Forms K a d,
+    (hprojected : ∀ j d, d ≤ 1 → ∀ p : Fin m → Forms K a d,
       (∀ α,sparseOutputCoefficient e v p α∈(A j).range) → p=0)
     (p : Fin m → Forms K (a+z) (s+1))
     (zeta : Fin b → Fin h → Forms K (a+z) r)

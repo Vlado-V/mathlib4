@@ -21,8 +21,8 @@ variable {K V : Type*} [Field K] [Infinite K]
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem intrinsic_principal_open_affine_normalization
     (D : MvPolynomial (Fin (finrank K (V × K))) K)
-    (hD : ∃ y,eval y D≠0) (Good : V × K → Prop)
-    (hgood : ∀ y,eval y D≠0 → Good ((Module.finBasis K (V × K)).equivFun.symm y))
+    (hD : ∃ y, eval y D ≠ 0) (Good : V × K → Prop)
+    (hgood : ∀ y, eval y D ≠ 0 → Good ((Module.finBasis K (V × K)).equivFun.symm y))
     (hscale : ∀ c : K,c≠0 → ∀ y,Good (c • y) → Good y) :
     ∃ P : MvPolynomial (Fin (finrank K V)) K,
       (∃ x,eval x P≠0) ∧ ∀ x,eval x P≠0 → Good ((Module.finBasis K V).equivFun.symm x,1) := by

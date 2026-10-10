@@ -51,8 +51,8 @@ theorem weightedComponent_homogeneous_left (w : σ → ℕ)
 columns. This is the coefficient identity used in B.5's increasing-row induction. -/
 theorem mixed_generator_component_row (w : σ → ℕ)
     (a E c : I → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i)) (r : ℕ) :
+    (ha : ∀ i, (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i)) (r : ℕ) :
     weightedHomogeneousComponent w r (∑ i,(a i+E i)*c i) =
       (∑ i,a i*weightedHomogeneousComponent w r (c i)) +
       ∑ i,if j i≤r then E i*weightedHomogeneousComponent w (r-j i) (c i) else 0 := by
@@ -63,9 +63,9 @@ theorem mixed_generator_component_row (w : σ → ℕ)
 /-- Every actual cycle satisfies the displayed row equation in every degree. -/
 theorem mixed_cycle_row (w : σ → ℕ)
     (a E c : I → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i))
-    (hc : ∑ i,(a i+E i)*c i=0) (r : ℕ) :
+    (ha : ∀ i, (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
+    (hc : ∑ i, (a i + E i) * c i = 0) (r : ℕ) :
     (∑ i,a i*weightedHomogeneousComponent w r (c i)) +
       (∑ i,if j i≤r then E i*weightedHomogeneousComponent w (r-j i) (c i) else 0)=0 := by
   rw [← mixed_generator_component_row w a E c j ha hE r,hc,map_zero]

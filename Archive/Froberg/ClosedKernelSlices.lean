@@ -18,7 +18,7 @@ variable {K : Type*} [Field K] {a b T : ℕ}
 
 theorem exists_closed_kernel_slices
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (s : ℕ → ℕ) (Z : (r : Fin (a+1)) → Fin (s r.val) → Fin T → K)
+    (s : ℕ → ℕ) (Z : (r : Fin (a + 1)) → Fin (s r.val) → Fin T → K)
     (hZ : ∀ r : Fin (a+1),∀ ell : Fin T → K,
       r.val ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
       (∀ t,covector ell (Z r t)=0) → ell=0) :

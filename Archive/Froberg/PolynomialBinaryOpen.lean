@@ -19,8 +19,8 @@ open MvPolynomial
 variable {K I : Type*} [Field K] [Infinite K]
 
 theorem principal_property_inter {P Q : (I → K) → Prop}
-    (hP : ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → P a)
-    (hQ : ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → Q a) :
+    (hP : ∃ D : MvPolynomial I K, (∃ a, eval a D ≠ 0) ∧ ∀ a, eval a D ≠ 0 → P a)
+    (hQ : ∃ D : MvPolynomial I K, (∃ a, eval a D ≠ 0) ∧ ∀ a, eval a D ≠ 0 → Q a) :
     ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → P a ∧ Q a := by
   obtain ⟨D,⟨a,ha⟩,hD⟩ := hP
   obtain ⟨E,⟨b,hb⟩,hE⟩ := hQ

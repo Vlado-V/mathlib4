@@ -26,23 +26,24 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_first_core_row_exact
-    (hd : 3≤d) (h2J : 2∈J)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+    (hd : 3 ≤ d) (h2J : 2 ∈ J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination (fun k => (bo k).val) (w i)*(bo j).val)=A i (Pi.single j 1))
-    (hker : (privatePolynomialMap (a := a) (s := d-1) ι A).ker=
-      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d-1) ι w))))
-    (P : Fin b → FullBiform K σ (a+z) 1 (d-1))
-    (hP : ∀ i,(P i).val=rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
-      rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))
+    (hA : ∀ i j, T (outputCombination (fun k => (bo k).val) (w i) * (bo j).val) = A i (Pi.single j
+      1))
+    (hker : (privatePolynomialMap (a := a) (s := d - 1) ι A).ker =
+      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d - 1) ι w))))
+    (P : Fin b → FullBiform K σ (a + z) 1 (d - 1))
+    (hP : ∀ i, (P i).val = rename Sum.inl (outputCombination (fun k => (bo k).val) (w i)) *
+      rename Sum.inr (monomial (privateExponent a (d - 1) ι i) (1 : K)))
     (p₀ : Space a d q J counts O)
-    (hE : ∀ i,biformVectorDetector T (layers (coreExtension z p₀) 2 i)=0)
-    (hprod : ProductRows.multiplication counts (layers (coreExtension z p₀)) J 2=0)
-    (hrow : (row hO ⟨2,h2J⟩ (coreExtension z p₀)).ker=
-      (rowConstants hO ⟨2,h2J⟩ (coreExtension z p₀)).range) :
+    (hE : ∀ i, biformVectorDetector T (layers (coreExtension z p₀) 2 i) = 0)
+    (hprod : ProductRows.multiplication counts (layers (coreExtension z p₀)) J 2 = 0)
+    (hrow : (row hO ⟨2, h2J⟩ (coreExtension z p₀)).ker =
+      (rowConstants hO ⟨2, h2J⟩ (coreExtension z p₀)).range) :
     (privateAugmentedRow hO ⟨2,h2J⟩ (coreExtension z p₀) (fun i => (P i).val)).ker=
       ((rowConstants hO ⟨2,h2J⟩ (coreExtension z p₀)).prodMap (intrinsicPrivateBoundary
         P)).range := by

@@ -27,8 +27,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_polynomial_kernel_frame
     (P : (I → K) → W →ₗ[K] (Fin b → K)) (hP : IsPolynomialFamily P)
     (p₀ : I → K) (S : (Fin b → K) →ₗ[K] W)
-    (hS : (P p₀).comp S=LinearMap.id)
-    (U : Submodule K W) (hU : U≤(P p₀).ker) :
+    (hS : (P p₀).comp S = LinearMap.id)
+    (U : Submodule K W) (hU : U ≤ (P p₀).ker) :
     ∃ F : (I → K) → U →ₗ[K] W,
       IsPolynomialFamily F ∧
       (∀ p,(P p).comp (F p)=0) ∧ F p₀=U.subtype := by

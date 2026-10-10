@@ -23,16 +23,16 @@ variable {h m d q r f b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem prepared_private_flag_formal_relations (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (e : Fin r ≃ PreparedParameters.Label q J counts)
+theorem prepared_private_flag_formal_relations (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (e : Fin r ≃ PreparedParameters.Label q J counts)
     (U : Fin b → Forms K h d)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f b J counts O)
     (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1 p.2))
     (H : OddCyclesExact U p.1 p.2)
     (hreduce : FullPreparedParameters.PrivateSplitReduction hd ho hO hJ heven e U p)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range) :
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range) :
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalMixed (embeddedFlagSpace (renameForm (Fin.natAdd h))
           (fun j : Fin q => p.2.1.1 (Sum.inl j)) ⊔

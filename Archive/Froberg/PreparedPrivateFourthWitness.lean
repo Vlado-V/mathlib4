@@ -28,17 +28,17 @@ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_fourth_private_row_parameter {w v z d q b t : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
-    (hRJ : 4∈J) (hd : 3≤d) (hRd : 4<d)
+    (hRJ : 4 ∈ J) (hd : 3 ≤ d) (hRd : 4 < d)
     (h : FourthRowCapacity w v d q b J counts T)
     (bi : Basis (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K 3)))
       K (homogeneousSubmodule (Fin w × Bool) K 3))
     (bo : Basis (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K 4)))
       K (homogeneousSubmodule (Fin w × Bool) K 4))
-    (l : Fin t → homogeneousSubmodule (Fin w × Bool) K 1) (hl : ∀ i,l i≠0)
+    (l : Fin t → homogeneousSubmodule (Fin w × Bool) K 1) (hl : ∀ i, l i ≠ 0)
     (ι : Fin t ↪ Fin z)
-    (hrelations : ∀ i,b*((d-4)+1).choose (d-4)≤oddOutputDimension w 4-
+    (hrelations : ∀ i, b * ((d - 4) + 1).choose (d - 4) ≤ oddOutputDimension w 4 -
       finrank K (privateOutputMatrix bi bo (l i)).range)
-    (ell : Fin 2 → Forms K (v+v) 1) (hell : LinearIndependent K ell) :
+    (ell : Fin 2 → Forms K (v + v) 1) (hell : LinearIndependent K ell) :
     let r : J := ⟨4,hRJ⟩
     let hO : ∀ j∈J,constrainedOutputs T j≤homogeneousSubmodule (Fin w ×
       Bool) K j := fun _ _ => inf_le_left

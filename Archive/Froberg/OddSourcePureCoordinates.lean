@@ -22,10 +22,10 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem oddHigherRelationMap_mixed_injective (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+theorem oddHigherRelationMap_mixed_injective (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (hU : LinearIndependent K U)
-    (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     Function.Injective (oddHigherRelationMap (by omega : 1≤d) F
       (fun i => mixedPureOddGenerator hd (U i) (P i))) := by
   let hd1 : 1≤d := by omega
@@ -58,10 +58,10 @@ theorem oddHigherRelationMap_mixed_injective (hd : Odd d) (hd3 : 3≤d)
   simpa only [Submodule.coe_zero,map_zero] using hz
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem exists_odd_mixed_source_coordinates (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+theorem exists_odd_mixed_source_coordinates (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (hU : LinearIndependent K U)
-    (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     ∃ B : HigherOddCoordinates K h m d (by omega : 1≤d) →ₗ[K] (Fin u → K),
       B.comp (oddHigherRelationMap (by omega : 1≤d) F
         (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id := by

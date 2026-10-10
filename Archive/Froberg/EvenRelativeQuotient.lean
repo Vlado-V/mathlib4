@@ -21,7 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f e : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem evenRelativeFamily_range (hdp : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) :
     (evenRelativeFamily hdp Q F E).range.map (evenBackgroundTargetEquiv hdp Q F).toLinearMap=
       (oddEvenRelativeMap (fun i => scalarEvenBiform (h := h) (Q i))
@@ -40,7 +40,7 @@ theorem evenRelativeFamily_range (hdp : 1 ≤ d)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 def evenRelativeQuotientEquiv (hdp : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) :
     (EvenBackgroundTarget hdp Q F ⧸ (evenRelativeFamily hdp Q F E).range) ≃ₗ[K]
       ((biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations
@@ -53,7 +53,7 @@ def evenRelativeQuotientEquiv (hdp : 1 ≤ d)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem evenRelativeQuotient_compatible (hdp : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) (p : Forms K m d)
     (v : EvenBackgroundSource hdp F) :
     evenRelativeQuotientEquiv hdp Q F E
@@ -69,7 +69,7 @@ theorem evenRelativeQuotient_compatible (hdp : 1 ≤ d)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem evenRelative_closed_slices (hdp : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) (s : ℕ → ℕ)
     (hs : HasClosedKernelSlices (targetPostcompose (evenBackgroundScalar hdp Q F)
       (evenRelativeFamily hdp Q F E).range.mkQ) s) :

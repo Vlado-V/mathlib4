@@ -25,16 +25,16 @@ variable {K : Type} [Field K] [Infinite K] {n d r : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Add the odd projection as a fixed summand, so even coverage is ordinary
 surjectivity onto the full homogeneous space. -/
-def evenCoverageMap (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
+def evenCoverageMap (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (q : Fin r → Forms K n d) :
     ((D × (Fin r → Forms K n d)) × Forms K n (2*d)) →ₗ[K] Forms K n (2*d) :=
   (D.subtype.coprod (endpointMultiplication q)).coprod (parityForm w 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenCoverageMap_surjective_of_coverage
-    (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
+    (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (q : Fin r → Forms K n d)
-    (hc : ∀ p,parityForm w 0 p∈D ⊔ (endpointMultiplication q).range) :
+    (hc : ∀ p, parityForm w 0 p ∈ D ⊔ (endpointMultiplication q).range) :
     Function.Surjective (evenCoverageMap D w q) := by
   intro p
   obtain ⟨z,hz,y,⟨a,rfl⟩,he⟩ := Submodule.mem_sup.mp (hc p)
@@ -45,10 +45,10 @@ theorem evenCoverageMap_surjective_of_coverage
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenCoverageMap_coverage_of_surjective
-    (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
+    (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (e : Fin r → ZMod 2) (q : Fin r → Forms K n d)
-    (hD : D≤(parityForm w 1).ker)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
+    (hD : D ≤ (parityForm w 1).ker)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
     (hc : Function.Surjective (evenCoverageMap D w q)) :
     ∀ p,parityForm w 0 p∈D ⊔ (endpointMultiplication q).range := by
   intro p
@@ -67,7 +67,7 @@ theorem evenCoverageMap_coverage_of_surjective
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenCoverageMap_polynomial {I : Type*}
-    (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
+    (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (q : (I → K) → Fin r → Forms K n d) (hq : IsPolynomialFamily q) :
     IsPolynomialFamily (fun p => evenCoverageMap D w (q p)) := by
   refine isPolynomialFamily_linearMap
@@ -85,12 +85,12 @@ theorem evenCoverageMap_polynomial {I : Type*}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem even_coverage_principal_open {I : Type*}
-    (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
+    (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (e : Fin r → ZMod 2) (q : (I → K) → Fin r → Forms K n d)
-    (hq : IsPolynomialFamily q) (hD : D≤(parityForm w 1).ker)
-    (hpar : ∀ p i,(q p i).val.IsWeightedHomogeneous w (e i))
+    (hq : IsPolynomialFamily q) (hD : D ≤ (parityForm w 1).ker)
+    (hpar : ∀ p i, (q p i).val.IsWeightedHomogeneous w (e i))
     (p₀ : I → K)
-    (hc : ∀ z,parityForm w 0 z∈D ⊔ (endpointMultiplication (q p₀)).range) :
+    (hc : ∀ z, parityForm w 0 z ∈ D ⊔ (endpointMultiplication (q p₀)).range) :
     ∃ P : MvPolynomial I K,eval p₀ P≠0 ∧ ∀ p,eval p P≠0 →
       ∀ z,parityForm w 0 z∈D ⊔ (endpointMultiplication (q p)).range := by
   obtain ⟨P,hP,hgood⟩ := surjective_polynomial_principal_open

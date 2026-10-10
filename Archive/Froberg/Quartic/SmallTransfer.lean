@@ -30,7 +30,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- At either actual parent endpoint the shared child data and exact deformation
 produce an independent quadratic family with the asserted quartic dimension. -/
 theorem parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
-    (hchild : ∀ q,q ≤ (m+1).choose 2 → GenericQuartic K m q) :
+    (hchild : ∀ q, q ≤ (m + 1).choose 2 → GenericQuartic K m q) :
     QuarticWitness K (m+3) (parentCount m upper) := by
   obtain ⟨p,k,r,s,hblock,hf13,hchildSurj,_,_,hresponse⟩ :=
     SmallTransferData.exists_data (K := K) m hmlo hmhi upper hchild
@@ -51,7 +51,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- This is a genuine transfer of the complete actual generic statement,
 with the child premise explicit and all parent generator counts covered. -/
 theorem transfer (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
-    (hchild : ∀ q,q ≤ (m+1).choose 2 → GenericQuartic K m q) :
+    (hchild : ∀ q, q ≤ (m + 1).choose 2 → GenericQuartic K m q) :
     ∀ r,r ≤ (m+3+1).choose 2 → GenericQuartic K (m+3) r := by
   intro r hr
   have hl := parent_witness m hmlo hmhi false hchild

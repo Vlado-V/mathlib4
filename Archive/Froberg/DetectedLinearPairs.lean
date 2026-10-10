@@ -43,7 +43,7 @@ theorem detected_linear_pair_relation (hn : 0 < n)
     (q : Fin 2 → Forms K n 1) (hq : LinearIndependent K q)
     (L : Forms K n 2 →ₗ[K] T)
     (hL : Function.Injective (L.comp (endpointMultiplication q).range.subtype))
-    (x y : Forms K n 1) (hxy : L (mulForm (q 0) x)+L (mulForm (q 1) y)=0) :
+    (x y : Forms K n 1) (hxy : L (mulForm (q 0) x) + L (mulForm (q 1) y) = 0) :
     ∃ t : K, x=t • q 1 ∧ y=(-t) • q 0 := by
   classical
   let a : Fin 2 → Forms K n 1 := ![x,y]

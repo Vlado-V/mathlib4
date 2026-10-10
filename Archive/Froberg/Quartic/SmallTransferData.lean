@@ -25,7 +25,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 δ dimensions. Both child and response conditions hold at the same actual
 parameter, as required to apply the exact deformation columns. -/
 theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
-    (hchild : ∀ q,q ≤ (m+1).choose 2 → GenericQuartic K m q) :
+    (hchild : ∀ q, q ≤ (m + 1).choose 2 → GenericQuartic K m q) :
     ∃ p : Parameters K m upper,∃ k : Fin (upperEndpoint m),
       ∃ r : Fin 4 → Forms K m 2,∃ s : Fin (mixedCount m upper) → Forms K m 2,
       SimultaneousBlockConditions.BlockConditions (baseProjection p) ∧

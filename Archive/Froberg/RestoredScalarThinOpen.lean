@@ -24,9 +24,9 @@ open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarF
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-variable (hd3 : 3 ≤ d) (hdeven : d%2=0)
+variable (hd3 : 3 ≤ d) (hdeven : d % 2 = 0)
   (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
-  (heven : ∀ j ∈ J, j%2=0) (idx : Fin r ≃ Label q J counts)
+  (heven : ∀ j ∈ J, j % 2 = 0) (idx : Fin r ≃ Label q J counts)
   (slot : Fin (finrank K (Forms K h d)) → Fin r)
   (hslot : ∀ k, 0 < degree (idx (slot k)))
   (rest : RestoredScalarRest m d q f J counts O)
@@ -46,19 +46,19 @@ theorem restored_scalar_thin_open (hh : 0 < h) (hm : 0 < m)
     (C S : ℝ) (hC : 0 ≤ C)
     (hbottom : HasClosedKernelSlices (bottomCoordinateScalarAction hdp Q g) (thinSlices T₀ C))
     (M : ℕ)
-    (hmid : ∀ (k : ℕ) (hk : 3 ≤ k) (hkd : k ≤ d), k%2=1 →
+    (hmid : ∀ (k : ℕ) (hk : 3 ≤ k) (hkd : k ≤ d), k % 2 = 1 →
       OddScalarLayerProperty M (by omega : 1 ≤ k) hkd
-        (F,fun i => scalarBiformEquiv (h := h) (Q i)))
+        (F, fun i => scalarBiformEquiv (h := h) (Q i)))
     (P₀ : MvPolynomial (Fin (finrank K (PositiveScalars (K := K) m d J counts))) K)
     (hP₀ : ∃ a : PositiveScalars (K := K) m d J counts,
       eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)
     (hgood : ∀ a, eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
       OddSplitExact
         (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
-          (a,rest)).1)
+          (a, rest)).1)
         (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i))) ∧
       Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hdeven hO hJ heven idx slot
-        (restoredScalarFiberCoordinates.symm (a,rest)))))
+        (restoredScalarFiberCoordinates.symm (a, rest)))))
     (L : ℕ) (hLC : L ≤ ⌊C⌋₊) (hLM : L ≤ M)
     (hloss : ∀ k : ℕ, ⌈S*(k : ℝ)⌉₊ ≤ L*k/2)
     (hsmall : 2*(oddCoefficientCount d h m+Fintype.card (ProductRows.LayerLabel J counts))+1 ≤ L) :

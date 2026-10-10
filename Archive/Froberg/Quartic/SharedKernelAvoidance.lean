@@ -23,9 +23,9 @@ namespace Quartic.SharedKernelAvoidance
 open Matrix MvPolynomial KernelPolynomialCharts SharedKernelCharts
 variable {K I : Type*} [Field K] [Infinite K] [Fintype I] {a n r q : ℕ}
 
- theorem principal_open_avoids_shared_kernels
+theorem principal_open_avoids_shared_kernels
     (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
-    (hr : Fintype.card I < q*r) :
+    (hr : Fintype.card I < q * r) :
     ∃ P : MvPolynomial (Fin q × Fin n) K,
       (∃ x : Fin q × Fin n → K, eval x P ≠ 0) ∧
       ∀ x, eval x P ≠ 0 → ∀ t : I → K,

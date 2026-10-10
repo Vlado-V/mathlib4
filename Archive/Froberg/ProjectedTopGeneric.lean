@@ -23,7 +23,7 @@ variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS : ℕ}
 abbrev ProjectedTopParameters (K : Type*) [Field K] (h m e qF qS : ℕ) :=
   (Fin qF → Forms K h 1 ⊗[K] Forms K m e) × (Fin qS → Forms K m (1+e))
 
-def ProjectedTopGeneric (P : Forms K h (1+e) →ₗ[K] (Fin b → K)) (m qF qS : ℕ) : Prop :=
+def ProjectedTopGeneric (P : Forms K h (1 + e) →ₗ[K] (Fin b → K)) (m qF qS : ℕ) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (ProjectedTopParameters K h m e qF qS))) K,
     (∃ p : ProjectedTopParameters K h m e qF qS,
       eval ((Module.finBasis K _).equivFun p) D≠0) ∧
@@ -34,8 +34,8 @@ def ProjectedTopGeneric (P : Forms K h (1+e) →ₗ[K] (Fin b → K)) (m qF qS :
         (projectedTopLinearAction (m := m) P)
         (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) p)
 
-theorem eventually_projected_top_generic (hh : 0 < h) (he : 2≤e) (hb : 0 < b)
-    (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem eventually_projected_top_generic (hh : 0 < h) (he : 2 ≤ e) (hb : 0 < b)
+    (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤
       finrank K (Forms K h e)*
         finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P))

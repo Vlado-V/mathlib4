@@ -24,7 +24,7 @@ that detector's kernel. -/
 theorem mem_biformImage_inf_kernel
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (MvPolynomial τ K))
     (T : MvPolynomial σ K →ₗ[K] X) {f : MvPolynomial (σ ⊕ τ) K}
-    (hf : f∈biformImage O C) (hT : biformOutputMap T f=0) :
+    (hf : f ∈ biformImage O C) (hT : biformOutputMap T f = 0) :
     f∈biformImage (O ⊓ T.ker) C := by
   rcases hf with ⟨a,⟨z,rfl⟩,rfl⟩
   let t : O →ₗ[K] X := T.comp O.subtype

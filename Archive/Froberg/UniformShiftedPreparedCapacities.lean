@@ -21,7 +21,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
 /-- The block count is fixed before the scalar-variable shift is chosen. -/
-theorem eventually_actual_even_capacities_shift_uniform {d : ℕ} (hd : 9≤d) :
+theorem eventually_actual_even_capacities_shift_uniform {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

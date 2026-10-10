@@ -39,7 +39,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- This is the same odd quotient used by the actual coefficient map. -/
 theorem oddCoefficientSpace_eq_range
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) :
     oddCoefficientSpace w q=(parityGeneratorQuotient w e q hq 1).range := by
   ext x
   constructor
@@ -72,7 +72,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The scalar contraction bilinear map with no substituted source or target. -/
 def oddQuotientProduct
     (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
-    (F : P →ₗ[K] Forms K n d) (hF : ∀ p,(F p).val.IsWeightedHomogeneous w 0) :
+    (F : P →ₗ[K] Forms K n d) (hF : ∀ p, (F p).val.IsWeightedHomogeneous w 0) :
     P →ₗ[K] oddCoefficientSpace w q →ₗ[K] oddTargetSpace w q where
   toFun p := ((projectedQuotientProduct (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q (F p)).comp
     (oddCoefficientSpace w q).subtype).codRestrict _ (projectedQuotientProduct_mem_odd w q (F p) (hF
@@ -83,7 +83,7 @@ def oddQuotientProduct
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddQuotientProduct_val
     (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
-    (F : P →ₗ[K] Forms K n d) (hF : ∀ p,(F p).val.IsWeightedHomogeneous w 0)
+    (F : P →ₗ[K] Forms K n d) (hF : ∀ p, (F p).val.IsWeightedHomogeneous w 0)
     (p : P) (a : oddCoefficientSpace w q) :
     (oddQuotientProduct w q F hF p a).val=
       projectedQuotientProduct (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q (F p) a.val := rfl

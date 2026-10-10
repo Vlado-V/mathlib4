@@ -50,8 +50,8 @@ def scalarRestoredPoint (idx : Fin r ≃ Label q J counts) (Q : Fin r → Forms 
     RestoredSpace m d q J counts O := ((fun i => Q (idx.symm i),0),0)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredFamily_scalar_point (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restoredFamily_scalar_point (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (Q : Fin r → Forms K m d) (i : Fin r) :
@@ -70,12 +70,12 @@ theorem restoredFamily_scalar_point (hd : d%2=0)
   rw [Equiv.symm_apply_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_odd_injective_principal_open (hm : 0 < m) (hdp : 0 < d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_odd_injective_principal_open (hm : 0 < m) (hdp : 0 < d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hlarge : (d-1+d).choose (d-1)*((d-1+d).choose (d-1)*d.choose (d-1)) ≤ m)
-    (hr : r*(m+(d-1)-1).choose (d-1)≤(m+(d+(d-1))-1).choose (d+(d-1))) :
+    (hlarge : (d - 1 + d).choose (d - 1) * ((d - 1 + d).choose (d - 1) * d.choose (d - 1)) ≤ m)
+    (hr : r * (m + (d - 1) - 1).choose (d - 1) ≤ (m + (d + (d - 1)) - 1).choose (d + (d - 1))) :
     ∃ D : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K,
       (∃ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0) ∧
       ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →

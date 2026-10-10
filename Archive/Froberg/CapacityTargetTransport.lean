@@ -25,7 +25,7 @@ theorem QuadraticRowCapacity.with_output_dimension
     {O : ℕ → Submodule K (MvPolynomial σ K)}
     {O' : ℕ → Submodule K (MvPolynomial τ K)}
     (h : QuadraticRowCapacity n d q b J counts O)
-    (hdim : finrank K (O' 2)=finrank K (O 2)) :
+    (hdim : finrank K (O' 2) = finrank K (O 2)) :
     QuadraticRowCapacity n d q b J counts O' where
   variables_positive := h.variables_positive
   output_positive := by simpa only [hdim] using h.output_positive
@@ -42,7 +42,7 @@ theorem HigherRowCapacity.with_target_dimension
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
     {T' : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] Y}
     (h : HigherRowCapacity w v d q b J counts T R)
-    (hdim : finrank K Y=finrank K X) (hz : T' R.val=0) :
+    (hdim : finrank K Y = finrank K X) (hz : T' R.val = 0) :
     HigherRowCapacity w v d q b J counts T' R where
   hw := h.hw
   hv := h.hv
@@ -61,7 +61,7 @@ theorem HigherRowCapacity.with_target_dimension
 theorem ProductRowCapacity.with_target_dimension
     {w v d R : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     (h : ProductRowCapacity (K := K) (X := X) w v d R J counts)
-    (hdim : finrank K Y=finrank K X) :
+    (hdim : finrank K Y = finrank K X) :
     ProductRowCapacity (K := K) (X := Y) w v d R J counts where
   positive_output := h.positive_output
   positive_scalar := h.positive_scalar

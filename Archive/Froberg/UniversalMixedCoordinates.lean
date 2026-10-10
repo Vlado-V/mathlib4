@@ -57,7 +57,7 @@ theorem universal_mixed_coordinates_open (h : ℕ) :
 injectivity opens needed by the private-power rows. -/
 theorem exists_universal_mixed_vectors_in_open (h : ℕ)
     (D : MvPolynomial (Fin (finrank K (α → Fin h → K))) K)
-    (hD : ∃ x,eval x D≠0) :
+    (hD : ∃ x, eval x D ≠ 0) :
     ∃ v : α → Fin h → K,
       eval (coordinates K _ v) D≠0 ∧
       (∀ S : Finset α,S.card ≤ h → LinearIndependent K (fun i : S => v i.val)) ∧

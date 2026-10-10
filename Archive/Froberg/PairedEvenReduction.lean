@@ -35,16 +35,16 @@ theorem evenReductionOpen_congr_counts {σ : Type*} [Fintype σ]
     (O : ℕ → Submodule K (MvPolynomial σ K))
     [Module.Finite K (Space n d q J counts O)]
     [Module.Finite K (Space n d q J counts' O)]
-    (hcounts : counts=counts') :
+    (hcounts : counts = counts') :
     EvenReductionOpen (n := n) (d := d) (q := q) (J := J) (counts := counts) O ↔
       EvenReductionOpen (n := n) (d := d) (q := q) (J := J) (counts := counts') O := by
   subst counts'
   rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem eventually_even_reduction_from_paired {d : ℕ} (hd : 3≤d)
-    (hp : ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (e : ℕ → ℕ),
-      (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
+theorem eventually_even_reduction_from_paired {d : ℕ} (hd : 3 ≤ d)
+    (hp : ∀ᶠ w : ℕ in atTop, 4 ∣ 2 * w → ∀ (extra : ℕ) (e : ℕ → ℕ),
+      (∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (2 * (w : ℝ)) ^ 2 * (n : ℝ) ^ (d - 2)) →
       ∀ᶠ n : ℕ in atTop,
       ∀ (X : Type u) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

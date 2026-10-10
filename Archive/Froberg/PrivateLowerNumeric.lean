@@ -18,8 +18,8 @@ namespace Froberg.PrivateColumns
 open Finset Module MonomialExpansion OuterInjection
 variable {K : Type*} [Field K] {a z s k b h : ℕ}
 
-lemma private_lower_numeric (hh : h=k*(2*s+1).choose s)
-    (hs : 0 < s) (hn : 0 < a+z) (ι : Fin b ↪ Fin z)
+lemma private_lower_numeric (hh : h = k * (2 * s + 1).choose s)
+    (hs : 0 < s) (hn : 0 < a + z) (ι : Fin b ↪ Fin z)
     (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (R G P : ℝ)

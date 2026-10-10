@@ -22,7 +22,7 @@ theorem span_disjoint_of_independent_quotient (A : Submodule K V) (g : I → V)
   simpa only [Submodule.ker_mkQ] using
     (Submodule.range_ker_disjoint (f := A.mkQ) (v := g) hg)
 
-theorem sum_inf_of_independent_quotient (A Q : Submodule K V) (hQ : Q≤A) (g : I → V)
+theorem sum_inf_of_independent_quotient (A Q : Submodule K V) (hQ : Q ≤ A) (g : I → V)
     (hg : LinearIndependent K (fun i => A.mkQ (g i))) :
     (Q ⊔ Submodule.span K (Set.range g)) ⊓ A=Q := by
   rw [sup_inf_assoc_of_le _ hQ,(span_disjoint_of_independent_quotient A g hg).eq_bot,sup_bot_eq]
@@ -46,8 +46,8 @@ theorem extra_not_mem_of_independent_quotient (A : Submodule K V) (g : I → V) 
 
 theorem prepared_hyperplane_subspace_data
     (A Q Qminus B : Submodule K V) (f M : V)
-    (hQA : Q≤A) (hQ : Q=Qminus ⊔ Submodule.span K {f})
-    (hB : Disjoint B A) (hf : f∉Qminus) (hM : M∉B ⊔ A) :
+    (hQA : Q ≤ A) (hQ : Q = Qminus ⊔ Submodule.span K {f})
+    (hB : Disjoint B A) (hf : f ∉ Qminus) (hM : M ∉ B ⊔ A) :
     (Q ⊔ B) ⊓ A=Q ∧
     Q ⊔ B=(Qminus ⊔ B) ⊔ Submodule.span K {f} ∧
     Qminus≤Qminus ⊔ B ∧ f∉Qminus ⊔ B ∧ M∉(Q ⊔ B) ⊔ A := by

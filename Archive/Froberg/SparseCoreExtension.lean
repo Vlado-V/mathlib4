@@ -26,14 +26,14 @@ variable {W : Type*} [AddCommGroup W] [Module K W]
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem sparse_endpoint_coordinate_constants
     (o : Fin h → MvPolynomial σ K)
-    (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i,(e i).degree=s)
+    (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K a d) (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin a) K)
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K ((Fin q → Fin h → Forms K a s) × (Fin m → Forms K a d)) W).comp
         (intermediateKoszul e v he Q)).range)
     (x : Fin q → Fin h → Poly K a) (p : Fin m → Poly K a)
-    (hx : ∀ i j,(x i j).IsHomogeneous s) (hp : ∀ i,(p i).IsHomogeneous d)
-    (hrel : ∀ j,(∑ i,(Q i).val*x i j)+(∑ k,monomial (e k) (v k j)*p k)=0) :
+    (hx : ∀ i j, (x i j).IsHomogeneous s) (hp : ∀ i, (p i).IsHomogeneous d)
+    (hrel : ∀ j, (∑ i, (Q i).val * x i j) + (∑ k, monomial (e k) (v k j) * p k) = 0) :
     ∃ C : Fin q → Fin m → K,∀ i j,x i j=∑ k,C i k • monomial (e k) (v k j) := by
   let x' : Fin q → Fin h → Forms K a s := fun i j => ⟨x i j,hx i j⟩
   let p' : Fin m → Forms K a d := fun i => ⟨p i,hp i⟩
@@ -60,21 +60,21 @@ theorem sparse_endpoint_coordinate_constants
   rw [zero_form_eq_C,mul_comm,MvPolynomial.C_mul']
 
  set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem extended_sparse_relation_core (hs : 1 ≤ s) (hsd : s≤d)
+theorem extended_sparse_relation_core (hs : 1 ≤ s) (hsd : s ≤ d)
     (o : Fin h → MvPolynomial σ K)
-    (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i,(e i).degree=s)
+    (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K a d) (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin a) K)
-    (hfull : ∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e v he))
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hfull : ∀ c ≤ d, Function.Injective (homogeneousMultiplication (d := c) e v he))
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K ((Fin q → Fin h → Forms K a s) × (Fin m → Forms K a d)) W).comp
         (intermediateKoszul e v he Q)).range)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell)
     (C : Fin h → Poly K a)
-    (x : Fin q → Fin h → Poly K (a+z)) (p : Fin m → Poly K (a+z))
-    (hx : ∀ i j,(x i j).IsHomogeneous s) (hp : ∀ i,(p i).IsHomogeneous d)
-    (hrel : ∀ j,(∑ i,rename (Fin.castAdd z) (Q i).val*x i j)+
-      (∑ k,rename (Fin.castAdd z) (monomial (e k) (v k j))*p k)+
-      rename (Fin.castAdd z) (C j)=0) :
+    (x : Fin q → Fin h → Poly K (a + z)) (p : Fin m → Poly K (a + z))
+    (hx : ∀ i j, (x i j).IsHomogeneous s) (hp : ∀ i, (p i).IsHomogeneous d)
+    (hrel : ∀ j, (∑ i, rename (Fin.castAdd z) (Q i).val * x i j) +
+      (∑ k, rename (Fin.castAdd z) (monomial (e k) (v k j)) * p k) +
+      rename (Fin.castAdd z) (C j) = 0) :
     (∀ i j,x i j=rename (Fin.castAdd z) (freeCoeff (0 : Fin z →₀ ℕ) (x i j))) ∧
     (∀ i,p i=rename (Fin.castAdd z) (freeCoeff (0 : Fin z →₀ ℕ) (p i))) ∧
     ∀ j,(∑ i,(Q i).val*freeCoeff (0 : Fin z →₀ ℕ) (x i j))+

@@ -31,7 +31,7 @@ variable {ι : Type*} [Fintype ι]
 def image (mu : F →ₗ[K] V →ₗ[K] W) (S : Submodule K V) : Submodule K W :=
   ⨆ f : F, S.map (mu f)
 
- theorem product_mem (mu : F →ₗ[K] V →ₗ[K] W) (S : Submodule K V)
+theorem product_mem (mu : F →ₗ[K] V →ₗ[K] W) (S : Submodule K V)
     (f : F) (v : V) (hv : v ∈ S) : mu f v ∈ image mu S :=
   (le_iSup (fun f : F => S.map (mu f)) f) ⟨v, hv, rfl⟩
 

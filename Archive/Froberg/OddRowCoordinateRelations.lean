@@ -22,8 +22,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem odd_coordinate_relations_eq_row (hd : 1 ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (r : Fin ((2*d+1)/2)) (hr : 2*r.val+1 ≤ d) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (r : Fin ((2 * d + 1) / 2)) (hr : 2 * r.val + 1 ≤ d) :
     coordinateRelation (oddBackgroundBlockRelations
       (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i))
       (fun i => oddBiformEmbedding hd (by decide) (F i))) r=

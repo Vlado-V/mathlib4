@@ -56,7 +56,7 @@ lemma card_active_le (l : I → ℕ) : (univ.filter (fun i => 0 < l i)).card ≤
 
 lemma discarded_shadow_le (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (B : Finset J) (C H : ℕ)
-    (hc : ∀ j,c j ≤ H)
+    (hc : ∀ j, c j ≤ H)
     (hC : ∀ i, 0 < l i → (B.filter (rel i)).card ≤ C) :
     (∑ j ∈ B, shadow rel l c j) ≤ H*C*(∑ i,l i) := by
   let P := univ.filter (fun i => 0 < l i)
@@ -88,7 +88,7 @@ lemma discarded_shadow_le (rel : I → J → Prop) [DecidableRel rel]
 
 lemma retained_shadow_bound (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (B : Finset J) (C H : ℕ)
-    (hc : ∀ j,c j ≤ H)
+    (hc : ∀ j, c j ≤ H)
     (hC : ∀ i, 0 < l i → (B.filter (rel i)).card ≤ C) :
     (∑ j,shadow rel l c j) ≤
       (∑ j ∈ univ\B,shadow rel l c j)+H*C*(∑ i,l i) := by

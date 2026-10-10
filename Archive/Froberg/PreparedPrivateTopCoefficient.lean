@@ -25,7 +25,7 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem private_top_coefficient_separation
-    (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (htop : Function.Injective (privateTopRow p P)) :
     PrivateRowSeparation

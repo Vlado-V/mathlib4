@@ -27,7 +27,7 @@ theorem prefix_coefficientForms (hrs : r ≤ s) (a : CoefficientIndex n d s → 
       coefficientForms K n d s a ∘ Fin.castLE hrs := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem generic_tuple_principal_open (hn : 0 < n) (hr : r ≤ (n+d-1).choose d) :
+theorem generic_tuple_principal_open (hn : 0 < n) (hr : r ≤ (n + d - 1).choose d) :
     ∃ P : MvPolynomial (CoefficientIndex n d r) K,
       (∃ a,eval a P ≠ 0) ∧ ∀ a,eval a P ≠ 0 →
         LinearIndependent K (coefficientForms K n d r a) ∧
@@ -44,7 +44,7 @@ theorem generic_tuple_principal_open (hn : 0 < n) (hr : r ≤ (n+d-1).choose d) 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem generic_flag_principal_open (hn : 0 < n) (hrs : r ≤ s)
-    (hs : s ≤ (n+d-1).choose d) :
+    (hs : s ≤ (n + d - 1).choose d) :
     ∃ P : MvPolynomial (CoefficientIndex n d s) K,
       (∃ a,eval a P ≠ 0) ∧ ∀ a,eval a P ≠ 0 →
         LinearIndependent K (coefficientForms K n d s a) ∧

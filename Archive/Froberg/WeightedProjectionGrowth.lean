@@ -22,7 +22,7 @@ theorem weighted_sum {A B : Type*} [Fintype A] [Fintype B]
     (hrow : ∀ a, ∑ b, w a b = R)
     (hcol : ∀ b, ∑ a, w a b = C)
     (hcard : ∀ a, (bad a).card ≤ E)
-    (hgood : ∀ a b, b ∉ bad a → (H-K)*w a b*ell a ≤ H*w a b*g b) :
+    (hgood : ∀ a b, b ∉ bad a → (H - K) * w a b * ell a ≤ H * w a b * g b) :
     (H-K)*R*(∑ a, ell a) ≤ H*C*((∑ b, g b)+E*(∑ a, ell a)) := by
   classical
   have hw : ∀ a b, w a b ≤ C := by
@@ -73,7 +73,7 @@ theorem weighted_sum {A B : Type*} [Fintype A] [Fintype B]
 
 /-- A target whose quotient dimension is at least H-K retains this fraction
 of any source dimension at most H whenever its projection has maximal rank. -/
-theorem capacity_fraction {H K ell c g : ℕ} (hell : ell ≤ H) (hc : H-K ≤ c)
+theorem capacity_fraction {H K ell c g : ℕ} (hell : ell ≤ H) (hc : H - K ≤ c)
     (hg : min ell c ≤ g) : (H-K)*ell ≤ H*g := by
   rcases le_total ell c with hl | hl
   · rw [min_eq_left hl] at hg

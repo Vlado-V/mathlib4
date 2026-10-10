@@ -16,11 +16,11 @@ namespace Froberg
 
 theorem affine_kernel_equation_budget
     {T₀ H H₀ j q a k k₀ C M base slices loss : ℕ}
-    (hk : k≤a) (hk₀ : k₀≤k)
-    (hbase : (base+1)+C*k₀≤T₀)
-    (hambient : T₀+H≤j+q*a+H₀)
-    (hslices : j≤slices+loss)
-    (hgain : H₀+(a+q)*k+loss<C*k₀+M*(k-k₀)) :
+    (hk : k ≤ a) (hk₀ : k₀ ≤ k)
+    (hbase : (base + 1) + C * k₀ ≤ T₀)
+    (hambient : T₀ + H ≤ j + q * a + H₀)
+    (hslices : j ≤ slices + loss)
+    (hgain : H₀ + (a + q) * k + loss < C * k₀ + M * (k - k₀)) :
     base+a*k+(H+1)<M*(k-k₀)+q*(a-k)+slices := by
   have h := layered_covector_equation_budget hk hk₀ hbase hambient (le_refl (a*k)) hslices hgain
   omega
@@ -29,8 +29,8 @@ theorem affine_kernel_equation_budget
 kernel profiles above the chosen positive threshold. -/
 theorem affine_kernel_uniform_budget
     {T₀ H H₀ j q a a₀ C M slices loss L threshold : ℕ}
-    (base : Fin (a₀+1) → ℕ)
-    (hthreshold : 0<threshold)
+    (base : Fin (a₀ + 1) → ℕ)
+    (hthreshold : 0 < threshold)
     (hbase : ∀ k₀ : Fin (a₀+1),base k₀+C*k₀.val≤T₀)
     (hambient : T₀+H≤j+q*a+H₀)
     (hslices : j≤slices+loss)

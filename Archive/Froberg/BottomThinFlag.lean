@@ -22,7 +22,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem bottomCoordinateTarget_finrank (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     finrank K (OddTargetRowQuotient
       (fun i => scalarEvenBiform (h := h) (Q i))
       (fun i => oddBiformEmbedding hd (by decide) (bottomTensorFamily g i))
@@ -32,8 +32,8 @@ theorem bottomCoordinateTarget_finrank (hd : 1 ≤ d)
 
 set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem bottomCoordinateScalarAction_thin_slices (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) (j : ℕ) (C : ℝ)
-    (hj : finrank K (ScalarQuotient (VectorExpansionOpen.quotientMultiplication g d) Q)=j)
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) (j : ℕ) (C : ℝ)
+    (hj : finrank K (ScalarQuotient (VectorExpansionOpen.quotientMultiplication g d) Q) = j)
     (hs : HasClosedKernelSlices
       (scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d) Q)
       (BilinearCovectorStrata.thinSlices j C)) :
@@ -48,7 +48,7 @@ theorem bottomCoordinateScalarAction_thin_slices (hd : 1 ≤ d)
 
 set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem ChildFlagCondition.bottom_thin_slices (hd : 1 ≤ d)
-    (g : Fin f → Rows K h m (d-1)) (j : ℕ) (C : ℝ)
+    (g : Fin f → Rows K h m (d - 1)) (j : ℕ) (C : ℝ)
     (a : CoefficientIndex m d q → K)
     (ha : ChildFlagCondition (VectorExpansionOpen.quotientMultiplication g d) j C a) :
     HasClosedKernelSlices (bottomCoordinateScalarAction hd (coefficientForms K m d q a) g)
@@ -62,7 +62,7 @@ theorem ChildFlagCondition.bottom_thin_slices (hd : 1 ≤ d)
 
 set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem ChildFlagCondition.bottom_thin_slices_coordinates (hd : 1 ≤ d)
-    (g : Fin f → Rows K h m (d-1)) (Q : Fin q → Forms K m d) (j : ℕ) (C : ℝ)
+    (g : Fin f → Rows K h m (d - 1)) (Q : Fin q → Forms K m d) (j : ℕ) (C : ℝ)
     (ha : ChildFlagCondition (VectorExpansionOpen.quotientMultiplication g d) j C
       (coefficientCoordinates Q)) :
     HasClosedKernelSlices (bottomCoordinateScalarAction hd Q g)

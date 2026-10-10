@@ -35,7 +35,7 @@ theorem strong_quadratic_diagonal_exists {h n m : ℕ}
     (C : Submodule K (Poly K n)) [Module.Finite K C]
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
     (T : Poly K h →ₗ[K] X)
-    (hm : m≤(2*(h/2).choose 2-finrank K X)*(finrank K C/2)) :
+    (hm : m ≤ (2 * (h / 2).choose 2 - finrank K X) * (finrank K C / 2)) :
     ∃ f : Fin m → MvPolynomial (Fin h ⊕ Fin n) K,
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) C) ∧
       LinearIndependent K (pairProducts f) := by
@@ -47,7 +47,7 @@ theorem strong_quadratic_diagonal_exists {h n m : ℕ}
 
 theorem strong_quadratic_linear_diagonal_exists {h n m : ℕ}
     (T : Poly K h →ₗ[K] X)
-    (hm : m≤(2*(h/2).choose 2-finrank K X)*(n/2)) :
+    (hm : m ≤ (2 * (h / 2).choose 2 - finrank K X) * (n / 2)) :
     ∃ f : Fin m → MvPolynomial (Fin h ⊕ Fin n) K,
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) (Forms K n 1)) ∧
       LinearIndependent K (pairProducts f) := by
@@ -58,8 +58,8 @@ theorem strong_quadratic_linear_diagonal_exists {h n m : ℕ}
   exact ⟨f,fun i => biformImage_mono le_rfl hC (hf i),hfi⟩
 
 theorem strong_quadratic_paired_diagonal_exists {h n m t : ℕ}
-    (T : Poly K h →ₗ[K] X) (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
-    (hm : m≤(2*(h/2).choose 2-finrank K X)*(S.card.choose t/2)) :
+    (T : Poly K h →ₗ[K] X) (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
+    (hm : m ≤ (2 * (h / 2).choose 2 - finrank K X) * (S.card.choose t / 2)) :
     ∃ (C : Submodule K (Poly K n)) (f : Fin m → MvPolynomial (Fin h ⊕ Fin n) K),
       C≤Forms K n t ∧ C*C≤deletedBidegreeSpace K S (2*t) (2*(t/2)) ∧
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) C) ∧

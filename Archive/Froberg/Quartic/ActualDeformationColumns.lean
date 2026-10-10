@@ -221,7 +221,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 response. -/
 theorem corrected_column (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
-    (s : Fin q → Forms K 3 2) (a : Fin (4+(c+q)) → Forms K (3+m) 2)
+    (s : Fin q → Forms K 3 2) (a : Fin (4 + (c + q)) → Forms K (3 + m) 2)
     (ha : quadraticMultiplication (SplitBlock22.fullGenerators g h) a = 0)
     (t : SplitBlock22.Target K m)
     (ht : quadraticMultiplication (motionFamily p r s) a = SplitBlock22.targetEmbedding t)

@@ -26,14 +26,14 @@ def targetLayerCount (d h m r j : ℕ) : ℕ :=
 def targetLayerOutput (frame : Fin H → Forms K h 2) (j : ℕ) : Submodule K (Poly K h) :=
   if j=2 then outputFrameSpace frame else Forms K h j
 
-theorem activeEven_ne_two_is_higher (hd : 3≤d)
-    (a : activeEvenIndices d) (ha : a.val≠2) : a.val∈activeHigherIndices d := by
+theorem activeEven_ne_two_is_higher (hd : 3 ≤ d)
+    (a : activeEvenIndices d) (ha : a.val ≠ 2) : a.val∈activeHigherIndices d := by
   obtain ⟨ha2,had,haeven⟩ := activeEvenIndices_bounds hd a.property
   obtain ⟨k,hk⟩ := haeven
   exact Finset.mem_filter.mpr ⟨a.property,by omega⟩
 
-def targetLayerFamily (hd : 3≤d) (frame : Fin H → Forms K h 2)
-    (c : Fin r → Fin H → Forms K m (d-2))
+def targetLayerFamily (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
+    (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
       (fun j => d-j.val) (fun j => higherGeneratorCount d h m j.val)) :
     (a : activeEvenIndices d) → Fin (targetLayerCount d h m r a.val) →
@@ -49,16 +49,16 @@ def targetLayerFamily (hd : 3≤d) (frame : Fin H → Forms K h 2)
     rw [if_neg ha]
     exact G ⟨a.val,activeEven_ne_two_is_higher hd a ha⟩
 
-@[simp] theorem targetLayerFamily_quadratic (hd : 3≤d) (frame : Fin H → Forms K h 2)
-    (c : Fin r → Fin H → Forms K m (d-2))
+@[simp] theorem targetLayerFamily_quadratic (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
+    (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
       (fun j => d-j.val) (fun j => higherGeneratorCount d h m j.val)) (i : Fin r) :
     targetLayerFamily hd frame c G ⟨2,two_mem_activeEvenIndices
       hd⟩ i=framedBiformFamily frame c i := by
   simp [targetLayerFamily]
 
-theorem targetLayerFamily_higher_surjective (hd : 3≤d) (frame : Fin H → Forms K h 2)
-    (c : Fin r → Fin H → Forms K m (d-2))
+theorem targetLayerFamily_higher_surjective (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
+    (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
       (fun j => d-j.val) (fun j => higherGeneratorCount d h m j.val))
     (a : HigherLayerIndex d) (x y : ℕ)
@@ -84,8 +84,8 @@ theorem targetLayerOutput_homogeneous (frame : Fin H → Forms K h 2) (a : ℕ) 
     exact outputFrameSpace_homogeneous frame
   · exact le_rfl
 
-theorem targetLayerFamily_mem (hd : 3≤d) (frame : Fin H → Forms K h 2)
-    (c : Fin r → Fin H → Forms K m (d-2))
+theorem targetLayerFamily_mem (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
+    (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
       (fun j => d-j.val) (fun j => higherGeneratorCount d h m j.val))
     (a : activeEvenIndices d) (i : Fin (targetLayerCount d h m r a.val)) :

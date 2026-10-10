@@ -31,7 +31,7 @@ def renamedPreparedGenerator (p : PreparedParameters.Space m d q J counts O)
   rename finSumFinEquiv (PreparedParameters.generator p i)
 
 theorem renamedPreparedGenerator_layer (p : PreparedParameters.Space m d q J counts O)
-    (a : J) (hO : O a.val≤Forms K h a.val) (i : Fin (counts a.val)) :
+    (a : J) (hO : O a.val ≤ Forms K h a.val) (i : Fin (counts a.val)) :
     renamedPreparedGenerator p (Sum.inr ⟨a,i⟩)=
       rename (Fin.natAdd h) (p.1 (Sum.inr ⟨a,i⟩)).val+
         ambientBiform (preparedLayerTensor a hO p i) := by
@@ -41,7 +41,7 @@ theorem renamedPreparedGenerator_layer (p : PreparedParameters.Space m d q J cou
   rfl
 
 theorem prepared_layer_components (p : PreparedParameters.Space m d q J counts O)
-    (a : J) (ha : 0<a.val) (hO : O a.val≤Forms K h a.val) (i : Fin (counts a.val)) :
+    (a : J) (ha : 0 < a.val) (hO : O a.val ≤ Forms K h a.val) (i : Fin (counts a.val)) :
     coreComponent h m a.val (renamedPreparedGenerator p (Sum.inr ⟨a,i⟩))=
       ambientBiform (preparedLayerTensor a hO p i) ∧
     ∀ k,a.val<k → coreComponent h m k (renamedPreparedGenerator p (Sum.inr ⟨a,i⟩))=0 := by
@@ -49,16 +49,16 @@ theorem prepared_layer_components (p : PreparedParameters.Space m d q J counts O
   exact scalar_shift_top_components (coreWeight h m) _ _ ha
     (scalar_rename_core_weight_zero _) (ambientBiform_weighted _)
 
-theorem span_products_subfamily {α β : Type*} (p : β → Poly K (h+m)) (f : α → β) :
+theorem span_products_subfamily {α β : Type*} (p : β → Poly K (h + m)) (f : α → β) :
     (Submodule.span K (Set.range (p ∘ f)))*Forms K (h+m) d ≤
       (Submodule.span K (Set.range p))*Forms K (h+m) d :=
   mul_le_mul' (Submodule.span_mono (Set.range_comp_subset_range _ _)) le_rfl
 
 theorem prepared_layer_target_lift (p : PreparedParameters.Space m d q J counts O)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
-    (a : J) (ha : 0<a.val) (hab : a.val≤b) (hbd : b≤d+a.val)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
+    (a : J) (ha : 0 < a.val) (hab : a.val ≤ b) (hbd : b ≤ d + a.val)
     (hg : Function.Surjective (biformTensorFamilyMap
-      (x := b-a.val) (y := d+a.val-b) (preparedLayerTensor a (hO _ a.property) p))) :
+      (x := b - a.val) (y := d + a.val - b) (preparedLayerTensor a (hO _ a.property) p))) :
     TargetLift ((Submodule.span K (Set.range (renamedPreparedGenerator p)))*Forms K (h+m)
       d) d b := by
   refine targetLift_of_biform (hJ _ a.property) hab hbd

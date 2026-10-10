@@ -36,7 +36,7 @@ theorem odd_background_source_finrank_le_count (hh : 0 < h) (hm : 0 < m)
   exact odd_biform_quotient_finrank_le_count hh hm _
 
 theorem odd_biform_quotient_shift_lower_order {d : ℕ} (hd : 0 < d) (hh : 0 < h) (z : ℕ)
-    (S : (m : ℕ) → Submodule K (biformParitySpace K h (m+z) d 1)) :
+    (S : (m : ℕ) → Submodule K (biformParitySpace K h (m + z) d 1)) :
     Tendsto (fun m : ℕ => (finrank K (biformParitySpace K h (m+z) d 1 ⧸ S m) : ℝ)/(m : ℝ)^d)
       atTop (𝓝 0) := by
   apply squeeze_zero' (Eventually.of_forall fun _ => by positivity) _

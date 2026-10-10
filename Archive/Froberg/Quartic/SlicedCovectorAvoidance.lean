@@ -25,15 +25,15 @@ open Module Matrix MvPolynomial KernelPolynomialCharts PolynomialBilinearCoordin
 open BilinearCoefficientKernel BilinearCovectorCharts
 open PolynomialSubspaceCovectorCharts
 variable {K C : Type*} [Field K] [Infinite K] [Fintype C]
-variable {I : C → Type*} [∀ c,Fintype (I c)] {a b T N d e q s : ℕ}
+variable {I : C → Type*} [∀ c, Fintype (I c)] {a b T N d e q s : ℕ}
 
 /-- A nonempty joint coefficient/slice open excludes the entire covered
 covector stratum whenever its projective count is strictly smaller than the
 actual shared-coefficient and slice rank. -/
 theorem principal_open_excludes_sliced_stratum
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K)
-    (hcount : ∀ c,Fintype.card (I c)+(T-e)-1 < q*(a-d)+s) :
+    (H : ∀ c, Fin N → Fin a → MvPolynomial (I c) K)
+    (hcount : ∀ c, Fintype.card (I c) + (T - e) - 1 < q * (a - d) + s) :
     ∃ P : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K b T q s))) K,
       (∃ x : SharedCovectorPolynomial.Input K b T q s,
         eval (coordinates K _ x) P ≠ 0) ∧
@@ -107,9 +107,9 @@ theorem principal_open_excludes_sliced_stratum
 full image rank is empty because the covector is nonzero. -/
 theorem principal_open_excludes_sliced_stratum_of_int_bound
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K) (g : ℤ)
-    (hg : ∀ c,(Fintype.card (I c):ℤ) ≤ g)
-    (hcount : g+(T:ℤ)-(e:ℤ)-1 < (q*(a-d)+s:ℕ)) :
+    (H : ∀ c, Fin N → Fin a → MvPolynomial (I c) K) (g : ℤ)
+    (hg : ∀ c, (Fintype.card (I c) : ℤ) ≤ g)
+    (hcount : g + (T : ℤ) - (e : ℤ) - 1 < (q * (a - d) + s : ℕ)) :
     ∃ P : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K b T q s))) K,
       (∃ x : SharedCovectorPolynomial.Input K b T q s,eval (coordinates K _ x) P ≠ 0) ∧
       ∀ x : SharedCovectorPolynomial.Input K b T q s,eval (coordinates K _ x) P ≠ 0 →

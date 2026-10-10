@@ -27,10 +27,10 @@ theorem affineKernelChart_zero
     (muH : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin H → K))
     (bottom : (Fin T → K) →ₗ[K] (Fin T₀ → K))
     (higher : (Fin T → K) →ₗ[K] (Fin H → K))
-    (hcompat : ∀ ell p v,covector ell (mu p v)=
-      covector (bottom ell) (mu₀ p v)+covector (higher ell) (muH p v))
+    (hcompat : ∀ ell p v, covector ell (mu p v) =
+      covector (bottom ell) (mu₀ p v) + covector (higher ell) (muH p v))
     (ell : Fin T → K) (j : Fin k ↪ Fin a) (u : Fin (graphParameterCount j) → K)
-    (hspan : Submodule.span K (Set.range (graphFromFin j u))≤(relationMap mu ell).ker) :
+    (hspan : Submodule.span K (Set.range (graphFromFin j u)) ≤ (relationMap mu ell).ker) :
     affineKernelChart mu₀ muH j (Fin.append (bottom ell) u) (higher ell,1)=0 := by
   unfold affineKernelChart
   rw [chartBottom_append (K := K),chartGraphCoordinates_append (K := K)]

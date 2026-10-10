@@ -27,7 +27,7 @@ local instance variablePrivateTargetFinite (frame : Fin H → Forms K h 2) :
   FullPreparedParameters.finite_fixedPureZeroScalarSpace
     (fun j _ => targetLayerOutput_homogeneous frame j)
 
-def VariablePrivateUpperOpen (hd : 3≤d) (f r q : ℕ)
+def VariablePrivateUpperOpen (hd : 3 ≤ d) (f r q : ℕ)
     (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (VariablePrivateTargetSpace d m f r q u frame))) K,
     (∃ p : VariablePrivateTargetSpace d m f r q u frame,
@@ -40,7 +40,7 @@ def VariablePrivateUpperOpen (hd : 3≤d) (f r q : ℕ)
           (FullPreparedParameters.pureBase U+
             FullPreparedParameters.variablePrivateZeroScalar p))))
 
-theorem HasUpperWitness.variable_private_open (hd : 3≤d)
+theorem HasUpperWitness.variable_private_open (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u)
     (hw : HasUpperWitness d f r q frame U (fun i => (P i).val)) :

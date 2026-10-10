@@ -18,8 +18,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem ceil_scaled_add_normalized_limit {s : ℕ} (hs : 0<s) (a : ℝ)
-    (ha : 0≤a) (extra : ℕ) :
+theorem ceil_scaled_add_normalized_limit {s : ℕ} (hs : 0 < s) (a : ℝ)
+    (ha : 0 ≤ a) (extra : ℕ) :
     Tendsto (fun n : ℕ => ((⌈a*(n : ℝ)^s⌉₊+extra : ℕ) : ℝ)/(n : ℝ)^s)
       atTop (𝓝 a) := by
   have hl := ceil_normalized_limit (fun n : ℕ => a*(n : ℝ)^s) hs a
@@ -28,8 +28,8 @@ theorem ceil_scaled_add_normalized_limit {s : ℕ} (hs : 0<s) (a : ℝ)
     tendsto_const_nhds.div_atTop (nat_power_tendsto_atTop s hs)
   simpa only [Nat.cast_add,add_div,add_zero] using hl.add he
 
-theorem eventually_ceil_add_le_ceil {s : ℕ} (hs : 0<s) {a b : ℝ}
-    (ha : 0≤a) (hab : a<b) (extra : ℕ) :
+theorem eventually_ceil_add_le_ceil {s : ℕ} (hs : 0 < s) {a b : ℝ}
+    (ha : 0 ≤ a) (hab : a < b) (extra : ℕ) :
     ∀ᶠ n : ℕ in atTop,⌈a*(n : ℝ)^s⌉₊+extra≤⌈b*(n : ℝ)^s⌉₊ := by
   have hl := ceil_scaled_add_normalized_limit hs a ha extra
   have hr := ceil_scaled_add_normalized_limit hs b (ha.trans hab.le) 0
@@ -37,8 +37,8 @@ theorem eventually_ceil_add_le_ceil {s : ℕ} (hs : 0<s) {a b : ℝ}
   filter_upwards [eventually_lt_of_normalized_limits _ _ s _ _ hl hr hab] with n hn
   exact_mod_cast hn.le
 
-theorem sparseBlockCount_eventually_covers_add (γ : ℝ) (hγ : 0≤γ) (R w extra : ℕ)
-    {s : ℕ} (hs : 0<s) :
+theorem sparseBlockCount_eventually_covers_add (γ : ℝ) (hγ : 0 ≤ γ) (R w extra : ℕ)
+    {s : ℕ} (hs : 0 < s) :
     ∀ᶠ n : ℕ in atTop,⌈γ*(2*(w : ℝ))^R*(n : ℝ)^s⌉₊+extra≤
       sparseBlockCount γ R s w*(n+s-1).choose s := by
   have hl := ceil_scaled_add_normalized_limit hs (γ*(2*(w : ℝ))^R) (by positivity) extra
@@ -51,15 +51,15 @@ theorem sparseBlockCount_eventually_covers_add (γ : ℝ) (hγ : 0≤γ) (R w ex
     (sparseBlockCount_density_margin γ R s w)] with n hn
   exact_mod_cast hn.le
 
-theorem fullSparseBlockCount_eventually_covers_add (γ : ℝ) (hγ : 0≤γ) (j h extra : ℕ)
-    {s : ℕ} (hs : 0<s) :
+theorem fullSparseBlockCount_eventually_covers_add (γ : ℝ) (hγ : 0 ≤ γ) (j h extra : ℕ)
+    {s : ℕ} (hs : 0 < s) :
     ∀ᶠ n : ℕ in atTop,⌈γ*(h : ℝ)^j*(n : ℝ)^s⌉₊+extra≤
       fullSparseBlockCount γ j s h*(n+s-1).choose s := by
   have he : γ/2^j*(2*(h : ℝ))^j=γ*(h : ℝ)^j := by rw [mul_pow];field_simp
   simpa only [fullSparseBlockCount_eq,he] using
     sparseBlockCount_eventually_covers_add (γ/2^j) (by positivity) j h extra hs
 
-theorem eventually_quadratic_finite_product_capacity_add {d : ℕ} (hd : 9≤d) :
+theorem eventually_quadratic_finite_product_capacity_add {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ h : ℕ in atTop,∀ extra : ℕ,∀ᶠ m : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2) →
       r+extra≤diagonalProductCount d 2 h m ∧ r+extra≤crossProductCount d 2 h m := by

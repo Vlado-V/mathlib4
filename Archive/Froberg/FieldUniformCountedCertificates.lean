@@ -24,12 +24,12 @@ open scoped Topology
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_all_even_odd_open {d k h lo u : ℕ}
-    (hd : 3≤d) (hdodd : d%2=1) (hk : 0<k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
+    (hd : 3 ≤ d) (hdodd : d % 2 = 1) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (extraSlots : ℕ) :
     ∀ᶠ n : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K],∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈PreparedParameters.allEvenIndices d,O j≤Forms K h j),
@@ -92,11 +92,12 @@ open scoped Topology
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_restored_outer_odd_open {d k h lo : ℕ}
-    (hd : 3≤d) (hdeven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e extra : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
+    (hd : 3 ≤ d) (hdeven : d % 2 = 0) (hk : 0 < k) (hh : h = k * centralHalfBinomial d) (hhpos : 0 <
+      h)
+    (upper : Bool) (a f e extra : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (hextra : Tendsto (fun n : ℕ => (extra n : ℝ)/(n : ℝ)^(d-1)) atTop (𝓝 0)) :
     ∀ᶠ n : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K],∀ (q : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
       (O : ℕ → Submodule K (Poly K h))
@@ -114,11 +115,12 @@ theorem uniform_exact_counts_restored_outer_odd_open {d k h lo : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_all_even_restored_odd_open {d k h lo : ℕ}
-    (hd : 3≤d) (heven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
+    (hd : 3 ≤ d) (heven : d % 2 = 0) (hk : 0 < k) (hh : h = k * centralHalfBinomial d) (hhpos : 0 <
+      h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (added : ℕ) :
     ∀ᶠ n : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K],∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)

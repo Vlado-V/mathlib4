@@ -26,10 +26,10 @@ def degreeProductMatrix (j : I → ℕ) (r : ℕ) (B : I → I → K) (i k : I) 
 product of two generator layers. The degree-zero coefficient is kept separate. -/
 theorem coefficient_row_substitution
     (E : I → A) (j : I → ℕ) (c : ℕ → I → A) (B : I → I → K)
-    (r : ℕ) (hr : 0<r)
-    (hE : ∀ i,j i=0 → E i=0)
-    (hc : ∀ t,0<t → t<r → ∀ i,
-      c t i=∑ k,if j k=t then B i k • E k else 0) :
+    (r : ℕ) (hr : 0 < r)
+    (hE : ∀ i, j i = 0 → E i = 0)
+    (hc : ∀ t, 0 < t → t < r → ∀ i,
+      c t i = ∑ k, if j k = t then B i k • E k else 0) :
     (∑ i,if j i≤r then E i*c (r-j i) i else 0) =
       (∑ i,if j i=r then E i*c 0 i else 0) +
       ∑ i,∑ k,degreeProductMatrix j r B i k • (E i*E k) := by
@@ -72,14 +72,14 @@ theorem coefficient_row_substitution
 row plus the formal product row after substituting earlier components. -/
 theorem mixed_cycle_substituted_row {σ : Type*}
     (w : σ → ℕ) (a E c : I → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i))
-    (hEzero : ∀ i,j i=0 → E i=0)
-    (hcycle : ∑ i,(a i+E i)*c i=0)
-    (B : I → I → K) (r : ℕ) (hr : 0<r)
-    (hc : ∀ t,0<t → t<r → ∀ i,
-      MvPolynomial.weightedHomogeneousComponent w t (c i)=
-        ∑ k,if j k=t then B i k • E k else 0) :
+    (ha : ∀ i, (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
+    (hEzero : ∀ i, j i = 0 → E i = 0)
+    (hcycle : ∑ i, (a i + E i) * c i = 0)
+    (B : I → I → K) (r : ℕ) (hr : 0 < r)
+    (hc : ∀ t, 0 < t → t < r → ∀ i,
+      MvPolynomial.weightedHomogeneousComponent w t (c i) =
+        ∑ k, if j k = t then B i k • E k else 0) :
     (∑ i,a i*MvPolynomial.weightedHomogeneousComponent w r (c i)) +
       (∑ i,if j i=r then E i*MvPolynomial.weightedHomogeneousComponent w 0 (c i) else 0) +
       (∑ i,∑ k,degreeProductMatrix j r B i k • (E i*E k))=0 := by

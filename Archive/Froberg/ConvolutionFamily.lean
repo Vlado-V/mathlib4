@@ -25,15 +25,15 @@ def momentSubproduct {N e : ℕ} (n : ℕ) (t : Fin N → K)
     simpa only [I.property] using moment_finset_homogeneous n t I.val⟩
 
 theorem convolutionHom_momentProduct {a e m : ℕ}
-    (t : Fin (m+a-1+e-1) → K) (I : ConvolutionSubset (m+a-1) e) :
+    (t : Fin (m + a - 1 + e - 1) → K) (I : ConvolutionSubset (m + a - 1) e) :
     convolutionHom a m (momentProduct t I).val =
       (momentSubproduct (e := e) a t I).val ⊗ₜ[K] (momentSubproduct (e := e) m t I).val := by
   simp only [momentProduct, momentSubproduct, map_prod, convolutionHom_momentLinear]
   exact finset_prod_tmul I.val _ _
 
 theorem convolutionFamily_single {a e m : ℕ}
-    (t : Fin (m+a-1+e-1) → K) (I : ConvolutionSubset (m+a-1) e)
-    (g : Forms K m (a-1)) :
+    (t : Fin (m + a - 1 + e - 1) → K) (I : ConvolutionSubset (m + a - 1) e)
+    (g : Forms K m (a - 1)) :
     biformInclusion a m e (e+(a-1))
       (vectorFormFamilyMap (momentSubproduct (e := e) a t) (momentSubproduct (e := e) m t)
         (Pi.single I g)) =
@@ -47,8 +47,8 @@ theorem convolutionFamily_single {a e m : ℕ}
 
 /-- For any sufficiently large distinct scalar tuple, the explicit product
 family reaches every homogeneous vector-valued form of the target degree. -/
-theorem convolutionFamily_surjective {a e m : ℕ} (ha : 0<a) (hm : 0<m)
-    [Infinite K] (t : Fin (m+a-1+e-1) → K) (ht : Function.Injective t) :
+theorem convolutionFamily_surjective {a e m : ℕ} (ha : 0 < a) (hm : 0 < m)
+    [Infinite K] (t : Fin (m + a - 1 + e - 1) → K) (ht : Function.Injective t) :
     Function.Surjective (vectorFormFamilyMap (t := a-1)
       (momentSubproduct (e := e) a t) (momentSubproduct (e := e) m t)) := by
   classical
@@ -87,7 +87,7 @@ theorem convolutionFamily_surjective {a e m : ℕ} (ha : 0<a) (hm : 0<m)
   exact ⟨g, biformInclusion_injective a m e _ hg⟩
 
 /-- Convolution supplies exactly `choose(m+a+e-2,e)` vector forms. -/
-theorem exists_convolution_family [Infinite K] {a e m : ℕ} (ha : 0<a) (hm : 0<m) :
+theorem exists_convolution_family [Infinite K] {a e m : ℕ} (ha : 0 < a) (hm : 0 < m) :
     ∃ (o : ConvolutionSubset (m+a-1) e → Forms K a e)
       (f : ConvolutionSubset (m+a-1) e → Forms K m e),
       Function.Surjective (vectorFormFamilyMap (t := a-1) o f) := by
@@ -96,7 +96,7 @@ theorem exists_convolution_family [Infinite K] {a e m : ℕ} (ha : 0<a) (hm : 0<
   exact ⟨momentSubproduct (e := e) a t, momentSubproduct (e := e) m t, convolutionFamily_surjective
     ha hm t ht⟩
 
-theorem convolution_family_card {a e m : ℕ} (ha : 0<a) (hm : 0<m) :
+theorem convolution_family_card {a e m : ℕ} (ha : 0 < a) (hm : 0 < m) :
     Fintype.card (ConvolutionSubset (m+a-1) e) = (m+a+e-2).choose e := by
   rw [Fintype.card_finset_len, Fintype.card_fin]
   congr 1

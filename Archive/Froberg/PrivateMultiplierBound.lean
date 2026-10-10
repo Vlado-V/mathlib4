@@ -17,7 +17,7 @@ namespace Froberg.PrivateColumns
 open Filter
 open scoped Topology
 
-theorem privateGoodMultipliers_lowerCount {a z s b : ℕ} (hs : 0<s)
+theorem privateGoodMultipliers_lowerCount {a z s b : ℕ} (hs : 0 < s)
     (ι : Fin b ↪ Fin z) :
     privateMultiplierLowerCount a z s b ≤ (privateGoodMultipliers a s ι).card := by
   have h := privateGoodMultipliers_card_lower (a := a) hs ι
@@ -27,7 +27,7 @@ theorem privateGoodMultipliers_lowerCount {a z s b : ℕ} (hs : 0<s)
   omega
 
 theorem privateGoodMultipliers_eventually_above_critical {s : ℕ} (hs : 2 ≤ s)
-    (b : ℕ) (a z : ℕ → ℕ) (hsplit : ∀ᶠ n : ℕ in atTop, a n+z n=n)
+    (b : ℕ) (a z : ℕ → ℕ) (hsplit : ∀ᶠ n : ℕ in atTop, a n + z n = n)
     (ha : Tendsto (fun n : ℕ => (a n : ℝ)/(n : ℝ)) atTop
       (𝓝 (limitingCoreFraction (s+1)))) :
     ∀ᶠ n : ℕ in atTop, ∀ ι : Fin b ↪ Fin (z n),

@@ -19,7 +19,7 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem small_strong_quadratic_gap {d : ℕ} (hd : d=3 ∨ d=4) :
+theorem small_strong_quadratic_gap {d : ℕ} (hd : d = 3 ∨ d = 4) :
     countBeta d < ((1/4 : ℝ)-outerColumnRate d^2/2)*
       (if d=3 then 1/2 else 1/16) := by
   have hb := countBeta_le_smallBetaBound (d := d) (by omega) (by omega)
@@ -29,7 +29,7 @@ theorem small_strong_quadratic_gap {d : ℕ} (hd : d=3 ∨ d=4) :
     Nat.choose_eq_factorial_div_factorial] at hb hr ⊢
   all_goals linarith
 
-theorem strong_quadratic_output_limit {d : ℕ} (hd : d=3 ∨ d=4) :
+theorem strong_quadratic_output_limit {d : ℕ} (hd : d = 3 ∨ d = 4) :
     Tendsto (fun h : ℕ => (((2*(h/2).choose 2-deletedTargetCount d h : ℕ) : ℝ)/(h : ℝ)^2))
       atTop (𝓝 ((1/4 : ℝ)-outerColumnRate d^2/2)) := by
   have hg := small_strong_quadratic_gap hd

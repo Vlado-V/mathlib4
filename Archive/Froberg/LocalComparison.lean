@@ -33,7 +33,7 @@ structure LocalComparisonData (n d r B : ℕ) where
 variable {K} {n d r B m h : ℕ}
 
 theorem LocalComparisonData.bounds (D : LocalComparisonData K n d r B)
-    (hn : 0 < n) (hr : r ≤ (n+d-1).choose d) :
+    (hn : 0 < n) (hr : r ≤ (n + d - 1).choose d) :
     (genericHomology K n d r : ℤ) ≤ max (B : ℤ) ((B : ℤ)-euler n d r) ∧
     (genericCokernel K n d r : ℤ) ≤ max (B : ℤ) ((B : ℤ)+euler n d r) := by
   apply transfer_bounds_le_of_intrinsic hn hr D.deleted.mkQ D.deleted.mkQ_surjective
@@ -55,7 +55,7 @@ theorem criticalDefect_step_of_comparison_data (hm : 0 < m)
   · exact ((D true).bounds hn (upperCount_le_monomial_count hn d)).2
 
 theorem eventual_recurrence_of_comparison_data
-    (hD : ∀ᶠ m in atTop,∀ upper : Bool,Nonempty (LocalComparisonData K (m+h) d
+    (hD : ∀ᶠ m in atTop, ∀ upper : Bool,Nonempty (LocalComparisonData K (m+h) d
       (adjacentCriticalCount upper (m+h) d) (criticalDefect K m d))) :
     ∃ start : ℕ,∀ m,start ≤ m → criticalDefect K (m+h) d ≤ criticalDefect K m d := by
   classical

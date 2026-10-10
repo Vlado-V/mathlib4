@@ -74,7 +74,7 @@ theorem diagonalOutputCount_limit {d j : ℕ} (hd : 9 ≤ d) (hj : 2 ≤ j) :
 /-- A strict B.9 leading gap gives the exact rounded diagonal capacity. -/
 theorem eventually_diagonal_capacity_of_density {d j e : ℕ}
     (hd : 9 ≤ d) (hj : 2 ≤ j) (he : 0 < e) (γ : ℝ) (hγ : 0 ≤ γ)
-    (hgap : γ < diagonalOutputDensity d j/(2^(e+1)*(e.factorial : ℝ))) :
+    (hgap : γ < diagonalOutputDensity d j / (2 ^ (e + 1) * (e.factorial : ℝ))) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop,
       ⌈γ*(h : ℝ)^j*(m : ℝ)^e⌉₊ ≤ diagonalOutputCount d j h*((m/2).choose e/2) := by
   have hl := (diagonalOutputCount_limit hd hj).div_const (2^(e+1)*(e.factorial : ℝ))

@@ -27,15 +27,15 @@ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_small_reduction_open_of_core_witnesses {w v z d q t c b₂ H : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
-    [Module.Finite K (Space (v+v+z) d q J counts (constrainedOutputs T))]
+    [Module.Finite K (Space (v + v + z) d q J counts (constrainedOutputs T))]
     [LinearOrder (Label q J counts)]
-    (hd : 3≤d) (hodd : d%2=1) (hv : 0<v)
-    (hJ : ∀ j∈J,2≤j) (hdegree : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
+    (hd : 3 ≤ d) (hodd : d % 2 = 1) (hv : 0 < v)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hdegree : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
     (b₄ : ℕ)
-    (hquad : QuadraticRowCapacity (v+v) d q b₂ J counts (constrainedOutputs T))
-    (hfourth : 4∈J → FourthRowCapacity w v d q b₄ J counts T)
-    (hprojected : b₄*(d-4+1).choose (d-4)≤oddOutputDimension w 4-
+    (hquad : QuadraticRowCapacity (v + v) d q b₂ J counts (constrainedOutputs T))
+    (hfourth : 4 ∈ J → FourthRowCapacity w v d q b₄ J counts T)
+    (hprojected : b₄ * (d - 4 + 1).choose (d - 4) ≤ oddOutputDimension w 4 -
       finrank K (homogeneousSubmodule (Fin w × Bool) K 3))
     (hempty : ∀ R : J,R.val≠2 → R.val≠4 → counts R.val=0)
     (hemptyRow : ∀ R : J,R.val≠2 → R.val≠4 →

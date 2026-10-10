@@ -16,7 +16,7 @@ namespace Quartic.SquaresNonTwo
 variable {K A : Type*} [Field K] [CommRing A] [Algebra K A]
 
 theorem products_le_of_squares (h2 : (2 : K) ≠ 0) (V I : Submodule K A)
-    (hsq : ∀ x ∈ V, x^2 ∈ I) : V*V ≤ I := by
+    (hsq : ∀ x ∈ V, x ^ 2 ∈ I) : V*V ≤ I := by
   apply Submodule.mul_le.mpr
   intro x hx y hy
   have hdiff : (x+y)^2-x^2-y^2 ∈ I :=

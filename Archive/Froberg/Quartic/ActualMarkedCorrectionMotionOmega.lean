@@ -110,7 +110,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem rawMap_range (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (extra : MiddleTarget h) (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
-    (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m) :
+    (hsection : (middleMap g h).comp sectionMap = LinearMap.id) (r : Pure K m) :
     (rawMap ω g h extra markedU sectionMap r).range =
       (ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h) := by
   have hs (a : MiddleTarget h) : middleMap g h (sectionMap a)=a :=
@@ -206,7 +206,7 @@ fixed row-coordinate equivalences. -/
 theorem columns_span (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (extra : MiddleTarget h) (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
-    (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m) :
+    (hsection : (middleMap g h).comp sectionMap = LinearMap.id) (r : Pure K m) :
     Submodule.span K (Set.range (columns ω g h extra markedU sectionMap r)) =
       ((ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h)).map
         (repeated rowFiniteEquiv.toLinearMap) := by
@@ -246,7 +246,7 @@ correction preimage, not a model rank or an independent-motion assumption. -/
 theorem constraint_rank_eq (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (extra : MiddleTarget h) (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
-    (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m)
+    (hsection : (middleMap g h).comp sectionMap = LinearMap.id) (r : Pure K m)
     (ell : Fin (RowCount m 3) → K) :
     (constraint ω g h extra markedU sectionMap r ell).rank = finrank K
       (((ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h)).map (repeated
@@ -262,11 +262,11 @@ only kernel dimension counted is that of the quotient relation. -/
 theorem constraint_rank_bound (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (extra : MiddleTarget h) (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
-    (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m)
+    (hsection : (middleMap g h).comp sectionMap = LinearMap.id) (r : Pure K m)
     (ell : Fin (RowCount m 3) → K) (d : ℕ)
     (Rbar : (MiddleCoordinates.Mixed K m ⧸ Submodule.span K (Set.range g)) →ₗ[K]
       (Fin (FormCount m 2) → K))
-    (hcomm : Rbar.comp (Submodule.span K (Set.range g)).mkQ=sourceRelation ell)
+    (hcomm : Rbar.comp (Submodule.span K (Set.range g)).mkQ = sourceRelation ell)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (hg : LinearIndependent K g) (hh : LinearIndependent K h)
     (ha : Function.Injective (ExtraCorrectionOmega.augmented ω g h r extra))
@@ -308,7 +308,7 @@ theorem descended_kernel_bound (g : Fin c → MiddleCoordinates.Mixed K m)
     (hE : Submodule.span K (Set.range g) ≤ LinearMap.ker (sourceRelation ell))
     (hg : LinearIndependent K g) (d : ℕ)
     (hambient : finrank K (LinearMap.ker
-      (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c+d) :
+      (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c + d) :
     finrank K (LinearMap.ker ((Submodule.span K (Set.range g)).liftQ (sourceRelation ell)
       hE)) ≤ d := by
   let E := Submodule.span K (Set.range g)
@@ -326,11 +326,11 @@ fixed ambient kernel threshold and the actual Good hypotheses. -/
 theorem constraint_rank_bound_ambient (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (extra : MiddleTarget h) (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
-    (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m)
+    (hsection : (middleMap g h).comp sectionMap = LinearMap.id) (r : Pure K m)
     (ell : Fin (RowCount m 3) → K) (d : ℕ)
     (hE : Submodule.span K (Set.range g) ≤ LinearMap.ker (sourceRelation ell))
     (hambient : finrank K (LinearMap.ker
-      (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c+d)
+      (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c + d)
     (hg : LinearIndependent K g) (hh : LinearIndependent K h)
     (ha : Function.Injective (ExtraCorrectionOmega.augmented ω g h r extra))
     (hs : Function.Surjective (middleMap g h)) :
@@ -346,7 +346,7 @@ on the full moving correction preimage. -/
 theorem constraint_kernel_iff (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (extra : MiddleTarget h) (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
-    (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m)
+    (hsection : (middleMap g h).comp sectionMap = LinearMap.id) (r : Pure K m)
     (ell : Fin (RowCount m 3) → K) (p : Fin c × Fin (FormCount m 2) → K) :
     constraint ω g h extra markedU sectionMap r ell *ᵥ p=0 ↔
       ∀ a ∈ (ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h),

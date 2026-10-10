@@ -28,7 +28,7 @@ theorem odd_affine_bottom_detects
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0) (a : Fin e → Forms K m d)
-    (ec : (biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations Q F G) ≃ₗ[K] W₀ × H)
+    (ec : (biformParitySpace K h m (2 * d) 1 ⧸ ambientOddRelations Q F G) ≃ₗ[K] W₀ × H)
     (hw : ∀ v : biformParitySpace K h m (2*d) 1,
       v.val.IsWeightedHomogeneous (blockWeight h m) 1 →
         (ec ((ambientOddRelations Q F G).mkQ v)).2=0)

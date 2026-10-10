@@ -15,15 +15,15 @@ public import Archive.Froberg.Quartic.UniformSurplus.Rational
 namespace Quartic.WeakHullProfile
 open HullCertificate ProfileCertificate Counts SharpCertificate
 
- theorem quadratic_cast (w : ℕ) : (b2 w : ℚ)=(w:ℚ)*((w:ℚ)+1)/2 := by
+theorem quadratic_cast (w : ℕ) : (b2 w : ℚ)=(w:ℚ)*((w:ℚ)+1)/2 := by
   have h : (2:ℚ)*(b2 w:ℚ)=(w:ℚ)*((w:ℚ)+1) := by exact_mod_cast b2_scaled w
   linarith
 
- theorem cubic_cast (w : ℕ) : (b3 w : ℚ)=(w:ℚ)*((w:ℚ)+1)*((w:ℚ)+2)/6 := by
+theorem cubic_cast (w : ℕ) : (b3 w : ℚ)=(w:ℚ)*((w:ℚ)+1)*((w:ℚ)+2)/6 := by
   have h : (6:ℚ)*(b3 w:ℚ)=(w:ℚ)*((w:ℚ)+1)*((w:ℚ)+2) := by exact_mod_cast b3_scaled w
   linarith
 
- theorem quadratic_chord (w:ℕ) (y:ℚ) (hy0:0 ≤ y) (hy1:y ≤ 1) :
+theorem quadratic_chord (w : ℕ) (y : ℚ) (hy0 : 0 ≤ y) (hy1 : y ≤ 1) :
     (b2 w:ℚ)*y ≤ H₂ w ((w:ℚ)*y) := by
   have h:0 ≤ (w:ℚ)^2*y*(1-y)/2 := by positivity
   rw [quadratic_cast]
@@ -31,7 +31,7 @@ open HullCertificate ProfileCertificate Counts SharpCertificate
   push_cast
   nlinarith
 
- theorem cubic_chord (w:ℕ) (y:ℚ) (hy0:0 ≤ y) (hy1:y ≤ 1) :
+theorem cubic_chord (w : ℕ) (y : ℚ) (hy0 : 0 ≤ y) (hy1 : y ≤ 1) :
     (b3 w:ℚ)*y ≤ H₃ w ((w:ℚ)*y) := by
   have hyA:0 ≤ 1-y := by linarith
   have hyB:0 ≤ 2-y := by linarith
@@ -41,8 +41,8 @@ open HullCertificate ProfileCertificate Counts SharpCertificate
   push_cast
   nlinarith
 
- theorem weighted_max_bound (x y₁ y₂ y₃:ℚ) (hx0:0 ≤ x) (hx1:x ≤ 1)
-    (hy:Ordered y₁ y₂ y₃) :
+theorem weighted_max_bound (x y₁ y₂ y₃ : ℚ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1)
+    (hy : Ordered y₁ y₂ y₃) :
     weighted (fun r=>max x ((r.val:ℚ)/3)) y₁ y₂ y₃ ≤ x+(1-x)*y₁ := by
   let f:Fin 4→ℚ := ![x,1,1,1]
   have h:∀r:Fin 4,max x ((r.val:ℚ)/3) ≤ f r := by
@@ -52,8 +52,8 @@ open HullCertificate ProfileCertificate Counts SharpCertificate
   dsimp [weighted,f] at hw ⊢
   linarith
 
- theorem weighted_image_formula (A B:ℤ) (w:ℕ) (x y₁ y₂ y₃:ℚ)
-    (hx0:0 ≤ x) (hx1:x ≤ 1) :
+theorem weighted_image_formula (A B : ℤ) (w : ℕ) (x y₁ y₂ y₃ : ℚ)
+    (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     weighted (fun r=>weakImage A B w (b2 w) (b3 w) x r) y₁ y₂ y₃=
       (B:ℚ)*(w:ℚ)*weighted (fun r=>max x ((r.val:ℚ)/3)) y₁ y₂ y₃+
       (A:ℚ)*(b2 w:ℚ)*(x+(max x (1/2)-x)*y₁+(1-max x (1/2))*y₂)+
@@ -61,16 +61,16 @@ open HullCertificate ProfileCertificate Counts SharpCertificate
   norm_num [weighted,weakImage,max_eq_left hx0,max_eq_right hx1]
   ring
 
- def fractionSharp (A B:ℤ) (w:ℕ) (b x y₁ y₂ y₃:ℚ) : ℚ :=
+def fractionSharp (A B : ℤ) (w : ℕ) (b x y₁ y₂ y₃ : ℚ) : ℚ :=
   b*w+((B:ℚ)-b)*w*y₁+
     (A:ℚ)*(x*(b2 w:ℚ)+(max x (1/2)-x)*H₂ w ((w:ℚ)*y₁)+
       (1-max x (1/2))*H₂ w ((w:ℚ)*y₂))+
     H₃ w ((w:ℚ)*y₁)+H₃ w ((w:ℚ)*y₂)+H₃ w ((w:ℚ)*y₃)
 
 /-- Endpoint chords and the linear core shadow bound dominate the weak mixture. -/
- theorem weighted_le_fraction (A B:ℤ) (w:ℕ) (b x y₁ y₂ y₃:ℚ)
-    (hA:0 ≤ A) (hB:0 ≤ B) (hx0:0 ≤ x) (hx1:x ≤ 1)
-    (hy:Ordered y₁ y₂ y₃) (hb:(B:ℚ)*x ≤ b) :
+ theorem weighted_le_fraction (A B : ℤ) (w : ℕ) (b x y₁ y₂ y₃ : ℚ)
+    (hA : 0 ≤ A) (hB : 0 ≤ B) (hx0 : 0 ≤ x) (hx1 : x ≤ 1)
+    (hy : Ordered y₁ y₂ y₃) (hb : (B : ℚ) * x ≤ b) :
     weighted (fun r=>weakImage A B w (b2 w) (b3 w) x r) y₁ y₂ y₃ ≤
       fractionSharp A B w b x y₁ y₂ y₃ := by
   have hAQ:(0:ℚ) ≤ A := by exact_mod_cast hA
@@ -95,27 +95,27 @@ open HullCertificate ProfileCertificate Counts SharpCertificate
   unfold fractionSharp
   nlinarith
 
- def weakAverage (m c i:ℕ) (n₁ n₂ n₃:ℚ) : ℚ :=
+def weakAverage (m c i : ℕ) (n₁ n₂ n₃ : ℚ) : ℚ :=
   weighted (fun r=>weakImage (coreA c) (coreB c) (freeW m c)
     (b2 (freeW m c)) (b3 (freeW m c)) ((i:ℚ)/(coreA c:ℚ)) r)
     (n₁/(freeW m c:ℚ)) (n₂/(freeW m c:ℚ)) (n₃/(freeW m c:ℚ))
 
- theorem coreA_pos (c:ℕ) (hc:4 ≤ c) : 0 < coreA c := by
+theorem coreA_pos (c : ℕ) (hc : 4 ≤ c) : 0 < coreA c := by
   unfold coreA coreP
   omega
 
- theorem freeW_pos (m c:ℕ) : 0 < freeW m c := by
+theorem freeW_pos (m c : ℕ) : 0 < freeW m c := by
   unfold freeW
   omega
 
- theorem normalized_ordered (m c:ℕ) (n₁ n₂ n₃:ℚ)
-    (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c:ℚ)) :
+theorem normalized_ordered (m c : ℕ) (n₁ n₂ n₃ : ℚ)
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c : ℚ)) :
     Ordered (n₁/(freeW m c:ℚ)) (n₂/(freeW m c:ℚ)) (n₃/(freeW m c:ℚ)) := by
   have hw:(0:ℚ)<freeW m c:=by exact_mod_cast freeW_pos m c
   exact ⟨div_nonneg hn.1 hw.le,(div_le_div_iff_of_pos_right hw).mpr hn.2.1,
     (div_le_div_iff_of_pos_right hw).mpr hn.2.2.1,(div_le_one hw).mpr hn.2.2.2⟩
 
- theorem fractionSharp_source (m c i:ℕ) (hc:4 ≤ c) (n₁ n₂ n₃:ℚ) :
+theorem fractionSharp_source (m c i : ℕ) (hc : 4 ≤ c) (n₁ n₂ n₃ : ℚ) :
     fractionSharp (coreA c) (coreB c) (freeW m c) (coreShadow c i)
       ((i:ℚ)/(coreA c:ℚ)) (n₁/(freeW m c:ℚ)) (n₂/(freeW m c:ℚ)) (n₃/(freeW m c:ℚ))=
       sharpProfile (parameters m c i) n₁ n₂ n₃ := by
@@ -152,8 +152,8 @@ open HullCertificate ProfileCertificate Counts SharpCertificate
   ring
 
 /-- The full source sharp profile bounds the explicit weak prefix average. -/
- theorem weakAverage_le_sharp (m c i:ℕ) (hc:4 ≤ c) (hi:i ≤ coreA c) (n₁ n₂ n₃:ℚ)
-    (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c:ℚ)) :
+ theorem weakAverage_le_sharp (m c i : ℕ) (hc : 4 ≤ c) (hi : i ≤ coreA c) (n₁ n₂ n₃ : ℚ)
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c : ℚ)) :
     weakAverage m c i n₁ n₂ n₃ ≤ sharpProfile (parameters m c i) n₁ n₂ n₃ := by
   have hA:(0:ℚ)<coreA c:=by exact_mod_cast coreA_pos c hc
   have hB:0 ≤ coreB c:=by rw [coreB_eq_binomial]; positivity

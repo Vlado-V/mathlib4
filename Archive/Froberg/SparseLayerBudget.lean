@@ -21,10 +21,10 @@ open scoped Topology
 
 /-- The selected scalar blocks leave a strict incidence margin inside the
 actual odd-half output space. -/
-theorem eventually_sparse_odd_margin {d R : ℕ} (hd : 2≤d) (hR : 0<R) (hRd : R≤d)
-    (γ : ℝ) (hγ : 0≤γ)
-    (hgap : 2*γ/scalarCapacity d R+
-      (scalarCapacityBinomial d R : ℝ)*criticalRatio d<1) :
+theorem eventually_sparse_odd_margin {d R : ℕ} (hd : 2 ≤ d) (hR : 0 < R) (hRd : R ≤ d)
+    (γ : ℝ) (hγ : 0 ≤ γ)
+    (hgap : 2 * γ / scalarCapacity d R +
+      (scalarCapacityBinomial d R : ℝ) * criticalRatio d < 1) :
     ∀ᶠ w : ℕ in atTop,
       0<oddOutputDimension w R ∧
       sparseBlockCount γ R (d-R) w*scalarCapacityBinomial d R ≤ oddOutputDimension w R ∧
@@ -54,10 +54,10 @@ theorem eventually_sparse_odd_margin {d R : ℕ} (hd : 2≤d) (hR : 0<R) (hRd : 
 
 /-- A strict B.8 scalar-capacity inequality discharges all finite numerical
 inputs to the sparse new-layer construction. -/
-theorem eventually_sparse_odd_layer_budget {d R : ℕ} (hd : 2≤d) (hR : 0<R) (hRd : R<d)
-    (γ : ℝ) (hγ : 0≤γ)
-    (hgap : 2*γ/scalarCapacity d R+
-      (scalarCapacityBinomial d R : ℝ)*criticalRatio d<1) :
+theorem eventually_sparse_odd_layer_budget {d R : ℕ} (hd : 2 ≤ d) (hR : 0 < R) (hRd : R < d)
+    (γ : ℝ) (hγ : 0 ≤ γ)
+    (hgap : 2 * γ / scalarCapacity d R +
+      (scalarCapacityBinomial d R : ℝ) * criticalRatio d < 1) :
     ∀ᶠ w : ℕ in atTop,
       0<oddOutputDimension w R ∧
       sparseBlockCount γ R (d-R) w*(d-R+d).choose (d-R) ≤ oddOutputDimension w R ∧
@@ -88,8 +88,8 @@ theorem eventually_sparse_odd_layer_budget {d R : ℕ} (hd : 2≤d) (hR : 0<R) (
 
 /-- The higher Section 5 generator counts satisfy the complete sparse
 new-layer budget, with an explicitly chosen number of scalar blocks. -/
-theorem eventually_higher_sparse_layer_budget {d R : ℕ} (hd : 9≤d)
-    (hR : R∈activeHigherIndices d) :
+theorem eventually_higher_sparse_layer_budget {d R : ℕ} (hd : 9 ≤ d)
+    (hR : R ∈ activeHigherIndices d) :
     ∀ᶠ w : ℕ in atTop,
       let b := sparseBlockCount ((101/100 : ℝ)*higherCountGamma d R) R (d-R) w
       let H := oddOutputDimension w R

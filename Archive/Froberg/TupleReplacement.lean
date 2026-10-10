@@ -50,7 +50,7 @@ theorem tuple_slot_not_mem_punctured (Q : I → V) (hQ : LinearIndependent K Q) 
   hQ.notMem_span_image (by simp)
 
 theorem transverse_tuple_replacement_independent (Q : I → V) (hQ : LinearIndependent K Q)
-    (i : I) (M : V) (hM : M∉Submodule.span K (Set.range Q)) (ε : K) :
+    (i : I) (M : V) (hM : M ∉ Submodule.span K (Set.range Q)) (ε : K) :
     LinearIndependent K (Function.update Q i (Q i+ε • M)) := by
   classical
   let F : Option I → V := fun j => j.elim M Q

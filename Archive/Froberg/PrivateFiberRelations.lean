@@ -24,7 +24,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal target coefficient obtained by multiplying each coefficient
 array by its private monomial and applying its output map. -/
 def privateCoefficient (ι : Fin b ↪ Fin z) (A : Fin b → V →ₗ[K] T)
-    (v : Fin b → (Fin (a+z) →₀ ℕ) → V) (β : Fin (a+z) →₀ ℕ) : T :=
+    (v : Fin b → (Fin (a + z) →₀ ℕ) → V) (β : Fin (a + z) →₀ ℕ) : T :=
   ∑ i, if privateExponent a s ι i ≤ β then A i (v i (β-privateExponent a s ι i)) else 0
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -33,9 +33,9 @@ column, hence it vanishes in any relation. Diagonal private coefficients are
 included in this assertion. -/
 theorem private_relation_support (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → V →ₗ[K] T) (hA : ∀ i, Function.Injective (A i))
-    (v : Fin b → (Fin (a+z) →₀ ℕ) → V)
-    (hv : ∀ β, β.degree=2*s → privateCoefficient (s := s) ι A v β=0)
-    (i : Fin b) (α : Fin (a+z) →₀ ℕ) (hα : α.degree=s)
+    (v : Fin b → (Fin (a + z) →₀ ℕ) → V)
+    (hv : ∀ β, β.degree = 2 * s → privateCoefficient (s := s) ι A v β = 0)
+    (i : Fin b) (α : Fin (a + z) →₀ ℕ) (hα : α.degree = s)
     (hprivate : ∀ j, i ≠ j → α ≠ privateExponent a s ι j) : v i α=0 := by
   classical
   let β := privateExponent a s ι i+α
@@ -59,8 +59,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Each off-diagonal private overlap satisfies precisely its two-column
 output equation, with no contributions from other columns. -/
 theorem private_relation_pair (hs : 0 < s) (ι : Fin b ↪ Fin z)
-    (A : Fin b → V →ₗ[K] T) (v : Fin b → (Fin (a+z) →₀ ℕ) → V)
-    (hv : ∀ β, β.degree=2*s → privateCoefficient (s := s) ι A v β=0)
+    (A : Fin b → V →ₗ[K] T) (v : Fin b → (Fin (a + z) →₀ ℕ) → V)
+    (hv : ∀ β, β.degree = 2 * s → privateCoefficient (s := s) ι A v β = 0)
     (i j : Fin b) (hij : i ≠ j) :
     A i (v i (privateExponent a s ι j)) + A j (v j (privateExponent a s ι i))=0 := by
   classical

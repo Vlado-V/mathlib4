@@ -392,7 +392,7 @@ the resulting motion rank still loses only 4*d. -/
 theorem finiteConstraint_rank_bound_of_ambient (g : Mixed K m c)
     (hgi : LinearIndependent K g) (hg : Function.Injective (mixedMultiplication g))
     (ell : Fin T → K) (hE : ∀ j f, covector ell (mu f (e (g j))) = 0)
-    {d : ℕ} (hker : finrank K (LinearMap.ker (relationMap mu ell)) ≤ d+c) :
+    {d : ℕ} (hker : finrank K (LinearMap.ker (relationMap mu ell)) ≤ d + c) :
     2*m+2*c-4*d ≤ (finiteConstraint e mu g ell).rank := by
   apply finiteConstraint_rank_bound e mu g hg ell hE
   have h := descendedRelation_kernel_finrank e mu g ell hE
@@ -593,7 +593,7 @@ theorem eval_covectorMatrix_rank_bound_of_ambient (g : Fin c → Rows K m 1)
     (hg : Function.Injective (mixedMultiplication (rowMixed g)))
     (ell : Fin (RowCount m 3) → K)
     (hE : ∀ j f, covector ell (rowFiniteEquiv (multiplication f (g j))) = 0)
-    {d : ℕ} (hker : finrank K (LinearMap.ker (relationMap coordinate ell)) ≤ d+c) :
+    {d : ℕ} (hker : finrank K (LinearMap.ker (relationMap coordinate ell)) ≤ d + c) :
     2*m+2*c-4*d ≤ ((covectorMatrix g).map (eval ell)).rank := by
   rw [eval_covectorMatrix]
   apply finiteConstraint_rank_bound_of_ambient rowCoordinates coordinate (rowMixed g)

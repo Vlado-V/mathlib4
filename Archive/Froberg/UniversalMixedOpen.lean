@@ -18,8 +18,8 @@ variable {K α C : Type*} [Field K] [Infinite K] [Fintype α] [DecidableEq α] [
 
 /-- Simultaneous specialization for an arbitrary finite list of disjoint-label
 mixed-minor certificates, possibly in different exterior degrees. -/
-theorem common_mixed_vectors_principal_open (h : ℕ) (r l : C → ℕ) (hr : ∀ c, r c+l c=h)
-    (t : (c : C) → Set.powersetCard (Fin (r c+l c)) (r c) → ℕ)
+theorem common_mixed_vectors_principal_open (h : ℕ) (r l : C → ℕ) (hr : ∀ c, r c + l c = h)
+    (t : (c : C) → Set.powersetCard (Fin (r c + l c)) (r c) → ℕ)
     (ht : ∀ c I, t c I ≤ l c)
     (label : (c : C) → (Σ I, Fin (t c I)) ↪ α) :
     ∃ P : MvPolynomial (α × Fin h) K, P≠0 ∧ ∀ values,eval values P≠0 →

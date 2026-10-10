@@ -25,13 +25,14 @@ variable {n s d R h H m r b : ℕ}
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
 theorem exists_even_polynomial_row_in_open
-    (hn : 0<n) (hh : 0<h)
+    (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdegree : ∀ j,(o j).IsHomogeneous R)
+    (hdegree : ∀ j, (o j).IsHomogeneous R)
     (L : (Fin h → K) →ₗ[K] (Fin H → K)) (hL : Function.Injective L)
-    (hLodd : ∀ z,retainMonomials (fun a => Finsupp.weight w a%2=0) (outputCombination o (L z))=0)
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i,(e i).degree=s)
+    (hLodd : ∀ z, retainMonomials (fun a => Finsupp.weight w a % 2 = 0) (outputCombination o (L z))
+      = 0)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
     (hdiv : ∀ β : Fin n →₀ ℕ,Fintype.card {i : Fin m // e i≤β}≤b*β.degree.choose s)
     (Dextra : MvPolynomial (Fin (finrank K (Fin m → Fin h → K))) K)
     (hDextra : ∃ x,eval x Dextra≠0)

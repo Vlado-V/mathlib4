@@ -70,14 +70,14 @@ theorem normalize_ne_zero (ℓ : Forms K n 1) (x : Fin n → L)
   rw [← reconstruct ℓ x hℓ,h,smul_zero]
 
 /-- Move the selected slice to the first coordinate by an actual permutation. -/
-def moveSlice (ℓ : Fin (s+1) → Forms K n 1) (i : Fin (s+1)) :
+def moveSlice (ℓ : Fin (s + 1) → Forms K n 1) (i : Fin (s + 1)) :
     Fin (s+1) → Forms K n 1 := fun j => ℓ (Equiv.swap 0 i j)
 
-@[simp] theorem moveSlice_zero (ℓ : Fin (s+1) → Forms K n 1) (i : Fin (s+1)) :
+@[simp] theorem moveSlice_zero (ℓ : Fin (s + 1) → Forms K n 1) (i : Fin (s + 1)) :
     moveSlice ℓ i 0 = ℓ i := by simp [moveSlice]
 
 /-- Reindexing neither loses nor adds a common slice-zero condition. -/
-theorem moveSlice_zero_iff (ℓ : Fin (s+1) → Forms K n 1) (i : Fin (s+1))
+theorem moveSlice_zero_iff (ℓ : Fin (s + 1) → Forms K n 1) (i : Fin (s + 1))
     (x : Fin n → L) :
     (∀ j, aeval x (moveSlice ℓ i j).val = 0) ↔ ∀ j, aeval x (ℓ j).val = 0 := by
   constructor
@@ -88,7 +88,7 @@ theorem moveSlice_zero_iff (ℓ : Fin (s+1) → Forms K n 1) (i : Fin (s+1))
 
 /-- The geometric empty sliced locus is unchanged by the chosen permutation. -/
 theorem geometric_empty_moveSlice (degree : Fin r → ℕ)
-    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s+1) → Forms K n 1)
+    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s + 1) → Forms K n 1)
     (hempty : ∀ x : Fin n → L, (∀ j, aeval x (f j).val = 0) →
       (∀ j, aeval x (ℓ j).val = 0) → x = 0) (i : Fin (s+1)) :
     ∀ x : Fin n → L, (∀ j, aeval x (f j).val = 0) →
@@ -99,7 +99,7 @@ theorem geometric_empty_moveSlice (degree : Fin r → ℕ)
 /-- Every nonzero point on the homogeneous equation locus lies in one of the
 finitely many dehomogenized charts, after scaling and the explicit permutation. -/
 theorem exists_normalized_chart (degree : Fin r → ℕ)
-    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s+1) → Forms K n 1)
+    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s + 1) → Forms K n 1)
     (hempty : ∀ x : Fin n → L, (∀ j, aeval x (f j).val = 0) →
       (∀ j, aeval x (ℓ j).val = 0) → x = 0)
     (x : Fin n → L) (hx : x ≠ 0) (hf : ∀ j, aeval x (f j).val = 0) :
@@ -119,7 +119,7 @@ theorem exists_normalized_chart (degree : Fin r → ℕ)
 homogeneous certificate and holds over every extension, including the base field. -/
 theorem geometric_empty_all_extensions [IsAlgClosed L]
     {M : Type*} [Field M] [Algebra K M] (degree : Fin r → ℕ)
-    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s+1) → Forms K n 1)
+    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s + 1) → Forms K n 1)
     (hempty : ∀ x : Fin n → L, (∀ j, aeval x (f j).val = 0) →
       (∀ j, aeval x (ℓ j).val = 0) → x = 0) :
     ∀ x : Fin n → M, (∀ j, aeval x (f j).val = 0) →
@@ -150,7 +150,7 @@ theorem geometric_empty_all_extensions [IsAlgClosed L]
 its geometric emptiness was originally known only over an algebraic closure. -/
 theorem exists_normalized_chart_of_geometric_empty [IsAlgClosed L]
     {M : Type*} [Field M] [Algebra K M] (degree : Fin r → ℕ)
-    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s+1) → Forms K n 1)
+    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s + 1) → Forms K n 1)
     (hempty : ∀ x : Fin n → L, (∀ j, aeval x (f j).val = 0) →
       (∀ j, aeval x (ℓ j).val = 0) → x = 0)
     (x : Fin n → M) (hx : x ≠ 0) (hf : ∀ j, aeval x (f j).val = 0) :
@@ -163,7 +163,7 @@ theorem exists_normalized_chart_of_geometric_empty [IsAlgClosed L]
 
 /-- Explicit base-field evaluation interface for the descended empty locus. -/
 theorem base_empty [IsAlgClosed L] (degree : Fin r → ℕ)
-    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s+1) → Forms K n 1)
+    (f : ∀ j, Forms K n (degree j)) (ℓ : Fin (s + 1) → Forms K n 1)
     (hempty : ∀ x : Fin n → L, (∀ j, aeval x (f j).val = 0) →
       (∀ j, aeval x (ℓ j).val = 0) → x = 0) :
     ∀ x : Fin n → K, (∀ j, eval x (f j).val = 0) →

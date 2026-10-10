@@ -27,13 +27,13 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_prepared_positive_reduction [LinearOrder (Label q J counts)]
-    (hd : 3≤d) (hodd : d%2=1)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hmin : ∀ j∈J,2≤j) (heven : ∀ j∈J,j%2=0)
-    (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
-    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d-1))
+    (hd : 3 ≤ d) (hodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hmin : ∀ j ∈ J, 2 ≤ j) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
+    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d - 1))
     (U : Fin b → MvPolynomial (σ ⊕ Fin n) K)
-    (hU : ∀ i,(U i).IsHomogeneous d ∧
+    (hU : ∀ i, (U i).IsHomogeneous d ∧
       (U i).IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
     (hrows : ∀ R : J,(privateAugmentedRow hO R p (fun i => (P i).val)).ker=
       ((rowConstants hO R p).prodMap (privateBoundaryAt P R.val)).range)

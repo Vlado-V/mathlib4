@@ -35,13 +35,13 @@ private coefficient. -/
 theorem solve_rows_with_delayed_private
     (V W : ℕ → Submodule K A) (a E : I → A) (P U : J → A)
     (j : I → ℕ) (c : ℕ → I → A) (u : ℕ → J → A) (d N : ℕ)
-    (hd : 2≤d) (hcV : ∀ t i,c t i∈V t) (huW : ∀ t k,u t k∈W t)
-    (hE : ∀ i,j i=0 → E i=0) (hu0 : u 0=0) (hu1 : u 1=0)
-    (hrow : ∀ r,0<r → r≤N →
-      (∑ i,a i*c r i)+(∑ i,if j i≤r then E i*c (r-j i) i else 0)+
-      (∑ k,P k*u (r-1) k)+(if d≤r then ∑ k,U k*u (r-d) k else 0)=0)
-    (hexact : ∀ r,0<r → r≤N → CoefficientRowExact V a E j r)
-    (hseparate : ∀ r,3≤r → r≤N → PrivateRowSeparation V W a E P j r) :
+    (hd : 2 ≤ d) (hcV : ∀ t i, c t i ∈ V t) (huW : ∀ t k, u t k ∈ W t)
+    (hE : ∀ i, j i = 0 → E i = 0) (hu0 : u 0 = 0) (hu1 : u 1 = 0)
+    (hrow : ∀ r, 0 < r → r ≤ N →
+      (∑ i, a i * c r i) + (∑ i, if j i ≤ r then E i * c (r - j i) i else 0) +
+      (∑ k, P k * u (r - 1) k) + (if d ≤ r then ∑ k, U k * u (r - d) k else 0) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ N → CoefficientRowExact V a E j r)
+    (hseparate : ∀ r, 3 ≤ r → r ≤ N → PrivateRowSeparation V W a E P j r) :
     ∃ B : I → I → K,CoefficientRowsSolved a E j c N B ∧ ∀ t,t<N → u t=0 := by
   classical
   induction N with

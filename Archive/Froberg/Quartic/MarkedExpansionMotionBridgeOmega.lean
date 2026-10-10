@@ -21,7 +21,7 @@ variable {K : Type*} [Field K] {m : ℕ} {upper : Bool}
 /-- The prescribed marked-space dimension identifies the actual correction count. -/
 theorem correctionCount_eq (h : Fin (upperEndpoint m) → Forms K m 2)
     (U : ActualMarkedSlicedMotionAvoidanceOmega.Marked h)
-    (hU : (finrank K U:ℤ)=Counts.delta m (upperEndpoint m)) :
+    (hU : (finrank K U : ℤ) = Counts.delta m (upperEndpoint m)) :
     MarkedActualExpansionSlices.correctionCount m upper =
       ActualMarkedSlicedMotionAvoidanceOmega.correctionCount (c := mixedCount m upper) h U := by
   simp only [MarkedActualExpansionSlices.correctionCount,
@@ -30,7 +30,7 @@ theorem correctionCount_eq (h : Fin (upperEndpoint m) → Forms K m 2)
 /-- No inequality is needed: the two clipped budgets are equal term by term. -/
 theorem budget_eq (h : Fin (upperEndpoint m) → Forms K m 2)
     (U : ActualMarkedSlicedMotionAvoidanceOmega.Marked h)
-    (hU : (finrank K U:ℤ)=Counts.delta m (upperEndpoint m)) (d : ℕ) :
+    (hU : (finrank K U : ℤ) = Counts.delta m (upperEndpoint m)) (d : ℕ) :
     MarkedActualExpansionSlices.slices m upper d =
       ActualMarkedSlicedMotionAvoidanceOmega.sliceCount (c := mixedCount m upper) h U d := by
   rw [MarkedActualExpansionSlices.slices_eq,correctionCount_eq h U hU]
@@ -51,7 +51,7 @@ theorem closed_slices (hm : 28 ≤ m)
     (g : Fin (mixedCount m upper) → Rows K m 1)
     (h : Fin (upperEndpoint m) → Forms K m 2)
     (U : ActualMarkedSlicedMotionAvoidanceOmega.Marked h)
-    (hU : (finrank K U:ℤ)=Counts.delta m (upperEndpoint m))
+    (hU : (finrank K U : ℤ) = Counts.delta m (upperEndpoint m))
     (Z : (d : MarkedConvolutionExpansionOpen.Dimensions m upper) →
       Fin (MarkedActualExpansionSlices.slices m upper d.val) → Rows K m 3)
     (hZ : ∀ d : MarkedConvolutionExpansionOpen.Dimensions m upper,∀ ell : Fin (RowCount m 3) → K,

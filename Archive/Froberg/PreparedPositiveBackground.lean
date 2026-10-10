@@ -23,12 +23,12 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem prepared_positive_background_scalar_independent (hd : 1<d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j)
-    (hJ : ∀ j∈J,j≤d) (hJlt : ∀ j∈J,0<counts j → j<d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_positive_background_scalar_independent (hd : 1 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hmin : ∀ j ∈ J, 2 ≤ j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hJlt : ∀ j ∈ J, 0 < counts j → j < d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
-    (hp : ∀ j,LinearIndependent K (p.1.2 j)) (hP : LinearIndependent K P) :
+    (hp : ∀ j, LinearIndependent K (p.1.2 j)) (hP : LinearIndependent K P) :
     LinearIndependent K (fun i =>
       (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range.mkQ
         (backgroundPositiveForms (preparedPositiveBiform hO hJ heven p.1)
@@ -59,12 +59,12 @@ theorem prepared_positive_background_scalar_independent (hd : 1<d) (hdodd : d%2=
     exact (zeroScalarEndpointFamily_back (by omega) hO hJ U P p (Sum.inr (Sum.inr i))).symm
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem restored_positive_biform_scalar_independent (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (hJlt : ∀ j∈J,0<counts j → j<d)
+theorem restored_positive_biform_scalar_independent (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (hJlt : ∀ j ∈ J, 0 < counts j → j < d)
     (idx : Fin r ≃ PreparedParameters.Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin
       r)
-    (p : RestoredSpace m d q J counts O) (hp : ∀ j,LinearIndependent K (p.1.2 j)) :
+    (p : RestoredSpace m d q J counts O) (hp : ∀ j, LinearIndependent K (p.1.2 j)) :
     LinearIndependent K (fun i =>
       (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range.mkQ
         (evenPolynomialToForms (restoredPositiveBiform hd hO hJ heven idx slot p i))) := by

@@ -61,7 +61,7 @@ nonempty principal open on the full base coefficients. -/
 theorem common_open_with [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (P : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m)) K)
-    (hP : ∃ a,eval a P≠0) :
+    (hP : ∃ a, eval a P ≠ 0) :
     ∃ D : MvPolynomial (ParameterIndex m upper m (mixedCount m upper) (upperEndpoint m)) K,
       (∃ p,eval p D≠0) ∧ ∀ p,eval p D≠0 →
         eval (baseProjection p) P≠0 ∧

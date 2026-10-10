@@ -18,7 +18,7 @@ namespace Froberg.PrivateColumns
 open Finset Module OuterInjection
 variable {a z s k b h : ℕ}
 
-def attachedDivisorEquiv (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀ ℕ) :
+def attachedDivisorEquiv (ι : Fin b ↪ Fin z) (β : Fin (a + z) →₀ ℕ) :
     {i : Labels k a s ⊕ Fin b // attachedExponent ι i ≤ β} ≃
       {i : Labels k a s // coreExponent z i ≤ β} ⊕
       {i : Fin b // privateExponent a s ι i ≤ β} where
@@ -31,7 +31,7 @@ def attachedDivisorEquiv (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀ ℕ) :
   left_inv i := by rcases i with ⟨i,hi⟩; cases i <;> rfl
   right_inv i := by cases i <;> rfl
 
-lemma card_attached_divisors (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀ ℕ) :
+lemma card_attached_divisors (ι : Fin b ↪ Fin z) (β : Fin (a + z) →₀ ℕ) :
     Fintype.card {i : Labels k a s ⊕ Fin b // attachedExponent ι i ≤ β} =
       Fintype.card {i : Labels k a s // coreExponent z i ≤ β} +
         (privateDivisors (s := s) ι β).card := by
@@ -40,8 +40,8 @@ lemma card_attached_divisors (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀ ℕ) 
   simp only [Fintype.card_subtype,privateDivisors]
 
 lemma card_attached_divisors_le (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (hh : k*(2*s+1).choose s ≤ h) (hsmall : k*(s+1)+2 ≤ h)
-    (β : Fin (a+z) →₀ ℕ) (hβ : β.degree ≤ 2*s+1) :
+    (hh : k * (2 * s + 1).choose s ≤ h) (hsmall : k * (s + 1) + 2 ≤ h)
+    (β : Fin (a + z) →₀ ℕ) (hβ : β.degree ≤ 2 * s + 1) :
     Fintype.card {i : Labels k a s ⊕ Fin b // attachedExponent ι i ≤ β} ≤ h := by
   classical
   rw [card_attached_divisors]
@@ -62,7 +62,7 @@ lemma card_attached_divisors_le (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
 
 lemma attached_fiber_independent {K : Type*} [Field K]
     (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (hh : k*(2*s+1).choose s ≤ h) (hsmall : k*(s+1)+2 ≤ h)
+    (hh : k * (2 * s + 1).choose s ≤ h) (hsmall : k * (s + 1) + 2 ≤ h)
     (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b), U.card ≤ h →
       LinearIndependent K (fun i : U => u i.val))
@@ -82,7 +82,7 @@ lemma attached_fiber_independent {K : Type*} [Field K]
 
 lemma attached_multiplication_injective {K : Type*} [Field K]
     (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (hh : k*(2*s+1).choose s ≤ h) (hsmall : k*(s+1)+2 ≤ h)
+    (hh : k * (2 * s + 1).choose s ≤ h) (hsmall : k * (s + 1) + 2 ≤ h)
     (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b), U.card ≤ h →
       LinearIndependent K (fun i : U => u i.val)) :
@@ -96,7 +96,7 @@ lemma attached_multiplication_injective {K : Type*} [Field K]
 
 lemma attached_quotient_finrank {K : Type*} [Field K]
     (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (hh : k*(2*s+1).choose s ≤ h) (hsmall : k*(s+1)+2 ≤ h)
+    (hh : k * (2 * s + 1).choose s ≤ h) (hsmall : k * (s + 1) + 2 ≤ h)
     (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b), U.card ≤ h →
       LinearIndependent K (fun i : U => u i.val))

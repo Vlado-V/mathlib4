@@ -19,11 +19,11 @@ namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
-variable (hd : 1≤d)
+variable (hd : 1 ≤ d)
   (Q : Fin q → biformParitySpace K h m d 0)
   (F : Fin f → biformParitySpace K h m d 1)
-  (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-  (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+  (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+  (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
   (G : Fin u → biformParitySpace K h m d 1)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.

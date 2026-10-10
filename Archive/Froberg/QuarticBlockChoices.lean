@@ -48,9 +48,9 @@ theorem canonicalLabel_injective (e : X ↪ Fin 8) : Function.Injective (canonic
 
 theorem canonical_pair_injective (r : Fin 5) (a b c d : CanonicalLabel)
     (habI : canonicalSupport a.1 ∩ canonicalSupport b.1 = initialSet r.val)
-    (habU : canonicalSupport a.1 ∪ canonicalSupport b.1 = initialSet (8-r.val))
+    (habU : canonicalSupport a.1 ∪ canonicalSupport b.1 = initialSet (8 - r.val))
     (hcdI : canonicalSupport c.1 ∩ canonicalSupport d.1 = initialSet r.val)
-    (hcdU : canonicalSupport c.1 ∪ canonicalSupport d.1 = initialSet (8-r.val))
+    (hcdU : canonicalSupport c.1 ∪ canonicalSupport d.1 = initialSet (8 - r.val))
     (hp : choiceCoordinates r a + choiceCoordinates r b =
       choiceCoordinates r c + choiceCoordinates r d) : s(a,b) = s(c,d) := by
   obtain ⟨i,hi⟩ := sourceColumns_cover r a b habI habU
@@ -107,7 +107,7 @@ theorem choiceCoordinates_zero_of_notMem_range (e : X ↪ Fin 8) (r : Fin 5)
 pulling the consistent canonical monomials back along the vertex embedding. -/
 theorem localChoice_pair_injective (e : X ↪ Fin 8) (I : Finset X) (r : Fin 5)
     (heI : I.map e = initialSet r.val)
-    (heU : (univ : Finset X).map e = initialSet (8-r.val))
+    (heU : (univ : Finset X).map e = initialSet (8 - r.val))
     (a b c d : Label X)
     (habI : support a ∩ support b = I) (habU : support a ∪ support b = univ)
     (hcdI : support c ∩ support d = I) (hcdU : support c ∪ support d = univ)

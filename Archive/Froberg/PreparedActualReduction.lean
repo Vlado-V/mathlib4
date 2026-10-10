@@ -36,7 +36,7 @@ def EvenPositiveReduction (p : Space n d q J counts O) : Prop :=
       (∀ i,(z i).IsHomogeneous d ∧ (z i).IsWeightedHomogeneous
         (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) 0)
 
-theorem eventually_actual_even_reduction_open {d : ℕ} (hd : 9≤d) :
+theorem eventually_actual_even_reduction_open {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,
       finrank K X=deletedTargetCount d (2*w) →

@@ -25,8 +25,8 @@ theorem addRow_exact_of_separated
     {A B U V : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
     (F : A →ₗ[K] V) (P : B →ₗ[K] V) (C : U →ₗ[K] A)
-    (hexact : F.ker=C.range)
-    (hsep : ∀ a b,F a+P b=0 → b=0) :
+    (hexact : F.ker = C.range)
+    (hsep : ∀ a b, F a + P b = 0 → b = 0) :
     (addRow F P).ker=((LinearMap.inl K A B).comp C).range := by
   apply le_antisymm
   · rintro ⟨a,b⟩ hab
@@ -68,12 +68,12 @@ def privateRowMap (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) (R : ℕ) :
     RingHom.id_apply]
 
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
-def privateAugmentedRow (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+def privateAugmentedRow (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) :=
   addRow (row hO R p) (privateRowMap (d := d) P R.val)
 
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
-def privateAugmentedConstants (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+def privateAugmentedConstants (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) :=
   (LinearMap.inl K (IntrinsicRowSource (K := K) (σ := σ) (n := n) (d := d) (q := q) (J := J) (counts
     := counts) R.val)
@@ -82,20 +82,20 @@ def privateAugmentedConstants (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_augmented_exact
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
-    (hrow : (row hO R p).ker=(rowConstants hO R p).range)
-    (hsep : ∀ x v,row hO R p x+privateRowMap (d := d) P R.val v=0 → v=0) :
+    (hrow : (row hO R p).ker = (rowConstants hO R p).range)
+    (hsep : ∀ x v, row hO R p x + privateRowMap (d := d) P R.val v = 0 → v = 0) :
     (privateAugmentedRow hO R p P).ker=(privateAugmentedConstants (b := b) hO R p).range :=
   addRow_exact_of_separated _ _ _ hrow hsep
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_row_principal_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (p₀ : Space n d q J counts O)
     (hE : LinearIndependent K (fun i => intrinsicLayerMap hO R i p₀))
-    (hexact : (privateAugmentedRow hO R p₀ P).ker=
+    (hexact : (privateAugmentedRow hO R p₀ P).ker =
       (privateAugmentedConstants (b := b) hO R p₀).range) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧

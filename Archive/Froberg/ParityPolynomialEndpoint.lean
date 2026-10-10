@@ -44,7 +44,7 @@ def parityPolynomialEndpoint (w : σ → ZMod 2) (e : I → ZMod 2)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem parityPolynomialEndpoint_val (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (p : ZMod 2)
-    (a : (i : I) → homogeneousParitySpace K σ d w (p-e i)) :
+    (a : (i : I) → homogeneousParitySpace K σ d w (p - e i)) :
     (parityPolynomialEndpoint w e g p a).val=∑ i,(g i).val*(a i).val := by
   simp [parityPolynomialEndpoint,parityPolynomialProduct]
 
@@ -100,7 +100,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityPolynomialEndpoint_transport (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (p : ZMod 2)
-    (a : (i : I) → homogeneousParitySpace K σ d w (p-e i)) :
+    (a : (i : I) → homogeneousParitySpace K σ d w (p - e i)) :
     parityPolynomialToFormsEquiv v w p (parityPolynomialEndpoint w e g p a)=
       parityEndpointMultiplication (w ∘ v.symm) (e ∘ j.symm)
         (parityEnumeratedForms v j w e g) (parityEnumeratedForms_homogeneous v j w e g) p

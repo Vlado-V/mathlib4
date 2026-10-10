@@ -22,14 +22,14 @@ variable {K U V : Type*} [Field K] [Infinite K]
 
 theorem fiberwise_principal_meets_linear_joint_open
     (D : MvPolynomial (Fin (finrank K U)) K)
-    (hD : ∃ u : U,eval ((Module.finBasis K U).equivFun u) D≠0)
+    (hD : ∃ u : U, eval ((Module.finBasis K U).equivFun u) D ≠ 0)
     (Φ : U → V → Prop)
-    (hΦ : ∀ u,eval ((Module.finBasis K U).equivFun u) D≠0 →
+    (hΦ : ∀ u, eval ((Module.finBasis K U).equivFun u) D ≠ 0 →
       ∃ Q : MvPolynomial (Fin (finrank K V)) K,
-        (∃ v : V,eval ((Module.finBasis K V).equivFun v) Q≠0) ∧
-        ∀ v,eval ((Module.finBasis K V).equivFun v) Q≠0 → Φ u v)
-    (P : MvPolynomial (Fin (finrank K (U×V))) K)
-    (hP : ∃ p : U×V,eval ((Module.finBasis K (U×V)).equivFun p) P≠0) :
+        (∃ v : V, eval ((Module.finBasis K V).equivFun v) Q ≠ 0) ∧
+        ∀ v, eval ((Module.finBasis K V).equivFun v) Q ≠ 0 → Φ u v)
+    (P : MvPolynomial (Fin (finrank K (U × V))) K)
+    (hP : ∃ p : U × V, eval ((Module.finBasis K (U × V)).equivFun p) P ≠ 0) :
     ∃ u v,eval ((Module.finBasis K U).equivFun u) D≠0 ∧ Φ u v ∧
       eval ((Module.finBasis K (U×V)).equivFun (u,v)) P≠0 := by
   classical

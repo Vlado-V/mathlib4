@@ -22,9 +22,9 @@ variable {σ : Type*} {a z s b h c m q r t : ℕ}
 
 /-- Core scalar products with lower-degree arbitrary private coefficients,
 and arbitrary core-only products, cannot contain a private power. -/
-theorem mixed_residual_avoids_private_powers (hs : 0<s) (ht : t<s)
+theorem mixed_residual_avoids_private_powers (hs : 0 < s) (ht : t < s)
     (ι : Fin b ↪ Fin z) (Q : Fin q → Poly K a)
-    (x : Fin q → Fin c → Forms K (a+z) t) (C : Fin c → Poly K a) :
+    (x : Fin q → Fin c → Forms K (a + z) t) (C : Fin c → Poly K a) :
     avoidsPrivatePowers (s := s) ι (fun k =>
       (∑ i,rename (Fin.castAdd z) (Q i)*(x i k).val)+rename (Fin.castAdd z) (C k)) := by
   apply avoidsPrivatePowers_of_free_degree_lt
@@ -39,15 +39,15 @@ theorem mixed_residual_avoids_private_powers (hs : 0<s) (ht : t<s)
 only rank hypothesis concerns the same chosen sparse E family modulo each
 private output image. -/
 theorem private_mixed_polynomial_row_zero
-    (hs : 2 ≤ s) (hr : r<s) (ht : t<s)
+    (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
     (o : Fin c → MvPolynomial σ K) (ho : LinearIndependent K o)
     (u : Fin h → MvPolynomial σ K) (hu : LinearIndependent K u)
-    (w : Fin b → MvPolynomial σ K) (hw : ∀ i,w i≠0)
+    (w : Fin b → MvPolynomial σ K) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,outputCombination o (A i (Pi.single j 1))=w i*u j)
+    (hA : ∀ i j, outputCombination o (A i (Pi.single j 1)) = w i * u j)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
-    (hprojected : ∀ j d,d≤1 → ∀ p : Fin m → Forms K a d,
+    (hprojected : ∀ j d, d ≤ 1 → ∀ p : Fin m → Forms K a d,
       (∀ α,sparseOutputCoefficient e v p α∈(A j).range) → p=0)
     (Q : Fin q → Poly K a) (x : Fin q → Fin c → Forms K (a+z) t)
     (C : Fin c → Poly K a)

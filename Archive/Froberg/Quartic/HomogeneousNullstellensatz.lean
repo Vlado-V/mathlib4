@@ -45,7 +45,7 @@ theorem exists_variable_powers (f : Fin r → Poly K s)
 
 /-- A sufficiently large exponent contains one of the prescribed positive powers. -/
 theorem exists_large_coordinate (n : Fin s → ℕ) (_hn : ∀ i, 0 < n i)
-    (e : Fin s →₀ ℕ) (he : e.degree = 1 + ∑ i, (n i-1)) :
+    (e : Fin s →₀ ℕ) (he : e.degree = 1 + ∑ i, (n i - 1)) :
     ∃ i, n i ≤ e i := by
   classical
   by_contra h
@@ -57,7 +57,7 @@ theorem exists_large_coordinate (n : Fin s → ℕ) (_hn : ∀ i, 0 < n i)
 
 /-- Divisibility by one coordinate power puts the whole monomial in the ideal. -/
 theorem monomial_mem_of_power_mem (I : Ideal (Poly K s)) (e : Fin s →₀ ℕ) (i : Fin s)
-    (n : ℕ) (hni : n ≤ e i) (hpow : (X i : Poly K s)^n ∈ I) (c : K) :
+    (n : ℕ) (hni : n ≤ e i) (hpow : (X i : Poly K s) ^ n ∈ I) (c : K) :
     monomial e c ∈ I := by
   classical
   have hle : Finsupp.single i n ≤ e := by

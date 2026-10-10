@@ -22,9 +22,9 @@ variable {K A I : Type*} [Field K] [CommRing A] [Algebra K A] [Fintype I]
 the complete positive part of every coefficient. -/
 theorem CoefficientRowsSolved.reconstruct
     {a E : I → A} {j : I → ℕ} {c : ℕ → I → A} {d : ℕ} {B : I → I → K}
-    (hB : CoefficientRowsSolved a E j c (2*d) B)
-    (hj : ∀ i,j i≤d) (v : I → A)
-    (hv : ∀ i,v i=c 0 i+∑ t∈range d,c (t+1) i) :
+    (hB : CoefficientRowsSolved a E j c (2 * d) B)
+    (hj : ∀ i, j i ≤ d) (v : I → A)
+    (hv : ∀ i, v i = c 0 i + ∑ t ∈ range d, c (t + 1) i) :
     ∀ i,v i=c 0 i+matrixCombination E B i := by
   classical
   intro i
@@ -54,12 +54,12 @@ by an explicit constant Koszul boundary, without a degree-zero equation. -/
 theorem coefficient_rows_reduce_to_scalar [LinearOrder I]
     (V : ℕ → Submodule K A) (a E : I → A) (j : I → ℕ)
     (c : ℕ → I → A) (d : ℕ) (v : I → A)
-    (hj : ∀ i,j i≤d) (hE : ∀ i,j i=0 → E i=0)
-    (hcV : ∀ t i,c t i∈V t) (haV : ∀ i,a i∈V 0)
-    (hv : ∀ i,v i=c 0 i+∑ t∈range d,c (t+1) i)
-    (hrow : ∀ r,0<r → r≤2*d → (∑ i,a i*c r i)+
-      (∑ i,if j i≤r then E i*c (r-j i) i else 0)=0)
-    (hexact : ∀ r,0<r → r≤2*d → CoefficientRowExact V a E j r) :
+    (hj : ∀ i, j i ≤ d) (hE : ∀ i, j i = 0 → E i = 0)
+    (hcV : ∀ t i, c t i ∈ V t) (haV : ∀ i, a i ∈ V 0)
+    (hv : ∀ i, v i = c 0 i + ∑ t ∈ range d, c (t + 1) i)
+    (hrow : ∀ r, 0 < r → r ≤ 2 * d → (∑ i, a i * c r i) +
+      (∑ i, if j i ≤ r then E i * c (r - j i) i else 0) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d → CoefficientRowExact V a E j r) :
     ∃ (M : I → I → K) (z : I → A),
       v-matrixBoundary (fun i => a i+E i) M=z ∧
       (∀ i,0<j i → z i=0) ∧
@@ -109,13 +109,13 @@ remainder is an actual scalar cycle. -/
 theorem coefficient_rows_reduce_to_scalar_cycle [LinearOrder I]
     (V : ℕ → Submodule K A) (a E : I → A) (j : I → ℕ)
     (c : ℕ → I → A) (d : ℕ) (v : I → A)
-    (hj : ∀ i,j i≤d) (hE : ∀ i,j i=0 → E i=0)
-    (hcV : ∀ t i,c t i∈V t) (haV : ∀ i,a i∈V 0)
-    (hv : ∀ i,v i=c 0 i+∑ t∈range d,c (t+1) i)
-    (hrow : ∀ r,0<r → r≤2*d → (∑ i,a i*c r i)+
-      (∑ i,if j i≤r then E i*c (r-j i) i else 0)=0)
-    (hexact : ∀ r,0<r → r≤2*d → CoefficientRowExact V a E j r)
-    (hcycle : ∑ i,(a i+E i)*v i=0) :
+    (hj : ∀ i, j i ≤ d) (hE : ∀ i, j i = 0 → E i = 0)
+    (hcV : ∀ t i, c t i ∈ V t) (haV : ∀ i, a i ∈ V 0)
+    (hv : ∀ i, v i = c 0 i + ∑ t ∈ range d, c (t + 1) i)
+    (hrow : ∀ r, 0 < r → r ≤ 2 * d → (∑ i, a i * c r i) +
+      (∑ i, if j i ≤ r then E i * c (r - j i) i else 0) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d → CoefficientRowExact V a E j r)
+    (hcycle : ∑ i, (a i + E i) * v i = 0) :
     ∃ (M : I → I → K) (z : I → A),
       v-matrixBoundary (fun i => a i+E i) M=z ∧
       (∀ i,0<j i → z i=0) ∧ (∀ i,z i∈V 0) ∧ ∑ i,a i*z i=0 := by

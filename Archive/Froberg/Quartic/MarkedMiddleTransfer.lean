@@ -29,7 +29,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A fixed admissible pure-pencil parameter gives the marked lower parent. -/
 theorem lower_parent_witness_of_parameter (ω : K) (m : ℕ)
     (hmlo : 41 ≤ m) (hmhi : m ≤ 319)
-    (hpositive : 0 < Counts.chi (m+3) (lowerEndpoint (m+3)))
+    (hpositive : 0 < Counts.chi (m + 3) (lowerEndpoint (m + 3)))
     (hω : ω ≠ 0) (hω1 : ω ≠ -1) (hchild : MarkedEndpoints K m) :
     MarkedLowerWitness K (m+3) (lowerEndpoint (m+3)) := by
   classical
@@ -98,7 +98,7 @@ theorem lower_parent_witness_of_parameter (ω : K) (m : ℕ)
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A marked exact child gives the marked lower endpoint throughout 41–319. -/
 theorem lower_parent_witness (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 319)
-    (hpositive : 0 < Counts.chi (m+3) (lowerEndpoint (m+3)))
+    (hpositive : 0 < Counts.chi (m + 3) (lowerEndpoint (m + 3)))
     (hchild : MarkedEndpoints K m) :
     MarkedLowerWitness K (m+3) (lowerEndpoint (m+3)) := by
   obtain ⟨ω,hω,hω1⟩ := ThreeBlockOmega.exists_parameter (K := K)

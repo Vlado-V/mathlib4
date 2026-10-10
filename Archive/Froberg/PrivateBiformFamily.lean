@@ -30,7 +30,7 @@ def privatePowerBiform (l : Fin b → homogeneousSubmodule σ K 1) (ι : Fin b �
     (privatePowerBiform (a := a) (d := d) l ι i).val=
       rename Sum.inl (l i).val*rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)) := rfl
 
-theorem exists_two_core_linear_forms (ha : 2≤a) :
+theorem exists_two_core_linear_forms (ha : 2 ≤ a) :
     ∃ ell : Fin 2 → Forms K a 1,LinearIndependent K ell := by
   let e : (Fin a → K) ≃ₗ[K] Forms K a 1 := LinearEquiv.ofFinrankEq _ _ (by
     rw [finrank_forms K a 1 (by omega)]

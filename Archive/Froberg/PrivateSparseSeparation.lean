@@ -30,7 +30,7 @@ lemma privateExponent_le_merge (ι : Fin b ↪ Fin z) (i : Fin b)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 lemma private_unique_of_small_free_degree (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (β : Fin z →₀ ℕ) (hβ : β.degree ≤ s+1) (i j : Fin b)
+    (β : Fin z →₀ ℕ) (hβ : β.degree ≤ s + 1) (i j : Fin b)
     (hi : s ≤ β (ι i)) (hj : s ≤ β (ι j)) : i=j := by
   let B := mergeExponent (0 : Fin 0 →₀ ℕ) β
   have hb : B.degree=β.degree := by simp [B]
@@ -46,15 +46,15 @@ lemma private_unique_of_small_free_degree (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A polynomial tuple has no monomial divisible by any private power. -/
-def avoidsPrivatePowers (ι : Fin b ↪ Fin z) (f : Fin c → Poly K (a+z)) : Prop :=
+def avoidsPrivatePowers (ι : Fin b ↪ Fin z) (f : Fin c → Poly K (a + z)) : Prop :=
   ∀ k δ i,privateExponent a s ι i ≤ δ → (f k).coeff δ=0
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The scalar/existing-product side avoids private powers whenever all of
 its private coefficient polynomials above degree s−1 vanish. -/
 theorem avoidsPrivatePowers_of_free_degree_lt (ι : Fin b ↪ Fin z)
-    (f : Fin c → Poly K (a+z))
-    (hf : ∀ k β,s ≤ β.degree → freeCoeff β (f k)=0) :
+    (f : Fin c → Poly K (a + z))
+    (hf : ∀ k β, s ≤ β.degree → freeCoeff β (f k) = 0) :
     avoidsPrivatePowers (s := s) ι f := by
   intro k δ i hi
   have hval : s ≤ (freeExponent δ) (ι i) := by
@@ -68,8 +68,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 in exactly that column's output image. -/
 theorem private_coefficient_mem_range (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (v : Fin b → Fin h → Forms K (a+z) r)
-    (β : Fin z →₀ ℕ) (hβ : β.degree ≤ s+1) (i : Fin b) (hi : s ≤ β (ι i))
+    (v : Fin b → Fin h → Forms K (a + z) r)
+    (β : Fin z →₀ ℕ) (hβ : β.degree ≤ s + 1) (i : Fin b) (hi : s ≤ β (ι i))
     (α : Fin a →₀ ℕ) :
     (fun k => (privatePolynomialMapAt (s := s) ι A v k).coeff (mergeExponent α β))∈(A i).range := by
   refine ⟨privateSourceCoefficient v i (mergeExponent α β-privateExponent a s ι i),?_⟩
@@ -91,7 +91,7 @@ from every private column, even with arbitrary private-variable coefficients. -/
 theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
-    (hprojected : ∀ j d,d ≤ 1 → ∀ u : Fin m → Forms K a d,
+    (hprojected : ∀ j d, d ≤ 1 → ∀ u : Fin m → Forms K a d,
       (∀ α,sparseOutputCoefficient e v u α∈(A j).range) → u=0)
     (p : Fin m → Forms K (a+z) (s+1))
     (w : Fin b → Fin h → Forms K (a+z) r)
@@ -170,9 +170,9 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 two can reach the first pairwise private-power overlap. -/
 theorem private_sparse_lower_zero (hs : 2 ≤ s) (hr : r < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i,Function.Injective (A i))
+    (hA : ∀ i, Function.Injective (A i))
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
-    (hprojected : ∀ j d,d ≤ 1 → ∀ u : Fin m → Forms K a d,
+    (hprojected : ∀ j d, d ≤ 1 → ∀ u : Fin m → Forms K a d,
       (∀ α,sparseOutputCoefficient e v u α∈(A j).range) → u=0)
     (p : Fin m → Forms K (a+z) (s+1))
     (w : Fin b → Fin h → Forms K (a+z) r)

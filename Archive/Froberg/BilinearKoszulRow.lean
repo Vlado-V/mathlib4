@@ -85,7 +85,7 @@ and product families. -/
 theorem bilinearKoszulRow_polynomial
     (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → (ι → K) → V) (E : J → (ι → K) → U)
     (P : (ι → K) → (W →ₗ[K] A))
-    (hQ : ∀ i,IsPolynomialFamily (Q i)) (hE : ∀ j,IsPolynomialFamily (E j))
+    (hQ : ∀ i, IsPolynomialFamily (Q i)) (hE : ∀ j, IsPolynomialFamily (E j))
     (hP : IsPolynomialFamily P) :
     IsPolynomialFamily (fun a => bilinearKoszulRow μ (fun i => Q i a) (fun j => E j a) (P a)) := by
   apply isPolynomialFamily_linearMap
@@ -97,7 +97,7 @@ theorem bilinearKoszulRow_polynomial
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bilinearKoszulConstants_polynomial
     (Q : I → (ι → K) → V) (E : J → (ι → K) → U)
-    (hQ : ∀ i,IsPolynomialFamily (Q i)) (hE : ∀ j,IsPolynomialFamily (E j)) :
+    (hQ : ∀ i, IsPolynomialFamily (Q i)) (hE : ∀ j, IsPolynomialFamily (E j)) :
     IsPolynomialFamily (fun a => bilinearKoszulConstants (K := K) (W := W) (fun i => Q i a) (fun j
       => E j a)) := by
   classical
@@ -124,10 +124,10 @@ coefficient space; no independent row-wise parameters are introduced. -/
 theorem bilinearKoszulRow_open
     (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → (ι → K) → V) (E : J → (ι → K) → U)
     (P : (ι → K) → (W →ₗ[K] A))
-    (hQ : ∀ i,IsPolynomialFamily (Q i)) (hE : ∀ j,IsPolynomialFamily (E j))
+    (hQ : ∀ i, IsPolynomialFamily (Q i)) (hE : ∀ j, IsPolynomialFamily (E j))
     (hP : IsPolynomialFamily P) (a₀ : ι → K)
     (hEI : LinearIndependent K (fun j => E j a₀))
-    (hker : (bilinearKoszulRow μ (fun i => Q i a₀) (fun j => E j a₀) (P a₀)).ker=
+    (hker : (bilinearKoszulRow μ (fun i => Q i a₀) (fun j => E j a₀) (P a₀)).ker =
       (bilinearKoszulConstants (K := K) (W := W) (fun i => Q i a₀) (fun j => E j a₀)).range) :
     ∃ D : MvPolynomial ι K,eval a₀ D≠0 ∧ ∀ a,eval a D≠0 →
       (bilinearKoszulRow μ (fun i => Q i a) (fun j => E j a) (P a)).ker=

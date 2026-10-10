@@ -28,7 +28,7 @@ theorem equation_second_stage
     (base : I → R)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (B : Matrix (Fin b) (Fin l) (MvPolynomial (I ⊕ Fin n) K))
-    (hcount : g+n < r+s) :
+    (hcount : g + n < r + s) :
     ∃ P : MvPolynomial (Fin l) K, P ≠ 0 ∧
       ∀ (φ : R →ₐ[K] K) (x : Fin n → K) (y : Fin l → K),
         r ≤ (evaluated A (fun i => φ (base i))).rank →
@@ -52,7 +52,7 @@ theorem principal_open_second_stage [Infinite K]
     (base : I → R)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (B : Matrix (Fin b) (Fin l) (MvPolynomial (I ⊕ Fin n) K))
-    (hcount : g+n < r+s) :
+    (hcount : g + n < r + s) :
     ∃ P : MvPolynomial (Fin l) K,
       (∃ y : Fin l → K, eval y P ≠ 0) ∧
       ∀ y, eval y P ≠ 0 → ∀ (φ : R →ₐ[K] K) (x : Fin n → K),

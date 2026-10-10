@@ -61,7 +61,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 injected relation space. This is the affine-fiber assertion in C.12. -/
 theorem coupled_extension_difference (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
     (ell : X →ₗ[K] K) (eta theta : Y →ₗ[K] K)
-    (heta : (ell,eta)∈coupledCovectors P C) :
+    (heta : (ell, eta) ∈ coupledCovectors P C) :
     (ell,theta)∈coupledCovectors P C ↔ (theta-eta).comp C=0 := by
   constructor
   · intro ht

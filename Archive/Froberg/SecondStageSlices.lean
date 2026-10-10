@@ -25,7 +25,7 @@ successive kernel equations on the chart where its first slice is one.
 The component dimension bound is derived from the empty-section hypothesis. -/
 theorem principal_open_second_dehom {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
     (d : Fin fcount → ℕ) (f : ∀ i, Forms K q (d i))
-    (ℓ : Fin (s+1) → Forms K q 1)
+    (ℓ : Fin (s + 1) → Forms K q 1)
     (hempty : ∀ t : Fin q → L, (∀ i, aeval t (f i).val = 0) →
       (∀ i, aeval t (ℓ i).val = 0) → t = 0)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial (Fin q) K))
@@ -78,7 +78,7 @@ normalized slice chart. Matrix scaling is an explicit algebraic compatibility
 condition, not a dimension or generic-fiber assumption. -/
 theorem principal_open_second_projective_succ {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
     (d : Fin fcount → ℕ) (f : ∀ i, Forms K q (d i))
-    (ℓ : Fin (s+1) → Forms K q 1)
+    (ℓ : Fin (s + 1) → Forms K q 1)
     (hempty : ∀ t : Fin q → L, (∀ i, aeval t (f i).val = 0) →
       (∀ i, aeval t (ℓ i).val = 0) → t = 0)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial (Fin q) K))

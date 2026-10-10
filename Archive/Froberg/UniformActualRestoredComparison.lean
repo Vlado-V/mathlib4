@@ -28,12 +28,12 @@ attribute [local irreducible] RestoredEndpointThin RestoredFormalQuadraticSepara
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem eventually_uniform_actual_restored_comparison {d k h lo : ℕ}
-    (hd : 3≤d) (he : d%2=0) (hk : 0<k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hd : 3 ≤ d) (he : d % 2 = 0) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∀ᶠ n : ℕ in atTop,
       ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],
       ∀ frame : Fin (quadraticOutputDimension d h) → Forms K h 2,
@@ -114,12 +114,12 @@ set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 /-- Eventual common-frame data gives the critical comparison at every
 sufficiently large scalar dimension. -/
 theorem uniform_actual_restored_comparison_of_eventual_frames {d k h lo : ℕ}
-    (hd : 3≤d) (he : d%2=0) (hk : 0<k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
+    (hd : 3 ≤ d) (he : d % 2 = 0) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (hframes : ∀ᶠ n : ℕ in atTop,
       ∀ (K : Type) [Field K] [Infinite K],
       ∃ frame : Fin (quadraticOutputDimension d h) → Forms K h 2,

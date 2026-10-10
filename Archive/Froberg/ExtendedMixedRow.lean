@@ -24,7 +24,7 @@ lemma freeCoeff_rename_core (β : Fin z →₀ ℕ) (f : Poly K a) :
   rw [←liftCoeff_zero_eq_rename,freeCoeff_liftCoeff]
   simp only [eq_comm]
 
-lemma eq_rename_freeCoeff_zero (f : Poly K (a+z))
+lemma eq_rename_freeCoeff_zero (f : Poly K (a + z))
     (hf : ∀ β : Fin z →₀ ℕ,β≠0 → freeCoeff β f=0) :
     f=rename (Fin.castAdd z) (freeCoeff (0 : Fin z →₀ ℕ) f) := by
   apply MvPolynomial.ext
@@ -37,19 +37,19 @@ lemma eq_rename_freeCoeff_zero (f : Poly K (a+z))
 /-- The private-variable extension introduces no new lower coefficients.
 The returned relation is literally the original core relation, not an
 abstractly isomorphic kernel. -/
-theorem extended_mixed_relation_core (hsd : s≤d)
+theorem extended_mixed_relation_core (hsd : s ≤ d)
     (E : I → J → Poly K a) (Q : Fin q → Poly K a) (C : J → Poly K a)
-    (hbelow : ∀ t,0<t → t ≤ s →
+    (hbelow : ∀ t, 0 < t → t ≤ s →
       ∀ (x : Fin q → J → Poly K a) (p : I → Poly K a),
-        (∀ i j,(x i j).IsHomogeneous (s-t)) →
-        (∀ i,(p i).IsHomogeneous (d-t)) →
-        (∀ j,(∑ i,Q i*x i j)+(∑ k,E k j*p k)=0) → x=0 ∧ p=0)
-    (hEinj : ∀ t,t<d → Function.Injective (corePolynomialMatrix (t := t) (fun j i => E i j)))
-    (x : Fin q → J → Poly K (a+z)) (p : I → Poly K (a+z))
-    (hx : ∀ i j,(x i j).IsHomogeneous s)
-    (hp : ∀ i,(p i).IsHomogeneous d)
-    (hrel : ∀ j,(∑ i,rename (Fin.castAdd z) (Q i)*x i j)+
-      (∑ k,rename (Fin.castAdd z) (E k j)*p k)+rename (Fin.castAdd z) (C j)=0) :
+        (∀ i j, (x i j).IsHomogeneous (s - t)) →
+        (∀ i, (p i).IsHomogeneous (d - t)) →
+        (∀ j, (∑ i, Q i * x i j) + (∑ k, E k j * p k) = 0) → x = 0 ∧ p = 0)
+    (hEinj : ∀ t, t < d → Function.Injective (corePolynomialMatrix (t := t) (fun j i => E i j)))
+    (x : Fin q → J → Poly K (a + z)) (p : I → Poly K (a + z))
+    (hx : ∀ i j, (x i j).IsHomogeneous s)
+    (hp : ∀ i, (p i).IsHomogeneous d)
+    (hrel : ∀ j, (∑ i, rename (Fin.castAdd z) (Q i) * x i j) +
+      (∑ k, rename (Fin.castAdd z) (E k j) * p k) + rename (Fin.castAdd z) (C j) = 0) :
     (∀ i j,x i j=rename (Fin.castAdd z) (freeCoeff (0 : Fin z →₀ ℕ) (x i j))) ∧
     (∀ i,p i=rename (Fin.castAdd z) (freeCoeff (0 : Fin z →₀ ℕ) (p i))) ∧
     ∀ j,(∑ i,Q i*freeCoeff (0 : Fin z →₀ ℕ) (x i j))+

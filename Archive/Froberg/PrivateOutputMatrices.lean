@@ -31,7 +31,7 @@ set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- A literal output multiplication matrix in any two homogeneous bases. -/
 def privateOutputMatrix
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
-    (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R+1)))
+    (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R + 1)))
     (w : homogeneousSubmodule σ K 1) : (Fin L → K) →ₗ[K] (Fin H → K) :=
   let F : homogeneousSubmodule σ K R →ₗ[K] homogeneousSubmodule σ K (R+1) :=
     (((LinearMap.mul K (MvPolynomial σ K)) w.val).comp
@@ -46,7 +46,7 @@ set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- Each column is exactly the product of its lower basis element with w. -/
 theorem privateOutputMatrix_column
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
-    (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R+1)))
+    (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R + 1)))
     (w : homogeneousSubmodule σ K 1) (j : Fin L) :
     outputCombination (fun k => (ho k).val) (privateOutputMatrix hi ho w (Pi.single j 1))=
       w.val*(hi j).val := by
@@ -62,8 +62,8 @@ theorem privateOutputMatrix_column
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem privateOutputMatrix_injective
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
-    (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R+1)))
-    (w : homogeneousSubmodule σ K 1) (hw : w≠0) :
+    (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R + 1)))
+    (w : homogeneousSubmodule σ K 1) (hw : w ≠ 0) :
     Function.Injective (privateOutputMatrix hi ho w) := by
   have hli : LinearIndependent K (fun j => (hi j).val) :=
     hi.linearIndependent.map' (homogeneousSubmodule σ K R).subtype

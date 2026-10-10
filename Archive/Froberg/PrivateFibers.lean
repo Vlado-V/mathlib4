@@ -18,7 +18,7 @@ open Finset Module OuterInjection AttachedMultiplication
 variable {K : Type*} [Field K] {a z s k b h : ℕ}
 
 lemma core_relation_eq_bot_of_degree_lt (v : Labels k a s → Fin h → K)
-    (β : Fin (a+z) →₀ ℕ) (hc : (corePart β).degree < s) :
+    (β : Fin (a + z) →₀ ℕ) (hc : (corePart β).degree < s) :
     relationFiber (coreExponent z) v β = ⊥ := by
   apply le_antisymm _ bot_le
   apply Submodule.span_le.mpr
@@ -29,7 +29,7 @@ lemma core_relation_eq_bot_of_degree_lt (v : Labels k a s → Fin h → K)
 
 lemma relationFiber_regular (ι : Fin b ↪ Fin z)
     (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
-    (β : Fin (a+z) →₀ ℕ) (hp : ∀ i, ¬privateExponent a s ι i ≤ β) :
+    (β : Fin (a + z) →₀ ℕ) (hp : ∀ i, ¬privateExponent a s ι i ≤ β) :
     relationFiber (attachedExponent ι) (attachedVectors v w) β =
       relationFiber (coreExponent z) v β := by
   rw [relationFiber_attached]
@@ -43,9 +43,9 @@ lemma relationFiber_regular (ι : Fin b ↪ Fin z)
 
 lemma relationFiber_good_private (ι : Fin b ↪ Fin z)
     (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
-    (i : Fin b) (β : Fin (a+z) →₀ ℕ) (hc : (corePart β).degree < s)
+    (i : Fin b) (β : Fin (a + z) →₀ ℕ) (hc : (corePart β).degree < s)
     (hi : privateExponent a s ι i ≤ β)
-    (hj : ∀ j, privateExponent a s ι j ≤ β → j=i) :
+    (hj : ∀ j, privateExponent a s ι j ≤ β → j = i) :
     relationFiber (attachedExponent ι) (attachedVectors v w) β =
       Submodule.span K {w i} := by
   rw [relationFiber_attached,core_relation_eq_bot_of_degree_lt v β hc,bot_sup_eq]
@@ -74,9 +74,9 @@ lemma relationFiber_private_source (hs : 0 < s) (ι : Fin b ↪ Fin z)
 
 lemma private_good_capacity (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
-    (i : Fin b) (β : Fin (a+z) →₀ ℕ) (hc : (corePart β).degree < s)
+    (i : Fin b) (β : Fin (a + z) →₀ ℕ) (hc : (corePart β).degree < s)
     (hi : privateExponent a s ι i ≤ β)
-    (hj : ∀ j, privateExponent a s ι j ≤ β → j=i) :
+    (hj : ∀ j, privateExponent a s ι j ≤ β → j = i) :
     finrank K ((Fin h → K) ⧸ relationFiber (attachedExponent ι) (attachedVectors v w) β) =
       finrank K ((Fin h → K) ⧸ relationFiber (attachedExponent ι) (attachedVectors v w)
         (privateExponent a s ι i)) := by

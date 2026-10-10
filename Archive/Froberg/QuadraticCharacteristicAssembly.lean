@@ -18,7 +18,7 @@ namespace Froberg
 
 theorem quadraticRecurrence_of_characteristicTwo
     (hcharTwo : ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K] [CharP K 2],
-      ∀ n,28 ≤ n → ∀ r,r ≤ (n+1).choose 2 → Quartic.GenericQuartic K n r) :
+      ∀ n, 28 ≤ n → ∀ r, r ≤ (n + 1).choose 2 → Quartic.GenericQuartic K n r) :
     UniformCriticalRecurrence 2 := by
   refine ⟨3,320,by omega,?_⟩
   intro K _ _ n hn

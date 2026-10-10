@@ -17,13 +17,13 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem natural_monomial_div_limit (c : ℕ) {q k : ℕ} (hq : 0<q) (hk : 0<k) :
+theorem natural_monomial_div_limit (c : ℕ) {q k : ℕ} (hq : 0 < q) (hk : 0 < k) :
     Tendsto (fun n : ℕ => ((c*n^k/q : ℕ) : ℝ)/(n : ℝ)^k)
       atTop (𝓝 ((c : ℝ)/(q : ℝ))) := by
   apply natural_division_normalized_limit _ hk hq (c : ℝ)
   simpa only [Nat.cast_mul,Nat.cast_pow] using scaled_power_normalized_limit (c : ℝ) k
 
-theorem natural_fraction_tendsto_atTop {a b : ℕ} (ha : 0<a) (hb : 0<b) :
+theorem natural_fraction_tendsto_atTop {a b : ℕ} (ha : 0 < a) (hb : 0 < b) :
     Tendsto (fun n : ℕ => a*n/b) atTop atTop := by
   apply tendsto_atTop.mpr
   intro N
@@ -31,7 +31,7 @@ theorem natural_fraction_tendsto_atTop {a b : ℕ} (ha : 0<a) (hb : 0<b) :
   apply (Nat.le_div_iff_mul_le hb).mpr
   nlinarith
 
-theorem natural_fraction_monomial_limit {a b : ℕ} (ha : 0<a) (hb : 0<b) (s : ℕ) :
+theorem natural_fraction_monomial_limit {a b : ℕ} (ha : 0 < a) (hb : 0 < b) (s : ℕ) :
     Tendsto (fun n : ℕ => ((a*n/b+s-1).choose s : ℝ)/(n : ℝ)^s)
       atTop (𝓝 (((a : ℝ)/(b : ℝ))^s/(s.factorial : ℝ))) := by
   apply scaled_index_monomial_limit _ _ s (natural_fraction_tendsto_atTop ha hb)

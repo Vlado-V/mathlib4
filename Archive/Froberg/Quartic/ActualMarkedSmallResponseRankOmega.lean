@@ -149,8 +149,8 @@ theorem common_open_with (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (extra : (a : AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m) → K) →
       ActualMarkedCorrectionMotionOmega.MiddleTarget (AugmentedGeneric.coefficientChild a))
     (P : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m)) K)
-    (hP : ∃ a,eval a P≠0)
-    (hExtra : ∀ a,eval a P≠0 → Function.Injective (ExtraCorrectionOmega.augmented ω
+    (hP : ∃ a, eval a P ≠ 0)
+    (hExtra : ∀ a, eval a P ≠ 0 → Function.Injective (ExtraCorrectionOmega.augmented ω
       (AugmentedGeneric.coefficientMixed a) (AugmentedGeneric.coefficientChild a)
       (AugmentedGeneric.coefficientMotions a) (extra a))) :
     ∃ D : MvPolynomial (SmallCovectorCommonOpen.ParameterIndex m upper m
@@ -187,8 +187,8 @@ theorem exists_common_maximal_response_with (m : ℕ) (hmlo : 28 ≤ m) (hmhi : 
     (extra : (a : AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m) → K) →
       ActualMarkedCorrectionMotionOmega.MiddleTarget (AugmentedGeneric.coefficientChild a))
     (P : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m)) K)
-    (hP : ∃ a,eval a P≠0)
-    (hExtra : ∀ a,eval a P≠0 → Function.Injective (ExtraCorrectionOmega.augmented ω
+    (hP : ∃ a, eval a P ≠ 0)
+    (hExtra : ∀ a, eval a P ≠ 0 → Function.Injective (ExtraCorrectionOmega.augmented ω
       (AugmentedGeneric.coefficientMixed a) (AugmentedGeneric.coefficientChild a)
       (AugmentedGeneric.coefficientMotions a) (extra a))) :
     ∃ p : Parameters K m upper,

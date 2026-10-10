@@ -23,8 +23,8 @@ variable {σ I J : Type*} [Fintype I] [Fintype J] {n s d q : ℕ}
 
 theorem polynomialFormVector_mem_biform
     (o : J → MvPolynomial σ K) (O : Submodule K (MvPolynomial σ K))
-    (C : Submodule K (Poly K n)) (ho : ∀ j,o j∈O)
-    (p : J → Forms K n s) (hp : ∀ j,(p j).val∈C) :
+    (C : Submodule K (Poly K n)) (ho : ∀ j, o j ∈ O)
+    (p : J → Forms K n s) (hp : ∀ j, (p j).val ∈ C) :
     polynomialFormVector o s p∈biformImage O C := by
   rw [polynomialFormVector_apply,polynomialVector_apply]
   exact Submodule.sum_mem _ (fun j hj => mul_mem_biformImage O C (ho j) (hp j))
@@ -36,12 +36,12 @@ def polynomialScalarRow (o : J → MvPolynomial σ K) (Q : Fin q → Forms K n d
   (polynomialFormVector o (s+d)).comp (BilinearScalarFamily.multiplication vectorMultiply Q)
 
 def polynomialLayerRow (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s) :
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s) :
     (I → Forms K n d) →ₗ[K] MvPolynomial (σ ⊕ Fin n) K :=
   (polynomialFormVector o (s+d)).comp (homogeneousMultiplication e v he)
 
 theorem polynomialIntermediateRow_eq_addRow (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d) :
     polynomialIntermediateRow o e v he Q =
       addRow (polynomialScalarRow (s := s) o Q) (polynomialLayerRow (d := d) o e v he) := by
@@ -54,7 +54,7 @@ theorem polynomialIntermediateRow_eq_addRow (o : J → MvPolynomial σ K)
 
 /-- Every scalar coefficient is in the literal scalar ideal piece. -/
 theorem polynomialScalarRow_range (o : J → MvPolynomial σ K)
-    (O : Submodule K (MvPolynomial σ K)) (ho : ∀ j,o j∈O)
+    (O : Submodule K (MvPolynomial σ K)) (ho : ∀ j, o j ∈ O)
     (Q : Fin q → Forms K n d) :
     (polynomialScalarRow (s := s) o Q).range≤biformImage O (familySpace Q*Forms K n s) := by
   rintro x ⟨p,rfl⟩
@@ -69,7 +69,7 @@ theorem polynomialScalarRow_range (o : J → MvPolynomial σ K)
 /-- The layer row is the literal sum of products by the attached polynomial
 family, not an abstract isomorphic multiplication map. -/
 theorem polynomialLayerRow_apply (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (p : I → Forms K n d) :
     polynomialLayerRow o e v he p =
       ∑ i,attachedPolynomialFamily o e v i * rename Sum.inr (p i).val := by

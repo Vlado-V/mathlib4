@@ -23,8 +23,8 @@ variable {n s d h q B : ℕ}
 
 /-- B.11 plus the finite scalar budget supplies the actual incidence bound. -/
 theorem intermediate_scalar_injective_of_budget
-    (hn : 0<n) (hh : 0<h) (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
-    (he : ∀ i, (e i).degree=s)
+    (hn : 0 < n) (hh : 0 < h) (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
+    (he : ∀ i, (e i).degree = s)
     (hv : ∀ S : Finset I, S.card≤h → LinearIndependent K (fun i : S => v i.val))
     (hm : MixedExterior.UniversalMixedPosition v) (hB : B≤h)
     (hsize : ∀ β : Exponent n (s+d), (labelsBelow e β.val).card≤B)

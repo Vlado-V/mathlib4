@@ -18,8 +18,8 @@ namespace Froberg.PrivateColumns
 open Filter Module MvPolynomial OuterInjection VectorExpansionOpen
 open scoped Topology
 
- theorem eventually_private_strict_open {K : Type*} [Field K] [Infinite K]
-    {k s h b : ℕ} (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
+theorem eventually_private_strict_open {K : Type*} [Field K] [Infinite K]
+    {k s h b : ℕ} (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
     (a z : ℕ → ℕ) (ha : Tendsto a atTop atTop) (hz : Tendsto z atTop atTop)
     (har : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 (limitingCoreFraction (s+1))))
     (hzr : Tendsto (fun n : ℕ => (z n : ℝ)/n) atTop (𝓝 (1-limitingCoreFraction (s+1))))

@@ -21,7 +21,7 @@ open Polynomial Filter Module MvPolynomial
 open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 
-theorem profile_scalar_leading_gap {d e : ℕ} (he : e+4≤d) :
+theorem profile_scalar_leading_gap {d e : ℕ} (he : e + 4 ≤ d) :
     4 * (e.factorial : ℝ)⁻¹ * (criticalRatio d / (d.factorial : ℝ)) <
       ((e+d).factorial : ℝ)⁻¹ := by
   have hr := higher_scalar_source_bound (d := d) (j := d-e) (by omega) (by omega)
@@ -46,7 +46,7 @@ theorem profile_scalar_leading_gap {d e : ℕ} (he : e+4≤d) :
   rw [heq]
   simpa only [inv_mul_cancel₀ hD.ne'] using hcr
 
-theorem eventually_profile_scalar_incidence_budget {d e : ℕ} (he : e+4≤d)
+theorem eventually_profile_scalar_incidence_budget {d e : ℕ} (he : e + 4 ≤ d)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d / (d.factorial : ℝ)))) :
@@ -74,7 +74,7 @@ theorem eventually_profile_scalar_incidence_budget {d e : ℕ} (he : e+4≤d)
 /-- A nonempty principal open of the common scalar parameter space works
 in the quotient by one parity and one additional profile. -/
 theorem eventually_generic_profile_scalar_separation
-    {K : Type*} [Field K] [Infinite K] {d e : ℕ} (hd : 9≤d) (he : e+4≤d)
+    {K : Type*} [Field K] [Infinite K] {d e : ℕ} (hd : 9 ≤ d) (he : e + 4 ≤ d)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d / (d.factorial : ℝ)))) :

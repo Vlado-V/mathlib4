@@ -40,7 +40,7 @@ lemma sourceAtomMass_upper {H : ℝ} {a z s : ℕ}
 theorem monomial_minorization {a z s : ℕ} {H : ℝ}
     (ha : 0 < a) (hz : 0 < z) (hs : 0 < s) (hH : 0 < H)
     (hA : 0 < ∑ i, finiteSourceProfile H s a z i)
-    (P : Option (Fin s) → Fin (2*s+1) → ℝ) (q : Fin (2*s+1) → ℝ)
+    (P : Option (Fin s) → Fin (2 * s + 1) → ℝ) (q : Fin (2 * s + 1) → ℝ)
     (hP0 : ∀ i j, 0 ≤ P i j) (hq : ∀ j, 0 < q j ∧ q j ≤ 1)
     (ε : ℝ) (hε : 0 ≤ ε) (hP : ∀ i j, profileAllowed i j → ε ≤ P i j) :
     ∀ α γ : Σ i, SourceMonomialFiber a z s i,

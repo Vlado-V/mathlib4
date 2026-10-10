@@ -18,8 +18,8 @@ open Module MvPolynomial
 variable {K : Type} [Field K] {h m d r s : ℕ}
 
 theorem upperTargetMap_surjective_of_span_le
-    (Q : Fin r → Forms K (h+m) d) (F : Fin s → Forms K (h+m) d)
-    (hspan : Submodule.span K (Set.range (fun i => (Q i).val))≤
+    (Q : Fin r → Forms K (h + m) d) (F : Fin s → Forms K (h + m) d)
+    (hspan : Submodule.span K (Set.range (fun i => (Q i).val)) ≤
       Submodule.span K (Set.range (fun i => (F i).val)))
     (hQ : Function.Surjective (upperTargetMap Q)) :
     Function.Surjective (upperTargetMap F) := by

@@ -28,8 +28,8 @@ abbrev CoreIdealGrowth (k a z s : ℕ) (R G : ℝ) : Prop :=
       ((k : ℝ)*(∑ i,finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α,ell α) ≤ ∑ β,out β
 
 lemma private_uniform_growth_at {K : Type*} [Field K] {a z s k b h : ℕ}
-    (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
-    (hn : 0 < a+z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
+    (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
+    (hn : 0 < a + z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
       i.val))
     (hm : MixedExterior.UniversalMixedPosition u)

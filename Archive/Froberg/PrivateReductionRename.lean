@@ -35,9 +35,9 @@ theorem output_rename_weighted {M : Type*} [AddCommMonoid M]
   cases a <;> rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem output_rename_parity (e : σ ≃ τ) (p : ℕ) (hp : p<2)
+theorem output_rename_parity (e : σ ≃ τ) (p : ℕ) (hp : p < 2)
     (f : MvPolynomial (σ ⊕ Fin n) K)
-    (hf : ∀ a,f.coeff a≠0 → Finsupp.weight
+    (hf : ∀ a, f.coeff a ≠ 0 → Finsupp.weight
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) a%2=p) :
     ∀ a,(rename (Sum.map e id) f).coeff a≠0 → Finsupp.weight
       (Sum.elim (fun _ : τ => 1) (fun _ : Fin n => 0)) a%2=p := by
@@ -58,11 +58,11 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_positive_reduction_output_rename
-    (hd : 0<d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (e : σ ≃ τ)
-    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d-1))
-    (P' : Fin b → FullBiform K τ n 1 (d-1))
-    (hP' : ∀ i,(P' i).val=rename (Sum.map e id) (P i).val)
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
+    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d - 1))
+    (P' : Fin b → FullBiform K τ n 1 (d - 1))
+    (hP' : ∀ i, (P' i).val = rename (Sum.map e id) (P i).val)
     (hp : PrivatePositiveReduction p P) :
     PrivatePositiveReduction (outputRename e p) P' := by
   classical
@@ -144,14 +144,14 @@ theorem private_positive_reduction_output_rename
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_positive_reduction_open_output_rename
     [Module.Finite K (Space n d q J counts O)]
-    (hd : 0<d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (e : σ ≃ τ)
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
     [Module.Finite K (Space n d q J counts (fun j => (O j).map (rename e).toLinearMap))]
-    (P : Fin b → FullBiform K σ n 1 (d-1))
-    (P' : Fin b → FullBiform K τ n 1 (d-1))
-    (hP' : ∀ i,(P' i).val=rename (Sum.map e id) (P i).val)
+    (P : Fin b → FullBiform K σ n 1 (d - 1))
+    (P' : Fin b → FullBiform K τ n 1 (d - 1))
+    (hP' : ∀ i, (P' i).val = rename (Sum.map e id) (P i).val)
     (D : MvPolynomial (Fin (Module.finrank K (Space n d q J counts O))) K)
-    (hD : ∃ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0)
+    (hD : ∃ p : Space n d q J counts O, eval ((Module.finBasis K _).equivFun p) D ≠ 0)
     (hgood : ∀ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0 →
       PrivatePositiveReduction p P) :
     ∃ D' : MvPolynomial (Fin (Module.finrank K

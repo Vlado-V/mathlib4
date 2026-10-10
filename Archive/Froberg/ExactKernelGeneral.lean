@@ -50,9 +50,9 @@ and its mandatory relation parameter space are finite-dimensional. -/
 theorem exact_kernel_general_open
     (A : (ι → K) → (V →ₗ[K] W)) (Z : (ι → K) → (U →ₗ[K] V))
     (hA : IsPolynomialFamily A) (hZ : IsPolynomialFamily Z)
-    (hAZ : ∀ a,(A a).comp (Z a)=0)
+    (hAZ : ∀ a, (A a).comp (Z a) = 0)
     (a₀ : ι → K) (hZ₀ : Function.Injective (Z a₀))
-    (hexact : (A a₀).ker=(Z a₀).range) :
+    (hexact : (A a₀).ker = (Z a₀).range) :
     ∃ D : MvPolynomial ι K,eval a₀ D≠0 ∧
       ∀ a,eval a D≠0 → Function.Injective (Z a) ∧ (A a).ker=(Z a).range := by
   obtain ⟨DA,hDA,hArank⟩ := rank_polynomial_general_open A hA a₀

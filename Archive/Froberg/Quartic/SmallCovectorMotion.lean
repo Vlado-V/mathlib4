@@ -44,7 +44,7 @@ theorem threshold_le_ambient (hm : 28 ≤ m) (d : Threshold m upper) :
 theorem kernel_lower (p : Parameters K m upper)
     (hg : LinearIndependent K (AugmentedGeneric.coefficientMixed (baseProjection p)))
     (ell : Fin (RowCount m 3) → K)
-    (hE : ∀ j f,covector ell (coordinate f (mixed p j))=0) :
+    (hE : ∀ j f, covector ell (coordinate f (mixed p j)) = 0) :
     mixedCount m upper ≤ finrank K (LinearMap.ker (relationMap coordinate ell)) := by
   have hcoord : LinearIndependent K (mixed p) := hg.map' rowFiniteEquiv.toLinearMap
     (LinearMap.ker_eq_bot.mpr rowFiniteEquiv.injective)
@@ -79,9 +79,9 @@ theorem principal_open_two_stage [IsAlgClosed K] (hm : 28 ≤ m) (p : Parameters
     (hp : ClosedConditions p) (d : Threshold m upper)
     (A : Matrix (Fin a₁) (Fin n₁) (MvPolynomial (Fin (RowCount m 3)) K))
     (B : Matrix (Fin a₂) (Fin n₂) (MvPolynomial (Fin (RowCount m 3) ⊕ Fin n₁) K))
-    (hA : ∀ (s : K) ell,evaluated A (s • ell)=s • evaluated A ell)
-    (hB : ∀ (s : K) ell x,evaluated B (Sum.elim (s • ell) x)=s • evaluated B (Sum.elim ell x))
-    (hcount : ConvolutionClosedSlices.sliceCount m upper d.val ≤ r₁+r₂) :
+    (hA : ∀ (s : K) ell, evaluated A (s • ell) = s • evaluated A ell)
+    (hB : ∀ (s : K) ell x, evaluated B (Sum.elim (s • ell) x) = s • evaluated B (Sum.elim ell x))
+    (hcount : ConvolutionClosedSlices.sliceCount m upper d.val ≤ r₁ + r₂) :
     ∃ P : MvPolynomial (Fin n₁ ⊕ Fin n₂) K,
       (∃ z,eval z P ≠ 0) ∧ ∀ z,eval z P ≠ 0 →
         ∀ ell : Fin (RowCount m 3) → K,ell ≠ 0 →
@@ -111,10 +111,10 @@ theorem principal_open_all_kernel_ranks [IsAlgClosed K] (hm : 28 ≤ m)
     (hg : LinearIndependent K (AugmentedGeneric.coefficientMixed (baseProjection p)))
     (A : Matrix (Fin a₁) (Fin n₁) (MvPolynomial (Fin (RowCount m 3)) K))
     (B : Matrix (Fin a₂) (Fin n₂) (MvPolynomial (Fin (RowCount m 3) ⊕ Fin n₁) K))
-    (hA : ∀ (s : K) ell,evaluated A (s • ell)=s • evaluated A ell)
-    (hB : ∀ (s : K) ell x,evaluated B (Sum.elim (s • ell) x)=s • evaluated B (Sum.elim ell x))
+    (hA : ∀ (s : K) ell, evaluated A (s • ell) = s • evaluated A ell)
+    (hB : ∀ (s : K) ell x, evaluated B (Sum.elim (s • ell) x) = s • evaluated B (Sum.elim ell x))
     (r₁ r₂ : Threshold m upper → ℕ)
-    (hcount : ∀ d,ConvolutionClosedSlices.sliceCount m upper d.val ≤ r₁ d+r₂ d)
+    (hcount : ∀ d, ConvolutionClosedSlices.sliceCount m upper d.val ≤ r₁ d + r₂ d)
     (Good : (Fin n₁ ⊕ Fin n₂ → K) → Prop)
     (hr₁ : ∀ d : Threshold m upper,∀ ell : Fin (RowCount m 3) → K,ell ≠ 0 →
       (∀ j f,covector ell (coordinate f (mixed p j))=0) →

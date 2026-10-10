@@ -16,7 +16,7 @@ namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open scoped Topology
 
-theorem eventually_uniform_restored_odd_injective_open {h d : ℕ} (hd : 2 ≤ d) (he : d%2=0)
+theorem eventually_uniform_restored_odd_injective_open {h d : ℕ} (hd : 2 ≤ d) (he : d % 2 = 0)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun m : ℕ => (r m : ℝ)/(m : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :
@@ -36,9 +36,9 @@ theorem eventually_uniform_restored_odd_injective_open {h d : ℕ} (hd : 2 ≤ d
   intro K _ _ q J counts O hO hJ heven idx slot
   exact restored_odd_injective_principal_open hm (by omega) he hO hJ heven idx slot hlarge hcap
 
-theorem eventually_uniform_counted_restored_odd_open {d : ℕ} (hd : 3 ≤ d) (heven : d%2=0)
+theorem eventually_uniform_counted_restored_odd_open {d : ℕ} (hd : 3 ≤ d) (heven : d % 2 = 0)
     (h extra : ℕ) (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     ∀ᶠ m : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K],
       ∀ (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)

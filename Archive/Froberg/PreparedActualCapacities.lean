@@ -23,7 +23,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
-theorem oddOutputDimension_eventually_positive {R : ℕ} (hR : 0<R) :
+theorem oddOutputDimension_eventually_positive {R : ℕ} (hR : 0 < R) :
     ∀ᶠ w : ℕ in atTop,0<oddOutputDimension w R := by
   have hp : (0:ℝ)<2^(R-1)/(R.factorial : ℝ) := by positivity
   filter_upwards [(oddOutputDimension_normalized_limit hR).eventually (eventually_gt_nhds
@@ -32,7 +32,7 @@ theorem oddOutputDimension_eventually_positive {R : ℕ} (hR : 0<R) :
   intro hz
   simpa only [hz,Nat.cast_zero,zero_div,lt_self_iff_false] using hw
 
-theorem eventually_actual_even_capacities {d : ℕ} (hd : 9≤d) :
+theorem eventually_actual_even_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,
       finrank K X=deletedTargetCount d (2*w) →

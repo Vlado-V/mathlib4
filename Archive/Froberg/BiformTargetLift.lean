@@ -20,7 +20,7 @@ variable {K : Type} [Field K] {ι : Type*} [Fintype ι]
 variable {h m j e x y : ℕ}
 attribute [local instance] tensorGroup
 
-theorem ambientBiform_degree_map {j' e' : ℕ} (hj : j=j') (he : e=e')
+theorem ambientBiform_degree_map {j' e' : ℕ} (hj : j = j') (he : e = e')
     (u : Forms K h j ⊗[K] Forms K m e) :
     ambientBiform (TensorProduct.map (formsDegreeEquiv hj).toLinearMap (formsDegreeEquiv
       he).toLinearMap u)=
@@ -31,15 +31,15 @@ theorem ambientBiform_degree_map {j' e' : ℕ} (hj : j=j') (he : e=e')
   | tmul u v => simp only [TensorProduct.map_tmul,ambientBiform_tmul,LinearEquiv.coe_coe,
     formsDegreeEquiv_val]
 
-theorem biform_deformed_target_lift (p : ι → Poly K (h+m))
-    (hp : ∀ i,(p i).IsHomogeneous (j+e))
+theorem biform_deformed_target_lift (p : ι → Poly K (h + m))
+    (hp : ∀ i, (p i).IsHomogeneous (j + e))
     (g : ι → Forms K h j ⊗[K] Forms K m e)
-    (htop : ∀ i,coreComponent h m j (p i)=ambientBiform (g i))
-    (hupper : ∀ i k,j<k → coreComponent h m k (p i)=0)
+    (htop : ∀ i, coreComponent h m j (p i) = ambientBiform (g i))
+    (hupper : ∀ i k, j < k → coreComponent h m k (p i) = 0)
     (hg : Function.Surjective (biformTensorFamilyMap (x := x) (y := y) g))
-    (I : Submodule K (Poly K (h+m)))
-    (hI : (Submodule.span K (Set.range p))*Forms K (h+m) (x+y)≤I)
-    (v : coreCoefficientSpace K h m ((j+e)+(x+y)) (j+x)) :
+    (I : Submodule K (Poly K (h + m)))
+    (hI : (Submodule.span K (Set.range p)) * Forms K (h + m) (x + y) ≤ I)
+    (v : coreCoefficientSpace K h m ((j + e) + (x + y)) (j + x)) :
     ∃ q : Forms K (h+m) ((j+e)+(x+y)),q.val∈I ∧
       coreComponent h m (j+x) q.val=v.val ∧
       ∀ k,j+x<k → coreComponent h m k q.val=0 := by

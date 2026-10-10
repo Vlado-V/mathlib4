@@ -25,7 +25,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The paired C.1 scalar witness supplies Q and C internally, uniformly in
 all restored parameters and output detectors chosen after the threshold. -/
 theorem eventually_uniform_restored_counted_quadratic_separation
-    {d h : ℕ} (hd : 3≤d) (hh : 0<h) (r f : ℕ → ℕ)
+    {d h : ℕ} (hd : 3 ≤ d) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hf : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))

@@ -24,7 +24,7 @@ variable {X : Type*} [AddCommGroup X] [Module K X]
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biformImage_mono_types
     {A : Type*} {B : Type*} {O O' : Submodule K (MvPolynomial A K)}
-    {C C' : Submodule K (MvPolynomial B K)} (hO : O≤O') (hC : C≤C') :
+    {C C' : Submodule K (MvPolynomial B K)} (hO : O ≤ O') (hC : C ≤ C') :
     biformImage O C≤biformImage O' C' := by
   rintro _ ⟨a,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with
@@ -38,8 +38,8 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biform_output_rename_mem (e : σ ≃ τ)
     (T : MvPolynomial τ K →ₗ[K] X)
     {f : MvPolynomial (σ ⊕ Fin n) K}
-    (hf : f∈biformImage
-      (homogeneousSubmodule σ K j⊓(T.comp (rename e).toLinearMap).ker) (Forms K n s)) :
+    (hf : f ∈ biformImage
+      (homogeneousSubmodule σ K j ⊓ (T.comp (rename e).toLinearMap).ker) (Forms K n s)) :
     rename (Sum.map e id) f∈biformImage
       (homogeneousSubmodule τ K j⊓T.ker) (Forms K n s) := by
   have h := biformImage_rename e id

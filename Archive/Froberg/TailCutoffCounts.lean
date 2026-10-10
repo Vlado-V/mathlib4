@@ -33,7 +33,7 @@ theorem eventually_next_degree_count_of_limit {d : ℕ} (r : ℕ → ℕ) (c : �
   have hlt' := (div_lt_div_iff_of_pos_right (pow_pos hpos (d+1))).mp hlt
   exact_mod_cast hlt'.le
 
-theorem eventually_tail_cutoff_count {d : ℕ} (hd : 0<d) :
+theorem eventually_tail_cutoff_count {d : ℕ} (hd : 0 < d) :
     ∀ᶠ h : ℕ in atTop,(h+(d+1)-1).choose (d+1)≤tailGeneratorCount d h*h := by
   by_cases ho : Odd d
   · apply eventually_next_degree_count_of_limit _ _ (odd_tail_normalized_limit hd ho)

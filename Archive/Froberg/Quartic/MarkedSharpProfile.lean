@@ -25,9 +25,9 @@ nontrivial integral source dimension in the finite sharp range. -/
 theorem finite_sharp_profile_bounds (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 129)
     (hm88 : m ≠ 88) (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m false))
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m false):ℝ))
-    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (ProfileCertificate.totalA m (mixedCount m false):ℤ))
-    (hd : (i:ℝ)+n₁+n₂+n₃=(d:ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m false) : ℝ))
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (ProfileCertificate.totalA m (mixedCount m false) : ℤ))
+    (hd : (i : ℝ) + n₁ + n₂ + n₃ = (d : ℝ)) :
     ImageBoundsReal (markedScalars (scalars m (upperEndpoint m) (mixedCount m false)))
       (sourceSharp m (mixedCount m false) i n₁ n₂ n₃) d := by
   have hsum : n₁+n₂+n₃=(d:ℝ)-(i:ℝ) := by linarith

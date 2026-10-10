@@ -33,29 +33,29 @@ variable [IsAlgClosed K]
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem exists_critical_comparison_of_prepared_odd
     {r : ℕ} {c c' : ℕ → ℕ}
-    (hd : 1 < d) (ho : d%2=1) (hm : 0 < m) (upper : Bool)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hmin : ∀ j∈J,2≤j) (hJlt : ∀ j∈J,0<c' j → j<d)
-    (hc : ∀ j∈J,c j≤c' j) (extra : ProductRows.LayerLabel J c')
-    (hmiss : ∀ i,countLayerMap hc i≠extra)
-    (hcover : ∀ j,(∃ i,countLayerMap hc i=j) ∨ j=extra)
-    (hcard : upperCount m d+Fintype.card (ProductRows.LayerLabel J c)+f+u=
-      adjacentCriticalCount upper (h+m) d)
+    (hd : 1 < d) (ho : d % 2 = 1) (hm : 0 < m) (upper : Bool)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hmin : ∀ j ∈ J, 2 ≤ j) (hJlt : ∀ j ∈ J, 0 < c' j → j < d)
+    (hc : ∀ j ∈ J, c j ≤ c' j) (extra : ProductRows.LayerLabel J c')
+    (hmiss : ∀ i, countLayerMap hc i ≠ extra)
+    (hcover : ∀ j, (∃ i, countLayerMap hc i = j) ∨ j = extra)
+    (hcard : upperCount m d + Fintype.card (ProductRows.LayerLabel J c) + f + u =
+      adjacentCriticalCount upper (h + m) d)
     (idx : Fin r ≃ PreparedParameters.Label (upperCount m d) J c')
     (U : Fin u → Forms K h d)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d (upperCount m d) f u J c' O)
-    (hp : ∀ j,LinearIndependent K (p.2.1.2 j)) (hP : LinearIndependent K p.1)
+    (hp : ∀ j, LinearIndependent K (p.2.1.2 j)) (hP : LinearIndependent K p.1)
     (hiFull : LinearIndependent K (zeroScalarEndpointFamily (by omega) hO hJ U p.1 p.2))
     (hoddFull : OddCyclesExact U p.1 p.2)
     (hreduce : FullPreparedParameters.PrivateSplitReduction (by omega) ho hO hJ heven idx U p)
     (hsep : PreparedOuterSeparation (by omega) ho hO hJ heven U p)
     (hiBase : LinearIndependent K (zeroScalarEndpointFamily (by omega) hO hJ U p.1
-      (restrictCounts hc p.2.1,p.2.2)))
-    (hoddBase : OddCyclesExact U p.1 (restrictCounts hc p.2.1,p.2.2))
+      (restrictCounts hc p.2.1, p.2.2)))
+    (hoddBase : OddCyclesExact U p.1 (restrictCounts hc p.2.1, p.2.2))
     (hupperBase : Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega) hO hJ U
       p.1
-      (restrictCounts hc p.2.1,p.2.2))))
-    (C : ℝ) (hC : (f : ℝ)≤C)
+      (restrictCounts hc p.2.1, p.2.2))))
+    (C : ℝ) (hC : (f : ℝ) ≤ C)
     (hthin : PreparedEndpointThin (by omega) ho hO hJ heven U C (fullRestrictCounts hc p))
     (G : ℝ)
     (hchild : ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p.2.2 i))

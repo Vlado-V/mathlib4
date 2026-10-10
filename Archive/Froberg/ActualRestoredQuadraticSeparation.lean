@@ -21,8 +21,8 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
 theorem exact_counts_restored_quadratic_open {d k h lo : ℕ}
-    (hd : 3≤d) (hh : 0<h) (upper : Bool) (a f e : ℕ → ℕ) (extra : ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    (hd : 3 ≤ d) (hh : 0 < h) (upper : Bool) (a f e : ℕ → ℕ) (extra : ℕ)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     ∀ᶠ n : ℕ in atTop, ∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j) (c : ℕ)
       (T : Poly K h →ₗ[K] (Fin c → K))

@@ -24,8 +24,8 @@ open Froberg Module MvPolynomial PreparedParameters BilinearScalarFamily Bilinea
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f u b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-variable (hd3 : 3 ≤ d) (hdodd : d%2=1)
-  (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+variable (hd3 : 3 ≤ d) (hdodd : d % 2 = 1)
+  (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
   (U : Fin u → Forms K h d) (rest : FullScalarFiberRest m d q f u J counts O)
 local notation "hdp" => Nat.le_trans (by decide : 1 ≤ 3) hd3
 local notation "Q" => Prod.fst (Prod.fst (Prod.snd rest))
@@ -38,19 +38,19 @@ local notation "T₀" => finrank K (OddTargetRowQuotient Q₀ F₁ (oddTargetBot
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem prepared_scalar_thin_open (hh : 0 < h) (hm : 0 < m)
     (hU : LinearIndependent K U)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (hker : R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (hker : R.ker = (Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
     (C S : ℝ) (hC : 0 ≤ C)
     (hbottom : HasClosedKernelSlices (bottomCoordinateScalarAction hdp Q g) (thinSlices T₀ C))
-    (M : ℕ) (hgrowth : BaseC4GrowthProperty hdp R M (F,Q))
+    (M : ℕ) (hgrowth : BaseC4GrowthProperty hdp R M (F, Q))
     (P₀ : MvPolynomial (Fin (finrank K (PositiveScalars (K := K) m d J counts))) K)
     (hP₀ : ∃ a : PositiveScalars (K := K) m d J counts,
-      eval ((Module.finBasis K _).equivFun a) P₀≠0)
-    (hgood : ∀ a,eval ((Module.finBasis K _).equivFun a) P₀≠0 →
-      OddCyclesExact U rest.1 (scalarFiberCoordinates.symm (a,rest.2.1),rest.2.2) ∧
+      eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)
+    (hgood : ∀ a, eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
+      OddCyclesExact U rest.1 (scalarFiberCoordinates.symm (a, rest.2.1), rest.2.2) ∧
       Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0 < d) hO hJ U
         rest.1
-        (scalarFiberCoordinates.symm (a,rest.2.1),rest.2.2))))
+        (scalarFiberCoordinates.symm (a, rest.2.1), rest.2.2))))
     (L : ℕ) (hLC : L ≤ ⌊C⌋₊) (hLM : L ≤ M)
     (hloss : ∀ r : ℕ,⌈S*(r : ℝ)⌉₊ ≤ L*r/2)
     (hsmall : 2*(higherRelationCost d h u m+oddCoefficientCount d h m+

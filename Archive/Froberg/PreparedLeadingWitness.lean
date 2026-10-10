@@ -22,7 +22,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 theorem intrinsicLayer_independent_iff
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (p : Space m d q J counts O) (j : J) :
     LinearIndependent K (fun i => intrinsicLayerMap hO j i p) ↔
       LinearIndependent K (p.2 j) := by
@@ -41,7 +41,7 @@ theorem intrinsicLayer_independent_iff
     simpa only [Function.comp_def,Submodule.subtype_apply,heq] using hh
 
 theorem leading_witnesses_of_intrinsic
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hw : ∀ j : J,∃ p : Space m d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO j i p)) :
     ∀ j : J,∃ p : Space m d q J counts O,LinearIndependent K (p.2 j) := by

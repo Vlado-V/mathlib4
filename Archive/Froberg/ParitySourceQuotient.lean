@@ -26,7 +26,7 @@ def parityProjectionToPart (w : Fin n → ZMod 2) (p : ZMod 2) :
 
 theorem parity_source_relations_eq_span (w : Fin n → ZMod 2) (p : ZMod 2)
     (e : Fin r → ZMod 2) (q : Fin r → Forms K n d)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) :
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) :
     (Submodule.span K (Set.range q)).comap (parityPartForms w p).subtype=
       Submodule.span K (Set.range (fun i => parityProjectionToPart w p (q i))) := by
   have hs : Submodule.span K (Set.range (fun i => parityProjectionToPart w p (q i)))=
@@ -44,7 +44,7 @@ theorem parity_source_relations_eq_span (w : Fin n → ZMod 2) (p : ZMod 2)
     exact parity_preserves_generator_span w e q hq p ha
 
 def oddSourceQuotientEquiv (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) :
     (parityPartForms (K := K) (d := d) w 1 ⧸
       Submodule.span K (Set.range (fun i => parityProjectionToPart w 1 (q i)))) ≃ₗ[K]
       oddCoefficientSpace w q :=

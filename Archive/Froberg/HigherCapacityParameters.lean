@@ -23,9 +23,9 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
-theorem targetLayerLabel_count_limit {d : ℕ} (hd : 3≤d) (h extra : ℕ)
+theorem targetLayerLabel_count_limit {d : ℕ} (hd : 3 ≤ d) (h extra : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) :
+    (he : ∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (h : ℝ) ^ 2 * (n : ℝ) ^ (d - 2)) :
     Tendsto (fun n : ℕ =>
       (Fintype.card (Label (upperCount n d) (activeEvenIndices d)
         (targetLayerCount d h n (e n+extra))) : ℝ)/(n : ℝ)^d)
@@ -38,8 +38,8 @@ theorem targetLayerLabel_count_limit {d : ℕ} (hd : 3≤d) (h extra : ℕ)
   unfold preparedScalarCount
   omega
 
-theorem eventually_higher_row_capacity {d R : ℕ} (hd : 9≤d)
-    (hR : R∈activeHigherIndices d) :
+theorem eventually_higher_row_capacity {d R : ℕ} (hd : 9 ≤ d)
+    (hR : R ∈ activeHigherIndices d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X),
       finrank K X=deletedTargetCount d (2*w) → T R=0 →

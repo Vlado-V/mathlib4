@@ -21,8 +21,8 @@ variable {I : Type*}
 
 theorem formalSquare_separated_after_target_deletion
     (mu : SymmetricSquare K V →ₗ[K] W) (T : W →ₗ[K] X)
-    (D : Submodule K W) (hD : D≤T.ker)
-    (L : Submodule K V) (hL : (formalMixed L).map mu≤T.ker)
+    (D : Submodule K W) (hD : D ≤ T.ker)
+    (L : Submodule K V) (hL : (formalMixed L).map mu ≤ T.ker)
     (q : I → V) (hq : LinearIndependent K (fun p => T (mu (formalPair (K := K) q p)))) :
     formalSquare (Submodule.span K (Set.range q)) ⊓
       ((formalMixed L).map (D.mkQ.comp mu)).comap (D.mkQ.comp mu)=⊥ := by

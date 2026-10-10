@@ -34,7 +34,7 @@ theorem card_bounded_one (w : ℕ) : Fintype.card (BoundedExponent w 1)=w+1 := b
 def enumeration (w : ℕ) : Fin (w+1) ≃ BoundedExponent w 1 :=
   (finCongr (card_bounded_one w).symm).trans (enumerate w 1)
 
-theorem enumeration_lt_iff {w : ℕ} (i j : Fin (w+1)) :
+theorem enumeration_lt_iff {w : ℕ} (i j : Fin (w + 1)) :
     (monomialOrder w).toSyn (enumeration w i).val <
       (monomialOrder w).toSyn (enumeration w j).val ↔ i<j := by
   simpa only [enumeration,Equiv.trans_apply,finCongr_apply,Fin.cast_lt_cast] using

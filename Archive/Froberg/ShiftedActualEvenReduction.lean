@@ -21,7 +21,7 @@ noncomputable section
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 variable {K : Type} [Field K] [Infinite K]
-theorem eventually_actual_even_reduction_open_shift_uniform {d : ℕ} (hd : 9≤d) :
+theorem eventually_actual_even_reduction_open_shift_uniform {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

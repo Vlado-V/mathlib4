@@ -30,11 +30,11 @@ theorem split_linear_restoration_open
     (pi : MvPolynomial σ K →ₗ[K] Z)
     (G : E →ₗ[K] (Fin r → V)) (P : E →ₗ[K] (Fin b → W)) (U : Fin b → W)
     (T : S →ₗ[K] (Fin r → V))
-    (hT : ∀ a z,PolynomialRestoration.row j pi (G a) (T z)=0)
+    (hT : ∀ a z, PolynomialRestoration.row j pi (G a) (T z) = 0)
     (a₀ : E)
-    (hreduce : ∀ c v,row j k pi (G a₀) (P a₀+U) (c,v)=0 →
+    (hreduce : ∀ c v, row j k pi (G a₀) (P a₀ + U) (c, v) = 0 →
       ∃ (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (z : S),
-        c-coefficientBoundary (G a₀) M=T z ∧ v=coefficientBoundary (P a₀+U) C) :
+        c - coefficientBoundary (G a₀) M = T z ∧ v = coefficientBoundary (P a₀ + U) C) :
     ∃ D : MvPolynomial (Fin (finrank K E)) K,
       eval ((Module.finBasis K E).equivFun a₀) D≠0 ∧
       ∀ a,eval ((Module.finBasis K E).equivFun a) D≠0 →

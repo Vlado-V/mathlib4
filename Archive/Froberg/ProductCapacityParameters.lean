@@ -22,10 +22,11 @@ variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 theorem productRowCapacity_of_individual_bounds {w v d : ℕ} {J : Finset ℕ}
-    {counts : ℕ → ℕ} (hw : 0<w) (hv : 0<v)
-    (hev : ∀ j∈J,Even j) (hdeg : ∀ j∈J,j≤d)
-    (hdiag : ∀ j∈J,counts j≤(w.choose j-finrank K X)*(v.choose (d-j)/2))
-    (hcross : ∀ j∈J,counts j≤((w+j-1).choose j-finrank K X)*(v+(d-j)-1).choose (d-j))
+    {counts : ℕ → ℕ} (hw : 0 < w) (hv : 0 < v)
+    (hev : ∀ j ∈ J, Even j) (hdeg : ∀ j ∈ J, j ≤ d)
+    (hdiag : ∀ j ∈ J, counts j ≤ (w.choose j - finrank K X) * (v.choose (d - j) / 2))
+    (hcross : ∀ j ∈ J, counts j ≤ ((w + j - 1).choose j - finrank K X) * (v + (d - j) - 1).choose (d
+      - j))
     (R : ℕ) : ProductRowCapacity (K := K) (X := X) w v d R J counts := by
   refine ⟨hw,hv,hev,hdeg,?_,?_⟩
   · intro r _
@@ -39,7 +40,7 @@ lemma tendsto_twice_nat : Tendsto (fun n : ℕ => 2*n) atTop atTop := by
   filter_upwards [eventually_ge_atTop N] with n hn
   omega
 
-theorem eventually_product_row_capacities {d : ℕ} (hd : 9≤d) :
+theorem eventually_product_row_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*(2*(v : ℝ))^(d-2) →
       finrank K X=deletedTargetCount d (2*w) →

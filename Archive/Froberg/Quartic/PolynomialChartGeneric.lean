@@ -24,13 +24,13 @@ namespace Quartic.PolynomialChartGeneric
 open Module Matrix MvPolynomial KernelPolynomialCharts PolynomialSubspaceTupleCharts
 open PolynomialSubspaceCovectorCharts (subspace)
 variable {K C : Type*} [Field K] [Fintype C]
-variable {I : C → Type*} [∀ c,Fintype (I c)] {N : C → ℕ} {a q n b : ℕ}
+variable {I : C → Type*} [∀ c, Fintype (I c)] {N : C → ℕ} {a q n b : ℕ}
 
 /-- A finite polynomial cover with the actual incidence rank bound gives
 generic injectivity, even when displayed chart spans vary in dimension. -/
 theorem generic_injective [Infinite K]
     (B : (Fin q → Fin a → K) →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
-    (H : ∀ c,Fin (N c) → Fin a → MvPolynomial (I c) K)
+    (H : ∀ c, Fin (N c) → Fin a → MvPolynomial (I c) K)
     (hcover : ∀ F : Fin q → Fin a → K,F ≠ 0 →
       ∃ c,∃ t : I c → K,(∀ i,F i ∈ subspace (H c) t) ∧
         Fintype.card (I c)+q*N c ≤ finrank K (LinearMap.range (B F))) :
@@ -88,7 +88,7 @@ open PolynomialBilinearCoordinates
 polynomial or quotient spaces; only relation vectors use the chart coordinates. -/
 theorem generic_injective_actual [Infinite K]
     (B : (Fin q → Fin a → K) →ₗ[K] V →ₗ[K] W)
-    (H : ∀ c,Fin (N c) → Fin a → MvPolynomial (I c) K)
+    (H : ∀ c, Fin (N c) → Fin a → MvPolynomial (I c) K)
     (hcover : ∀ F : Fin q → Fin a → K,F ≠ 0 →
       ∃ c,∃ t : I c → K,(∀ i,F i ∈ subspace (H c) t) ∧
         Fintype.card (I c)+q*N c ≤ finrank K (LinearMap.range (B F))) :

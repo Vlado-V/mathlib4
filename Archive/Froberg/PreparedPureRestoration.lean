@@ -20,12 +20,12 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {n d q h e r : ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
-def restoredAppendedFamily (hd : 3≤d) (he : d%2=0)
-    (hO : ∀ j∈allEvenIndices d,O j≤homogeneousSubmodule σ K j)
+def restoredAppendedFamily (hd : 3 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))) O)
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))) O)
     (idx : Fin r ≃ Label q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))))
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))))
     (u : Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d) :
     Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d :=
   (fun i => evenGenerator hO (fun _ hj => (mem_allEvenIndices.mp hj).2.1)
@@ -33,12 +33,12 @@ def restoredAppendedFamily (hd : 3≤d) (he : d%2=0)
   PolynomialRestoration.pureShift (pureEvenEmbed he)
     (fun k => idx.symm (quadraticTailSlot hd q h n e _ k)) u
 
-theorem restoredAppendedFamily_at_slot (hd : 3≤d) (he : d%2=0)
-    (hO : ∀ j∈allEvenIndices d,O j≤homogeneousSubmodule σ K j)
+theorem restoredAppendedFamily_at_slot (hd : 3 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))) O)
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))) O)
     (idx : Fin r ≃ Label q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))))
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))))
     (u : Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d)
     (k : Fin (finrank K (homogeneousSubmodule σ K d))) :
     (restoredAppendedFamily hd he hO p idx u
@@ -52,14 +52,14 @@ theorem restoredAppendedFamily_at_slot (hd : 3≤d) (he : d%2=0)
   simp only [Equiv.apply_symm_apply,Submodule.coe_add,evenGenerator,pureEvenEmbed]
   rfl
 
-theorem restoredAppendedFamily_away (hd : 3≤d) (he : d%2=0)
-    (hO : ∀ j∈allEvenIndices d,O j≤homogeneousSubmodule σ K j)
+theorem restoredAppendedFamily_away (hd : 3 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))) O)
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))) O)
     (idx : Fin r ≃ Label q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))))
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))))
     (u : Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d)
-    (i : Fin r) (hi : ∀ k,quadraticTailSlot hd q h n e _ k≠idx i) :
+    (i : Fin r) (hi : ∀ k, quadraticTailSlot hd q h n e _ k ≠ idx i) :
     (restoredAppendedFamily hd he hO p idx u i).val=generator p (idx i) := by
   have haway : ∀ k,idx.symm (quadraticTailSlot hd q h n e _ k)≠i := by
     intro k hk
@@ -70,13 +70,13 @@ theorem restoredAppendedFamily_away (hd : 3≤d) (he : d%2=0)
 
 /-- The pure basis and complete positive-row reduction hold simultaneously
 for a literal prepared family with the appended quadratic generators. -/
-theorem exists_restored_appended_basis (hd : 3≤d) (he : d%2=0)
-    (hO : ∀ j∈allEvenIndices d,O j≤homogeneousSubmodule σ K j)
+theorem exists_restored_appended_basis (hd : 3 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d))) O)
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))) O)
     (hp : EvenPositiveReduction p)
     (idx : Fin r ≃ Label q (allEvenIndices d)
-      (allEvenCount d h n (e+finrank K (homogeneousSubmodule σ K d)))) :
+      (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d)))) :
     ∃ u : Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d,
       LinearIndependent K u ∧ Submodule.span K (Set.range u)=⊤ ∧
       ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d,

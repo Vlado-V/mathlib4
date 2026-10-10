@@ -26,7 +26,7 @@ set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem intrinsic_empty_single_profile_exact
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
     (hP : Function.Injective P)
-    (hPY : ∀ p,(P p).IsWeightedHomogeneous
+    (hPY : ∀ p, (P p).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
     (Q : Fin r → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q s))

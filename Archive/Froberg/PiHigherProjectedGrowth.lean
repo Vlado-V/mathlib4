@@ -23,8 +23,8 @@ variable {K P V V₀ W I : Type*} [Field K] [Fintype I]
   [AddCommGroup V₀] [Module K V₀] [FiniteDimensional K V₀]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {Vi Wi : I → Type*}
-  [∀ i,AddCommGroup (Vi i)] [∀ i,Module K (Vi i)] [∀ i,FiniteDimensional K (Vi i)]
-  [∀ i,AddCommGroup (Wi i)] [∀ i,Module K (Wi i)] [∀ i,FiniteDimensional K (Wi i)]
+  [∀ i, AddCommGroup (Vi i)] [∀ i, Module K (Vi i)] [∀ i, FiniteDimensional K (Vi i)]
+  [∀ i, AddCommGroup (Wi i)] [∀ i, Module K (Wi i)] [∀ i, FiniteDimensional K (Wi i)]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem higher_growth_of_pi_projection
@@ -32,9 +32,9 @@ theorem higher_growth_of_pi_projection
     (pi : W →ₗ[K] ((i : I) → Wi i))
     (mu : P →ₗ[K] V →ₗ[K] W)
     (diag : (i : I) → P →ₗ[K] Vi i →ₗ[K] Wi i)
-    (hdiag : ∀ p v i,pi (mu p v) i=diag i p ((eV v).2 i))
+    (hdiag : ∀ p v i, pi (mu p v) i = diag i p ((eV v).2 i))
     (rate : ℕ)
-    (hgrowth : ∀ i (S : Submodule K (Vi i)),rate*finrank K S ≤
+    (hgrowth : ∀ i (S : Submodule K (Vi i)), rate * finrank K S ≤
       finrank K (BilinearImage.image (diag i) S))
     (L : Submodule K V) :
     rate*(finrank K L-finrank K (L.comap
@@ -59,7 +59,7 @@ theorem pi_bottom_kernel_eq
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)
     (ell : W →ₗ[K] K) (ell₀ : W₀ →ₗ[K] K)
-    (hbottom : ∀ p x,ell (mu p (eV.symm (x,0)))=ell₀ (nu p x)) :
+    (hbottom : ∀ p x, ell (mu p (eV.symm (x, 0))) = ell₀ (nu p x)) :
     (QuotientCovectorKernel.relation mu ell).ker.comap
       (eV.symm.toLinearMap.comp (LinearMap.inl K V₀ ((i : I) → Vi i)))=
       (QuotientCovectorKernel.relation nu ell₀).ker := by
@@ -83,7 +83,7 @@ theorem pi_bottom_kernel_finrank_le
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)
     (ell : W →ₗ[K] K) (ell₀ : W₀ →ₗ[K] K)
-    (hbottom : ∀ p x,ell (mu p (eV.symm (x,0)))=ell₀ (nu p x)) :
+    (hbottom : ∀ p x, ell (mu p (eV.symm (x, 0))) = ell₀ (nu p x)) :
     finrank K (QuotientCovectorKernel.relation nu ell₀).ker ≤
       finrank K (QuotientCovectorKernel.relation mu ell).ker := by
   let f := eV.symm.toLinearMap.comp (LinearMap.inl K V₀ ((i : I) → Vi i))

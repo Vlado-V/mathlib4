@@ -39,7 +39,7 @@ theorem parameterCount_blocks {w : ℕ} (A i : ℕ) (r : Fin w → ℕ) :
   ring
 
 /-- The second moment is encoded by the odd weights 1,3,5 on the three layers. -/
-theorem rank_square_sum {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
+theorem rank_square_sum {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l, r l ≤ 3) :
     (∑ l,(r l:ℤ)^2)=
       (levelCount r 1:ℤ)+3*(levelCount r 2:ℤ)+5*(levelCount r 3:ℤ) := by
   classical
@@ -89,7 +89,7 @@ theorem subset_position_sum_bound {w : ℕ} (P : Fin w → Prop) [DecidablePred 
   rwa [hsum] at h
 
 /-- Weighted positions are maximized by arranging all high-rank blocks last. -/
-theorem weighted_position_sum_bound {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
+theorem weighted_position_sum_bound {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l, r l ≤ 3) :
     (∑ l,(l.val:ℤ)*(r l:ℤ)) ≤
       ((levelCount r 1:ℤ)*w-quadratics (levelCount r 1))+
       ((levelCount r 2:ℤ)*w-quadratics (levelCount r 2))+
@@ -127,7 +127,7 @@ theorem previous_position_sum {w : ℕ} (l : Fin w) (a : ℤ) :
 
 /-- The ordered cross term separates into a weighted position term and an
 order-independent pair product. This uses the actual prefix orientation. -/
-theorem cross_sum_eq {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
+theorem cross_sum_eq {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l, r l ≤ 3) :
     ((∑ l,∑ k : Fin w,if l < k then r k*(3-r l) else 0 : ℕ):ℤ)=
       3*(∑ l,(l.val:ℤ)*(r l:ℤ))-
         ((∑ l,(r l:ℤ))^2-(∑ l,(r l:ℤ)^2))/2 := by
@@ -158,7 +158,7 @@ theorem cross_sum_eq {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
       · norm_num
     _ = _ := by simp_rw [Finset.sum_sub_distrib]; rw [hfirst,hp']
 
-theorem diagonal_sum_eq {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
+theorem diagonal_sum_eq {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l, r l ≤ 3) :
     ((∑ l,r l*(3-r l):ℕ):ℤ)=3*(∑ l,(r l:ℤ))-(∑ l,(r l:ℤ)^2) := by
   push_cast
   rw [Finset.mul_sum,← Finset.sum_sub_distrib]
@@ -170,7 +170,7 @@ theorem diagonal_sum_eq {w : ℕ} (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
 
 /-- An exact integer formula for the number of genuine chart parameters. -/
 theorem parameterCount_cast {w : ℕ} (A i : ℕ) (hi : i ≤ A)
-    (r : Fin w → ℕ) (hr : ∀ l,r l ≤ 3) :
+    (r : Fin w → ℕ) (hr : ∀ l, r l ≤ 3) :
     (parameterCount (blockDimensions A w) (blockRanks i r):ℤ)=
       (i:ℤ)*((A:ℤ)-i)+(∑ l,(r l:ℤ))*((A:ℤ)-i)+
       3*(∑ l,(r l:ℤ))-(∑ l,(r l:ℤ)^2)+
@@ -184,7 +184,7 @@ theorem parameterCount_cast {w : ℕ} (A i : ℕ) (hi : i ≤ A)
 
 /-- Every ordering of the free blocks has no more parameters than Cell. -/
 theorem parameterCount_le_Cell (m c i : ℕ) (hi : i ≤ coreA c)
-    (r : Fin (freeW m c) → ℕ) (hr : ∀ l,r l ≤ 3) :
+    (r : Fin (freeW m c) → ℕ) (hr : ∀ l, r l ≤ 3) :
     (parameterCount (blockDimensions (coreA c) (freeW m c)) (blockRanks i r):ℤ) ≤
       Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) := by
   rw [parameterCount_cast _ _ hi r hr,rank_sum_eq_layers r hr,rank_square_sum r hr]
@@ -196,7 +196,7 @@ theorem parameterCount_le_Cell (m c i : ℕ) (hi : i ≤ coreA c)
 
 /-- The actual finite coefficient index of each chart obeys the compressed bound. -/
 theorem chart_parameter_card_le_Cell (m c i : ℕ) (hi : i ≤ coreA c)
-    (r : Fin (freeW m c) → ℕ) (hr : ∀ l,r l ≤ 3)
+    (r : Fin (freeW m c) → ℕ) (hr : ∀ l, r l ≤ 3)
     (j : Selectors (blockDimensions (coreA c) (freeW m c)) (blockRanks i r)) :
     (Fintype.card (ParameterIndex j):ℤ) ≤
       Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) := by
@@ -207,8 +207,8 @@ theorem chart_parameter_card_le_Cell (m c i : ℕ) (hi : i ≤ coreA c)
 theorem exists_chart_with_Cell_bound {K : Type*} [Field K] (m c i : ℕ)
     (r : Fin (freeW m c) → ℕ)
     (S : Submodule K (Ambient K (blockDimensions (coreA c) (freeW m c))))
-    (hprofile : ∀ l,finrank K (FilteredImage.initialPiece
-      (fun l => Fin (blockDimensions (coreA c) (freeW m c) l) → K) S l)=blockRanks i r l) :
+    (hprofile : ∀ l, finrank K (FilteredImage.initialPiece
+      (fun l => Fin (blockDimensions (coreA c) (freeW m c) l) → K) S l) = blockRanks i r l) :
     ∃ j : Selectors (blockDimensions (coreA c) (freeW m c)) (blockRanks i r),
       ∃ p : Parameters K j,chart j p=S ∧ (Fintype.card (ParameterIndex j):ℤ) ≤
         Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) := by

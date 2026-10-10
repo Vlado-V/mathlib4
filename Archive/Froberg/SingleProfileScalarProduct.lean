@@ -22,10 +22,10 @@ variable {V : Type*} [AddCommGroup V] [Module K V]
 
 theorem single_profile_scalar_product_row_injective
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (hdeg : ∀ i, (o i).IsHomogeneous R)
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
     (hP : Function.Injective P)
-    (hPY : ∀ p,(P p).IsWeightedHomogeneous
+    (hPY : ∀ p, (P p).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
     (Q : Fin r → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication

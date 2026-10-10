@@ -26,8 +26,8 @@ def biformRestorationForms
 theorem biform_restored_supported_relations
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (hi : LinearIndependent K (biformRestorationForms g))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (hodd : ∀ a : (endpointMultiplication (biformRestorationForms g)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m) 1) →
       a.val∈oppositeKoszulSpace (biformRestorationForms g) (fun _ => 0))

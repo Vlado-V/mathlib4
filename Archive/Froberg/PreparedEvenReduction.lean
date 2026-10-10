@@ -23,7 +23,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 /-- Positive even labels carry no hidden scalar component. -/
-theorem high_weight (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+theorem high_weight (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q J counts O) (i : Label q J counts) :
     (high p i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) (degree i) := by
@@ -35,9 +35,9 @@ theorem high_weight (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
 literal constant Koszul boundaries in the same prepared family. -/
 theorem even_positive_rows_reduce_to_scalar
     [LinearOrder (Label q J counts)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
-    (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
     (p : Space n d q J counts O)
     (hrows : ∀ R : J,(row hO R p).ker=(rowConstants hO R p).range)
     (hproducts : ∀ R,d<R → R≤2*d → R%2=0 →

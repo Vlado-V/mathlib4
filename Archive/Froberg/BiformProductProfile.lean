@@ -55,8 +55,8 @@ theorem deletedBidegreeSpace_half_weight (S : Finset (Fin n)) :
 theorem biform_pairProducts_single_profile
     (S : Finset (Fin n)) (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (Poly K n))
-    (hC : C*C≤deletedBidegreeSpace K S D j)
-    (f : Fin r → MvPolynomial (σ ⊕ Fin n) K) (hf : ∀ i,f i∈biformImage O C) :
+    (hC : C * C ≤ deletedBidegreeSpace K S D j)
+    (f : Fin r → MvPolynomial (σ ⊕ Fin n) K) (hf : ∀ i, f i ∈ biformImage O C) :
     ∀ p,(pairProducts f p).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j := by
   intro p

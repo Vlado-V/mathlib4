@@ -194,13 +194,13 @@ def chartSubspace (j : Fin r ↪ Fin n) (A : Parameters K j) : Submodule K (Fin 
 
 /-- The coefficient array reconstructs the original subspace exactly. -/
 theorem chartSubspace_coefficients {S : Submodule K (Fin n → K)} (j : Fin r ↪ Fin n)
-    (e : S ≃ₗ[K] (Fin r → K)) (he : ∀ x i, e x i=x.val (j i)) :
+    (e : S ≃ₗ[K] (Fin r → K)) (he : ∀ x i, e x i = x.val (j i)) :
     chartSubspace j (coefficients j e)=S := by
   ext x
   rw [mem_chartSubspace,mem_iff_graph j e he]
 
 /-- Every r-dimensional subspace belongs to one of the finitely many coordinate charts. -/
-theorem exists_chart (S : Submodule K (Fin n → K)) (hS : finrank K S=r) :
+theorem exists_chart (S : Submodule K (Fin n → K)) (hS : finrank K S = r) :
     ∃ j : Fin r ↪ Fin n, ∃ A : Parameters K j, chartSubspace j A=S := by
   obtain ⟨j,e,he⟩:=exists_coordinate_equiv_of_finrank S hS
   exact ⟨j,coefficients j e,chartSubspace_coefficients j e he⟩
@@ -208,8 +208,8 @@ theorem exists_chart (S : Submodule K (Fin n → K)) (hS : finrank K S=r) :
 /-- Equality of the unselected-coordinate coefficients determines the subspace. -/
 theorem coefficients_determine_subspace {S T : Submodule K (Fin n → K)} (j : Fin r ↪ Fin n)
     (e : S ≃ₗ[K] (Fin r → K)) (f : T ≃ₗ[K] (Fin r → K))
-    (he : ∀ x i,e x i=x.val (j i)) (hf : ∀ x i,f x i=x.val (j i))
-    (h : coefficients j e=coefficients j f) : S=T := by
+    (he : ∀ x i, e x i = x.val (j i)) (hf : ∀ x i, f x i = x.val (j i))
+    (h : coefficients j e = coefficients j f) : S=T := by
   rw [← chartSubspace_coefficients j e he,← chartSubspace_coefficients j f hf,h]
 
 /-- Fill the selected coordinates with u and the remaining coordinates with the chart's linear
@@ -233,7 +233,7 @@ def chartLift (j : Fin r ↪ Fin n) (A : Parameters K j) :
   simp only [chartLift,LinearMap.pi_apply,dite_eq_right
     k.property,LinearMap.comp_apply,LinearMap.proj_apply]
 
- theorem chartLift_mem (j : Fin r ↪ Fin n) (A : Parameters K j) (u : Fin r → K) :
+theorem chartLift_mem (j : Fin r ↪ Fin n) (A : Parameters K j) (u : Fin r → K) :
     chartLift j A u ∈ chartSubspace j A := by
   rw [mem_chartSubspace]
   intro k
@@ -264,7 +264,7 @@ def chartEquiv (j : Fin r ↪ Fin n) (A : Parameters K j) :
 @[simp] theorem chartEquiv_apply (j : Fin r ↪ Fin n) (A : Parameters K j)
     (x : chartSubspace j A) (i : Fin r) : chartEquiv j A x i=x.val (j i) := rfl
 
- theorem chartSubspace_finrank (j : Fin r ↪ Fin n) (A : Parameters K j) :
+theorem chartSubspace_finrank (j : Fin r ↪ Fin n) (A : Parameters K j) :
     finrank K (chartSubspace j A)=r := by
   rw [(chartEquiv j A).finrank_eq]
   simp

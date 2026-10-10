@@ -38,7 +38,7 @@ def factoredGraphMap (D : Y →ₗ[K] X) (C : U →ₗ[K] Y) :
     (C.range.mkQ.comp (LinearMap.snd K X Y))
 
 theorem factoredGraphMap_kernel (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
-    (D : Y →ₗ[K] X) (hD : D.comp C=P) :
+    (D : Y →ₗ[K] X) (hD : D.comp C = P) :
     (factoredGraphMap D C).ker=(P.prod C).range := by
   ext z
   rcases z with ⟨x,y⟩
@@ -63,18 +63,18 @@ theorem factoredGraphMap_surjective (D : Y →ₗ[K] X) (C : U →ₗ[K] Y) :
   exact ⟨(x+D z,z),by simp [factoredGraphMap]⟩
 
 def factoredGraphCoordinates (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
-    (D : Y →ₗ[K] X) (hD : D.comp C=P) :
+    (D : Y →ₗ[K] X) (hD : D.comp C = P) :
     ((X × Y) ⧸ (P.prod C).range) ≃ₗ[K] X × (Y ⧸ C.range) :=
   (Submodule.quotEquivOfEq _ _ (factoredGraphMap_kernel P C D hD).symm).trans
     ((factoredGraphMap D C).quotKerEquivOfSurjective (factoredGraphMap_surjective D C))
 
 @[simp] theorem factoredGraphCoordinates_mk (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
-    (D : Y →ₗ[K] X) (hD : D.comp C=P) (x : X) (y : Y) :
+    (D : Y →ₗ[K] X) (hD : D.comp C = P) (x : X) (y : Y) :
     factoredGraphCoordinates P C D hD ((P.prod C).range.mkQ (x,y))=
       (x-D y,C.range.mkQ y) := rfl
 
 @[simp] theorem factoredGraphCoordinates_bottom (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
-    (D : Y →ₗ[K] X) (hD : D.comp C=P) (x : X) :
+    (D : Y →ₗ[K] X) (hD : D.comp C = P) (x : X) :
     factoredGraphCoordinates P C D hD ((P.prod C).range.mkQ (x,0))=(x,0) := by
   rw [factoredGraphCoordinates_mk,map_zero,map_zero,sub_zero]
 

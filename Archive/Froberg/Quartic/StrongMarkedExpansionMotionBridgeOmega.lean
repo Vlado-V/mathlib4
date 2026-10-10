@@ -54,7 +54,7 @@ theorem closed_slices (hm : 320 ≤ m)
     (h : Fin (upperEndpoint m) → Forms K m 2)
     (U : ActualMarkedSlicedMotionAvoidanceOmega.Marked h)
     (hslices : StrongActualSlices.HasAmbientSlices g
-      (StrongActualSlices.markedCorrectionCount m upper (finrank K U+1)) h) :
+      (StrongActualSlices.markedCorrectionCount m upper (finrank K U + 1)) h) :
     ∃ Z' : (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) →
         Fin (ActualMarkedSlicedMotionAvoidanceOmega.sliceCount (c := mixedCount m upper) h U
           d.val) → Rows K m 3,

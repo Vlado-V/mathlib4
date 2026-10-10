@@ -54,7 +54,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 source subspace of a specified dimension and product-rank lower bound. -/
 theorem bilinear_projection_rank_open
     (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin N → K))
-    (hcount : ell*(a-ell)+t*(b-t) < w*(b-t)) :
+    (hcount : ell * (a - ell) + t * (b - t) < w * (b - t)) :
     ∃ D : MvPolynomial (Fin (finrank K ((Fin N → K) →ₗ[K] (Fin b → K)))) K,
       (∃ x, eval x D ≠ 0) ∧
       ∀ x, eval x D ≠ 0 → ∀ L : Submodule K (Fin a → K),

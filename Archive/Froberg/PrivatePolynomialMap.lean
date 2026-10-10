@@ -35,8 +35,8 @@ def privatePolynomialMap (ι : Fin b ↪ Fin z)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The vector of actual polynomial coefficients at a scalar monomial. -/
-def privateSourceCoefficient (v : Fin b → Fin h → Forms K (a+z) s)
-    (i : Fin b) (α : Fin (a+z) →₀ ℕ) : Fin h → K := fun j => (v i j).val.coeff α
+def privateSourceCoefficient (v : Fin b → Fin h → Forms K (a + z) s)
+    (i : Fin b) (α : Fin (a + z) →₀ ℕ) : Fin h → K := fun j => (v i j).val.coeff α
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma pi_linear_expansion (A : (Fin h → K) →ₗ[K] (Fin c → K))
@@ -55,7 +55,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact monomial coefficient formula for the actual polynomial map. -/
 theorem privatePolynomialMap_coefficient (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (v : Fin b → Fin h → Forms K (a+z) s) (β : Fin (a+z) →₀ ℕ) (k : Fin c) :
+    (v : Fin b → Fin h → Forms K (a + z) s) (β : Fin (a + z) →₀ ℕ) (k : Fin c) :
     (privatePolynomialMap ι A v k).coeff β =
       privateCoefficient (s := s) ι A (privateSourceCoefficient v) β k := by
   classical
@@ -76,8 +76,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 private-overlap kernel calculation. -/
 theorem privatePolynomialMap_relation (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (v : Fin b → Fin h → Forms K (a+z) s) (hv : privatePolynomialMap ι A v=0)
-    (β : Fin (a+z) →₀ ℕ) : privateCoefficient (s := s) ι A (privateSourceCoefficient v) β=0 := by
+    (v : Fin b → Fin h → Forms K (a + z) s) (hv : privatePolynomialMap ι A v = 0)
+    (β : Fin (a + z) →₀ ℕ) : privateCoefficient (s := s) ι A (privateSourceCoefficient v) β=0 := by
   funext k
   rw [← privatePolynomialMap_coefficient]
   rw [hv]
@@ -87,7 +87,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal private polynomial output lies in the required endpoint degree. -/
 theorem privatePolynomialMap_homogeneous (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (v : Fin b → Fin h → Forms K (a+z) s) (k : Fin c) :
+    (v : Fin b → Fin h → Forms K (a + z) s) (k : Fin c) :
     (privatePolynomialMap ι A v k).IsHomogeneous (2*s) := by
   apply MvPolynomial.IsHomogeneous.sum
   intro i _

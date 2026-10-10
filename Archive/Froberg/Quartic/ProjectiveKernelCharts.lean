@@ -46,7 +46,7 @@ def extend (v : Fin r ↪ Fin n) (z : Outside v) (p : Parameters I v z → K) :
   | inl i => simp [normalizedVariables, extend]
   | inr j => by_cases h : j = z <;> simp [normalizedVariables, extend, h]
 
- theorem eval_substitution (v : Fin r ↪ Fin n) (z : Outside v)
+theorem eval_substitution (v : Fin r ↪ Fin n) (z : Outside v)
     (p : Parameters I v z → K) (f : MvPolynomial (ChartParameters (I := I) v) K) :
     eval p (bind₁ (normalizedVariables v z) f) = eval (extend v z p) f := by
   change eval₂Hom (RingHom.id K) p (bind₁ _ f) = _
@@ -65,7 +65,7 @@ def denominator (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     MvPolynomial (Parameters I v z) K :=
   bind₁ (normalizedVariables v z) (KernelPolynomialCharts.denominator A u v)
 
- theorem rationalMap_substitution (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
+theorem rationalMap_substitution (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (u : Fin r ↪ Fin a) (v : Fin r ↪ Fin n) (z : Outside v)
     (p : Parameters I v z → K) :
     RationalImageAvoidance.rationalMap (numerator A u v z) (denominator A u v z) p =

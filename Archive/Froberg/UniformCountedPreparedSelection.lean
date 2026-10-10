@@ -25,8 +25,8 @@ open Froberg PreparedParameters FullPreparedParameters Filter Module MvPolynomia
 open scoped Topology
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem eventually_uniform_counted_prepared_frame_ready {d : ℕ} (hd : 3≤d) (ho : d%2=1)
-    (N₂ : ℕ) (hquad : ∀ h,N₂≤h → ∀ (K : Type) [Field K] [Infinite K],
+theorem eventually_uniform_counted_prepared_frame_ready {d : ℕ} (hd : 3 ≤ d) (ho : d % 2 = 1)
+    (N₂ : ℕ) (hquad : ∀ h, N₂ ≤ h → ∀ (K : Type) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (k lo : ℕ),0<k → 2*w=k*centralHalfBinomial d → 0<2*w →
       ∀ (upper : Bool) (a f e : ℕ → ℕ),(∀ n,a n≤n) →

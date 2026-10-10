@@ -26,7 +26,7 @@ theorem paired_output_finrank (w R : ℕ) :
   congr 2
   omega
 
-theorem eventually_all_private_projected_capacity {d : ℕ} (hd : 3≤d) :
+theorem eventually_all_private_projected_capacity {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ R : allEvenIndices d,R.val≠2 →
       (if R.val∈activeEvenIndices d then
         sparseBlockCount ((101/100 : ℝ)*higherCountGamma d R.val) R.val (d-R.val) w else 0)*

@@ -57,15 +57,17 @@ def PreparedQuadraticRowSeparated
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_quadratic_separation_principal_open
-    (hO : ∀ j∈J,O j≤Forms K h j)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (idx : Fin r ≃ PreparedParameters.Label q J counts)
     (T : MvPolynomial (Fin h ⊕ Fin m) K →ₗ[K] (Fin c → Poly K m))
     (Q₀ : Fin r → Forms K m d) (P₀ : OuterSpace K (Fin h) m d u)
     (F₀ : OuterSpace K (Fin h) m d f)
-    (hexact : (quadraticNuisanceRow (t := t) (FullBiform K (Fin h) m 1 (d-1)).subtype T Q₀ P₀).ker=
+    (hexact : (quadraticNuisanceRow (t := t) (FullBiform K (Fin h) m 1 (d - 1)).subtype T Q₀ P₀).ker
+      =
       (quadraticNuisanceBoundary P₀).range)
-    (hsep : ∀ x z,quadraticNuisanceRow (t := t) (FullBiform K (Fin h) m 1 (d-1)).subtype T Q₀ P₀ x+
-      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype T F₀ z=0 → z=0) :
+    (hsep : ∀ x z, quadraticNuisanceRow (t := t) (FullBiform K (Fin h) m 1 (d - 1)).subtype T Q₀ P₀
+      x +
+      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d - 1)).subtype T F₀ z = 0 → z = 0) :
     letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
       finite_fixedPureZeroScalarSpace hO
     ∃ D : MvPolynomial (Fin (finrank K (FixedPureZeroScalarSpace m d q f u J counts O))) K,

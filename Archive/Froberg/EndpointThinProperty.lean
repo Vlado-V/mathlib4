@@ -31,7 +31,7 @@ theorem OddEndpointThin.congr
     {Q Q' : Fin q → biformParitySpace K h m d 0}
     {F F' : Fin f → biformParitySpace K h m d 1}
     {G G' : Fin u → biformParitySpace K h m d 1} {C : ℝ}
-    (hQ : Q=Q') (hF : F=F') (hG : G=G') :
+    (hQ : Q = Q') (hF : F = F') (hG : G = G') :
     OddEndpointThin Q F G C ↔ OddEndpointThin Q' F' G' C := by
   subst Q'
   subst F'

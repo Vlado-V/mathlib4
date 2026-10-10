@@ -21,7 +21,7 @@ variable {K V I : Type*} [Field K] [Infinite K]
 
 theorem finite_basis_principal_intersection
     (D : I → MvPolynomial (Fin (finrank K V)) K)
-    (hD : ∀ i,∃ v : V,eval ((Module.finBasis K V).equivFun v) (D i)≠0) :
+    (hD : ∀ i, ∃ v : V, eval ((Module.finBasis K V).equivFun v) (D i) ≠ 0) :
     ∃ v : V,∀ i,eval ((Module.finBasis K V).equivFun v) (D i)≠0 := by
   have hnz (i : I) : D i≠0 := by
     obtain ⟨v,hv⟩ := hD i

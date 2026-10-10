@@ -21,11 +21,11 @@ variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_restored_joint {d k h lo : ℕ}
-    (hd : 3≤d) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hd : 3 ≤ d) (hk : 0 < k) (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∃ G C : ℝ,0<G ∧ 0<C ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (J : Finset ℕ) (counts : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈J,O j≤Forms K h j),
@@ -86,7 +86,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 open, every point of a nonempty positive-scalar fiber keeps both choices. -/
 theorem restored_joint_positive_scalar_fiber_at {h m d q f : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-    (hO : ∀ j∈J,O j≤Forms K h j) (G C : ℝ) :
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (G C : ℝ) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∀ (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K)
       (p : RestoredOuterSpace m d q f J counts O),

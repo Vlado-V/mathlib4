@@ -31,8 +31,8 @@ def UniformCriticalComparisonBlock (d h : ℕ) : Prop :=
       Nonempty (LocalComparisonData K (h+n) d
         (adjacentCriticalCount upper (h+n) d) (criticalDefect K n d))
 
-theorem uniformCriticalRecurrence_of_comparison_blocks {d : ℕ} (hd : 3≤d)
-    (hblocks : ∀ᶠ w : ℕ in atTop,UniformCriticalComparisonBlock d (2*w)) :
+theorem uniformCriticalRecurrence_of_comparison_blocks {d : ℕ} (hd : 3 ≤ d)
+    (hblocks : ∀ᶠ w : ℕ in atTop, UniformCriticalComparisonBlock d (2 * w)) :
     UniformCriticalRecurrence d := by
   classical
   obtain ⟨k,w,hblock,hdiv,hcompare,δ,a,f,e,hδ,ha,hcounts⟩ :=

@@ -31,7 +31,7 @@ def graphQuotientCoordinatesMap (P : U →ₗ[K] X) (C : U →ₗ[K] Y) (B : Y �
 
 theorem graphQuotientCoordinatesMap_kernel
     (P : U →ₗ[K] X) (C : U →ₗ[K] Y) (B : Y →ₗ[K] U)
-    (hB : B.comp C=LinearMap.id) :
+    (hB : B.comp C = LinearMap.id) :
     (graphQuotientCoordinatesMap P C B).ker=(P.prod C).range := by
   ext z
   rcases z with ⟨x,y⟩
@@ -57,7 +57,7 @@ theorem graphQuotientCoordinatesMap_surjective
   exact ⟨(x+P (B z),z),by simp⟩
 
 def graphQuotientCoordinates (P : U →ₗ[K] X) (C : U →ₗ[K] Y) (B : Y →ₗ[K] U)
-    (hB : B.comp C=LinearMap.id) :
+    (hB : B.comp C = LinearMap.id) :
     ((X × Y) ⧸ (P.prod C).range) ≃ₗ[K] X × (Y ⧸ C.range) :=
   (Submodule.quotEquivOfEq _ _ (graphQuotientCoordinatesMap_kernel P C B hB).symm).trans
     ((graphQuotientCoordinatesMap P C B).quotKerEquivOfSurjective

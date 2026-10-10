@@ -28,7 +28,7 @@ variable {F V W Z : Type*}
 variable {n d r t B : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def actualProjectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d)
+def actualProjectedMappedCoefficients (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V) :
     ProjectedEndpointHomology pi q →ₗ[K] (Fin t → V) :=
@@ -36,7 +36,8 @@ def actualProjectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fi
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms
+theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r →
+  Forms
   K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V) :
@@ -56,17 +57,18 @@ theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[
   exact congrFun hxy i
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem exists_local_comparison_of_actual_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r
+theorem exists_local_comparison_of_actual_thin_slices (D : Submodule K (Forms K n (2 * d))) (q : Fin
+  r
   → Forms K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V)
     (eJ : ProjectedEndpointCokernel D.mkQ q ≃ₗ[K] W)
     (phi : F →ₗ[K] Forms K n d) (mu : F →ₗ[K] V →ₗ[K] W)
-    (hmu : ∀ z v,mu z (vmap v)=eJ (projectedQuotientProduct D.mkQ q (phi z) v))
-    (C : ℝ) (hC : (t : ℝ)≤C)
+    (hmu : ∀ z v, mu z (vmap v) = eJ (projectedQuotientProduct D.mkQ q (phi z) v))
+    (C : ℝ) (hC : (t : ℝ) ≤ C)
     (hslices : HasClosedKernelSlices mu (BilinearCovectorStrata.thinSlices (finrank K W) C))
-    (hkernel : finrank K (actualProjectedMappedCoefficients D.mkQ q hq dual vmap).ker≤B)
-    (hdeleted : finrank K D≤B) :
+    (hkernel : finrank K (actualProjectedMappedCoefficients D.mkQ q hq dual vmap).ker ≤ B)
+    (hdeleted : finrank K D ≤ B) :
     Nonempty (LocalComparisonData K n d r B) := by
   obtain ⟨count,degrees,eqs,cuts,hiff,hempty⟩ := hslices
   apply exists_local_comparison_of_thin_slices D q hq dual

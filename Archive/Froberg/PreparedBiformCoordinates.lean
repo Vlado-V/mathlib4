@@ -19,7 +19,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q j e : ℕ}
 attribute [local instance] tensorGroup
 
 theorem biformImage_mono {O O' : Submodule K (Poly K h)}
-    {C C' : Submodule K (Poly K m)} (hO : O≤O') (hC : C≤C') :
+    {C C' : Submodule K (Poly K m)} (hO : O ≤ O') (hC : C ≤ C') :
     biformImage O C≤biformImage O' C' := by
   rintro _ ⟨a,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with
@@ -29,13 +29,13 @@ theorem biformImage_mono {O O' : Submodule K (Poly K h)}
     exact mul_mem_biformImage _ _ (hO a.property) (hC b.property)
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
-def constrainedBiformCoordinates (O : Submodule K (Poly K h)) (hO : O≤Forms K h j) :
+def constrainedBiformCoordinates (O : Submodule K (Poly K h)) (hO : O ≤ Forms K h j) :
     biformImage O (Forms K m e) →ₗ[K] Forms K h j ⊗[K] Forms K m e :=
   sumBiformEquiv.symm.toLinearMap.comp
     (Submodule.inclusion (biformImage_mono hO le_rfl))
 
 @[simp] theorem sum_constrainedBiformCoordinates (O : Submodule K (Poly K h))
-    (hO : O≤Forms K h j) (v : biformImage O (Forms K m e)) :
+    (hO : O ≤ Forms K h j) (v : biformImage O (Forms K m e)) :
     sumBiform (constrainedBiformCoordinates O hO v)=v.val := by
   change (sumBiformEquiv (sumBiformEquiv.symm
     (Submodule.inclusion (biformImage_mono hO le_rfl) v))).val=v.val
@@ -52,7 +52,7 @@ theorem constrainedBiformCoordinates_framed {H r : ℕ}
 
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
-def preparedLayerTensor (a : J) (hO : O a.val≤Forms K h a.val) :
+def preparedLayerTensor (a : J) (hO : O a.val ≤ Forms K h a.val) :
     PreparedParameters.Space m d q J counts O →ₗ[K]
       (Fin (counts a.val) → Forms K h a.val ⊗[K] Forms K m (d-a.val)) where
   toFun p i := constrainedBiformCoordinates (O a.val) hO (p.2 a i)
@@ -63,7 +63,7 @@ def preparedLayerTensor (a : J) (hO : O a.val≤Forms K h a.val) :
     funext i
     exact map_smul (constrainedBiformCoordinates (O a.val) hO) c (p.2 a i)
 
-@[simp] theorem preparedLayerTensor_sum (a : J) (hO : O a.val≤Forms K h a.val)
+@[simp] theorem preparedLayerTensor_sum (a : J) (hO : O a.val ≤ Forms K h a.val)
     (p : PreparedParameters.Space m d q J counts O) (i : Fin (counts a.val)) :
     sumBiform (preparedLayerTensor a hO p i)=(p.2 a i).val :=
   sum_constrainedBiformCoordinates (O a.val) hO (p.2 a i)

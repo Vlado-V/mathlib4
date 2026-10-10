@@ -22,33 +22,33 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-abbrev OddMixedBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
+abbrev OddMixedBlockCoordinates (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :=
   (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3) hd3)}) →
     (OddHigherBlock K h m d (Nat.le_trans (by decide : 1≤3) hd3) r ⧸
       coordinateRelation (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-instance oddMixedBlockCoordinatesGroup (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+instance oddMixedBlockCoordinatesGroup (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     AddCommGroup (OddMixedBlockCoordinates hd hd3 F U P) := Pi.addCommGroup
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-instance oddMixedBlockCoordinatesModule (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+instance oddMixedBlockCoordinatesModule (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     Module K (OddMixedBlockCoordinates hd hd3 F U P) := Pi.module _ _ K
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-def oddMixedSourceBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
-      (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id) :
+def oddMixedSourceBlockCoordinates (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) F
+      (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id) :
     (biformParitySpace K h m d 1 ⧸
       (Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide :
         1≤3) hd3) (by decide) (F i))) ⊔
@@ -60,13 +60,13 @@ def oddMixedSourceBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
       (oddHigherBlocksEquiv hd hd3 F U P))
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-theorem oddMixedSourceBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
-      (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id)
-    (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
+theorem oddMixedSourceBlockCoordinates_bottom (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) F
+      (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id)
+    (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     oddMixedSourceBlockCoordinates hd hd3 F U P B hB
       (((Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide
         : 1≤3) hd3) (by decide) (F i)))) ⊔
@@ -89,13 +89,13 @@ theorem oddMixedSourceBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
     exact (oddHigherBlocksEquiv hd hd3 F U P).map_zero
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
+def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
-      (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) F
+      (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id) :
     oddCoefficientSpace ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
       (backgroundEnumeratedForms Q
         (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F
@@ -108,14 +108,14 @@ def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
       (oddMixedSourceBlockCoordinates hd hd3 F U P B hB)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
-theorem oddEndpointBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
+theorem oddEndpointBlockCoordinates_bottom (hd : Odd d) (hd3 : 3 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
-      (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id)
-    (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) F
+      (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id)
+    (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     oddEndpointBlockCoordinates hd hd3 Q F U P B hB
       (oddBackgroundSourceEquiv Q
         (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F

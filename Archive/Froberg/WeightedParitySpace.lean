@@ -38,7 +38,7 @@ theorem mem_weightedParitySpace_iff (w : σ → ℕ) (p : ℕ) (f : MvPolynomial
     exact ha (hf a h)
 
 theorem IsWeightedHomogeneous.mem_parity {w : σ → ℕ} {f : MvPolynomial σ K}
-    {j p : ℕ} (hf : f.IsWeightedHomogeneous w j) (hj : j%2=p) :
+    {j p : ℕ} (hf : f.IsWeightedHomogeneous w j) (hj : j % 2 = p) :
     f∈weightedParitySpace w p := by
   rw [mem_weightedParitySpace_iff]
   intro a ha

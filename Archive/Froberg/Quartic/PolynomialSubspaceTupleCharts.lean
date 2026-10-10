@@ -62,7 +62,7 @@ def encode (z : Pivot q d) (t : I → K) (U : Fin q → Fin d → K) : Parameter
   Sum.elim t (fun h => U h.val.1 h.val.2)
 
 theorem selectedPolynomial_encode (z : Pivot q d) (t : I → K) (U : Fin q → Fin d → K)
-    (hU : U z.1 z.2=1) (i : Fin q) (h : Fin d) :
+    (hU : U z.1 z.2 = 1) (i : Fin q) (h : Fin d) :
     eval (encode z t U) (selectedPolynomial z i h)=U i h := by
   classical
   by_cases he:(i,h)=z
@@ -72,7 +72,7 @@ theorem selectedPolynomial_encode (z : Pivot q d) (t : I → K) (U : Fin q → F
   · simp [selectedPolynomial,he,encode]
 
 theorem tupleMap_encode (H : Fin d → Fin a → MvPolynomial I K)
-    (z : Pivot q d) (t : I → K) (U : Fin q → Fin d → K) (hU : U z.1 z.2=1) (i : Fin q) :
+    (z : Pivot q d) (t : I → K) (U : Fin q → Fin d → K) (hU : U z.1 z.2 = 1) (i : Fin q) :
     tupleMap H z (encode z t U) i=∑ h : Fin d,U i h • vector H t h := by
   rw [tupleMap_eq_sum]
   have ht : (fun j => encode z t U (.inl j))=t := rfl
@@ -84,7 +84,7 @@ theorem tupleMap_encode (H : Fin d → Fin a → MvPolynomial I K)
 /-- Every nonzero tuple inside an actual polynomial span is covered, retaining
 the original parameters and introducing just qd-1 normalized coefficients. -/
 theorem cover_tuple (H : Fin d → Fin a → MvPolynomial I K) (t : I → K)
-    (F : Fin q → Fin a → K) (hF : F ≠ 0) (hmem : ∀ i,F i ∈ subspace H t) :
+    (F : Fin q → Fin a → K) (hF : F ≠ 0) (hmem : ∀ i, F i ∈ subspace H t) :
     ∃ z : Pivot q d,∃ p : ParameterIndex I z → K,∃ s : K,
       s ≠ 0 ∧ (∀ j,p (.inl j)=t j) ∧ F=s • tupleMap H z p := by
   classical

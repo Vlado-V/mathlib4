@@ -21,10 +21,11 @@ open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 variable {K : Type*} [Field K] [Infinite K]
 
-theorem eventually_single_profile_scalar_open {d e : ℕ} (hd : 0<d)
+theorem eventually_single_profile_scalar_open {d e : ℕ} (hd : 0 < d)
     (q : ℕ → ℕ)
     (hbudget : ∀ᶠ n : ℕ in atTop,
-      5*(n+e-1).choose e*((n+e-1).choose e+q n)≤2*(n+(e+d)-1).choose (e+d)) :
+      5 * (n + e - 1).choose e * ((n + e - 1).choose e + q n) ≤ 2 * (n + (e + d) - 1).choose (e +
+        d)) :
     ∃ n₀ : ℕ,∀ n≥n₀,∀ S : Finset (Fin n),
       S.card≤Sᶜ.card → Sᶜ.card≤S.card+1 → ∀ j,
       ∃ P : MvPolynomial (Fin (finrank K (Fin (q n) → Forms K n d))) K,
@@ -51,7 +52,7 @@ theorem eventually_single_profile_scalar_open {d e : ℕ} (hd : 0<d)
 /-- All small-degree scalar-product collision rows have their required
 single-profile avoidance open, with no further asymptotic hypothesis. -/
 theorem eventually_small_single_profile_scalar_open {d R : ℕ}
-    (hd : 3≤d) (hd8 : d≤8) (hR : R=4 ∨ R=6 ∨ R=8) (hRd : R≤d)
+    (hd : 3 ≤ d) (hd8 : d ≤ 8) (hR : R = 4 ∨ R = 6 ∨ R = 8) (hRd : R ≤ d)
     (q : ℕ → ℕ)
     (hq : Tendsto (fun n : ℕ => (q n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :

@@ -19,11 +19,11 @@ namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
-variable (hd : 1≤d)
+variable (hd : 1 ≤ d)
   (Q : Fin q → biformParitySpace K h m d 0)
   (F : Fin f → biformParitySpace K h m d 1)
-  (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-  (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+  (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+  (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
   (G : Fin u → biformParitySpace K h m d 1)
 
 attribute [local irreducible] oddAmbientBottomRelationMap oddAmbientHigherRelationMap
@@ -31,7 +31,7 @@ attribute [local irreducible] oddAmbientBottomRelationMap oddAmbientHigherRelati
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddAmbientCoordinates
     (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
-    (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
+    (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G) =
       oddAmbientBottomRelationMap hd Q F hQ hF G) :
     (biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations Q F G) ≃ₗ[K]
       OddTargetRowQuotient Q F (oddTargetBottomIndex hd) ×
@@ -50,9 +50,9 @@ def oddAmbientCoordinates
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem oddAmbientCoordinates_mk
     (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
-    (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
+    (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G) =
       oddAmbientBottomRelationMap hd Q F hQ hF G)
-    (p : biformParitySpace K h m (2*d) 1) :
+    (p : biformParitySpace K h m (2 * d) 1) :
     oddAmbientCoordinates hd Q F hQ hF G D hD ((ambientOddRelations Q F G).mkQ p)=
       ((oddTargetBaseMap hd Q F hQ hF p).1-D (oddTargetBaseMap hd Q F hQ hF p).2,
         (oddAmbientHigherRelationMap hd Q F hQ hF G).range.mkQ
@@ -60,7 +60,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_odd_ambient_correction
-    (hk : (oddAmbientHigherRelationMap hd Q F hQ hF G).ker≤
+    (hk : (oddAmbientHigherRelationMap hd Q F hQ hF G).ker ≤
       (oddAmbientBottomRelationMap hd Q F hQ hF G).ker) :
     ∃ D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd),
       D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=

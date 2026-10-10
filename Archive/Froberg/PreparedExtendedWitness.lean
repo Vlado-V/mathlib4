@@ -26,23 +26,23 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
  set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem sparse_core_extended_parameter_exact
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : J) (hRd : R.val<d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : J) (hRd : R.val < d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R.val)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R.val)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R.val)
     (e : Fin (counts R.val) → Fin a →₀ ℕ)
     (v : Fin (counts R.val) → Fin (finrank K (homogeneousSubmodule σ K R.val)) → K)
-    (he : ∀ i,(e i).degree=d-R.val)
+    (he : ∀ i, (e i).degree = d - R.val)
     (Q : Fin (Fintype.card (Label q J counts)) → Forms K a d)
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin a) K)
-    (hE : ∀ j∈J,∀ i,E j i∈biformImage (O j) (Forms K a (d-j)))
-    (hER : ∀ i,E R.val i=attachedPolynomialFamily o e v i)
-    (hfull : ∀ c ≤ d,Function.Injective (homogeneousMultiplication (d := c) e v he))
+    (hE : ∀ j ∈ J, ∀ i, E j i ∈ biformImage (O j) (Forms K a (d - j)))
+    (hER : ∀ i, E R.val i = attachedPolynomialFamily o e v i)
+    (hfull : ∀ c ≤ d, Function.Injective (homogeneousMultiplication (d := c) e v he))
     (hker : (addRow (polynomialIntermediateRow o e v he Q)
-      (ProductRows.multiplication counts E J R.val)).ker=
+      (ProductRows.multiplication counts E J R.val)).ker =
       ((LinearMap.inl K
         ((Fin (Fintype.card (Label q J counts)) → Fin (finrank K (homogeneousSubmodule σ K R.val)) →
-          Forms K a (d-R.val)) ×
+          Forms K a (d - R.val)) ×
           (Fin (counts R.val) → Forms K a d)) (RowProducts (K := K) (J := J) (counts := counts)
             R.val)).comp
             (intermediateKoszul e v he Q)).range)

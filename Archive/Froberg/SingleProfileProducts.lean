@@ -39,7 +39,7 @@ theorem biform_single_profile_zero (S : Finset (Fin n))
 theorem single_profile_product_disjoint
     {V : Type*} [AddCommGroup V] [Module K V]
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
-    (hP : ∀ v,(P v).IsWeightedHomogeneous
+    (hP : ∀ v, (P v).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
     (O : Submodule K (MvPolynomial σ K)) (Q : Fin r → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q s)) :
@@ -56,16 +56,18 @@ theorem single_profile_even_row_kernel
     {V : Type*} [AddCommGroup V] [Module K V]
     (w : σ → ℕ) (S : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdegree : ∀ k,(o k).IsHomogeneous R)
+    (hdegree : ∀ k, (o k).IsHomogeneous R)
     (L : (Fin h → K) →ₗ[K] (Fin H → K)) (hL : Function.Injective L)
-    (hLodd : ∀ z,retainMonomials (fun α => Finsupp.weight w α%2=0) (outputCombination o (L z))=0)
-    (e : Fin m → Fin n →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i,(e i).degree=s)
+    (hLodd : ∀ z, retainMonomials (fun α => Finsupp.weight w α % 2 = 0) (outputCombination o (L z))
+      = 0)
+    (e : Fin m → Fin n →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin r → Forms K n d)
     (hE : Function.Injective (AttachedMultiplication.multiplication (d := d) e v))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply e v he) Q))
     (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K) (hP : Function.Injective P)
-    (hPX : (biformOutputEndomorphism (retainMonomials (fun α => Finsupp.weight w α%2=0))).comp P=P)
-    (hPY : ∀ p,(P p).IsWeightedHomogeneous
+    (hPX : (biformOutputEndomorphism (retainMonomials (fun α => Finsupp.weight w α % 2 = 0))).comp P
+      = P)
+    (hPY : ∀ p, (P p).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
     (hscalar : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q
       s)) :

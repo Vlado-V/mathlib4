@@ -19,11 +19,11 @@ open Filter
 open scoped Topology
 
 theorem eventually_higher_odd_row_budget_of_gap {d b h : ℕ}
-    (hd : 3≤d) (hb : 3≤b) (hbd : b≤d) (hh : 0<h)
+    (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d) (hh : 0 < h)
     (qS qO : ℕ → ℕ) (S O : ℝ)
-    (hgap : S*(((h+b-1).choose b : ℝ)*((d-b).factorial : ℝ)⁻¹) +
-      O*(((h+(b-1)-1).choose (b-1) : ℝ)*((d-b+1).factorial : ℝ)⁻¹) <
-      ((h+b-1).choose b : ℝ)*((2*d-b).factorial : ℝ)⁻¹)
+    (hgap : S * (((h + b - 1).choose b : ℝ) * ((d - b).factorial : ℝ)⁻¹) +
+      O * (((h + (b - 1) - 1).choose (b - 1) : ℝ) * ((d - b + 1).factorial : ℝ)⁻¹) <
+      ((h + b - 1).choose b : ℝ) * ((2 * d - b).factorial : ℝ)⁻¹)
     (hS : Tendsto (fun n : ℕ => (qS n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 S))
     (hO : Tendsto (fun n : ℕ => (qO n : ℝ)/(n : ℝ)^(d-1)) atTop

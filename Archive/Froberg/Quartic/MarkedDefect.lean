@@ -70,7 +70,7 @@ theorem marked_kernel_old_plus_boundary (q : Fin (r + 1) → Quartic.Forms K n 2
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Precisely the old homology is lost when the marked coefficient is read. -/
-theorem marked_kernel_eq_old_range (q : Fin (r+1) → Forms K n 2)
+theorem marked_kernel_eq_old_range (q : Fin (r + 1) → Forms K n 2)
     (hsquare : mulQuadratic (q (Fin.last r)) (q (Fin.last r)) ∉
       (quadraticMultiplication (prefixFamily q)).range) :
     (markedCoefficientMap q).ker = (homologyExtension q).range := by
@@ -89,7 +89,7 @@ theorem marked_kernel_eq_old_range (q : Fin (r+1) → Forms K n 2)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The rank formula includes both child defects, with no exact-child hypothesis. -/
-theorem marked_rank_add_old (q : Fin (r+1) → Forms K n 2)
+theorem marked_rank_add_old (q : Fin (r + 1) → Forms K n 2)
     (hq : LinearIndependent K q)
     (hsquare : mulQuadratic (q (Fin.last r)) (q (Fin.last r)) ∉
       (quadraticMultiplication (prefixFamily q)).range) :

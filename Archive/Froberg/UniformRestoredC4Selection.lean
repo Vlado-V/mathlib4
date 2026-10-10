@@ -144,12 +144,12 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The thinness constant and cutoff precede the choice of the field and
 all restored-family parameters. Only uniform input opens are assumed. -/
 theorem field_uniform_restored_c4_selection {d h : ℕ}
-    (hd : 3 ≤ d) (hdeven : d%2=0) (hhpos : 0 < h)
+    (hd : 3 ≤ d) (hdeven : d % 2 = 0) (hhpos : 0 < h)
     (f e : ℕ → ℕ) (extra : ℕ) {G C : ℝ} (hG : 0 < G) (hC : 0 < C)
     (he : ∀ᶠ n : ℕ in atTop,
-      (e n : ℝ) < countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2))
+      (e n : ℝ) < countBeta d * (h : ℝ) ^ 2 * (n : ℝ) ^ (d - 2))
     (houter : ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
-      StrictThinCoefficientOpen K h n d (f n) (G*(n : ℝ)^d) (C*(n : ℝ)^d))
+      StrictThinCoefficientOpen K h n d (f n) (G * (n : ℝ) ^ d) (C * (n : ℝ) ^ d))
     (hgrowth : ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
       HasOddScalarLayersOpen K h n d (f n) (upperCount n d) (scalarReserveCount d n)) :
     ∃ ξ : ℝ, 0 < ξ ∧ ∀ᶠ n : ℕ in atTop,
@@ -267,12 +267,12 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact count hypotheses provide both input opens uniformly over the field. -/
 theorem uniform_exact_counts_restored_c4_selection {d k h lo : ℕ}
-    (hd : 3 ≤ d) (hdeven : d%2=0) (hk : 0 < k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0 < h)
+    (hd : 3 ≤ d) (hdeven : d % 2 = 0) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
     (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
     (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
     {δ : ℝ} (hδ : 0 < δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop, δ*(n : ℝ)^(2*d-2) < dimensionReserve d h n (f n))
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (extra : ℕ) :
     ∃ G C ξ : ℝ, 0 < G ∧ 0 < C ∧ 0 < ξ ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],

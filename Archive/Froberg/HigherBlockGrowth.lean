@@ -16,12 +16,12 @@ noncomputable section
 namespace Froberg
 open Module Quartic.FilteredImage
 variable {K P : Type*} [Field K] [AddCommGroup P] [Module K P]
-variable {n : ℕ} {V W : Fin (n+1) → Type*}
-  [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)] [∀ i,FiniteDimensional K (V i)]
-  [∀ i,AddCommGroup (W i)] [∀ i,Module K (W i)] [∀ i,FiniteDimensional K (W i)]
+variable {n : ℕ} {V W : Fin (n + 1) → Type*}
+  [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)] [∀ i, FiniteDimensional K (V i)]
+  [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)] [∀ i, FiniteDimensional K (W i)]
 
 theorem blockBilinear_higher_growth
-    (mu : (i : Fin (n+1)) → P →ₗ[K] V i →ₗ[K] W i) (rate : ℕ)
+    (mu : (i : Fin (n + 1)) → P →ₗ[K] V i →ₗ[K] W i) (rate : ℕ)
     (hmu : ∀ i : Fin n,∀ S : Submodule K (V i.succ),rate*finrank K S≤
       finrank K (Quartic.BilinearImage.image (mu i.succ) S))
     (L : Submodule K ((i : Fin (n+1)) → V i)) :

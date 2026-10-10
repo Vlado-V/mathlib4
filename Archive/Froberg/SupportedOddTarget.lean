@@ -20,7 +20,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d r s : ℕ}
 
 theorem rename_endpoint_range_le_of_generators {a b t : ℕ}
     (f : Fin a → Fin b) (Q : Fin t → Forms K a d) (q : Fin r → Forms K b d)
-    (hgen : ∀ i,(renameForm f (Q i)).val∈
+    (hgen : ∀ i, (renameForm f (Q i)).val ∈
       Submodule.span K (Set.range (fun j => (q j).val))) :
     (endpointMultiplication Q).range.map (renameForm f)≤(endpointMultiplication q).range := by
   rintro _ ⟨_,⟨c,rfl⟩,rfl⟩
@@ -35,14 +35,15 @@ theorem rename_endpoint_range_le_of_generators {a b t : ℕ}
 
 def supportedProjectedOddTargetEquiv
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K (h+m) d)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
+    (q : Fin r → Forms K (h + m) d)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
     (hupper : Function.Surjective (upperTargetMap q))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
-    (hfill : (renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range.map D.mkQ=
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
+    (hfill : (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range.map D.mkQ
+      =
       ((endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))).map D.mkQ)
-    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))≤
+    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h)) ≤
       (endpointMultiplication q).range) :
     ProjectedEndpointCokernel D.mkQ q ≃ₗ[K] oddTargetSpace (coreParity h m) q :=
   projectedOddTargetEquiv D (coreParity h m) e q hq
@@ -52,24 +53,25 @@ def supportedProjectedOddTargetEquiv
 
 @[simp] theorem supportedProjectedOddTargetEquiv_class
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K (h+m) d)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
+    (q : Fin r → Forms K (h + m) d)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
     (hupper : Function.Surjective (upperTargetMap q))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
-    (hfill : (renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range.map D.mkQ=
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
+    (hfill : (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range.map D.mkQ
+      =
       ((endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))).map D.mkQ)
-    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))≤
-      (endpointMultiplication q).range) (p : Forms K (h+m) (2*d)) :
+    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h)) ≤
+      (endpointMultiplication q).range) (p : Forms K (h + m) (2 * d)) :
     supportedProjectedOddTargetEquiv Q e q hq hupper D hD hfill hold (projectedTargetClass D q p)=
       oddTargetClass (coreParity h m) q p := rfl
 
 theorem exists_supported_odd_target_equiv
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K (h+m) d)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
+    (q : Fin r → Forms K (h + m) d)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
     (hupper : Function.Surjective (upperTargetMap q))
-    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))≤
+    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h)) ≤
       (endpointMultiplication q).range) :
     ∃ (D : Submodule K (Forms K (h+m) (2*d)))
       (E : ProjectedEndpointCokernel D.mkQ q ≃ₗ[K] oddTargetSpace (coreParity h m) q),
@@ -87,17 +89,18 @@ variable {P : Type*} [AddCommGroup P] [Module K P]
 
 theorem supportedProjectedOddTargetEquiv_product
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K (h+m) d)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
+    (q : Fin r → Forms K (h + m) d)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
     (hupper : Function.Surjective (upperTargetMap q))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
-    (hfill : (renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range.map D.mkQ=
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
+    (hfill : (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range.map D.mkQ
+      =
       ((endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))).map D.mkQ)
-    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))≤
+    (hold : (endpointMultiplication Q).range.map (renameForm (Fin.natAdd h)) ≤
       (endpointMultiplication q).range)
-    (F : P →ₗ[K] Forms K (h+m) d)
-    (hF : ∀ p,(F p).val.IsWeightedHomogeneous (coreParity h m) 0)
+    (F : P →ₗ[K] Forms K (h + m) d)
+    (hF : ∀ p, (F p).val.IsWeightedHomogeneous (coreParity h m) 0)
     (p : P) (a : generatorQuotient q) :
     supportedProjectedOddTargetEquiv Q e q hq hupper D hD hfill hold
         (projectedQuotientProduct D.mkQ q (F p) a)=

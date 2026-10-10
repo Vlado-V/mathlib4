@@ -21,8 +21,8 @@ namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
-variable (hd3 : 3≤d)
-  (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+variable (hd3 : 3 ≤ d)
+  (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
 local notation "hdp" => Nat.le_trans (by decide : 1≤3) hd3
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
 local notation "F₁" => fun i => oddBiformEmbedding hdp (by decide) (F i)
@@ -78,9 +78,9 @@ theorem evenHigherProjection_kills_bottom (r : MixedHigherIndex d hd3)
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem evenAmbientHigher_growth
     (t : ℕ)
-    (hmid : ∀ (j : ℕ) (hj : 3≤j) (hjd : j≤d), j%2=1 →
-      OddScalarLayerProperty t (by omega : 1≤j) hjd
-        (F,fun i => scalarBiformEquiv (h := h) (Q i)))
+    (hmid : ∀ (j : ℕ) (hj : 3 ≤ j) (hjd : j ≤ d), j % 2 = 1 →
+      OddScalarLayerProperty t (by omega : 1 ≤ j) hjd
+        (F, fun i => scalarBiformEquiv (h := h) (Q i)))
     (L : Submodule K (EvenBackgroundSource hdp F)) :
     t*(finrank K L-finrank K (L.comap
       ((eV).symm.toLinearMap.comp (LinearMap.inl K (OddBottomQuotient F)

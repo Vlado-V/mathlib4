@@ -17,8 +17,8 @@ open MvPolynomial Quartic
 variable {K I J : Type*} [Field K] [Infinite K] [Fintype J]
 
 theorem principal_property_common_open (P : J → (I → K) → Prop)
-    (hP : ∀ j, ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧
-      ∀ a,eval a D≠0 → P j a) :
+    (hP : ∀ j, ∃ D : MvPolynomial I K, (∃ a, eval a D ≠ 0) ∧
+      ∀ a, eval a D ≠ 0 → P j a) :
     ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧
       ∀ a,eval a D≠0 → ∀ j,P j a := by
   classical

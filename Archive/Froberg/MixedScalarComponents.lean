@@ -53,8 +53,8 @@ theorem privateScalarRelations_component
     weighted_component_mul_homogeneous (blockWeight h m) (G i).val (sumBiformMap (v i)) t 0 hv
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem mixedScalarRelations_other (hd : Odd d) (ht1 : t≠1) (htd : t≠d)
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+theorem mixedScalarRelations_other (hd : Odd d) (ht1 : t ≠ 1) (htd : t ≠ d)
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
     weightedHomogeneousComponent (blockWeight h m) t
       (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i)) v).val=0 := by
@@ -62,8 +62,8 @@ theorem mixedScalarRelations_other (hd : Odd d) (ht1 : t≠1) (htd : t≠d)
   simp only [mixedPureOddGenerator_other hd ht1 htd,zero_mul,Finset.sum_const_zero]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem mixedScalarRelations_bottom (hd : Odd d) (hd1 : 1<d)
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+theorem mixedScalarRelations_bottom (hd : Odd d) (hd1 : 1 < d)
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
     weightedHomogeneousComponent (blockWeight h m) 1
       (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i)) v).val=
@@ -72,8 +72,8 @@ theorem mixedScalarRelations_bottom (hd : Odd d) (hd1 : 1<d)
   simp only [mixedPureOddGenerator_bottom hd hd1]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem mixedScalarRelations_top (hd : Odd d) (hd1 : 1<d)
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+theorem mixedScalarRelations_top (hd : Odd d) (hd1 : 1 < d)
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
     biformDegreeTransport rfl (by omega : 2*d-d=d)
       (biformTensorComponent (by omega : d≤2*d)

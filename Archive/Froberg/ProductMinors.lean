@@ -80,7 +80,7 @@ theorem disjoint_productMinor_ne_zero [Nontrivial K] [Fintype ι] [DecidableEq �
     (labels : ι × Bool → α) (hlabels : Function.Injective labels)
     (choices : ι × Bool → τ →₀ ℕ)
     (hchoices : ∀ p, choices p ∈ terms (labels p))
-    (hinj : Function.Injective (fun i => choices (i,false) + choices (i,true))) :
+    (hinj : Function.Injective (fun i => choices (i, false) + choices (i, true))) :
     (productMinor (K := K) terms (fun i => labels (i,false)) (fun i => labels (i,true))
       (fun i => choices (i,false) + choices (i,true))).det ≠ 0 := by
   obtain ⟨c, hc⟩ := exists_consistent_choices labels hlabels choices

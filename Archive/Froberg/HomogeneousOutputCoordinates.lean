@@ -35,7 +35,7 @@ def outputCombination {J σ : Type*} [Fintype J] (o : J → MvPolynomial σ K) :
 /-- A complete homogeneous output basis can be chosen together with an
 injective coordinate inclusion of every specified homogeneous subspace. -/
 theorem homogeneous_output_coordinate_embedding {σ : Type*} [Fintype σ] {R : ℕ}
-    (O : Submodule K (MvPolynomial σ K)) (hO : O≤homogeneousSubmodule σ K R) :
+    (O : Submodule K (MvPolynomial σ K)) (hO : O ≤ homogeneousSubmodule σ K R) :
     ∃ (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
       (L : (Fin (finrank K O) → K) →ₗ[K]
         (Fin (finrank K (homogeneousSubmodule σ K R)) → K)),

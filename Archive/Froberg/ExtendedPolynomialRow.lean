@@ -25,25 +25,25 @@ variable {W : Type*} [AddCommGroup W] [Module K W]
  set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem extended_polynomial_row_relation_constants (hs : 1 ≤ s) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (e : Fin m → Fin a →₀ ℕ)
     (v : Fin m → Fin (finrank K (homogeneousSubmodule σ K R)) → K)
-    (he : ∀ i,(e i).degree=s) (Q : Fin q → Forms K a d)
+    (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K a d)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin a) K)
-    (hfull : ∀ c ≤ d,Function.Injective (homogeneousMultiplication (d := c) e v he))
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hfull : ∀ c ≤ d, Function.Injective (homogeneousMultiplication (d := c) e v he))
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K
         ((Fin q → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K a s) ×
           (Fin m → Forms K a d)) W).comp (intermediateKoszul e v he Q)).range)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell)
-    (U : Fin q → MvPolynomial (σ ⊕ Fin (a+z)) K)
-    (hU : ∀ i,U i∈biformImage (homogeneousSubmodule σ K R) (Forms K (a+z) s))
-    (B : Fin m → Forms K (a+z) d)
-    (p : MvPolynomial (σ ⊕ Fin a) K) (hp : p∈P.range)
-    (hpd : p∈biformImage (homogeneousSubmodule σ K R) (Forms K a (s+d)))
-    (hrel : (∑ i,rename Sum.inr (rename (Fin.castAdd z) (Q i).val)*U i)+
-      (∑ k,rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v k)*
-        rename Sum.inr (B k).val)+rename (Sum.map id (Fin.castAdd z)) p=0) :
+    (U : Fin q → MvPolynomial (σ ⊕ Fin (a + z)) K)
+    (hU : ∀ i, U i ∈ biformImage (homogeneousSubmodule σ K R) (Forms K (a + z) s))
+    (B : Fin m → Forms K (a + z) d)
+    (p : MvPolynomial (σ ⊕ Fin a) K) (hp : p ∈ P.range)
+    (hpd : p ∈ biformImage (homogeneousSubmodule σ K R) (Forms K a (s + d)))
+    (hrel : (∑ i, rename Sum.inr (rename (Fin.castAdd z) (Q i).val) * U i) +
+      (∑ k, rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v k) *
+        rename Sum.inr (B k).val) + rename (Sum.map id (Fin.castAdd z)) p = 0) :
     ∃ C : Fin q → Fin m → K,
       (∀ i,U i=∑ k,C i k • rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v k)) ∧
       (∀ k,(B k).val = -∑ i,C i k • rename (Fin.castAdd z) (Q i).val) ∧ p=0 := by

@@ -24,7 +24,7 @@ local instance detectorUniformSpaceFinite {X : Type*} [AddCommGroup X] [Module K
     Module.Finite K (Space n d q J counts (constrainedOutputs T)) :=
   finite_space (fun _ _ => inf_le_left)
 
-theorem eventually_actual_private_reduction_open_uniform {d : ℕ} (hd : 9≤d) (hodd : d%2=1) :
+theorem eventually_actual_private_reduction_open_uniform {d : ℕ} (hd : 9 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T₀ : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

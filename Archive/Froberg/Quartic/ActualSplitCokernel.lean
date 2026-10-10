@@ -123,7 +123,7 @@ theorem projection13_surjective : Function.Surjective (projection13 (K := K) (m 
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Place one extracted bidegree back in the same actual homogeneous space. -/
-def slice (d : ℕ) (j : Fin (d+1)) : Forms K (3+m) d →ₗ[K] Forms K (3+m) d where
+def slice (d : ℕ) (j : Fin (d + 1)) : Forms K (3+m) d →ₗ[K] Forms K (3+m) d where
   toFun p := ⟨blockPolynomial (component j.val p), by
     change (blockPolynomial (component j.val p)).IsHomogeneous d
     have hh := blockPolynomial_homogeneous (component j.val p)
@@ -132,18 +132,18 @@ def slice (d : ℕ) (j : Fin (d+1)) : Forms K (3+m) d →ₗ[K] Forms K (3+m) d 
   map_smul' s p := Subtype.ext (by simp [map_smul])
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-@[simp] theorem slice_val (d : ℕ) (j : Fin (d+1)) (p : Forms K (3+m) d) :
+@[simp] theorem slice_val (d : ℕ) (j : Fin (d + 1)) (p : Forms K (3 + m) d) :
     (slice d j p).val = blockPolynomial (component j.val p) := rfl
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem sum_slices (p : Forms K (3+m) d) : ∑ j : Fin (d+1), slice d j p = p := by
+theorem sum_slices (p : Forms K (3 + m) d) : ∑ j : Fin (d+1), slice d j p = p := by
   apply Subtype.ext
   simpa only [Submodule.coe_sum, slice_val, SplitBigrading.join_val, SplitBigrading.split,
     LinearMap.pi_apply] using
     congrArg Subtype.val (SplitBigrading.join_split p)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem projection13_slice_ne (j : Fin 5) (hj : j.val ≠ 3) (p : Forms K (3+m) 4) :
+theorem projection13_slice_ne (j : Fin 5) (hj : j.val ≠ 3) (p : Forms K (3 + m) 4) :
     projection13 (slice 4 j p) = 0 := by
   have hz : component 3 (slice 4 j p) = 0 := by
     funext b
@@ -155,7 +155,7 @@ theorem projection13_slice_ne (j : Fin 5) (hj : j.val ≠ 3) (p : Forms K (3+m) 
   exact (rowBlockEquiv 3).symm.map_zero
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem rowEmbedding_projection13 (p : Forms K (3+m) 4) :
+theorem rowEmbedding_projection13 (p : Forms K (3 + m) 4) :
     rowEmbedding 3 (projection13 p) = slice 4 3 p := by
   change embed ((rowBlockEquiv 3) ((rowBlockEquiv 3).symm (component 3 p))) = _
   rw [LinearEquiv.apply_symm_apply]
@@ -241,7 +241,7 @@ theorem childEmbed_range_four : LinearMap.range (SplitBlock31.childEmbed (K := K
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every actual quadric is a pure, mixed, and child sum. -/
-theorem quadratic_decomposition (p : Forms K (3+m) 2) :
+theorem quadratic_decomposition (p : Forms K (3 + m) 2) :
     ∃ (x : Forms K 3 2) (a : MiddleCoordinates.Mixed K m) (y : Forms K m 2),
       p = SplitBlock31.coreEmbed x + SplitBlock22.mixedEmbedding a + SplitBlock31.childEmbed y := by
   have h0 : slice 2 0 p ∈ LinearMap.range (SplitBlock31.coreEmbed (K := K) (m := m) (d := 2)) := by
@@ -264,8 +264,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A product of represented bidegrees has no retained component at a different degree. -/
 theorem projection13_zero_of_blocks {i j i' j' : ℕ}
     (u : Block K 3 m i j) (v : Block K 3 m i' j')
-    (p : Forms K (3+m) 4) (hp : p.val = blockPolynomial u * blockPolynomial v)
-    (hj : j+j' ≠ 3) : projection13 p = 0 := by
+    (p : Forms K (3 + m) 4) (hp : p.val = blockPolynomial u * blockPolynomial v)
+    (hj : j + j' ≠ 3) : projection13 p = 0 := by
   have hz : component 3 p = 0 := by
     funext b
     apply Subtype.ext
@@ -278,7 +278,7 @@ theorem projection13_zero_of_blocks {i j i' j' : ℕ}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Products of arbitrary pure core quadrics have zero (1,3) projection. -/
-theorem projection13_core_mul (x : Forms K 3 2) (p : Forms K (3+m) 2) :
+theorem projection13_core_mul (x : Forms K 3 2) (p : Forms K (3 + m) 2) :
     projection13 (mulQuadratic (SplitBlock31.coreEmbed x) p) = 0 := by
   obtain ⟨u,hu⟩ := (show SplitBlock31.coreEmbed (m := m) x ∈ bidegreeSpace K 3 m 2 0 by
     rw [← coreEmbed_range]; exact ⟨x,rfl⟩)
@@ -321,7 +321,7 @@ theorem mixed_child_product (g : MiddleCoordinates.Mixed K m) (a : Forms K m 2) 
   simp only [rowProduct, CubicGeneric.mulLinearQuad_val, map_mul, mul_assoc]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem mulQuadratic_comm (a b : Forms K (3+m) 2) : mulQuadratic a b = mulQuadratic b a :=
+theorem mulQuadratic_comm (a b : Forms K (3 + m) 2) : mulQuadratic a b = mulQuadratic b a :=
   Subtype.ext (mul_comm _ _)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -348,7 +348,7 @@ theorem projection13_child_child (g a : Forms K m 2) :
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Only the child-quadratic coefficient contributes for a mixed generator. -/
-theorem projection13_mixed_mul (g : MiddleCoordinates.Mixed K m) (p : Forms K (3+m) 2) :
+theorem projection13_mixed_mul (g : MiddleCoordinates.Mixed K m) (p : Forms K (3 + m) 2) :
     projection13 (mulQuadratic (SplitBlock22.mixedEmbedding g) p) =
       rowProduct g (SplitBlock22.childProjection p) := by
   obtain ⟨x,a,y,rfl⟩ := quadratic_decomposition p
@@ -360,7 +360,7 @@ theorem projection13_mixed_mul (g : MiddleCoordinates.Mixed K m) (p : Forms K (3
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Only the mixed coefficient contributes for a child generator. -/
-theorem projection13_child_mul (h : Forms K m 2) (p : Forms K (3+m) 2) :
+theorem projection13_child_mul (h : Forms K m 2) (p : Forms K (3 + m) 2) :
     projection13 (mulQuadratic (SplitBlock31.childEmbed h) p) =
       rowProduct (SplitBlock22.middleProjection p) h := by
   obtain ⟨x,a,y,rfl⟩ := quadratic_decomposition p
@@ -384,7 +384,7 @@ def sourceProjection13 :
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Projection of the full polynomial multiplication is exactly the actual combined F13 map. -/
 theorem projection13_multiplication (g : Fin c → MiddleCoordinates.Mixed K m)
-    (h : Fin q → Forms K m 2) (a : Fin (4+(c+q)) → Forms K (3+m) 2) :
+    (h : Fin q → Forms K m 2) (a : Fin (4 + (c + q)) → Forms K (3 + m) 2) :
     projection13 (quadraticMultiplication (SplitBlock22.fullGenerators g h) a) =
       GeneralF13.combined g h (sourceProjection13 a) := by
   simp only [quadraticMultiplication, LinearMap.sum_apply, LinearMap.comp_apply,
@@ -425,7 +425,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- An actual polynomial lying in bidegree (1,3) is recovered by the retained rows. -/
-theorem rowEmbedding_projection13_of_mem (p : Forms K (3+m) 4)
+theorem rowEmbedding_projection13_of_mem (p : Forms K (3 + m) 4)
     (hp : p ∈ LinearMap.range (rowEmbedding (K := K) (m := m) 3)) :
     rowEmbedding 3 (projection13 p) = p := by
   obtain ⟨a,rfl⟩ := hp
@@ -684,7 +684,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem cokernelEquivJ_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2)
     (h22 : Function.Surjective (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h))))
-    (h04 : Function.Surjective (quadraticMultiplication h)) (p : Forms K (3+m) 4) :
+    (h04 : Function.Surjective (quadraticMultiplication h)) (p : Forms K (3 + m) 4) :
     cokernelEquivJ g h h22 h04 (Submodule.Quotient.mk p) = projectionJ g h p := by
   simp [cokernelEquivJ, cokernelEquivRawJ, rawJEquivJ, quotientTransport, projectionJ]
 

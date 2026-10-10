@@ -37,7 +37,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddCoefficientAssembly_component (v : OddBiformCoordinates K h m d)
-    (r : Fin ((d+1)/2)) :
+    (r : Fin ((d + 1) / 2)) :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val+1) (oddCoefficientAssembly v).val=
       sumBiformMap (v r) := by
   classical
@@ -100,7 +100,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 1)
-    (r : Fin ((d+1)/2)) :
+    (r : Fin ((d + 1) / 2)) :
     sumBiformMap (oddBiformCoordinatesEquiv v r)=
       weightedHomogeneousComponent (blockWeight h m) (2*r.val+1) v.val := by
   have hv : oddCoefficientAssembly (oddBiformCoordinatesEquiv v)=v :=

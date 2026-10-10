@@ -21,13 +21,13 @@ variable {K A I J I' J' : Type*} [Field K] [CommRing A] [Algebra K A]
 theorem constant_pair_kernel_reindex (e : I ≃ I') (f : J ≃ J')
     (S : I → A) (O : J → A) (U V : Submodule K A)
     (h : ∀ (x : I' → A) (y : J' → A),
-      (∀ i,x i∈U) → (∀ j,y j∈V) →
-      (∑ i,S (e.symm i)*x i)+(∑ j,O (f.symm j)*y j)=0 →
+      (∀ i, x i ∈ U) → (∀ j, y j ∈ V) →
+      (∑ i, S (e.symm i) * x i) + (∑ j, O (f.symm j) * y j) = 0 →
       ∃ C : I' → J' → K,
-        (∀ i,x i=∑ j,C i j • O (f.symm j)) ∧
-        (∀ j,y j = -∑ i,C i j • S (e.symm i)))
-    (x : I → A) (y : J → A) (hx : ∀ i,x i∈U) (hy : ∀ j,y j∈V)
-    (hr : (∑ i,S i*x i)+(∑ j,O j*y j)=0) :
+        (∀ i, x i = ∑ j, C i j • O (f.symm j)) ∧
+        (∀ j, y j = -∑ i, C i j • S (e.symm i)))
+    (x : I → A) (y : J → A) (hx : ∀ i, x i ∈ U) (hy : ∀ j, y j ∈ V)
+    (hr : (∑ i, S i * x i) + (∑ j, O j * y j) = 0) :
     ∃ C : I → J → K,
       (∀ i,x i=∑ j,C i j • O j) ∧ (∀ j,y j = -∑ i,C i j • S i) := by
   have hr' : (∑ i,S (e.symm i)*x (e.symm i))+
@@ -54,10 +54,10 @@ theorem constant_pair_kernel_reindex (e : I ≃ I') (f : J ≃ J')
 theorem injective_pair_kernel_reindex (e : I ≃ I') (f : J ≃ J')
     (S : I → A) (O : J → A) (U V : Submodule K A)
     (h : ∀ (x : I' → A) (y : J' → A),
-      (∀ i,x i∈U) → (∀ j,y j∈V) →
-      (∑ i,S (e.symm i)*x i)+(∑ j,O (f.symm j)*y j)=0 → x=0 ∧ y=0)
-    (x : I → A) (y : J → A) (hx : ∀ i,x i∈U) (hy : ∀ j,y j∈V)
-    (hr : (∑ i,S i*x i)+(∑ j,O j*y j)=0) : x=0 ∧ y=0 := by
+      (∀ i, x i ∈ U) → (∀ j, y j ∈ V) →
+      (∑ i, S (e.symm i) * x i) + (∑ j, O (f.symm j) * y j) = 0 → x = 0 ∧ y = 0)
+    (x : I → A) (y : J → A) (hx : ∀ i, x i ∈ U) (hy : ∀ j, y j ∈ V)
+    (hr : (∑ i, S i * x i) + (∑ j, O j * y j) = 0) : x=0 ∧ y=0 := by
   have hr' : (∑ i,S (e.symm i)*x (e.symm i))+
       (∑ j,O (f.symm j)*y (f.symm j))=0 := by
     rw [e.symm.sum_comp (fun i => S i*x i),f.symm.sum_comp (fun j => O j*y j)]

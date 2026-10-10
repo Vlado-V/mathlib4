@@ -34,11 +34,12 @@ theorem typed_private_quadratic_coordinates
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination (fun k => (bo k).val) (w i)*(bo j).val)=A i (Pi.single j 1))
-    (P : Fin b → FullBiform K σ (a+z) 1 (d-1))
-    (hP : ∀ i,(P i).val=rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
-      rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))
-    (u : Fin b → FullBiform K σ (a+z) 1 (d-1)) :
+    (hA : ∀ i j, T (outputCombination (fun k => (bo k).val) (w i) * (bo j).val) = A i (Pi.single j
+      1))
+    (P : Fin b → FullBiform K σ (a + z) 1 (d - 1))
+    (hP : ∀ i, (P i).val = rename Sum.inl (outputCombination (fun k => (bo k).val) (w i)) *
+      rename Sum.inr (monomial (privateExponent a (d - 1) ι i) (1 : K)))
+    (u : Fin b → FullBiform K σ (a + z) 1 (d - 1)) :
     ∃ v : Fin b → Fin h → Forms K (a+z) (d-1),
       (∀ i,polynomialFormVector (fun k => (bo k).val) (d-1) (v i)=(u i).val) ∧
       PolynomialRestoration.row (FullBiform K σ (a+z) 1 (d-1)).subtype
@@ -58,25 +59,26 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Scalar/private nuisance coefficients cannot absorb a core product that
 is already separated from the core scalar row. The private part vanishes
 separately as well. -/
-theorem typed_private_quadratic_row_separation (hd : 3≤d)
+theorem typed_private_quadratic_row_separation (hd : 3 ≤ d)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination (fun k => (bo k).val) (w i)*(bo j).val)=A i (Pi.single j 1))
-    (P : Fin b → FullBiform K σ (a+z) 1 (d-1))
-    (hP : ∀ i,(P i).val=rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
-      rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))
+    (hA : ∀ i j, T (outputCombination (fun k => (bo k).val) (w i) * (bo j).val) = A i (Pi.single j
+      1))
+    (P : Fin b → FullBiform K σ (a + z) 1 (d - 1))
+    (hP : ∀ i, (P i).val = rename Sum.inl (outputCombination (fun k => (bo k).val) (w i)) *
+      rename Sum.inr (monomial (privateExponent a (d - 1) ι i) (1 : K)))
     (Q : Fin q → Forms K a d)
     {Z : Type*} [AddCommGroup Z] [Module K Z]
     (C : Z →ₗ[K] (Fin c → Poly K a))
-    (hC : ∀ (x : Fin q → Fin c → Forms K a (d-2)) v,
-      scalarCoefficientRow Q x+C v=0 → v=0)
-    (x : (Fin q → Fin c → Forms K (a+z) (d-2)) ×
-      (Fin b → FullBiform K σ (a+z) 1 (d-1))) (v : Z)
-    (hrel : quadraticNuisanceRow (t := d-2)
-      (FullBiform K σ (a+z) 1 (d-1)).subtype (biformVectorDetector T)
-      (fun i => renameForm (Fin.castAdd z) (Q i)) P x+coreVectorExtension (C v)=0) :
+    (hC : ∀ (x : Fin q → Fin c → Forms K a (d - 2)) v,
+      scalarCoefficientRow Q x + C v = 0 → v = 0)
+    (x : (Fin q → Fin c → Forms K (a + z) (d - 2)) ×
+      (Fin b → FullBiform K σ (a + z) 1 (d - 1))) (v : Z)
+    (hrel : quadraticNuisanceRow (t := d - 2)
+      (FullBiform K σ (a + z) 1 (d - 1)).subtype (biformVectorDetector T)
+      (fun i => renameForm (Fin.castAdd z) (Q i)) P x + coreVectorExtension (C v) = 0) :
     v=0 ∧ PolynomialRestoration.row (FullBiform K σ (a+z) 1 (d-1)).subtype
       (biformVectorDetector T) P x.2=0 := by
   obtain ⟨u,hu,hrow⟩ := typed_private_quadratic_coordinates bo T w ι A hA P hP x.2
@@ -94,19 +96,20 @@ theorem typed_private_quadratic_row_separation (hd : 3≤d)
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The actual quadratic nuisance row has exactly its constant private
 Koszul boundary as kernel. -/
-theorem typed_private_quadratic_row_exact (hd : 3≤d)
+theorem typed_private_quadratic_row_exact (hd : 3 ≤ d)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination (fun k => (bo k).val) (w i)*(bo j).val)=A i (Pi.single j 1))
-    (hker : (privatePolynomialMap (a := a) (s := d-1) ι A).ker=
-      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d-1) ι w))))
-    (P : Fin b → FullBiform K σ (a+z) 1 (d-1))
-    (hP : ∀ i,(P i).val=rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
-      rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))
+    (hA : ∀ i j, T (outputCombination (fun k => (bo k).val) (w i) * (bo j).val) = A i (Pi.single j
+      1))
+    (hker : (privatePolynomialMap (a := a) (s := d - 1) ι A).ker =
+      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d - 1) ι w))))
+    (P : Fin b → FullBiform K σ (a + z) 1 (d - 1))
+    (hP : ∀ i, (P i).val = rename Sum.inl (outputCombination (fun k => (bo k).val) (w i)) *
+      rename Sum.inr (monomial (privateExponent a (d - 1) ι i) (1 : K)))
     (Q : Fin q → Forms K a d)
-    (hQ : ∀ t,t≤d-2 → Function.Injective (prefixMultiplication Q t)) :
+    (hQ : ∀ t, t ≤ d - 2 → Function.Injective (prefixMultiplication Q t)) :
     (quadraticNuisanceRow (t := d-2)
       (FullBiform K σ (a+z) 1 (d-1)).subtype (biformVectorDetector T)
       (fun i => renameForm (Fin.castAdd z) (Q i)) P).ker=

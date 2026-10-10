@@ -25,7 +25,7 @@ set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem quadratic_detector_homogeneous_kernel
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame)) :
+    (hL : L.ker = Submodule.span K (Set.range frame)) :
     Forms K h 2 ⊓ (quadraticPolynomialDetector L).ker=outputFrameSpace frame := by
   have hspan : (Submodule.span K (Set.range frame)).map (Forms K h 2).subtype=
       outputFrameSpace frame := by
@@ -56,20 +56,20 @@ set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_ne_two (f : (Fin w × Bool) ≃ Fin h)
-    (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j≠2) :
+    (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j ≠ 2) :
     pairedFrameConstraint f L j=0 := by
   simp only [pairedFrameConstraint,if_neg hj]
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_ge_four (f : (Fin w × Bool) ≃ Fin h)
-    (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : 4≤j) :
+    (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : 4 ≤ j) :
     pairedFrameConstraint f L j=0 := pairedFrameConstraint_ne_two f L (by omega)
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame)) :
+    (hL : L.ker = Submodule.span K (Set.range frame)) :
     constrainedOutputs (pairedFrameConstraint f L) 2=
       (outputFrameSpace frame).comap (rename f).toLinearMap := by
   ext p
@@ -91,7 +91,7 @@ set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_map (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame)) :
+    (hL : L.ker = Submodule.span K (Set.range frame)) :
     (constrainedOutputs (pairedFrameConstraint f L) 2).map (rename f).toLinearMap=
       outputFrameSpace frame := by
   rw [pairedFrameConstraint_space f frame L hL]
@@ -99,7 +99,7 @@ theorem pairedFrameConstraint_space_map (f : (Fin w × Bool) ≃ Fin h)
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_map_ne_two (f : (Fin w × Bool) ≃ Fin h)
-    (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j≠2) :
+    (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j ≠ 2) :
     (constrainedOutputs (pairedFrameConstraint f L) j).map (rename f).toLinearMap=
       Forms K h j := by
   rw [constrainedOutputs,pairedFrameConstraint_ne_two f L hj,LinearMap.ker_zero,inf_top_eq]
@@ -114,7 +114,7 @@ set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_spaces_map (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame)) (j : ℕ) :
+    (hL : L.ker = Submodule.span K (Set.range frame)) (j : ℕ) :
     (constrainedOutputs (pairedFrameConstraint f L) j).map (rename f).toLinearMap=
       if j=2 then outputFrameSpace frame else Forms K h j := by
   by_cases hj : j=2
@@ -126,7 +126,7 @@ set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_finrank (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2) (hframe : LinearIndependent K frame)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame)) :
+    (hL : L.ker = Submodule.span K (Set.range frame)) :
     finrank K (constrainedOutputs (pairedFrameConstraint f L) 2)=H := by
   have hh := (renameEquiv K f).toLinearEquiv.finrank_map_eq
     (constrainedOutputs (pairedFrameConstraint f L) 2)

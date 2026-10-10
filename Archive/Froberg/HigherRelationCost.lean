@@ -22,7 +22,7 @@ def higherRelationCost (d h u m : ℕ) : ℕ :=
     (h+2*(r.val+1)-1).choose (2*(r.val+1))*
       (m+(d-2*(r.val+1))-1).choose (d-2*(r.val+1))
 
-theorem higherRelationCost_lower_order {d : ℕ} (hd : 3≤d) (h u : ℕ) :
+theorem higherRelationCost_lower_order {d : ℕ} (hd : 3 ≤ d) (h u : ℕ) :
     Tendsto (fun m : ℕ => (higherRelationCost d h u m : ℝ)/(m : ℝ)^(d-1))
       atTop (𝓝 0) := by
   have hi (r : Fin ((d-1)/2)) :=
@@ -33,7 +33,7 @@ theorem higherRelationCost_lower_order {d : ℕ} (hd : 3≤d) (h u : ℕ) :
   simpa only [higherRelationCost,Nat.cast_mul,Nat.cast_sum,mul_zero,sum_const_zero,
     ←mul_div_assoc,←sum_div] using hs
 
-theorem higherRelationCost_shadow_lower_order {d : ℕ} (hd : 3≤d) (h u : ℕ) :
+theorem higherRelationCost_shadow_lower_order {d : ℕ} (hd : 3 ≤ d) (h u : ℕ) :
     Tendsto (fun m : ℕ => (higherRelationCost d h u m : ℝ)/(m : ℝ)^d)
       atTop (𝓝 0) := by
   have hi (r : Fin ((d-1)/2)) :=

@@ -19,7 +19,7 @@ variable {σ : Type*} [Fintype σ] {n d : ℕ}
 
 /-- Every zero-output biform is the rename of a homogeneous scalar form. -/
 theorem biform_zero_output_exists {f : MvPolynomial (σ ⊕ Fin n) K}
-    (hf : f∈biformImage (homogeneousSubmodule σ K 0) (Forms K n d)) :
+    (hf : f ∈ biformImage (homogeneousSubmodule σ K 0) (Forms K n d)) :
     ∃ b : Forms K n d,rename Sum.inr b.val=f := by
   rcases hf with ⟨a,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with

@@ -33,7 +33,7 @@ theorem outputMultiplication_surjective_of_prefix (Q : Fin q → Forms K h j)
 /-- The biform generators stay inside the span of the chosen output family. -/
 theorem exists_biform_family_of_prefix (hm : 0 < m) (Q : Fin q → Forms K h j)
     (hQ : Function.Surjective (prefixMultiplication Q x))
-    (hr : convolutionBlockCount q (y+1) e * (m+(y+1)+e-2).choose e ≤ r) :
+    (hr : convolutionBlockCount q (y + 1) e * (m + (y + 1) + e - 2).choose e ≤ r) :
     ∃ (o : Fin r → Forms K h j) (f : Fin r → Forms K m e),
       (∀ i, o i ∈ Submodule.span K (Set.range Q)) ∧
       Function.Surjective (biformFamilyMap (x := x) (y := y) o f) := by
@@ -50,9 +50,9 @@ theorem exists_biform_family_of_prefix (hm : 0 < m) (Q : Fin q → Forms K h j)
 /-- A finite, entirely explicit middle-row witness from the proved strict-prefix
 bound and the rounded convolution generator count. -/
 theorem exists_biform_family_of_prefix_counts (hh : 0 < h) (hm : 0 < m) (hxj : x < j)
-    (hlarge : (x+j).choose x*((x+j).choose x*j.choose x) ≤ h)
-    (hq : (h+(j+x)-1).choose (j+x) ≤ q*(h+x-1).choose x)
-    (hr : convolutionBlockCount q (y+1) e*(m+(y+1)+e-2).choose e ≤ r) :
+    (hlarge : (x + j).choose x * ((x + j).choose x * j.choose x) ≤ h)
+    (hq : (h + (j + x) - 1).choose (j + x) ≤ q * (h + x - 1).choose x)
+    (hr : convolutionBlockCount q (y + 1) e * (m + (y + 1) + e - 2).choose e ≤ r) :
     ∃ (o : Fin r → Forms K h j) (f : Fin r → Forms K m e),
       Function.Surjective (biformFamilyMap (x := x) (y := y) o f) := by
   obtain ⟨Q,hQ⟩ := exists_prefix_surjective_of_large_variables (K := K) hh hxj hlarge hq

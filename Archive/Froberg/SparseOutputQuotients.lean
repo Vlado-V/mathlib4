@@ -55,7 +55,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 The kernels are literal intersections with the specified ambient spaces. -/
 theorem sparse_output_quotients_open {n s d m b : ℕ}
     (O : Submodule K V) (R : I → Submodule K V)
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ j,(e j).degree=s)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ j, (e j).degree = s)
     (hdiv : ∀ β : Fin n →₀ ℕ,Fintype.card {j : Fin m // e j≤β}≤b*β.degree.choose s)
     (hcap : ∀ i,b*(s+d).choose s≤finrank K O-finrank K (R i)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin m → O))) K,
@@ -89,7 +89,7 @@ theorem sparse_zero_of_relation_coefficients {n m d : ℕ}
     (hinj : Function.Injective (AttachedMultiplication.multiplication (d := d) e
       (fun j => coordinates K O (relationProjection (R.comap O.subtype) (v j)))))
     (p : Fin m → Forms K n d)
-    (hp : ∀ β,(sparseOutputCoefficient e v p β).val∈R) : p=0 := by
+    (hp : ∀ β, (sparseOutputCoefficient e v p β).val ∈ R) : p=0 := by
   apply hinj
   rw [map_zero]
   funext j
@@ -109,7 +109,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 actual polynomial product sums, with no quotient-coordinate hypothesis. -/
 theorem sparse_output_relations_open {n s d m b : ℕ}
     (O : Submodule K V) (R : I → Submodule K V)
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ j,(e j).degree=s)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ j, (e j).degree = s)
     (hdiv : ∀ β : Fin n →₀ ℕ,Fintype.card {j : Fin m // e j≤β}≤b*β.degree.choose s)
     (hcap : ∀ i,b*(s+d).choose s≤finrank K O-finrank K (R i)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin m → O))) K,

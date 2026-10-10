@@ -34,7 +34,7 @@ def scalarVectorParametersEquiv : ScalarVectorParameters K h m d f q ≃ₗ[K]
     (LinearEquiv.refl K _)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def HigherOddRows (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) : Prop :=
+def HigherOddRows (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) : Prop :=
   ∀ r,3≤r → r≤d+1 → r%2=1 →
     ∀ (u : Fin q → MvPolynomial (Fin h ⊕ Fin m) K)
       (v : Fin f → MvPolynomial (Fin h ⊕ Fin m) K),
@@ -44,14 +44,14 @@ def HigherOddRows (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
         (∑ j,sumBiformMap (linearOutputTensorEquiv (g j))*v j)=0 → u=0 ∧ v=0
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem odd_scalar_layer_polynomial_row {b : ℕ} (hb : 1≤b) (hbd : b≤d)
+theorem odd_scalar_layer_polynomial_row {b : ℕ} (hb : 1 ≤ b) (hbd : b ≤ d)
     (p : OddScalarParameters K h m d f q)
     (hp : OddScalarLayerProperty t hb hbd (oddScalarBiformParameters p))
     (u : Fin q → MvPolynomial (Fin h ⊕ Fin m) K)
     (v : Fin f → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hu : ∀ i,u i∈coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d b)
-    (hv : ∀ j,v j∈coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d (b-1))
-    (hrow : (∑ i,rename Sum.inr (p.2 i).val*u i)+(∑ j,sumBiformMap (p.1 j)*v j)=0) :
+    (hu : ∀ i, u i ∈ coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d b)
+    (hv : ∀ j, v j ∈ coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d (b - 1))
+    (hrow : (∑ i, rename Sum.inr (p.2 i).val * u i) + (∑ j, sumBiformMap (p.1 j) * v j) = 0) :
     u=0 ∧ v=0 := by
   have hinj := hp.1
   refine higher_odd_polynomial_row hb hbd (fun i => scalarBiformEquiv (p.2 i),p.1) ?_ u v hu hv ?_
@@ -81,10 +81,10 @@ theorem odd_scalar_layer_polynomial_row {b : ℕ} (hb : 1≤b) (hbd : b≤d)
   · simpa only [sumBiformMap_scalarBiform] using hrow
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem higher_odd_vector_open (hh : 0<h) (hm : 0 < m) (hd : 1≤d)
+theorem higher_odd_vector_open (hh : 0 < h) (hm : 0 < m) (hd : 1 ≤ d)
     (hscalar : HasOddScalarLayersOpen K h m d f q t)
-    (hupper : (f+(h+d-1).choose d)*(h+d-1).choose d≤
-      (h+(d+1)-1).choose (d+1)*(m+(d-1)-1).choose (d-1)) :
+    (hupper : (f + (h + d - 1).choose d) * (h + d - 1).choose d ≤
+      (h + (d + 1) - 1).choose (d + 1) * (m + (d - 1) - 1).choose (d - 1)) :
     ∃ D : MvPolynomial (Fin (finrank K (ScalarVectorParameters K h m d f q))) K,
       (∃ p : ScalarVectorParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) D≠0) ∧
       ∀ p : ScalarVectorParameters K h m d f q,

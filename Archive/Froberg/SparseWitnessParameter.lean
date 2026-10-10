@@ -21,22 +21,22 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 theorem sparse_witness_parameter_exact
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (R : J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (R : J)
     (o : Fin (finrank K (homogeneousSubmodule σ K R.val)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R.val)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R.val)
     (e : Fin (counts R.val) → Fin n →₀ ℕ)
     (v : Fin (counts R.val) → Fin (finrank K (homogeneousSubmodule σ K R.val)) → K)
-    (he : ∀ i,(e i).degree=d-R.val)
+    (he : ∀ i, (e i).degree = d - R.val)
     (Q : Fin (Fintype.card (Label q J counts)) → Forms K n d)
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (hE : ∀ j∈J,∀ i,E j i∈biformImage (O j) (Forms K n (d-j)))
-    (hER : ∀ i,E R.val i=attachedPolynomialFamily o e v i)
+    (hE : ∀ j ∈ J, ∀ i, E j i ∈ biformImage (O j) (Forms K n (d - j)))
+    (hER : ∀ i, E R.val i = attachedPolynomialFamily o e v i)
     (hzero : Function.Injective (homogeneousMultiplication (d := 0) e v he))
     (hexact : (addRow (polynomialIntermediateRow o e v he Q)
-      (ProductRows.multiplication counts E J R.val)).ker=
+      (ProductRows.multiplication counts E J R.val)).ker =
       ((LinearMap.inl K
         ((Fin (Fintype.card (Label q J counts)) →
-          Fin (finrank K (homogeneousSubmodule σ K R.val)) → Forms K n (d-R.val)) ×
+          Fin (finrank K (homogeneousSubmodule σ K R.val)) → Forms K n (d - R.val)) ×
           (Fin (counts R.val) → Forms K n d)) (RowProducts (K := K) (J := J) (counts := counts)
             R.val)).comp
             (intermediateKoszul e v he Q)).range) :

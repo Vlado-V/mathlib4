@@ -252,7 +252,7 @@ theorem sourceColumns_cover_mem : ∀ (r : Fin 5) (a b : CanonicalLabel),
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem sourceColumns_cover (r : Fin 5) (a b : CanonicalLabel)
     (hI : canonicalSupport a.1 ∩ canonicalSupport b.1 = initialSet r.val)
-    (hU : canonicalSupport a.1 ∪ canonicalSupport b.1 = initialSet (8-r.val)) :
+    (hU : canonicalSupport a.1 ∪ canonicalSupport b.1 = initialSet (8 - r.val)) :
     ∃ i : Fin (sourceColumns r).length,
       (sourceColumns r)[i] = (a,b) ∨ (sourceColumns r)[i] = (b,a) := by
   rcases sourceColumns_cover_mem r a b hI hU with h | h

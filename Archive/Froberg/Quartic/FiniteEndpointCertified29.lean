@@ -71,7 +71,7 @@ theorem upper_witness : QuarticWitness K 29 93 := certificate.upper_witness
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every admissible generator count over every characteristic-zero field. -/
-theorem generic (r : ℕ) (hr : r ≤ (29+1).choose 2) : GenericQuartic K 29 r :=
+theorem generic (r : ℕ) (hr : r ≤ (29 + 1).choose 2) : GenericQuartic K 29 r :=
   certificate.generic_of_certificate (by decide +kernel) (by decide +kernel)
     (by decide +kernel) r hr
 

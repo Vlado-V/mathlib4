@@ -42,14 +42,14 @@ def numerator (F : J → MvPolynomial I K) (G : MvPolynomial I K)
   Sum.elim (fun j => rename Sum.inl (F j) * KernelPolynomialCharts.denominator (matrix F G A) u v)
     (fun k => KernelPolynomialCharts.numerator (matrix F G A) u v k * rename Sum.inl G)
 
- theorem eval_denominator (F : J → MvPolynomial I K) (G : MvPolynomial I K)
+theorem eval_denominator (F : J → MvPolynomial I K) (G : MvPolynomial I K)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial J K))
     (u : Fin r ↪ Fin a) (v : Fin r ↪ Fin n) (t : I → K) (y : SubspaceCharts.Outside v → K) :
     eval (Sum.elim t y) (denominator F G A u v) =
       eval t G * (KernelCharts.minor (evaluated (matrix F G A) t) u v).det := by
   simp [denominator, eval_rename]
 
- theorem rationalMap_eq (F : J → MvPolynomial I K) (G : MvPolynomial I K)
+theorem rationalMap_eq (F : J → MvPolynomial I K) (G : MvPolynomial I K)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial J K))
     (u : Fin r ↪ Fin a) (v : Fin r ↪ Fin n) (t : I → K) (y : SubspaceCharts.Outside v → K)
     (hG : eval t G ≠ 0)
@@ -111,7 +111,7 @@ theorem cover (F : J → MvPolynomial I K) (G : MvPolynomial I K)
   obtain ⟨u,v,hdet⟩ := KernelCharts.exists_minor_of_rank_le _ hr'
   exact ⟨u,v,cover_at_minor F G A u v t hG hdet x hx⟩
 
- theorem parameter_count [Fintype I] (v : Fin r ↪ Fin n) :
+theorem parameter_count [Fintype I] (v : Fin r ↪ Fin n) :
     Fintype.card (Parameters I v) = Fintype.card I + (n-r) :=
   KernelPolynomialCharts.parameter_count v
 

@@ -28,8 +28,8 @@ variable {K : Type} [Field K] [Infinite K]
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def HasUniformPreparedOuterOpen {h n d q f u : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) : Prop :=
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) : Prop :=
   letI : Module.Finite K (FixedPureZeroScalarSpace n d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   ∃ D : MvPolynomial (Fin (finrank K (FixedPureZeroScalarSpace n d q f u J counts O))) K,
@@ -41,7 +41,7 @@ def HasUniformPreparedOuterOpen {h n d q f u : ℕ}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_prepared_outer_open_from_shared_detector {d h : ℕ}
-    (hd : 3≤d) (ho : d%2=1) (hh : 0 < h) (r f : ℕ → ℕ)
+    (hd : 3 ≤ d) (ho : d % 2 = 1) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hf : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))
@@ -81,7 +81,7 @@ theorem eventually_prepared_outer_open_from_shared_detector {d h : ℕ}
     (by simpa only [Fintype.card_fin] using hcap)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem eventually_counted_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=1) :
+theorem eventually_counted_prepared_outer_open {d : ℕ} (hd : 3 ≤ d) (ho : d % 2 = 1) :
     ∀ᶠ h : ℕ in atTop, ∀ (r f : ℕ → ℕ),
       Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
         atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))) →
@@ -114,7 +114,7 @@ theorem eventually_counted_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=
     (hO₂.trans (quadraticPolynomialDetector_frame frame L hL)) hdet hker
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem eventually_allEven_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=1) :
+theorem eventually_allEven_prepared_outer_open {d : ℕ} (hd : 3 ≤ d) (ho : d % 2 = 1) :
     ∀ᶠ h : ℕ in atTop, ∀ (e f : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))

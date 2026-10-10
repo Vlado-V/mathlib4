@@ -25,12 +25,12 @@ namespace Quartic.WeakHullProfile
 open HullCertificate ProfileCertificate SharpCertificate
 
 /-- The finite weak-hull certificates apply to every ordered sharp profile. -/
-theorem finite_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool)
-    (i:ℕ) (hi:i ≤ coreA (FiniteCounts.mixedCount m upper))
-    (n₁ n₂ n₃:ℚ)
-    (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (FiniteCounts.mixedCount m upper):ℚ))
-    (d:ℤ) (hdlo:1 ≤ d) (hdhi:d<(totalA m (FiniteCounts.mixedCount m upper):ℤ))
-    (hd:(i:ℚ)+n₁+n₂+n₃=(d:ℚ)) :
+theorem finite_profile_bounds (m : ℕ) (hmlo : 130 ≤ m) (hmhi : m ≤ 319) (upper : Bool)
+    (i : ℕ) (hi : i ≤ coreA (FiniteCounts.mixedCount m upper))
+    (n₁ n₂ n₃ : ℚ)
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (FiniteCounts.mixedCount m upper) : ℚ))
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (totalA m (FiniteCounts.mixedCount m upper) : ℤ))
+    (hd : (i : ℚ) + n₁ + n₂ + n₃ = (d : ℚ)) :
     ImageBounds (scalars m (FiniteCounts.upperEndpoint m) (FiniteCounts.mixedCount m upper))
       (sharpProfile (parameters m (FiniteCounts.mixedCount m upper) i) n₁ n₂ n₃) d := by
   have hc:4 ≤ FiniteCounts.mixedCount m upper :=
@@ -41,12 +41,12 @@ theorem finite_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:B
   exact hinc.mono ((hline.supports_hull hpoint).trans himage)
 
 /-- Canonical endpoint version, independent of the finite-table presentation. -/
-theorem actual_endpoint_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool)
-    (i:ℕ) (hi:i ≤ coreA (UniformEndpoint.mixedCount m upper))
-    (n₁ n₂ n₃:ℚ)
-    (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (UniformEndpoint.mixedCount m upper):ℚ))
-    (d:ℤ) (hdlo:1 ≤ d) (hdhi:d<(totalA m (UniformEndpoint.mixedCount m upper):ℤ))
-    (hd:(i:ℚ)+n₁+n₂+n₃=(d:ℚ)) :
+theorem actual_endpoint_profile_bounds (m : ℕ) (hmlo : 130 ≤ m) (hmhi : m ≤ 319) (upper : Bool)
+    (i : ℕ) (hi : i ≤ coreA (UniformEndpoint.mixedCount m upper))
+    (n₁ n₂ n₃ : ℚ)
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (UniformEndpoint.mixedCount m upper) : ℚ))
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (totalA m (UniformEndpoint.mixedCount m upper) : ℤ))
+    (hd : (i : ℚ) + n₁ + n₂ + n₃ = (d : ℚ)) :
     ImageBounds (scalars m (UniformEndpoint.upperEndpoint m) (UniformEndpoint.mixedCount m upper))
       (sharpProfile (parameters m (UniformEndpoint.mixedCount m upper) i) n₁ n₂ n₃) d := by
   simp only [UniformEndpoint.mixedCount_eq_table m (by omega),
@@ -54,11 +54,11 @@ theorem actual_endpoint_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
   exact finite_profile_bounds m hmlo hmhi upper i hi n₁ n₂ n₃ hn d hdlo hdhi hd
 
 /-- Both original scalar tests for every nontrivial integral actual profile. -/
-theorem source_scalar_inequalities (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool)
-    (i n₁ n₂ n₃:ℕ) (hi:i ≤ coreA (UniformEndpoint.mixedCount m upper))
-    (hn₁:n₁ ≤ freeW m (UniformEndpoint.mixedCount m upper)) (hn₂:n₂ ≤ n₁) (hn₃:n₃ ≤ n₂)
-    (hdlo:0<profileDim i n₁ n₂ n₃)
-    (hdhi:profileDim i n₁ n₂ n₃<totalA m (UniformEndpoint.mixedCount m upper)) :
+theorem source_scalar_inequalities (m : ℕ) (hmlo : 130 ≤ m) (hmhi : m ≤ 319) (upper : Bool)
+    (i n₁ n₂ n₃ : ℕ) (hi : i ≤ coreA (UniformEndpoint.mixedCount m upper))
+    (hn₁ : n₁ ≤ freeW m (UniformEndpoint.mixedCount m upper)) (hn₂ : n₂ ≤ n₁) (hn₃ : n₃ ≤ n₂)
+    (hdlo : 0 < profileDim i n₁ n₂ n₃)
+    (hdhi : profileDim i n₁ n₂ n₃ < totalA m (UniformEndpoint.mixedCount m upper)) :
     SharpMinimization.ImageBoundsReal
       (scalars m (UniformEndpoint.upperEndpoint m) (UniformEndpoint.mixedCount m upper))
       (UniformSurplus.sourceSharp m (UniformEndpoint.mixedCount m upper) i n₁ n₂ n₃)
@@ -74,7 +74,7 @@ theorem source_scalar_inequalities (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (up
 set_option maxRecDepth 4096 in
 set_option backward.isDefEq.respectTransparency false in
 /-- The outer bound at the full profile, supplied by the certified full weak vertex. -/
-theorem full_profile_outer (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool) :
+theorem full_profile_outer (m : ℕ) (hmlo : 130 ≤ m) (hmhi : m ≤ 319) (upper : Bool) :
     (UniformEndpoint.upperEndpoint m:ℚ)*(totalA m (UniformEndpoint.mixedCount m upper):ℚ) ≤
       sharpProfile (parameters m (UniformEndpoint.mixedCount m upper)
         (coreA (UniformEndpoint.mixedCount m upper)))
@@ -98,11 +98,11 @@ theorem full_profile_outer (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool
   exact hweak
 
 /-- The outer incidence inequality on the entire nonempty source range, including d=a. -/
-theorem source_outer_inequality (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool)
-    (i n₁ n₂ n₃:ℕ) (hi:i ≤ coreA (UniformEndpoint.mixedCount m upper))
-    (hn₁:n₁ ≤ freeW m (UniformEndpoint.mixedCount m upper)) (hn₂:n₂ ≤ n₁) (hn₃:n₃ ≤ n₂)
-    (hdlo:0<profileDim i n₁ n₂ n₃)
-    (hdhi:profileDim i n₁ n₂ n₃ ≤ totalA m (UniformEndpoint.mixedCount m upper)) :
+theorem source_outer_inequality (m : ℕ) (hmlo : 130 ≤ m) (hmhi : m ≤ 319) (upper : Bool)
+    (i n₁ n₂ n₃ : ℕ) (hi : i ≤ coreA (UniformEndpoint.mixedCount m upper))
+    (hn₁ : n₁ ≤ freeW m (UniformEndpoint.mixedCount m upper)) (hn₂ : n₂ ≤ n₁) (hn₃ : n₃ ≤ n₂)
+    (hdlo : 0 < profileDim i n₁ n₂ n₃)
+    (hdhi : profileDim i n₁ n₂ n₃ ≤ totalA m (UniformEndpoint.mixedCount m upper)) :
     (profileDim i n₁ n₂ n₃:ℝ)*((UniformEndpoint.upperEndpoint m:ℝ)+
       (totalA m (UniformEndpoint.mixedCount m upper):ℝ)-(profileDim i n₁ n₂ n₃:ℝ)) ≤
       UniformSurplus.sourceSharp m (UniformEndpoint.mixedCount m upper) i n₁ n₂ n₃ := by

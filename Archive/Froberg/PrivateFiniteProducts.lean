@@ -25,13 +25,13 @@ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_finite_reduction_open_of_core_products {w v z d q t c b₂ H : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
-    [Module.Finite K (Space (v+v+z) d q J counts (constrainedOutputs T))]
+    [Module.Finite K (Space (v + v + z) d q J counts (constrainedOutputs T))]
     [LinearOrder (Label q J counts)]
-    (hd : 3≤d) (hodd : d%2=1) (hv : 0<v)
-    (hJ : ∀ j∈J,2≤j) (hdegree : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
+    (hd : 3 ≤ d) (hodd : d % 2 = 1) (hv : 0 < v)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hdegree : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
     (b : ℕ → ℕ)
-    (hquad : QuadraticRowCapacity (v+v) d q b₂ J counts (constrainedOutputs T))
+    (hquad : QuadraticRowCapacity (v + v) d q b₂ J counts (constrainedOutputs T))
     (hhigher : ∀ R : J,R.val≠2 → HigherRowCapacity w v d q (b R.val) J counts T R)
     (hprojected : ∀ R : J,R.val≠2 →
       b R.val*(d-R.val+1).choose (d-R.val)≤oddOutputDimension w R.val-

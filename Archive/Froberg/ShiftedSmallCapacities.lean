@@ -18,7 +18,7 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-private theorem beta_nonnegative {d : ℕ} (hd : 3≤d) : 0≤countBeta d := by
+private theorem beta_nonnegative {d : ℕ} (hd : 3 ≤ d) : 0≤countBeta d := by
   have hG := (countTauFour_pos hd).trans_le (countTauFour_le_gamma d)
   unfold countBeta
   positivity
@@ -48,7 +48,7 @@ theorem eventually_strong_quartic_diagonal_capacity_shift :
     ((1/4 : ℝ)-outerColumnRate 4^2/2) (1/16) (countBeta 4) (beta_nonnegative (by omega))
     (strong_quadratic_output_limit (Or.inr rfl)) hC hgap
 
-theorem eventually_small_quadratic_diagonal_capacity_shift {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_small_quadratic_diagonal_capacity_shift {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop,∀ z extra : ℕ,∀ᶠ n : ℕ in atTop,
       ⌈countBeta d*(h : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊+extra≤
         ((h/2).choose 2-deletedTargetCount d h)*((n/2).choose (d-2)/2) := by
@@ -62,7 +62,7 @@ theorem eventually_small_quadratic_diagonal_capacity_shift {d : ℕ} (hd : 5≤d
     (beta_nonnegative (by omega)) (small_quadratic_diagonal_output_limit hd hd8)
     (paired_monomial_capacity_limit (by omega)) hgap
 
-theorem eventually_small_quadratic_cross_capacity_shift {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_small_quadratic_cross_capacity_shift {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop,∀ z extra : ℕ,∀ᶠ n : ℕ in atTop,
       ⌈countBeta d*(h : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊+extra≤
         ((2*h/5+2-1).choose 2-deletedTargetCount d h)*(n/2+(d-2)-1).choose (d-2) := by
@@ -89,7 +89,7 @@ theorem eventually_quintic_quartic_diagonal_capacity_shift :
     (by simpa using hA) (by simpa using hB) (by norm_num; exact hc)
   simpa only [higherGeneratorCount,smallGamma,show 5-4=1 by omega,pow_one] using hh
 
-theorem eventually_small_quartic_diagonal_capacity_shift {d : ℕ} (hd : 6≤d) (hd8 : d≤8) :
+theorem eventually_small_quartic_diagonal_capacity_shift {d : ℕ} (hd : 6 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop,∀ z extra : ℕ,∀ᶠ n : ℕ in atTop,
       higherGeneratorCount d h (n+z) 4+extra≤(h^4/256)*((n/2).choose (d-4)/2) := by
   have hA := natural_monomial_div_limit 1 (by omega : 0<256) (by omega : 0<4)
@@ -107,7 +107,7 @@ theorem eventually_small_quartic_diagonal_capacity_shift {d : ℕ} (hd : 6≤d) 
       (by unfold smallGamma; exact mul_nonneg (by norm_num) (higherCountGamma_pos _ _).le)
       (by simpa using hA) hB hgap
 
-theorem eventually_small_quartic_cross_capacity_shift {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_small_quartic_cross_capacity_shift {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop,∀ z extra : ℕ,∀ᶠ n : ℕ in atTop,
       higherGeneratorCount d h (n+z) 4+extra≤
         (h-2*h/5+4-1).choose 4*(n/2+(d-4)-1).choose (d-4) := by

@@ -24,14 +24,14 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {a z b h c m q d R : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem private_coefficient_row_separation (hd : 3≤d) (hR : 2≤R) (hRd : R+1≤d)
+theorem private_coefficient_row_separation (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
-    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R+1)))
-    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i,w i≠0)
+    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
+    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z) (j : Fin q → ℕ)
     (Q : Fin q → Forms K a d) (E : Fin q → MvPolynomial (σ ⊕ Fin a) K)
-    (hE : ∀ i,(E i).IsHomogeneous d)
-    (hEj : ∀ i,(E i).IsWeightedHomogeneous
+    (hE : ∀ i, (E i).IsHomogeneous d)
+    (hEj : ∀ i, (E i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin a => 0)) (j i))
     (ρ : Fin m ≃ {i : Fin q // j i=R+1})
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
@@ -120,14 +120,14 @@ theorem private_coefficient_row_separation (hd : 3≤d) (hR : 2≤R) (hRd : R+1�
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The last possible private coefficient lies in pure output degree d.
 Its private variable support separates it from every core product. -/
-theorem private_coefficient_boundary_row (hd : 3≤d)
+theorem private_coefficient_boundary_row (hd : 3 ≤ d)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K d))
-    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (d+1)))
-    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i,w i≠0)
-    (ι : Fin b ↪ Fin z) (j : Fin q → ℕ) (hj : ∀ i,j i≤d)
+    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (d + 1)))
+    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
+    (ι : Fin b ↪ Fin z) (j : Fin q → ℕ) (hj : ∀ i, j i ≤ d)
     (Q : Fin q → Forms K a d) (E : Fin q → MvPolynomial (σ ⊕ Fin a) K)
-    (hE : ∀ i,(E i).IsHomogeneous d)
-    (hEj : ∀ i,(E i).IsWeightedHomogeneous
+    (hE : ∀ i, (E i).IsHomogeneous d)
+    (hEj : ∀ i, (E i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin a => 0)) (j i)) :
     PrivateRowSeparation
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin (a+z) => 0)) d)
@@ -186,9 +186,9 @@ theorem private_coefficient_boundary_row (hd : 3≤d)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Above the last private coefficient degree the separation condition is
 vacuous, regardless of the other terms in the row. -/
-theorem private_coefficient_above_degree (hR : d+1<R)
-    (Q E : Fin q → MvPolynomial (σ ⊕ Fin (a+z)) K)
-    (P : Fin b → MvPolynomial (σ ⊕ Fin (a+z)) K) (j : Fin q → ℕ) :
+theorem private_coefficient_above_degree (hR : d + 1 < R)
+    (Q E : Fin q → MvPolynomial (σ ⊕ Fin (a + z)) K)
+    (P : Fin b → MvPolynomial (σ ⊕ Fin (a + z)) K) (j : Fin q → ℕ) :
     PrivateRowSeparation
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin (a+z) => 0)) d)
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin (a+z) => 0)) d)

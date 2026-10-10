@@ -37,7 +37,7 @@ intersected before choosing a single vector tuple. -/
 theorem sparse_embedded_relations_open
     (L : (Fin h → K) →ₗ[K] V) (hL : Function.Injective L)
     (R : I → Submodule K V)
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i,(e i).degree=s)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
     (hdiv : ∀ β : Fin n →₀ ℕ,Fintype.card {i : Fin m // e i≤β}≤b*β.degree.choose s)
     (hcap : ∀ i,b*(s+d).choose s≤h-finrank K (R i)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin m → Fin h → K))) K,

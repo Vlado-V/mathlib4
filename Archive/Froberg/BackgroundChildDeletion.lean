@@ -26,7 +26,7 @@ theorem exists_background_child_deletion
     (E : Fin e → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1)
-    (hQ : coefficientCokernel K m d q (coefficientCoordinates Q)=genericCokernel K m d q)
+    (hQ : coefficientCokernel K m d q (coefficientCoordinates Q) = genericCokernel K m d q)
     (hu : Function.Surjective (upperTargetMap (backgroundEnumeratedForms
       (Fin.append (fun i => scalarEvenBiform (h := h) (Q i)) E) F G))) :
     ∃ D : Submodule K (Forms K (h+m) (2*d)),

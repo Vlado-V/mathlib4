@@ -31,7 +31,7 @@ lemma liftCoeff_zero_eq_rename (f : Poly K a) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Extraction in private variables commutes with every core polynomial multiplier. -/
-theorem freeCoeff_rename_mul (β : Fin z →₀ ℕ) (f : Poly K a) (p : Poly K (a+z)) :
+theorem freeCoeff_rename_mul (β : Fin z →₀ ℕ) (f : Poly K a) (p : Poly K (a + z)) :
     freeCoeff β (rename (Fin.castAdd z) f*p)=f*freeCoeff β p := by
   classical
   induction p using MvPolynomial.induction_on' with
@@ -63,7 +63,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual lower-degree injectivity is preserved on adjoining any number
 of private variables, without a new general-position assumption. -/
 theorem extendedCorePolynomialMatrix_injective (q : J → I → Poly K a)
-    (hq : ∀ c≤t,Function.Injective (corePolynomialMatrix (t := c) q)) :
+    (hq : ∀ c ≤ t, Function.Injective (corePolynomialMatrix (t := c) q)) :
     Function.Injective (extendedCorePolynomialMatrix (z := z) (t := t) q) := by
   classical
   apply LinearMap.ker_eq_bot.mp

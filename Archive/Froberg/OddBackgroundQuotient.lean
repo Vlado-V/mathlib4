@@ -72,7 +72,7 @@ theorem odd_ambient_covector_dimension (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def mixedPureOddGenerator (hd : Odd d) (U : Forms K h d)
-    (P : Forms K h 1 ⊗[K] Forms K m (d-1)) : biformParitySpace K h m d 1 :=
+    (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) : biformParitySpace K h m d 1 :=
   oddBiformEmbedding (t := d) le_rfl (Nat.odd_iff.mp hd)
     (U ⊗ₜ[K] (⟨1,by
       change (1 : MvPolynomial (Fin m) K).IsHomogeneous (d-d)
@@ -82,13 +82,13 @@ def mixedPureOddGenerator (hd : Odd d) (U : Forms K h d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem mixedPureOddGenerator_val (hd : Odd d) (U : Forms K h d)
-    (P : Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (mixedPureOddGenerator hd U P).val=rename Sum.inl U.val+sumBiformMap P := by
   simp [mixedPureOddGenerator,sumBiformMap_tmul]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem mixedPureHigherRelations_val (hd : Odd d) (U : Fin u → Forms K h d)
-    (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : Fin u → HigherEvenCoefficients K h m d) :
     (privateHigherRelations (fun i => mixedPureOddGenerator hd (U i) (P i)) v).val=
       ∑ i,∑ r,(rename Sum.inl (U i).val+sumBiformMap (P i))*sumBiformMap (v i r) := by

@@ -48,7 +48,7 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eval_constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (l : Fin (N*b)) (k : Fin T) :
+    (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (l : Fin (N * b)) (k : Fin T) :
     evaluated (constraint mu H) t l k=
       mu (Pi.single (finProdFinEquiv.symm l).2 1) (vector H t (finProdFinEquiv.symm l).1) k := by
   classical
@@ -84,7 +84,7 @@ theorem constraint_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (F
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem constraint_mulVec (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (ell : Fin T → K) (l : Fin (N*b)) :
+    (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (ell : Fin T → K) (l : Fin (N * b)) :
     (evaluated (constraint mu H) t *ᵥ ell) l=covector ell
       (mu (Pi.single (finProdFinEquiv.symm l).2 1) (vector H t (finProdFinEquiv.symm l).1)) := by
   simp only [Matrix.mulVec,dotProduct,eval_constraint,covector_apply,mul_comm]
@@ -182,11 +182,11 @@ theorem image_finrank_lt (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (
   annihilated_finrank_lt _ ell hnz hann
 
 section FiniteFamily
-variable {C : Type*} [Fintype C] {I : C → Type*} [∀ c,Fintype (I c)] {d q : ℕ}
+variable {C : Type*} [Fintype C] {I : C → Type*} [∀ c, Fintype (I c)] {d q : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Coverage by the supplied literal polynomial chart vectors. -/
-def Covered (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K)
+def Covered (H : ∀ c, Fin N → Fin a → MvPolynomial (I c) K)
     (S : Submodule K (Fin a → K)) : Prop :=
   ∃ c,∃ t : I c → K,subspace (H c) t=S
 
@@ -195,8 +195,8 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 kernel-dimension stratum for one shared tuple of coefficient vectors. -/
 theorem principal_open_excludes_covered_stratum [Infinite K]
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K)
-    (hcount : ∀ c,Fintype.card (I c)+(T-e)-1 < q*(a-d)) :
+    (H : ∀ c, Fin N → Fin a → MvPolynomial (I c) K)
+    (hcount : ∀ c, Fintype.card (I c) + (T - e) - 1 < q * (a - d)) :
     ∃ P : MvPolynomial (Fin q × Fin b) K,
       (∃ Q : Fin q × Fin b → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →
@@ -264,8 +264,8 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 negative conditioned count g+T-e-1-q(a-d). -/
 theorem principal_open_excludes_covered_stratum_of_bound [Infinite K]
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K) (g : ℕ)
-    (hg : ∀ c,Fintype.card (I c) ≤ g) (hcount : g+(T-e)-1 < q*(a-d)) :
+    (H : ∀ c, Fin N → Fin a → MvPolynomial (I c) K) (g : ℕ)
+    (hg : ∀ c, Fintype.card (I c) ≤ g) (hcount : g + (T - e) - 1 < q * (a - d)) :
     ∃ P : MvPolynomial (Fin q × Fin b) K,
       (∃ Q : Fin q × Fin b → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →
@@ -284,9 +284,9 @@ empty full-image case e≥T. No truncated projective dimension is interpreted
 as a nonempty covector family. -/
 theorem principal_open_excludes_covered_stratum_of_int_bound [Infinite K]
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K) (g : ℤ)
-    (hg : ∀ c,(Fintype.card (I c):ℤ) ≤ g)
-    (hcount : g+(T:ℤ)-(e:ℤ)-1 < (q*(a-d):ℕ)) :
+    (H : ∀ c, Fin N → Fin a → MvPolynomial (I c) K) (g : ℤ)
+    (hg : ∀ c, (Fintype.card (I c) : ℤ) ≤ g)
+    (hcount : g + (T : ℤ) - (e : ℤ) - 1 < (q * (a - d) : ℕ)) :
     ∃ P : MvPolynomial (Fin q × Fin b) K,
       (∃ Q : Fin q × Fin b → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →

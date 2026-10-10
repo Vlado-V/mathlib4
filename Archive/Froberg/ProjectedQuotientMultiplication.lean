@@ -23,7 +23,7 @@ variable {n d r : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual multiplication followed by the fixed target projection and quotient. -/
-def projectedProduct (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) :
+def projectedProduct (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms K n d) :
     Forms K n d →ₗ[K] Forms K n d →ₗ[K] ProjectedEndpointCokernel pi q where
   toFun z := (projectedEndpointMultiplication pi q).range.mkQ.comp (pi.comp (mulForm z))
   map_add' z w := by
@@ -42,7 +42,7 @@ def projectedProduct (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every degree-d generator relation vanishes in the projected product. -/
 theorem span_generators_le_projectedProduct_kernel
-    (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (z : Forms K n d) :
+    (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms K n d) (z : Forms K n d) :
     Submodule.span K (Set.range q) ≤ (projectedProduct pi q z).ker := by
   classical
   apply Submodule.span_le.mpr
@@ -59,7 +59,7 @@ theorem span_generators_le_projectedProduct_kernel
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical quotient multiplication; no compatibility hypothesis is used. -/
-def projectedQuotientProduct (pi : Forms K n (2*d) →ₗ[K] Z)
+def projectedQuotientProduct (pi : Forms K n (2 * d) →ₗ[K] Z)
     (q : Fin r → Forms K n d) :
     Forms K n d →ₗ[K] (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K]
       ProjectedEndpointCokernel pi q where
@@ -77,7 +77,7 @@ def projectedQuotientProduct (pi : Forms K n (2*d) →ₗ[K] Z)
     exact LinearMap.congr_fun ((projectedProduct pi q).map_smul c z) a
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem projectedQuotientProduct_mk (pi : Forms K n (2*d) →ₗ[K] Z)
+@[simp] theorem projectedQuotientProduct_mk (pi : Forms K n (2 * d) →ₗ[K] Z)
     (q : Fin r → Forms K n d) (z a : Forms K n d) :
     projectedQuotientProduct pi q z ((Submodule.span K (Set.range q)).mkQ a) =
       (projectedEndpointMultiplication pi q).range.mkQ (pi (mulForm z a)) := rfl
@@ -87,7 +87,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 faithfully extracted coefficients. -/
 theorem projectedNormalMap_canonical_coefficient_formula
     [Infinite K] [FiniteDimensional K Z] {t : ℕ}
-    (pi : Forms K n (2*d) →ₗ[K] Z)
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K) (z : Fin t → Forms K n d) :
     projectedNormalMap pi q (relativeGeneratorMotion q dual z) =

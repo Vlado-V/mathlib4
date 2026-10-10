@@ -25,12 +25,12 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_coefficient_row_property
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (R : J) (p : Space n d q J counts O)
     (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (H : (Fin b → MvPolynomial (σ ⊕ Fin n) K) → Prop)
-    (hsep : ∀ x u,row hO R p x+privateRowMap (d := d) P R.val u=0 → H (fun i => (u i).val)) :
+    (hsep : ∀ x u, row hO R p x + privateRowMap (d := d) P R.val u = 0 → H (fun i => (u i).val)) :
     ∀ (x f : Label q J counts → MvPolynomial (σ ⊕ Fin n) K)
       (B : Label q J counts → Label q J counts → K)
       (u : Fin b → MvPolynomial (σ ⊕ Fin n) K),

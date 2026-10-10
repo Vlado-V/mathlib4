@@ -38,9 +38,9 @@ theorem restored_projected_formal_relations
     (w : Fin n → ℕ)
     (g : Fin r → evenRestorationSpace (K := K) w d)
     (hi : LinearIndependent K (restorationForms w g))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z,pi z=0 → parityForm (fun x => (w x : ZMod 2)) 1 z=0)
-    (hpositive : ∀ z,pi z=0 → positiveWeightProjection w d z.val=0)
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm (fun x => (w x : ZMod 2)) 1 z = 0)
+    (hpositive : ∀ z, pi z = 0 → positiveWeightProjection w d z.val = 0)
     (hodd : ∀ a : (endpointMultiplication (restorationForms w g)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (fun x => (w x : ZMod 2)) 1) →
       a.val∈oppositeKoszulSpace (restorationForms w g) (fun _ => 0))

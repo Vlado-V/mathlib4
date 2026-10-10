@@ -24,8 +24,8 @@ variable {σ : Type*} [Fintype σ] {n : ℕ}
 output projection, irrespective of their scalar profiles. -/
 theorem product_row_even_projection (w : σ → ℕ) (e : ℕ → ℕ)
     (q : (j : ℕ) → Fin (e j) → MvPolynomial (σ ⊕ Fin n) K)
-    {J : Finset ℕ} {R : ℕ} (heven : ∀ j∈J,Even j)
-    (hq : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
+    {J : Finset ℕ} {R : ℕ} (heven : ∀ j ∈ J, Even j)
+    (hq : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous
       (Sum.elim w (fun _ : Fin n => 0)) (assignedDegree R j)) :
     (biformOutputEndomorphism (retainMonomials (fun a => Finsupp.weight w a%2=0))).comp
       (multiplication e q J R) = multiplication e q J R := by
@@ -48,8 +48,8 @@ theorem polynomial_row_kernel
     [AddCommGroup U] [Module K U]
     (w : σ → ℕ) (Yhalf : Finset (Fin n)) (e : ℕ → ℕ)
     (q : (j : ℕ) → Fin (e j) → MvPolynomial (σ ⊕ Fin n) K)
-    {J : Finset ℕ} {R d t r : ℕ} (heven : ∀ j∈J,Even j) (hdegree : ∀ j∈J,j≤d)
-    (hqX : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
+    {J : Finset ℕ} {R d t r : ℕ} (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
+    (hqX : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous
       (Sum.elim w (fun _ : Fin n => 0)) (assignedDegree R j))
     (hqY : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (halfWeight Yhalf)) (assignedScalarDegree R d j))

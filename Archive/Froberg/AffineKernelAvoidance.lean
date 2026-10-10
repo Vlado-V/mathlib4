@@ -32,11 +32,11 @@ theorem affine_kernel_stratum_joint
     (bottom : (Fin T → K) →ₗ[K] (Fin T₀ → K))
     (higher : (Fin T → K) →ₗ[K] (Fin H → K))
     (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T → K))
-    (hres : ∀ ell,res (bottom ell,higher ell)=ell)
-    (hcompat : ∀ ell p v,covector ell (mu p v)=
-      covector (bottom ell) (mu₀ p v)+covector (higher ell) (muH p v))
-    (degrees : Fin nf → ℕ) (f : ∀ i,Forms K T₀ (degrees i))
-    (cuts : Fin (s₀+1) → Forms K T₀ 1)
+    (hres : ∀ ell, res (bottom ell, higher ell) = ell)
+    (hcompat : ∀ ell p v, covector ell (mu p v) =
+      covector (bottom ell) (mu₀ p v) + covector (higher ell) (muH p v))
+    (degrees : Fin nf → ℕ) (f : ∀ i, Forms K T₀ (degrees i))
+    (cuts : Fin (s₀ + 1) → Forms K T₀ 1)
     (hempty : ∀ t : Fin T₀ → K,(∀ i,eval t (f i).val=0) →
       (∀ i,eval t (cuts i).val=0) → t=0)
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K))
@@ -116,10 +116,10 @@ theorem affine_kernel_stratum_joint_cuts
     (bottom : (Fin T → K) →ₗ[K] (Fin T₀ → K))
     (higher : (Fin T → K) →ₗ[K] (Fin H → K))
     (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T → K))
-    (hres : ∀ ell,res (bottom ell,higher ell)=ell)
-    (hcompat : ∀ ell p v,covector ell (mu p v)=
-      covector (bottom ell) (mu₀ p v)+covector (higher ell) (muH p v))
-    (degrees : Fin nf → ℕ) (f : ∀ i,Forms K T₀ (degrees i))
+    (hres : ∀ ell, res (bottom ell, higher ell) = ell)
+    (hcompat : ∀ ell p v, covector ell (mu p v) =
+      covector (bottom ell) (mu₀ p v) + covector (higher ell) (muH p v))
+    (degrees : Fin nf → ℕ) (f : ∀ i, Forms K T₀ (degrees i))
     (cuts : Fin s₀ → Forms K T₀ 1)
     (hempty : ∀ t : Fin T₀ → K,(∀ i,eval t (f i).val=0) →
       (∀ i,eval t (cuts i).val=0) → t=0)

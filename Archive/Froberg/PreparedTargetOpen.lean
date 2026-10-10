@@ -37,9 +37,9 @@ local instance targetRestrictedSpaceFinite (frame : Fin H → Forms K h 2) :
 
 /-- A literal successful point, suitable for a larger polynomial parameter
 space in which the private terms and the pure tuple also vary. -/
-theorem HasUpperWitness.exists_upperTarget_surjective (hd : 3≤d)
+theorem HasUpperWitness.exists_upperTarget_surjective (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
-    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i,(P i).IsHomogeneous d)
+    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (hw : HasUpperWitness d f r q frame U P) :
     ∃ p : Space m d q f u (activeEvenIndices d)
         (targetLayerCount d h m r) (targetLayerOutput frame),
@@ -51,9 +51,9 @@ theorem HasUpperWitness.exists_upperTarget_surjective (hd : 3≤d)
   refine ⟨p,hzero,upperTargetMap_surjective_of_lifts _ (by omega) ?_⟩
   simpa only [enumerate_forms_productSpace] using hlift
 
-theorem HasUpperWitness.exists_full_rank_open (hd : 3≤d)
+theorem HasUpperWitness.exists_full_rank_open (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
-    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i,(P i).IsHomogeneous d)
+    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (hw : HasUpperWitness d f r q frame U P) :
     ∃ D : MvPolynomial (Fin (finrank K (Space m d q f u (activeEvenIndices d)
       (targetLayerCount d h m r) (targetLayerOutput frame)))) K,
@@ -68,9 +68,9 @@ theorem HasUpperWitness.exists_full_rank_open (hd : 3≤d)
     (fun j hj => (activeEvenIndices_bounds hd hj).2.1.le) U P hP p hlift
   exact ⟨D,⟨(Module.finBasis K _).equivFun p,hD⟩,hgood⟩
 
-theorem HasUpperWitness.exists_zero_private_rank_open (hd : 3≤d)
+theorem HasUpperWitness.exists_zero_private_rank_open (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
-    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i,(P i).IsHomogeneous d)
+    (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (hw : HasUpperWitness d f r q frame U P) :
     ∃ D : MvPolynomial (Fin (finrank K (PreparedParameters.Space m d q (activeEvenIndices d)
       (targetLayerCount d h m r) (targetLayerOutput frame) × OuterSpace K (Fin h) m d f))) K,

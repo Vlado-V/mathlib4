@@ -21,7 +21,7 @@ variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
 /-- One full source fiber fills every divisible target fiber. -/
 theorem fiberShadow_eq_top_of_full {d : ℕ}
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
-    (a : Exponent n s) (b : Exponent n (s+d)) (hab : a.val ≤ b.val) (ha : C a = ⊤) :
+    (a : Exponent n s) (b : Exponent n (s + d)) (hab : a.val ≤ b.val) (ha : C a = ⊤) :
     fiberShadow e v C b = ⊤ := by
   apply top_unique
   have hh := le_iSup (fun a : {a : Exponent n s // a.val ≤ b.val} =>

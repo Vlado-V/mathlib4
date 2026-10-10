@@ -20,7 +20,7 @@ variable {K σ I J : Type*} [Field K] [Fintype I] [Fintype J]
 
 /-- If every other weighted component vanishes, extraction is the identity. -/
 theorem eq_weightedComponent_of_other_zero (w : σ → ℕ) (f : MvPolynomial σ K) (r : ℕ)
-    (hf : ∀ t,t≠r → weightedHomogeneousComponent w t f=0) :
+    (hf : ∀ t, t ≠ r → weightedHomogeneousComponent w t f = 0) :
     f=weightedHomogeneousComponent w r f := by
   classical
   ext a
@@ -33,7 +33,7 @@ theorem eq_weightedComponent_of_other_zero (w : σ → ℕ) (f : MvPolynomial σ
 
 /-- A component in the wrong parity is zero. -/
 theorem weightedComponent_wrong_parity (w : σ → ℕ) (f : MvPolynomial σ K)
-    (p t : ℕ) (hf : ∀ a,f.coeff a≠0 → Finsupp.weight w a%2=p) (ht : t%2≠p) :
+    (p t : ℕ) (hf : ∀ a, f.coeff a ≠ 0 → Finsupp.weight w a % 2 = p) (ht : t % 2 ≠ p) :
     weightedHomogeneousComponent w t f=0 := by
   apply weightedHomogeneousComponent_eq_zero'
   intro a ha heq
@@ -42,26 +42,26 @@ theorem weightedComponent_wrong_parity (w : σ → ℕ) (f : MvPolynomial σ K)
 /-- Every odd cycle of a scalar list S and a linear-output list O is a
 literal constant S–O Koszul vector. -/
 theorem scalar_linear_odd_cycles
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ)
     (S : I → MvPolynomial σ K) (O : J → MvPolynomial σ K)
-    (hS : ∀ i,(S i).IsWeightedHomogeneous w 0)
-    (hO : ∀ j,(O j).IsWeightedHomogeneous w 1)
+    (hS : ∀ i, (S i).IsWeightedHomogeneous w 0)
+    (hO : ∀ j, (O j).IsWeightedHomogeneous w 1)
     (hfirst : ∀ (u : I → MvPolynomial σ K) (v : J → MvPolynomial σ K),
-      (∀ i,u i∈coefficientComponentSpace w d 1) →
-      (∀ j,v j∈coefficientComponentSpace w d 0) →
-      (∑ i,S i*u i)+(∑ j,O j*v j)=0 →
+      (∀ i, u i ∈ coefficientComponentSpace w d 1) →
+      (∀ j, v j ∈ coefficientComponentSpace w d 0) →
+      (∑ i, S i * u i) + (∑ j, O j * v j) = 0 →
       ∃ B : I → J → K,
-        (∀ i,u i=∑ j,B i j • O j) ∧ (∀ j,v j = -∑ i,B i j • S i))
-    (hhigher : ∀ r,3≤r → r≤d+1 → r%2=1 →
+        (∀ i, u i = ∑ j, B i j • O j) ∧ (∀ j, v j = -∑ i, B i j • S i))
+    (hhigher : ∀ r, 3 ≤ r → r ≤ d + 1 → r % 2 = 1 →
       ∀ (u : I → MvPolynomial σ K) (v : J → MvPolynomial σ K),
-      (∀ i,u i∈coefficientComponentSpace w d r) →
-      (∀ j,v j∈coefficientComponentSpace w d (r-1)) →
-      (∑ i,S i*u i)+(∑ j,O j*v j)=0 → u=0 ∧ v=0)
+      (∀ i, u i ∈ coefficientComponentSpace w d r) →
+      (∀ j, v j ∈ coefficientComponentSpace w d (r - 1)) →
+      (∑ i, S i * u i) + (∑ j, O j * v j) = 0 → u = 0 ∧ v = 0)
     (c : I → MvPolynomial σ K) (e : J → MvPolynomial σ K)
-    (hc : ∀ i,(c i).IsHomogeneous d) (he : ∀ j,(e j).IsHomogeneous d)
-    (hcodd : ∀ i a,(c i).coeff a≠0 → Finsupp.weight w a%2=1)
-    (heeven : ∀ j a,(e j).coeff a≠0 → Finsupp.weight w a%2=0)
-    (hcycle : (∑ i,S i*c i)+(∑ j,O j*e j)=0) :
+    (hc : ∀ i, (c i).IsHomogeneous d) (he : ∀ j, (e j).IsHomogeneous d)
+    (hcodd : ∀ i a, (c i).coeff a ≠ 0 → Finsupp.weight w a % 2 = 1)
+    (heeven : ∀ j a, (e j).coeff a ≠ 0 → Finsupp.weight w a % 2 = 0)
+    (hcycle : (∑ i, S i * c i) + (∑ j, O j * e j) = 0) :
     ∃ B : I → J → K,
       (∀ i,c i=∑ j,B i j • O j) ∧ (∀ j,e j = -∑ i,B i j • S i) := by
   have hmemS (r : ℕ) (i : I) :

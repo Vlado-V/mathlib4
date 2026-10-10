@@ -25,11 +25,11 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_coefficient_row_of_separated
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (R : J) (p : Space n d q J counts O)
     (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
-    (hsep : ∀ x u,row hO R p x+privateRowMap (d := d) P R.val u=0 → u=0) :
+    (hsep : ∀ x u, row hO R p x + privateRowMap (d := d) P R.val u = 0 → u = 0) :
     PrivateRowSeparation
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)

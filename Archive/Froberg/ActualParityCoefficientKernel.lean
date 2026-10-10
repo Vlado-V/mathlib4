@@ -23,7 +23,7 @@ variable {Z V : Type*} [AddCommGroup Z] [Module K Z]
   [AddCommGroup V] [Module K V]
 
 def oddCoefficientProjection (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) :
     generatorQuotient q →ₗ[K] oddCoefficientSpace w q :=
   (parityGeneratorQuotient w e q hq 1).codRestrict _ (by
     intro x
@@ -32,15 +32,15 @@ def oddCoefficientProjection (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
 
 @[simp] theorem oddCoefficientProjection_val
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
     (x : generatorQuotient q) :
     (oddCoefficientProjection w e q hq x).val=parityGeneratorQuotient w e q hq 1 x := rfl
 
 theorem actual_odd_coefficient_kernel (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hi : LinearIndependent K q)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z,pi z=0 → parityForm w 1 z=0)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm w 1 z = 0)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous w (1-e i)) → a.val∈oppositeKoszulSpace q e)
     (dual : Fin t → Forms K n d →ₗ[K] K)
@@ -74,9 +74,9 @@ theorem actual_odd_coefficient_kernel (w : Fin n → ZMod 2) (e : Fin r → ZMod
 after passing to the actual odd quotient used by the growth argument. -/
 theorem exists_actual_odd_retained_kernel (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hi : LinearIndependent K q)
-    (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z,pi z=0 → parityForm w 1 z=0)
+    (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm w 1 z = 0)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous w (1-e i)) → a.val∈oppositeKoszulSpace q e)
     (T : Submodule K (Forms K n d)) (f : Fin t → Forms K n d)

@@ -19,8 +19,8 @@ variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 theorem product_capacities_individual {w v d : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
-    (h2 : 2∈J) (h4 : 4∈J) (hJ : ∀ j∈J,2≤j)
-    (h : ∀ R,ProductRowCapacity (K := K) (X := X) w v d R J counts) :
+    (h2 : 2 ∈ J) (h4 : 4 ∈ J) (hJ : ∀ j ∈ J, 2 ≤ j)
+    (h : ∀ R, ProductRowCapacity (K := K) (X := X) w v d R J counts) :
     ∀ j∈J,counts j≤(w.choose j-finrank K X)*(v.choose (d-j)/2) ∧
       counts j≤((w+j-1).choose j-finrank K X)*(v+(d-j)-1).choose (d-j) := by
   intro j hj
@@ -44,8 +44,8 @@ theorem product_capacities_individual {w v d : ℕ} {J : Finset ℕ} {counts : �
     have hh := ((h (2+j)).cross p (by dsimp [p];omega)).2
     simpa only [p,Nat.add_sub_cancel_left] using hh
 
-theorem allEven_product_capacities {d w v h n e : ℕ} (hd : 9≤d)
-    (hcap : ∀ R,ProductRowCapacity (K := K) (X := X) w v d R (activeEvenIndices d)
+theorem allEven_product_capacities {d w v h n e : ℕ} (hd : 9 ≤ d)
+    (hcap : ∀ R, ProductRowCapacity (K := K) (X := X) w v d R (activeEvenIndices d)
       (targetLayerCount d h n e)) :
     ∀ R,ProductRowCapacity (K := K) (X := X) w v d R (allEvenIndices d) (allEvenCount d h n e) := by
   have h4 : 4∈activeEvenIndices d := by
@@ -68,7 +68,7 @@ theorem allEven_product_capacities {d w v h n e : ℕ} (hd : 9≤d)
       exact (hi j ha).2
     · simp only [allEvenCount_inactive h n e ha,Nat.zero_le]
 
-theorem eventually_allEven_product_capacities {d : ℕ} (hd : 9≤d) :
+theorem eventually_allEven_product_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*(2*(v : ℝ))^(d-2) →
       finrank K X=deletedTargetCount d (2*w) →

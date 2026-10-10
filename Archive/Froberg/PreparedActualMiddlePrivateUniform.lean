@@ -21,7 +21,7 @@ open Froberg Module MvPolynomial Filter PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 
 theorem eventually_actual_middle_private_reduction_open_uniform {d : ℕ}
-    (hd : 5≤d) (hd8 : d≤8) (hodd : d%2=1) :
+    (hd : 5 ≤ d) (hd8 : d ≤ 8) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

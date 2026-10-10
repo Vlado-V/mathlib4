@@ -21,8 +21,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
-def PreparedEndpointThin (hd : 0 < d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def PreparedEndpointThin (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (C : ℝ)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) : Prop :=
   let Q := Fin.append (preparedBaseBiform hO hJ heven p.2.1)
@@ -35,7 +35,7 @@ def PreparedEndpointThin (hd : 0 < d) (hdodd : d%2=1)
       (backgroundEnumeratedForms Q F G))) C)
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
-theorem preparedOddBiform_outer_family (hd : 0 < d) (hdodd : d%2=1)
+theorem preparedOddBiform_outer_family (hd : 0 < d) (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) :
     (fun i => preparedOddBiform hd hdodd U P F (Sum.inl i))=
@@ -47,7 +47,7 @@ theorem preparedOddBiform_outer_family (hd : 0 < d) (hdodd : d%2=1)
   rfl
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
-theorem preparedOddBiform_private_family (hd : 0 < d) (hdodd : d%2=1)
+theorem preparedOddBiform_private_family (hd : 0 < d) (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) :
     (fun i => preparedOddBiform hd hdodd U P F (Sum.inr i))=

@@ -18,9 +18,9 @@ open MvPolynomial Quartic SliceFiniteModule
 variable {K I : Type*} [Field K] {n r s : ℕ}
 
 theorem slicedForms_polynomial (d : Fin r → ℕ)
-    (f : ∀ i,(I → K) → Forms K n (d i))
+    (f : ∀ i, (I → K) → Forms K n (d i))
     (l : Fin s → (I → K) → Forms K n 1)
-    (hf : ∀ i,IsPolynomialFamily (f i)) (hl : ∀ i,IsPolynomialFamily (l i)) :
+    (hf : ∀ i, IsPolynomialFamily (f i)) (hl : ∀ i, IsPolynomialFamily (l i)) :
     ∀ i,IsPolynomialFamily (fun p => slicedForms d (fun j => f j p) (fun j => l j p) i) := by
   intro i
   refine Fin.addCases ?_ ?_ i
@@ -42,7 +42,7 @@ theorem slicedForms_polynomial (d : Fin r → ℕ)
     rfl
 
 theorem slicedForms_vanish_iff {L : Type*} [Field L] [Algebra K L]
-    (d : Fin r → ℕ) (f : ∀ i,Forms K n (d i)) (l : Fin s → Forms K n 1) (x : Fin n → L) :
+    (d : Fin r → ℕ) (f : ∀ i, Forms K n (d i)) (l : Fin s → Forms K n 1) (x : Fin n → L) :
     (∀ i,aeval x (slicedForms d f l i).val=0) ↔
       (∀ i,aeval x (f i).val=0) ∧ (∀ i,aeval x (l i).val=0) := by
   constructor
@@ -55,9 +55,9 @@ theorem slicedForms_vanish_iff {L : Type*} [Field L] [Algebra K L]
     · simpa only [slicedForms,Fin.addCases_right] using hl j
 
 theorem principal_open_empty_slices {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
-    (d : Fin r → ℕ) (f : ∀ i,(I → K) → Forms K n (d i))
+    (d : Fin r → ℕ) (f : ∀ i, (I → K) → Forms K n (d i))
     (l : Fin s → (I → K) → Forms K n 1)
-    (hf : ∀ i,IsPolynomialFamily (f i)) (hl : ∀ i,IsPolynomialFamily (l i))
+    (hf : ∀ i, IsPolynomialFamily (f i)) (hl : ∀ i, IsPolynomialFamily (l i))
     (p₀ : I → K)
     (hempty : ∀ x : Fin n → L,(∀ i,aeval x (f i p₀).val=0) →
       (∀ i,aeval x (l i p₀).val=0) → x=0) :

@@ -62,11 +62,11 @@ include L
 /-- One determinant open works for all source dimensions and all actual
 ambient subspaces containing the varying mixed presentation. -/
 theorem principal_open_family (m : ℕ) (hm : 41 ≤ m) (upper : Bool)
-    (g : (I → K) → Fin ((coreP (mixedCount m upper)+1)+2) →
-      Rows K ((coreP (mixedCount m upper)+1)+freeW m (mixedCount m upper)) 1)
+    (g : (I → K) → Fin ((coreP (mixedCount m upper) + 1) + 2) →
+      Rows K ((coreP (mixedCount m upper) + 1) + freeW m (mixedCount m upper)) 1)
     (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
     (hp₀ : g p₀ = GenericF13Endpoint.convolutionMixed K
-      (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper))) :
+      (coreP (mixedCount m upper) + 1) (freeW m (mixedCount m upper))) :
     ∃ E : Dimensions m upper → ℕ, Thresholds m upper E ∧
       ∃ D : MvPolynomial I K, eval p₀ D ≠ 0 ∧ ∀ p : I → K, eval p D ≠ 0 →
         ∀ d : Dimensions m upper, RowExpansionOpen.Expands (g p)

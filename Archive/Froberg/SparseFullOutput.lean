@@ -22,14 +22,15 @@ variable {σ : Type*} [Fintype σ]
 /-- Sparse quotient exactness extends to every output direction and is
 compatible with an arbitrary nonempty scalar-injectivity open. -/
 theorem exists_sparse_full_output_row {n R s d b m r : ℕ}
-    (hn : 0<n) (O : Submodule K (MvPolynomial σ K))
-    (hO : O≤homogeneousSubmodule σ K R) (hOpos : 0<finrank K O)
-    (hm : m≤b*(n+s-1).choose s) (hcap : b*(s+d).choose s≤finrank K O)
-    (hcount : finrank K O*(s+d).choose s *
-      (r+finrank K O*(n+s-1).choose s+(finrank K O*2^(finrank K O))*(n+(d-1)-1).choose (d-1)) ≤
-      (finrank K O-b*(s+d).choose s)*(n+s+d-1).choose d)
+    (hn : 0 < n) (O : Submodule K (MvPolynomial σ K))
+    (hO : O ≤ homogeneousSubmodule σ K R) (hOpos : 0 < finrank K O)
+    (hm : m ≤ b * (n + s - 1).choose s) (hcap : b * (s + d).choose s ≤ finrank K O)
+    (hcount : finrank K O * (s + d).choose s *
+      (r + finrank K O * (n + s - 1).choose s + (finrank K O * 2 ^ (finrank K O)) * (n + (d - 1) -
+        1).choose (d - 1)) ≤
+      (finrank K O - b * (s + d).choose s) * (n + s + d - 1).choose d)
     (hscalarOpen : ∃ D : MvPolynomial (Fin (finrank K (Fin r → Forms K n d))) K,
-      (∃ Q : Fin r → Forms K n d,eval (coordinates K _ Q) D≠0) ∧
+      (∃ Q : Fin r → Forms K n d, eval (coordinates K _ Q) D ≠ 0) ∧
       ∀ Q : Fin r → Forms K n d,eval (coordinates K _ Q) D≠0 →
         Function.Injective (prefixMultiplication Q s)) :
     ∃ (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)

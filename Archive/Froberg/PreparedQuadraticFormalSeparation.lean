@@ -26,26 +26,26 @@ variable {h m d c q b f : ℕ}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem prepared_quadratic_formal_separation
-    (hd : 2≤d) (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T)
+    (hd : 2 ≤ d) (T : Poly K h →ₗ[K] (Fin c → K))
+    (hT : T.comp (homogeneousComponent 2) = T)
     (Q : Fin q → Forms K m d)
-    (P : Fin b → FullBiform K (Fin h) m 1 (d-1))
-    (F : Fin f → FullBiform K (Fin h) m 1 (d-1))
-    (qF : Fin f → Forms K (h+m) d)
-    (hqF : ∀ i,(qF i).val=rename finSumFinEquiv (F i).val)
-    (D₂ : Submodule K (Poly K h)) (hD₂ : D₂≤T.ker)
-    (W : Submodule K (Forms K (h+m) d))
+    (P : Fin b → FullBiform K (Fin h) m 1 (d - 1))
+    (F : Fin f → FullBiform K (Fin h) m 1 (d - 1))
+    (qF : Fin f → Forms K (h + m) d)
+    (hqF : ∀ i, (qF i).val = rename finSumFinEquiv (F i).val)
+    (D₂ : Submodule K (Poly K h)) (hD₂ : D₂ ≤ T.ker)
+    (W : Submodule K (Forms K (h + m) d))
     (H : PreparedLowComponents W (polynomialTensorSpace (Forms K h 0) (familySpace Q))
       (Submodule.span K (Set.range (fun i => rename finSumFinEquiv (P i).val)))
-      (polynomialTensorSpace D₂ (Forms K m (d-2))))
+      (polynomialTensorSpace D₂ (Forms K m (d - 2))))
     (hrow : ∀ x a,
-      quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) m 1 (d-1)).subtype
-        (biformVectorDetector T) Q P x+
-      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype
-        (biformVectorDetector T) F a=0 → a=0)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d)
-      (Fin.natAdd h : Fin m → Fin (h+m))).range) :
+      quadraticNuisanceRow (t := d - 2) (FullBiform K (Fin h) m 1 (d - 1)).subtype
+        (biformVectorDetector T) Q P x +
+      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d - 1)).subtype
+        (biformVectorDetector T) F a = 0 → a = 0)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d)
+      (Fin.natAdd h : Fin m → Fin (h + m))).range) :
     formalSquare (Submodule.span K (Set.range qF)) ⊓
       ((formalMixed W).map (D.mkQ.comp formalPolynomialMultiplication)).comap
         (D.mkQ.comp (formalPolynomialMultiplication (K := K) (n := h+m) (d := d)))=⊥ := by

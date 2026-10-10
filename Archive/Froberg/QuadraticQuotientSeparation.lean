@@ -44,7 +44,7 @@ theorem exists_detected_homogeneous_family
     (ho : LinearIndependent K (fun p => T (pairProducts (fun i => (o i).val) p)))
     (C P Q : Submodule K (Poly K n)) (hCt : C ≤ Forms K n t)
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCP : C*C ≤ P) (hPQ : Disjoint P Q)
+    (hCP : C * C ≤ P) (hPQ : Disjoint P Q)
     (hm : m ≤ Fintype.card ι * (finrank K C / 2)) :
     ∃ f : Fin m → Forms K (h+n) (j+t),
       LinearIndependent K (fun p => splitPolynomialDetector T Q
@@ -79,7 +79,7 @@ theorem exists_separated_homogeneous_family
     (ho : LinearIndependent K (fun p => T (pairProducts (fun i => (o i).val) p)))
     (C P Q : Submodule K (Poly K n)) (hCt : C ≤ Forms K n t)
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCP : C*C ≤ P) (hPQ : Disjoint P Q)
+    (hCP : C * C ≤ P) (hPQ : Disjoint P Q)
     (hm : m ≤ Fintype.card ι * (finrank K C / 2)) :
     ∃ f : Fin m → Forms K (h+n) (j+t),
       LinearIndependent K f ∧ finrank K (Submodule.span K (Set.range f)) = m ∧

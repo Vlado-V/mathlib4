@@ -106,7 +106,7 @@ def diagonal (j : Selectors b r) (p : Parameters K j) (i : Fin n) :
 
 theorem tailMap_on_prefix (j : Selectors b r) (p : Parameters K j) (i : Fin n)
     (x : Ambient K r)
-    (hx : x ∈ coordinateFlag (K := K) (fun i => Fin (r i) → K) (i.val+1)) :
+    (hx : x ∈ coordinateFlag (K := K) (fun i => Fin (r i) → K) (i.val + 1)) :
     tailMap j p i x=parameterMap (diagonal j p i) (x i) := by
   classical
   funext k
@@ -122,7 +122,7 @@ theorem tailMap_on_prefix (j : Selectors b r) (p : Parameters K j) (i : Fin n)
 
 theorem lift_on_prefix (j : Selectors b r) (p : Parameters K j) (i : Fin n)
     (x : Ambient K r)
-    (hx : x ∈ coordinateFlag (K := K) (fun i => Fin (r i) → K) (i.val+1)) :
+    (hx : x ∈ coordinateFlag (K := K) (fun i => Fin (r i) → K) (i.val + 1)) :
     lift j p x i=chartLift (j i) (diagonal j p i) (x i) := by
   classical
   funext a
@@ -189,18 +189,18 @@ theorem coordinate_expansion (x : Ambient K r) :
 
 /-- The actual inverse of the joint selected coordinates, viewed in the ambient space. -/
 def inverseLift (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) : Ambient K r →ₗ[K] Ambient K b :=
   S.subtype.comp (selectedEquiv S hr j hj).symm.toLinearMap
 
 @[simp] theorem selected_inverseLift (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) (x : Ambient K r) :
     selected j (inverseLift S hr j hj x)=x :=
   (selectedEquiv S hr j hj).apply_symm_apply x
 
 theorem inverseLift_basis_eq_zero (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j)
     (l : Fin n) (a : Fin (r l)) (i : Fin n) (hli : l < i) :
     inverseLift S hr j hj (basisVector l a) i=0 :=
@@ -208,13 +208,13 @@ theorem inverseLift_basis_eq_zero (S : Submodule K (Ambient K b))
 
 /-- The triangular coefficients of an actual subspace are read from its inverse coordinates. -/
 def coefficients (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) : Parameters K j :=
   fun ⟨i,k,l,a⟩ => inverseLift S hr j hj (basisVector l.val a) i k.val
 
 /-- The polynomial chart lift is the actual inverse coordinate map. -/
 theorem lift_coefficients (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) :
     lift j (coefficients S hr j hj)=inverseLift S hr j hj := by
   classical
@@ -244,14 +244,14 @@ theorem lift_coefficients (S : Submodule K (Ambient K b))
 
 /-- The reconstructed chart equals the original subspace, not merely a model of its dimensions. -/
 theorem chart_coefficients (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) : chart j (coefficients S hr j hj)=S := by
   rw [chart,lift_coefficients,inverseLift,LinearMap.range_comp_of_range_eq_top _
     (selectedEquiv S hr j hj).symm.range,Submodule.range_subtype]
 
 /-- Every subspace with prescribed prefix ranks belongs to a finite triangular chart. -/
 theorem exists_chart (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i) :
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i) :
     ∃ j : Selectors b r,∃ p : Parameters K j,chart j p=S := by
   obtain ⟨j,hj⟩ := exists_separating_selectors S hr
   exact ⟨j,coefficients S hr j hj,chart_coefficients S hr j hj⟩

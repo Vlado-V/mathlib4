@@ -22,7 +22,7 @@ variable {K U V E : Type*} [Field K]
 
 theorem principal_open_freeze_at (F : U × V →ₗ[K] E) (u₀ : U) (v₀ : V)
     (D : MvPolynomial (Fin (finrank K E)) K)
-    (hD : eval ((Module.finBasis K E).equivFun (F (u₀,v₀))) D≠0) :
+    (hD : eval ((Module.finBasis K E).equivFun (F (u₀, v₀))) D ≠ 0) :
     ∃ P : MvPolynomial (Fin (finrank K U)) K,
       eval ((Module.finBasis K U).equivFun u₀) P≠0 ∧
       ∀ u,eval ((Module.finBasis K U).equivFun u) P≠0 →

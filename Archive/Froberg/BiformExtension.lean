@@ -32,7 +32,7 @@ variable {h m j e x y : ℕ}
 theorem biformFamilyMap_surjective_of_entries
     (o : ι → Forms K h j) (f : ι → Forms K m e)
     (O : κ → Forms K h j) (F : κ → Forms K m e) (t : ι → κ)
-    (hO : ∀ i, O (t i)=o i) (hF : ∀ i, F (t i)=f i)
+    (hO : ∀ i, O (t i) = o i) (hF : ∀ i, F (t i) = f i)
     (hs : Function.Surjective (biformFamilyMap (x := x) (y := y) o f)) :
     Function.Surjective (biformFamilyMap (x := x) (y := y) O F) := by
   classical

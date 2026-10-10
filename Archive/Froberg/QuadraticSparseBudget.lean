@@ -20,7 +20,7 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem eventually_quadratic_sparse_margin {d : ℕ} (hd : 3≤d) :
+theorem eventually_quadratic_sparse_margin {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,
       let b := fullSparseBlockCount (countBeta d) 2 (d-2) h
       let H := quadraticOutputDimension d h
@@ -52,7 +52,7 @@ theorem eventually_quadratic_sparse_margin {d : ℕ} (hd : 3≤d) :
       quadraticOutputDimension d h := by exact_mod_cast hle
   exact ⟨lt_of_le_of_lt (Nat.zero_le _) hleN,hleN.le,hh⟩
 
-theorem eventually_quadratic_sparse_layer_budget {d : ℕ} (hd : 3≤d) :
+theorem eventually_quadratic_sparse_layer_budget {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,
       let b := fullSparseBlockCount (countBeta d) 2 (d-2) h
       let H := quadraticOutputDimension d h

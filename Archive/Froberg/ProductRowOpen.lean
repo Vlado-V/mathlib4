@@ -43,7 +43,7 @@ private def embeddedProduct (L : U →ₗ[K] MvPolynomial σ K) :
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem products_polynomial (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K)
     (q : (j : ℕ) → Fin (e j) → (ι → K) → U) {J R}
-    (hq : ∀ j∈J, ∀ i, IsPolynomialFamily (q j i))
+    (hq : ∀ j ∈ J, ∀ i, IsPolynomialFamily (q j i))
     (r : Row J R) (c : Columns e r) :
     IsPolynomialFamily (fun a => products e (fun j i => L (q j i a)) r c) := by
   classical
@@ -61,7 +61,7 @@ theorem products_polynomial (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 private theorem polynomial_family_open_fintype
     {I V : Type*} [Fintype I] [AddCommGroup V] [Module K V]
-    (f : I → (ι → K) → V) (hf : ∀ i,IsPolynomialFamily (f i))
+    (f : I → (ι → K) → V) (hf : ∀ i, IsPolynomialFamily (f i))
     (a₀ : ι → K) (hli : LinearIndependent K (fun i => f i a₀)) :
     ∃ D : MvPolynomial ι K,eval a₀ D≠0 ∧
       ∀ a,eval a D≠0 → LinearIndependent K (fun i => f i a) := by
@@ -76,7 +76,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 coefficient space; no new or independent coefficient variables are introduced. -/
 theorem product_row_principal_open (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K)
     (q : (j : ℕ) → Fin (e j) → (ι → K) → U) (J : Finset ℕ) (R : ℕ)
-    (hq : ∀ j∈J, ∀ i, IsPolynomialFamily (q j i)) (a₀ : ι → K)
+    (hq : ∀ j ∈ J, ∀ i, IsPolynomialFamily (q j i)) (a₀ : ι → K)
     (ha₀ : Function.Injective (multiplication e (fun j i => L (q j i a₀)) J R)) :
     ∃ D : MvPolynomial ι K, eval a₀ D ≠ 0 ∧
       ∀ a, eval a D ≠ 0 →
@@ -95,8 +95,8 @@ the same actual coefficient space. -/
 theorem simultaneous_product_rows [Infinite K]
     (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K)
     (q : (j : ℕ) → Fin (e j) → (ι → K) → U) (J T : Finset ℕ)
-    (hq : ∀ j∈J, ∀ i, IsPolynomialFamily (q j i))
-    (hwitness : ∀ R∈T, ∃ a : ι → K,
+    (hq : ∀ j ∈ J, ∀ i, IsPolynomialFamily (q j i))
+    (hwitness : ∀ R ∈ T, ∃ a : ι → K,
       Function.Injective (multiplication e (fun j i => L (q j i a)) J R)) :
     ∃ a : ι → K, ∀ R∈T,
       Function.Injective (multiplication e (fun j i => L (q j i a)) J R) := by

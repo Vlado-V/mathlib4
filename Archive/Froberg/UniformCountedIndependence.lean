@@ -18,8 +18,8 @@ open Froberg Filter Module MvPolynomial Quartic VectorMultiplicationCoordinates
 open scoped Topology
 
 theorem uniform_exact_counts_all_even_independent_open {d k h lo u : ℕ}
-    (hd : 3≤d) (hh : 0<h) (upper : Bool) (a f e : ℕ → ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    (hd : 3 ≤ d) (hh : 0 < h) (upper : Bool) (a f e : ℕ → ℕ)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
     (extraSlots : ℕ) :
     ∀ᶠ n : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K], ∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈PreparedParameters.allEvenIndices d,O j≤Forms K h j),

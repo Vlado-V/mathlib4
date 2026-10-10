@@ -22,17 +22,17 @@ variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 variable {n d r : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def projectedHyperplaneReplacement (pi : Forms K n (2*d) →ₗ[K] Z)
+def projectedHyperplaneReplacement (pi : Forms K n (2 * d) →ₗ[K] Z)
     (W A Q Qminus W₀ : Submodule K (Forms K n d))
     {f M : Forms K n d} {e : K}
-    (hWA : W ⊓ A=Q) (hQ : Q=Qminus ⊔ Submodule.span K {f})
-    (hW : W=W₀ ⊔ Submodule.span K {f}) (hQ₀ : Qminus ≤ W₀)
+    (hWA : W ⊓ A = Q) (hQ : Q = Qminus ⊔ Submodule.span K {f})
+    (hW : W = W₀ ⊔ Submodule.span K {f}) (hQ₀ : Qminus ≤ W₀)
     (hf₀ : f ∉ W₀) (hM : M ∉ W ⊔ A) (he : e ≠ 0)
     (hrelations : (pi.comp formalPolynomialMultiplication).ker ⊓
-      formalMixed (W ⊔ Submodule.span K {M})=
+      formalMixed (W ⊔ Submodule.span K {M}) =
       (pi.comp formalPolynomialMultiplication).ker ⊓ formalProducts Q A)
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
-    (hspan : Submodule.span K (Set.range q)=W₀ ⊔ Submodule.span K {f+e • M}) :
+    (hspan : Submodule.span K (Set.range q) = W₀ ⊔ Submodule.span K {f+e • M}) :
     ProjectedEndpointHomology pi q ≃ₗ[K]
       ((pi.comp formalPolynomialMultiplication).ker ⊓ formalProducts Qminus A :
         Submodule K (SymmetricSquare K (Forms K n d))) := by
@@ -44,7 +44,7 @@ def projectedHyperplaneReplacement (pi : Forms K n (2*d) →ₗ[K] Z)
   exact (projectedHomologyEquivFormal pi q hq).trans (LinearEquiv.ofEq _ _ hEq)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+def projectedRetainedHomologyEquivFormal (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms K n
   d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q)) :
     projectedRetainedHomology pi q hq W ≃ₗ[K]
@@ -80,7 +80,7 @@ def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q :
       exact hrep
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem projectedRetainedHomology_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+theorem projectedRetainedHomology_finrank (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms K n
   d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q)) :
     finrank K (projectedRetainedHomology pi q hq W)=

@@ -23,8 +23,8 @@ variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def BasicCertificate {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
-    {O : ℕ → Submodule K (Poly K h)} (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+    {O : ℕ → Submodule K (Poly K h)} (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) : Prop :=
   LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1 p.2) ∧
@@ -33,8 +33,8 @@ def BasicCertificate {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def HasBasicOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
-    {O : ℕ → Submodule K (Poly K h)} (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+    {O : ℕ → Submodule K (Poly K h)} (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) : Prop :=
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -48,12 +48,12 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem HasUpperWitness.all_even_basic_open {h m d H f r q u : ℕ}
     (hd : 3 ≤ d) (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u)
-      (counts := allEvenCount d h m r) (by omega : 0<d)
+      (counts := allEvenCount d h m r) (by omega : 0 < d)
       (fun j _ => targetLayerOutput_homogeneous frame j)
       (fun j hj => (mem_allEvenIndices.mp hj).2.1))
     (ho : HasOddCyclesOpen (m := m) (d := d) (q := q) (f := f) (u := u)
       (counts := allEvenCount d h m r)
-      (fun j (_ : j∈allEvenIndices d) => targetLayerOutput_homogeneous frame j))
+      (fun j (_ : j ∈ allEvenIndices d) => targetLayerOutput_homogeneous frame j))
     (hw : HasUpperWitness (m := m) d f r q frame U (fun _ => 0)) :
     HasBasicOpen (m := m) (q := q) (f := f) (counts := allEvenCount d h m r)
       (by omega : 0<d) (fun j _ => targetLayerOutput_homogeneous frame j)

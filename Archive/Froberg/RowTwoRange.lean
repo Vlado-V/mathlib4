@@ -23,7 +23,7 @@ theorem row_two_coprod_surjective
     (A : Submodule K (Poly K h)) (hA : A ≤ Forms K h 1)
     (o : ι → A) (f : ι → Forms K m s)
     (hF : Function.Surjective (vectorFormFamilyMap (t := s) o f))
-    (O : κ → Forms K h 2) (g : κ → Forms K m e) (he : e+y=s+s)
+    (O : κ → Forms K h 2) (g : κ → Forms K m e) (he : e + y = s + s)
     (hG : Function.Surjective (vectorFormFamilyMap (t := y)
       (fun i => (endpointProducts K h 1 A).mkQ (O i)) g)) :
     Function.Surjective ((biformFamilyMap (x := 1) (y := s)

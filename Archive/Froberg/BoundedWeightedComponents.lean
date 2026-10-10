@@ -18,7 +18,7 @@ open MvPolynomial Finset
 variable {K σ : Type*} [Field K]
 
 /-- Zero-one weights never exceed the ordinary monomial degree. -/
-theorem weight_le_degree (w : σ → ℕ) (hw : ∀ x,w x≤1) (a : σ →₀ ℕ) :
+theorem weight_le_degree (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (a : σ →₀ ℕ) :
     Finsupp.weight w a≤a.degree := by
   simp only [Finsupp.weight_apply,Finsupp.degree_apply,Finsupp.sum,smul_eq_mul]
   apply sum_le_sum
@@ -37,8 +37,8 @@ theorem weightedComponent_preserves_homogeneous (w : σ → ℕ)
 
 /-- A homogeneous form has no components above its degree when every
 variable weight is at most one. -/
-theorem weightedComponent_above_homogeneous (w : σ → ℕ) (hw : ∀ x,w x≤1)
-    {f : MvPolynomial σ K} {d : ℕ} (hf : f.IsHomogeneous d) {t : ℕ} (ht : d<t) :
+theorem weightedComponent_above_homogeneous (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
+    {f : MvPolynomial σ K} {d : ℕ} (hf : f.IsHomogeneous d) {t : ℕ} (ht : d < t) :
     weightedHomogeneousComponent w t f=0 := by
   apply weightedHomogeneousComponent_eq_zero'
   intro a ha
@@ -50,7 +50,7 @@ theorem weightedComponent_above_homogeneous (w : σ → ℕ) (hw : ∀ x,w x≤1
 
 /-- A homogeneous form is its scalar component plus finitely many positive
 weighted components, without requiring positive variable weights. -/
-theorem homogeneous_eq_weightedComponents (w : σ → ℕ) (hw : ∀ x,w x≤1)
+theorem homogeneous_eq_weightedComponents (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
     {f : MvPolynomial σ K} {d : ℕ} (hf : f.IsHomogeneous d) :
     f=weightedHomogeneousComponent w 0 f +
       ∑ t∈range d,weightedHomogeneousComponent w (t+1) f := by

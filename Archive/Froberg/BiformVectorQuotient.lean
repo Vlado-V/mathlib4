@@ -68,8 +68,8 @@ theorem detected_biform_vector_relation_coefficients [Fintype I]
     (Q : Submodule K (Poly K n)) (p : I → MvPolynomial (σ ⊕ Fin n) K)
     (hp : LinearIndependent K (fun i =>
       TensorProduct.map (LinearMap.id : (Fin c → K) →ₗ[K] _) Q.mkQ (biformOutputMap T (p i))))
-    (g : Fin c → Poly K n) (hg : ∀ k,g k∈Q) (a : I → K)
-    (hrel : g+∑ i,a i • biformVectorDetector T (p i)=0) : a=0 := by
+    (g : Fin c → Poly K n) (hg : ∀ k, g k ∈ Q) (a : I → K)
+    (hrel : g + ∑ i, a i • biformVectorDetector T (p i) = 0) : a=0 := by
   have hi := detected_biform_coordinate_quotient_independent T Q p hp
   have hz : (∑ i,a i • (fun k => Q.mkQ (biformVectorDetector T (p i) k)))=0 := by
     funext k

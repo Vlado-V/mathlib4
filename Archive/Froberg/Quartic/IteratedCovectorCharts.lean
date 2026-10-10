@@ -42,12 +42,12 @@ def coordinates (K : Type*) [Field K] (b : Fin n → ℕ) :
   map_smul' _ _ := rfl
 
 /-- Polynomial graph vectors in the finite coordinates expected by covector charts. -/
-def graphPolynomial (j : Selectors b r) (h : Fin (∑ i,r i)) (k : Fin (∑ i,b i)) :
+def graphPolynomial (j : Selectors b r) (h : Fin (∑ i, r i)) (k : Fin (∑ i, b i)) :
     MvPolynomial (ParameterIndex j) K :=
   liftPolynomial j (basisVector ((indexEquiv r).symm h).1 ((indexEquiv r).symm h).2)
     ((indexEquiv b).symm k).1 ((indexEquiv b).symm k).2
 
-theorem evaluated_graphVector (j : Selectors b r) (p : Parameters K j) (h : Fin (∑ i,r i)) :
+theorem evaluated_graphVector (j : Selectors b r) (p : Parameters K j) (h : Fin (∑ i, r i)) :
     PolynomialSubspaceCovectorCharts.vector (graphPolynomial j) p h=
       coordinates K b (lift j p (basisVector ((indexEquiv r).symm h).1 ((indexEquiv r).symm
         h).2)) := by
@@ -83,9 +83,9 @@ theorem subspace_graphPolynomial (j : Selectors b r) (p : Parameters K j) :
   rfl
 
 /-- Actual prefix ranks imply coverage by the literal polynomial vector family. -/
-theorem covered_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
-    (hprofile : ∀ i,finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
-      (S.comap (coordinates K b).toLinearMap) i)=r i) :
+theorem covered_of_profile (S : Submodule K (Fin (∑ i, b i) → K))
+    (hprofile : ∀ i, finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
+      (S.comap (coordinates K b).toLinearMap) i) = r i) :
     PolynomialSubspaceCovectorCharts.Covered (fun j : Selectors b r => graphPolynomial j) S := by
   obtain ⟨j,p,hp⟩ := IteratedBlockCharts.exists_chart (S.comap (coordinates K
     b).toLinearMap) hprofile
@@ -93,9 +93,9 @@ theorem covered_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
   rw [subspace_graphPolynomial,hp]
   exact Submodule.map_comap_eq_of_surjective (coordinates K b).surjective S
 
-theorem finrank_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
-    (hprofile : ∀ i,finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
-      (S.comap (coordinates K b).toLinearMap) i)=r i) : finrank K S=∑ i,r i := by
+theorem finrank_of_profile (S : Submodule K (Fin (∑ i, b i) → K))
+    (hprofile : ∀ i, finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
+      (S.comap (coordinates K b).toLinearMap) i) = r i) : finrank K S=∑ i,r i := by
   obtain ⟨j,p,hp⟩ := IteratedBlockCharts.exists_chart (S.comap (coordinates K
     b).toLinearMap) hprofile
   have hmap : (chart j p).map (coordinates K b).toLinearMap=S := by
@@ -106,8 +106,8 @@ theorem finrank_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
 /-- A negative conditioned count excludes covectors with the actual specified
 prefix profile. No independent model of the profile stratum is assumed. -/
 theorem principal_open_excludes_profile [Infinite K] {B T e q : ℕ}
-    (mu : (Fin B → K) →ₗ[K] (Fin (∑ i,b i) → K) →ₗ[K] (Fin T → K))
-    (hcount : parameterCount b r+(T-e)-1 < q*((∑ i,b i)-(∑ i,r i))) :
+    (mu : (Fin B → K) →ₗ[K] (Fin (∑ i, b i) → K) →ₗ[K] (Fin T → K))
+    (hcount : parameterCount b r + (T - e) - 1 < q * ((∑ i, b i) - (∑ i, r i))) :
     ∃ P : MvPolynomial (Fin q × Fin B) K,
       (∃ Q : Fin q × Fin B → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →
@@ -126,9 +126,9 @@ theorem principal_open_excludes_profile [Infinite K] {B T e q : ℕ}
 /-- The same actual-profile exclusion accepts a compressed integer upper
 bound for chart parameters, including an empty full-image covector stratum. -/
 theorem principal_open_excludes_profile_of_int_bound [Infinite K] {B T e q : ℕ}
-    (mu : (Fin B → K) →ₗ[K] (Fin (∑ i,b i) → K) →ₗ[K] (Fin T → K))
-    (g : ℤ) (hg : (parameterCount b r:ℤ) ≤ g)
-    (hcount : g+(T:ℤ)-(e:ℤ)-1 < (q*((∑ i,b i)-(∑ i,r i)):ℕ)) :
+    (mu : (Fin B → K) →ₗ[K] (Fin (∑ i, b i) → K) →ₗ[K] (Fin T → K))
+    (g : ℤ) (hg : (parameterCount b r : ℤ) ≤ g)
+    (hcount : g + (T : ℤ) - (e : ℤ) - 1 < (q * ((∑ i, b i) - (∑ i, r i)) : ℕ)) :
     ∃ P : MvPolynomial (Fin q × Fin B) K,
       (∃ Q : Fin q × Fin B → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →
@@ -151,7 +151,7 @@ theorem sum_blockDimensions (m c : ℕ) :
     (∑ k,blockDimensions (coreA c) (freeW m c) k)=totalA m c := by
   simp [blockDimensions,Fin.sum_univ_succ,totalA,mul_comm]
 
-theorem sum_blockRanks {w : ℕ} (i : ℕ) (r : Fin w → ℕ) (hr : ∀ k,r k ≤ 3) :
+theorem sum_blockRanks {w : ℕ} (i : ℕ) (r : Fin w → ℕ) (hr : ∀ k, r k ≤ 3) :
     (∑ k,blockRanks i r k)=profileDim i (levelCount r 1) (levelCount r 2) (levelCount r 3) := by
   simp only [blockRanks,Fin.sum_univ_succ,Fin.cons_zero,Fin.cons_succ,rank_sum_nat_eq_layers r
     hr,profileDim]
@@ -160,12 +160,13 @@ theorem sum_blockRanks {w : ℕ} (i : ℕ) (r : Fin w → ℕ) (hr : ∀ k,r k �
 /-- The manuscript's compressed Cell count now excludes the actual covered
 profile stratum whenever its conditioned count is negative. -/
 theorem principal_open_excludes_Cell_profile [Infinite K] {B T e q : ℕ}
-    (m c i : ℕ) (hi : i ≤ coreA c) (r : Fin (freeW m c) → ℕ) (hr : ∀ k,r k ≤ 3)
+    (m c i : ℕ) (hi : i ≤ coreA c) (r : Fin (freeW m c) → ℕ) (hr : ∀ k, r k ≤ 3)
     (mu : (Fin B → K) →ₗ[K]
-      (Fin (∑ k,blockDimensions (coreA c) (freeW m c) k) → K) →ₗ[K] (Fin T → K))
-    (hcount : Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3)+
-      (T:ℤ)-(e:ℤ)-1 < (q*(totalA m c-profileDim i (levelCount r 1) (levelCount r 2) (levelCount r
-        3)):ℕ)) :
+      (Fin (∑ k, blockDimensions (coreA c) (freeW m c) k) → K) →ₗ[K] (Fin T → K))
+    (hcount : Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) +
+      (T : ℤ) - (e : ℤ) - 1 < (q * (totalA m c - profileDim i (levelCount r 1) (levelCount r 2)
+        (levelCount r
+        3)) : ℕ)) :
     ∃ P : MvPolynomial (Fin q × Fin B) K,
       (∃ Q : Fin q × Fin B → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →

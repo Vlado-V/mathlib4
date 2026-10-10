@@ -27,13 +27,13 @@ lemma polynomialVector_core_extension (o : Fin c → MvPolynomial σ K)
   simp only [polynomialVector_apply,map_sum,map_mul,rename_rename]
   rfl
 
-theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r<s) (ht : t<s)
+theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
-    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R+1)))
-    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i,w i≠0)
+    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
+    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin c → K)
-    (hprojected : ∀ j d,d≤1 → ∀ p : Fin m → Forms K a d,
+    (hprojected : ∀ j d, d ≤ 1 → ∀ p : Fin m → Forms K a d,
       (∀ α,sparseOutputCoefficient e v p α∈(privateOutputMatrix bi bo (w j)).range) → p=0)
     (Q : Fin q → Poly K a)
     (x : Fin q → MvPolynomial (σ ⊕ Fin (a+z)) K)
@@ -99,18 +99,18 @@ theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r<s) (ht : t<s)
   exact map_zero _
 
 /-- A core-only term cannot cancel a private-power row below its endpoint. -/
-theorem private_biform_core_zero (hs : 2 ≤ s) (hr : r<s)
+theorem private_biform_core_zero (hs : 2 ≤ s) (hr : r < s)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
-    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R+1)))
-    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i,w i≠0)
+    (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
+    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z)
     (C : MvPolynomial (σ ⊕ Fin a) K)
-    (hC : C∈biformImage (homogeneousSubmodule σ K (R+1)) (Forms K a g))
-    (u : Fin b → MvPolynomial (σ ⊕ Fin (a+z)) K)
-    (hu : ∀ i,u i∈biformImage (homogeneousSubmodule σ K R) (Forms K (a+z) r))
-    (hrel : rename (Sum.map id (Fin.castAdd z)) C+
-      (∑ i,(rename Sum.inl (w i).val*rename Sum.inr
-        (monomial (privateExponent a s ι i) (1:K)))*u i)=0) : u=0 := by
+    (hC : C ∈ biformImage (homogeneousSubmodule σ K (R + 1)) (Forms K a g))
+    (u : Fin b → MvPolynomial (σ ⊕ Fin (a + z)) K)
+    (hu : ∀ i, u i ∈ biformImage (homogeneousSubmodule σ K R) (Forms K (a + z) r))
+    (hrel : rename (Sum.map id (Fin.castAdd z)) C +
+      (∑ i, (rename Sum.inl (w i).val * rename Sum.inr
+        (monomial (privateExponent a s ι i) (1 : K))) * u i) = 0) : u=0 := by
   apply private_biform_row_zero (m := 0) (q := 0) (t := 0) hs hr (by omega)
     bi bo w hw ι Fin.elim0 Fin.elim0
     (fun _ _ _ p _ => Subsingleton.elim p 0) Fin.elim0 Fin.elim0

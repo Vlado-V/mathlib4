@@ -23,7 +23,7 @@ theorem vectorFormFamily_range_transfer {m e t : ℕ} (P : V →ₗ[K] W)
     (o : ι → V) (f : ι → Forms K m e) (O : κ → W) (F : κ → Forms K m e)
     (j : ι → κ) (ho : ∀ i, O (j i) = P (o i)) (hf : ∀ i, F (j i) = f i)
     (hsource : Function.Surjective (vectorFormFamilyMap (t := t) o f))
-    (v : V) (g : Forms K m (e+t)) :
+    (v : V) (g : Forms K m (e + t)) :
     P v ⊗ₜ[K] g ∈ (vectorFormFamilyMap (t := t) O F).range := by
   obtain ⟨c, hc⟩ := hsource (v ⊗ₜ[K] g)
   have hmap := congrArg (TensorProduct.map P (LinearMap.id : Forms K m (e+t) →ₗ[K] _)) hc
@@ -38,7 +38,7 @@ theorem vectorFormFamily_range_transfer {m e t : ℕ} (P : V →ₗ[K] W)
 /-- Independent convolution blocks may be projected onto any prescribed output
 space. The projection need only be surjective; the last block may be partial. -/
 theorem convolution_blocks_surjective [Infinite K] {a e m k : ℕ}
-    (ha : 0<a) (hm : 0<m) (P : (Fin k → Forms K a e) →ₗ[K] W)
+    (ha : 0 < a) (hm : 0 < m) (P : (Fin k → Forms K a e) →ₗ[K] W)
     (hP : Function.Surjective P) :
     ∃ (o : Fin k × ConvolutionSubset (m+a-1) e → W)
       (f : Fin k × ConvolutionSubset (m+a-1) e → Forms K m e),
@@ -68,7 +68,7 @@ theorem convolution_blocks_surjective [Infinite K] {a e m k : ℕ}
     | add x y hx hy => exact Submodule.add_mem R hx hy
   exact fun z => hall z
 
-theorem convolution_blocks_card {a e m k : ℕ} (ha : 0<a) (hm : 0<m) :
+theorem convolution_blocks_card {a e m k : ℕ} (ha : 0 < a) (hm : 0 < m) :
     Fintype.card (Fin k × ConvolutionSubset (m+a-1) e) = k*(m+a+e-2).choose e := by
   rw [Fintype.card_prod, Fintype.card_fin, convolution_family_card ha hm]
 

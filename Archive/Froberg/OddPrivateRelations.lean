@@ -98,7 +98,7 @@ theorem privateEvenCoefficientMap_range (hd : Odd d)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_private_relation_loss (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
     (g : Fin u → biformParitySpace K h m d 1)
-    (base : Submodule K (biformParitySpace K h m (2*d) 1)) :
+    (base : Submodule K (biformParitySpace K h m (2 * d) 1)) :
     finrank K (base ⊔ (privateScalarRelations g).range).dualAnnihilator≤
       finrank K (base ⊔ (privateEvenCoefficientMap g).range).dualAnnihilator+
         u*∑ r : Fin ((d-1)/2),

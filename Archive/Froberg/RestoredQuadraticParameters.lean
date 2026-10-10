@@ -44,12 +44,12 @@ theorem restoredC2Projection_surjective (idx : Fin r ≃ Label q J counts) :
   fun p => ⟨restoredC2Point idx p,restoredC2Projection_point idx p⟩
 
 theorem restored_c2_principal_pullback
-    (hO : ∀ j∈J,O j≤Forms K h j) (idx : Fin r ≃ Label q J counts)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (idx : Fin r ≃ Label q J counts)
     (D : MvPolynomial (Fin (finrank K (QuadraticParameters K h m d r f))) K)
     (hD : ∃ p : QuadraticParameters K h m d r f,
-      eval ((Module.finBasis K _).equivFun p) D≠0)
+      eval ((Module.finBasis K _).equivFun p) D ≠ 0)
     (Good : QuadraticParameters K h m d r f → Prop)
-    (hGood : ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 → Good p) :
+    (hGood : ∀ p, eval ((Module.finBasis K _).equivFun p) D ≠ 0 → Good p) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∃ P : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,
       (∃ p : RestoredOuterSpace m d q f J counts O,

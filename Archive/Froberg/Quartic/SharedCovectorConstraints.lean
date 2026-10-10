@@ -29,7 +29,7 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
   (CoefficientConstraintRank.repeated (coefficientMap mu ell)).prodMap
     (CoefficientConstraintRank.repeated (covector ell))
 
- theorem covector_ne_zero (ell : Fin T → K) (hell : ell ≠ 0) : covector ell ≠ 0 := by
+theorem covector_ne_zero (ell : Fin T → K) (hell : ell ≠ 0) : covector ell ≠ 0 := by
   intro h
   apply hell
   apply covector_injective
@@ -37,7 +37,7 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
   ext x
   simp [covector_apply]
 
- theorem rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+theorem rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (hell : ell ≠ 0) :
     finrank K (LinearMap.range (constraint (q := q) (e := e) mu ell)) =
       q * (a-finrank K (LinearMap.ker (relationMap mu ell))) + e := by
@@ -55,7 +55,7 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
   rw [hc,Module.Dual.range_eq_top_of_ne_zero (covector_ne_zero ell hell),finrank_top,
     Module.finrank_self,Nat.mul_one]
 
- theorem kernel_iff (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+theorem kernel_iff (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (Q : Fin q → Fin b → K) (Z : Fin e → Fin T → K) :
     constraint mu ell (Q,Z) = 0 ↔
       (∀ i v, covector ell (mu (Q i) v) = 0) ∧ (∀ j, covector ell (Z j) = 0) := by

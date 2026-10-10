@@ -72,7 +72,7 @@ theorem bilinear_rank (a : Fin r → Forms K n e) :
   exact hh
 
 /-- The full nonempty principal-open conclusion from projected subspace growth. -/
-theorem generic_injective_of_growth [Infinite K] (hn : 0<n) (a b : ℕ) (hb : 0<b)
+theorem generic_injective_of_growth [Infinite K] (hn : 0 < n) (a b : ℕ) (hb : 0 < b)
     (hgrowth : ∀ U : Submodule K (Poly K n), U ≤ Forms K n e →
       a * (n+(e+d)-1).choose (e+d) * finrank K U ≤
         b * (n+e-1).choose e * finrank K ((U * Forms K n d).map (retainMonomials P)))

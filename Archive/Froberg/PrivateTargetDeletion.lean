@@ -20,8 +20,8 @@ variable {a z s b : ℕ}
 def badTargets (ι : Fin b ↪ Fin z) : Finset (Degree (a+z) (2*s+1)) :=
   univ.filter (fun β => ∃ i, privateExponent a s ι i ≤ β.val)
 
-lemma card_bad_regular_targets (hn : 0 < a+z) (ι : Fin b ↪ Fin z)
-    (α : Degree (a+z) s) (hα : ∀ i, α.val ≠ privateExponent a s ι i) :
+lemma card_bad_regular_targets (hn : 0 < a + z) (ι : Fin b ↪ Fin z)
+    (α : Degree (a + z) s) (hα : ∀ i, α.val ≠ privateExponent a s ι i) :
     ((badTargets (s := s) ι).filter (fun β => α.val ≤ β.val)).card ≤ b*(a+z+s-1).choose s := by
   classical
   let T := fun i : Fin b => (univ : Finset (Degree (a+z) (2*s+1))).filter

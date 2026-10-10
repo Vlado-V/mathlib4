@@ -17,8 +17,8 @@ open Module Finset Quartic.HomogeneousCoefficientCoordinates
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s h : ℕ}
 
 lemma lower_half_growth_of_ideal_bound
-    (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i,(e i).degree=s)
-    (hn : 0<n)
+    (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s)
+    (hn : 0 < n)
     (hv : ∀ U : Finset I,U.card≤h → LinearIndependent K (fun i : U => v i.val))
     (hm : MixedExterior.UniversalMixedPosition v)
     (hsize : ∀ β : Exponent n (s+(s+1)),(labelsBelow e β.val).card≤h)

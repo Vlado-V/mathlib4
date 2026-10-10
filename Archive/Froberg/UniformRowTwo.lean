@@ -21,10 +21,10 @@ attribute [local instance] tensorGroup
 theorem row_two_exact_of_counts {d h m rF rE : ℕ} (hd : 3 ≤ d)
     (hh : 0 < h) (hm : 0 < m)
     (hD : rowTwoQuotientDimension h ≤ quadraticOutputDimension d h)
-    (hF : convolutionBlockCount (rowTwoLinearDimension h) d (d-1)*
-      (m+d+(d-1)-2).choose (d-1) ≤ rF)
-    (hE : convolutionBlockCount (rowTwoQuotientDimension h) (d+1) (d-2)*
-      (m+(d+1)+(d-2)-2).choose (d-2) ≤ rE)
+    (hF : convolutionBlockCount (rowTwoLinearDimension h) d (d - 1) *
+      (m + d + (d - 1) - 2).choose (d - 1) ≤ rF)
+    (hE : convolutionBlockCount (rowTwoQuotientDimension h) (d + 1) (d - 2) *
+      (m + (d + 1) + (d - 2) - 2).choose (d - 2) ≤ rE)
     (K : Type u) [Field K] [Infinite K] :
     RowTwoTargetWitness K (d-1) h m rF rE := by
   obtain ⟨A,hA,hAdim,hQdim⟩ := exists_linear_space_with_quadratic_quotient (K := K) hh

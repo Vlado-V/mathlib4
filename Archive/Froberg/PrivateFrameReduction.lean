@@ -41,7 +41,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def PrivateReductionOpen {σ : Type*} [Fintype σ] {n t : ℕ}
     (O : ℕ → Submodule K (MvPolynomial σ K))
     [Module.Finite K (Space n d q J counts O)]
-    (P : Fin t → FullBiform K σ n 1 (d-1)) : Prop :=
+    (P : Fin t → FullBiform K σ n 1 (d - 1)) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
     (∃ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0) ∧
     ∀ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0 →
@@ -51,7 +51,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem privateReductionOpen_congr_outputs {σ : Type*} [Fintype σ] {n t : ℕ}
     {O O' : ℕ → Submodule K (MvPolynomial σ K)}
     [Module.Finite K (Space n d q J counts O)] [Module.Finite K (Space n d q J counts O')]
-    (hO : O=O') (P : Fin t → FullBiform K σ n 1 (d-1)) :
+    (hO : O = O') (P : Fin t → FullBiform K σ n 1 (d - 1)) :
     PrivateReductionOpen (q := q) (J := J) (counts := counts) O P ↔
       PrivateReductionOpen (q := q) (J := J) (counts := counts) O' P := by
   subst O'
@@ -73,17 +73,17 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 frame family. The private columns in the conclusion are fixed in the
 original finite-variable coordinates. -/
 theorem private_frame_reduction_open_rename
-    (hd : 0<d) (hJ : ∀ j∈J,j≤d)
+    (hd : 0 < d) (hJ : ∀ j ∈ J, j ≤ d)
     (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (v : Fin b → Fin h → K)
     (ι : Fin b ↪ Fin z)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame))
-    (D : MvPolynomial (Fin (finrank K (Space (a+z) d q J counts
+    (hL : L.ker = Submodule.span K (Set.range frame))
+    (D : MvPolynomial (Fin (finrank K (Space (a + z) d q J counts
       (constrainedOutputs (pairedFrameConstraint f L))))) K)
-    (hD : ∃ p : Space (a+z) d q J counts (constrainedOutputs (pairedFrameConstraint f L)),
-      eval ((Module.finBasis K _).equivFun p) D≠0)
+    (hD : ∃ p : Space (a + z) d q J counts (constrainedOutputs (pairedFrameConstraint f L)),
+      eval ((Module.finBasis K _).equivFun p) D ≠ 0)
     (hgood : ∀ p : Space (a+z) d q J counts (constrainedOutputs (pairedFrameConstraint f L)),
       eval ((Module.finBasis K _).equivFun p) D≠0 →
       PrivatePositiveReduction p (privatePowerBiform (a := a) (d := d)

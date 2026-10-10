@@ -18,7 +18,7 @@ namespace Froberg
 def oddRowBinomialCost (d b : ℕ) : ℕ :=
   b*(2*d-b).choose (d-1)+(2*d-b).choose d
 
-theorem oddRowBinomialCost_step {d b : ℕ} (hd : 2≤d) (hb : b+1≤d) :
+theorem oddRowBinomialCost_step {d b : ℕ} (hd : 2 ≤ d) (hb : b + 1 ≤ d) :
     oddRowBinomialCost d b = oddRowBinomialCost d (b+1)+
       b*(2*d-b-1).choose (d-2) := by
   have h₁ := Nat.choose_succ_succ (2*d-b-1) (d-2)
@@ -29,7 +29,7 @@ theorem oddRowBinomialCost_step {d b : ℕ} (hd : 2≤d) (hb : b+1≤d) :
   rw [h₁,h₂,show 2*d-(b+1)=2*d-b-1 by omega]
   ring
 
-theorem oddRowBinomialCost_three {d : ℕ} (hd : 3≤d) :
+theorem oddRowBinomialCost_three {d : ℕ} (hd : 3 ≤ d) :
     oddRowBinomialCost d 3 = centralHalfBinomial d := by
   have h₁ := Nat.choose_succ_succ (2*d-3) (d-2)
   have h₂ := Nat.choose_succ_succ (2*d-3) (d-1)
@@ -44,7 +44,7 @@ theorem oddRowBinomialCost_three {d : ℕ} (hd : 3≤d) :
   unfold oddRowBinomialCost centralHalfBinomial
   omega
 
-theorem oddRowBinomialCost_le {d b : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b≤d) :
+theorem oddRowBinomialCost_le {d b : ℕ} (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d) :
     oddRowBinomialCost d b≤centralHalfBinomial d := by
   revert hbd
   induction b,hb using Nat.le_induction with
@@ -55,8 +55,8 @@ theorem oddRowBinomialCost_le {d b : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b≤d
     exact (show oddRowBinomialCost d (b+1)≤oddRowBinomialCost d b by omega).trans
       (ih (by omega))
 
-theorem oddRow_leading_ratio_lt {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b≤d)
-    (hh : 0<h) :
+theorem oddRow_leading_ratio_lt {d b h : ℕ} (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d)
+    (hh : 0 < h) :
     criticalRatio d*((b : ℝ)*h/((h : ℝ)+b-1)*((2*d-b).choose (d-1) : ℝ)+
       ((2*d-b).choose d : ℝ)) < 1 := by
   have hden : 0<(h : ℝ)+b-1 := by
@@ -77,7 +77,7 @@ theorem oddRow_leading_ratio_lt {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b
   have hsharp := criticalRatio_sharp_bound hd
   nlinarith
 
-theorem oddEndpoint_leading_ratio_lt {d h : ℕ} (hd : 3≤d) (hh : 0<h) :
+theorem oddEndpoint_leading_ratio_lt {d h : ℕ} (hd : 3 ≤ d) (hh : 0 < h) :
     ((d : ℝ)+1)*h*criticalRatio d/((h : ℝ)+d)<1 := by
   have hρ := (criticalRatio_bounds (by omega : 2≤d)).1
   have hH : (d : ℝ)+1≤centralHalfBinomial d := by

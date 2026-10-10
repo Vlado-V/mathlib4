@@ -20,8 +20,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 
 theorem weighted_family_independent
     (g : (j : J) → Fin (counts j.val) → MvPolynomial σ K)
-    (hw : ∀ j i,(g j i).IsWeightedHomogeneous w j.val)
-    (hg : ∀ j,LinearIndependent K (g j)) :
+    (hw : ∀ j i, (g j i).IsWeightedHomogeneous w j.val)
+    (hg : ∀ j, LinearIndependent K (g j)) :
     LinearIndependent K (fun i : Σ j : J,Fin (counts j.val) => g i.1 i.2) := by
   classical
   apply Fintype.linearIndependent_iff.mpr

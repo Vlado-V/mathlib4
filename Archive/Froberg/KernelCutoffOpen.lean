@@ -29,7 +29,7 @@ theorem kernel_bilinear_surjective_open
     (P : (I → K) → W →ₗ[K] (Fin b → K)) (hP : IsPolynomialFamily P)
     (p₀ : I → K) (hP₀ : Function.Surjective (P p₀))
     (nu : E →ₗ[K] W →ₗ[K] T)
-    (hcut : BilinearImage.image nu (P p₀).ker=⊤) :
+    (hcut : BilinearImage.image nu (P p₀).ker = ⊤) :
     ∃ D : MvPolynomial I K,eval p₀ D≠0 ∧
       ∀ p,eval p D≠0 → BilinearImage.image nu (P p).ker=⊤ := by
   obtain ⟨S,hS⟩ := (P p₀).exists_rightInverse_of_surjective (LinearMap.range_eq_top.mpr hP₀)

@@ -23,12 +23,12 @@ set_option backward.isDefEq.respectTransparency false
 
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem exists_prepared_target_witness (hd : 3≤d)
+theorem exists_prepared_target_witness (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2)
-    (low : LowRowCoefficients K h m (d-1) (d-2) H f r)
-    (hlow : LowRowsSurjective (by omega : d-2+d=(d-1)+(d-1)) frame low)
+    (low : LowRowCoefficients K h m (d - 1) (d - 2) H f r)
+    (hlow : LowRowsSurjective (by omega : d - 2 + d = (d - 1) + (d - 1)) frame low)
     (layer : MiddleTargetIndex d → HigherLayerIndex d)
-    (hcover : ∀ b,(layer b).val<b.val.val ∧ b.val.val<2*(layer b).val)
+    (hcover : ∀ b, (layer b).val < b.val.val ∧ b.val.val < 2 * (layer b).val)
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
       (fun j => d-j.val) (fun j => higherGeneratorCount d h m j.val))
     (hG : ∀ b : MiddleTargetIndex d,Function.Surjective (biformTensorFamilyMap

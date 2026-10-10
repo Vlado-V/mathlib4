@@ -28,20 +28,20 @@ and new-layer term, and kills the complete product summand. -/
 theorem polynomial_row_relation_constants
     {W : Type*} [AddCommGroup W] [Module K W]
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (e : J → Fin n →₀ ℕ)
     (v : J → Fin (finrank K (homogeneousSubmodule σ K R)) → K)
-    (he : ∀ i,(e i).degree=s) (Q : Fin r → Forms K n d)
+    (he : ∀ i, (e i).degree = s) (Q : Fin r → Forms K n d)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K
         ((Fin r → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s) ×
           (J → Forms K n d)) W).comp (intermediateKoszul e v he Q)).range)
     (U : Fin r → MvPolynomial (σ ⊕ Fin n) K)
-    (hU : ∀ i,U i∈biformImage (homogeneousSubmodule σ K R) (Forms K n s))
-    (B : J → Forms K n d) (p : MvPolynomial (σ ⊕ Fin n) K) (hp : p∈P.range)
-    (hrel : (∑ i,rename Sum.inr (Q i).val*U i)+
-      (∑ a,attachedPolynomialFamily o e v a*rename Sum.inr (B a).val)+p=0) :
+    (hU : ∀ i, U i ∈ biformImage (homogeneousSubmodule σ K R) (Forms K n s))
+    (B : J → Forms K n d) (p : MvPolynomial (σ ⊕ Fin n) K) (hp : p ∈ P.range)
+    (hrel : (∑ i, rename Sum.inr (Q i).val * U i) +
+      (∑ a, attachedPolynomialFamily o e v a * rename Sum.inr (B a).val) + p = 0) :
     ∃ C : Fin r → J → K,
       (∀ i,U i=∑ a,C i a • attachedPolynomialFamily o e v a) ∧
       (∀ a,(B a).val = -∑ i,C i a • (Q i).val) ∧ p=0 := by

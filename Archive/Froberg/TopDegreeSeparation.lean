@@ -21,7 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m a b c e d q f n : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem biformDegreeTransport_disjoint
-    (ha : a=b) (hc : c=e)
+    (ha : a = b) (hc : c = e)
     (P : Submodule K (Forms K h b)) (Q : Submodule K (Forms K m e))
     (E : Submodule K (Forms K h a ⊗[K] Forms K m c))
     (hE : Disjoint E
@@ -42,11 +42,11 @@ theorem biformDegreeTransport_disjoint
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem top_degree_separation (hd : 1 ≤ d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin n → K))
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin n → K))
     (Q : Fin q → Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Submodule K (Forms K h d))
-    (hker : R.ker=U.map (topGrowthDegree hd h).symm.toLinearMap)
+    (hker : R.ker = U.map (topGrowthDegree hd h).symm.toLinearMap)
     (hi : Function.Injective (projectedTopMap R (topGrowthParameters hd Q F))) :
     Disjoint ((rawTopFamily F).range.map (rawTopTarget hd).toLinearMap)
       (leftRelations U ⊔ rightRelations (Submodule.span K (Set.range Q))) := by

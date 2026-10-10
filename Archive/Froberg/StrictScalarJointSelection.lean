@@ -20,7 +20,7 @@ variable {K : Type} [Field K] [Infinite K] {h n s d c q : ℕ} {G : ℝ}
 
 theorem strict_scalar_joint_selection
     (D : MvPolynomial (Fin (finrank K (Fin c → Rows K h n s))) K)
-    (hD : ∃ g : Fin c → Rows K h n s,eval ((Module.finBasis K _).equivFun g) D≠0)
+    (hD : ∃ g : Fin c → Rows K h n s, eval ((Module.finBasis K _).equivFun g) D ≠ 0)
     (hmodel : ∀ g : Fin c → Rows K h n s,eval ((Module.finBasis K _).equivFun g) D≠0 →
       StrictModel g d G ∧ q*finrank K (Source g)≤finrank K (Target g d))
     (P : MvPolynomial (Fin (finrank K ((Fin c → Rows K h n s) × (Fin q → Forms K n d)))) K)

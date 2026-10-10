@@ -42,7 +42,7 @@ lemma privateExponent_injective (hs : 0 < s) (ι : Fin b ↪ Fin z) :
   apply Fin.natAdd_injective
   exact Finsupp.single_left_injective hs.ne' hij
 
-lemma privateExponent_le_iff (ι : Fin b ↪ Fin z) (i : Fin b) (β : Fin (a+z) →₀ ℕ) :
+lemma privateExponent_le_iff (ι : Fin b ↪ Fin z) (i : Fin b) (β : Fin (a + z) →₀ ℕ) :
     privateExponent a s ι i ≤ β ↔ s ≤ β (Fin.natAdd a (ι i)) := by
   simp only [privateExponent,Finsupp.single_le_iff]
 
@@ -59,7 +59,7 @@ def attachedVectors {K : Type*} (v : Labels k a s → Fin h → K) (w : Fin b �
     Labels k a s ⊕ Fin b → Fin h → K := Sum.elim v w
 
 lemma equal_of_le_equal_degree {n : ℕ} {α β : Fin n →₀ ℕ}
-    (hle : α ≤ β) (hdeg : α.degree=β.degree) : α=β := by
+    (hle : α ≤ β) (hdeg : α.degree = β.degree) : α=β := by
   have he : α+(β-α)=β := add_tsub_cancel_of_le hle
   have hd := congrArg Finsupp.degree he
   rw [map_add,hdeg] at hd
@@ -68,7 +68,7 @@ lemma equal_of_le_equal_degree {n : ℕ} {α β : Fin n →₀ ℕ}
   exact he
 
 lemma core_degree_add_private_le (ι : Fin b ↪ Fin z) (i : Fin b)
-    (β : Fin (a+z) →₀ ℕ) (hi : privateExponent a s ι i ≤ β) :
+    (β : Fin (a + z) →₀ ℕ) (hi : privateExponent a s ι i ≤ β) :
     (corePart β).degree+s ≤ β.degree := by
   have he : privateExponent a s ι i+(β-privateExponent a s ι i)=β := add_tsub_cancel_of_le hi
   have hd := congrArg Finsupp.degree he
@@ -85,10 +85,10 @@ lemma core_degree_add_private_le (ι : Fin b ↪ Fin z) (i : Fin b)
   have hb := corePart_le_degree (β-privateExponent a s ι i)
   omega
 
-def privateDivisors (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀ ℕ) : Finset (Fin b) :=
+def privateDivisors (ι : Fin b ↪ Fin z) (β : Fin (a + z) →₀ ℕ) : Finset (Fin b) :=
   univ.filter (fun i => privateExponent a s ι i ≤ β)
 
-lemma privateDivisors_degree_bound (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀ ℕ) :
+lemma privateDivisors_degree_bound (ι : Fin b ↪ Fin z) (β : Fin (a + z) →₀ ℕ) :
     (privateDivisors (s := s) ι β).card*s ≤ β.degree := by
   let S := privateDivisors (s := s) ι β
   let f : Fin b → Fin (a+z) := fun i => Fin.natAdd a (ι i)
@@ -104,14 +104,14 @@ lemma privateDivisors_degree_bound (ι : Fin b ↪ Fin z) (β : Fin (a+z) →₀
     _ = β.degree := by rw [Finsupp.degree_eq_sum]
 
 lemma privateDivisors_card_le_two (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (β : Fin (a+z) →₀ ℕ) (hβ : β.degree=2*s+1) :
+    (β : Fin (a + z) →₀ ℕ) (hβ : β.degree = 2 * s + 1) :
     (privateDivisors (s := s) ι β).card ≤ 2 := by
   have h := privateDivisors_degree_bound (s := s) ι β
   rw [hβ] at h
   nlinarith
 
 lemma private_source_eq (hs : 0 < s) (ι : Fin b ↪ Fin z) (i : Fin b)
-    (α : Fin (a+z) →₀ ℕ) (hα : α.degree=s) :
+    (α : Fin (a + z) →₀ ℕ) (hα : α.degree = s) :
     privateExponent a s ι i ≤ α ↔ α=privateExponent a s ι i := by
   constructor
   · intro h
@@ -120,7 +120,7 @@ lemma private_source_eq (hs : 0 < s) (ι : Fin b ↪ Fin z) (i : Fin b)
     exact le_rfl
 
 lemma relationFiber_attached {K : Type*} [Field K] (ι : Fin b ↪ Fin z)
-    (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K) (β : Fin (a+z) →₀ ℕ) :
+    (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K) (β : Fin (a + z) →₀ ℕ) :
     AttachedMultiplication.relationFiber (attachedExponent ι) (attachedVectors v w) β =
       AttachedMultiplication.relationFiber (coreExponent z) v β ⊔
         Submodule.span K (Set.range (fun i : {i : Fin b // privateExponent a s ι i ≤ β} => w

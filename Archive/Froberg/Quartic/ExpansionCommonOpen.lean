@@ -58,7 +58,7 @@ theorem image_span_finrank_le (g : Fin c → Rows K m 1) :
 /-- The included d=0 expansion bound forces exact target relation dimension. -/
 theorem relation_finrank_of_zero_expansion (g : Fin c → Rows K m 1)
     (hg : LinearIndependent K g) (e₀ : ℕ)
-    (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2)) :
+    (hzero : RowExpansionOpen.Expands g c (e₀ + c * (m + 1).choose 2)) :
     finrank K (BilinearImage.image multiplication (Submodule.span K (Set.range g))) =
       c*(m+1).choose 2 := by
   have hd : finrank K (Submodule.span K (Set.range g)) = c := by
@@ -70,7 +70,7 @@ theorem relation_finrank_of_zero_expansion (g : Fin c → Rows K m 1)
 /-- It also forces actual coefficient-degree-two presentation injectivity. -/
 theorem presentation_injective_of_zero_expansion (g : Fin c → Rows K m 1)
     (hg : LinearIndependent K g) (e₀ : ℕ)
-    (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2)) :
+    (hzero : RowExpansionOpen.Expands g c (e₀ + c * (m + 1).choose 2)) :
     Function.Injective (GeneralF13.multiplication g) := by
   have hd := relation_finrank_of_zero_expansion g hg e₀ hzero
   rw [← presentation_range] at hd
@@ -81,7 +81,7 @@ theorem presentation_injective_of_zero_expansion (g : Fin c → Rows K m 1)
 
 theorem cubic_quotient_dimension (g : Fin c → Rows K m 1)
     (hg : LinearIndependent K g) (e₀ : ℕ)
-    (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2)) :
+    (hzero : RowExpansionOpen.Expands g c (e₀ + c * (m + 1).choose 2)) :
     finrank K ((Rows K m 3) ⧸ BilinearImage.image multiplication (Submodule.span K (Set.range g))) =
       3*(m+2).choose 3-c*(m+1).choose 2 := by
   have h := (BilinearImage.image multiplication (Submodule.span K (Set.range
@@ -104,8 +104,8 @@ theorem linear_quotient_dimension (g : Fin c → Rows K m 1)
 
 /-- Actual quotient images inherit the ambient bound after the exact shifts. -/
 theorem quotient_expansion (g : Fin c → Rows K m 1) (hg : LinearIndependent K g)
-    (e₀ : ℕ) (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2))
-    (hbound : RowExpansionOpen.Expands g (d+c) (e+c*(m+1).choose 2)) :
+    (e₀ : ℕ) (hzero : RowExpansionOpen.Expands g c (e₀ + c * (m + 1).choose 2))
+    (hbound : RowExpansionOpen.Expands g (d + c) (e + c * (m + 1).choose 2)) :
     ∀ S : Submodule K ((Rows K m 1) ⧸ Submodule.span K (Set.range g)), finrank K S = d →
       e ≤ finrank K (BilinearImage.image
         (QuotientBilinearImage.quotientMap multiplication (Submodule.span K (Set.range g))) S) := by

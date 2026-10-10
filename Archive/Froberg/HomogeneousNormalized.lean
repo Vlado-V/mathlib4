@@ -18,7 +18,7 @@ namespace Froberg
 open Module MvPolynomial Finset MonomialExpansion
 variable {K : Type*} [Field K] {n e d : ℕ}
 
- theorem normalized_monomial_shadow (hn : 0 < n) (A : Finset (Degree n e)) :
+theorem normalized_monomial_shadow (hn : 0 < n) (A : Finset (Degree n e)) :
     (n+(e+d)-1).choose (e+d)*A.card ≤ (n+e-1).choose e*(shadow d A).card := by
   have htotal := weighted_total
     (fun (b : Degree n (e+d)) (a : Degree n e) => weight b.val a.val)

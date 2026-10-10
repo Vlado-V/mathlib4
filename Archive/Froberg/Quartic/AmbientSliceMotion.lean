@@ -28,7 +28,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem kernel_lower
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (E : Fin c → Fin a → K) (hE : LinearIndependent K E) (ell : Fin T → K)
-    (hann : ∀ j f,covector ell (mu f (E j))=0) :
+    (hann : ∀ j f, covector ell (mu f (E j)) = 0) :
     c ≤ finrank K (LinearMap.ker (relationMap mu ell)) := by
   have hle : Submodule.span K (Set.range E) ≤ LinearMap.ker (relationMap mu ell) := by
     apply Submodule.span_le.mpr
@@ -41,7 +41,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem principal_open_two_stage
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (E : Fin c → Fin a → K) (Q : Fin q → Fin b → K)
-    (d s : ℕ) (Z : Fin s → Fin T → K) (hd : d+c ≤ a)
+    (d s : ℕ) (Z : Fin s → Fin T → K) (hd : d + c ≤ a)
     (hempty : ∀ ell : Fin T → K,d+c ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
       (∀ j f,covector ell (mu f (E j))=0) →
       (∀ i v,covector ell (mu (Q i) v)=0) →

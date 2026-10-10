@@ -28,7 +28,7 @@ structure Targets (F : ProductFiber X s) (a : ℕ) where
     ((matchTo p).1 ∩ p.out.1).card ≤ a ∧ ((matchTo p).1 ∩ p.out.1ᶜ).card ≤ a
 
 private theorem adj_out {R : Type*} [Fintype R] [DecidableEq R] {t m : ℕ}
-    (hR : Fintype.card R = 2*t) (allowed : ℕ → Prop)
+    (hR : Fintype.card R = 2 * t) (allowed : ℕ → Prop)
     (p : Partition hR) (D : SizedSubset R m) :
     Adj hR allowed p D ↔
       allowed (D.1 ∩ p.out.1).card ∧ allowed (D.1 ∩ p.out.1ᶜ).card := by
@@ -175,7 +175,7 @@ theorem choices_product {F : ProductFiber X s} {a : ℕ} (T : Targets F a) (p : 
 
 /-- The actual coefficient-polynomial minor for every non-diagonal fiber is nonzero. -/
 theorem non_diagonal_minor {K : Type*} [CommRing K] [Nontrivial K]
-    (F : ProductFiber X s) (T : Targets F (s/2)) (ht : 0 < F.halfSize) :
+    (F : ProductFiber X s) (T : Targets F (s / 2)) (ht : 0 < F.halfSize) :
     (ProductMinors.productMinor (K := K) (fun S : SizedSubset X s => allowedExponents (s/2) S.1)
       (fun p => F.label (p,false)) (fun p => F.label (p,true))
       (fun p => targetExponent F.doubled T.xy F.single (T.subset p))).det ≠ 0 := by

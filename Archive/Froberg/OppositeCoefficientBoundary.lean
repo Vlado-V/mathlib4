@@ -22,7 +22,7 @@ def orderedModuleKoszul (q : Fin r → V) (i j : Fin r) : Fin r → V :=
   fun k => (if k=i then q j else 0)-(if k=j then q i else 0)
 
 theorem orderedModuleKoszul_mem_cross {P : Type*} (q : Fin r → V) (e : Fin r → P)
-    (i j : Fin r) (hij : e i≠e j) :
+    (i j : Fin r) (hij : e i ≠ e j) :
     orderedModuleKoszul q i j∈Submodule.span K
       (koszulVector q '' {p : GeneratorPair r | e p.val.1≠e p.val.2}) := by
   classical
@@ -47,7 +47,7 @@ theorem coefficientBoundary_eq_ordered_sum (q : Fin r → V) (C : Fin r → Fin 
   · simp
 
 theorem coefficientBoundary_mem_cross {P : Type*} (q : Fin r → V) (e : Fin r → P)
-    (C : Fin r → Fin r → K) (hC : ∀ i j,e i=e j → C i j=0) :
+    (C : Fin r → Fin r → K) (hC : ∀ i j, e i = e j → C i j = 0) :
     coefficientBoundary q C∈Submodule.span K
       (koszulVector q '' {p : GeneratorPair r | e p.val.1≠e p.val.2}) := by
   classical
@@ -65,8 +65,8 @@ variable {I J : Type*} [Fintype I] [Fintype J]
 
 theorem split_constants_mem_cross (split : Fin r ≃ I ⊕ J) (q c : Fin r → V)
     (B : I → J → K)
-    (hc : ∀ i,c (split.symm (Sum.inl i))=∑ j,B i j • q (split.symm (Sum.inr j)))
-    (hc' : ∀ j,c (split.symm (Sum.inr j)) = -∑ i,B i j • q (split.symm (Sum.inl i))) :
+    (hc : ∀ i, c (split.symm (Sum.inl i)) = ∑ j, B i j • q (split.symm (Sum.inr j)))
+    (hc' : ∀ j, c (split.symm (Sum.inr j)) = -∑ i, B i j • q (split.symm (Sum.inl i))) :
     c∈Submodule.span K (koszulVector q '' {p : GeneratorPair r |
       (Sum.elim (fun _ : I => (0 : ZMod 2)) (fun _ : J => 1) (split p.val.1))≠
       (Sum.elim (fun _ : I => (0 : ZMod 2)) (fun _ : J => 1) (split p.val.2))}) := by

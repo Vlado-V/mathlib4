@@ -14,7 +14,7 @@ public import Archive.Froberg.Quartic.WeakHullProfile.Sharp
 namespace Quartic.WeakHullProfile
 open HullCertificate ProfileCertificate SharpCertificate Counts
 
- theorem normalized_source (m c i:ℕ) (hc:4 ≤ c) (n₁ n₂ n₃:ℚ) :
+theorem normalized_source (m c i : ℕ) (hc : 4 ≤ c) (n₁ n₂ n₃ : ℚ) :
     (coreA c:ℚ)*((i:ℚ)/(coreA c:ℚ))+
       (freeW m c:ℚ)*(n₁/(freeW m c:ℚ)+n₂/(freeW m c:ℚ)+n₃/(freeW m c:ℚ))=
       (i:ℚ)+n₁+n₂+n₃ := by
@@ -25,8 +25,8 @@ open HullCertificate ProfileCertificate SharpCertificate Counts
 
 /-- The sharp profile is above a genuine convex combination of the eight
 vertices in one knot cell, with exactly the same source coordinate. -/
- theorem exists_hull_below_sharp (m c i:ℕ) (hc:4 ≤ c) (hi:i ≤ coreA c)
-    (n₁ n₂ n₃:ℚ) (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c:ℚ)) :
+ theorem exists_hull_below_sharp (m c i : ℕ) (hc : 4 ≤ c) (hi : i ≤ coreA c)
+    (n₁ n₂ n₃ : ℚ) (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c : ℚ)) :
     ∃cell:Fin 4,
       endpoint cell 0 ≤ (i:ℚ)/(coreA c:ℚ) ∧ (i:ℚ)/(coreA c:ℚ) ≤ endpoint cell 1 ∧
       InVertexHull m c cell ((i:ℚ)+n₁+n₂+n₃) (weakAverage m c i n₁ n₂ n₃) ∧
@@ -43,12 +43,12 @@ vertices in one knot cell, with exactly the same source coordinate. -/
 
 /-- The cell containing the core fraction contains the full source dimension
 in precisely the integer interval used by the finite certificates. -/
- theorem eligible_of_cell (m c i:ℕ) (hc:4 ≤ c) (cell:Fin 4)
-    (n₁ n₂ n₃:ℚ) (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c:ℚ))
-    (hxlo:endpoint cell 0 ≤ (i:ℚ)/(coreA c:ℚ))
-    (hxhi:(i:ℚ)/(coreA c:ℚ) ≤ endpoint cell 1)
-    (d:ℤ) (hdlo:1 ≤ d) (hdhi:d<(totalA m c:ℤ))
-    (hd:(i:ℚ)+n₁+n₂+n₃=(d:ℚ)) : Eligible m c cell d := by
+ theorem eligible_of_cell (m c i : ℕ) (hc : 4 ≤ c) (cell : Fin 4)
+    (n₁ n₂ n₃ : ℚ) (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c : ℚ))
+    (hxlo : endpoint cell 0 ≤ (i : ℚ) / (coreA c : ℚ))
+    (hxhi : (i : ℚ) / (coreA c : ℚ) ≤ endpoint cell 1)
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (totalA m c : ℤ))
+    (hd : (i : ℚ) + n₁ + n₂ + n₃ = (d : ℚ)) : Eligible m c cell d := by
   have hA:(0:ℚ)<coreA c:=by exact_mod_cast coreA_pos c hc
   have hAx:(coreA c:ℚ)*((i:ℚ)/(coreA c:ℚ))=(i:ℚ):=mul_div_cancel₀ _ (ne_of_gt hA)
   have hl:=mul_le_mul_of_nonneg_left hxlo hA.le
@@ -69,10 +69,10 @@ in precisely the integer interval used by the finite certificates. -/
   exact ⟨hdlo,hdhi,by exact_mod_cast hlow,by exact_mod_cast hupp⟩
 
 /-- The integral source range is supplied together with the actual weak-hull witness. -/
- theorem exists_eligible_hull (m c i:ℕ) (hc:4 ≤ c) (hi:i ≤ coreA c)
-    (n₁ n₂ n₃:ℚ) (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c:ℚ))
-    (d:ℤ) (hdlo:1 ≤ d) (hdhi:d<(totalA m c:ℤ))
-    (hd:(i:ℚ)+n₁+n₂+n₃=(d:ℚ)) :
+ theorem exists_eligible_hull (m c i : ℕ) (hc : 4 ≤ c) (hi : i ≤ coreA c)
+    (n₁ n₂ n₃ : ℚ) (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m c : ℚ))
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (totalA m c : ℤ))
+    (hd : (i : ℚ) + n₁ + n₂ + n₃ = (d : ℚ)) :
     ∃cell:Fin 4, Eligible m c cell d ∧
       InVertexHull m c cell d (weakAverage m c i n₁ n₂ n₃) ∧
       weakAverage m c i n₁ n₂ n₃ ≤ sharpProfile (parameters m c i) n₁ n₂ n₃ := by

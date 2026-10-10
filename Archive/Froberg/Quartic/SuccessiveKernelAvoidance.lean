@@ -28,7 +28,7 @@ the sum of their actual rank bounds exceeds the original parameter count. -/
 theorem principal_open_avoids_two_stage_kernels
     (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (B : Matrix (Fin b) (Fin l) (MvPolynomial (I ⊕ Fin n) K))
-    (hcount : Fintype.card I < r+s) :
+    (hcount : Fintype.card I < r + s) :
     ∃ P : MvPolynomial (Fin n ⊕ Fin l) K,
       (∃ z : Fin n ⊕ Fin l → K, eval z P ≠ 0) ∧
       ∀ z, eval z P ≠ 0 → ∀ t : I → K,

@@ -19,8 +19,8 @@ namespace Froberg
 open Module Quartic Quartic.FilteredImage
 variable {K P I : Type*} [Field K] [AddCommGroup P] [Module K P] [Fintype I]
 variable {V W : I → Type*}
-  [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)]
-  [∀ i,AddCommGroup (W i)] [∀ i,Module K (W i)]
+  [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+  [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def piBilinear (mu : (i : I) → P →ₗ[K] V i →ₗ[K] W i) :
@@ -34,9 +34,9 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
     (p : P) (v : (i : I) → V i) (i : I) : piBilinear mu p v i=mu i p (v i) := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem piBilinear_growth [∀ i,FiniteDimensional K (V i)] [∀ i,FiniteDimensional K (W i)]
+theorem piBilinear_growth [∀ i, FiniteDimensional K (V i)] [∀ i, FiniteDimensional K (W i)]
     (mu : (i : I) → P →ₗ[K] V i →ₗ[K] W i) (rate : ℕ)
-    (hmu : ∀ i (S : Submodule K (V i)),rate*finrank K S ≤
+    (hmu : ∀ i (S : Submodule K (V i)), rate * finrank K S ≤
       finrank K (BilinearImage.image (mu i) S))
     (L : Submodule K ((i : I) → V i)) :
     rate*finrank K L ≤ finrank K (BilinearImage.image (piBilinear mu) L) := by

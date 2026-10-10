@@ -30,7 +30,7 @@ theorem preparedTargetLabel_card (q f u : ℕ) (J : Finset ℕ) (counts : ℕ �
   rw [Fintype.card_sum,preparedLabel_card,Fintype.card_sum,Fintype.card_fin,Fintype.card_fin]
   omega
 
-theorem activeEven_eq_insert_higher {d : ℕ} (hd : 3≤d) :
+theorem activeEven_eq_insert_higher {d : ℕ} (hd : 3 ≤ d) :
     activeEvenIndices d=insert 2 (activeHigherIndices d) := by
   ext j
   simp only [mem_insert]
@@ -45,7 +45,7 @@ theorem activeEven_eq_insert_higher {d : ℕ} (hd : 3≤d) :
     · exact two_mem_activeEvenIndices hd
     · exact (mem_filter.mp hj).1
 
-theorem sum_targetLayerCount {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
+theorem sum_targetLayerCount {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ) :
     (∑ j∈activeEvenIndices d,targetLayerCount d h m e j)=
       e+∑ j∈activeHigherIndices d,higherGeneratorCount d h m j := by
   rw [activeEven_eq_insert_higher hd,Finset.sum_insert]
@@ -59,7 +59,7 @@ theorem sum_targetLayerCount {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
     omega
 
 theorem exact_preparedTarget_card {d k h lo m a f e : ℕ} {upper : Bool}
-    (hd : 3≤d) (hc : ExactCountConditions d k h lo m a f e upper) :
+    (hd : 3 ≤ d) (hc : ExactCountConditions d k h lo m a f e upper) :
     Fintype.card (PreparedTarget.Label (upperCount m d) f (tailGeneratorCount d h)
       (activeEvenIndices d) (targetLayerCount d h m e))=adjacentCriticalCount upper (m+h) d := by
   rw [preparedTargetLabel_card,sum_targetLayerCount hd]
@@ -70,7 +70,7 @@ theorem exact_preparedTarget_card {d k h lo m a f e : ℕ} {upper : Bool}
 def preparedScalarCount (d h m e : ℕ) : ℕ :=
   upperCount m d+e+∑ j∈activeHigherIndices d,higherGeneratorCount d h m j
 
-theorem preparedScalarCount_eq_card {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
+theorem preparedScalarCount_eq_card {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ) :
     preparedScalarCount d h m e=
       Fintype.card (PreparedParameters.Label (upperCount m d) (activeEvenIndices d)
         (targetLayerCount d h m e)) := by
@@ -78,8 +78,8 @@ theorem preparedScalarCount_eq_card {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
   unfold preparedScalarCount
   omega
 
-theorem quadraticCount_lower_order {d : ℕ} (hd : 3≤d) (h : ℕ) (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+theorem quadraticCount_lower_order {d : ℕ} (hd : 3 ≤ d) (h : ℕ) (e : ℕ → ℕ)
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     Tendsto (fun m : ℕ => (e m : ℝ)/(m : ℝ)^d) atTop (𝓝 0) := by
   let P : Polynomial ℝ := monomial (d-2) (countBeta d*(h : ℝ)^2)
   have hp : P.natDegree<d := (natDegree_monomial_le _).trans_lt (by omega)
@@ -90,9 +90,9 @@ theorem quadraticCount_lower_order {d : ℕ} (hd : 3≤d) (h : ℕ) (e : ℕ →
   apply squeeze_zero' (Eventually.of_forall fun _ => by positivity) _ hlim
   exact he.mono fun m hm => div_le_div_of_nonneg_right hm.le (by positivity)
 
-theorem preparedScalarCount_normalized_limit {d : ℕ} (hd : 3≤d) (h extra : ℕ)
+theorem preparedScalarCount_normalized_limit {d : ℕ} (hd : 3 ≤ d) (h extra : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     Tendsto (fun m : ℕ => ((preparedScalarCount d h m (e m)+extra : ℕ) : ℝ)/(m : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))) := by
   have hs : Tendsto (fun m : ℕ =>

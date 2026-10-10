@@ -42,7 +42,7 @@ def scalarBiformEquiv : Forms K n d ≃ₗ[K] (Forms K h 0 ⊗[K] Forms K n d) :
 
 /-- Use scalar forms directly in any biform action; the scalar slot has no
 additional parameter or restriction. -/
-def scalarBiformAction {b : ℕ} (hbd : b≤d) :
+def scalarBiformAction {b : ℕ} (hbd : b ≤ d) :
     Forms K n d →ₗ[K] (Forms K h b ⊗[K] Forms K n (d-b)) →ₗ[K]
       (Forms K h b ⊗[K] Forms K n (2*d-b)) :=
   (oddRowScalarAction hbd).comp scalarBiformEquiv.toLinearMap

@@ -15,11 +15,11 @@ noncomputable section
 namespace Froberg
 variable {K : Type} [Field K] {h m d : ℕ}
 
-theorem target_lifts_cover (hd : 3≤d) (I : Submodule K (Poly K (h+m)))
+theorem target_lifts_cover (hd : 3 ≤ d) (I : Submodule K (Poly K (h + m)))
     (h₂ : TargetLift I d 2) (h₃ : TargetLift I d 3) (h₄ : TargetLift I d 4)
-    (hmid : ∀ b,5≤b → b≤d → (b<d ∨ Odd d) → TargetLift I d b)
+    (hmid : ∀ b, 5 ≤ b → b ≤ d → (b < d ∨ Odd d) → TargetLift I d b)
     (heven : ¬Odd d → TargetLift I d d)
-    (hupper : ∀ b,d+1≤b → b≤2*d → TargetLift I d b) :
+    (hupper : ∀ b, d + 1 ≤ b → b ≤ 2 * d → TargetLift I d b) :
     ∀ b,2≤b → b≤2*d → TargetLift I d b := by
   intro b hb hbmax
   by_cases hbd : b≤d

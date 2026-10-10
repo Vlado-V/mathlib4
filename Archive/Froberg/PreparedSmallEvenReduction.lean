@@ -31,10 +31,10 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem finite_cubic_reduction_open
     [LinearOrder (Label q (allEvenIndices 3) counts)]
     (T : ℕ → Poly K h →ₗ[K] X)
-    (hz : ∀ k∈allEvenIndices 3,k≠2 → counts k=0)
-    (hm : counts 2≤(2*(h/2).choose 2-finrank K X)*(n/2))
-    (hquad : ∃ b,QuadraticRowCapacity n 3 q b (allEvenIndices 3) counts
-      (fun j => Forms K h j⊓(T j).ker)) :
+    (hz : ∀ k ∈ allEvenIndices 3, k ≠ 2 → counts k = 0)
+    (hm : counts 2 ≤ (2 * (h / 2).choose 2 - finrank K X) * (n / 2))
+    (hquad : ∃ b, QuadraticRowCapacity n 3 q b (allEvenIndices 3) counts
+      (fun j => Forms K h j ⊓ (T j).ker)) :
     let S := Space n 3 q (allEvenIndices 3) counts (fun j => Forms K h j⊓(T j).ker)
     ∃ D : MvPolynomial (Fin (finrank K S)) K,
       (∃ p : S,eval ((Module.finBasis K S).equivFun p) D≠0) ∧
@@ -61,13 +61,14 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem finite_quartic_reduction_open
     [LinearOrder (Label q (allEvenIndices 4) counts)]
     (T : ℕ → Poly K h →ₗ[K] X)
-    (hz : ∀ k∈allEvenIndices 4,k≠2 → counts k=0)
-    (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
-    (hm : counts 2≤(2*(h/2).choose 2-finrank K X)*(S.card.choose 2/2))
-    (hquad : ∃ b,QuadraticRowCapacity n 4 q b (allEvenIndices 4) counts
-      (fun j => Forms K h j⊓(T j).ker))
+    (hz : ∀ k ∈ allEvenIndices 4, k ≠ 2 → counts k = 0)
+    (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
+    (hm : counts 2 ≤ (2 * (h / 2).choose 2 - finrank K X) * (S.card.choose 2 / 2))
+    (hquad : ∃ b, QuadraticRowCapacity n 4 q b (allEvenIndices 4) counts
+      (fun j => Forms K h j ⊓ (T j).ker))
     (Q : Fin (Fintype.card (Label q (allEvenIndices 4) counts)) → Forms K n 4)
-    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠2) Q 0)) :
+    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α ≠ 2) Q
+      0)) :
     let A := Space n 4 q (allEvenIndices 4) counts (fun j => Forms K h j⊓(T j).ker)
     ∃ D : MvPolynomial (Fin (finrank K A)) K,
       (∃ p : A,eval ((Module.finBasis K A).equivFun p) D≠0) ∧

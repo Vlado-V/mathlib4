@@ -24,7 +24,7 @@ variable {Z : Type*} [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable {n d r t a b T : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r →
+theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r →
   Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
@@ -33,14 +33,14 @@ theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (hmu : ∀ z v, mu z (vmap v) = eJ (projectedQuotientProduct pi q (phi z) v))
     (C : ℝ) (hC : (t : ℝ) ≤ C)
-    (count : Fin (a+1) → ℕ)
+    (count : Fin (a + 1) → ℕ)
     (degrees : ∀ k, Fin (count k) → ℕ)
     (eqs : ∀ k, (i : Fin (count k)) → Forms K T (degrees k i))
     (cuts : ∀ k, Fin (BilinearCovectorStrata.thinSlices T C k.val) → Forms K T 1)
     (hempty : ∀ k (ell : Fin T → K),
       (∀ i, MvPolynomial.aeval ell (eqs k i).val = 0) →
       (∀ j, MvPolynomial.aeval ell (cuts k j).val = 0) → ell = 0)
-    (hcover : ∀ (ell : Fin T → K) (k : Fin (a+1)),
+    (hcover : ∀ (ell : Fin T → K) (k : Fin (a + 1)),
       finrank K (LinearMap.ker (relationMap mu ell)) = k.val →
       ∀ i, MvPolynomial.eval ell (eqs k i).val = 0) :
     ∃ z : Fin t → Fin b → K,
@@ -53,7 +53,7 @@ theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →
   exact thinSlices_le_coefficientSliceCount _ t T k.val C hC
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_local_comparison_of_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r →
+theorem exists_local_comparison_of_thin_slices (D : Submodule K (Forms K n (2 * d))) (q : Fin r →
   Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
@@ -62,14 +62,14 @@ theorem exists_local_comparison_of_thin_slices (D : Submodule K (Forms K n (2*d)
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (hmu : ∀ z v, mu z (vmap v) = eJ (projectedQuotientProduct D.mkQ q (phi z) v))
     (C : ℝ) (hC : (t : ℝ) ≤ C)
-    (count : Fin (a+1) → ℕ)
+    (count : Fin (a + 1) → ℕ)
     (degrees : ∀ k, Fin (count k) → ℕ)
     (eqs : ∀ k, (i : Fin (count k)) → Forms K T (degrees k i))
     (cuts : ∀ k, Fin (BilinearCovectorStrata.thinSlices T C k.val) → Forms K T 1)
     (hempty : ∀ k (ell : Fin T → K),
       (∀ i, MvPolynomial.aeval ell (eqs k i).val = 0) →
       (∀ j, MvPolynomial.aeval ell (cuts k j).val = 0) → ell = 0)
-    (hcover : ∀ (ell : Fin T → K) (k : Fin (a+1)),
+    (hcover : ∀ (ell : Fin T → K) (k : Fin (a + 1)),
       finrank K (LinearMap.ker (relationMap mu ell)) = k.val →
       ∀ i, MvPolynomial.eval ell (eqs k i).val = 0) :
     ∀ B : ℕ,

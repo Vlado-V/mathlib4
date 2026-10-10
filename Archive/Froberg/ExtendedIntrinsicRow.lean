@@ -26,14 +26,14 @@ variable {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem extended_sparse_intrinsic_exact (hs : 1 ≤ s) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (e : Fin m → Fin a →₀ ℕ)
     (v : Fin m → Fin (finrank K (homogeneousSubmodule σ K R)) → K)
-    (he : ∀ i,(e i).degree=s) (Q : Fin q → Forms K a d)
+    (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K a d)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin a) K)
-    (hP : P.range≤FullBiform K σ a R (s+d))
-    (hfull : ∀ c ≤ d,Function.Injective (homogeneousMultiplication (d := c) e v he))
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hP : P.range ≤ FullBiform K σ a R (s + d))
+    (hfull : ∀ c ≤ d, Function.Injective (homogeneousMultiplication (d := c) e v he))
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K
         ((Fin q → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K a s) ×
           (Fin m → Forms K a d)) W).comp (intermediateKoszul e v he Q)).range)

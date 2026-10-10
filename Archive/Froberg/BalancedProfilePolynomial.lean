@@ -30,7 +30,7 @@ private theorem inverse_factorials_choose {d u : ℕ} (hu : u ≤ d) :
 /-- A retained set of increments of limiting mass strictly above one
 quarter retains at least one quarter for all sufficiently large block sizes. -/
 theorem eventually_balanced_profile_sum_bound (d : ℕ) (U : Finset ℕ)
-    (hU : ∀ u ∈ U, u ≤ d) (hgap : 2^d < 4 * ∑ u ∈ U, d.choose u)
+    (hU : ∀ u ∈ U, u ≤ d) (hgap : 2 ^ d < 4 * ∑ u ∈ U, d.choose u)
     (a b c : ℕ) :
     ∀ᶠ m : ℕ in atTop,
       (2*m+c+d-1).choose d ≤

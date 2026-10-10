@@ -22,15 +22,15 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f b : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem higher_target_zero_component_mem (hd : 1≤d)
+theorem higher_target_zero_component_mem (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+    (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
     (r : {r : Fin ((2*d+1)/2) // r≠oddTargetBottomIndex hd})
-    (hr : 2*r.val.val+1=b) (hb : b≤2*d)
-    (v : biformParitySpace K h m (2*d) 1)
-    (hv : (oddTargetBaseMap hd Q F hQ hF v).2 r=0) :
+    (hr : 2 * r.val.val + 1 = b) (hb : b ≤ 2 * d)
+    (v : biformParitySpace K h m (2 * d) 1)
+    (hv : (oddTargetBaseMap hd Q F hQ hF v).2 r = 0) :
     biformTensorComponent hb v∈(oddBackgroundRelations Q F).map (biformTensorComponent hb) := by
   rw [oddTargetBaseMap_higher] at hv
   have hm := (Submodule.Quotient.mk_eq_zero

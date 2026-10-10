@@ -20,7 +20,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 
-theorem eventually_actual_quadratic_capacity {d : ℕ} (hd : 3≤d) :
+theorem eventually_actual_quadratic_capacity {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,∀ (σ : Type*) [Fintype σ],
       ∀ (O : ℕ → Submodule K (MvPolynomial σ K)),
       finrank K (O 2)=quadraticOutputDimension d h →

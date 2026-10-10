@@ -58,22 +58,22 @@ theorem ambientBiform_product (g : Forms K h j ⊗[K] Forms K m e)
 
 /-- The relation row formed from actual deformed generators and homogeneous
 biform coefficients. -/
-def preparedBiformRow (p : ι → Poly K (h+m)) :
+def preparedBiformRow (p : ι → Poly K (h + m)) :
     (ι → Forms K h x ⊗[K] Forms K m y) →ₗ[K] Poly K (h+m) where
   toFun c := ∑ i,p i*ambientBiform (c i)
   map_add' c c' := by simp only [Pi.add_apply,map_add,mul_add,Finset.sum_add_distrib]
   map_smul' a c := by
     simp only [Pi.smul_apply,map_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
-@[simp] theorem preparedBiformRow_apply (p : ι → Poly K (h+m))
+@[simp] theorem preparedBiformRow_apply (p : ι → Poly K (h + m))
     (c : ι → Forms K h x ⊗[K] Forms K m y) :
     preparedBiformRow p c=∑ i,p i*ambientBiform (c i) := rfl
 
 /-- The leading coefficient row of a lower deformation is its homogeneous
 biform multiplication row. This is an identity of actual polynomials. -/
-theorem preparedBiformRow_top (p : ι → Poly K (h+m))
+theorem preparedBiformRow_top (p : ι → Poly K (h + m))
     (g : ι → Forms K h j ⊗[K] Forms K m e)
-    (hp : ∀ i,coreComponent h m j (p i)=ambientBiform (g i))
+    (hp : ∀ i, coreComponent h m j (p i) = ambientBiform (g i))
     (c : ι → Forms K h x ⊗[K] Forms K m y) :
     coreComponent h m (j+x) (preparedBiformRow p c)=
       ambientBiform (biformTensorFamilyMap g c) := by
@@ -85,9 +85,9 @@ theorem preparedBiformRow_top (p : ι → Poly K (h+m))
     (hp i) (ambientBiform_weighted (c i))
 
 /-- No product from the row has an X-degree above its designated target. -/
-theorem preparedBiformRow_above (p : ι → Poly K (h+m))
-    (hp : ∀ i k,j<k → coreComponent h m k (p i)=0)
-    (c : ι → Forms K h x ⊗[K] Forms K m y) {t : ℕ} (ht : j+x<t) :
+theorem preparedBiformRow_above (p : ι → Poly K (h + m))
+    (hp : ∀ i k, j < k → coreComponent h m k (p i) = 0)
+    (c : ι → Forms K h x ⊗[K] Forms K m y) {t : ℕ} (ht : j + x < t) :
     coreComponent h m t (preparedBiformRow p c)=0 := by
   rw [preparedBiformRow_apply,map_sum]
   apply Finset.sum_eq_zero
@@ -97,11 +97,11 @@ theorem preparedBiformRow_above (p : ι → Poly K (h+m))
 
 /-- Every top biform has a preimage under the deformed polynomial row once
 the corresponding homogeneous tensor row is onto. -/
-theorem preparedBiformRow_top_surjective (p : ι → Poly K (h+m))
+theorem preparedBiformRow_top_surjective (p : ι → Poly K (h + m))
     (g : ι → Forms K h j ⊗[K] Forms K m e)
-    (hp : ∀ i,coreComponent h m j (p i)=ambientBiform (g i))
+    (hp : ∀ i, coreComponent h m j (p i) = ambientBiform (g i))
     (hg : Function.Surjective (biformTensorFamilyMap (x := x) (y := y) g))
-    (v : Forms K h (j+x) ⊗[K] Forms K m (e+y)) :
+    (v : Forms K h (j + x) ⊗[K] Forms K m (e + y)) :
     ∃ c : ι → Forms K h x ⊗[K] Forms K m y,
       coreComponent h m (j+x) (preparedBiformRow p c)=ambientBiform v := by
   obtain ⟨c,rfl⟩ := hg v

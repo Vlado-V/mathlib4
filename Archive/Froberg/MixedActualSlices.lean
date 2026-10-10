@@ -24,8 +24,8 @@ attribute [local
   irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f u e b : ℕ}
 variable (hd : Odd d) (hd3 : 3 ≤ d)
-  (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
-  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+  (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
+  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
 local notation "hdp" => Nat.le_trans (by decide : 1 ≤ 3) hd3
 local notation "F" => bottomTensorFamily g
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
@@ -56,8 +56,8 @@ theorem mixed_actual_affine_slices (hh : 0 < h) (hm : 0 < m)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
       (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range
         Q))))
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (hker : R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (hker : R.ker = (Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
     (s₀ : ℕ → ℕ) (hs₀ : HasClosedKernelSlices ν s₀) (M : ℕ)
     (htop : ∀ L : Submodule K (Fin b → K), M*finrank K L ≤ finrank K
       (BilinearImage.image (projectedTopScalarAction R (topGrowthParameters hdp Q F)) L))

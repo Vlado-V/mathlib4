@@ -19,7 +19,7 @@ open Filter
 open scoped Topology
 
 theorem scalar_incidence_gap_of_choose {d e : ℕ}
-    (hgap : ((e+d).choose e : ℝ)*criticalRatio d < 2/5) :
+    (hgap : ((e + d).choose e : ℝ) * criticalRatio d < 2 / 5) :
     5*(e.factorial : ℝ)⁻¹*(criticalRatio d/(d.factorial : ℝ)) <
       2*((e+d).factorial : ℝ)⁻¹ := by
   have ht : (0 : ℝ)<(e+d).factorial := by positivity
@@ -32,7 +32,7 @@ theorem scalar_incidence_gap_of_choose {d e : ℕ}
   nlinarith
 
 theorem eventually_small_scalar_source_budget {d R : ℕ}
-    (hd : 3≤d) (hd8 : d≤8) (hR : R=4 ∨ R=6 ∨ R=8) (hRd : R≤d)
+    (hd : 3 ≤ d) (hd8 : d ≤ 8) (hR : R = 4 ∨ R = 6 ∨ R = 8) (hRd : R ≤ d)
     (q : ℕ → ℕ)
     (hq : Tendsto (fun n : ℕ => (q n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :

@@ -52,8 +52,8 @@ scalar projection used to make the common scalar family injective. -/
 theorem product_range_le_biform_scalar_kernel {n : ℕ} [Fintype σ]
     (S : Finset (Fin n)) (e : ℕ → ℕ)
     (q : (j : ℕ) → Fin (e j) → MvPolynomial (σ ⊕ Fin n) K)
-    {J : Finset ℕ} {R d : ℕ} (heven : ∀ j∈J, Even j) (hdegree : ∀ j∈J,j≤d)
-    (hq : ∀ j∈J, ∀ i, (q j i).IsWeightedHomogeneous
+    {J : Finset ℕ} {R d : ℕ} (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
+    (hq : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (halfWeight S)) (assignedScalarDegree R d j)) :
     (multiplication e q J R).range ≤
       (biformScalarMap (σ := σ) (retainMonomials (K := K)
@@ -78,8 +78,8 @@ theorem scalar_product_disjoint_product_row {n : ℕ} [Fintype σ] [Infinite K]
     (S : Finset (Fin n)) (e : ℕ → ℕ)
     (q : (j : ℕ) → Fin (e j) → MvPolynomial (σ ⊕ Fin n) K)
     {J : Finset ℕ} {R d t r : ℕ}
-    (heven : ∀ j∈J, Even j) (hdegree : ∀ j∈J,j≤d)
-    (hq : ∀ j∈J, ∀ i, (q j i).IsWeightedHomogeneous
+    (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
+    (hq : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (halfWeight S)) (assignedScalarDegree R d j))
     (O : Submodule K (MvPolynomial σ K)) (f : Fin r → Forms K n d)
     (hf : Function.Injective (ProjectedPrefix.multiplication

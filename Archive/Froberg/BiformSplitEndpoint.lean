@@ -43,7 +43,7 @@ def biformSplitEndpointParity : Fin (q+f) → ZMod 2 := biformSplitParity ∘ fi
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformSplitEndpoint_parity (Q : Fin q → biformParitySpace K h m d 0)
-    (F : Fin f → biformParitySpace K h m d 1) (i : Fin (q+f)) :
+    (F : Fin f → biformParitySpace K h m d 1) (i : Fin (q + f)) :
     (biformSplitEndpoint Q F i).val.IsWeightedHomogeneous (coreParity h m)
       (biformSplitEndpointParity (q := q) (f := f) i) := by
   simpa only [coreParity_eq_blockParity, biformSplitEndpoint, biformSplitEndpointParity,
@@ -69,8 +69,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_endpoint (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (H : OddSplitExact Q F)
     (a : (endpointMultiplication (biformSplitEndpoint Q F)).ker)
-    (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
-      (1-biformSplitEndpointParity (q := q) (f := f) i)) :
+    (ha : ∀ i, (a.val i).val.IsWeightedHomogeneous (coreParity h m)
+      (1 - biformSplitEndpointParity (q := q) (f := f) i)) :
     a.val∈oppositeKoszulSpace (biformSplitEndpoint Q F) (biformSplitEndpointParity (q := q) (f :=
       f)) := by
   let idx : Fin q ⊕ Fin f ≃ Fin (q+f) := finSumFinEquiv

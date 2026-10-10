@@ -20,19 +20,19 @@ namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
-variable (hd : 1≤d)
+variable (hd : 1 ≤ d)
   (Q : Fin q → biformParitySpace K h m d 0)
   (F : Fin f → biformParitySpace K h m d 1)
-  (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-  (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+  (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+  (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
   (G : Fin u → biformParitySpace K h m d 1)
   (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
-  (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
+  (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G) =
     oddAmbientBottomRelationMap hd Q F hQ hF G)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddAmbientCoordinates_weighted_bottom
-    (p : biformParitySpace K h m (2*d) 1)
+    (p : biformParitySpace K h m (2 * d) 1)
     (hp : p.val.IsWeightedHomogeneous (blockWeight h m) 1) :
     oddAmbientCoordinates hd Q F hQ hF G D hD ((ambientOddRelations Q F G).mkQ p)=
       ((oddTargetBaseMap hd Q F hQ hF p).1,0) := by

@@ -46,8 +46,8 @@ lemma quotientFactor_surjective (ι : Fin b ↪ Fin z)
   Submodule.factor_surjective (relationSpace_core_le ι u)
 
 lemma quotientFactor_mul (ι : Fin b ↪ Fin z)
-    (u : Labels k a s ⊕ Fin b → Fin h → K) (f : Forms K (a+z) c)
-    (x : ((Fin h → Forms K (a+z) s) ⧸ relationSpace (d := 0)
+    (u : Labels k a s ⊕ Fin b → Fin h → K) (f : Forms K (a + z) c)
+    (x : ((Fin h → Forms K (a + z) s) ⧸ relationSpace (d := 0)
       (coreExponent z) (fun i => u (Sum.inl i)) (coreExponent_degree z))) :
     quotientMultiply (attachedExponent ι) u (attachedExponent_degree ι) f
       (quotientFactor (c := 0) ι u x) =
@@ -58,7 +58,7 @@ lemma quotientFactor_mul (ι : Fin b ↪ Fin z)
   rfl
 
 lemma quotientFactor_ker_finrank (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
-    (hh : k*(2*s+1).choose s ≤ h) (hsmall : k*(s+1)+2 ≤ h)
+    (hh : k * (2 * s + 1).choose s ≤ h) (hsmall : k * (s + 1) + 2 ≤ h)
     (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b), U.card ≤ h →
       LinearIndependent K (fun i : U => u i.val))

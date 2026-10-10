@@ -18,7 +18,7 @@ open Froberg Module MvPolynomial Filter
 open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 
-theorem eventually_field_uniform_quadratic_capacity_shift_late {d : ℕ} (hd : 3≤d) :
+theorem eventually_field_uniform_quadratic_capacity_shift_late {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,∀ (J : Finset ℕ) (q : ℕ → ℕ) (counts : ℕ → ℕ → ℕ),
       Tendsto (fun n : ℕ => (Fintype.card (Label (q n) J (counts n)) : ℝ)/(n : ℝ)^d)
         atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))) →
@@ -66,7 +66,7 @@ theorem eventually_field_uniform_quadratic_capacity_shift_late {d : ℕ} (hd : 3
           incidence := by simpa only [hO,r] using hinc
           scalar_open := ⟨D,hD,hgood⟩ }
 
-theorem eventually_field_uniform_actual_quadratic_capacity_shift_late {d : ℕ} (hd : 3≤d) :
+theorem eventually_field_uniform_actual_quadratic_capacity_shift_late {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

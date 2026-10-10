@@ -19,7 +19,7 @@ open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] {h m d r q : ℕ}
 attribute [local instance] tensorGroup
 
-theorem ambientBiform_regrade_right {j e e' : ℕ} (he : e=e')
+theorem ambientBiform_regrade_right {j e e' : ℕ} (he : e = e')
     (u : Forms K h j ⊗[K] Forms K m e) :
     ambientBiform (TensorProduct.map LinearMap.id (formsDegreeEquiv he).toLinearMap
       u)=ambientBiform u := by
@@ -29,22 +29,22 @@ theorem ambientBiform_regrade_right {j e e' : ℕ} (he : e=e')
   | tmul u v => simp only [TensorProduct.map_tmul,LinearMap.id_apply,ambientBiform_tmul,
       LinearEquiv.coe_coe,formsDegreeEquiv_val]
 
-theorem row_two_deformed_target_lift (hd : 2≤d)
-    (pF : Fin r → Poly K (h+m)) (pE : Fin q → Poly K (h+m))
-    (hpF : ∀ i,(pF i).IsHomogeneous d) (hpE : ∀ i,(pE i).IsHomogeneous d)
-    (gF : Fin r → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (gE : Fin q → Forms K h 2 ⊗[K] Forms K m (d-2))
-    (htF : ∀ i,coreComponent h m 1 (pF i)=ambientBiform (gF i))
-    (htE : ∀ i,coreComponent h m 2 (pE i)=ambientBiform (gE i))
-    (huF : ∀ i k,1<k → coreComponent h m k (pF i)=0)
-    (huE : ∀ i k,2<k → coreComponent h m k (pE i)=0)
+theorem row_two_deformed_target_lift (hd : 2 ≤ d)
+    (pF : Fin r → Poly K (h + m)) (pE : Fin q → Poly K (h + m))
+    (hpF : ∀ i, (pF i).IsHomogeneous d) (hpE : ∀ i, (pE i).IsHomogeneous d)
+    (gF : Fin r → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (gE : Fin q → Forms K h 2 ⊗[K] Forms K m (d - 2))
+    (htF : ∀ i, coreComponent h m 1 (pF i) = ambientBiform (gF i))
+    (htE : ∀ i, coreComponent h m 2 (pE i) = ambientBiform (gE i))
+    (huF : ∀ i k, 1 < k → coreComponent h m k (pF i) = 0)
+    (huE : ∀ i k, 2 < k → coreComponent h m k (pE i) = 0)
     (hsurj : Function.Surjective
-      ((biformTensorFamilyMap (x := 1) (y := d-1) gF).coprod
-        (biformTensorFamilyToDegree (x := 0) (by omega : d-2+d=(d-1)+(d-1)) gE)))
-    (I : Submodule K (Poly K (h+m)))
-    (hIF : (Submodule.span K (Set.range pF))*Forms K (h+m) d≤I)
-    (hIE : (Submodule.span K (Set.range pE))*Forms K (h+m) d≤I)
-    (v : coreCoefficientSpace K h m (2*d) 2) :
+      ((biformTensorFamilyMap (x := 1) (y := d - 1) gF).coprod
+        (biformTensorFamilyToDegree (x := 0) (by omega : d - 2 + d = (d - 1) + (d - 1)) gE)))
+    (I : Submodule K (Poly K (h + m)))
+    (hIF : (Submodule.span K (Set.range pF)) * Forms K (h + m) d ≤ I)
+    (hIE : (Submodule.span K (Set.range pE)) * Forms K (h + m) d ≤ I)
+    (v : coreCoefficientSpace K h m (2 * d) 2) :
     ∃ z : Forms K (h+m) (2*d),z.val∈I ∧ coreComponent h m 2 z.val=v.val ∧
       ∀ k,2<k → coreComponent h m k z.val=0 := by
   let w : Poly K (h+m) := v.val

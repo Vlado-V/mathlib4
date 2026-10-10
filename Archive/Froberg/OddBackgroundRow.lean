@@ -42,7 +42,7 @@ theorem biformTensorComponent_scalar_product (hb : b ≤ d)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_linear_product (hb : 1 ≤ b) (hbd : b ≤ d)
-    (F : Forms K h 1 ⊗[K] Forms K m (d-1)) (a : biformParitySpace K h m d 0) :
+    (F : Forms K h 1 ⊗[K] Forms K m (d - 1)) (a : biformParitySpace K h m d 0) :
     biformTensorComponent (by omega : b ≤ 2*d)
       (oddPrivateProduct (oddBiformEmbedding (t := 1) (by omega) (by decide) F) a)=
       oddRowLinearAction hb hbd F
@@ -76,7 +76,7 @@ def oddLinearCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddLinearCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
-    (ho : b%2=1) : Function.Surjective
+    (ho : b % 2 = 1) : Function.Surjective
       (oddLinearCoefficientProjection (K := K) (h := h) (m := m) hb hbd) :=
   (tensorDegreeEquiv (by omega : (b-1)+0=b-1)
     (by omega : (d-(b-1))+0=d-b+1)).surjective.comp
@@ -96,7 +96,7 @@ def oddRowCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddRowCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
-    (ho : b%2=1) : Function.Surjective
+    (ho : b % 2 = 1) : Function.Surjective
       (oddRowCoefficientProjection (K := K) (h := h) (m := m) (q := q) (f := f) hb hbd) := by
   rintro ⟨x,y⟩
   have hx := fun i => oddLinearCoefficientProjection_surjective (K := K) (h := h)
@@ -111,7 +111,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddTensorRowMap (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     ((Fin f → Forms K h (b-1) ⊗[K] Forms K m (d-b+1)) ×
       (Fin q → Forms K h b ⊗[K] Forms K m (d-b))) →ₗ[K]
         (Forms K h b ⊗[K] Forms K m (2*d-b)) :=
@@ -128,7 +128,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddBackground_row_commutes (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (biformTensorComponent (by omega : b ≤ 2*d)).comp
       ((privateEvenCoefficientMap (fun i => oddBiformEmbedding (by omega) (by decide) (F i))).coprod
         (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i)))) =
@@ -147,9 +147,9 @@ theorem oddBackground_row_commutes (hb : 1 ≤ b) (hbd : b ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-theorem oddBackground_tensor_row_range (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
+theorem oddBackground_tensor_row_range (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (oddBackgroundRelations
       (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i))
       (fun i => oddBiformEmbedding (by omega) (by decide) (F i))).map

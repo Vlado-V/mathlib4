@@ -24,12 +24,12 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem exists_single_layer_profile_parameter (j : ℕ)
-    (hz : ∀ k∈J,k≠j → counts k=0)
+    (hz : ∀ k ∈ J, k ≠ j → counts k = 0)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (hf : ∀ i,f i∈biformImage (O j) (Forms K n (d-j)))
+    (hf : ∀ i, f i ∈ biformImage (O j) (Forms K n (d - j)))
     (hi : LinearIndependent K (pairProducts f))
     (P : Submodule K (MvPolynomial (σ ⊕ Fin n) K))
-    (hP : ∀ a,pairProducts f a∈P) :
+    (hP : ∀ a, pairProducts f a ∈ P) :
     ∃ p : Space n d q J counts O,
       (∀ R,Function.Injective (ProductRows.multiplication counts (layers p) J R)) ∧
       ∀ R,(ProductRows.multiplication counts (layers p) J R).range≤P := by
@@ -51,9 +51,9 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem exists_strong_quartic_profile_parameter {h : ℕ}
     (T : ℕ → Poly K h →ₗ[K] X)
-    (hz : ∀ k∈J,k≠2 → counts k=0)
-    (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
-    (hm : counts 2≤(2*(h/2).choose 2-finrank K X)*(S.card.choose 2/2)) :
+    (hz : ∀ k ∈ J, k ≠ 2 → counts k = 0)
+    (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
+    (hm : counts 2 ≤ (2 * (h / 2).choose 2 - finrank K X) * (S.card.choose 2 / 2)) :
     ∃ p : Space n 4 q J counts (fun j => Forms K h j⊓(T j).ker),
       (∀ R,Function.Injective (ProductRows.multiplication counts (layers p) J R)) ∧
       ∀ R a,(ProductRows.multiplication counts (layers p) J R a).IsWeightedHomogeneous

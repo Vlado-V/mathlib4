@@ -39,13 +39,13 @@ theorem preparedScalarSpace_eq_familySpace
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_outer_separation_of_quadratic_row
-    (hd : 3≤d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hmin : ∀ j∈J,2≤j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
-    (T : Poly K h →ₗ[K] (Fin c → K)) (hT : T.comp (homogeneousComponent 2)=T)
-    (hO₂ : O 2≤T.ker) (U : Fin u → Forms K h d)
+    (hd : 3 ≤ d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hmin : ∀ j ∈ J, 2 ≤ j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
+    (T : Poly K h →ₗ[K] (Fin c → K)) (hT : T.comp (homogeneousComponent 2) = T)
+    (hO₂ : O 2 ≤ T.ker) (U : Fin u → Forms K h d)
     (p : FixedPureZeroScalarSpace m d q f u J counts O)
-    (hrow : PreparedQuadraticRowSeparated (t := d-2) idx (biformVectorDetector T) p) :
+    (hrow : PreparedQuadraticRowSeparated (t := d - 2) idx (biformVectorDetector T) p) :
     PreparedOuterSeparation (by omega) ho hO hJ heven U p := by
   intro D hD
   have hlow := prepared_private_background_lowComponents hd ho hO hJ heven hmin U p.1 p.2.2 p.2.1
@@ -60,19 +60,19 @@ theorem prepared_outer_separation_of_quadratic_row
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_outer_separation_principal_open
-    (hd : 3≤d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hmin : ∀ j∈J,2≤j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
-    (T : Poly K h →ₗ[K] (Fin c → K)) (hT : T.comp (homogeneousComponent 2)=T)
-    (hO₂ : O 2≤T.ker) (U : Fin u → Forms K h d)
+    (hd : 3 ≤ d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hmin : ∀ j ∈ J, 2 ≤ j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
+    (T : Poly K h →ₗ[K] (Fin c → K)) (hT : T.comp (homogeneousComponent 2) = T)
+    (hO₂ : O 2 ≤ T.ker) (U : Fin u → Forms K h d)
     (Q₀ : Fin r → Forms K m d) (P₀ : OuterSpace K (Fin h) m d u)
     (F₀ : OuterSpace K (Fin h) m d f)
-    (hexact : (quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) m 1 (d-1)).subtype
-      (biformVectorDetector T) Q₀ P₀).ker=(quadraticNuisanceBoundary P₀).range)
-    (hsep : ∀ x z,quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) m 1 (d-1)).subtype
-      (biformVectorDetector T) Q₀ P₀ x+
-      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype
-        (biformVectorDetector T) F₀ z=0 → z=0) :
+    (hexact : (quadraticNuisanceRow (t := d - 2) (FullBiform K (Fin h) m 1 (d - 1)).subtype
+      (biformVectorDetector T) Q₀ P₀).ker = (quadraticNuisanceBoundary P₀).range)
+    (hsep : ∀ x z, quadraticNuisanceRow (t := d - 2) (FullBiform K (Fin h) m 1 (d - 1)).subtype
+      (biformVectorDetector T) Q₀ P₀ x +
+      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d - 1)).subtype
+        (biformVectorDetector T) F₀ z = 0 → z = 0) :
     letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
       finite_fixedPureZeroScalarSpace hO
     ∃ D : MvPolynomial (Fin (finrank K (FixedPureZeroScalarSpace m d q f u J counts O))) K,
@@ -90,19 +90,19 @@ theorem prepared_outer_separation_principal_open
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_outer_separation_principal_open_uniform
-    (hd : 3≤d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hmin : ∀ j∈J,2≤j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
-    (T : Poly K h →ₗ[K] (Fin c → K)) (hT : T.comp (homogeneousComponent 2)=T)
-    (hO₂ : O 2≤T.ker)
+    (hd : 3 ≤ d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hmin : ∀ j ∈ J, 2 ≤ j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
+    (T : Poly K h →ₗ[K] (Fin c → K)) (hT : T.comp (homogeneousComponent 2) = T)
+    (hO₂ : O 2 ≤ T.ker)
     (Q₀ : Fin r → Forms K m d) (P₀ : OuterSpace K (Fin h) m d u)
     (F₀ : OuterSpace K (Fin h) m d f)
-    (hexact : (quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) m 1 (d-1)).subtype
-      (biformVectorDetector T) Q₀ P₀).ker=(quadraticNuisanceBoundary P₀).range)
-    (hsep : ∀ x z,quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) m 1 (d-1)).subtype
-      (biformVectorDetector T) Q₀ P₀ x+
-      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype
-        (biformVectorDetector T) F₀ z=0 → z=0) :
+    (hexact : (quadraticNuisanceRow (t := d - 2) (FullBiform K (Fin h) m 1 (d - 1)).subtype
+      (biformVectorDetector T) Q₀ P₀).ker = (quadraticNuisanceBoundary P₀).range)
+    (hsep : ∀ x z, quadraticNuisanceRow (t := d - 2) (FullBiform K (Fin h) m 1 (d - 1)).subtype
+      (biformVectorDetector T) Q₀ P₀ x +
+      detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d - 1)).subtype
+        (biformVectorDetector T) F₀ z = 0 → z = 0) :
     letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
       finite_fixedPureZeroScalarSpace hO
     ∃ D : MvPolynomial (Fin (finrank K (FixedPureZeroScalarSpace m d q f u J counts O))) K,

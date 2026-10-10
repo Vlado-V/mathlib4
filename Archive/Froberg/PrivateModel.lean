@@ -17,7 +17,7 @@ namespace Froberg.PrivateColumns
 open OuterInjection
 
 lemma private_small_fiber_bound {k s h : ℕ} (hk : 0 < k) (hs : 2 ≤ s)
-    (hh : h=k*(2*s+1).choose s) : k*(s+1)+2 ≤ h := by
+    (hh : h = k * (2 * s + 1).choose s) : k*(s+1)+2 ≤ h := by
   have hm := Nat.choose_le_middle 1 (2*s+1)
   rw [Nat.choose_one_right,show (2*s+1)/2=s by omega] at hm
   rw [hh]

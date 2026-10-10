@@ -23,12 +23,12 @@ variable {m n d r t c : ℕ}
 
 theorem exists_local_comparison_of_endpoint_slices
     (hm : 0 < m)
-    (D : Submodule K (Forms K n (2*d)))
+    (D : Submodule K (Forms K n (2 * d)))
     (w : Fin n → ZMod 2) (parity : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
-    (hqparity : ∀ i,(q i).val.IsWeightedHomogeneous w (parity i))
-    (hD : D≤(parityForm w 1).ker)
-    (hcoverage : ∀ p,parityForm w 0 p∈D ⊔ (endpointMultiplication q).range)
+    (hqparity : ∀ i, (q i).val.IsWeightedHomogeneous w (parity i))
+    (hD : D ≤ (parityForm w 1).ker)
+    (hcoverage : ∀ p, parityForm w 0 p ∈ D ⊔ (endpointMultiplication q).range)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous w (1-parity i)) →
       a.val∈oppositeKoszulSpace q parity)

@@ -22,11 +22,11 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly 
 
 set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
 theorem prepared_scalar_fiber_relative_injective
-    (hd : 0 < d) (hdodd : d%2=1)
-    (hO : ∀ j ∈ J,O j ≤ Forms K h j) (hJ : ∀ j ∈ J,j ≤ d) (heven : ∀ j ∈ J,j%2=0)
+    (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (rest : FullScalarFiberRest m d q f u J counts O)
     (a : PositiveScalars (K := K) m d J counts)
-    (ha : OddCyclesExact U rest.1 (scalarFiberCoordinates.symm (a,rest.2.1),rest.2.2)) :
+    (ha : OddCyclesExact U rest.1 (scalarFiberCoordinates.symm (a, rest.2.1), rest.2.2)) :
     Function.Injective (oddEvenRelativeMap
       (fun i => scalarEvenBiform (h := h) (rest.2.1.1 i))
       (fun i => preparedOddBiform hd hdodd U rest.1 rest.2.2 (Sum.inl i))
@@ -41,12 +41,12 @@ theorem prepared_scalar_fiber_relative_injective
 
 set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
 theorem prepared_scalar_fiber_upper
-    (hd : 0 < d) (hdodd : d%2=1)
-    (hO : ∀ j ∈ J,O j ≤ Forms K h j) (hJ : ∀ j ∈ J,j ≤ d) (heven : ∀ j ∈ J,j%2=0)
+    (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (rest : FullScalarFiberRest m d q f u J counts O)
     (a : PositiveScalars (K := K) m d J counts)
     (ha : Function.Surjective (upperTargetMap (zeroScalarEndpointFamily hd hO hJ U rest.1
-      (scalarFiberCoordinates.symm (a,rest.2.1),rest.2.2)))) :
+      (scalarFiberCoordinates.symm (a, rest.2.1), rest.2.2)))) :
     Function.Surjective (upperTargetMap (backgroundEnumeratedForms
       (Fin.append (fun i => scalarEvenBiform (h := h) (rest.2.1.1 i))
         (oddEvenAffineFamily

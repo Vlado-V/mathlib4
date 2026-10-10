@@ -30,7 +30,7 @@ theorem exists_diagonal_sum_biforms
     [Module.Finite K O] [Module.Finite K C]
     (hO : Function.Injective (subspaceSymmetricMultiplication O))
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    {m : ℕ} (hm : m≤finrank K O*(finrank K C/2)) :
+    {m : ℕ} (hm : m ≤ finrank K O * (finrank K C / 2)) :
     ∃ f : Fin m → MvPolynomial (σ ⊕ τ) K,
       (∀ i,f i∈biformImage O C) ∧ LinearIndependent K (pairProducts f) := by
   obtain ⟨E,hE,hEd,hEi⟩ := separated_coefficient_space_exists O C hO hC hm
@@ -58,7 +58,7 @@ theorem exists_constrained_diagonal_biforms
     (hO : Function.Injective (subspaceSymmetricMultiplication O))
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
     (T : MvPolynomial σ K →ₗ[K] X) {m : ℕ}
-    (hm : m≤(finrank K O-finrank K X)*(finrank K C/2)) :
+    (hm : m ≤ (finrank K O - finrank K X) * (finrank K C / 2)) :
     ∃ f : Fin m → MvPolynomial (σ ⊕ τ) K,
       (∀ i,f i∈biformImage (O⊓T.ker) C) ∧ LinearIndependent K (pairProducts f) := by
   let O' := O⊓T.ker
@@ -86,9 +86,9 @@ set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- The special quadratic diagonal capacity, with the full linear scalar
 space used in degree three. -/
 theorem quadratic_linear_diagonal_exists
-    {h n m : ℕ} (hh : 65≤h)
+    {h n m : ℕ} (hh : 65 ≤ h)
     {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
-    (T : Poly K h →ₗ[K] X) (hm : m≤(5*h^2/32-finrank K X)*(n/2)) :
+    (T : Poly K h →ₗ[K] X) (hm : m ≤ (5 * h ^ 2 / 32 - finrank K X) * (n / 2)) :
     ∃ f : Fin m → MvPolynomial (Fin h ⊕ Fin n) K,
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) (Forms K n 1)) ∧
       LinearIndependent K (pairProducts f) := by

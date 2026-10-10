@@ -21,7 +21,7 @@ variable {h m c s t : ℕ} {I A : Type*} [Fintype A]
 
 lemma polynomial_tupleMap
     (g : (I → K) → Fin c → Rows K h m s)
-    (hg : ∀ j,IsPolynomialFamily (fun p => g p j)) :
+    (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) :
     IsPolynomialFamily (fun p => BilinearImage.tupleMap (multiplication (d := t)) (g p)) := by
   apply isPolynomialFamily_linearMap
   intro f
@@ -45,12 +45,12 @@ neighborhood of a geometric witness, together with the exact source and
 relation dimensions. -/
 theorem quotient_principal_open [IsAlgClosed L]
     (g : (I → K) → Fin c → Rows K h m s)
-    (hg : ∀ j,IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
+    (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
     (hsource : LinearIndependent K (g p₀))
     (htarget : Function.Injective (BilinearImage.tupleMap (multiplication (d := t)) (g p₀)))
-    (ell bound : A → ℕ) (hell : ∀ i,0 < ell i+c)
-    (hwitness : ∀ i,Expands (fun j => mapRows (L := L) (g p₀ j)) t
-      (ell i+c) (bound i+c*FormCount m t)) :
+    (ell bound : A → ℕ) (hell : ∀ i, 0 < ell i + c)
+    (hwitness : ∀ i, Expands (fun j => mapRows (L := L) (g p₀ j)) t
+      (ell i + c) (bound i + c * FormCount m t)) :
     ∃ D : MvPolynomial I K,eval p₀ D ≠ 0 ∧ ∀ p : I → K,eval p D ≠ 0 →
       LinearIndependent K (g p) ∧
       Function.Injective (BilinearImage.tupleMap (multiplication (d := t)) (g p)) ∧

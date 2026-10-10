@@ -116,7 +116,7 @@ theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_pair_pure
-    (A : Fin (4+(c+q)) → Forms K (3+m) 2) (u v : Fin (4+(c+q))) (i : Fin 4) :
+    (A : Fin (4 + (c + q)) → Forms K (3 + m) 2) (u v : Fin (4 + (c + q))) (i : Fin 4) :
     (sourceProjection (pairVector A u v)).1 i =
       (if Fin.castAdd (c+q) i = u then childProjection (A v) else 0) -
       (if Fin.castAdd (c+q) i = v then childProjection (A u) else 0) := by
@@ -127,7 +127,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_pair_mixed
-    (A : Fin (4+(c+q)) → Forms K (3+m) 2) (u v : Fin (4+(c+q))) (i : Fin c) :
+    (A : Fin (4 + (c + q)) → Forms K (3 + m) 2) (u v : Fin (4 + (c + q))) (i : Fin c) :
     (sourceProjection (pairVector A u v)).2.1 i =
       (if Fin.natAdd 4 (Fin.castAdd q i) = u then middleProjection (A v) else 0) -
       (if Fin.natAdd 4 (Fin.castAdd q i) = v then middleProjection (A u) else 0) := by
@@ -138,7 +138,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_pair_child
-    (A : Fin (4+(c+q)) → Forms K (3+m) 2) (u v : Fin (4+(c+q))) (i : Fin q) :
+    (A : Fin (4 + (c + q)) → Forms K (3 + m) 2) (u v : Fin (4 + (c + q))) (i : Fin q) :
     (sourceProjection (pairVector A u v)).2.2 i =
       (if Fin.natAdd 4 (Fin.natAdd c i) = u then SplitBlock31.coreProjection (A v) else 0) -
       (if Fin.natAdd 4 (Fin.natAdd c i) = v then SplitBlock31.coreProjection (A u) else 0) := by
@@ -195,7 +195,7 @@ private theorem projection_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every full incoming Koszul vector projects to one of the two actual block boundary types. -/
 theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
-    (h : Fin q → Forms K m 2) (u v : Fin (4+(c+q))) :
+    (h : Fin q → Forms K m 2) (u v : Fin (4 + (c + q))) :
     sourceProjection (pairVector (fullGenerators g h) u v) ∈ blockBoundarySpace g h := by
   classical
   refine Fin.addCases ?_ ?_ u
@@ -254,7 +254,7 @@ theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Projection of an arbitrary full incoming boundary remains a block boundary. -/
 theorem sourceProjection_koszul_mem (g : Fin c → MiddleCoordinates.Mixed K m)
-    (h : Fin q → Forms K m 2) (a : Fin (4+(c+q)) → Forms K (3+m) 2)
+    (h : Fin q → Forms K m 2) (a : Fin (4 + (c + q)) → Forms K (3 + m) 2)
     (ha : a ∈ koszulSpace (fullGenerators g h)) : sourceProjection a ∈ blockBoundarySpace g h := by
   have hle : koszulSpace (fullGenerators g h) ≤ (blockBoundarySpace g
     h).comap sourceProjection := by

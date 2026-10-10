@@ -27,14 +27,14 @@ def coreParity (h m : ℕ) : Fin (h+m) → ZMod 2 :=
   fun i => (coreWeight h m i : ZMod 2)
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
-theorem coreWeight_le_one (i : Fin (h+m)) : coreWeight h m i≤1 := by
+theorem coreWeight_le_one (i : Fin (h + m)) : coreWeight h m i≤1 := by
   refine Fin.addCases ?_ ?_ i <;> intro j <;> simp [coreWeight]
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- On a form supported in X-degrees zero and one, odd projection is
 supported in X-degree one. -/
-theorem lowTarget_odd_weight_one (p : Forms K (h+m) (2*d))
-    (hp : p∈lowTargetSubspace (K := K) (h := h) (m := m) (d := d)) :
+theorem lowTarget_odd_weight_one (p : Forms K (h + m) (2 * d))
+    (hp : p ∈ lowTargetSubspace (K := K) (h := h) (m := m) (d := d)) :
     (parityForm (coreParity h m) 1 p).val.IsWeightedHomogeneous (coreWeight h m) 1 := by
   intro a ha
   have hcoeff : p.val.coeff a≠0 := by
@@ -73,7 +73,7 @@ theorem oddTargetClass_surjective (w : Fin n → ZMod 2) (q : Fin r → Forms K 
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem oddTargetClass_parity (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
-    (p : Forms K n (2*d)) :
+    (p : Forms K n (2 * d)) :
     oddTargetClass w q (parityForm w 1 p)=oddTargetClass w q p := by
   apply Subtype.ext
   change (projectedEndpointMultiplication (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q).range.mkQ
@@ -83,7 +83,7 @@ theorem oddTargetClass_parity (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem oddTargetClass_product (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
     (c : Fin r → Forms K n d) : oddTargetClass w q (endpointMultiplication q c)=0 := by
   apply Subtype.ext
   change (projectedEndpointMultiplication (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q).range.mkQ
@@ -96,8 +96,8 @@ set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- An odd covector is determined by its X-degree-one component whenever
 the actual generator products fill all target rows of X-degree at least two. -/
 theorem oddTarget_bottom_detects (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K (h+m) d)
-    (hpar : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
+    (q : Fin r → Forms K (h + m) d)
+    (hpar : ∀ i, (q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
     (hupper : Function.Surjective (upperTargetMap q))
     (ell : oddTargetSpace (coreParity h m) q →ₗ[K] K)
     (hbottom : ∀ p : Forms K (h+m) (2*d),

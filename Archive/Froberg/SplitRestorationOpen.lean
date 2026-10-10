@@ -42,11 +42,11 @@ theorem split_restoration_open
     (g : (I → K) → Fin r → V) (p : (I → K) → Fin b → W)
     (hg : IsPolynomialFamily g) (hp : IsPolynomialFamily p)
     (T : S →ₗ[K] (Fin r → V))
-    (hT : ∀ a z,PolynomialRestoration.row j pi (g a) (T z)=0)
+    (hT : ∀ a z, PolynomialRestoration.row j pi (g a) (T z) = 0)
     (a₀ : I → K)
-    (hreduce : ∀ c v,row j k pi (g a₀) (p a₀) (c,v)=0 →
+    (hreduce : ∀ c v, row j k pi (g a₀) (p a₀) (c, v) = 0 →
       ∃ (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (z : S),
-        c-coefficientBoundary (g a₀) M=T z ∧ v=coefficientBoundary (p a₀) C) :
+        c - coefficientBoundary (g a₀) M = T z ∧ v = coefficientBoundary (p a₀) C) :
     ∃ D : MvPolynomial I K,eval a₀ D≠0 ∧
       ∀ a,eval a D≠0 → ∀ c v,row j k pi (g a) (p a) (c,v)=0 →
         ∃ (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (z : S),

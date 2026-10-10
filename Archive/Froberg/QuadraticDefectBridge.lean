@@ -29,7 +29,7 @@ theorem cokernel_eq (Q : Submodule K (Poly K n)) :
     finrank K (Quartic.QuarticQuotient K n Q) = finrank K (EndpointQuotient K n 2 Q) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem homology_eq (hn : 0<n) (q : Fin r → Forms K n 2) (hq : LinearIndependent K q) :
+theorem homology_eq (hn : 0 < n) (q : Fin r → Forms K n 2) (hq : LinearIndependent K q) :
     finrank K (Quartic.QuarticHomology q) = finrank K (EndpointHomology q) := by
   have ha := Quartic.quartic_euler_identity q hq
   have hb := endpoint_euler_identity hn q hq
@@ -42,7 +42,7 @@ theorem cokernel_le (q : Fin r → Forms K n 2) :
       (Submodule.span K (Set.range (fun i => (q i).val)))) := genericCokernel_le_family q
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem homology_le (hn : 0<n) (q : Fin r → Forms K n 2) (hq : LinearIndependent K q) :
+theorem homology_le (hn : 0 < n) (q : Fin r → Forms K n 2) (hq : LinearIndependent K q) :
     genericHomology K n 2 r ≤ finrank K (Quartic.QuarticHomology q) := by
   rw [homology_eq hn q hq]
   have he : coefficientForms K n 2 r (coefficientCoordinates q)=q :=

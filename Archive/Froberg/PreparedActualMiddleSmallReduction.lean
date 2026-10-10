@@ -21,14 +21,14 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
-theorem allEvenCount_off_two_four_small {d : ℕ} (hd8 : d≤8)
-    (h n e : ℕ) {j : ℕ} (hj2 : j≠2) (hj4 : j≠4) : allEvenCount d h n e j=0 := by
+theorem allEvenCount_off_two_four_small {d : ℕ} (hd8 : d ≤ 8)
+    (h n e : ℕ) {j : ℕ} (hj2 : j ≠ 2) (hj4 : j ≠ 4) : allEvenCount d h n e j=0 := by
   apply allEvenCount_inactive
   simp only [activeEvenIndices,if_pos hd8,Finset.mem_filter,Finset.mem_insert,Finset.mem_singleton]
   tauto
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
-theorem eventually_middle_quartic_diagonal_capacity_shift {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
+theorem eventually_middle_quartic_diagonal_capacity_shift {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop,∀ z : ℕ,∀ᶠ n : ℕ in atTop,
       higherGeneratorCount d h (n+z) 4≤
         if d=5 then (h^4/256)*(n/2) else (h^4/256)*((n/2).choose (d-4)/2) := by
@@ -43,7 +43,7 @@ theorem eventually_middle_quartic_diagonal_capacity_shift {d : ℕ} (hd : 5≤d)
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
-    (hd : 5≤d) (hd8 : d≤8) :
+    (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
       ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,
@@ -136,7 +136,7 @@ theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_small_reduction_open_shift_uniform {d : ℕ}
-    (hd : 5≤d) (hd8 : d≤8) :
+    (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
       ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

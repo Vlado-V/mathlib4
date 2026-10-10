@@ -23,24 +23,25 @@ variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 variable {a z d b q m h c : ℕ}
 
  set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem first_private_intrinsic_row (hd : 3≤d)
+theorem first_private_intrinsic_row (hd : 3 ≤ d)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination (fun k => (bo k).val) (w i)*(bo j).val)=A i (Pi.single j 1))
-    (hker : (privatePolynomialMap (a := a) (s := d-1) ι A).ker=
-      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d-1) ι w))))
+    (hA : ∀ i j, T (outputCombination (fun k => (bo k).val) (w i) * (bo j).val) = A i (Pi.single j
+      1))
+    (hker : (privatePolynomialMap (a := a) (s := d - 1) ι A).ker =
+      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d - 1) ι w))))
     (Q : Fin q → Forms K a d)
-    (E : Fin m → MvPolynomial (σ ⊕ Fin (a+z)) K)
-    (hE : ∀ i,biformVectorDetector T (E i)=0)
-    (x : Fin q → FullBiform K σ (a+z) 2 (d-2))
-    (p : Fin m → Forms K (a+z) d)
-    (u : Fin b → FullBiform K σ (a+z) 1 (d-1))
-    (hrel : (∑ i,rename Sum.inr (rename (Fin.castAdd z) (Q i).val)*(x i).val)+
-      (∑ i,E i*rename Sum.inr (p i).val)+
-      (∑ i,(rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
-        rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))*(u i).val)=0) :
+    (E : Fin m → MvPolynomial (σ ⊕ Fin (a + z)) K)
+    (hE : ∀ i, biformVectorDetector T (E i) = 0)
+    (x : Fin q → FullBiform K σ (a + z) 2 (d - 2))
+    (p : Fin m → Forms K (a + z) d)
+    (u : Fin b → FullBiform K σ (a + z) 1 (d - 1))
+    (hrel : (∑ i, rename Sum.inr (rename (Fin.castAdd z) (Q i).val) * (x i).val) +
+      (∑ i, E i * rename Sum.inr (p i).val) +
+      (∑ i, (rename Sum.inl (outputCombination (fun k => (bo k).val) (w i)) *
+        rename Sum.inr (monomial (privateExponent a (d - 1) ι i) (1 : K))) * (u i).val) = 0) :
     (fun i => (u i).val)∈Submodule.span K (Set.range (koszulVector
       (fun i => rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
         rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K))))) ∧

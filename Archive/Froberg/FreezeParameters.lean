@@ -24,9 +24,9 @@ variable {K U V E : Type*} [Field K]
 theorem principal_open_freeze_parameters (F : U × V →ₗ[K] E)
     (hF : Function.Surjective F)
     (D : MvPolynomial (Fin (finrank K E)) K)
-    (hD : ∃ e : E,eval ((Module.finBasis K E).equivFun e) D≠0)
+    (hD : ∃ e : E, eval ((Module.finBasis K E).equivFun e) D ≠ 0)
     (Good : E → Prop)
-    (hGood : ∀ e,eval ((Module.finBasis K E).equivFun e) D≠0 → Good e) :
+    (hGood : ∀ e, eval ((Module.finBasis K E).equivFun e) D ≠ 0 → Good e) :
     ∃ v : V,∃ P : MvPolynomial (Fin (finrank K U)) K,
       (∃ u : U,eval ((Module.finBasis K U).equivFun u) P≠0) ∧
       ∀ u,eval ((Module.finBasis K U).equivFun u) P≠0 → Good (F (u,v)) := by
@@ -54,9 +54,9 @@ new genericity assumption: the original nonzero evaluation is retained. -/
 theorem principal_open_freeze_right
     (D : MvPolynomial (Fin (finrank K (U × V))) K)
     [FiniteDimensional K V]
-    (hD : ∃ e : U × V,eval ((Module.finBasis K (U × V)).equivFun e) D≠0)
+    (hD : ∃ e : U × V, eval ((Module.finBasis K (U × V)).equivFun e) D ≠ 0)
     (Good : U × V → Prop)
-    (hGood : ∀ e,eval ((Module.finBasis K (U × V)).equivFun e) D≠0 → Good e) :
+    (hGood : ∀ e, eval ((Module.finBasis K (U × V)).equivFun e) D ≠ 0 → Good e) :
     ∃ v : V,∃ P : MvPolynomial (Fin (finrank K U)) K,
       (∃ u : U,eval ((Module.finBasis K U).equivFun u) P≠0) ∧
       ∀ u,eval ((Module.finBasis K U).equivFun u) P≠0 → Good (u,v) :=

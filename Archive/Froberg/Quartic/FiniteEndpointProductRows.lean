@@ -45,7 +45,7 @@ theorem product_supports_nat
     (E₂ : Fin b₂ → Fin n →₀ ℕ) (E₄ : Fin b₄ → Fin n →₀ ℕ)
     (productIndex : Fin b₂ → Fin b₂ → ℕ)
     (hbound : ∀ i j, productIndex i j < b₄)
-    (hprod : ∀ i j, E₄ ⟨productIndex i j,hbound i j⟩ = E₂ i + E₂ j)
+    (hprod : ∀ i j, E₄ ⟨productIndex i j, hbound i j⟩ = E₂ i + E₂ j)
     (support : Fin r → List (Fin b₂)) (selected : Fin s → Fin r × Fin b₂)
     (i : Fin s) :
     (rows (boundedIndex productIndex hbound) support selected i).map E₄ =

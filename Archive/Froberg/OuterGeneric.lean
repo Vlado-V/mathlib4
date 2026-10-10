@@ -46,7 +46,7 @@ theorem injective_attached_of_full_spark {K : Type*} [Field K]
 /-- Generic specialization simultaneously satisfies the actual polynomial
 injectivity and all uniform mixed-minor conditions. -/
 theorem exists_generic_outer_vectors {K : Type*} [Field K] [Infinite K]
-    (k a z s d h : ℕ) (hh : k * (s+d).choose s ≤ h) :
+    (k a z s d h : ℕ) (hh : k * (s + d).choose s ≤ h) :
     ∃ v : Labels k a s → Fin h → K,
       (∀ S : Finset (Labels k a s), S.card ≤ h →
         LinearIndependent K (fun i : S => v i.val)) ∧

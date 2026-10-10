@@ -28,7 +28,7 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Every positive even relation in the private prepared family reduces to
 scalar relations and actual constant alternating boundaries. -/
 def PrivatePositiveReduction (p : Space n d q J counts O)
-    (P : Fin b → FullBiform K σ n 1 (d-1)) : Prop :=
+    (P : Fin b → FullBiform K σ n 1 (d - 1)) : Prop :=
   ∀ U : Fin b → MvPolynomial (σ ⊕ Fin n) K,
     (∀ i,(U i).IsHomogeneous d ∧ (U i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d) →
@@ -52,14 +52,14 @@ def PrivatePositiveReduction (p : Space n d q J counts O)
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_reduction_open_of_witnesses
     [Module.Finite K (Space n d q J counts O)] [LinearOrder (Label q J counts)]
-    (hd : 3≤d) (hodd : d%2=1)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,2≤j) (hdegree : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
-    (P : Fin b → FullBiform K σ n 1 (d-1))
+    (hd : 3 ≤ d) (hodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hdegree : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
+    (P : Fin b → FullBiform K σ n 1 (d - 1))
     (hfirst : ∃ p : Space n d q J counts O,
-      (privateAugmentedRow hO ⟨2,hcover 2 (by omega) (by omega) rfl⟩ p (fun i => (P i).val)).ker=
-        ((rowConstants hO ⟨2,hcover 2 (by omega) (by omega) rfl⟩ p).prodMap
+      (privateAugmentedRow hO ⟨2, hcover 2 (by omega) (by omega) rfl⟩ p (fun i => (P i).val)).ker =
+        ((rowConstants hO ⟨2, hcover 2 (by omega) (by omega) rfl⟩ p).prodMap
           (intrinsicPrivateBoundary P)).range)
     (hlater : ∀ R : J,R.val≠2 → ∃ p : Space n d q J counts O,
       (privateAugmentedRow hO R p (fun i => (P i).val)).ker=

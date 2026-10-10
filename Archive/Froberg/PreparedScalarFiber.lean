@@ -94,7 +94,7 @@ def fullScalarFiberCoordinates :
   map_smul' c p := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem finite_fullScalarFiberRest (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem finite_fullScalarFiberRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (FullScalarFiberRest m d q f u J counts O) := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -108,7 +108,7 @@ theorem finite_fullScalarFiberRest (hO : ∀ j∈J,O j≤Forms K h j) :
   rw [LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem principal_open_positive_scalar_fiber (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem principal_open_positive_scalar_fiber (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
       FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
     ∀ D : MvPolynomial (Fin (finrank K

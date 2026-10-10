@@ -20,11 +20,11 @@ variable {K A I J : Type*} [Field K] [CommRing A] [Algebra K A]
 
 theorem CoefficientRowsSolved.reduce_to_scalar [LinearOrder I]
     {a E : I → A} {j : I → ℕ} {c : ℕ → I → A} {d : ℕ} {B : I → I → K}
-    (hB : CoefficientRowsSolved a E j c (2*d) B)
+    (hB : CoefficientRowsSolved a E j c (2 * d) B)
     (V : ℕ → Submodule K A) (v : I → A)
-    (hj : ∀ i,j i≤d) (hE : ∀ i,j i=0 → E i=0)
-    (hcV : ∀ t i,c t i∈V t) (haV : ∀ i,a i∈V 0)
-    (hv : ∀ i,v i=c 0 i+∑ t∈range d,c (t+1) i) :
+    (hj : ∀ i, j i ≤ d) (hE : ∀ i, j i = 0 → E i = 0)
+    (hcV : ∀ t i, c t i ∈ V t) (haV : ∀ i, a i ∈ V 0)
+    (hv : ∀ i, v i = c 0 i + ∑ t ∈ range d, c (t + 1) i) :
     ∃ (M : I → I → K) (z : I → A),
       v-matrixBoundary (fun i => a i+E i) M=z ∧
       (∀ i,0<j i → z i=0) ∧ (∀ i,z i∈V 0) := by
@@ -74,16 +74,16 @@ theorem delayed_private_reduce_to_scalar [LinearOrder I]
     (V W : ℕ → Submodule K A) (a E : I → A) (P U : J → A)
     (j : I → ℕ) (c : ℕ → I → A) (u : ℕ → J → A) (d : ℕ)
     (v : I → A) (w : J → A)
-    (hd : 2≤d) (hj : ∀ i,j i≤d)
-    (hcV : ∀ t i,c t i∈V t) (huW : ∀ t k,u t k∈W t) (haV : ∀ i,a i∈V 0)
-    (hE : ∀ i,j i=0 → E i=0) (hu0 : u 0=0) (hu1 : u 1=0)
-    (hv : ∀ i,v i=c 0 i+∑ t∈range d,c (t+1) i)
-    (hw : ∀ k,w k=u 0 k+∑ t∈range d,u (t+1) k)
-    (hrow : ∀ r,0<r → r≤2*d →
-      (∑ i,a i*c r i)+(∑ i,if j i≤r then E i*c (r-j i) i else 0)+
-      (∑ k,P k*u (r-1) k)+(if d≤r then ∑ k,U k*u (r-d) k else 0)=0)
-    (hexact : ∀ r,0<r → r≤2*d → CoefficientRowExact V a E j r)
-    (hseparate : ∀ r,3≤r → r≤2*d → PrivateRowSeparation V W a E P j r) :
+    (hd : 2 ≤ d) (hj : ∀ i, j i ≤ d)
+    (hcV : ∀ t i, c t i ∈ V t) (huW : ∀ t k, u t k ∈ W t) (haV : ∀ i, a i ∈ V 0)
+    (hE : ∀ i, j i = 0 → E i = 0) (hu0 : u 0 = 0) (hu1 : u 1 = 0)
+    (hv : ∀ i, v i = c 0 i + ∑ t ∈ range d, c (t + 1) i)
+    (hw : ∀ k, w k = u 0 k + ∑ t ∈ range d, u (t + 1) k)
+    (hrow : ∀ r, 0 < r → r ≤ 2 * d →
+      (∑ i, a i * c r i) + (∑ i, if j i ≤ r then E i * c (r - j i) i else 0) +
+      (∑ k, P k * u (r - 1) k) + (if d ≤ r then ∑ k, U k * u (r - d) k else 0) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d → CoefficientRowExact V a E j r)
+    (hseparate : ∀ r, 3 ≤ r → r ≤ 2 * d → PrivateRowSeparation V W a E P j r) :
     w=0 ∧ ∃ (M : I → I → K) (z : I → A),
       v-matrixBoundary (fun i => a i+E i) M=z ∧
       (∀ i,0<j i → z i=0) ∧ (∀ i,z i∈V 0) := by

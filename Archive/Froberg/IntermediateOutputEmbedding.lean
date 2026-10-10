@@ -37,7 +37,7 @@ private theorem vectorOutputMap_vectorMultiply
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 private theorem homogeneousMultiplication_sum
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (p : I → Forms K n d) :
     homogeneousMultiplication e v he p =
       ∑ i, fun j => v i j • gradedMultiplication
@@ -54,7 +54,7 @@ private theorem homogeneousMultiplication_sum
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem vectorOutputMap_homogeneousMultiplication
     (L : (J → K) →ₗ[K] (H → K))
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (p : I → Forms K n d) :
     vectorOutputMap L (homogeneousMultiplication e v he p) =
       homogeneousMultiplication e (fun i => L (v i)) he p := by
@@ -76,7 +76,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 new row relations whenever the scalar family itself is injective. -/
 theorem intermediateRow_ker_output_embedding
     (L : (J → K) →ₗ[K] (H → K)) (hL : Function.Injective L)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d)
     (hE : Function.Injective (multiplication (d := d) e v))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply e v he) Q))

@@ -28,24 +28,25 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 common scalar open. Every remaining hypothesis is an explicit finite capacity
 or the retained-scalar open already established asymptotically. -/
 theorem exists_finite_fourth_projected_row
-    {w v d s b r H : ℕ} {I : Type*} [Fintype I] (hw : 0<w) (hv : 0<v)
+    {w v d s b r H : ℕ} {I : Type*} [Fintype I] (hw : 0 < w) (hv : 0 < v)
     (bo : Basis (Fin H) K (homogeneousSubmodule (Fin w × Bool) K 4))
     (Relations : I → Submodule K (Fin H → K))
-    (hrelations : ∀ i,b*(s+1).choose s≤oddOutputDimension w 4-finrank K (Relations i))
+    (hrelations : ∀ i, b * (s + 1).choose s ≤ oddOutputDimension w 4 - finrank K (Relations i))
     (counts : ℕ → ℕ) (J : Finset ℕ)
-    (hpositive : ∀ j∈J,0<j) (heven : ∀ j∈J,Even j) (hdegree : ∀ j∈J,j≤d)
+    (hpositive : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
-    (hlow : ∀ j∈J,2≤j)
-    (hdiag₂ : counts 2≤(w.choose 2-finrank K X)*(v.choose (d-2)/2))
-    (hodd : 0<oddOutputDimension w 4)
-    (hm : counts 4≤b*(v+v+s-1).choose s)
-    (hcap : b*(s+d).choose s≤oddOutputDimension w 4)
-    (hcount : oddOutputDimension w 4*(s+d).choose s *
-      (r+oddOutputDimension w 4*(v+v+s-1).choose s+
-        (oddOutputDimension w 4*2^(oddOutputDimension w 4))*(v+v+(d-1)-1).choose (d-1)) ≤
-      (oddOutputDimension w 4-b*(s+d).choose s)*(v+v+s+d-1).choose d)
-    (hscalarOpen : ∃ D : MvPolynomial (Fin (finrank K (Fin r → Forms K (v+v) d))) K,
-      (∃ Q : Fin r → Forms K (v+v) d,eval (coordinates K _ Q) D≠0) ∧
+    (hlow : ∀ j ∈ J, 2 ≤ j)
+    (hdiag₂ : counts 2 ≤ (w.choose 2 - finrank K X) * (v.choose (d - 2) / 2))
+    (hodd : 0 < oddOutputDimension w 4)
+    (hm : counts 4 ≤ b * (v + v + s - 1).choose s)
+    (hcap : b * (s + d).choose s ≤ oddOutputDimension w 4)
+    (hcount : oddOutputDimension w 4 * (s + d).choose s *
+      (r + oddOutputDimension w 4 * (v + v + s - 1).choose s +
+        (oddOutputDimension w 4 * 2 ^ (oddOutputDimension w 4)) * (v + v + (d - 1) - 1).choose (d -
+          1)) ≤
+      (oddOutputDimension w 4 - b * (s + d).choose s) * (v + v + s + d - 1).choose d)
+    (hscalarOpen : ∃ D : MvPolynomial (Fin (finrank K (Fin r → Forms K (v + v) d))) K,
+      (∃ Q : Fin r → Forms K (v + v) d, eval (coordinates K _ Q) D ≠ 0) ∧
       ∀ Q : Fin r → Forms K (v+v) d,eval (coordinates K _ Q) D≠0 →
         Function.Injective (ProjectedPrefix.multiplication
           (fun α => MonomialExpansion.partialDegree (balancedScalarHalf v) α≠2*((d-2)/2)) Q s)) :

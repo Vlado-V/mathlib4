@@ -20,8 +20,8 @@ open AttachedMultiplication
 variable {K : Type*} [Field K] [Infinite K]
 
 theorem exists_sparse_intermediate_in_open
-    {n s d h b m q : ℕ} (hn : 0<n) (hh : 0<h)
-    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i,(e i).degree=s)
+    {n s d h b m q : ℕ} (hn : 0 < n) (hh : 0 < h)
+    (e : Fin m → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
     (hdiv : ∀ β : Fin n →₀ ℕ,Fintype.card {i : Fin m // e i≤β}≤b*β.degree.choose s)
     (hcap : b*(s+d).choose s≤h)
     (hcount : h*(s+d).choose s * (q+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) ≤

@@ -20,7 +20,7 @@ namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
-variable (hdp : 1≤d) (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+variable (hdp : 1 ≤ d) (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
 local notation "F" => bottomTensorFamily g
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
 local notation "F₁" => fun i => oddBiformEmbedding hdp (by decide) (F i)

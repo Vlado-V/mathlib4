@@ -24,8 +24,8 @@ variable {K I U V W : Type*} [Field K]
 theorem complex_exact_principal_open
     (A : (I → K) → V →ₗ[K] W) (B : (I → K) → U →ₗ[K] V)
     (hA : IsPolynomialFamily A) (hB : IsPolynomialFamily B)
-    (hAB : ∀ p,(A p).comp (B p)=0)
-    (p₀ : I → K) (hexact : (A p₀).ker=(B p₀).range) :
+    (hAB : ∀ p, (A p).comp (B p) = 0)
+    (p₀ : I → K) (hexact : (A p₀).ker = (B p₀).range) :
     ∃ P : MvPolynomial I K,eval p₀ P ≠ 0 ∧
       ∀ p,eval p P ≠ 0 → (A p).ker=(B p).range := by
   obtain ⟨PA,hPA,hArank⟩ := rank_polynomial_principal_open A hA p₀

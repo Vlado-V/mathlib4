@@ -38,7 +38,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 from the shared scalar family and the auxiliary slices. -/
 theorem affineSharedConstraint_rank
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) (hell : ell≠0) :
+    (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) (hell : ell ≠ 0) :
     q*(a-finrank K (relationMap mu ell).ker)+s≤
       finrank K (affineSharedConstraint (s := s) mu B ell).range := by
   rw [← SharedCovectorConstraints.rank mu ell hell]

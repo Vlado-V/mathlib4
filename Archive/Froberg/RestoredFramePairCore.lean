@@ -21,7 +21,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def RestoredFramePairOpen {d h : ℕ} (hd : 3≤d) (he : d%2=0) (n f e : ℕ)
+def RestoredFramePairOpen {d h : ℕ} (hd : 3 ≤ d) (he : d % 2 = 0) (n f e : ℕ)
     (frame : Fin (quadraticOutputDimension d h) → Forms K h 2) : Prop :=
   HasRestoredCertificateOpen (m := n) (f := f) (by omega : 1≤d) he
     (fun j (_ : j∈allEvenIndices d) => targetLayerOutput_homogeneous frame j)

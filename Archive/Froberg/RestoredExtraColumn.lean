@@ -23,7 +23,7 @@ variable {K : Type} [Field K]
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem span_range_one_extra {V I I' : Type*} [AddCommGroup V] [Module K V]
     (g : I' → V) (b : I → I') (a : I')
-    (hcover : ∀ j,j=a ∨ ∃ i,b i=j) :
+    (hcover : ∀ j, j = a ∨ ∃ i, b i = j) :
     Submodule.span K (Set.range g)=
       Submodule.span K (Set.range (g ∘ b)) ⊔ Submodule.span K {g a} := by
   have hrange : Set.range g=Set.range (g ∘ b) ∪ {g a} := by
@@ -42,28 +42,28 @@ namespace PreparedParameters
 variable {J : Finset ℕ} {c c' : ℕ → ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def countPositiveIndexMap (hc : ∀ j∈J,c j≤c' j) :
+def countPositiveIndexMap (hc : ∀ j ∈ J, c j ≤ c' j) :
     Fin (Fintype.card (ProductRows.LayerLabel J c)) →
       Fin (Fintype.card (ProductRows.LayerLabel J c')) :=
   fun i => Fintype.equivFin _ (countLayerMap hc ((Fintype.equivFin _).symm i))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem countPositiveIndexMap_injective (hc : ∀ j∈J,c j≤c' j) :
+theorem countPositiveIndexMap_injective (hc : ∀ j ∈ J, c j ≤ c' j) :
     Function.Injective (countPositiveIndexMap hc) :=
   (Fintype.equivFin _).injective.comp
     ((countLayerMap_injective hc).comp (Fintype.equivFin _).symm.injective)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem countPositiveIndexMap_ne (hc : ∀ j∈J,c j≤c' j)
-    (a : ProductRows.LayerLabel J c') (ha : ∀ i,countLayerMap hc i≠a)
+theorem countPositiveIndexMap_ne (hc : ∀ j ∈ J, c j ≤ c' j)
+    (a : ProductRows.LayerLabel J c') (ha : ∀ i, countLayerMap hc i ≠ a)
     (i : Fin (Fintype.card (ProductRows.LayerLabel J c))) :
     countPositiveIndexMap hc i≠Fintype.equivFin _ a := by
   intro h
   exact ha _ ((Fintype.equivFin _).injective h)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem countPositiveIndexMap_cover (hc : ∀ j∈J,c j≤c' j)
-    (a : ProductRows.LayerLabel J c') (ha : ∀ j,j=a ∨ ∃ i,countLayerMap hc i=j)
+theorem countPositiveIndexMap_cover (hc : ∀ j ∈ J, c j ≤ c' j)
+    (a : ProductRows.LayerLabel J c') (ha : ∀ j, j = a ∨ ∃ i, countLayerMap hc i = j)
     (j : Fin (Fintype.card (ProductRows.LayerLabel J c'))) :
     j=Fintype.equivFin _ a ∨ ∃ i,countPositiveIndexMap hc i=j := by
   obtain rfl | ⟨i,hi⟩ := ha ((Fintype.equivFin _).symm j)
@@ -129,9 +129,9 @@ variable [Infinite K] {h m d q r r' : ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem restoredPositiveBiform_restrictCounts (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+theorem restoredPositiveBiform_restrictCounts (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J c' O)
@@ -148,11 +148,11 @@ theorem restoredPositiveBiform_restrictCounts (hd : d%2=0)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The retained restored positive family and the distinguished extra
 column span exactly the enlarged restored positive family. -/
-theorem restoredPositiveBiform_extra_span (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+theorem restoredPositiveBiform_extra_span (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : ProductRows.LayerLabel J c')
-    (hcover : ∀ j,j=a ∨ ∃ i,countLayerMap hc i=j)
+    (hcover : ∀ j, j = a ∨ ∃ i, countLayerMap hc i = j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J c' O) :
@@ -177,11 +177,11 @@ theorem restoredPositiveBiform_extra_span (hd : d%2=0)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The same separation with an unchanged odd background appended. -/
-theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : ProductRows.LayerLabel J c')
-    (hcover : ∀ j,j=a ∨ ∃ i,countLayerMap hc i=j)
+    (hcover : ∀ j, j = a ∨ ∃ i, countLayerMap hc i = j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J c' O)
@@ -200,15 +200,15 @@ theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d%2=0)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Joint quotient independence after separating one enlarged positive label.
 The quotient is arbitrary; in the application it is the pure-scalar quotient. -/
-theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
-    (a : ProductRows.LayerLabel J c') (haway : ∀ i,countLayerMap hc i≠a)
+theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
+    (a : ProductRows.LayerLabel J c') (haway : ∀ i, countLayerMap hc i ≠ a)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J c' O)
     (G : Fin u → biformParitySpace K h m d 1)
-    (A : Submodule K (Forms K (h+m) d))
+    (A : Submodule K (Forms K (h + m) d))
     (hi : LinearIndependent K (fun i => A.mkQ
       (backgroundPositiveForms (restoredPositiveBiform hd hO hJ heven idx'
         (countIndexMap hc idx idx' ∘ slot) p) G i))) :
@@ -244,14 +244,14 @@ theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d%2=0)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The even-only specialization derives quotient independence directly
 from the enlarged parameter's independent prepared rows. -/
-theorem restoredPositiveBiform_extra_scalar_independent (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (hJlt : ∀ j∈J,0<c' j → j<d)
-    (hc : ∀ j∈J,c j≤c' j)
-    (a : ProductRows.LayerLabel J c') (haway : ∀ i,countLayerMap hc i≠a)
+theorem restoredPositiveBiform_extra_scalar_independent (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (hJlt : ∀ j ∈ J, 0 < c' j → j < d)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
+    (a : ProductRows.LayerLabel J c') (haway : ∀ i, countLayerMap hc i ≠ a)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (p : RestoredSpace m d q J c' O) (hp : ∀ j,LinearIndependent K (p.1.2 j)) :
+    (p : RestoredSpace m d q J c' O) (hp : ∀ j, LinearIndependent K (p.1.2 j)) :
     LinearIndependent K (fun i : Option
       (Fin (Fintype.card (ProductRows.LayerLabel J c)) ⊕ Fin 0) =>
       (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range.mkQ

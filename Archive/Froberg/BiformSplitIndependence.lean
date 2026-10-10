@@ -26,7 +26,7 @@ theorem biformSplitEndpoint_independent
     (F : Fin f → biformParitySpace K h m d 1)
     (hQ : LinearIndependent K (fun i => weightedHomogeneousComponent (blockWeight h m) 0 (Q i).val))
     (hF : LinearIndependent K (fun i => weightedHomogeneousComponent (blockWeight h m) 1 (F i).val))
-    (hFzero : ∀ i,weightedHomogeneousComponent (blockWeight h m) 0 (F i).val=0) :
+    (hFzero : ∀ i, weightedHomogeneousComponent (blockWeight h m) 0 (F i).val = 0) :
     LinearIndependent K (biformSplitEndpoint Q F) := by
   have hfull := two_step_linearIndependent (fun i => (Q i).val) (fun i => (F i).val)
     (weightedHomogeneousComponent (blockWeight h m) 0)
@@ -48,7 +48,7 @@ theorem biformSplitEndpoint_independent
   exact hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem linearOddForm_component (hd : 1≤d) (g : Rows K h m (d-1)) (b : ℕ) :
+theorem linearOddForm_component (hd : 1 ≤ d) (g : Rows K h m (d - 1)) (b : ℕ) :
     weightedHomogeneousComponent (blockWeight h m) b (linearOddForm hd g).val=
       if b=1 then (linearOddForm hd g).val else 0 := by
   have hh : (linearOddForm hd g).val.IsWeightedHomogeneous (blockWeight h m) 1 :=
@@ -56,7 +56,7 @@ theorem linearOddForm_component (hd : 1≤d) (g : Rows K h m (d-1)) (b : ℕ) :
   exact weightedHomogeneousComponent_of_mem hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem linearOddForm_independent (hd : 1≤d) (g : Fin f → Rows K h m (d-1))
+theorem linearOddForm_independent (hd : 1 ≤ d) (g : Fin f → Rows K h m (d - 1))
     (hg : LinearIndependent K g) : LinearIndependent K (fun i => (linearOddForm hd (g i)).val) := by
   have h₁ := hg.map' (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d :=
     d)).toLinearMap

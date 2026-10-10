@@ -18,8 +18,8 @@ namespace Froberg
 open Filter Module Quartic
 variable {K : Type*} [Field K] [Infinite K] {h e b k lo : ℕ}
 
-theorem eventually_counted_top_growth (hh : 0 < h) (he : 2≤e) (hb : 0 < b)
-    (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem eventually_counted_top_growth (hh : 0 < h) (he : 2 ≤ e) (hb : 0 < b)
+    (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤
       finrank K (Forms K h e)*
         finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P))

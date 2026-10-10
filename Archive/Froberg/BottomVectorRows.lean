@@ -29,7 +29,7 @@ def bottomOutputTargetEquiv (hd : 1 ≤ d) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem sumBiformMap_bottomOutputTarget (hd : 1 ≤ d)
-    (v : Rows K h m ((d-1)+d)) :
+    (v : Rows K h m ((d - 1) + d)) :
     sumBiformMap (bottomOutputTargetEquiv hd v)=sumBiformMap (linearOutputTensorEquiv v) :=
   sumBiformMap_degreeTransport _ _ _
 
@@ -53,7 +53,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
     sumBiformMap_scalarBiform]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem bottom_vector_linear_action (hd : 1 ≤ d) (g : Rows K h m (d-1)) (a : Forms K m d) :
+theorem bottom_vector_linear_action (hd : 1 ≤ d) (g : Rows K h m (d - 1)) (a : Forms K m d) :
     oddRowLinearAction (b := 1) (by decide) hd (linearOutputTensorEquiv g)
       (bottomLinearCoefficientEquiv hd a)=bottomOutputTargetEquiv hd (multiplication a g) := by
   apply sumBiformMap_injective
@@ -61,7 +61,7 @@ theorem bottom_vector_linear_action (hd : 1 ≤ d) (g : Rows K h m (d-1)) (a : F
     sumBiformMap_bottomOutputTarget,linearOutput_scalar_product,mul_comm]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem bottom_vector_scalar_action (hd : 1 ≤ d) (p : Forms K m d) (v : Rows K h m (d-1)) :
+theorem bottom_vector_scalar_action (hd : 1 ≤ d) (p : Forms K m d) (v : Rows K h m (d - 1)) :
     oddRowScalarAction (b := 1) hd (scalarBiformEquiv (h := h) p)
       (linearOutputTensorEquiv v)=bottomOutputTargetEquiv hd (multiplication p v) := by
   apply sumBiformMap_injective
@@ -69,7 +69,7 @@ theorem bottom_vector_scalar_action (hd : 1 ≤ d) (p : Forms K m d) (v : Rows K
     sumBiformMap_bottomOutputTarget,linearOutput_scalar_product]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def bottomVectorRow (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
+def bottomVectorRow (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     ((Fin f → Forms K m d) × (Fin q → Rows K h m (d-1))) →ₗ[K] Rows K h m ((d-1)+d) :=
   (BilinearImage.tupleMap multiplication g).coprod (BilinearScalarFamily.multiplication
     multiplication Q)
@@ -84,8 +84,8 @@ def bottomRowCoefficients (hd : 1 ≤ d) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency true in
- theorem bottomRow_map_comparison (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
+theorem bottomRow_map_comparison (hd : 1 ≤ d)
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     (oddTensorRowMap (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
       (fun i => linearOutputTensorEquiv (g i))).comp
         (bottomRowCoefficients (K := K) (h := h) (m := m) (d := d) (q := q) (f := f)
@@ -100,7 +100,7 @@ set_option backward.isDefEq.respectTransparency true in
 
  set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem bottomRow_range_comparison (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     (oddTensorRowMap (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
       (fun i => linearOutputTensorEquiv (g i))).range=
       (BilinearImage.image multiplication (Submodule.span K (Set.range g)) ⊔

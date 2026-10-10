@@ -38,7 +38,7 @@ instance biformParitySpace_finite (p : ZMod 2) : Module.Finite K (biformParitySp
     homogeneousSubmodule _ K d from inf_le_left)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def evenBiformEmbedding (ht : t≤d) (heven : t%2=0) :
+def evenBiformEmbedding (ht : t ≤ d) (heven : t % 2 = 0) :
     (Forms K h t ⊗[K] Forms K m (d-t)) →ₗ[K] biformParitySpace K h m d 0 :=
   (sumBiformMap (K := K) (h := h) (n := m) (a := t) (c := d-t)).codRestrict _ (by
     intro v
@@ -56,12 +56,12 @@ def evenBiformEmbedding (ht : t≤d) (heven : t%2=0) :
       rw [hw,heven])
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem evenBiformEmbedding_val (ht : t≤d) (heven : t%2=0)
-    (v : Forms K h t ⊗[K] Forms K m (d-t)) :
+@[simp] theorem evenBiformEmbedding_val (ht : t ≤ d) (heven : t % 2 = 0)
+    (v : Forms K h t ⊗[K] Forms K m (d - t)) :
     (evenBiformEmbedding ht heven v).val=sumBiformMap v := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def oddBiformEmbedding (ht : t≤d) (hodd : t%2=1) :
+def oddBiformEmbedding (ht : t ≤ d) (hodd : t % 2 = 1) :
     (Forms K h t ⊗[K] Forms K m (d-t)) →ₗ[K] biformParitySpace K h m d 1 :=
   (sumBiformMap (K := K) (h := h) (n := m) (a := t) (c := d-t)).codRestrict _ (by
     intro v
@@ -79,8 +79,8 @@ def oddBiformEmbedding (ht : t≤d) (hodd : t%2=1) :
       rw [hw,hodd])
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem oddBiformEmbedding_val (ht : t≤d) (hodd : t%2=1)
-    (v : Forms K h t ⊗[K] Forms K m (d-t)) :
+@[simp] theorem oddBiformEmbedding_val (ht : t ≤ d) (hodd : t % 2 = 1)
+    (v : Forms K h t ⊗[K] Forms K m (d - t)) :
     (oddBiformEmbedding ht hodd v).val=sumBiformMap v := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

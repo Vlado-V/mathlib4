@@ -23,7 +23,7 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 theorem forms_polynomial_affine_parameters {V : Type*}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     (p₀ : Space m d q f u J counts O) (L : V →ₗ[K] Space m d q f u J counts O)
-    (hd : 0 < d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d) :
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d) :
     IsPolynomialFamily (fun a : Fin (finrank K V) → K =>
       forms hd hO hJ (p₀+L ((Module.finBasis K V).equivFun.symm a))) := by
   simpa only [map_add] using
@@ -34,7 +34,7 @@ theorem enumerated_forms_polynomial_affine_parameters {V : Type*} {h : ℕ}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     {O : ℕ → Submodule K (Poly K h)}
     (p₀ : Space m d q f u J counts O) (L : V →ₗ[K] Space m d q f u J counts O)
-    (hd : 0 < d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) :
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) :
     IsPolynomialFamily (fun a : Fin (finrank K V) → K =>
       PreparedTarget.enumerateForms (forms hd hO hJ
         (p₀+L ((Module.finBasis K V).equivFun.symm a)))) :=
@@ -73,14 +73,14 @@ def variablePrivateZeroScalar : FixedPureZeroScalarSpace m d q f u J counts O �
     pureBase U+variablePrivateZeroScalar p=(U,(p.1,PreparedTarget.zeroPrivateScalar p.2)) := by
   simp [pureBase,variablePrivateZeroScalar]
 
-theorem finite_fixedPureSpace (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+theorem finite_fixedPureSpace (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (FixedPureSpace m d q f u J counts O) := by
   letI : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   apply Module.Finite.of_injective variablePrivate
   intro p p' he
   exact congrArg (fun x : Space m d q f u J counts O => x.2) he
 
-theorem finite_fixedPureZeroScalarSpace (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+theorem finite_fixedPureZeroScalarSpace (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) := by
   letI : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   apply Module.Finite.of_injective variablePrivateZeroScalar

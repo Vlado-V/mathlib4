@@ -65,8 +65,8 @@ theorem projectedHomologyCoefficients_odd
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hi : LinearIndependent K q)
     (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z, pi z=0 → parityForm w 1 z=0)
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm w 1 z = 0)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i, (a.val i).val.IsWeightedHomogeneous w (1-e i)) →
       a.val ∈ oppositeKoszulSpace q e)
@@ -98,8 +98,8 @@ theorem projectedHomologyCoefficients_odd_kernel
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hi : LinearIndependent K q)
     (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z, pi z=0 → parityForm w 1 z=0)
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm w 1 z = 0)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i, (a.val i).val.IsWeightedHomogeneous w (1-e i)) →
       a.val ∈ oppositeKoszulSpace q e)

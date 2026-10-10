@@ -21,7 +21,7 @@ open Module MvPolynomial TensorProduct Quartic
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f e : ℕ}
 variable (hdp : 1 ≤ d) (Q : Fin q → Forms K m d)
-  (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+  (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
 local notation "F₁" => fun i => oddBiformEmbedding hdp (by decide) (F i)
 local notation "V" => EvenBackgroundSource hdp F
@@ -65,7 +65,7 @@ theorem even_affine_bottom_detects (E : Fin e → biformParitySpace K h m d 0)
     (hupper : Function.Surjective (upperTargetMap
       (backgroundEnumeratedForms (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁ emptyOddFamily)))
     (ell : W →ₗ[K] K) (hA : evenAffineRelations hdp Q F E a ≤ ell.ker)
-    (hb : splitTargetBottom ec ell=0) : ell=0 := by
+    (hb : splitTargetBottom ec ell = 0) : ell=0 := by
   let ell' := ell.comp (evenBackgroundTargetEquiv hdp Q F).symm.toLinearMap
   have hzero : ell'=0 := by
     apply odd_even_append_bottom_detects Q₀ F₁ emptyOddFamily (oddEvenAffineFamily E a) hupper ell'

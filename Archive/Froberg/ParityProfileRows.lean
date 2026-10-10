@@ -76,11 +76,11 @@ namespace MonomialExpansion
 actual weighted monomial row. -/
 theorem profile_row_bound_of_count_bound {n d e : ℕ}
     (S : Finset (Fin n)) (hS : S.Nonempty) (hSc : Sᶜ.Nonempty)
-    (a : Fin n →₀ ℕ) (ha : a.degree=e) (p j : ℕ)
-    (hcount : (n+e+d-1).choose d ≤
+    (a : Fin n →₀ ℕ) (ha : a.degree = e) (p j : ℕ)
+    (hcount : (n + e + d - 1).choose d ≤
       4 * ∑ u ∈ retainedProfileIncrements d (partialDegree S a) p j,
-        (S.card+partialDegree S a+u-1).choose u *
-          (Sᶜ.card+(e-partialDegree S a)+(d-u)-1).choose (d-u)) :
+        (S.card + partialDegree S a + u - 1).choose u *
+          (Sᶜ.card + (e - partialDegree S a) + (d - u) - 1).choose (d - u)) :
     (n+e+d-1).choose d ≤
       4 * ∑ b ∈ (exponents n (e+d)).filter
         (fun b => partialDegree S b % 2 ≠ p ∧ partialDegree S b ≠ j), weight b a := by

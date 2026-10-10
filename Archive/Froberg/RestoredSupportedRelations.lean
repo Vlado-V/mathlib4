@@ -22,8 +22,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d r : ℕ}
 theorem restored_supported_formal_relations
     (g : Fin r → evenRestorationSpace (K := K) (coreWeight h m) d)
     (hi : LinearIndependent K (restorationForms (coreWeight h m) g))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (hodd : ∀ a : (endpointMultiplication (restorationForms (coreWeight h m) g)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m) 1) →
       a.val∈oppositeKoszulSpace (restorationForms (coreWeight h m) g) (fun _ => 0))

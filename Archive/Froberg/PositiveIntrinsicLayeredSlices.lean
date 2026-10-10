@@ -35,8 +35,8 @@ theorem intrinsic_layered_quotient_slices_positive
     (bottom : (W →ₗ[K] K) →ₗ[K] (W₀ →ₗ[K] K))
     (higher : (W →ₗ[K] K) →ₗ[K] (H →ₗ[K] K))
     (res : ((W₀ →ₗ[K] K) × (H →ₗ[K] K)) →ₗ[K] (W →ₗ[K] K))
-    (hres : ∀ ell,res (bottom ell,higher ell)=ell)
-    (hcompat : ∀ ell p v,ell (mu p v)=(bottom ell) (mu₀ p v)+(higher ell) (muH p v))
+    (hres : ∀ ell, res (bottom ell, higher ell) = ell)
+    (hcompat : ∀ ell p v, ell (mu p v) = (bottom ell) (mu₀ p v) + (higher ell) (muH p v))
     (s₀ : ℕ → ℕ) (hs₀ : HasClosedKernelSlices nu s₀)
     (hmono : ∀ ell : W →ₗ[K] K,bottom ell≠0 →
       finrank K (relation nu (bottom ell)).ker ≤ finrank K (relation mu ell).ker)
@@ -73,8 +73,8 @@ theorem intrinsic_uniform_quotient_slices_positive
     (bottom : (W →ₗ[K] K) →ₗ[K] (W₀ →ₗ[K] K))
     (higher : (W →ₗ[K] K) →ₗ[K] (H →ₗ[K] K))
     (res : ((W₀ →ₗ[K] K) × (H →ₗ[K] K)) →ₗ[K] (W →ₗ[K] K))
-    (hres : ∀ ell,res (bottom ell,higher ell)=ell)
-    (hcompat : ∀ ell p v,ell (mu p v)=(bottom ell) (mu₀ p v)+(higher ell) (muH p v))
+    (hres : ∀ ell, res (bottom ell, higher ell) = ell)
+    (hcompat : ∀ ell p v, ell (mu p v) = (bottom ell) (mu₀ p v) + (higher ell) (muH p v))
     (s₀ : ℕ → ℕ) (hs₀ : HasClosedKernelSlices nu s₀)
     (hmono : ∀ ell : W →ₗ[K] K,bottom ell≠0 →
       finrank K (relation nu (bottom ell)).ker ≤ finrank K (relation mu ell).ker)

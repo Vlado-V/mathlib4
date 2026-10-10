@@ -33,8 +33,8 @@ lemma quotient_restrict_injective_of_disjoint
 nonempty full-coefficient open. Hence this condition can be intersected
 with the H2 product-prefix and B7 frame opens before fixing D. -/
 theorem private_detector_frame_open {h b H : ℕ}
-    (hh : 0<h) (hcap : H+(2*h-1)≤finrank K (Forms K h 2))
-    (w : Fin b → Forms K h 1) (hw : ∀ i,w i≠0)
+    (hh : 0 < h) (hcap : H + (2 * h - 1) ≤ finrank K (Forms K h 2))
+    (w : Fin b → Forms K h 1) (hw : ∀ i, w i ≠ 0)
     (hpair : ∀ p : GeneratorPair b,
       LinearIndependent K (![w p.val.1,w p.val.2] : Fin 2 → Forms K h 1)) :
     ∃ P : MvPolynomial (Fin (finrank K (Fin H → Forms K h 2))) K,

@@ -21,12 +21,12 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem oddTargetBaseMap_weighted_higher_zero (hd : 1≤d)
+theorem oddTargetBaseMap_weighted_higher_zero (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
-    (p : biformParitySpace K h m (2*d) 1)
+    (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+    (p : biformParitySpace K h m (2 * d) 1)
     (hp : p.val.IsWeightedHomogeneous (blockWeight h m) 1) :
     (oddTargetBaseMap hd Q F hQ hF p).2=0 := by
   funext r
@@ -45,11 +45,11 @@ theorem oddTargetBaseMap_weighted_higher_zero (hd : 1≤d)
   rfl
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem oddTargetBaseMap_bottom_product (hd : 1≤d)
+theorem oddTargetBaseMap_bottom_product (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+    (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
     (s : biformParitySpace K h m d 0)
     (hs : s.val.IsWeightedHomogeneous (blockWeight h m) 0)
     (v : biformParitySpace K h m d 1)

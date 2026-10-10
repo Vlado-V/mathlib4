@@ -21,9 +21,9 @@ variable {K U E : Type*} [Field K]
 
 theorem principal_open_linear_pullback (F : U →ₗ[K] E) (hF : Function.Surjective F)
     (D : MvPolynomial (Fin (finrank K E)) K)
-    (hD : ∃ e : E,eval ((Module.finBasis K E).equivFun e) D≠0)
+    (hD : ∃ e : E, eval ((Module.finBasis K E).equivFun e) D ≠ 0)
     (Good : E → Prop)
-    (hGood : ∀ e,eval ((Module.finBasis K E).equivFun e) D≠0 → Good e) :
+    (hGood : ∀ e, eval ((Module.finBasis K E).equivFun e) D ≠ 0 → Good e) :
     ∃ P : MvPolynomial (Fin (finrank K U)) K,
       (∃ u : U,eval ((Module.finBasis K U).equivFun u) P≠0) ∧
       ∀ u,eval ((Module.finBasis K U).equivFun u) P≠0 → Good (F u) := by

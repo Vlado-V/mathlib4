@@ -22,7 +22,7 @@ variable {K : Type*} [Field K] {a z s b h c : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Extraction of a scalar-monomial coefficient as an output vector. -/
-def privateSourceCoefficientMap (i : Fin b) (α : Fin (a+z) →₀ ℕ) :
+def privateSourceCoefficientMap (i : Fin b) (α : Fin (a + z) →₀ ℕ) :
     (Fin b → Fin h → Forms K (a+z) s) →ₗ[K] (Fin h → K) where
   toFun v := privateSourceCoefficient v i α
   map_add' v w := by
@@ -48,7 +48,7 @@ The two-output hypothesis is precisely the one-dimensional product overlap. -/
 theorem privateAlternatingCoefficients_injective_on_kernel (hs : 0 < s)
     (ι : Fin b ↪ Fin z) (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (hA : ∀ i, Function.Injective (A i)) (w : Fin b → Fin h → K)
-    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i)=1)
+    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i) = 1)
     (hpair : ∀ p : GeneratorPair b, ∀ x y,
       A p.val.1 x + A p.val.2 y=0 → ∃ t : K,
         x=t • w p.val.2 ∧ y=(-t) • w p.val.1) :
@@ -105,7 +105,7 @@ parameter per unordered pair of private generators. -/
 theorem privatePolynomialMap_kernel_finrank_le (hs : 0 < s)
     (ι : Fin b ↪ Fin z) (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (hA : ∀ i, Function.Injective (A i)) (w : Fin b → Fin h → K)
-    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i)=1)
+    (dual : Fin b → (Fin h → K) →ₗ[K] K) (hdual : ∀ i, dual i (w i) = 1)
     (hpair : ∀ p : GeneratorPair b, ∀ x y,
       A p.val.1 x + A p.val.2 y=0 → ∃ t : K,
         x=t • w p.val.2 ∧ y=(-t) • w p.val.1) :

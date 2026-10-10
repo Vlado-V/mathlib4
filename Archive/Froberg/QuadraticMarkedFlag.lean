@@ -30,7 +30,7 @@ def Data (q : Fin (upperEndpoint n) → Forms K n 2) : Prop :=
         genericHomology K n 2 (upperEndpoint n-1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem principal_open (hn : 0<n) (h2 : (2 : K)≠0) :
+theorem principal_open (hn : 0 < n) (h2 : (2 : K) ≠ 0) :
     ∃ D : MvPolynomial (ChildIndex n (upperEndpoint n)) K,
       (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → Data (decode a) := by
   classical

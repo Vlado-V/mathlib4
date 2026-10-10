@@ -18,7 +18,7 @@ open scoped Topology
 universe u
 
 theorem eventually_quadratic_row_three_uniform {d : ℕ} (hd : 3 ≤ d)
-    (D : ℕ → ℕ) (δ : ℝ) (hδ : (1/6 : ℝ) < δ)
+    (D : ℕ → ℕ) (δ : ℝ) (hδ : (1 / 6 : ℝ) < δ)
     (hDlim : Tendsto (fun n : ℕ => (D n : ℝ)/(n : ℝ)^2) atTop (𝓝 δ))
     (hDupper : ∀ᶠ n : ℕ in atTop, D n ≤ (n+1).choose 2) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop, ∀ (K : Type u) [Field K] [Infinite K],
@@ -41,7 +41,7 @@ theorem eventually_quadratic_row_four_of_endpoint_uniform {d : ℕ} (hd : 3 ≤ 
     (hquad : ∀ n, N₂ ≤ n → ∀ (K : Type u) [Field K] [Infinite K],
       GenericEndpoint K n 2 (upperCount n 2))
     (D : ℕ → ℕ)
-    (hD : ∀ᶠ h : ℕ in atTop, upperCount h 2 ≤ D h ∧ D h ≤ (h+1).choose 2) :
+    (hD : ∀ᶠ h : ℕ in atTop, upperCount h 2 ≤ D h ∧ D h ≤ (h + 1).choose 2) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop, ∀ (K : Type u) [Field K] [Infinite K],
       ∃ (W : Submodule K (Forms K h 2))
         (o : Fin ⌈countAlpha d*(h : ℝ)^2*(m : ℝ)^(d-2)⌉₊ → W)

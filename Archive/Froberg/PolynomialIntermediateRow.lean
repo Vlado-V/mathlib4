@@ -37,14 +37,14 @@ theorem polynomialFormVector_injective (o : J → MvPolynomial σ K) (ho : Linea
   exact Subtype.ext (congrFun heq j)
 
 theorem polynomialFormVector_homogeneous (o : J → MvPolynomial σ K) {R : ℕ}
-    (ho : ∀ j,(o j).IsHomogeneous R) (p : J → Forms K n s) :
+    (ho : ∀ j, (o j).IsHomogeneous R) (p : J → Forms K n s) :
     (polynomialFormVector o s p).IsHomogeneous (R+s) :=
   polynomialVector_homogeneous o _ ho (fun j => (p j).property)
 
 namespace AttachedMultiplication
 
 def polynomialIntermediateRow (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d) :
     ((Fin q → J → Forms K n s) × (I → Forms K n d)) →ₗ[K] MvPolynomial (σ ⊕ Fin n) K :=
   (polynomialFormVector o (s+d)).comp (intermediateRow e v he Q)
@@ -59,7 +59,7 @@ theorem polynomialFormVector_vectorMultiply (o : J → MvPolynomial σ K)
 
 theorem polynomialIntermediateRow_ker (o : J → MvPolynomial σ K)
     (ho : LinearIndependent K o)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d)
     (hE : Function.Injective (multiplication (d := d) e v))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply e v he) Q)) :
@@ -73,9 +73,9 @@ theorem polynomialIntermediateRow_ker (o : J → MvPolynomial σ K)
   exact intermediateRow_ker_eq_koszul e v he Q hE hQ
 
 /-- The split polynomial row has exactly the same mandatory kernel dimension. -/
-theorem polynomialIntermediateRow_kernel_finrank (hn : 0<n)
+theorem polynomialIntermediateRow_kernel_finrank (hn : 0 < n)
     (o : J → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d)
     (hE : Function.Injective (multiplication (d := d) e v))
     (hE₀ : Function.Injective (multiplication (d := 0) e v))

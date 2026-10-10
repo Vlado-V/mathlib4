@@ -31,13 +31,13 @@ def privateTopRow (p : Space n d q J counts O)
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_top_core_injective
-    (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d)
+    (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d)
     (bi : Basis (Fin hi) K (homogeneousSubmodule σ K d))
-    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (d+1)))
-    (l : Fin b → homogeneousSubmodule σ K 1) (hl : ∀ i,l i≠0)
+    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (d + 1)))
+    (l : Fin b → homogeneousSubmodule σ K 1) (hl : ∀ i, l i ≠ 0)
     (ι : Fin b ↪ Fin z) (p₀ : Space a d q J counts O)
-    (hprod : Function.Injective (ProductRows.multiplication counts (layers p₀) J (d+1))) :
+    (hprod : Function.Injective (ProductRows.multiplication counts (layers p₀) J (d + 1))) :
     Function.Injective (privateTopRow (coreExtension z p₀)
       (fun i => rename Sum.inl (l i).val*
         rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))) := by
@@ -75,8 +75,8 @@ theorem private_top_core_injective
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_top_principal_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (p₀ : Space n d q J counts O) (hp₀ : Function.Injective (privateTopRow p₀ P)) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧

@@ -44,7 +44,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundSourceEquiv (hdp : 1 ≤ d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     EvenBackgroundSource hdp F ≃ₗ[K]
       (biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations
         (fun i => oddBiformEmbedding hdp (by decide) (F i)) emptyOddFamily) :=
@@ -52,7 +52,7 @@ def evenBackgroundSourceEquiv (hdp : 1 ≤ d)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundTargetEquiv (hdp : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     EvenBackgroundTarget hdp Q F ≃ₗ[K]
       (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations
         (fun i => scalarEvenBiform (h := h) (Q i))
@@ -61,7 +61,7 @@ def evenBackgroundTargetEquiv (hdp : 1 ≤ d)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundEquiv_scalar (hdp : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : EvenBackgroundSource hdp F) :
     evenBackgroundTargetEquiv hdp Q F (evenBackgroundScalar hdp Q F p v)=
       oddBackgroundScalarProduct (fun i => scalarEvenBiform (h := h) (Q i))

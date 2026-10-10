@@ -17,7 +17,7 @@ namespace Froberg
 open Filter Polynomial
 open scoped Topology
 
-theorem eventually_top_incidence_budget {d a b : ℕ} (hd : 3≤d)
+theorem eventually_top_incidence_budget {d a b : ℕ} (hd : 3 ≤ d)
     (qF qS : ℕ → ℕ) (cF cS : ℝ)
     (hF : Tendsto (fun m : ℕ => (qF m : ℝ)/(m : ℝ)^(d-1)) atTop (𝓝 cF))
     (hS : Tendsto (fun m : ℕ => (qS m : ℝ)/(m : ℝ)^d) atTop (𝓝 cS))

@@ -20,7 +20,7 @@ open Froberg Module MvPolynomial Filter
 open scoped Topology
 attribute [local instance] tensorGroup
 
-theorem eventually_prepared_target_witness_uniform {d : ℕ} (hd : 3≤d) (N₂ : ℕ)
+theorem eventually_prepared_target_witness_uniform {d : ℕ} (hd : 3 ≤ d) (N₂ : ℕ)
     (hquad : ∀ h, N₂ ≤ h → ∀ (K : Type) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :
     ∀ᶠ h : ℕ in atTop, ∀ F : ℕ → ℕ,

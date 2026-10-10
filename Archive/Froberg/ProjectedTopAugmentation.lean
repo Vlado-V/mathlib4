@@ -23,7 +23,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev projectedTopMap (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+abbrev projectedTopMap (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :=
   twoFamilyMultiplication (K := K)
     (V₁ := Forms K h e ⊗[K] Forms K m 1) (V₂ := Fin b → K)
@@ -31,7 +31,7 @@ abbrev projectedTopMap (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) p
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev projectedTopScalarAction (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+abbrev projectedTopScalarAction (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :=
   scalarModulo (K := K) (P := Forms K m (1+e)) (V := Fin b → K)
     (W := (Fin b → K) ⊗[K] Forms K m (1+e))
@@ -40,7 +40,7 @@ abbrev projectedTopScalarAction (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e)))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def ProjectedTopGrowthOpen (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+def ProjectedTopGrowthOpen (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (m qF qS t : ℕ) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (ProjectedTopParameters K h m e qF qS))) K,
     (∃ p : ProjectedTopParameters K h m e qF qS,
@@ -53,7 +53,7 @@ def ProjectedTopGrowthOpen (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_top_growth_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
-    (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+    (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤
       finrank K (Forms K h e)*
         finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P))
@@ -83,8 +83,8 @@ theorem projected_top_growth_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
       Finset.card_univ,Fintype.card_fin,smul_eq_mul,mul_one] using hcount
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem eventually_projected_top_growth_open (hh : 0 < h) (he : 2≤e) (hb : 0 < b)
-    (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
+theorem eventually_projected_top_growth_open (hh : 0 < h) (he : 2 ≤ e) (hb : 0 < b)
+    (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤
       finrank K (Forms K h e)*
         finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P))

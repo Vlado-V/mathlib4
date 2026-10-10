@@ -28,7 +28,7 @@ theorem output_weight_sumElim (a : σ →₀ ℕ) (b : τ →₀ ℕ) :
 /-- Total homogeneity and output homogeneity characterize the actual biform
 space; no tensor-image membership assumption is needed. -/
 theorem mem_biformImage_of_homogeneous {R s : ℕ} {f : MvPolynomial (σ ⊕ τ) K}
-    (hf : f.IsHomogeneous (R+s))
+    (hf : f.IsHomogeneous (R + s))
     (hR : f.IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : τ => 0)) R) :
     f∈biformImage (homogeneousSubmodule σ K R) (homogeneousSubmodule τ K s) := by
   classical
@@ -86,7 +86,7 @@ theorem polynomialFormVector_range_basis {n s : ℕ}
 its ordinary homogeneous biform space. -/
 theorem polynomialFormVector_range_complete {n R s : ℕ}
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
-    (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R) :
+    (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R) :
     (polynomialFormVector (n := n) o s).range=
       biformImage (homogeneousSubmodule σ K R) (Forms K n s) := by
   let O := homogeneousSubmodule σ K R

@@ -24,9 +24,9 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f e : ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredOuterEndpoint_renamed (hdp : 1≤d) (hd : d%2=0)
+theorem restoredOuterEndpoint_renamed (hdp : 1 ≤ d) (hd : d % 2 = 0)
     {J : Finset ℕ} {counts : ℕ → ℕ}
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O) (i : Fin r ⊕ Fin f) :
     (restoredOuterEndpoint hdp hd hO hJ heven idx slot p (finSumFinEquiv i)).val=
@@ -41,7 +41,7 @@ theorem restoredOuterEndpoint_renamed (hdp : 1≤d) (hd : d%2=0)
   exact hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredUpperPoint (hd : 3≤d)
+def restoredUpperPoint (hd : 3 ≤ d)
     (p : PreparedTarget.Space m d q f (finrank K (Forms K h d))
       (allEvenIndices d) (allEvenCount d h m e) O)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d) :
@@ -50,12 +50,12 @@ def restoredUpperPoint (hd : 3≤d)
   ((extendQuadratic hd h m e _ p.1,U),p.2.1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_upper_point_contains (hd : 3≤d) (he : d%2=0)
-    (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
+theorem restored_upper_point_contains (hd : 3 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ allEvenIndices d, O j ≤ Forms K h j)
     (idx : Fin r ≃ Label q (allEvenIndices d)
-      (allEvenCount d h m (e+finrank K (Forms K h d))))
+      (allEvenCount d h m (e + finrank K (Forms K h d))))
     (p : PreparedTarget.Space m d q f (finrank K (Forms K h d))
-      (allEvenIndices d) (allEvenCount d h m e) O) (hp : p.2.2=0)
+      (allEvenIndices d) (allEvenCount d h m e) O) (hp : p.2.2 = 0)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d)
     (i : PreparedTarget.Label q f (finrank K (Forms K h d))
       (allEvenIndices d) (allEvenCount d h m e)) :
@@ -103,12 +103,12 @@ theorem restored_upper_point_contains (hd : 3≤d) (he : d%2=0)
     rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_upper_point_surjective (hd : 3≤d) (he : d%2=0)
-    (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
+theorem restored_upper_point_surjective (hd : 3 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ allEvenIndices d, O j ≤ Forms K h j)
     (idx : Fin r ≃ Label q (allEvenIndices d)
-      (allEvenCount d h m (e+finrank K (Forms K h d))))
+      (allEvenCount d h m (e + finrank K (Forms K h d))))
     (p : PreparedTarget.Space m d q f (finrank K (Forms K h d))
-      (allEvenIndices d) (allEvenCount d h m e) O) (hp : p.2.2=0)
+      (allEvenIndices d) (allEvenCount d h m e) O) (hp : p.2.2 = 0)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d)
     (hsurj : Function.Surjective (upperTargetMap
       (PreparedTarget.enumerateForms (PreparedTarget.forms (by omega) hO

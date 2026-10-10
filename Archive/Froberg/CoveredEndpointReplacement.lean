@@ -61,9 +61,9 @@ theorem appended_slot_even_coverage_open
     (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0) (i : Fin e)
     (M : biformParitySpace K h m d 0)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(parityForm (coreParity h m) 1).ker)
-    (hc : ∀ p,parityForm (coreParity h m) 0 p∈
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (parityForm (coreParity h m) 1).ker)
+    (hc : ∀ p, parityForm (coreParity h m) 0 p ∈
       D ⊔ (endpointMultiplication (backgroundEnumeratedForms (Fin.append Q E) F G)).range) :
     ∃ P : MvPolynomial (Fin 1) K,eval 0 P≠0 ∧ ∀ c : K,eval (fun _ => c) P≠0 →
       ∀ p,parityForm (coreParity h m) 0 p∈D ⊔
@@ -85,9 +85,9 @@ theorem exists_covered_endpoint_slot_thin [IsAlgClosed K]
     (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0) (i : Fin e)
     (M : biformParitySpace K h m d 0) (C : ℝ)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(parityForm (coreParity h m) 1).ker)
-    (hc : ∀ p,parityForm (coreParity h m) 0 p∈
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (parityForm (coreParity h m) 1).ker)
+    (hc : ∀ p, parityForm (coreParity h m) 0 p ∈
       D ⊔ (endpointMultiplication (backgroundEnumeratedForms (Fin.append Q E) F G)).range)
     (hex : OddSplitExact (Fin.append Q E) (Fin.append F G))
     (hs : HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q E) F G)
@@ -95,7 +95,7 @@ theorem exists_covered_endpoint_slot_thin [IsAlgClosed K]
     (hi : LinearIndependent K (backgroundEnumeratedForms (Fin.append Q E) F G))
     (hu : Function.Surjective (upperTargetMap (h := h) (m := m) (d := d)
       (backgroundEnumeratedForms (Fin.append Q E) F G)))
-    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P≠0) :
+    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P ≠ 0) :
     ∃ c : K,c≠0 ∧ eval (fun _ => c) P≠0 ∧
       OddSplitExact (Fin.append Q (Function.update E i (E i+c • M))) (Fin.append F G) ∧
       HasClosedKernelSlices

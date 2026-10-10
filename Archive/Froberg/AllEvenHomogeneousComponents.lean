@@ -16,9 +16,9 @@ namespace Froberg
 open MvPolynomial Finset
 variable {K σ : Type*} [Field K] {d : ℕ}
 
-theorem all_even_homogeneous_components (w : σ → ℕ) (hw : ∀ x,w x≤1)
+theorem all_even_homogeneous_components (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
     (f : MvPolynomial σ K) (hf : f.IsHomogeneous d)
-    (heven : ∀ a,f.coeff a≠0 → Finsupp.weight w a%2=0) :
+    (heven : ∀ a, f.coeff a ≠ 0 → Finsupp.weight w a % 2 = 0) :
     f=∑ r : Fin (d/2+1),weightedHomogeneousComponent w (2*r.val) f := by
   classical
   ext a

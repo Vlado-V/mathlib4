@@ -19,8 +19,8 @@ namespace Froberg.PrivateColumns
 open Module MvPolynomial
 variable {K : Type*} [Field K] [Infinite K] {a z s b h H : ℕ}
 
-theorem private_kernel_on_frame_open (hh : 2≤h)
-    (hcap : H+(2*h-1)≤finrank K (Forms K h 2)) (hs : 0<s)
+theorem private_kernel_on_frame_open (hh : 2 ≤ h)
+    (hcap : H + (2 * h - 1) ≤ finrank K (Forms K h 2)) (hs : 0 < s)
     (ι : Fin b ↪ Fin z) :
     ∃ (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin b → Fin h → K)
       (P : MvPolynomial (Fin (finrank K (Fin H → Forms K h 2))) K),

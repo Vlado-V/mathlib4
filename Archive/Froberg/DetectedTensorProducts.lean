@@ -68,7 +68,7 @@ theorem exists_detected_tensor_family [Infinite K]
     (ho : LinearIndependent K (fun p => T (pairProducts o p)))
     (C P Q : Submodule K B) [Module.Finite K C]
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCP : C*C ≤ P) (hPQ : Disjoint P Q) (hr : 2*r ≤ finrank K C) :
+    (hCP : C * C ≤ P) (hPQ : Disjoint P Q) (hr : 2 * r ≤ finrank K C) :
     ∃ c : ι × Fin r → C, LinearIndependent K (fun p => TensorProduct.map T Q.mkQ
       (pairProducts (tensorFamily (K := K) o (fun i => (c i).val)) p)) := by
   obtain ⟨c,hc⟩ := exists_scalar_pair_fiber_independent (ι := ι) C hC hr
@@ -84,7 +84,7 @@ theorem exists_detected_separated_family [Infinite K]
     (ho : LinearIndependent K (fun p => T (pairProducts o p)))
     (C P Q : Submodule K B) [Module.Finite K C]
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCP : C*C ≤ P) (hPQ : Disjoint P Q) {m : ℕ}
+    (hCP : C * C ≤ P) (hPQ : Disjoint P Q) {m : ℕ}
     (hm : m ≤ Fintype.card ι * (finrank K C / 2)) :
     ∃ q : Fin m → A ⊗[K] B,
       (∀ i, q i ∈ LinearMap.range (TensorProduct.map
@@ -114,7 +114,7 @@ theorem exists_separated_tensor_space [Infinite K]
     (ho : LinearIndependent K (fun p => T (pairProducts o p)))
     (C P Q : Submodule K B) [Module.Finite K C]
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCP : C*C ≤ P) (hPQ : Disjoint P Q)
+    (hCP : C * C ≤ P) (hPQ : Disjoint P Q)
     (J : Submodule K (A ⊗[K] B)) (hJ : J ≤ (TensorProduct.map T Q.mkQ).ker)
     {m : ℕ} (hm : m ≤ Fintype.card ι * (finrank K C / 2)) :
     ∃ q : Fin m → A ⊗[K] B,

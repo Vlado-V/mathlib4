@@ -21,7 +21,7 @@ bridge, not an assertion of generic fiber dimensions or motion rank.
 namespace Quartic.ScalarJointCount
 open UniformScalar
 
- theorem cast_sub_max (u v : ℕ) : ((u-v : ℕ) : ℝ) = max ((u : ℝ)-v) 0 := by
+theorem cast_sub_max (u v : ℕ) : ((u-v : ℕ) : ℝ) = max ((u : ℝ)-v) 0 := by
   by_cases h : v ≤ u
   · rw [Nat.cast_sub h,max_eq_left]
     exact sub_nonneg.mpr (by exact_mod_cast h)
@@ -32,11 +32,11 @@ open UniformScalar
 /-- The two scalar alternatives both imply the strict dimension inequality
 needed by the three successive actual kernel constraints. -/
 theorem strict_joint_budget (a T q d E k h c : ℕ)
-    (hd : d ≤ a) (hE : E < T) (hqa : q*a ≤ T)
+    (hd : d ≤ a) (hE : E < T) (hqa : q * a ≤ T)
     (hscalar :
-      covectorR ((T-q*a : ℕ) : ℝ) E q a d < 0 ∨
-      covectorR ((T-q*a : ℕ) : ℝ) E q a d - codimensionR k h c d ≤
-        max (((T-q*a : ℕ) : ℝ) - ((k+h : ℕ) : ℝ)) 0 - 1) :
+      covectorR ((T - q * a : ℕ) : ℝ) E q a d < 0 ∨
+      covectorR ((T - q * a : ℕ) : ℝ) E q a d - codimensionR k h c d ≤
+        max (((T - q * a : ℕ) : ℝ) - ((k + h : ℕ) : ℝ)) 0 - 1) :
     d*(a-d)+(T-E)-1 < q*(a-d) + (k-4*d) + (h-c*d) + (T-q*a-(k+h)) := by
   have hpos : 1 ≤ d*(a-d)+(T-E) := by omega
   have hcov : covectorR ((T-q*a : ℕ) : ℝ) E q a d =

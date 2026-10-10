@@ -25,7 +25,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0)
-    (v : biformParitySpace K h m (2*d) 1) :
+    (v : biformParitySpace K h m (2 * d) 1) :
     oddEvenTargetExtensionEquiv Q F G E
       ((oddEvenRelativeMap Q F G E).range.mkQ ((fullOddRelations Q F G).mkQ v))=
       (fullOddRelations (Fin.append Q E) F G).mkQ v := rfl
@@ -36,8 +36,8 @@ theorem odd_even_append_bottom_detects
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0)
     (hupper : Function.Surjective (upperTargetMap (backgroundEnumeratedForms (Fin.append Q E) F G)))
-    (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q F G) →ₗ[K] K)
-    (hA : (oddEvenRelativeMap Q F G E).range≤ell.ker)
+    (ell : (biformParitySpace K h m (2 * d) 1 ⧸ fullOddRelations Q F G) →ₗ[K] K)
+    (hA : (oddEvenRelativeMap Q F G E).range ≤ ell.ker)
     (hbottom : ∀ v : biformParitySpace K h m (2*d) 1,
       v.val.IsWeightedHomogeneous (blockWeight h m) 1 →
         ell ((fullOddRelations Q F G).mkQ v)=0) : ell=0 := by

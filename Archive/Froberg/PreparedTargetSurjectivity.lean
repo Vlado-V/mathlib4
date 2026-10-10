@@ -31,33 +31,33 @@ def outerTensorFamily (p : Space m d q f u J counts O) :
   fun i => sumBiformEquiv.symm (p.2.1 i)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def quadraticTensorFamily (h2 : 2∈J) (hO2 : O 2≤Forms K h 2)
+def quadraticTensorFamily (h2 : 2 ∈ J) (hO2 : O 2 ≤ Forms K h 2)
     (p : Space m d q f u J counts O) :
     Fin (counts 2) → Forms K h 2 ⊗[K] Forms K m (d-2) :=
   preparedLayerTensor ⟨2,h2⟩ hO2 p.1
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem all_prepared_target_lifts (hd : 3≤d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,0<j ∧ j≤d) (h2 : 2∈J)
-    (S : Submodule K (Poly K h)) (hS : S≤Forms K h d)
-    (u₀ : Fin u → S) (hu₀ : Submodule.span K (Set.range u₀)=⊤)
-    (hcut : S*Forms K h 1=Forms K h (d+1))
-    (heven : ¬Odd d → S=Forms K h d)
+theorem all_prepared_target_lifts (hd : 3 ≤ d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, 0 < j ∧ j ≤ d) (h2 : 2 ∈ J)
+    (S : Submodule K (Poly K h)) (hS : S ≤ Forms K h d)
+    (u₀ : Fin u → S) (hu₀ : Submodule.span K (Set.range u₀) = ⊤)
+    (hcut : S * Forms K h 1 = Forms K h (d + 1))
+    (heven : ¬Odd d → S = Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hPdeg : ∀ i,(P i).IsHomogeneous d)
-    (hPlow : ∀ i k,d≤k → coreComponent h m k (rename finSumFinEquiv (P i))=0)
+    (hPdeg : ∀ i, (P i).IsHomogeneous d)
+    (hPlow : ∀ i k, d ≤ k → coreComponent h m k (rename finSumFinEquiv (P i)) = 0)
     (p : Space m d q f u J counts O)
     (hrow2 : Function.Surjective
-      ((biformTensorFamilyMap (x := 1) (y := d-1) (outerTensorFamily p)).coprod
-        (biformTensorFamilyToDegree (x := 0) (by omega : d-2+d=(d-1)+(d-1))
+      ((biformTensorFamilyMap (x := 1) (y := d - 1) (outerTensorFamily p)).coprod
+        (biformTensorFamilyToDegree (x := 0) (by omega : d - 2 + d = (d - 1) + (d - 1))
           (quadraticTensorFamily h2 (hO 2 h2) p))))
-    (hrow3 : Function.Surjective (biformTensorFamilyMap (x := 1) (y := d-1)
+    (hrow3 : Function.Surjective (biformTensorFamilyMap (x := 1) (y := d - 1)
       (quadraticTensorFamily h2 (hO 2 h2) p)))
-    (hrow4 : Function.Surjective (biformTensorFamilyMap (x := 2) (y := d-2)
+    (hrow4 : Function.Surjective (biformTensorFamilyMap (x := 2) (y := d - 2)
       (quadraticTensorFamily h2 (hO 2 h2) p)))
-    (hmid : ∀ b,5≤b → b≤d → (b<d ∨ Odd d) →
-      ∃ a : J,a.val≤b ∧ b≤d+a.val ∧ Function.Surjective (biformTensorFamilyMap
-        (x := b-a.val) (y := d+a.val-b) (preparedLayerTensor a (hO _ a.property) p.1))) :
+    (hmid : ∀ b, 5 ≤ b → b ≤ d → (b < d ∨ Odd d) →
+      ∃ a : J, a.val ≤ b ∧ b ≤ d + a.val ∧ Function.Surjective (biformTensorFamilyMap
+        (x := b - a.val) (y := d + a.val - b) (preparedLayerTensor a (hO _ a.property) p.1))) :
     ∀ b,2≤b → b≤2*d → TargetLift
       ((Submodule.span K (Set.range (renamedGenerator
         (fun i => homogeneousInclusion S hS (u₀ i)) P p)))*Forms K (h+m) d) d b := by

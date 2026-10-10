@@ -90,7 +90,7 @@ theorem fiberCertificate_nonempty (k : Finset X × Finset X) :
 theorem key_eq_of_permitted_products {k l : Finset X × Finset X}
     (p : Columns k) (q : Columns l) {a b c d : (X × Bool) →₀ ℕ}
     (ha : a ∈ terms (left p)) (hb : b ∈ terms (right p))
-    (hc : c ∈ terms (left q)) (hd : d ∈ terms (right q)) (he : a+b=c+d) : k = l := by
+    (hc : c ∈ terms (left q)) (hd : d ∈ terms (right q)) (he : a + b = c + d) : k = l := by
   obtain ⟨A, hA, rfl⟩ := mem_image.mp ha
   obtain ⟨B, hB, rfl⟩ := mem_image.mp hb
   obtain ⟨C, hC, rfl⟩ := mem_image.mp hc

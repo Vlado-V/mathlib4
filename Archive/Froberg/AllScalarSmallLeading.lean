@@ -21,7 +21,7 @@ open Froberg Module MvPolynomial Filter
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
-theorem eventually_actual_small_leading_shift {d : ℕ} (hd : d=3 ∨ d=4) :
+theorem eventually_actual_small_leading_shift {d : ℕ} (hd : d = 3 ∨ d = 4) :
     ∀ᶠ h : ℕ in atTop,∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       ∀ᶠ v : ℕ in atTop,
@@ -63,7 +63,7 @@ theorem eventually_actual_small_leading_shift {d : ℕ} (hd : d=3 ∨ d=4) :
     (mem_allEvenIndices.mpr ⟨le_rfl,by omega,by decide⟩)
     (fun j _ hj => allEvenCount_off_two_small hd _ _ _ hj) ⟨_,hcap⟩ ell hell
 
-theorem eventually_actual_small_leading_all_scalars {d : ℕ} (hd : d=3 ∨ d=4) :
+theorem eventually_actual_small_leading_all_scalars {d : ℕ} (hd : d = 3 ∨ d = 4) :
     ∀ᶠ h : ℕ in atTop,∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       ∀ᶠ n : ℕ in atTop,

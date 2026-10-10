@@ -19,7 +19,7 @@ open Froberg Module MvPolynomial Filter
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K] {h d : ℕ}
 
-theorem eventually_restored_odd_injective_open (hd : 2 ≤ d) (he : d%2=0)
+theorem eventually_restored_odd_injective_open (hd : 2 ≤ d) (he : d % 2 = 0)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun m : ℕ => (r m : ℝ)/(m : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :

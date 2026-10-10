@@ -26,9 +26,9 @@ theorem exists_row_two_from_convolution
     [Module.Finite K A]
     (hDlo : finrank K (EndpointQuotient K h 1 A) ≤ D)
     (hDhi : D ≤ finrank K (Forms K h 2))
-    (hcountF : convolutionBlockCount (finrank K A) (s+1) s * (m+(s+1)+s-2).choose s ≤ rF)
-    (hcountE : convolutionBlockCount (finrank K (EndpointQuotient K h 1 A)) (s+2) (s-1) *
-      (m+(s+2)+(s-1)-2).choose (s-1) ≤ rE) :
+    (hcountF : convolutionBlockCount (finrank K A) (s + 1) s * (m + (s + 1) + s - 2).choose s ≤ rF)
+    (hcountE : convolutionBlockCount (finrank K (EndpointQuotient K h 1 A)) (s + 2) (s - 1) *
+      (m + (s + 2) + (s - 1) - 2).choose (s - 1) ≤ rE) :
     ∃ (o : Fin rF → Forms K h 1) (f : Fin rF → Forms K m s)
       (W : Submodule K (Forms K h 2)) (O : Fin rE → W) (g : Fin rE → Forms K m (s-1)),
       finrank K W = D ∧

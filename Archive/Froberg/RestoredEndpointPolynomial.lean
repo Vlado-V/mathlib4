@@ -21,8 +21,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredOuterEndpoint_back (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restoredOuterEndpoint_back (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O) (i : Fin r ⊕ Fin f) :
     rename finSumFinEquiv.symm (restoredOuterEndpoint hdp hd hO hJ heven idx slot p (finSumFinEquiv
@@ -38,8 +38,8 @@ theorem restoredOuterEndpoint_back (hdp : 1≤d) (hd : d%2=0)
     rw [←PreparedTarget.outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredOuterEndpointLinear (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def restoredOuterEndpointLinear (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r) :
     RestoredOuterSpace m d q f J counts O →ₗ[K] (Fin (r+f) → Forms K (h+m) d) where
   toFun := restoredOuterEndpoint hdp hd hO hJ heven idx slot
@@ -74,8 +74,8 @@ def restoredOuterEndpointLinear (hdp : 1≤d) (hd : d%2=0)
     | inr i => rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_upper_open_of_witness (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_upper_open_of_witness (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p₀ : RestoredOuterSpace m d q f J counts O)
     (hp₀ : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot

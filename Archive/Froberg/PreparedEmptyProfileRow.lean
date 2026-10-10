@@ -26,11 +26,11 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_empty_profile_row_parameter
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (R : J)
-    (hz : counts R.val=0) (S : Finset (Fin n)) (j : ℕ)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (R : J)
+    (hz : counts R.val = 0) (S : Finset (Fin n)) (j : ℕ)
     (p₀ : Space n d q J counts O)
     (hP : Function.Injective (ProductRows.multiplication counts (layers p₀) J R.val))
-    (hprofile : ∀ a,(ProductRows.multiplication counts (layers p₀) J R.val a).IsWeightedHomogeneous
+    (hprofile : ∀ a, (ProductRows.multiplication counts (layers p₀) J R.val a).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
     (Q : Fin (Fintype.card (Label q J counts)) → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q
@@ -58,12 +58,12 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_strong_quartic_empty_row_parameter {h : ℕ}
     (T : ℕ → Poly K h →ₗ[K] X)
-    (hz : ∀ k∈J,k≠2 → counts k=0) (R : J) (hR : R.val≠2)
-    (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
-    (hm : counts 2≤(2*(h/2).choose 2-finrank K X)*(S.card.choose 2/2))
+    (hz : ∀ k ∈ J, k ≠ 2 → counts k = 0) (R : J) (hR : R.val ≠ 2)
+    (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
+    (hm : counts 2 ≤ (2 * (h / 2).choose 2 - finrank K X) * (S.card.choose 2 / 2))
     (Q : Fin (Fintype.card (Label q J counts)) → Forms K n 4)
-    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠2) Q
-      (4-R.val))) :
+    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α ≠ 2) Q
+      (4 - R.val))) :
     ∃ p : Space n 4 q J counts (fun j => Forms K h j⊓(T j).ker),
       LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) R i p) ∧
       (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R p).range := by

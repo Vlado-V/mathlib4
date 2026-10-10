@@ -18,8 +18,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem eventually_higher_sparse_layer_budget_shift {d R : ℕ} (hd : 3≤d)
-    (hR : R∈activeHigherIndices d) :
+theorem eventually_higher_sparse_layer_budget_shift {d R : ℕ} (hd : 3 ≤ d)
+    (hR : R ∈ activeHigherIndices d) :
     ∀ᶠ w : ℕ in atTop,
       let b := sparseBlockCount ((101/100 : ℝ)*higherCountGamma d R) R (d-R) w
       let H := oddOutputDimension w R

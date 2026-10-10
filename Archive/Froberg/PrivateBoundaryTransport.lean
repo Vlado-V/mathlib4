@@ -31,7 +31,7 @@ theorem koszulVector_linear_map {V W : Type*}
 theorem koszul_span_linear_map {V W : Type*}
     [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
     {r : ℕ} (L : V →ₗ[K] W) (q v : Fin r → V)
-    (hv : v∈Submodule.span K (Set.range (koszulVector q))) :
+    (hv : v ∈ Submodule.span K (Set.range (koszulVector q))) :
     (fun i => L (v i))∈Submodule.span K (Set.range (koszulVector (fun i => L (q i)))) := by
   classical
   let T : (Fin r → V) →ₗ[K] (Fin r → W) := LinearMap.pi fun i => L.comp (LinearMap.proj i)
@@ -58,9 +58,9 @@ theorem privateGenerator_polynomial (o : Fin h → MvPolynomial σ K)
 theorem private_boundary_polynomial
     (o : Fin h → MvPolynomial σ K) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) (w : Fin b → Fin h → K)
-    (hker : (privatePolynomialMap (a := a) (s := s) ι A).ker=
+    (hker : (privatePolynomialMap (a := a) (s := s) ι A).ker =
       Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι w))))
-    (v : Fin b → Fin h → Forms K (a+z) s) (hv : privatePolynomialMap ι A v=0) :
+    (v : Fin b → Fin h → Forms K (a + z) s) (hv : privatePolynomialMap ι A v = 0) :
     (fun i => polynomialFormVector o s (v i))∈Submodule.span K (Set.range (koszulVector
       (fun i => rename Sum.inl (outputCombination o (w i))*
         rename Sum.inr (monomial (privateExponent a s ι i) (1:K))))) := by

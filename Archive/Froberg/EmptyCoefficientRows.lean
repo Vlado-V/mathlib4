@@ -18,8 +18,8 @@ open MvPolynomial
 variable {K : Type} {σ I : Type*} [Field K] [Fintype I]
 
 /-- Weights at most one leave no degree-d coefficient in output degree above d. -/
-theorem coefficientComponentSpace_above (w : σ → ℕ) (hw : ∀ x,w x≤1)
-    {d r : ℕ} (hr : d<r) : coefficientComponentSpace (K := K) w d r=⊥ := by
+theorem coefficientComponentSpace_above (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
+    {d r : ℕ} (hr : d < r) : coefficientComponentSpace (K := K) w d r=⊥ := by
   apply le_antisymm
   · intro f hf
     change f=0
@@ -36,9 +36,9 @@ theorem coefficientComponentSpace_above (w : σ → ℕ) (hw : ∀ x,w x≤1)
 
 /-- No scalar or new-layer coefficients occur above degree d, so product
 independence is the entire row condition. -/
-theorem coefficient_row_above_degree (w : σ → ℕ) (hw : ∀ x,w x≤1)
-    {d r : ℕ} (hr : d<r) (a E : I → MvPolynomial σ K) (j : I → ℕ)
-    (hj : ∀ i,j i≤d)
+theorem coefficient_row_above_degree (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
+    {d r : ℕ} (hr : d < r) (a E : I → MvPolynomial σ K) (j : I → ℕ)
+    (hj : ∀ i, j i ≤ d)
     (hpairs : LinearIndependent K
       (fun p : {p : Sym2 I // positiveDegreePair j r p} => pairProducts E p.val)) :
     CoefficientRowExact (coefficientComponentSpace w d) a E j r := by

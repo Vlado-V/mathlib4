@@ -24,7 +24,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d b q f : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddActualRowScalarAction (hb : 1 ≤ b) (hbd : b ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     Forms K m d →ₗ[K] (Forms K h b ⊗[K] Forms K m (d-b)) →ₗ[K]
       (OddRowTensor K h m b (2*d-b) ⧸
         tensorOddRowRelations hb hbd (fun i => scalarBiformEquiv (h := h) (Q i)) F) :=
@@ -39,18 +39,18 @@ def oddActualRowScalarAction (hb : 1 ≤ b) (hbd : b ≤ d)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem oddActualRowScalarAction_apply (hb : 1 ≤ b) (hbd : b ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (p : Forms K m d) (v : Forms K h b ⊗[K] Forms K m (d-b)) :
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (p : Forms K m d) (v : Forms K h b ⊗[K] Forms K m (d - b)) :
     oddActualRowScalarAction hb hbd Q F p v=
       (tensorOddRowRelations hb hbd (fun i => scalarBiformEquiv (h := h) (Q i)) F).mkQ
         (oddRowScalarAction hbd (scalarBiformEquiv (h := h) p) v) := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oddActualRowScalarAction_growth (hb : 1 ≤ b) (hbd : b ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (t : ℕ) (hg : OddScalarLayerProperty t hb hbd
-      (F,fun i => scalarBiformEquiv (h := h) (Q i)))
-    (L : Submodule K (Forms K h b ⊗[K] Forms K m (d-b))) :
+      (F, fun i => scalarBiformEquiv (h := h) (Q i)))
+    (L : Submodule K (Forms K h b ⊗[K] Forms K m (d - b))) :
     t*finrank K L≤finrank K (BilinearImage.image
       (K := K) (F := Forms K m d)
       (V := Forms K h b ⊗[K] Forms K m (d-b))

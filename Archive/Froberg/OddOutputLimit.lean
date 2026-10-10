@@ -18,7 +18,7 @@ namespace Froberg
 open Filter Finset
 open scoped Topology
 
-theorem oddOutputProfile_choose_sum {R : ℕ} (hR : 0<R) :
+theorem oddOutputProfile_choose_sum {R : ℕ} (hR : 0 < R) :
     ∑ a : OddOutputProfile R, R.choose a.val.val = 2^(R-1) := by
   rw [← parity_binomial_mass hR 0 0 (by omega)]
   apply sum_bij (fun a _ => a.val.val)
@@ -39,7 +39,7 @@ theorem oddOutputProfile_choose_sum {R : ℕ} (hR : 0<R) :
   · intro a ha
     rfl
 
-private theorem oddOutput_factorial_identity {R a : ℕ} (ha : a≤R) :
+private theorem oddOutput_factorial_identity {R a : ℕ} (ha : a ≤ R) :
     (a.factorial : ℝ)⁻¹*((R-a).factorial : ℝ)⁻¹ = (R.choose a : ℝ)/(R.factorial : ℝ) := by
   have hR : (R.factorial : ℝ)≠0 := by exact_mod_cast Nat.factorial_ne_zero R
   have ha' : (a.factorial : ℝ)≠0 := by exact_mod_cast Nat.factorial_ne_zero a
@@ -49,7 +49,7 @@ private theorem oddOutput_factorial_identity {R a : ℕ} (ha : a≤R) :
   field_simp [hR,ha',hb]
   nlinarith [hfac]
 
-theorem oddOutputDimension_normalized_limit {R : ℕ} (hR : 0<R) :
+theorem oddOutputDimension_normalized_limit {R : ℕ} (hR : 0 < R) :
     Tendsto (fun w : ℕ => (oddOutputDimension w R : ℝ)/(w : ℝ)^R)
       atTop (𝓝 ((2 : ℝ)^(R-1)/(R.factorial : ℝ))) := by
   have hprofile (a : OddOutputProfile R) :
@@ -73,7 +73,7 @@ theorem oddOutputDimension_normalized_limit {R : ℕ} (hR : 0<R) :
 
 /-- In terms of the full output-variable count 2w, the leading coefficient
 is exactly 1/(2 R!). -/
-theorem oddOutputDimension_full_normalized_limit {R : ℕ} (hR : 0<R) :
+theorem oddOutputDimension_full_normalized_limit {R : ℕ} (hR : 0 < R) :
     Tendsto (fun w : ℕ => (oddOutputDimension w R : ℝ)/(2*(w : ℝ))^R)
       atTop (𝓝 (1/(2*(R.factorial : ℝ)))) := by
   have ht := (oddOutputDimension_normalized_limit hR).div_const ((2 : ℝ)^R)

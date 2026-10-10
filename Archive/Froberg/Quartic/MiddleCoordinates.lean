@@ -185,7 +185,7 @@ variable {a w : ℕ}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The split variable labels have the required number of actual child variables. -/
-def variableEquiv (h : 2*a+w=m) : SplitMiddle22.Vars a w ≃ Fin m :=
+def variableEquiv (h : 2 * a + w = m) : SplitMiddle22.Vars a w ≃ Fin m :=
   (Fintype.equivFin _).trans (finCongr (by simp [SplitMiddle22.Vars]; omega))
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -356,7 +356,7 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Second numerical regime, including the exact residual repair budget. -/
 theorem genericMiddle_of_second_regime
     (hc : 2 * c ≤ m)
-    (hq_lo : c * (m - 2*c) + (m - 2*c + 1).choose 2 ≤ q)
+    (hq_lo : c * (m - 2 * c) + (m - 2 * c + 1).choose 2 ≤ q)
     (hq_hi : q ≤ (m + 1).choose 2) : GenericMiddle K m c q := by
   have he : 2 * c + (m - 2*c) = m := by omega
   apply genericMiddle_rename (variableEquiv he)
@@ -366,8 +366,8 @@ theorem genericMiddle_of_second_regime
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A nonempty determinant open for either complete numerical budget regime. -/
 theorem genericMiddle_of_budgets (hq : q ≤ (m + 1).choose 2)
-    (hbudget : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨
-      (2*c ≤ m ∧ c*(m-2*c) + (m-2*c+1).choose 2 ≤ q)) : GenericMiddle K m c q := by
+    (hbudget : ((m + 1) / 2 ≤ c ∧ c ≤ 3 * m) ∨
+      (2 * c ≤ m ∧ c * (m - 2 * c) + (m - 2 * c + 1).choose 2 ≤ q)) : GenericMiddle K m c q := by
   rcases hbudget with ⟨hlo, hhi⟩ | ⟨hc, hqlo⟩
   · exact genericMiddle_of_first_regime hlo hhi hq
   · exact genericMiddle_of_second_regime hc hqlo hq

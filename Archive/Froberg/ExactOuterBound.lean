@@ -17,10 +17,10 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem exact_counts_outer_below_degree {d k h lo : ℕ} (hd : 3≤d)
+theorem exact_counts_outer_below_degree {d k h lo : ℕ} (hd : 3 ≤ d)
     (upper : Bool) (a f e : ℕ → ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {ξ : ℝ} (hξ : 0<ξ) :
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {ξ : ℝ} (hξ : 0 < ξ) :
     ∀ᶠ n : ℕ in atTop,(f n : ℝ)≤ξ*(n : ℝ)^d := by
   have hlim : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^d) atTop (𝓝 0) := by
     have H := (exact_conditions_outer_limit hd upper a f e hc).div_atTop

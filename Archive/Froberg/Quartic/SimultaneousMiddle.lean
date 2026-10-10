@@ -109,8 +109,8 @@ set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 nonempty determinant open in the full actual coefficient space. -/
 theorem genericBoth_of_budgets [Infinite K] (hc : c ≤ m)
     (haug : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2)
-    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨
-      (2*c ≤ m ∧ c*(m-2*c) + (m-2*c+1).choose 2 ≤ q))
+    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3 * m) ∨
+      (2 * c ≤ m ∧ c * (m - 2 * c) + (m - 2 * c + 1).choose 2 ≤ q))
     (h2 : (2 : K) ≠ 0) : GenericBoth K m c q :=
   genericBoth_of_generic (MiddleCoordinates.genericMiddle_of_budgets (by omega) hmid)
     (genericAugmented_of_budget hc haug h2)
@@ -118,8 +118,8 @@ theorem genericBoth_of_budgets [Infinite K] (hc : c ≤ m)
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem exists_simultaneous_of_budgets [Infinite K] (hc : c ≤ m)
     (haug : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2)
-    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨
-      (2*c ≤ m ∧ c*(m-2*c) + (m-2*c+1).choose 2 ≤ q))
+    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3 * m) ∨
+      (2 * c ≤ m ∧ c * (m - 2 * c) + (m - 2 * c + 1).choose 2 ≤ q))
     (h2 : (2 : K) ≠ 0) : ∃ a : ParameterIndex m c q → K, Both a := by
   obtain ⟨D, ⟨a, ha⟩, h⟩ := genericBoth_of_budgets hc haug hmid h2
   exact ⟨a, h a ha⟩

@@ -30,7 +30,7 @@ def quadraticCombination (Q : Coefficients K t w q) :
   ∑ j, (formMul (Q j)).comp (LinearMap.proj j)
 
 @[simp] theorem quadraticCombination_val (Q : Coefficients K t w q)
-    (z : Fin q → Forms K (t+w) 0) :
+    (z : Fin q → Forms K (t + w) 0) :
     (quadraticCombination Q z).val = ∑ j, (Q j).val * (z j).val := by
   simp [quadraticCombination, formMul]
 
@@ -55,7 +55,7 @@ def cornerPresentation : Corner K t w q →ₗ[K] Bottom K t w q :=
   LinearMap.pi fun j => ConvolutionFree.presentation.comp (LinearMap.proj j)
 
 @[simp] theorem topRelations_val (Q : Coefficients K t w q) (z : Corner K t w q)
-    (k : Fin (t+2)) :
+    (k : Fin (t + 2)) :
     (topRelations Q z k).val = ∑ j, (Q j).val * (z j k).val := quadraticCombination_val Q _
 
 @[simp] theorem bottomMultiplication_val (Q : Coefficients K t w q) (v : Bottom K t w q)

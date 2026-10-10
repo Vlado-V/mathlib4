@@ -17,8 +17,8 @@ namespace Froberg.PrivateColumns
 open Module OuterInjection AttachedMultiplication
 variable {K : Type*} [Field K] {a z s k b h : ℕ}
 
-lemma private_upper_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
-    (hn : 0 < a+z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
+lemma private_upper_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
+    (hn : 0 < a + z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
       i.val))
     (hA : 0 < finrank K (PrivateSourceSpace ι u)) (G : ℝ)

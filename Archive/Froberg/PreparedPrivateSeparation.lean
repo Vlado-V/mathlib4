@@ -26,16 +26,16 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_core_row_separation
-    (hd : 3≤d) (hR : 2≤R) (hRd : R+1≤d) (hRJ : R+1∈J)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d)
+    (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d) (hRJ : R + 1 ∈ J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d)
     (bi : Basis (Fin hi) K (homogeneousSubmodule σ K R))
-    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R+1)))
-    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i,w i≠0)
+    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R + 1)))
+    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z)
-    (e : Fin (counts (R+1)) → Fin a →₀ ℕ)
-    (v : Fin (counts (R+1)) → Fin ho → K)
-    (hproj : ∀ l c,c≤1 → ∀ p : Fin (counts (R+1)) → Forms K a c,
+    (e : Fin (counts (R + 1)) → Fin a →₀ ℕ)
+    (v : Fin (counts (R + 1)) → Fin ho → K)
+    (hproj : ∀ l c, c ≤ 1 → ∀ p : Fin (counts (R+1)) → Forms K a c,
       (∀ α,sparseOutputCoefficient e v p α∈(privateOutputMatrix bi bo (w l)).range) → p=0)
     (p₀ : Space a d q J counts O)
     (hE : ∀ i,layers p₀ (R+1) i=attachedPolynomialFamily (fun j => (bo j).val) e v i) :

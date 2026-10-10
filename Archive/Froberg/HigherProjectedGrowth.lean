@@ -33,20 +33,20 @@ theorem bilinearImage_precompose (mu : P →ₗ[K] V →ₗ[K] W)
   rw [←Submodule.map_comp]
   rfl
 
-variable {n : ℕ} {Vi Wi : Fin (n+1) → Type*}
-  [∀ i,AddCommGroup (Vi i)] [∀ i,Module K (Vi i)]
-  [∀ i,FiniteDimensional K (Vi i)]
-  [∀ i,AddCommGroup (Wi i)] [∀ i,Module K (Wi i)]
-  [∀ i,FiniteDimensional K (Wi i)]
+variable {n : ℕ} {Vi Wi : Fin (n + 1) → Type*}
+  [∀ i, AddCommGroup (Vi i)] [∀ i, Module K (Vi i)]
+  [∀ i, FiniteDimensional K (Vi i)]
+  [∀ i, AddCommGroup (Wi i)] [∀ i, Module K (Wi i)]
+  [∀ i, FiniteDimensional K (Wi i)]
   [FiniteDimensional K V] [FiniteDimensional K W]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem higher_growth_of_block_projection
-    (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i))
-    (pi : W →ₗ[K] ((i : Fin (n+1)) → Wi i))
+    (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i))
+    (pi : W →ₗ[K] ((i : Fin (n + 1)) → Wi i))
     (mu : P →ₗ[K] V →ₗ[K] W)
-    (diag : (i : Fin (n+1)) → P →ₗ[K] Vi i →ₗ[K] Wi i)
-    (hdiag : ∀ p v,pi (mu p v)=blockBilinear diag p (eV v))
+    (diag : (i : Fin (n + 1)) → P →ₗ[K] Vi i →ₗ[K] Wi i)
+    (hdiag : ∀ p v, pi (mu p v) = blockBilinear diag p (eV v))
     (rate : ℕ)
     (hgrowth : ∀ i : Fin n,∀ S : Submodule K (Vi i.succ),rate*finrank K S ≤
       finrank K (BilinearImage.image (diag i.succ) S))
@@ -70,7 +70,7 @@ theorem higher_growth_of_block_projection
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem initialPiece_zero_eq_comap
-    (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i)) (L : Submodule K V) :
+    (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i)) (L : Submodule K V) :
     initialPiece Vi (L.map eV.toLinearMap) 0=
       L.comap (eV.symm.toLinearMap.comp (LinearMap.single K Vi 0)) := by
   ext x
@@ -105,10 +105,10 @@ variable {W0 : Type*} [AddCommGroup W0] [Module K W0]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem kernel_initialPiece_zero
-    (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i))
+    (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] Vi 0 →ₗ[K] W0)
     (ell : W →ₗ[K] K) (ell0 : W0 →ₗ[K] K)
-    (hbottom : ∀ p x,ell (mu p (eV.symm (Pi.single 0 x)))=ell0 (nu p x)) :
+    (hbottom : ∀ p x, ell (mu p (eV.symm (Pi.single 0 x))) = ell0 (nu p x)) :
     initialPiece Vi ((QuotientCovectorKernel.relation mu ell).ker.map eV.toLinearMap) 0=
       (QuotientCovectorKernel.relation nu ell0).ker := by
   rw [initialPiece_zero_eq_comap]
@@ -129,10 +129,10 @@ theorem kernel_initialPiece_zero
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bottom_kernel_finrank_le
-    (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i))
+    (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] Vi 0 →ₗ[K] W0)
     (ell : W →ₗ[K] K) (ell0 : W0 →ₗ[K] K)
-    (hbottom : ∀ p x,ell (mu p (eV.symm (Pi.single 0 x)))=ell0 (nu p x)) :
+    (hbottom : ∀ p x, ell (mu p (eV.symm (Pi.single 0 x))) = ell0 (nu p x)) :
     finrank K (QuotientCovectorKernel.relation nu ell0).ker ≤
       finrank K (QuotientCovectorKernel.relation mu ell).ker := by
   rw [←kernel_initialPiece_zero eV mu nu ell ell0 hbottom]

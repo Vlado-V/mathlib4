@@ -24,7 +24,7 @@ theorem FixedBlockConditions.four_dvd {d k h : ℕ} (H : FixedBlockConditions d 
   exact dvd_mul_of_dvd_left ((show 4 ∣ 720720 by decide).trans H.divisible) _
 
 theorem exact_count_sequences_with_block_property {d : ℕ} (hd : 3 ≤ d)
-    (lo : ℕ) (P : ℕ → Prop) (hP : ∀ᶠ w : ℕ in atTop,P (2*w)) :
+    (lo : ℕ) (P : ℕ → Prop) (hP : ∀ᶠ w : ℕ in atTop, P (2 * w)) :
     ∃ k w : ℕ,FixedBlockConditions d k (2*w) ∧ 4 ∣ 2*w ∧ P (2*w) ∧
       ∃ (δ : ℝ) (a f e : Bool → ℕ → ℕ),0 < δ ∧
         (∀ upper n,a upper n ≤ n) ∧

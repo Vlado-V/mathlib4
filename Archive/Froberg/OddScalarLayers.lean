@@ -40,7 +40,7 @@ def OddLayerCount (h n d qS qO t b : ℕ) : Prop :=
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-def OddScalarLayerProperty {h n d qO qS b : ℕ} (t : ℕ) (hb : 1≤b) (hbd : b≤d)
+def OddScalarLayerProperty {h n d qO qS b : ℕ} (t : ℕ) (hb : 1 ≤ b) (hbd : b ≤ d)
     (p : OddLayerParameters K h n d qO qS) : Prop :=
   Function.Injective (twoFamilyMultiplication (K := K)
       (P₁ := Forms K h 1 ⊗[K] Forms K n (d-1))
@@ -79,8 +79,8 @@ def HasOddScalarLayersOpen (K : Type*) [Field K] (h n d qO qS t : ℕ) : Prop :=
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem odd_scalar_layers_open {h n d qO qS t : ℕ}
-    (hh : 0<h) (hn : 0<n)
-    (hcount : ∀ b,3≤b → b≤d → OddLayerCount h n d qS qO t b) :
+    (hh : 0 < h) (hn : 0 < n)
+    (hcount : ∀ b, 3 ≤ b → b ≤ d → OddLayerCount h n d qS qO t b) :
     HasOddScalarLayersOpen K h n d qO qS t := by
   classical
   let I := {b : Fin (d+1) // 3≤b.val}
@@ -109,7 +109,7 @@ theorem odd_scalar_layers_open {h n d qO qS t : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem eventually_odd_scalar_layers_open {h d : ℕ}
-    (hd : 3≤d) (hh : 0<h) (qS qO : ℕ → ℕ)
+    (hd : 3 ≤ d) (hh : 0 < h) (qS qO : ℕ → ℕ)
     (hS : Tendsto (fun n : ℕ => (qS n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hO : Tendsto (fun n : ℕ => (qO n : ℝ)/(n : ℝ)^(d-1)) atTop

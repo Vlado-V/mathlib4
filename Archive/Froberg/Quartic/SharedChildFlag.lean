@@ -76,7 +76,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 exactly of Koszul boundaries. -/
 theorem kernel_le_of_expected (q : Fin r → Forms K n 2) (hq : LinearIndependent K q)
     (hd : finrank K (QuarticQuotient K n
-      (Submodule.span K (Set.range (fun i => (q i).val))))=expectedDimension n r)
+      (Submodule.span K (Set.range (fun i => (q i).val)))) = expectedDimension n r)
     (hchi : 0 ≤ Counts.chi n r) :
     LinearMap.ker (quadraticMultiplication q) ≤ koszulSpace q := by
   have he := quartic_euler_identity q hq
@@ -104,19 +104,19 @@ def quadraticProduct : Forms K n 2 →ₗ[K] Forms K n 2 →ₗ[K] Forms K n 4 w
     exact smul_mul_assoc a b.val x.val
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def withSquare (q : Fin (r+1) → Forms K n 2) :
+def withSquare (q : Fin (r + 1) → Forms K n 2) :
     ((Fin r → Forms K n 2) × K) →ₗ[K] Forms K n 4 :=
   (quadraticMultiplication (prefixFamily q)).coprod
     (LinearMap.toSpanSingleton K _ (mulQuadratic (q (Fin.last r)) (q (Fin.last r))))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem withSquare_range (q : Fin (r+1) → Forms K n 2) :
+theorem withSquare_range (q : Fin (r + 1) → Forms K n 2) :
     (withSquare q).range=(quadraticMultiplication (prefixFamily q)).range ⊔
       K ∙ (mulQuadratic (q (Fin.last r)) (q (Fin.last r))) := by
   rw [withSquare,LinearMap.range_coprod,LinearMap.range_toSpanSingleton]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem withSquare_polynomial (f : (ι → K) → (Fin (r+1) → Forms K n 2))
+theorem withSquare_polynomial (f : (ι → K) → (Fin (r + 1) → Forms K n 2))
     (hf : IsPolynomialFamily f) : IsPolynomialFamily (fun a => withSquare (f a)) := by
   apply isPolynomialFamily_linearMap
   intro x
@@ -136,7 +136,7 @@ theorem withSquare_polynomial (f : (ι → K) → (Fin (r+1) → Forms K n 2))
     multiplicationLinear_apply,LinearMap.applyₗ_apply_apply] using hmul.add hscale
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def Conditions (q : Fin (r+1) → Forms K n 2) : Prop :=
+def Conditions (q : Fin (r + 1) → Forms K n 2) : Prop :=
   LinearIndependent K q ∧ Function.Surjective (quadraticMultiplication q) ∧
   LinearMap.ker (quadraticMultiplication (prefixFamily q)) ≤ koszulSpace (prefixFamily q) ∧
   mulQuadratic (q (Fin.last r)) (q (Fin.last r)) ∉
@@ -147,10 +147,10 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 same actual coefficient open. The square condition is proved by one extra
 column in the old multiplication matrix. -/
 theorem principal_open [CharZero K]
-    (f : (ι → K) → (Fin (r+1) → Forms K n 2))
+    (f : (ι → K) → (Fin (r + 1) → Forms K n 2))
     (hf : IsPolynomialFamily f) (hfSurj : Function.Surjective f)
-    (hlow : GenericQuartic K n r) (hhigh : GenericQuartic K n (r+1))
-    (hlo : 0 < Counts.chi n r) (hhi : Counts.chi n (r+1) ≤ 0) :
+    (hlow : GenericQuartic K n r) (hhigh : GenericQuartic K n (r + 1))
+    (hlo : 0 < Counts.chi n r) (hhi : Counts.chi n (r + 1) ≤ 0) :
     ∃ D : MvPolynomial ι K,(∃ a,eval a D≠0) ∧
       ∀ a,eval a D≠0 → Conditions (f a) := by
   classical
@@ -229,13 +229,13 @@ theorem principal_open [CharZero K]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The marked coefficient map is now proved injective at the chosen flag. -/
-theorem marked_injective (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) :
+theorem marked_injective (q : Fin (r + 1) → Forms K n 2) (hq : Conditions q) :
     Function.Injective (MarkedCoefficient.markedCoefficientMap q) :=
   MarkedCoefficient.markedCoefficientMap_injective q hq.2.2.1 hq.2.2.2
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Its image has precisely the child defect required by the transfer. -/
-theorem marked_finrank (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) :
+theorem marked_finrank (q : Fin (r + 1) → Forms K n 2) (hq : Conditions q) :
     (finrank K (MarkedCoefficient.markedCoefficientMap q).range:ℤ)=Counts.delta n (r+1) := by
   rw [LinearMap.finrank_range_of_inj (marked_injective q hq)]
   have he := quartic_euler_identity q hq.1
@@ -257,7 +257,7 @@ def markedCycles (q : Fin r → Forms K n 2) (k : Fin r) :
     (Submodule.span K (Set.range q))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem markedCycles_range (q : Fin (r+1) → Forms K n 2) :
+theorem markedCycles_range (q : Fin (r + 1) → Forms K n 2) :
     (markedCycles q (Fin.last r)).range=(MarkedCoefficient.markedCoefficientMap q).range := by
   rw [MarkedCoefficient.markedCoefficientMap,MarkedCoefficient.quotientCoefficient,
     Submodule.range_liftQ]
@@ -269,7 +269,7 @@ def Data (q : Fin r → Forms K n 2) : Prop :=
     ∃ k : Fin r,(finrank K (markedCycles q k).range:ℤ)=Counts.delta n r
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem conditions_data (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) : Data q := by
+theorem conditions_data (q : Fin (r + 1) → Forms K n 2) (hq : Conditions q) : Data q := by
   refine ⟨hq.1,hq.2.1,Fin.last r,?_⟩
   rw [markedCycles_range]
   exact marked_finrank q hq
@@ -290,10 +290,10 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 open in any surjective polynomial parameter family. This includes integral
 Euler roots: the predecessor still has strictly positive Euler count. -/
 theorem endpoint_principal_open [CharZero K] (hn : 1 ≤ n) (q : ℕ)
-    (hq : q=UniformEndpoint.upperEndpoint n)
+    (hq : q = UniformEndpoint.upperEndpoint n)
     (f : (ι → K) → (Fin q → Forms K n 2))
     (hf : IsPolynomialFamily f) (hfSurj : Function.Surjective f)
-    (hchild : ∀ r,r ≤ (n+1).choose 2 → GenericQuartic K n r) :
+    (hchild : ∀ r, r ≤ (n + 1).choose 2 → GenericQuartic K n r) :
     ∃ D : MvPolynomial ι K,(∃ a,eval a D≠0) ∧
       ∀ a,eval a D≠0 → Data (f a) := by
   cases q with

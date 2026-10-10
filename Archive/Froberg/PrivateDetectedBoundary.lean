@@ -25,8 +25,8 @@ theorem biformVectorDetector_private
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (o : Fin h → MvPolynomial σ K) (w : Fin b → MvPolynomial σ K)
     (ι : Fin b ↪ Fin z) (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (w i*o j)=A i (Pi.single j 1))
-    (v : Fin b → Fin h → Forms K (a+z) s) :
+    (hA : ∀ i j, T (w i * o j) = A i (Pi.single j 1))
+    (v : Fin b → Fin h → Forms K (a + z) s) :
     biformVectorDetector T (∑ i,(rename Sum.inl (w i)*
       rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*polynomialFormVector o s (v i))=
       privatePolynomialMap ι A v := by
@@ -53,23 +53,23 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A literal polynomial row has a constant private Koszul boundary whenever
 its nonprivate quadratic-output term is killed by the selected detector. -/
 theorem private_first_row_boundary
-    (hs : 2 ≤ s) (ht : t<s)
+    (hs : 2 ≤ s) (ht : t < s)
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (o : Fin h → MvPolynomial σ K) (w : Fin b → Fin h → K)
     (ι : Fin b ↪ Fin z) (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination o (w i)*o j)=A i (Pi.single j 1))
-    (hker : (privatePolynomialMap (a := a) (s := s) ι A).ker=
+    (hA : ∀ i j, T (outputCombination o (w i) * o j) = A i (Pi.single j 1))
+    (hker : (privatePolynomialMap (a := a) (s := s) ι A).ker =
       Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι w))))
     (Q : Fin q → Poly K a)
-    (x : Fin q → MvPolynomial (σ ⊕ Fin (a+z)) K)
+    (x : Fin q → MvPolynomial (σ ⊕ Fin (a + z)) K)
     (O : Submodule K (MvPolynomial σ K))
-    (hx : ∀ i,x i∈biformImage O (Forms K (a+z) t))
-    (C : MvPolynomial (σ ⊕ Fin (a+z)) K) (hC : biformVectorDetector T C=0)
-    (u : Fin b → MvPolynomial (σ ⊕ Fin (a+z)) K)
-    (hu : ∀ i,u i∈(polynomialFormVector o s).range)
-    (hrel : (∑ i,rename Sum.inr (rename (Fin.castAdd z) (Q i))*x i)+C+
-      (∑ i,(rename Sum.inl (outputCombination o (w i))*
-        rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*u i)=0) :
+    (hx : ∀ i, x i ∈ biformImage O (Forms K (a + z) t))
+    (C : MvPolynomial (σ ⊕ Fin (a + z)) K) (hC : biformVectorDetector T C = 0)
+    (u : Fin b → MvPolynomial (σ ⊕ Fin (a + z)) K)
+    (hu : ∀ i, u i ∈ (polynomialFormVector o s).range)
+    (hrel : (∑ i, rename Sum.inr (rename (Fin.castAdd z) (Q i)) * x i) + C +
+      (∑ i, (rename Sum.inl (outputCombination o (w i)) *
+        rename Sum.inr (monomial (privateExponent a s ι i) (1 : K))) * u i) = 0) :
     u∈Submodule.span K (Set.range (koszulVector
       (fun i => rename Sum.inl (outputCombination o (w i))*
         rename Sum.inr (monomial (privateExponent a s ι i) (1:K))))) := by

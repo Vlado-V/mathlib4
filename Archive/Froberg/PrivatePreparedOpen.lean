@@ -37,9 +37,9 @@ theorem privateReductionProjection_surjective : Function.Surjective
   exact ⟨(p.2,(p.1,0)),rfl⟩
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def PrivateSplitReduction (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def PrivateSplitReduction (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts)
     (U : Fin u → homogeneousSubmodule σ K d)
     (p : FixedPureZeroScalarSpace m d q f u J counts O) : Prop :=
@@ -55,12 +55,12 @@ def PrivateSplitReduction (hd : 0<d) (ho : d%2=1)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem private_split_reduction_principal_open
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (e : Fin r ≃ PreparedParameters.Label q J counts)
     (p₀ : PreparedParameters.Space m d q J counts O)
-    (P₀ : Fin u → FullBiform K σ m 1 (d-1))
+    (P₀ : Fin u → FullBiform K σ m 1 (d - 1))
     (hp₀ : PrivatePositiveReduction p₀ P₀)
     (U : Fin u → homogeneousSubmodule σ K d) :
     letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=

@@ -53,26 +53,26 @@ def OddCyclesExact (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
       (∀ k,v k = -∑ i,B i k • PreparedParameters.generator p.1 i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem zero_scalar_odd_cycles_exact (hd : 3≤d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
-    (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
+theorem zero_scalar_odd_cycles_exact (hd : 3 ≤ d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
+    (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (hfirst : ∀ (x : PreparedParameters.Label q J counts → MvPolynomial (Fin h ⊕ Fin m) K)
       (y : Fin f ⊕ Fin u → MvPolynomial (Fin h ⊕ Fin m) K),
-      (∀ i,x i∈coefficientComponentSpace (blockWeight h m) d 1) →
-      (∀ k,y k∈coefficientComponentSpace (blockWeight h m) d 0) →
-      (∑ i,PreparedParameters.scalar p.1 i*x i)+(∑ k,combinedLinear P p.2 k*y k)=0 →
+      (∀ i, x i ∈ coefficientComponentSpace (blockWeight h m) d 1) →
+      (∀ k, y k ∈ coefficientComponentSpace (blockWeight h m) d 0) →
+      (∑ i, PreparedParameters.scalar p.1 i * x i) + (∑ k, combinedLinear P p.2 k * y k) = 0 →
       ∃ B : PreparedParameters.Label q J counts → (Fin f ⊕ Fin u) → K,
-        (∀ i,x i=∑ k,B i k • combinedLinear P p.2 k) ∧
-        (∀ k,y k = -∑ i,B i k • PreparedParameters.scalar p.1 i))
-    (hhigher : ∀ r,3≤r → r≤d+1 → r%2=1 →
+        (∀ i, x i = ∑ k, B i k • combinedLinear P p.2 k) ∧
+        (∀ k, y k = -∑ i, B i k • PreparedParameters.scalar p.1 i))
+    (hhigher : ∀ r, 3 ≤ r → r ≤ d + 1 → r % 2 = 1 →
       ∀ (x : PreparedParameters.Label q J counts → MvPolynomial (Fin h ⊕ Fin m) K)
         (y : Fin f ⊕ Fin u → MvPolynomial (Fin h ⊕ Fin m) K),
-      (∀ i,x i∈coefficientComponentSpace (blockWeight h m) d r) →
-      (∀ k,y k∈coefficientComponentSpace (blockWeight h m) d (r-1)) →
-      (∑ i,PreparedParameters.scalar p.1 i*x i)+(∑ k,combinedLinear P p.2 k*y k)=0 →
-      x=0 ∧ y=0) : OddCyclesExact U P p := by
+      (∀ i, x i ∈ coefficientComponentSpace (blockWeight h m) d r) →
+      (∀ k, y k ∈ coefficientComponentSpace (blockWeight h m) d (r - 1)) →
+      (∑ i, PreparedParameters.scalar p.1 i * x i) + (∑ k, combinedLinear P p.2 k * y k) = 0 →
+      x = 0 ∧ y = 0) : OddCyclesExact U P p := by
   intro c v hc hv hcodd hveven hcycle
   apply delayed_odd_cycles (blockWeight h m) (by intro x; cases x <;> simp [blockWeight]) d hd
     (PreparedParameters.scalar p.1) (PreparedParameters.high p.1) c

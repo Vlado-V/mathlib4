@@ -33,16 +33,16 @@ def coordinateScalarProduct (o : J → MvPolynomial σ K) :
   polynomialFormVector_vectorMultiply o f u
 
 def attachedCoordinates (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i,(e i).degree=s) (i : I) : J → Forms K n s :=
+    (he : ∀ i, (e i).degree = s) (i : I) : J → Forms K n s :=
   fun j => ⟨monomial (e i) (v i j),isHomogeneous_monomial _ (he i)⟩
 
 @[simp] theorem polynomialFormVector_attachedCoordinates (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s) (i : I) :
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s) (i : I) :
     polynomialFormVector o s (attachedCoordinates e v he i)=attachedPolynomialFamily o e v i := rfl
 
 /-- The unrestricted coefficient row specializes to the actual sparse row. -/
 theorem bilinearKoszulRow_attached (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d) (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K) :
     bilinearKoszulRow (coordinateScalarProduct o) Q (attachedCoordinates e v he) P=
       addRow (polynomialIntermediateRow o e v he Q) P := by
@@ -64,7 +64,7 @@ theorem bilinearKoszulRow_attached (o : J → MvPolynomial σ K)
 /-- Degree-zero homogeneous coefficients are precisely the field constants
 in the mandatory relation map. -/
 theorem intermediateKoszul_eq_constants (e : I → Fin n →₀ ℕ)
-    (v : I → J → K) (he : ∀ i,(e i).degree=s) (Q : Fin q → Forms K n d)
+    (v : I → J → K) (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K n d)
     (c : Fin q → I → Forms K n 0) :
     ((LinearMap.inl K ((Fin q → J → Forms K n s) × (I → Forms K n d)) W).comp
       (intermediateKoszul e v he Q)) c=
@@ -96,7 +96,7 @@ theorem intermediateKoszul_eq_constants (e : I → Fin n →₀ ℕ)
   · rfl
 
 theorem intermediateKoszul_range_eq_constants (e : I → Fin n →₀ ℕ)
-    (v : I → J → K) (he : ∀ i,(e i).degree=s) (Q : Fin q → Forms K n d) :
+    (v : I → J → K) (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K n d) :
     ((LinearMap.inl K ((Fin q → J → Forms K n s) × (I → Forms K n d)) W).comp
       (intermediateKoszul e v he Q)).range=
       (bilinearKoszulConstants (W := W) Q (attachedCoordinates e v he)).range := by
@@ -114,9 +114,9 @@ theorem intermediateKoszul_range_eq_constants (e : I → Fin n →₀ ℕ)
 /-- The finite sparse exactness witness is already an exact unrestricted
 coefficient row, ready for the common-parameter openness theorem. -/
 theorem sparse_witness_unrestricted_exact (o : J → MvPolynomial σ K)
-    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K n d) (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker=
+    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K ((Fin q → J → Forms K n s) × (I → Forms K n d)) W).comp
         (intermediateKoszul e v he Q)).range) :
     (bilinearKoszulRow (coordinateScalarProduct o) Q (attachedCoordinates e v he) P).ker=
@@ -126,7 +126,7 @@ theorem sparse_witness_unrestricted_exact (o : J → MvPolynomial σ K)
 /-- The degree-zero sparse injection supplies independence of the unrestricted
 new-layer coefficient vectors, hence the mandatory-kernel dimension. -/
 theorem attachedCoordinates_independent (e : I → Fin n →₀ ℕ)
-    (v : I → J → K) (he : ∀ i,(e i).degree=s)
+    (v : I → J → K) (he : ∀ i, (e i).degree = s)
     (hinj : Function.Injective (homogeneousMultiplication (d := 0) e v he)) :
     LinearIndependent K (attachedCoordinates e v he) := by
   rw [Fintype.linearIndependent_iff]

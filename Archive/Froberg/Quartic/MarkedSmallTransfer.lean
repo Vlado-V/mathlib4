@@ -105,7 +105,7 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Positive lower surplus retains a parent square after the exact response. -/
 theorem lower_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (hω : ω ≠ 0) (hω1 : ω ≠ -1) (hchild : MarkedEndpoints K m)
-    (hpos : 0 < Counts.chi (m+3) (lowerEndpoint (m+3))) :
+    (hpos : 0 < Counts.chi (m + 3) (lowerEndpoint (m + 3))) :
     MarkedLowerWitness K (m+3) (lowerEndpoint (m+3)) := by
   obtain ⟨p,k,ζ,r,s,hblock,hf13,hchildSurj,hdim,hresponse⟩ :=
     exists_data ω m hmlo hmhi false hω hω1 hchild
@@ -123,7 +123,7 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- The pencil parameter is chosen internally over the infinite field. -/
 theorem lower_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (hchild : MarkedEndpoints K m)
-    (hpos : 0 < Counts.chi (m+3) (lowerEndpoint (m+3))) :
+    (hpos : 0 < Counts.chi (m + 3) (lowerEndpoint (m + 3))) :
     MarkedLowerWitness K (m+3) (lowerEndpoint (m+3)) := by
   obtain ⟨ω,hω,hω1⟩ := ThreeBlockOmega.exists_parameter (K := K)
   exact lower_parent_witness ω m hmlo hmhi hω hω1 hchild hpos

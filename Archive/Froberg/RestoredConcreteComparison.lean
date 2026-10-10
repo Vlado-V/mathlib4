@@ -41,29 +41,29 @@ private theorem positive_empty_span (E : Fin r → biformParitySpace K h m d 0) 
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem exists_critical_comparison_of_restored_background
-    (hm : 0 < m) (hdp : 1≤d) (hd : d%2=0) (upper : Bool)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (hJlt : ∀ j∈J,0<c' j → j<d)
-    (hc : ∀ j∈J,c j≤c' j)
-    (extra : ProductRows.LayerLabel J c') (haway : ∀ i,countLayerMap hc i≠extra)
-    (hcover : ∀ i,i=extra ∨ ∃ j,countLayerMap hc j=i)
+    (hm : 0 < m) (hdp : 1 ≤ d) (hd : d % 2 = 0) (upper : Bool)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (hJlt : ∀ j ∈ J, 0 < c' j → j < d)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
+    (extra : ProductRows.LayerLabel J c') (haway : ∀ i, countLayerMap hc i ≠ extra)
+    (hcover : ∀ i, i = extra ∨ ∃ j, countLayerMap hc j = i)
     (idx : Fin r ≃ Label (upperCount m d) J c)
     (idx' : Fin r' ≃ Label (upperCount m d) J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p : RestoredOuterSpace m d (upperCount m d) f J c' O)
     (hbase : RestoredCertificate hdp hd hO hJ heven idx slot (restoredRestrictCounts hc p))
     (hlarge : RestoredCertificate hdp hd hO hJ heven idx'
       (countIndexMap hc idx idx' ∘ slot) p)
-    (hleading : ∀ j,LinearIndependent K (p.1.1.2 j))
-    (hcard : upperCount m d+Fintype.card (ProductRows.LayerLabel J c)+f=
-      adjacentCriticalCount upper (h+m) d)
+    (hleading : ∀ j, LinearIndependent K (p.1.1.2 j))
+    (hcard : upperCount m d + Fintype.card (ProductRows.LayerLabel J c) + f =
+      adjacentCriticalCount upper (h + m) d)
     (Cchild : ℝ)
     (hchild : ChildFlagCondition
       (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d)
       (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) Cchild
       (coefficientCoordinates (fun i => p.1.1.1 (Sum.inl i))))
-    (C : ℝ) (hC : (f : ℝ)≤C)
+    (C : ℝ) (hC : (f : ℝ) ≤ C)
     (hthin : HasClosedKernelSlices (oddEndpointScalarAction
       (Fin.append (fun i => scalarEvenBiform (h := h) (p.1.1.1 (Sum.inl i)))
         (restoredPositiveBiform hd hO hJ heven idx slot (restoredRestrictCounts hc p).1))

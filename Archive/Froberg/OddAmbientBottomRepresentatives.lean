@@ -25,8 +25,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable (hd : 1 ≤ d)
   (Q : Fin q → biformParitySpace K h m d 0)
   (F : Fin f → biformParitySpace K h m d 1)
-  (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
-  (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
+  (hQ : ∀ i, (Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
+  (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_odd_target_bottom_representative
@@ -48,7 +48,7 @@ theorem exists_odd_target_bottom_representative
 variable
   (G : Fin u → biformParitySpace K h m d 1)
   (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
-  (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
+  (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G) =
     oddAmbientBottomRelationMap hd Q F hQ hF G)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -66,7 +66,7 @@ theorem exists_odd_ambient_bottom_representative
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_ambient_projection_kills_bottom {Z : Type} [AddCommGroup Z] [Module K Z]
-    (proj : (biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations Q F G) →ₗ[K] Z)
+    (proj : (biformParitySpace K h m (2 * d) 1 ⧸ ambientOddRelations Q F G) →ₗ[K] Z)
     (hproj : ∀ p : biformParitySpace K h m (2*d) 1,
       p.val.IsWeightedHomogeneous (blockWeight h m) 1 →
         proj ((ambientOddRelations Q F G).mkQ p)=0)

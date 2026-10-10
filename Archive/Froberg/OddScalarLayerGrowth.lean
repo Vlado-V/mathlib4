@@ -27,14 +27,14 @@ variable {h n d b qS qO t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-theorem odd_scalar_layer_growth_open (hh : 0<h) (hn : 0<n)
-    (hb : 1≤b) (hbd : b≤d)
+theorem odd_scalar_layer_growth_open (hh : 0 < h) (hn : 0 < n)
+    (hb : 1 ≤ b) (hbd : b ≤ d)
     (hcount :
-      (qS+t+(h+b-1).choose b*(n+(d-b)-1).choose (d-b))*
-        ((h+b-1).choose b*(n+(d-b)-1).choose (d-b))+
-      (qO+(h+(b-1)-1).choose (b-1)*(n+(d-b+1)-1).choose (d-b+1))*
-        ((h+(b-1)-1).choose (b-1)*(n+(d-b+1)-1).choose (d-b+1)) ≤
-      (h+b-1).choose b*(n+(2*d-b)-1).choose (2*d-b)) :
+      (qS + t + (h + b - 1).choose b * (n + (d - b) - 1).choose (d - b)) *
+        ((h + b - 1).choose b * (n + (d - b) - 1).choose (d - b)) +
+      (qO + (h + (b - 1) - 1).choose (b - 1) * (n + (d - b + 1) - 1).choose (d - b + 1)) *
+        ((h + (b - 1) - 1).choose (b - 1) * (n + (d - b + 1) - 1).choose (d - b + 1)) ≤
+      (h + b - 1).choose b * (n + (2 * d - b) - 1).choose (2 * d - b)) :
     ∃ D : MvPolynomial (Fin (finrank K
       ((Fin qO → Forms K h 1 ⊗[K] Forms K n (d-1)) ×
        (Fin qS → Forms K h 0 ⊗[K] Forms K n d)))) K,

@@ -26,7 +26,7 @@ def surplusPolynomial (cell : Fin 4) (z u x r : ℝ) : ℝ :=
 theorem max_interpolate (lo hi x k s : ℝ)
     (hxlo : lo ≤ x) (hxhi : x ≤ hi)
     (hside : k ≤ lo ∨ hi ≤ k)
-    (hx : x = (1-s)*lo+s*hi) :
+    (hx : x = (1 - s) * lo + s * hi) :
     max x k = (1-s)*max lo k+s*max hi k := by
   rcases hside with h | h
   · rw [max_eq_left (h.trans hxlo), max_eq_left h,
@@ -47,7 +47,7 @@ theorem knot_separation_half (cell r : Fin 4) :
 
 theorem surplus_interpolate (cell r : Fin 4) (z u x s : ℝ)
     (hxlo : endpoint cell 0 ≤ x) (hxhi : x ≤ endpoint cell 1)
-    (hx : x = (1-s)*endpoint cell 0+s*endpoint cell 1) :
+    (hx : x = (1 - s) * endpoint cell 0 + s * endpoint cell 1) :
     surplusPolynomial cell z u x r =
       (1-s)*inequalityPolynomial cell r 0 z u+
       s*inequalityPolynomial cell r 1 z u := by
@@ -61,8 +61,8 @@ theorem surplus_interpolate (cell r : Fin 4) (z u x s : ℝ)
   split_ifs <;> rw [hx] <;> ring
 
 theorem surplus_prefix (cell r : Fin 4) (z u x : ℝ)
-    (hz0 : 1/2 ≤ z) (hz1 : z ≤ 14/25)
-    (hu0 : 0 ≤ u) (hu1 : u ≤ 1/64)
+    (hz0 : 1 / 2 ≤ z) (hz1 : z ≤ 14 / 25)
+    (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 64)
     (hxlo : endpoint cell 0 ≤ x) (hxhi : x ≤ endpoint cell 1) :
     0 ≤ surplusPolynomial cell z u x r := by
   have hgap : 0 < endpoint cell 1 - endpoint cell 0 := by

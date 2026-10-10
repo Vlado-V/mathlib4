@@ -25,8 +25,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-structure RestoredCertificate (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+structure RestoredCertificate (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O) : Prop where
   pure_independent : LinearIndependent K p.1.2
@@ -48,13 +48,13 @@ structure RestoredCertificate (hdp : 1≤d) (hd : d%2=0)
         c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p.1) M=z.val
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_restored_certificate_on_open (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)
-    (slot : Fin (finrank K (Forms K h d)) → Fin r) (hslot : ∀ k,0<degree (idx (slot k)))
+theorem exists_restored_certificate_on_open (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (idx : Fin r ≃ Label q J counts)
+    (slot : Fin (finrank K (Forms K h d)) → Fin r) (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p₀ : Space m d q J counts O) (hp₀ : EvenPositiveReduction p₀)
     (D : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K)
-    (hD : ∃ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0)
+    (hD : ∃ p : RestoredSpace m d q J counts O, eval (restoredCoordinates hO p) D ≠ 0)
     (hodd : ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →
       Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot p)))
     (hi : HasRestoredIndependentOpen (m := m) (f := f) hdp hd hO hJ heven idx slot)

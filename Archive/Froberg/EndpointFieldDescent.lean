@@ -18,7 +18,7 @@ variable {K L : Type} [Field K] [Field L] [Infinite K] [Infinite L]
 variable {n d r : ℕ}
 
 theorem genericEndpoint_baseChange (f : K →+* L) (hn : 0 < n)
-    (hr : r ≤ (n+d-1).choose d) : GenericEndpoint K n d r ↔ GenericEndpoint L n d r := by
+    (hr : r ≤ (n + d - 1).choose d) : GenericEndpoint K n d r ↔ GenericEndpoint L n d r := by
   rw [genericEndpoint_iff_genericCokernel hn hr,genericEndpoint_iff_genericCokernel hn hr,
     GenericFieldDescent.genericCokernel_baseChange f hn]
 
@@ -29,7 +29,7 @@ theorem criticalDefect_baseChange (f : K →+* L) (hn : 0 < n) :
     GenericFieldDescent.genericCokernel_baseChange f hn]
 
 theorem endpoint_recurrence_descends (f : K →+* L) {h start : ℕ}
-    (hstep : ∀ n,start ≤ n → criticalDefect L (n+h) d ≤ criticalDefect L n d) :
+    (hstep : ∀ n, start ≤ n → criticalDefect L (n + h) d ≤ criticalDefect L n d) :
     ∀ n,max start 1 ≤ n → criticalDefect K (n+h) d ≤ criticalDefect K n d := by
   intro n hn
   rw [criticalDefect_baseChange f (by omega : 0 < n+h),criticalDefect_baseChange f (by omega : 0 <
@@ -37,7 +37,7 @@ theorem endpoint_recurrence_descends (f : K →+* L) {h start : ℕ}
   exact hstep n (by omega)
 
 theorem eventual_endpoints_descend (f : K →+* L)
-    (h : ∃ N : ℕ,1 ≤ N ∧ ∀ n,N ≤ n → ∀ r,r ≤ (n+d-1).choose d → GenericEndpoint L n d r) :
+    (h : ∃ N : ℕ, 1 ≤ N ∧ ∀ n, N ≤ n → ∀ r, r ≤ (n + d - 1).choose d → GenericEndpoint L n d r) :
     ∃ N : ℕ,1 ≤ N ∧ ∀ n,N ≤ n → ∀ r,r ≤ (n+d-1).choose d → GenericEndpoint K n d r := by
   obtain ⟨N,hN,h⟩ := h
   exact ⟨N,hN,fun n hn r hr => (genericEndpoint_baseChange f (by omega) hr).mpr (h n hn r hr)⟩

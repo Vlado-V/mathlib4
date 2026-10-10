@@ -18,7 +18,7 @@ namespace Froberg
 open Module MvPolynomial Filter PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 
-theorem eventually_counted_shared_quadratic_frame {d : ℕ} (hd : 3≤d) :
+theorem eventually_counted_shared_quadratic_frame {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,
     ∃ o : Fin (outerColumnCount d h) → Forms K h 1,
       LinearIndependent K (pairProducts (fun i => (o i).val)) ∧

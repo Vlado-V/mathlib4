@@ -42,7 +42,7 @@ theorem matrixBoundary_cycle (q : I → A) (C : I → I → K) :
 processed degree, the boundary operation preserves that degree exactly. -/
 theorem matrixBoundary_component_zero
     (q : I → A) (C : I → I → K) (P : A →ₗ[K] A)
-    (hP : ∀ i j, C i j≠0 → P (q i)=0 ∧ P (q j)=0) (i : I) :
+    (hP : ∀ i j, C i j ≠ 0 → P (q i) = 0 ∧ P (q j) = 0) (i : I) :
     P (matrixBoundary q C i)=0 := by
   simp only [matrixBoundary,matrixCombination,Pi.sub_apply,map_sub,map_sum,map_smul]
   have hleft : ∑ j, C i j • P (q j)=0 := by
@@ -98,7 +98,7 @@ theorem matrixCombination_upper_same_product (q : I → A) (C : I → I → K) :
 /-- Previously processed components are unchanged by the normalization. -/
 theorem upper_normalization_preserves_component
     (q : I → A) (C : I → I → K) (P : A →ₗ[K] A)
-    (hP : ∀ i j,j < i → C i j≠0 → P (q i)=0 ∧ P (q j)=0) (i : I) :
+    (hP : ∀ i j, j < i → C i j ≠ 0 → P (q i) = 0 ∧ P (q j) = 0) (i : I) :
     P (matrixCombination q C i)=P (matrixCombination q (upperMatrix C) i) := by
   have hz := matrixBoundary_component_zero q (lowerMatrix C) P (by
     intro a b hab

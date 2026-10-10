@@ -38,7 +38,7 @@ lemma frame_disjoint_of_quotient_independent (R : Submodule K V) (f : Fin H → 
 /-- This is an open in unrestricted frame coefficients, so it intersects
 any independently constructed nonempty frame open. -/
 theorem frame_disjoint_principal_open (R : I → Submodule K V)
-    (hcap : ∀ i,H+finrank K (R i)≤finrank K V) :
+    (hcap : ∀ i, H + finrank K (R i) ≤ finrank K V) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin H → V))) K,
       (∃ x,eval x D≠0) ∧
       ∀ f : Fin H → V,eval ((Module.finBasis K _).equivFun f) D≠0 →

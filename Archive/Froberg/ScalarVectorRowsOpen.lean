@@ -17,9 +17,9 @@ namespace Froberg
 open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f t : ℕ} {G : ℝ}
 
-theorem scalar_vector_rows_open (hh : 0<h) (hm : 0 < m) (hd : 1≤d)
-    (D : MvPolynomial (Fin (finrank K (Fin f → Rows K h m (d-1)))) K)
-    (hD : ∃ g : Fin f → Rows K h m (d-1),eval ((Module.finBasis K _).equivFun g) D≠0)
+theorem scalar_vector_rows_open (hh : 0 < h) (hm : 0 < m) (hd : 1 ≤ d)
+    (D : MvPolynomial (Fin (finrank K (Fin f → Rows K h m (d - 1)))) K)
+    (hD : ∃ g : Fin f → Rows K h m (d - 1), eval ((Module.finBasis K _).equivFun g) D ≠ 0)
     (hmodel : ∀ g : Fin f → Rows K h m (d-1),eval ((Module.finBasis K _).equivFun g) D≠0 →
       VectorExpansionOpen.StrictModel g d G ∧
       q*finrank K (VectorExpansionOpen.Source g)≤finrank K (VectorExpansionOpen.Target g d))

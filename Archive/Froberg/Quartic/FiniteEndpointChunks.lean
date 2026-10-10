@@ -34,7 +34,7 @@ theorem index_block_lt {N C i : ℕ} (hC : 0 < C) (hi : i < N) :
 
 /-- Each row belongs to a checked block at its quotient and remainder indices. -/
 theorem forall_lt_of_chunks (P : ℕ → Prop) (N C : ℕ) (hC : 0 < C)
-    (hchunks : ∀ k,k < chunkCount N C → ∀ j,j < C → k*C+j < N → P (k*C+j)) :
+    (hchunks : ∀ k, k < chunkCount N C → ∀ j, j < C → k * C + j < N → P (k * C + j)) :
     ∀ i,i < N → P i := by
   intro i hi
   have hk := index_block_lt hC hi
@@ -52,7 +52,7 @@ theorem forall_lt_of_fin_chunks (P : ℕ → Prop) (N C : ℕ) (hC : 0 < C)
   exact hchunks ⟨k,hk⟩ ⟨j,hj⟩ hij
 
 theorem forall_fin_of_chunks (P : ℕ → Prop) (N C : ℕ) (hC : 0 < C)
-    (hchunks : ∀ k,k < chunkCount N C → ∀ j,j < C → k*C+j < N → P (k*C+j)) :
+    (hchunks : ∀ k, k < chunkCount N C → ∀ j, j < C → k * C + j < N → P (k * C + j)) :
     ∀ i : Fin N,P i.val := fun i => forall_lt_of_chunks P N C hC hchunks i.val i.isLt
 
 end Quartic.FiniteEndpointChunks

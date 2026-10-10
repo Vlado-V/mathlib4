@@ -45,13 +45,13 @@ theorem kernel_avoidance_quotient_slices
     (mu : P →ₗ[K] V →ₗ[K] W) (B : Fin q → V →ₗ[K] W)
     (bottom : (W →ₗ[K] K) →ₗ[K] (W₀ →ₗ[K] K))
     (A : (Fin q → P) → Submodule K W)
-    (hA : ∀ Q i v,mu (Q i) v+B i v∈A Q)
+    (hA : ∀ Q i v, mu (Q i) v + B i v ∈ A Q)
     (slices : ℕ → ℕ)
     (E : MvPolynomial (Fin (finrank K (Fin q → P))) K)
-    (hE : ∃ Q : Fin q → P,eval ((Module.finBasis K _).equivFun Q) E≠0)
-    (hdim : ∀ Q,eval ((Module.finBasis K _).equivFun Q) E≠0 →
+    (hE : ∃ Q : Fin q → P, eval ((Module.finBasis K _).equivFun Q) E ≠ 0)
+    (hdim : ∀ Q, eval ((Module.finBasis K _).equivFun Q) E ≠ 0 →
       finrank K (W ⧸ A Q) ≤ slices 0)
-    (hbottom : ∀ Q,eval ((Module.finBasis K _).equivFun Q) E≠0 →
+    (hbottom : ∀ Q, eval ((Module.finBasis K _).equivFun Q) E ≠ 0 →
       ∀ ell : W →ₗ[K] K,A Q ≤ ell.ker → bottom ell=0 → ell=0)
     (havoid : ∀ r : Fin (finrank K V+1),0<r.val →
       ∃ Z : Fin (slices r.val) → W,

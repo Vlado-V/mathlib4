@@ -22,8 +22,8 @@ open Module
 /-- The same concrete attached-vector family has the exact source and target
 quotient dimensions asserted in B.2, for arbitrary attachment multiplicity. -/
 theorem exists_outer_presentation {K : Type*} [Field K] [Infinite K]
-    (k a z s h : ℕ) (hn : 0 < a+z)
-    (hh : k * (2*s+1).choose s ≤ h) :
+    (k a z s h : ℕ) (hn : 0 < a + z)
+    (hh : k * (2 * s + 1).choose s ≤ h) :
     ∃ v : Labels k a s → Fin h → K,
       (∀ c ≤ s+1, Function.Injective
         (AttachedMultiplication.multiplication (d := c) (coreExponent z) v)) ∧

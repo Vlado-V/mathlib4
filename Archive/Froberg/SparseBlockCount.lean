@@ -22,7 +22,7 @@ open scoped Topology
 def sparseBlockCount (γ : ℝ) (R s w : ℕ) : ℕ :=
   ⌈(γ*2^R*(s.factorial : ℝ))*(w : ℝ)^R⌉₊+1
 
-theorem sparseBlockCount_limit {R s : ℕ} (hR : 0<R) (γ : ℝ) (hγ : 0≤γ) :
+theorem sparseBlockCount_limit {R s : ℕ} (hR : 0 < R) (γ : ℝ) (hγ : 0 ≤ γ) :
     Tendsto (fun w : ℕ => (sparseBlockCount γ R s w : ℝ)/(w : ℝ)^R)
       atTop (𝓝 (γ*2^R*(s.factorial : ℝ))) := by
   have hc := ceil_normalized_limit
@@ -46,8 +46,8 @@ theorem sparseBlockCount_density_margin (γ : ℝ) (R s w : ℕ) :
 
 /-- Every prescribed rounded count fits the chosen number of complete
 scalar polynomial blocks, once the scalar variable count is large. -/
-theorem sparseBlockCount_eventually_covers (γ : ℝ) (hγ : 0≤γ) (R w : ℕ)
-    {s : ℕ} (hs : 0<s) :
+theorem sparseBlockCount_eventually_covers (γ : ℝ) (hγ : 0 ≤ γ) (R w : ℕ)
+    {s : ℕ} (hs : 0 < s) :
     ∀ᶠ n : ℕ in atTop,
       ⌈γ*(2*(w : ℝ))^R*(n : ℝ)^s⌉₊ ≤ sparseBlockCount γ R s w*(n+s-1).choose s := by
   have hl := ceil_normalized_limit

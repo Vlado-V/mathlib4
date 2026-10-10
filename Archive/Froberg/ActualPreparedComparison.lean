@@ -31,8 +31,8 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 parameter point and with one fixed enumeration of its even generators. -/
 structure EnlargedPreparedCertificate {h m d q f u r : ℕ} {J : Finset ℕ}
     {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-    (hd : 0<d) (ho : d%2=1) (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+    (hd : 0 < d) (ho : d % 2 = 1) (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ PreparedParameters.Label q J counts) (U : Fin u → Forms K h d)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) : Prop where
   leading : ∀ j,LinearIndependent K (p.2.1.2 j)
@@ -46,8 +46,8 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- A nonempty principal open of the actual enlarged coefficient space. -/
 def HasEnlargedPreparedOpen {h m d q f u r : ℕ} {J : Finset ℕ}
     {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-    (hd : 0<d) (ho : d%2=1) (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+    (hd : 0 < d) (ho : d % 2 = 1) (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ PreparedParameters.Label q J counts) (U : Fin u → Forms K h d) : Prop :=
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -64,12 +64,12 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Once the finite geometric opens are available, exact counts produce the
 actual critical comparison for every sufficiently large scalar block. -/
 theorem eventually_actual_prepared_comparison {d k h lo : ℕ}
-    (hd : 3≤d) (ho : d%2=1) (hk : 0<k) (hh : h=k*centralHalfBinomial d)
-    (hhpos : 0<h) (pure : OddPureProjectionData K d h (by omega))
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hd : 3 ≤ d) (ho : d % 2 = 1) (hk : 0 < k) (hh : h = k * centralHalfBinomial d)
+    (hhpos : 0 < h) (pure : OddPureProjectionData K d h (by omega))
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∀ᶠ n : ℕ in atTop,
       ∀ (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j),

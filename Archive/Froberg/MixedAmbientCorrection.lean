@@ -29,16 +29,16 @@ theorem scalarEvenBiform_weighted (p : Forms K m d) :
     (sumBiformMap_range.le ⟨_,rfl⟩)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem oddLinearBiform_weighted (hdp : 1≤d)
-    (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
+theorem oddLinearBiform_weighted (hdp : 1 ≤ d)
+    (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (oddBiformEmbedding hdp (by decide) v).val.IsWeightedHomogeneous (blockWeight h m) 1 :=
   linearOutput_weighted v
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem exists_mixed_ambient_correction (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
+theorem exists_mixed_ambient_correction (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (Q : Fin q → Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (hU : LinearIndependent K U)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
       (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range

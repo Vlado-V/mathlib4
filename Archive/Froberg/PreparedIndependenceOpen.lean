@@ -35,7 +35,8 @@ theorem combined_linear_independent (P : OuterSpace K (Fin h) m d u)
   simpa only [combinedVectorEnumeration_val,Equiv.symm_apply_apply] using h₃
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def HasIndependentOpen (hd : 0<d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) : Prop :=
+def HasIndependentOpen (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤
+  d) : Prop :=
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   ∃ P : MvPolynomial (Fin (finrank K
@@ -47,10 +48,10 @@ def HasIndependentOpen (hd : 0<d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j
       ∀ U : Fin u → Forms K h d,LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1 p.2)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem prepared_independent_open (hd : 1<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
-    (hq : Fintype.card (PreparedParameters.Label q J counts)≤finrank K (Forms K m d))
-    (hf : f+u≤finrank K (Rows K h m (d-1))) :
+theorem prepared_independent_open (hd : 1 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
+    (hq : Fintype.card (PreparedParameters.Label q J counts) ≤ finrank K (Forms K m d))
+    (hf : f + u ≤ finrank K (Rows K h m (d - 1))) :
     HasIndependentOpen (m := m) (q := q) (f := f) (u := u) (counts := counts) (by omega) hO hJ := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO

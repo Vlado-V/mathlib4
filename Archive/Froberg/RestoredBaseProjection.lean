@@ -44,11 +44,11 @@ theorem restoredBaseProjection_surjective :
   rw [LinearEquiv.apply_symm_apply]
   exact scalarVectorParametersEquiv.apply_symm_apply y
 
-theorem restored_base_principal_pullback (hO : ∀ j∈J,O j≤Forms K h j)
+theorem restored_base_principal_pullback (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (D : MvPolynomial (Fin (finrank K (OddScalarParameters K h m d f q))) K)
-    (hD : ∃ p : OddScalarParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) D≠0)
+    (hD : ∃ p : OddScalarParameters K h m d f q, eval ((Module.finBasis K _).equivFun p) D ≠ 0)
     (Good : OddScalarParameters K h m d f q → Prop)
-    (hGood : ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 → Good p) :
+    (hGood : ∀ p, eval ((Module.finBasis K _).equivFun p) D ≠ 0 → Good p) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∃ P : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,
       (∃ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) P≠0) ∧

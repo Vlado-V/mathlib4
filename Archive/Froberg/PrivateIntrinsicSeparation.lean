@@ -22,13 +22,13 @@ variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 variable {a z d R b q m hi ho g : ℕ}
 
  set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem private_intrinsic_row_zero (hd : 3≤d) (hR : 2≤R) (hRd : R+1≤d)
+theorem private_intrinsic_row_zero (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
     (bi : Basis (Fin hi) K (homogeneousSubmodule σ K R))
-    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R+1)))
-    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i,w i≠0)
+    (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R + 1)))
+    (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
     (ι : Fin b ↪ Fin z)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin ho → K)
-    (hproj : ∀ l c,c≤1 → ∀ p : Fin m → Forms K a c,
+    (hproj : ∀ l c, c ≤ 1 → ∀ p : Fin m → Forms K a c,
       (∀ α,sparseOutputCoefficient e v p α∈(privateOutputMatrix bi bo (w l)).range) → p=0)
     (Q : Fin q → Forms K a d)
     (x : Fin q → FullBiform K σ (a+z) (R+1) (d-(R+1)))

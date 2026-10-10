@@ -21,7 +21,7 @@ variable {K : Type*} [Field K] {h m d b e : ℕ}
 
 /-- Once degree d+1 is full, every higher pure-X degree is full. -/
 theorem pure_cutoff_propagates (U : Submodule K (Poly K h))
-    (hU : U * Forms K h 1 = Forms K h (d+1)) (hb : d+1 ≤ b) :
+    (hU : U * Forms K h 1 = Forms K h (d + 1)) (hb : d + 1 ≤ b) :
     U * Forms K h (b-d) = Forms K h b := by
   have hbd : b-d = 1+(b-(d+1)) := by omega
   have ht : d+1+(b-(d+1)) = b := by omega
@@ -43,7 +43,7 @@ theorem fullProductMap_surjective (U : Submodule K (Poly K h))
 
 /-- The same actual pure multiplication fills the entire upper tensor row. -/
 theorem pure_cutoff_tensor_surjective (U : Submodule K (Poly K h))
-    (hU : U * Forms K h 1 = Forms K h (d+1)) (hb : d+1 ≤ b) :
+    (hU : U * Forms K h 1 = Forms K h (d + 1)) (hb : d + 1 ≤ b) :
     Function.Surjective (TensorProduct.map
       (fullProductMap U (pure_cutoff_propagates U hU hb))
       (LinearMap.id : Forms K m e →ₗ[K] Forms K m e)) := by

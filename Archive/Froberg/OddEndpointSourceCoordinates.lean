@@ -22,12 +22,12 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-def oddEndpointSourceCoordinates (hd : 1≤d)
+def oddEndpointSourceCoordinates (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (G : Fin u → biformParitySpace K h m d 1)
     (B : HigherOddCoordinates K h m d hd →ₗ[K] (Fin u → K))
-    (hB : B.comp (oddHigherRelationMap hd F G)=LinearMap.id) :
+    (hB : B.comp (oddHigherRelationMap hd F G) = LinearMap.id) :
     oddCoefficientSpace ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
       (backgroundEnumeratedForms Q (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i))
         G) ≃ₗ[K]
@@ -38,9 +38,9 @@ def oddEndpointSourceCoordinates (hd : 1≤d)
     (oddSourceCoordinates hd F G B hB)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-def oddEndpointBaseCoordinates (hd : 1≤d)
+def oddEndpointBaseCoordinates (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     oddCoefficientSpace ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
       (backgroundEnumeratedForms Q (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i))
         (0 : Fin 0 → biformParitySpace K h m d 1)) ≃ₗ[K]

@@ -92,8 +92,8 @@ all-plane expansion bounds, retaining the given geometric witness. -/
 theorem principal_open_finite {A : Type*} [Fintype A] [IsAlgClosed L]
     (g : (I → K) → Fin c → Rows K h m s)
     (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
-    (degree imageBound : A → ℕ) (hdegree : ∀ i,0 < degree i)
-    (hwitness : ∀ i,Expands (fun j => mapRows (L := L) (g p₀ j)) t (degree i) (imageBound i)) :
+    (degree imageBound : A → ℕ) (hdegree : ∀ i, 0 < degree i)
+    (hwitness : ∀ i, Expands (fun j => mapRows (L := L) (g p₀ j)) t (degree i) (imageBound i)) :
     ∃ D : MvPolynomial I K,eval p₀ D ≠ 0 ∧ ∀ p : I → K,eval p D ≠ 0 →
       ∀ i,Expands (g p) t (degree i) (imageBound i) := by
   classical

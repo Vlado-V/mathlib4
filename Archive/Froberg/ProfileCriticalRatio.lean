@@ -36,8 +36,8 @@ lemma profile_scale_ratio (σ : ℝ) (s : ℕ) :
   <;> ring
 
 lemma critical_profile_scale_ratio {σ ρ : ℝ} {s : ℕ}
-    (hHρ : profileAmbientCapacity s * ρ * (2-ρ) = 1)
-    (hσ : σ^s = profileAmbientCapacity s * ρ) (hρ : ρ < 1) :
+    (hHρ : profileAmbientCapacity s * ρ * (2 - ρ) = 1)
+    (hσ : σ ^ s = profileAmbientCapacity s * ρ) (hρ : ρ < 1) :
     targetProfileScale σ s / sourceProfileScale (profileAmbientCapacity s) σ s =
       ρ / ((s+1).factorial : ℝ) := by
   have hH := profileAmbientCapacity_pos s

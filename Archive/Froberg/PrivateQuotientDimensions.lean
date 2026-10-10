@@ -25,8 +25,8 @@ abbrev PrivateTargetSpace (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b →
   (Fin h → Forms K (a+z) (s+(s+1))) ⧸ relationSpace (d := s+1)
     (attachedExponent ι) u (attachedExponent_degree ι)
 
-lemma private_quotient_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
-    (hn : 0 < a+z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
+lemma private_quotient_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
+    (hn : 0 < a + z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
       i.val))
     (c : ℕ) (hc : c ≤ s+1) :
@@ -39,8 +39,8 @@ lemma private_quotient_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+
     quotientFactor_ker_finrank hs ι hh.ge (private_small_fiber_bound hk hs hh) u hu hn hc] at hd
   exact hd
 
-lemma private_source_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
-    (hn : 0 < a+z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
+lemma private_source_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
+    (hn : 0 < a + z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
       i.val)) :
     finrank K (PrivateSourceSpace ι u)+b = finrank K (CoreSourceSpace (z := z) (fun i => u (Sum.inl
@@ -48,8 +48,8 @@ lemma private_source_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1)
   simpa only [Nat.add_zero,Nat.choose_zero_right,mul_one] using
     private_quotient_dimension_add hk hs hh hn ι u hu 0 (Nat.zero_le _)
 
-lemma private_target_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose s)
-    (hn : 0 < a+z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
+lemma private_target_dimension_add (hk : 0 < k) (hs : 2 ≤ s) (hh : h = k * (2 * s + 1).choose s)
+    (hn : 0 < a + z) (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
       i.val)) :
     finrank K (PrivateTargetSpace ι u)+b*(a+z+(s+1)-1).choose (s+1) =

@@ -24,7 +24,8 @@ lemma forms_finrank_count : finrank K (Forms K n d)=FormCount n d := by
     _=FormCount n d := by simp
 
 lemma relation_dimension_count (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
-    (he : ∀ i,(e i).degree=s) (hi : Function.Injective (AttachedMultiplication.multiplication (d :=
+    (he : ∀ i, (e i).degree = s) (hi : Function.Injective (AttachedMultiplication.multiplication (d
+      :=
       d) e v)) :
     finrank K (relationSpace (d := d) e v he)=Fintype.card I*FormCount n d := by
   change finrank K (LinearMap.range (homogeneousMultiplication (d := d) e v he))=_
@@ -32,7 +33,8 @@ lemma relation_dimension_count (e : I → Fin n →₀ ℕ) (v : I → Fin h →
   simp [Module.finrank_pi_fintype,forms_finrank_count]
 
 lemma attached_quotient_dimension_count (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
-    (he : ∀ i,(e i).degree=s) (hi : Function.Injective (AttachedMultiplication.multiplication (d :=
+    (he : ∀ i, (e i).degree = s) (hi : Function.Injective (AttachedMultiplication.multiplication (d
+      :=
       d) e v)) :
     finrank K ((Fin h → Forms K n (s+d)) ⧸ relationSpace (d := d) e v he)=
       RowCount h n (s+d)-Fintype.card I*FormCount n d := by
@@ -45,7 +47,7 @@ lemma formCount_zero (hn : 0 < n) : FormCount n 0=1 := by
   simp
 
 lemma attached_source_dimension_count (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
-    (he : ∀ i,(e i).degree=s) (hn : 0 < n)
+    (he : ∀ i, (e i).degree = s) (hn : 0 < n)
     (hi : Function.Injective (AttachedMultiplication.multiplication (d := 0) e v)) :
     finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)=
       RowCount h n s-Fintype.card I := by

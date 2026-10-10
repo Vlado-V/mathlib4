@@ -76,7 +76,7 @@ theorem scalar_pair_fiber_independent (C : Submodule K B)
 unions exist whenever 2r is at most the scalar-space dimension. -/
 theorem exists_scalar_pair_fiber_independent [Infinite K] (C : Submodule K B)
     [Module.Finite K C] (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hr : 2*r ≤ finrank K C) :
+    (hr : 2 * r ≤ finrank K C) :
     ∃ c : ι × Fin r → C, ∀ δ : Sym2 ι,
       LinearIndependent K (fun p : ScalarPairFiber (r := r) δ =>
         pairProducts (fun i => (c i).val) p.val) := by

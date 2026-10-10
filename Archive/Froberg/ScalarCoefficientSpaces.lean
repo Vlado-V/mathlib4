@@ -54,12 +54,12 @@ separated, the paired space attains the exact coefficient capacity. -/
 theorem exists_quadratic_separated_family
     {n h d r L m : ℕ} (hd : 2 ≤ d) (S : Finset (Fin n))
     (hS : S.card ≤ Sᶜ.card) (q : Fin r → Forms K n d)
-    (hscalar : Disjoint (familySpace q * Forms K n (d-2))
-      (deletedBidegreeSpace K S (2*d-2) (2*((d-1)/2))))
+    (hscalar : Disjoint (familySpace q * Forms K n (d - 2))
+      (deletedBidegreeSpace K S (2 * d - 2) (2 * ((d - 1) / 2))))
     {X : Type*} [AddCommGroup X] [Module K X]
     (o : Fin L → Forms K h 1) (T : Poly K h →ₗ[K] X)
     (ho : LinearIndependent K (fun p => T (pairProducts (fun i => (o i).val) p)))
-    (hm : m ≤ L * (S.card.choose (d-1) / 2)) :
+    (hm : m ≤ L * (S.card.choose (d - 1) / 2)) :
     ∃ f : Fin m → Forms K (h+n) d,
       LinearIndependent K f ∧ finrank K (Submodule.span K (Set.range f)) = m ∧
       ∀ W : Submodule K (Forms K (h+n) d),

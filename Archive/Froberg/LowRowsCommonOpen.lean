@@ -24,14 +24,14 @@ attribute [local instance] tensorGroup
 abbrev LowRowCoefficients (K : Type*) [Field K] (h m s e H r q : ℕ) :=
   (Fin r → Forms K h 1 ⊗[K] Forms K m s) × (Fin q → Fin H → Forms K m e)
 
-def LowRowsSurjective (he : e+y=s+s) (frame : Fin H → Forms K h 2)
+def LowRowsSurjective (he : e + y = s + s) (frame : Fin H → Forms K h 2)
     (p : LowRowCoefficients K h m s e H r q) : Prop :=
   Function.Surjective ((biformTensorFamilyMap (x := 1) (y := s) p.1).coprod
     (biformTensorFamilyToDegree (x := 0) he (framedBiformFamily frame p.2))) ∧
   Function.Surjective (biformTensorFamilyMap (x := 1) (y := s) (framedBiformFamily frame p.2)) ∧
   Function.Surjective (biformTensorFamilyMap (x := 2) (y := e) (framedBiformFamily frame p.2))
 
-theorem low_rows_common_coefficient_open (he : e+y=s+s) (frame : Fin H → Forms K h 2)
+theorem low_rows_common_coefficient_open (he : e + y = s + s) (frame : Fin H → Forms K h 2)
     (h₂ : ∃ (F : Fin r → Forms K h 1 ⊗[K] Forms K m s) (c : Fin q → Fin H → Forms K m e),
       Function.Surjective ((biformTensorFamilyMap (x := 1) (y := s) F).coprod
         (biformTensorFamilyToDegree (x := 0) he (framedBiformFamily frame c))))
@@ -75,16 +75,16 @@ theorem low_rows_common_coefficient_open (he : e+y=s+s) (frame : Fin H → Forms
 
 /-- The three low rows can be imposed on one output plane even though their
 initial constructions choose different planes. -/
-theorem low_rows_shared_frame_open (he : e+y=s+s)
+theorem low_rows_shared_frame_open (he : e + y = s + s)
     (h₂ : ∃ (o : Fin r → Forms K h 1) (f : Fin r → Forms K m s)
       (W : Submodule K (Forms K h 2)) (O : Fin q → W) (g : Fin q → Forms K m e),
-      finrank K W=H ∧ Function.Surjective ((biformFamilyMap (x := 1) (y := s) o f).coprod
+      finrank K W = H ∧ Function.Surjective ((biformFamilyMap (x := 1) (y := s) o f).coprod
         (vectorFormFamilyToDegree he (fun i => (O i).val) g)))
     (h₃ : ∃ (W : Submodule K (Forms K h 2)) (o : Fin q → W) (f : Fin q → Forms K m e),
-      finrank K W=H ∧ Function.Surjective (biformFamilyMap (x := 1) (y := s) (fun i => (o i).val)
+      finrank K W = H ∧ Function.Surjective (biformFamilyMap (x := 1) (y := s) (fun i => (o i).val)
         f))
     (h₄ : ∃ (W : Submodule K (Forms K h 2)) (o : Fin q → W) (f : Fin q → Forms K m e),
-      finrank K W=H ∧ Function.Surjective (biformFamilyMap (x := 2) (y := e) (fun i => (o i).val)
+      finrank K W = H ∧ Function.Surjective (biformFamilyMap (x := 2) (y := e) (fun i => (o i).val)
         f)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin H → Forms K h 2))) K,
       (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 →

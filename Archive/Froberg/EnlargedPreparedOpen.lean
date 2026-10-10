@@ -25,8 +25,8 @@ variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem hasEnlargedPreparedOpen_of_opens
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ PreparedParameters.Label q J counts) (U : Fin u → Forms K h d)
     (hbasic : HasBasicOpen (m := m) (q := q) (f := f) (counts := counts) hd hO hJ U)
     (hlead : HasLeadingPrivateOpen (n := m) (d := d) (q := q) (f := f) (u := u)

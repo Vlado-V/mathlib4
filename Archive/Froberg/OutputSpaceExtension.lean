@@ -22,8 +22,8 @@ variable {h m j e x y q r D : ℕ}
 theorem exists_biform_family_in_extended_output_space
     (hh : 0 < h) (hm : 0 < m) (Q : Fin q → Forms K h j)
     (hQ : Function.Surjective (prefixMultiplication Q x))
-    (hqD : q ≤ D) (hD : D ≤ (h+j-1).choose j)
-    (hr : convolutionBlockCount q (y+1) e*(m+(y+1)+e-2).choose e ≤ r) :
+    (hqD : q ≤ D) (hD : D ≤ (h + j - 1).choose j)
+    (hr : convolutionBlockCount q (y + 1) e * (m + (y + 1) + e - 2).choose e ≤ r) :
     ∃ (W : Submodule K (Forms K h j)) (o : Fin r → W)
       (f : Fin r → Forms K m e), finrank K W = D ∧
       Function.Surjective (biformFamilyMap (x := x) (y := y) (fun i => (o i).val) f) := by

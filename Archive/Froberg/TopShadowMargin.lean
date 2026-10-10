@@ -15,7 +15,7 @@ public import Archive.Froberg.TopCountInequalities
 noncomputable section
 namespace Froberg
 
-theorem centralHalfBinomial_quadratic_lower_four {d : ℕ} (hd : 4≤d) :
+theorem centralHalfBinomial_quadratic_lower_four {d : ℕ} (hd : 4 ≤ d) :
     2*(d : ℝ)^2+1≤centralHalfBinomial d := by
   have hm := Nat.choose_le_middle 3 (2*d-1)
   rw [show (2*d-1)/2=d-1 by omega] at hm
@@ -31,7 +31,7 @@ theorem centralHalfBinomial_quadratic_lower_four {d : ℕ} (hd : 4≤d) :
   have ht := mul_nonneg (show (0 : ℝ)≤d-4 by linarith) hs
   nlinarith
 
-theorem top_scalar_shadow_margin {d : ℕ} (hd : 3≤d) :
+theorem top_scalar_shadow_margin {d : ℕ} (hd : 3 ≤ d) :
     (2*(d : ℝ)^2+1)*criticalRatio d+(d.factorial : ℝ)*scalarReserveDensity d<1 := by
   by_cases he : d=3
   · exact small_odd_top_shadow_margin (Or.inl he)

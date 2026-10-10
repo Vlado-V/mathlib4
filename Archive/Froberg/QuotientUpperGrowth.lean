@@ -21,7 +21,7 @@ noncomputable section
 namespace Froberg
 open Module
 
-lemma quotient_growth_identity {A T r t l G : ℝ} (hA : A ≠ 0) (hAr : A+r ≠ 0) :
+lemma quotient_growth_identity {A T r t l G : ℝ} (hA : A ≠ 0) (hAr : A + r ≠ 0) :
     ((T+t)/(A+r))*(l+r)+G*(A-l)-t =
       (T/A)*l+(G-(t-((T+t)/(A+r))*r)/A)*(A-l) := by
   field_simp
@@ -38,7 +38,7 @@ variable {K F V V' W W' : Type*} [Field K]
 lemma quotient_upper_growth
     (mu : F →ₗ[K] V →ₗ[K] W) (nu : F →ₗ[K] V' →ₗ[K] W')
     (p : V →ₗ[K] V') (q : W →ₗ[K] W') (hp : Function.Surjective p)
-    (hq : Function.Surjective q) (hc : ∀ f v,nu f (p v)=q (mu f v))
+    (hq : Function.Surjective q) (hc : ∀ f v, nu f (p v) = q (mu f v))
     (hA : 0 < finrank K V') (G : ℝ)
     (hg : ∀ S : Submodule K V,
       ((finrank K W : ℝ)/finrank K V)*finrank K S+

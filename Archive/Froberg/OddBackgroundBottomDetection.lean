@@ -35,7 +35,7 @@ theorem coreParity_eq_blockParity :
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddBackgroundEndpointEquiv_mk (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
-    (a : biformParitySpace K h m (2*d) 1) :
+    (a : biformParitySpace K h m (2 * d) 1) :
     oddBackgroundEndpointEquiv Q F G ((fullOddRelations Q F G).mkQ a)=
       oddTargetClass ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
         (backgroundEnumeratedForms Q F G)
@@ -54,7 +54,7 @@ set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddBackground_bottom_detects (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (hupper : Function.Surjective (upperTargetMap (backgroundEnumeratedForms Q F G)))
-    (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q F G) →ₗ[K] K)
+    (ell : (biformParitySpace K h m (2 * d) 1 ⧸ fullOddRelations Q F G) →ₗ[K] K)
     (hbottom : ∀ a : biformParitySpace K h m (2*d) 1,
       a.val.IsWeightedHomogeneous (blockWeight h m) 1 →
         ell ((fullOddRelations Q F G).mkQ a)=0) : ell=0 := by

@@ -19,7 +19,7 @@ variable {K : Type*} [Field K] [Infinite K] {h n s d c q : ℕ} {G : ℝ}
 
 theorem StrictModel.generic_scalar_injective {g : Fin c → Rows K h n s}
     (hg : StrictModel g d G)
-    (hq : q*finrank K (Source g)≤finrank K (Target g d)) :
+    (hq : q * finrank K (Source g) ≤ finrank K (Target g d)) :
     ∃ P : MvPolynomial (Fin (finrank K (Fin q → Forms K n d))) K,
       (∃ Q : Fin q → Forms K n d,eval (PolynomialBilinearCoordinates.coordinates K _ Q) P≠0) ∧
       ∀ Q : Fin q → Forms K n d,eval (PolynomialBilinearCoordinates.coordinates K _ Q) P≠0 →

@@ -21,9 +21,9 @@ variable {h m s e y H r q : ℕ}
 attribute [local instance] tensorGroup
 
 theorem row_two_framed_base_open
-    (W : Submodule K (Forms K h 2)) (hW : finrank K W=H)
+    (W : Submodule K (Forms K h 2)) (hW : finrank K W = H)
     (o : Fin r → Forms K h 1) (f : Fin r → Forms K m s)
-    (O : Fin q → W) (g : Fin q → Forms K m e) (he : e+y=s+s)
+    (O : Fin q → W) (g : Fin q → Forms K m e) (he : e + y = s + s)
     (hs : Function.Surjective ((biformFamilyMap (x := 1) (y := s) o f).coprod
       (vectorFormFamilyToDegree he (fun i => (O i).val) g))) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin H → Forms K h 2))) K,

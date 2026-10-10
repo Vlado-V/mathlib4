@@ -40,7 +40,7 @@ theorem leading_witnesses_output_rename (e : σ ≃ τ)
   exact ⟨outputRename e p,leading_independent_output_rename e p j hp⟩
 
 theorem leading_witnesses_congr_outputs
-    {O O' : ℕ → Submodule K (MvPolynomial σ K)} (hO : O=O') :
+    {O O' : ℕ → Submodule K (MvPolynomial σ K)} (hO : O = O') :
     (∀ j : J,∃ p : Space n d q J counts O,LinearIndependent K (p.2 j)) ↔
       (∀ j : J,∃ p : Space n d q J counts O',LinearIndependent K (p.2 j)) := by
   subst O'
@@ -48,7 +48,7 @@ theorem leading_witnesses_congr_outputs
 
 theorem leading_witnesses_congr_counts
     {counts counts' : ℕ → ℕ} (O : ℕ → Submodule K (MvPolynomial σ K))
-    (hcounts : counts=counts') :
+    (hcounts : counts = counts') :
     (∀ j : J,∃ p : Space n d q J counts O,LinearIndependent K (p.2 j)) ↔
       (∀ j : J,∃ p : Space n d q J counts' O,LinearIndependent K (p.2 j)) := by
   subst counts'

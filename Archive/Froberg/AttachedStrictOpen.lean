@@ -21,10 +21,10 @@ variable {K L P I : Type*} [Field K] [Field L] [Algebra K L] [Fintype I]
 
 theorem principal_open_reindexed_strict_shadow [IsAlgClosed L]
     (r : Fin c ≃ I) (hc : 0 < c) (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
-    (he : ∀ i,(e i).degree=s) (hn : 0 < n)
+    (he : ∀ i, (e i).degree = s) (hn : 0 < n)
     (g : (P → K) → Fin c → Rows K h n s)
-    (hg : ∀ j,IsPolynomialFamily (fun p => g p j)) (p₀ : P → K)
-    (hp₀ : g p₀=generator e v he ∘ r)
+    (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : P → K)
+    (hp₀ : g p₀ = generator e v he ∘ r)
     (hi₀ : Function.Injective (AttachedMultiplication.multiplication (d := 0) e v))
     (hi : Function.Injective (AttachedMultiplication.multiplication (d := d) e v))
     (hgeom₀ : Function.Injective (AttachedMultiplication.multiplication (d := 0) e

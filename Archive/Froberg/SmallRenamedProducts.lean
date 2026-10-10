@@ -24,11 +24,11 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_small_cross_profile_parameter_equiv {a b v : ℕ}
-    (e : Fin (a+b) ≃ σ) (ha : 0<a) (hb : 0<b) (hv : 0<v)
-    (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
-    (hm₂ : counts 2≤((a+2-1).choose 2-finrank K X)*(v+(d-2)-1).choose (d-2))
-    (hm₄ : counts 4≤(b+4-1).choose 4*(v+(d-4)-1).choose (d-4)) :
+    (e : Fin (a + b) ≃ σ) (ha : 0 < a) (hb : 0 < b) (hv : 0 < v)
+    (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (hm₂ : counts 2 ≤ ((a + 2 - 1).choose 2 - finrank K X) * (v + (d - 2) - 1).choose (d - 2))
+    (hm₄ : counts 4 ≤ (b + 4 - 1).choose 4 * (v + (d - 4) - 1).choose (d - 4)) :
     ∃ p : Space (v+v) d q J counts (fun j => homogeneousSubmodule σ K j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 6) ∧
       ∀ z,(ProductRows.multiplication counts (layers p) J 6 z).IsWeightedHomogeneous
@@ -41,11 +41,11 @@ theorem exists_small_cross_profile_parameter_equiv {a b v : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_strong_fourth_profile_parameter_equiv {h : ℕ}
-    (e : Fin h ≃ σ) (hh : 144≤h) (hfour : 4∣h)
-    (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
-    (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
-    (hm : counts 4≤(h^4/256)*(S.card.choose (d-4)/2)) :
+    (e : Fin h ≃ σ) (hh : 144 ≤ h) (hfour : 4 ∣ h)
+    (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
+    (hm : counts 4 ≤ (h ^ 4 / 256) * (S.card.choose (d - 4) / 2)) :
     ∃ p : Space n d q J counts (fun j => homogeneousSubmodule σ K j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 8) ∧
       ∀ a,(ProductRows.multiplication counts (layers p) J 8 a).IsWeightedHomogeneous
@@ -58,9 +58,9 @@ theorem exists_strong_fourth_profile_parameter_equiv {h : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_quintic_fourth_product_parameter {h : ℕ}
-    (hh : 144≤h) (hfour : 4∣h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
-    (hm : counts 4≤(h^4/256)*(n/2)) :
+    (hh : 144 ≤ h) (hfour : 4 ∣ h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (hm : counts 4 ≤ (h ^ 4 / 256) * (n / 2)) :
     ∃ p : Space n 5 q J counts (fun j => Forms K h j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 8) := by
   obtain ⟨f,hf,hi⟩ := strong_quartic_linear_diagonal_exists (K := K) hh hfour hm
@@ -73,10 +73,10 @@ theorem exists_quintic_fourth_product_parameter {h : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_quintic_fourth_product_parameter_equiv {h : ℕ}
-    (e : Fin h ≃ σ) (hh : 144≤h) (hfour : 4∣h)
-    (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
-    (hm : counts 4≤(h^4/256)*(n/2)) :
+    (e : Fin h ≃ σ) (hh : 144 ≤ h) (hfour : 4 ∣ h)
+    (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (hm : counts 4 ≤ (h ^ 4 / 256) * (n / 2)) :
     ∃ p : Space n 5 q J counts (fun j => homogeneousSubmodule σ K j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 8) := by
   let T' := fun j => (T j).comp (rename e).toLinearMap
@@ -87,8 +87,8 @@ theorem exists_quintic_fourth_product_parameter_equiv {h : ℕ}
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_strong_cubic_product_parameter_equiv {h : ℕ}
     (e : Fin h ≃ σ) (T : ℕ → MvPolynomial σ K →ₗ[K] X)
-    (hz : ∀ k∈J,k≠2 → counts k=0)
-    (hm : counts 2≤(2*(h/2).choose 2-finrank K X)*(n/2)) :
+    (hz : ∀ k ∈ J, k ≠ 2 → counts k = 0)
+    (hm : counts 2 ≤ (2 * (h / 2).choose 2 - finrank K X) * (n / 2)) :
     ∃ p : Space n 3 q J counts (fun j => homogeneousSubmodule σ K j⊓(T j).ker),
       ∀ R,Function.Injective (ProductRows.multiplication counts (layers p) J R) := by
   let T' := fun j => (T j).comp (rename e).toLinearMap

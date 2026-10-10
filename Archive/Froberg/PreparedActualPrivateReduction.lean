@@ -26,7 +26,7 @@ local instance privateConstrainedSpaceFinite {X : Type*} [AddCommGroup X] [Modul
     Module.Finite K (Space n d q J counts (constrainedOutputs T)) :=
   finite_space (fun _ _ => inf_le_left)
 
-theorem eventually_actual_private_reduction_open {d : ℕ} (hd : 9≤d) (hodd : d%2=1) :
+theorem eventually_actual_private_reduction_open {d : ℕ} (hd : 9 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

@@ -31,13 +31,13 @@ theorem card_coefficient_exponent (n e : ℕ) :
   rw [Fintype.card_congr (exponentToDegree n e),card_degree]
 
 def orderedMonomialWeight {n e d : ℕ}
-    (k : Fin (Fintype.card (Exponent n (e+d))))
+    (k : Fin (Fintype.card (Exponent n (e + d))))
     (j : Fin (Fintype.card (Exponent n e))) : ℕ :=
   weight (OrderedMonomials.enumerate n (e+d) k).val
     (OrderedMonomials.enumerate n e j).val
 
 theorem orderedMonomialWeight_row {n e d : ℕ}
-    (k : Fin (Fintype.card (Exponent n (e+d)))) :
+    (k : Fin (Fintype.card (Exponent n (e + d)))) :
     ∑ j, orderedMonomialWeight (d := d) k j = (e+d).choose e := by
   have hh := (orderedToDegree n e).sum_comp
     (fun a => weight (OrderedMonomials.enumerate n (e+d) k).val a.val)
@@ -55,7 +55,7 @@ theorem orderedMonomialWeight_column {n e d : ℕ} (hn : 0 < n)
   exact weighted_column hn (orderedToDegree n e j)
 
 theorem orderedMonomialWeight_support {n e d : ℕ}
-    (k : Fin (Fintype.card (Exponent n (e+d))))
+    (k : Fin (Fintype.card (Exponent n (e + d))))
     (j : Fin (Fintype.card (Exponent n e)))
     (h : 0 < orderedMonomialWeight k j) :
     ∃ b : Exponent n d, OrderedMonomials.shift b j = k := by

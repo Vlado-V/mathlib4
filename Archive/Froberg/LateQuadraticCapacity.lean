@@ -19,7 +19,7 @@ open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
-theorem eventually_quadratic_capacity_shift_late {d : ℕ} (hd : 3≤d) :
+theorem eventually_quadratic_capacity_shift_late {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,∀ (J : Finset ℕ) (q : ℕ → ℕ) (counts : ℕ → ℕ → ℕ),
       Tendsto (fun n : ℕ => (Fintype.card (Label (q n) J (counts n)) : ℝ)/(n : ℝ)^d)
         atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))) →

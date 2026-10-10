@@ -28,7 +28,7 @@ variable {K P V W P' V' W' : Type*} [Field K]
 theorem relation_kernel_equivalence
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')
-    (hmu : ∀ p v,eW (mu p v)=nu (eP p) (eV v)) (ell : W' →ₗ[K] K) :
+    (hmu : ∀ p v, eW (mu p v) = nu (eP p) (eV v)) (ell : W' →ₗ[K] K) :
     (QuotientCovectorKernel.relation nu ell).ker=
       (QuotientCovectorKernel.relation mu (ell.comp eW.toLinearMap)).ker.map eV.toLinearMap := by
   ext v
@@ -52,7 +52,7 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem relation_kernel_finrank_equivalence
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')
-    (hmu : ∀ p v,eW (mu p v)=nu (eP p) (eV v)) (ell : W' →ₗ[K] K) :
+    (hmu : ∀ p v, eW (mu p v) = nu (eP p) (eV v)) (ell : W' →ₗ[K] K) :
     finrank K (QuotientCovectorKernel.relation nu ell).ker=
       finrank K (QuotientCovectorKernel.relation mu (ell.comp eW.toLinearMap)).ker := by
   rw [relation_kernel_equivalence eP eV eW mu nu hmu ell,LinearEquiv.finrank_map_eq]
@@ -61,7 +61,7 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem HasClosedKernelSlices.equiv
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')
-    (hmu : ∀ p v,eW (mu p v)=nu (eP p) (eV v)) (s : ℕ → ℕ)
+    (hmu : ∀ p v, eW (mu p v) = nu (eP p) (eV v)) (s : ℕ → ℕ)
     (hs : HasClosedKernelSlices mu s) : HasClosedKernelSlices nu s := by
   obtain ⟨Z,hZ⟩ := (hasClosedKernelSlices_iff_vectors mu s).mp hs
   have hdim : finrank K V=finrank K V' := eV.finrank_eq

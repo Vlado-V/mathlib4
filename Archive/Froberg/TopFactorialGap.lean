@@ -14,8 +14,8 @@ public import Archive.Froberg.TopShadowMargin
 noncomputable section
 namespace Froberg
 
-theorem top_factorial_gap {d h a b : ℕ} (hd : 3≤d) (ha : 0<a) (hb : 0<b)
-    (hratio : (h : ℝ)/(2*(d : ℝ))≤(b : ℝ)/a) :
+theorem top_factorial_gap {d h a b : ℕ} (hd : 3 ≤ d) (ha : 0 < a) (hb : 0 < b)
+    (hratio : (h : ℝ) / (2 * (d : ℝ)) ≤ (b : ℝ) / a) :
     ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))*a+
       (criticalRatio d/(d.factorial : ℝ)+scalarReserveDensity d)*b<
         (b : ℝ)*(d.factorial : ℝ)⁻¹ := by

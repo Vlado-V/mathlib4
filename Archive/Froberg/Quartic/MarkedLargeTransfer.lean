@@ -27,7 +27,7 @@ variable {K : Type*} [Field K] [Infinite K] [IsAlgClosed K]
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem parent_witness (m : ℕ) (hm : 320 ≤ m)
     (hchild : MarkedEndpoints K m)
-    (hpos : 0 < Counts.chi (m+3) (lowerEndpoint (m+3))) :
+    (hpos : 0 < Counts.chi (m + 3) (lowerEndpoint (m + 3))) :
     MarkedLowerWitness K (m+3) (lowerEndpoint (m+3)) := by
   classical
   obtain ⟨ω,hω,hω1⟩ := ThreeBlockOmega.exists_parameter (K := K)

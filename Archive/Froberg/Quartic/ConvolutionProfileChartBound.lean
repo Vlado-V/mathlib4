@@ -23,7 +23,7 @@ open ConvolutionProfileCoordinates ProfileChartBound ProfileCertificate LayerRan
 open UniformEndpoint ConvolutionProfileImage ConvolutionProfileRanks
 variable {K : Type*} [Field K] {t w : ℕ}
 
-theorem ranks_le (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) (i : Fin (w+1)) :
+theorem ranks_le (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) (i : Fin (w + 1)) :
     ranks ht S i ≤ blockDimensions (2*(t-1)) w i := by
   have h := Submodule.finrank_le (FilteredImage.initialPiece
     (fun i => Fin (blockDimensions (2*(t-1)) w i) → K)
@@ -50,8 +50,8 @@ theorem ranks_levelCount (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) (h : �
 
 /-- The actual prefix profile satisfies the integral image estimate. -/
 theorem profile_Phi_le_image [Infinite K] (m c : ℕ) (hc : 4 ≤ c)
-    (ht : 2 ≤ coreP c+1)
-    (S : Submodule K (Piece K (coreP c+1) (freeW m c) 1)) :
+    (ht : 2 ≤ coreP c + 1)
+    (S : Submodule K (Piece K (coreP c + 1) (freeW m c) 1)) :
     Phi m c (ranks ht S 0)
       (levelCount (fun i => ranks ht S i.succ) 1)
       (levelCount (fun i => ranks ht S i.succ) 2)
@@ -65,8 +65,8 @@ theorem profile_Phi_le_image [Infinite K] (m c : ℕ) (hc : 4 ≤ c)
 
 /-- Genuine chart parameters are bounded by the Cell expression of the same
 actual prefix profile used in the image theorem. -/
-theorem parameterCount_le_profile_Cell (m c : ℕ) (ht : 2 ≤ coreP c+1)
-    (S : Submodule K (Piece K (coreP c+1) (freeW m c) 1)) :
+theorem parameterCount_le_profile_Cell (m c : ℕ) (ht : 2 ≤ coreP c + 1)
+    (S : Submodule K (Piece K (coreP c + 1) (freeW m c) 1)) :
     (IteratedBlockCharts.parameterCount (blockDimensions (2*((coreP c+1)-1)) (freeW m c))
       (ranks ht S):ℤ) ≤ Cell m c (ranks ht S 0)
         (levelCount (fun i => ranks ht S i.succ) 1)
@@ -82,8 +82,8 @@ theorem parameterCount_le_profile_Cell (m c : ℕ) (ht : 2 ≤ coreP c+1)
 than merely for some unrelated existential profile. -/
 theorem profile_integral_cell_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
     (hmhi : m ≤ 40) (upper : Bool)
-    (ht : 2 ≤ coreP (mixedCount m upper)+1)
-    (S : Submodule K (Piece K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)) 1))
+    (ht : 2 ≤ coreP (mixedCount m upper) + 1)
+    (S : Submodule K (Piece K (coreP (mixedCount m upper) + 1) (freeW m (mixedCount m upper)) 1))
     (hdlo : 0 < finrank K S) (hdhi : finrank K S < totalA m (mixedCount m upper)) :
     (upperEndpoint m:ℤ)*(finrank K S:ℤ)+
       Cell m (mixedCount m upper) (ranks ht S 0)
@@ -120,8 +120,8 @@ theorem profile_integral_cell_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ 
 coefficients is bounded by the actual image rank, for every positive subspace. -/
 theorem profile_parameter_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
     (hmhi : m ≤ 40) (upper : Bool)
-    (ht : 2 ≤ coreP (mixedCount m upper)+1)
-    (S : Submodule K (Piece K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)) 1))
+    (ht : 2 ≤ coreP (mixedCount m upper) + 1)
+    (S : Submodule K (Piece K (coreP (mixedCount m upper) + 1) (freeW m (mixedCount m upper)) 1))
     (hdlo : 0 < finrank K S) :
     IteratedBlockCharts.parameterCount
       (blockDimensions (2*((coreP (mixedCount m upper)+1)-1)) (freeW m (mixedCount m upper)))

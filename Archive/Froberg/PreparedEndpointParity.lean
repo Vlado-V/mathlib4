@@ -20,8 +20,8 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
-theorem zeroScalarEndpointFamily_eq_full (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+theorem zeroScalarEndpointFamily_eq_full (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f) :
     zeroScalarEndpointFamily hd hO hJ U P p=
@@ -31,7 +31,7 @@ theorem zeroScalarEndpointFamily_eq_full (hd : 0<d)
   rw [FullPreparedParameters.pureBase_add_variablePrivateZeroScalar]
   rfl
 
-theorem oddGenerator_parity (hdodd : d%2=1)
+theorem oddGenerator_parity (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     oddGenerator U P F k∈weightedParitySpace (blockWeight h m) 1 := by
@@ -48,8 +48,8 @@ theorem oddGenerator_parity (hdodd : d%2=1)
         (⟨Sum.inl,Sum.inl_injective⟩ : Fin h ↪ Fin h ⊕ Fin m)
         (fun _ => 1) (blockWeight h m) (fun _ => rfl) (U k).property
 
-theorem zeroScalarEndpointFamily_parity (hd : 0<d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem zeroScalarEndpointFamily_parity (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (k : Fin (Fintype.card (Label q f u J counts))) :

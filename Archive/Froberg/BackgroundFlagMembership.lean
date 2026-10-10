@@ -41,8 +41,8 @@ theorem background_replaced_even_mem
     (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1)
     (M : biformParitySpace K h m d 0) (c : K)
-    (i : Fin (Fintype.card (BackgroundLabel (q+e) f u)))
-    (hi : indexedSplitParity (backgroundSplitIndex (q := q+e) (f := f) (u := u)) i=0) :
+    (i : Fin (Fintype.card (BackgroundLabel (q + e) f u)))
+    (hi : indexedSplitParity (backgroundSplitIndex (q := q + e) (f := f) (u := u)) i = 0) :
     backgroundEnumeratedForms
       (Fin.append (Function.update (fun i => scalarEvenBiform (h := h) (Q i))
         (lastScalarSlot hq) (scalarEvenBiform (Q (lastScalarSlot hq))+c • M)) E) F G i∈

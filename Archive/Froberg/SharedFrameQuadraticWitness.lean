@@ -35,20 +35,20 @@ theorem quadraticPolynomialDetector_supported
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_shared_frame_quadratic_witness {I : Type*} [Fintype I] [DecidableEq I]
-    (hd : 3≤d) (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
+    (hd : 3 ≤ d) (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
     (w : Fin u → Fin h → K) (ι : Fin u ↪ Fin z)
-    (hker : (privatePolynomialMap (a := a) (s := d-1) ι
-      (fun i => (L.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker=
-        Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d-1) ι w))))
-    (Q : Fin r → Forms K a d) (hQ : ∀ t,t≤d-2 → Function.Injective (prefixMultiplication Q t))
+    (hker : (privatePolynomialMap (a := a) (s := d - 1) ι
+      (fun i => (L.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker =
+        Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d - 1) ι w))))
+    (Q : Fin r → Forms K a d) (hQ : ∀ t, t ≤ d - 2 → Function.Injective (prefixMultiplication Q t))
     (o : I → Forms K h 1)
     (hdet : LinearIndependent K (fun p => quadraticPolynomialDetector L
       (pairProducts (fun i => (o i).val) p)))
-    (C : Submodule K (Poly K a)) (hCdeg : C≤Forms K a (d-1))
+    (C : Submodule K (Poly K a)) (hCdeg : C ≤ Forms K a (d - 1))
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCQ : Disjoint (C*C) (familySpace Q*Forms K a (d-2)))
-    (hf : f≤Fintype.card I*(finrank K C/2)) :
+    (hCQ : Disjoint (C * C) (familySpace Q * Forms K a (d - 2)))
+    (hf : f ≤ Fintype.card I * (finrank K C / 2)) :
     ∃ F : Fin f → FullBiform K (Fin h) (a+z) 1 (d-1), LinearIndependent K F ∧
       (quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) (a+z) 1 (d-1)).subtype
         (biformVectorDetector (quadraticPolynomialDetector L))

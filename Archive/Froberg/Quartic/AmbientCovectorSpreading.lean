@@ -65,7 +65,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact semantics of the original ambient homogeneous equation system.
 Independence of E is not required for this literal statement. -/
 theorem equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
-    (hd : d+c ≤ a) (ell : Fin T → K) :
+    (hd : d + c ≤ a) (ell : Fin T → K) :
     (∀ j : Index a B c q d, eval ell (equation mu E Q j).val = 0) ↔
       d+c ≤ finrank K (LinearMap.ker (relationMap mu ell)) ∧
       (∀ j f, covector ell (mu f (E j)) = 0) ∧
@@ -97,7 +97,7 @@ def finiteOriginalEquations (E : Fin c → Fin a → K) (Q : Fin q → Fin B →
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finite_original_equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
-    (hd : d+c ≤ a) (ell : Fin T → K) :
+    (hd : d + c ≤ a) (ell : Fin T → K) :
     (∀ j, eval ell (finiteOriginalEquations (d := d) mu E Q j).val = 0) ↔
       d+c ≤ finrank K (LinearMap.ker (relationMap mu ell)) ∧
       (∀ j f, covector ell (mu f (E j)) = 0) ∧
@@ -159,7 +159,7 @@ theorem finite_equations_split {L : Type*} [Field L] [Algebra K L]
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact closed ambient-kernel and E/Q/slice annihilation semantics. -/
 theorem finite_equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
-    (Z : Fin s → Fin T → K) (hd : d+c ≤ a) (ell : Fin T → K) :
+    (Z : Fin s → Fin T → K) (hd : d + c ≤ a) (ell : Fin T → K) :
     (∀ j, eval ell (finiteEquations (d := d) mu E Q Z j).val = 0) ↔
       d+c ≤ finrank K (LinearMap.ker (relationMap mu ell)) ∧
       (∀ j f, covector ell (mu f (E j)) = 0) ∧
@@ -207,7 +207,7 @@ theorem slices_polynomial (j : Fin s) : IsPolynomialFamily (fun p => slices (Z p
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 theorem finiteEquations_polynomial
-    (j : Fin (Fintype.card (Index a B c q d)+s)) :
+    (j : Fin (Fintype.card (Index a B c q d) + s)) :
     IsPolynomialFamily (fun p => finiteEquations (d := d) mu (E p) (Q p) (Z p) j) := by
   refine Fin.addCases ?_ ?_ j
   · intro i
@@ -264,7 +264,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 /-- Actual ambient relation-map semantics on the resulting base-field open. -/
 theorem principal_open_closed {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
-    (hd : d+c ≤ a) (p₀ : I → K)
+    (hd : d + c ≤ a) (p₀ : I → K)
     (hempty : ∀ ell : Fin T → L,
       (∀ j, aeval ell (finiteOriginalEquations (d := d) mu (E p₀) (Q p₀) j).val = 0) →
       (∀ j, aeval ell (slices (Z p₀) j).val = 0) → ell = 0) :
@@ -298,7 +298,7 @@ include hE hQ hZ in
 /-- Over an algebraically closed base, the witness and conclusion both use
 only the actual ambient kernel and annihilation conditions. -/
 theorem principal_open_closed_of_witness [IsAlgClosed K]
-    (hd : d+c ≤ a) (p₀ : I → K)
+    (hd : d + c ≤ a) (p₀ : I → K)
     (hwitness : ∀ ell : Fin T → K,
       d+c ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
       (∀ j f, covector ell (mu f (E p₀ j)) = 0) →
@@ -350,7 +350,7 @@ include hE hQ hZ in
 /-- Actual polynomial row, quadric, and slice families satisfy the literal
 ambient-equation polynomiality requirement in fixed monomial coordinates. -/
 theorem rowEquations_polynomial
-    (j : Fin (Fintype.card (Index (RowCount m 1) (FormCount m 2) c q d)+s)) :
+    (j : Fin (Fintype.card (Index (RowCount m 1) (FormCount m 2) c q d) + s)) :
     IsPolynomialFamily (fun p => finiteEquations (d := d) coordinate
       (rowPresentation (E p)) (rowChildren (Q p)) (rowSlices (Z p)) j) := by
   apply finiteEquations_polynomial
@@ -367,7 +367,7 @@ include hE hQ hZ in
 actual mixed columns, shared quadrics, and target slices. No quotient basis
 is chosen, and the presentation annihilation condition uses all quadrics. -/
 theorem principal_open_rows {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
-    (hd : d+c ≤ RowCount m 1) (p₀ : I → K)
+    (hd : d + c ≤ RowCount m 1) (p₀ : I → K)
     (hempty : ∀ ell : Fin (RowCount m 3) → L,
       (∀ j, aeval ell (finiteOriginalEquations (d := d) coordinate
         (rowPresentation (E p₀)) (rowChildren (Q p₀)) j).val = 0) →

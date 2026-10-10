@@ -19,9 +19,9 @@ namespace Froberg
 open Module MvPolynomial Quartic Quartic.PolynomialBilinearCoordinates
 variable {K : Type*} [Field K] [Infinite K] {n d e r : ℕ}
 
-theorem prefix_injective_principal_open (hn : 0<n) (hed : e<d)
-    (hlarge : (e+d).choose e*((e+d).choose e*d.choose e)≤n)
-    (hr : r*(n+e-1).choose e≤(n+(d+e)-1).choose (d+e)) :
+theorem prefix_injective_principal_open (hn : 0 < n) (hed : e < d)
+    (hlarge : (e + d).choose e * ((e + d).choose e * d.choose e) ≤ n)
+    (hr : r * (n + e - 1).choose e ≤ (n + (d + e) - 1).choose (d + e)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin r → Forms K n d))) K,
       (∃ Q : Fin r → Forms K n d,eval (coordinates K _ Q) D≠0) ∧
       ∀ Q : Fin r → Forms K n d,eval (coordinates K _ Q) D≠0 →

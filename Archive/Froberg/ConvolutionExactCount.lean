@@ -39,8 +39,8 @@ theorem vectorFormFamily_surjective_extend {m e t : ℕ} (j : ι → κ)
 /-- A count bound gives a tuple indexed by the requested `Fin r`, with literal
 homogeneous vector forms and the required multiplication surjective. -/
 theorem exists_convolution_family_of_count [Infinite K] [Module.Finite K W]
-    {a e m r : ℕ} (ha : 0<a) (hm : 0<m)
-    (hr : convolutionBlockCount (finrank K W) a e * (m+a+e-2).choose e ≤ r) :
+    {a e m r : ℕ} (ha : 0 < a) (hm : 0 < m)
+    (hr : convolutionBlockCount (finrank K W) a e * (m + a + e - 2).choose e ≤ r) :
     ∃ (o : Fin r → W) (f : Fin r → Forms K m e),
       Function.Surjective (vectorFormFamilyMap (t := a-1) o f) := by
   classical

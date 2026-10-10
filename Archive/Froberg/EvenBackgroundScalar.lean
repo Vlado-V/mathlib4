@@ -22,21 +22,21 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-abbrev EvenBackgroundSource (hdp : 1≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
+abbrev EvenBackgroundSource (hdp : 1 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :=
   biformParitySpace K h m d 1 ⧸ Submodule.span K
     (Set.range (fun i => oddBiformEmbedding hdp (by decide) (F i)))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-abbrev EvenBackgroundTarget (hdp : 1≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
+abbrev EvenBackgroundTarget (hdp : 1 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :=
   biformParitySpace K h m (2*d) 1 ⧸ oddBackgroundRelations
     (fun i => scalarEvenBiform (h := h) (Q i))
     (fun i => oddBiformEmbedding hdp (by decide) (F i))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def evenBackgroundScalar (hdp : 1≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+def evenBackgroundScalar (hdp : 1 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     Forms K m d →ₗ[K] EvenBackgroundSource hdp F →ₗ[K] EvenBackgroundTarget hdp Q F where
   toFun p := (Submodule.span K
     (Set.range (fun i => oddBiformEmbedding hdp (by decide) (F i)))).liftQ
@@ -71,8 +71,8 @@ def evenBackgroundScalar (hdp : 1≤d)
     rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-@[simp] theorem evenBackgroundScalar_mk (hdp : 1≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+@[simp] theorem evenBackgroundScalar_mk (hdp : 1 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : biformParitySpace K h m d 1) :
     evenBackgroundScalar hdp Q F p
       ((Submodule.span K (Set.range (fun i => oddBiformEmbedding hdp (by decide) (F i)))).mkQ v)=
@@ -81,8 +81,8 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundScalar_higher_projection {j : ℕ}
-    (hdp : 1≤d) (hj : 1≤j) (hjd : j≤d) (ho : j%2=1)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (hdp : 1 ≤ d) (hj : 1 ≤ j) (hjd : j ≤ d) (ho : j % 2 = 1)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : biformParitySpace K h m d 1) :
     oddBackgroundRowProjection hj hjd ho (fun i => scalarBiformEquiv (h := h) (Q i)) F
       (evenBackgroundScalar hdp Q F p

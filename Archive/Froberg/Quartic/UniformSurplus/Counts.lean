@@ -92,7 +92,7 @@ hypothesis in this numerical statement. -/
 theorem source_uniform_surplus (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m upper))
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper):ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper) : ℝ)) :
     let c := mixedCount m upper
     let d := (i:ℝ)+n₁+n₂+n₃
     (UniformScalar.targetCount m c:ℝ)/(ProfileCertificate.totalA m c:ℝ)*d+

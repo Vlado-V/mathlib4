@@ -25,15 +25,15 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredBaseBiform (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def restoredBaseBiform (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) : Fin q → biformParitySpace K h m d 0 :=
   fun i => restoredBiformFamily hd hO hJ heven idx slot p (idx.symm (Sum.inl i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredPositiveBiform (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def restoredPositiveBiform (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) :
     Fin (Fintype.card (ProductRows.LayerLabel J counts)) → biformParitySpace K h m d 0 :=
@@ -41,10 +41,10 @@ def restoredPositiveBiform (hd : d%2=0)
     (idx.symm (Sum.inr ((Fintype.equivFin _).symm i)))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredBaseBiform_eq_scalar (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restoredBaseBiform_eq_scalar (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k))) (p : RestoredSpace m d q J counts O) :
+    (hslot : ∀ k, 0 < degree (idx (slot k))) (p : RestoredSpace m d q J counts O) :
     restoredBaseBiform hd hO hJ heven idx slot p=
       fun i => scalarEvenBiform (h := h) (p.1.1 (Sum.inl i)) := by
   funext i
@@ -60,8 +60,8 @@ theorem restoredBaseBiform_eq_scalar (hd : d%2=0)
   simp [generator,scalar,high]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredScalarFiber_positive (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restoredScalarFiber_positive (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O) :
     restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (a,rest)).1=
@@ -90,8 +90,8 @@ def restoredEvenIndex (idx : Fin r ≃ Label q J counts) :
   idx.trans ((Equiv.sumCongr (Equiv.refl (Fin q)) (Fintype.equivFin _)).trans finSumFinEquiv)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_split_value (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_split_value (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) (i : Fin r) :
     Fin.append (restoredBaseBiform hd hO hJ heven idx slot p)
@@ -101,8 +101,8 @@ theorem restored_split_value (hd : d%2=0)
   cases j <;> simp [restoredEvenIndex,restoredBaseBiform,restoredPositiveBiform]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_split_odd_exact (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_split_odd_exact (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) (F : Fin f → biformParitySpace K h m d 1)
     (H : OddSplitExact (restoredBiformFamily hd hO hJ heven idx slot p) F) :
@@ -129,14 +129,14 @@ theorem restored_split_odd_exact (hd : d%2=0)
     by simpa only [Equiv.symm_symm,hS] using hB'⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_scalar_fiber_relative_injective (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_scalar_fiber_relative_injective (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O)
     (H : OddSplitExact
       (restoredBiformFamily hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
-        (a,rest)).1)
+        (a, rest)).1)
       (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i)))) :
     Function.Injective (oddEvenRelativeMap (fun i => scalarEvenBiform (h := h) (rest.1.1 i))
       (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i)))
@@ -156,8 +156,8 @@ def restoredBackgroundIndex (idx : Fin r ≃ Label q J counts) :
   Equiv.sumCongr (restoredEvenIndex idx) (Equiv.sumEmpty (Fin f) (Fin 0)).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_background_value (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_background_value (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O) (i : Fin r ⊕ Fin f) :
     (backgroundEnumeratedForms
@@ -180,8 +180,8 @@ theorem restored_background_value (hdp : 1≤d) (hd : d%2=0)
     rw [←PreparedTarget.outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_background_upper (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_background_upper (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O)
     (hu : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot
@@ -204,13 +204,13 @@ theorem restored_background_upper (hdp : 1≤d) (hd : d%2=0)
     exact ⟨finSumFinEquiv j,(restored_background_value hdp hd hO hJ heven idx slot p j).symm⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_scalar_fiber_upper (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restored_scalar_fiber_upper (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O)
     (hu : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot
-      (restoredScalarFiberCoordinates.symm (a,rest))))) :
+      (restoredScalarFiberCoordinates.symm (a, rest))))) :
     Function.Surjective (upperTargetMap (backgroundEnumeratedForms
       (Fin.append (fun i => scalarEvenBiform (h := h) (rest.1.1 i))
         (oddEvenAffineFamily

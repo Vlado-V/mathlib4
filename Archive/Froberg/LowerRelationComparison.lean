@@ -40,8 +40,8 @@ theorem lower_relation_comparison (E : I → J → Poly K n)
     (hE : Function.Injective (linearVectorCombination E))
     (ell : Fin 2 → Forms K n 1) (hell : LinearIndependent K ell)
     (x : J → Poly K n) (c₀ c₁ : I → K)
-    (h₀ : ∀ j, (ell 0).val*x j=∑ i, c₀ i • E i j)
-    (h₁ : ∀ j, (ell 1).val*x j=∑ i, c₁ i • E i j) :
+    (h₀ : ∀ j, (ell 0).val * x j = ∑ i, c₀ i • E i j)
+    (h₁ : ∀ j, (ell 1).val * x j = ∑ i, c₁ i • E i j) :
     x=0 ∧ c₀=0 ∧ c₁=0 := by
   classical
   let a : I → Forms K n 1 := fun i => c₀ i • ell 1-c₁ i • ell 0

@@ -21,7 +21,7 @@ variable {K A B V W : Type*} [Field K]
 
 theorem disjoint_range_of_projected_coprod (pi : V →ₗ[K] W)
     (f : A →ₗ[K] V) (g : B →ₗ[K] W) (S T : Submodule K V)
-    (hS : S≤pi.ker) (hT : T.map pi≤g.range)
+    (hS : S ≤ pi.ker) (hT : T.map pi ≤ g.range)
     (hinj : Function.Injective ((pi.comp f).coprod g)) :
     Disjoint f.range (S ⊔ T) := by
   apply disjoint_iff_inf_le.mpr

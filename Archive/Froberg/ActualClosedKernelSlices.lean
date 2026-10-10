@@ -36,7 +36,7 @@ def HasClosedKernelSlices (mu : F →ₗ[K] V →ₗ[K] W) (s : ℕ → ℕ) : P
       (∀ t,aeval ell (cuts r t).val=0) → ell=0)
 
 theorem exists_actual_closed_kernel_slices (mu : F →ₗ[K] V →ₗ[K] W)
-    (s : ℕ → ℕ) (Z : (r : Fin (finrank K V+1)) → Fin (s r.val) → W)
+    (s : ℕ → ℕ) (Z : (r : Fin (finrank K V + 1)) → Fin (s r.val) → W)
     (hZ : ∀ r : Fin (finrank K V+1),∀ ell : W →ₗ[K] K,
       r.val ≤ finrank K (LinearMap.ker (QuotientCovectorKernel.relation mu ell)) →
       (∀ t,ell (Z r t)=0) → ell=0) :

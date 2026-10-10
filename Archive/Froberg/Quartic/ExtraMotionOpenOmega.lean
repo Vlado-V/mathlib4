@@ -22,7 +22,7 @@ theorem augmented_polynomial {ι S A : Type*}
     [AddCommGroup S] [Module K S] [FiniteDimensional K S]
     [AddCommGroup A] [Module K A] [FiniteDimensional K A]
     (F : (ι → K) → (S →ₗ[K] A × A)) (r : (ι → K) → Fin 4 → A)
-    (hF : IsPolynomialFamily F) (hr : ∀ i,IsPolynomialFamily (fun x => r x i)) :
+    (hF : IsPolynomialFamily F) (hr : ∀ i, IsPolynomialFamily (fun x => r x i)) :
     IsPolynomialFamily (fun x => AugmentedGenericOmega.augmented ω (F x) (r x)) := by
   apply isPolynomialFamily_linearMap
   rintro ⟨b,a,ξ⟩

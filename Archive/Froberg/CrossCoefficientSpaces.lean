@@ -68,7 +68,7 @@ theorem exists_independent_biforms_with_output_constraint
     {h n j t m : ℕ} (hh : 0 < h) (hn : 0 < n)
     {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
     (T : Poly K h →ₗ[K] X)
-    (hm : m ≤ ((h+j-1).choose j - finrank K X) * (n+t-1).choose t) :
+    (hm : m ≤ ((h + j - 1).choose j - finrank K X) * (n + t - 1).choose t) :
     ∃ q : Fin m → Forms K (h+n) (j+t), LinearIndependent K q ∧
       ∀ i, (q i).val ∈ (LinearMap.range (TensorProduct.map
         (Forms K h j ⊓ T.ker).subtype (Forms K n t).subtype)).map

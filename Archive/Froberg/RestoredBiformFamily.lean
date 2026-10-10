@@ -22,8 +22,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredBiformFamily (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def restoredBiformFamily (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) (i : Fin r) : biformParitySpace K h m d 0 :=
   ⟨(restoredFamilyLinear hd hO hJ heven idx slot p i).val,
@@ -33,7 +33,7 @@ def restoredBiformFamily (hd : d%2=0)
         (restoredFamilyLinear hd hO hJ heven idx slot p i).property.2)⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem pureShift_weight (hd : d%2=0)
+theorem pureShift_weight (hd : d % 2 = 0)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d) (i : Fin r) :
     (PolynomialRestoration.pureShift (pureEvenEmbed hd) slot U i).val.IsWeightedHomogeneous
@@ -53,9 +53,9 @@ theorem pureShift_weight (hd : d%2=0)
     exact (weightedHomogeneousSubmodule K (blockWeight h m) d).zero_mem
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredBiformFamily_scalar_component (hdp : 0<d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j)
+theorem restoredBiformFamily_scalar_component (hdp : 0 < d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) (i : Fin r) :
     weightedHomogeneousComponent (blockWeight h m) 0

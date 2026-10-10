@@ -176,8 +176,8 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem odd_paritySource_projected_cycle
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z, pi z=0 → parityForm w 1 z=0)
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm w 1 z = 0)
     (a : (projectedEndpointMultiplication pi q).ker) :
     paritySource w e 1 a.val ∈ (endpointMultiplication q).ker := by
   change endpointMultiplication q (paritySource w e 1 a.val)=0
@@ -190,8 +190,8 @@ for the actual projected endpoint homology as well. -/
 theorem exists_even_projected_cycle_representative
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
-    (pi : Forms K n (2*d) →ₗ[K] Z)
-    (hpi : ∀ z, pi z=0 → parityForm w 1 z=0)
+    (pi : Forms K n (2 * d) →ₗ[K] Z)
+    (hpi : ∀ z, pi z = 0 → parityForm w 1 z = 0)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i, (a.val i).val.IsWeightedHomogeneous w (1-e i)) →
       a.val ∈ oppositeKoszulSpace q e)

@@ -156,8 +156,8 @@ set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 under exactly the source middle/augmented budgets and `c ≤ m`. -/
 theorem genericBlockConditions_of_budgets [Infinite K] (ω : K) (hc : c ≤ m)
     (haug : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2)
-    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨
-      (2*c ≤ m ∧ c*(m-2*c) + (m-2*c+1).choose 2 ≤ q))
+    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3 * m) ∨
+      (2 * c ≤ m ∧ c * (m - 2 * c) + (m - 2 * c + 1).choose 2 ≤ q))
     (hω : ω ≠ 0) (hω1 : ω ≠ -1) : GenericBlockConditions K ω m c q :=
   genericBlockConditions_of_generic ω (genericBoth_of_budgets ω hc haug hmid hω hω1)
     (TraceGeneric.generic_trace hc)
@@ -165,8 +165,8 @@ theorem genericBlockConditions_of_budgets [Infinite K] (ω : K) (hc : c ≤ m)
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem exists_blockConditions_of_budgets [Infinite K] (ω : K) (hc : c ≤ m)
     (haug : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2)
-    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨
-      (2*c ≤ m ∧ c*(m-2*c) + (m-2*c+1).choose 2 ≤ q))
+    (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3 * m) ∨
+      (2 * c ≤ m ∧ c * (m - 2 * c) + (m - 2 * c + 1).choose 2 ≤ q))
     (hω : ω ≠ 0) (hω1 : ω ≠ -1) : ∃ a : ParameterIndex m c q → K, BlockConditions ω a := by
   obtain ⟨D, ⟨a, ha⟩, h⟩ := genericBlockConditions_of_budgets ω hc haug hmid hω hω1
   exact ⟨a, h a ha⟩

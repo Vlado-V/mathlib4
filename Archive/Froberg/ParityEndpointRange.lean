@@ -26,14 +26,14 @@ def parityCoefficientInclusion (w : Fin n → ZMod 2) (e : Fin r → ZMod 2) (p 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem paritySource_inclusion (w : Fin n → ZMod 2) (e : Fin r → ZMod 2) (p : ZMod 2)
-    (a : (i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) :
+    (a : (i : Fin r) → parityPartForms (K := K) (d := d) w (p - e i)) :
     paritySource w e p (parityCoefficientInclusion w e p a)=parityCoefficientInclusion w e p a := by
   funext i
   exact parityForm_same w (p-e i) (a i).val (a i).property
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityEndpointMultiplication (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2) :
     ((i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) →ₗ[K]
       parityPartForms (K := K) (d := 2*d) w p :=
   ((endpointMultiplication q).comp (parityCoefficientInclusion w e p)).codRestrict _ (by
@@ -45,14 +45,14 @@ def parityEndpointMultiplication (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem parityEndpointMultiplication_val (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2)
-    (a : (i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2)
+    (a : (i : Fin r) → parityPartForms (K := K) (d := d) w (p - e i)) :
     (parityEndpointMultiplication w e q hq p a).val=
       endpointMultiplication q (parityCoefficientInclusion w e p a) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityEndpointMultiplication_range (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2) :
     (parityEndpointMultiplication w e q hq p).range=
       (endpointMultiplication q).range.comap (parityPartForms w p).subtype := by
   ext v

@@ -17,8 +17,8 @@ namespace Froberg.BilinearCovectorStrata
 open Module MvPolynomial Quartic
 
 lemma covector_budget_of_strict_shadow {a r T q E : ℕ} (hr : r ≤ a)
-    (R D : ℝ) (hT : (T : ℝ) = R*a) (hq : R ≤ q) (hD : (a : ℝ) ≤ D)
-    (hE : R*r + D*(min r (a-r) : ℕ) ≤ E) :
+    (R D : ℝ) (hT : (T : ℝ) = R * a) (hq : R ≤ q) (hD : (a : ℝ) ≤ D)
+    (hE : R * r + D * (min r (a - r) : ℕ) ≤ E) :
     (r*(a-r) : ℕ)+(T : ℤ)-E-1 < (q*(a-r) : ℕ) := by
   have ho : ((r*(a-r) : ℕ) : ℝ) ≤ a*(min r (a-r) : ℕ) := by
     exact_mod_cast BilinearScalarFamily.grassmannian_overhead_le a r
@@ -39,7 +39,7 @@ strict gain is at least A. The rank bounds apply to the actual image subspaces. 
 theorem generic_surjective_of_strict_shadow {K : Type*} [Field K] [Infinite K]
     {a b T q : ℕ}
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (R D : ℝ) (hT : (T : ℝ) = R*a) (hq : R ≤ q) (hD : (a : ℝ) ≤ D)
+    (R D : ℝ) (hT : (T : ℝ) = R * a) (hq : R ≤ q) (hD : (a : ℝ) ≤ D)
     (hgrowth : ∀ L : Submodule K (Fin a → K),
       R*finrank K L + D*(min (finrank K L) (a-finrank K L) : ℕ) ≤
         finrank K (BilinearImage.image mu L)) :

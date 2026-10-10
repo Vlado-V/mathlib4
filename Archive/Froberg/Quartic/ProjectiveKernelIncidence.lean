@@ -30,13 +30,13 @@ abbrev Tuple (K : Type*) (a q : ℕ) := Fin q → Fin a → K
 
 def tupleSpan (F : Tuple K a q) := Submodule.span K (Set.range F)
 
- theorem tuple_expansion (F : Tuple K a q) :
+theorem tuple_expansion (F : Tuple K a q) :
     F = ∑ i : Fin q, ∑ j : Fin a, F i j • Pi.single i (Pi.single j 1) := by
   classical
   ext i j
   simp [Finset.sum_apply, Pi.smul_apply, Pi.single_apply, ite_apply]
 
- theorem tupleSpan_smul (F : Tuple K a q) (s : K) (hs : s ≠ 0) :
+theorem tupleSpan_smul (F : Tuple K a q) (s : K) (hs : s ≠ 0) :
     tupleSpan (s • F) = tupleSpan F := by
   have hr : Set.range (s • F) = s • Set.range F := by
     ext x
@@ -49,7 +49,7 @@ def tupleSpan (F : Tuple K a q) := Submodule.span K (Set.range F)
   rw [hr]
   exact Submodule.span_smul_eq_of_isUnit (Set.range F) s (isUnit_iff_ne_zero.mpr hs)
 
- theorem tupleSpan_pos (F : Tuple K a q) (hF : F ≠ 0) :
+theorem tupleSpan_pos (F : Tuple K a q) (hF : F ≠ 0) :
     0 < finrank K (tupleSpan F) := by
   by_contra h
   have hzero : tupleSpan F = ⊥ := Submodule.finrank_eq_zero.mp (by omega)
@@ -65,7 +65,7 @@ def chartMatrix (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K)
   fun j k => ∑ i : Fin q, ∑ h : Fin a,
     tuplePolynomial c i h * C (B (Pi.single i (Pi.single h 1)) (Pi.single k 1) j)
 
- theorem eval_chartMatrix (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
+theorem eval_chartMatrix (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
     {d : ℕ} (c : ChartType a q d) (p : ParameterIndex c → K) :
     evaluated (chartMatrix B c) p = LinearMap.toMatrix' (B (tupleMap c p)) := by
   classical
@@ -76,12 +76,12 @@ def chartMatrix (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K)
   simp [chartMatrix, tupleMap, map_sum, map_smul, LinearMap.sum_apply,
     LinearMap.smul_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
 
- theorem chart_mulVec (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
+theorem chart_mulVec (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
     {d : ℕ} (c : ChartType a q d) (p : ParameterIndex c → K) (x : Fin n → K) :
     evaluated (chartMatrix B c) p *ᵥ x = B (tupleMap c p) x := by
   rw [eval_chartMatrix, LinearMap.toMatrix'_mulVec]
 
- theorem chart_rank (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
+theorem chart_rank (B : Tuple K a q →ₗ[K] (Fin n → K) →ₗ[K] (Fin b → K))
     {d : ℕ} (c : ChartType a q d) (p : ParameterIndex c → K) :
     (evaluated (chartMatrix B c) p).rank = finrank K (LinearMap.range (B (tupleMap c p))) := by
   have he : (evaluated (chartMatrix B c) p).mulVecLin = B (tupleMap c p) := by

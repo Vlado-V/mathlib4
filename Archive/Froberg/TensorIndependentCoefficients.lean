@@ -27,7 +27,7 @@ def rightTensorCoefficient (e : X →ₗ[K] K) : X ⊗[K] Y →ₗ[K] Y :=
     rightTensorCoefficient e (x ⊗ₜ[K] y)=e x • y := rfl
 
 theorem rightTensorCoefficient_mem (S : Submodule K Y) (e : X →ₗ[K] K)
-    (z : X ⊗[K] Y) (hz : z∈rightRelations S) : rightTensorCoefficient e z∈S := by
+    (z : X ⊗[K] Y) (hz : z ∈ rightRelations S) : rightTensorCoefficient e z∈S := by
   obtain ⟨w,rfl⟩ := hz
   induction w using TensorProduct.inductionOn with
   | tmul x y =>
@@ -37,7 +37,7 @@ theorem rightTensorCoefficient_mem (S : Submodule K Y) (e : X →ₗ[K] K)
     simpa only [map_add] using S.add_mem hv hw
 
 theorem independent_tensor_coefficients_mem (U : I → X) (hU : LinearIndependent K U)
-    (S : Submodule K Y) (v : I → Y) (hv : (∑ j,U j ⊗ₜ[K] v j)∈rightRelations S) :
+    (S : Submodule K Y) (v : I → Y) (hv : (∑ j, U j ⊗ₜ[K] v j) ∈ rightRelations S) :
     ∀ i,v i∈S := by
   classical
   obtain ⟨L,hL⟩ := (Fintype.linearCombination K U).exists_leftInverse_of_injective
@@ -54,7 +54,7 @@ theorem independent_tensor_coefficients_mem (U : I → X) (hU : LinearIndependen
 theorem separated_tensor_coefficients_mem (U : I → X) (hU : LinearIndependent K U)
     (S : Submodule K Y) (E : Submodule K (X ⊗[K] Y))
     (hE : Disjoint E (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations S))
-    (v : I → Y) (hv : (∑ j,U j ⊗ₜ[K] v j)∈rightRelations S ⊔ E) :
+    (v : I → Y) (hv : (∑ j, U j ⊗ₜ[K] v j) ∈ rightRelations S ⊔ E) :
     ∀ i,v i∈S := by
   apply independent_tensor_coefficients_mem U hU S v
   have hl : (∑ j,U j ⊗ₜ[K] v j)∈leftRelations (Submodule.span K (Set.range U)) := by

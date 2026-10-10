@@ -45,7 +45,7 @@ theorem eventually_middle_biform_surjective_uniform {j x e y : ℕ} (hj : 0 < j)
 theorem eventually_extended_middle_biform_uniform {j x e y : ℕ}
     (hj : 0 < j) (hxj : x < j) (he : 0 < e)
     (α δ : ℝ) (hα : convolutionOutputThreshold j x e y < α)
-    (hδ : (x.factorial : ℝ)/((j+x).factorial : ℝ) < δ)
+    (hδ : (x.factorial : ℝ) / ((j + x).factorial : ℝ) < δ)
     (D : ℕ → ℕ)
     (hDlim : Tendsto (fun n : ℕ => (D n : ℝ)/(n : ℝ)^j) atTop (𝓝 δ))
     (hDupper : ∀ᶠ n : ℕ in atTop, D n ≤ (n+j-1).choose j) :

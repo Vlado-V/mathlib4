@@ -22,25 +22,25 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def bottomTensorFamily (g : Fin f → Rows K h m (d-1)) :
+def bottomTensorFamily (g : Fin f → Rows K h m (d - 1)) :
     Fin f → Forms K h 1 ⊗[K] Forms K m (d-1) := fun i => linearOutputTensorEquiv (g i)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def bottomVectorSourceEquiv (g : Fin f → Rows K h m (d-1)) :
+def bottomVectorSourceEquiv (g : Fin f → Rows K h m (d - 1)) :
     VectorExpansionOpen.Source g ≃ₗ[K] OddBottomQuotient (bottomTensorFamily g) :=
   Submodule.Quotient.equiv _ _ linearOutputTensorEquiv (by
     rw [Submodule.map_span,←Set.range_comp']
     rfl)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-@[simp] theorem bottomVectorSourceEquiv_mk (g : Fin f → Rows K h m (d-1))
-    (v : Rows K h m (d-1)) :
+@[simp] theorem bottomVectorSourceEquiv_mk (g : Fin f → Rows K h m (d - 1))
+    (v : Rows K h m (d - 1)) :
     bottomVectorSourceEquiv g ((Submodule.span K (Set.range g)).mkQ v)=
       (Submodule.span K (Set.range (bottomTensorFamily g))).mkQ (linearOutputTensorEquiv v) := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def bottomVectorTargetEquiv (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     BilinearScalarFamily.ScalarQuotient (VectorExpansionOpen.quotientMultiplication g d) Q ≃ₗ[K]
       (OddRowTensor K h m 1 (2*d-1) ⧸
         tensorOddRowRelations (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
@@ -52,8 +52,8 @@ def bottomVectorTargetEquiv (hd : 1 ≤ d)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem bottomVectorTargetEquiv_mk (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
-    (v : Rows K h m ((d-1)+d)) :
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
+    (v : Rows K h m ((d - 1) + d)) :
     bottomVectorTargetEquiv hd Q g
       ((BilinearScalarFamily.multiplication (VectorExpansionOpen.quotientMultiplication g d)
         Q).range.mkQ
@@ -63,7 +63,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def bottomTensorScalarAction (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1)) :
     Forms K m d →ₗ[K] OddBottomQuotient (bottomTensorFamily g) →ₗ[K]
       (OddRowTensor K h m 1 (2*d-1) ⧸
         tensorOddRowRelations (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
@@ -75,8 +75,8 @@ def bottomTensorScalarAction (hd : 1 ≤ d)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem bottomTensorScalarAction_mk (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
-    (p : Forms K m d) (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
+    (p : Forms K m d) (v : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     bottomTensorScalarAction hd Q g p ((Submodule.span K (Set.range (bottomTensorFamily g))).mkQ v)=
       (tensorOddRowRelations (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
         (bottomTensorFamily g)).mkQ (oddRowScalarAction (b := 1) hd (scalarBiformEquiv (h := h) p)
@@ -98,7 +98,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem bottomTensorScalarAction_compatible (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (p : Forms K m d) (v : VectorExpansionOpen.Source g) :
     bottomVectorTargetEquiv hd Q g
       (BilinearScalarFamily.scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d)

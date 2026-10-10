@@ -28,8 +28,8 @@ def preparedBackgroundIndex : Label q f u J counts ≃
     (Equiv.refl _)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem prepared_background_value (hd : 0 < d) (hdodd : d%2=1)
-    (hO : ∀ j ∈ J,O j ≤ Forms K h j) (hJ : ∀ j ∈ J,j ≤ d) (heven : ∀ j ∈ J,j%2=0)
+theorem prepared_background_value (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (i : Label q f u J counts) :
@@ -60,8 +60,8 @@ theorem prepared_background_value (hd : 0 < d) (hdodd : d%2=1)
   · rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem prepared_background_upper (hd : 0 < d) (hdodd : d%2=1)
-    (hO : ∀ j ∈ J,O j ≤ Forms K h j) (hJ : ∀ j ∈ J,j ≤ d) (heven : ∀ j ∈ J,j%2=0)
+theorem prepared_background_upper (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (hu : Function.Surjective (upperTargetMap (zeroScalarEndpointFamily hd hO hJ U P p))) :

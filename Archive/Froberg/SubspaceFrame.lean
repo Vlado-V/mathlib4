@@ -19,7 +19,7 @@ open Module
 variable {K E : Type*} [Field K] [AddCommGroup E] [Module K E]
   [FiniteDimensional K E] {H r : ℕ}
 
-theorem exists_subspace_frame (W : Submodule K E) (hW : finrank K W=H)
+theorem exists_subspace_frame (W : Submodule K E) (hW : finrank K W = H)
     (o : Fin r → W) :
     ∃ (frame : Fin H → E) (c : Fin r → Fin H → K),
       LinearIndependent K frame ∧ Submodule.span K (Set.range frame)=W ∧

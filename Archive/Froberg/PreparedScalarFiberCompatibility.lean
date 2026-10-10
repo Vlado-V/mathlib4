@@ -20,8 +20,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem scalarFiber_base (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem scalarFiber_base (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :
     preparedBaseBiform hO hJ heven (scalarFiberCoordinates.symm (a,rest))=
       fun i => scalarEvenBiform (rest.1 i) := by
@@ -29,8 +29,8 @@ theorem scalarFiber_base (hO : ∀ j∈J,O j≤Forms K h j)
   rw [preparedBaseBiform_eq_scalar,scalarFiberCoordinates_symm_base]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem scalarFiber_high (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem scalarFiber_high (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :
     preparedHighBiform hO hJ heven (scalarFiberCoordinates.symm (a,rest))=
       preparedHighBiform hO hJ heven (scalarFiberCoordinates.symm (0,rest)) := by
@@ -40,8 +40,8 @@ theorem scalarFiber_high (hO : ∀ j∈J,O j≤Forms K h j)
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem scalarFiber_positive (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem scalarFiber_positive (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :
     preparedPositiveBiform hO hJ heven (scalarFiberCoordinates.symm (a,rest))=
       oddEvenAffineFamily (preparedHighBiform hO hJ heven (scalarFiberCoordinates.symm

@@ -29,7 +29,7 @@ abbrev CoreTargetSpace {K : Type*} [Field K] {k a z s h : ℕ}
     AttachedMultiplication.relationSpace (d := s+1) (coreExponent z) v (coreExponent_degree z)
 
 theorem uniform_core_outer_growth {K : Type*} [Field K]
-    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h=k*(2*s+1).choose s)
+    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h = k * (2 * s + 1).choose s)
     {σ : ℝ} (hσ : 0 < σ) (hσ1 : σ < 1)
     (a z : ℕ → ℕ) (ha : Tendsto a atTop atTop) (hz : Tendsto z atTop atTop)
     (har : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 σ))

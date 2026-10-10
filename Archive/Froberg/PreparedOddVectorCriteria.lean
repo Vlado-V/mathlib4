@@ -31,7 +31,7 @@ def outerVectorEquiv : Rows K h m (d-1) ≃ₗ[K]
   linearOutputTensorEquiv.trans sumBiformEquiv
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem outerVectorEquiv_val (g : Rows K h m (d-1)) :
+@[simp] theorem outerVectorEquiv_val (g : Rows K h m (d - 1)) :
     (outerVectorEquiv g).val=sumBiformMap (linearOutputTensorEquiv g) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -46,7 +46,7 @@ def combinedVectorEnumeration (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem combinedVectorEnumeration_val
-    (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (i : Fin (f+u)) :
+    (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (i : Fin (f + u)) :
     sumBiformMap (linearOutputTensorEquiv (combinedVectorEnumeration P F i))=
       combinedLinear P F (finSumFinEquiv.symm i) := by
   rw [←outerVectorEquiv_val]
@@ -55,9 +55,9 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
   cases finSumFinEquiv.symm i <;> rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem odd_cycles_of_vector_criteria (hd : 3≤d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
-    (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
+theorem odd_cycles_of_vector_criteria (hd : 3 ≤ d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
+    (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d))
@@ -89,9 +89,9 @@ theorem odd_cycles_of_vector_criteria (hd : 3≤d) (hdodd : d%2=1)
       hrel
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem odd_cycles_of_first_higher_rows (hd : 3≤d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
-    (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
+theorem odd_cycles_of_first_higher_rows (hd : 3 ≤ d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
+    (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (hfirst : FirstVectorRowExact (scalarEnumeration p.1) (combinedVectorEnumeration P p.2))

@@ -103,7 +103,7 @@ theorem maximal_rank_of_ambient_exclusion
     (z : ExtraCorrectionOmega.ChildQuotient h × ExtraCorrectionOmega.ChildQuotient h)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
     (s : Fin c → Forms K m 2)
-    (Z : Fin (finrank K (J g h)-finrank K (Source ω g h r z markedU)) → GeneralF13.Ambient K m)
+    (Z : Fin (finrank K (J g h) - finrank K (Source ω g h r z markedU)) → GeneralF13.Ambient K m)
     (hexclude : ∀ ell : GeneralF13.Ambient K m →ₗ[K] K,
       Relations g h ≤ LinearMap.ker ell →
       (∀ p : CycleParameters K m c,ell (∑ i : Fin 4,multiplication (r i) (rawRows g p i))=0) →

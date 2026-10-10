@@ -26,13 +26,13 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_endpoint_of_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (idx : Fin q ⊕ Fin f ≃ Fin r) (g : Fin r → Forms K (h+m) d)
-    (hback : ∀ i,rename finSumFinEquiv.symm (g (idx i)).val=
+    (idx : Fin q ⊕ Fin f ≃ Fin r) (g : Fin r → Forms K (h + m) d)
+    (hback : ∀ i, rename finSumFinEquiv.symm (g (idx i)).val =
       Sum.elim (fun j => (Q j).val) (fun j => (F j).val) i)
     (H : OddSplitExact Q F)
     (a : (endpointMultiplication g).ker)
-    (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
-      (1-indexedSplitParity idx i)) :
+    (ha : ∀ i, (a.val i).val.IsWeightedHomogeneous (coreParity h m)
+      (1 - indexedSplitParity idx i)) :
     a.val∈oppositeKoszulSpace g (indexedSplitParity idx) := by
   have hpar (i : Fin q ⊕ Fin f) :
       (rename finSumFinEquiv.symm (a.val (idx i)).val).IsWeightedHomogeneous
@@ -94,7 +94,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundSplitIndex_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
-    (G : Fin u → biformParitySpace K h m d 1) (i : Fin q ⊕ Fin (f+u)) :
+    (G : Fin u → biformParitySpace K h m d 1) (i : Fin q ⊕ Fin (f + u)) :
     rename finSumFinEquiv.symm
       (backgroundEnumeratedForms Q F G (backgroundSplitIndex i)).val=
       Sum.elim (fun j => (Q j).val) (fun j => (Fin.append F G j).val) i := by
@@ -124,8 +124,8 @@ theorem odd_split_background_endpoint
     (G : Fin u → biformParitySpace K h m d 1)
     (H : OddSplitExact Q (Fin.append F G))
     (a : (endpointMultiplication (backgroundEnumeratedForms Q F G)).ker)
-    (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
-      (1-indexedSplitParity (backgroundSplitIndex (q := q) (f := f) (u := u)) i)) :
+    (ha : ∀ i, (a.val i).val.IsWeightedHomogeneous (coreParity h m)
+      (1 - indexedSplitParity (backgroundSplitIndex (q := q) (f := f) (u := u)) i)) :
     a.val∈oppositeKoszulSpace (backgroundEnumeratedForms Q F G)
       (indexedSplitParity (backgroundSplitIndex (q := q) (f := f) (u := u))) :=
   odd_split_endpoint_of_back Q (Fin.append F G) backgroundSplitIndex

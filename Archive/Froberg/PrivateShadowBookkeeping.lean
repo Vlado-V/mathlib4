@@ -46,12 +46,12 @@ lemma sum_regularPart (p : P ↪ I) (ell : I → ℕ) :
 lemma private_shadow_bookkeeping (rel : I → J → Prop) [DecidableRel rel]
     (p : P ↪ I) (ell : I → ℕ) (cold cnew : J → ℕ)
     (B : Finset J) (G : P → Finset J) (C H : ℕ)
-    (hcold : ∀ j,cold j ≤ H)
-    (hC : ∀ i,i ∉ univ.map p → (B.filter (rel i)).card ≤ C)
-    (hcap : ∀ j,j∉B → cold j ≤ cnew j)
+    (hcold : ∀ j, cold j ≤ H)
+    (hC : ∀ i, i ∉ univ.map p → (B.filter (rel i)).card ≤ C)
+    (hcap : ∀ j, j ∉ B → cold j ≤ cnew j)
     (hG : Pairwise (fun i j => Disjoint (G i) (G j)))
-    (hGB : ∀ i,G i ⊆ B)
-    (hprivate : ∀ i j,j∈G i → rel (p i) j ∧ ell (p i) ≤ cnew j) :
+    (hGB : ∀ i, G i ⊆ B)
+    (hprivate : ∀ i j, j ∈ G i → rel (p i) j ∧ ell (p i) ≤ cnew j) :
     (∑ j,shadow rel (regularPart p ell) cold j)+(∑ i,(G i).card*ell (p i)) ≤
       (∑ j,shadow rel ell cnew j)+H*C*(∑ i,regularPart p ell i) := by
   have hloss := retained_shadow_bound rel (regularPart p ell) cold B C H hcold

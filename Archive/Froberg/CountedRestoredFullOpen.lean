@@ -24,8 +24,8 @@ variable {K : Type} [Field K] [Infinite K]
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 def HasRestoredCertificateOpen {h m d q r f : ℕ} {J : Finset ℕ}
     {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
-    (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+    (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r) : Prop :=
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   ∃ E : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,
@@ -34,7 +34,7 @@ def HasRestoredCertificateOpen {h m d q r f : ℕ} {J : Finset ℕ}
       RestoredCertificate hdp hd hO hJ heven idx slot p
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem eventually_counted_restored_full_open {d : ℕ} (hd : 3≤d) (heven : d%2=0) :
+theorem eventually_counted_restored_full_open {d : ℕ} (hd : 3 ≤ d) (heven : d % 2 = 0) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (k lo : ℕ),0<k → h=k*centralHalfBinomial d → 0<h →
       ∀ (upper : Bool) (a f e : ℕ → ℕ),(∀ n,a n≤n) →
       (∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) →

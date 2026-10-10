@@ -26,11 +26,11 @@ variable {h m d r t : ℕ}
 
 theorem exists_critical_comparison_of_endpoint_flag
     (hm : 0 < m) (upper : Bool)
-    (hr : r=adjacentCriticalCount upper (h+m) d)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (hr : r = adjacentCriticalCount upper (h + m) d)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (Q : Fin (upperCount m d) → Forms K m d) (hQ : LinearIndependent K Q)
-    (b : I → Forms K (h+m) d) (M : Forms K (h+m) d)
+    (b : I → Forms K (h + m) d) (M : Forms K (h + m) d)
     (hpositive : LinearIndependent K (fun i : Option I =>
       (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range.mkQ (i.elim M b)))
     (hbackground : (D.mkQ.comp formalPolynomialMultiplication).ker ⊓

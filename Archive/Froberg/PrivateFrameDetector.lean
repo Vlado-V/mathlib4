@@ -44,7 +44,7 @@ theorem outputCombination_equiv_basis
         outputCombination,LinearMap.coe_mk,AddHom.coe_mk]
     _ = (e v).val := by rw [←hv]
 
- theorem quadraticPolynomialDetector_private_column
+theorem quadraticPolynomialDetector_private_column
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) (w : Fin h → K) (j : Fin h) :
     quadraticPolynomialDetector L
@@ -53,10 +53,10 @@ theorem outputCombination_equiv_basis
   rw [outputCombination_equiv_basis]
   exact quadraticPolynomialDetector_form L (mulForm (e w) (e (Pi.single j 1)))
 
- theorem quadraticPolynomialDetector_frame
+theorem quadraticPolynomialDetector_frame
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame)) :
+    (hL : L.ker = Submodule.span K (Set.range frame)) :
     outputFrameSpace frame≤(quadraticPolynomialDetector L).ker := by
   apply Submodule.span_le.mpr
   rintro _ ⟨i,rfl⟩
@@ -66,12 +66,12 @@ theorem outputCombination_equiv_basis
   rw [hL]
   exact Submodule.subset_span ⟨i,rfl⟩
 
- theorem quadraticPolynomialDetector_biform_frame {n s : ℕ}
+theorem quadraticPolynomialDetector_biform_frame {n s : ℕ}
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL : L.ker=Submodule.span K (Set.range frame))
+    (hL : L.ker = Submodule.span K (Set.range frame))
     {f : MvPolynomial (Fin h ⊕ Fin n) K}
-    (hf : f∈biformImage (outputFrameSpace frame) (Forms K n s)) :
+    (hf : f ∈ biformImage (outputFrameSpace frame) (Forms K n s)) :
     biformVectorDetector (quadraticPolynomialDetector L) f=0 :=
   biformVectorDetector_eq_zero _ _ _ (quadraticPolynomialDetector_frame frame L hL) hf
 

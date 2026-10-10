@@ -62,7 +62,7 @@ theorem parity_binomial_mass_succ (n i p : ℕ) (hp : p < 2) :
       rw [hpair, Nat.mul_one]
     _ = 2^n := Nat.sum_range_choose n
 
-theorem parity_binomial_mass {d : ℕ} (hd : 0<d) (i p : ℕ) (hp : p<2) :
+theorem parity_binomial_mass {d : ℕ} (hd : 0 < d) (i p : ℕ) (hp : p < 2) :
     ∑ u ∈ parityBinomialIndices d i p, d.choose u = 2^(d-1) := by
   cases d with
   | zero => omega
@@ -90,8 +90,8 @@ theorem parity_binomial_mass_except_le (d i p j : ℕ) :
     omega
 
 /-- The exact uniform `65/256` mass estimate used in B.4. -/
-theorem parity_binomial_mass_except_margin {d : ℕ} (hd : 9≤d)
-    (i p j : ℕ) (hp : p<2) :
+theorem parity_binomial_mass_except_margin {d : ℕ} (hd : 9 ≤ d)
+    (i p j : ℕ) (hp : p < 2) :
     65 * 2^d ≤ 256 *
       (∑ u ∈ (parityBinomialIndices d i p).filter (fun u => i+u ≠ j), d.choose u) := by
   have hmass := parity_binomial_mass (by omega : 0<d) i p hp

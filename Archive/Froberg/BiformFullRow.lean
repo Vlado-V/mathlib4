@@ -22,7 +22,7 @@ attribute [local instance] tensorGroup
 def constantOneForm (K : Type*) [Field K] (h : ℕ) : Forms K h 0 :=
   ⟨1,MvPolynomial.isHomogeneous_one _ _⟩
 
-def biformTensorFamilyToDegree {j x : ℕ} (he : e+y=t) :
+def biformTensorFamilyToDegree {j x : ℕ} (he : e + y = t) :
     (ι → Forms K h j ⊗[K] Forms K m e) →ₗ[K]
     ((ι → Forms K h x ⊗[K] Forms K m y) →ₗ[K] Forms K h (j+x) ⊗[K] Forms K m t) :=
   (LinearMap.llcomp K _ _ _ (TensorProduct.map LinearMap.id (formsDegreeEquiv he).toLinearMap)).comp
@@ -39,7 +39,7 @@ theorem biform_zero_coefficients (o : κ → Forms K h 2) (g : κ → Forms K m 
 
 theorem row_two_full_surjective
     (o : ι → Forms K h 1) (f : ι → Forms K m s)
-    (O : κ → Forms K h 2) (g : κ → Forms K m e) (he : e+y=s+s)
+    (O : κ → Forms K h 2) (g : κ → Forms K m e) (he : e + y = s + s)
     (hs : Function.Surjective ((biformFamilyMap (x := 1) (y := s) o f).coprod
       (vectorFormFamilyToDegree he O g))) :
     Function.Surjective ((biformTensorFamilyMap (x := 1) (y := s) (fun i => o i ⊗ₜ[K] f i)).coprod

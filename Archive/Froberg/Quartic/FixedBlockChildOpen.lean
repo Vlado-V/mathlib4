@@ -114,7 +114,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Fix one mixed presentation on the common expansion locus. One child-only principal open
 then preserves all block conditions and imposes the actual upper-child flag. -/
 theorem exists_fixed_open [CharZero K] [IsAlgClosed K] (m : ℕ) (hm : 41 ≤ m) (upper : Bool)
-    (hchild : ∀ s,s ≤ (m+1).choose 2 → GenericQuartic K m s) :
+    (hchild : ∀ s, s ≤ (m + 1).choose 2 → GenericQuartic K m s) :
     ∃ g : Fin (mixedCount m upper) → Rows K m 1,
     ∃ r : Fin 4 → Forms K m 2,
     ∃ E : ConvolutionExpansionOpen.Dimensions m upper → ℕ,

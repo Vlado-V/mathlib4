@@ -29,7 +29,7 @@ def outerTargetExponentEquiv (n s : ℕ) : Degree n (2*s+1) ≃ Exponent n (s+(s
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem actual_outer_growth_of_exponent_shadow {K : Type*} [Field K]
-    {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s) (hn : 0 < a+z)
+    {k a z s h : ℕ} (hh : h = k * (2 * s + 1).choose s) (hn : 0 < a + z)
     (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (hm : MixedExterior.UniversalMixedPosition v) (R g : ℝ)

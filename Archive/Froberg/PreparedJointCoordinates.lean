@@ -69,7 +69,7 @@ def preparedJointCoordinates :
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem finite_jointRest (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem finite_jointRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (JointRest m d q f u J counts O) := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -83,7 +83,7 @@ theorem finite_jointRest (hO : ∀ j∈J,O j≤Forms K h j) :
   rw [LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def preparedJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
+def preparedJointFromCoordinates (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     ((VectorParameters.Index h m (d-1) f ⊕
       (CoefficientIndex m d q ⊕ Fin (finrank K (JointRest m d q f u J counts O)))) → K) →ₗ[K]
         FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O := by
@@ -100,8 +100,8 @@ def preparedJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
   exact preparedJointCoordinates.symm.toLinearMap.comp (g.prod (Q.prod R))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem preparedJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
-    (pF : VectorParameters.Index h m (d-1) f → K) (pQ : CoefficientIndex m d q → K)
+theorem preparedJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (pF : VectorParameters.Index h m (d - 1) f → K) (pQ : CoefficientIndex m d q → K)
     (pR : Fin (finrank K (JointRest m d q f u J counts O)) → K) :
     letI : Module.Finite K (JointRest m d q f u J counts O) := finite_jointRest hO
     preparedJointCoordinates (preparedJointFromCoordinates hO (Sum.elim pF (Sum.elim pQ pR)))=
@@ -113,7 +113,7 @@ theorem preparedJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem preparedJointFromCoordinates_surjective (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem preparedJointFromCoordinates_surjective (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Function.Surjective (preparedJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (u := u) (counts := counts) hO) := by
   letI : Module.Finite K (JointRest m d q f u J counts O) := finite_jointRest hO

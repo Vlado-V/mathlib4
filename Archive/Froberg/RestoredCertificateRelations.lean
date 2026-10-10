@@ -32,7 +32,7 @@ theorem biform_restoration_odd_cycle_zero
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (hinj : Function.Injective (PreparedParameters.restoredOddRowLinear g))
     (a : (endpointMultiplication (biformRestorationForms g)).ker)
-    (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m) 1) : a.val=0 := by
+    (ha : ∀ i, (a.val i).val.IsWeightedHomogeneous (coreParity h m) 1) : a.val=0 := by
   have hpar (i : Fin r) :
       (rename finSumFinEquiv.symm (a.val i).val).IsWeightedHomogeneous
         (fun x => (blockWeight h m x : ZMod 2)) 1 := by
@@ -61,8 +61,8 @@ variable {q f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem restoredOuterEndpoint_castAdd (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem restoredOuterEndpoint_castAdd (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O) (i : Fin r) :
     restoredOuterEndpoint hdp hd hO hJ heven idx slot p (Fin.castAdd f i)=
@@ -77,8 +77,8 @@ theorem restoredOuterEndpoint_castAdd (hdp : 1≤d) (hd : d%2=0)
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem RestoredCertificate.background_independent (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem RestoredCertificate.background_independent (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O)
     (cert : RestoredCertificate hdp hd hO hJ heven idx slot p) :
@@ -87,15 +87,15 @@ theorem RestoredCertificate.background_independent (hdp : 1≤d) (hd : d%2=0)
   simpa only [Function.comp_def,restoredOuterEndpoint_castAdd] using hi
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem restored_certificate_formal_relations (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j)
+theorem restored_certificate_formal_relations (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p : RestoredOuterSpace m d q f J counts O)
     (cert : RestoredCertificate hdp hd hO hJ heven idx slot p)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range) :
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range) :
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalMixed (Submodule.span K (Set.range (restoredEndpointFamily hd hO hJ heven idx slot
           p.1)))=

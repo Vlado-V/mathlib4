@@ -86,10 +86,10 @@ theorem restoration_open
     (j : V →ₗ[K] MvPolynomial σ K) (pi : MvPolynomial σ K →ₗ[K] Z)
     (q : (I → K) → Fin r → V) (hq : IsPolynomialFamily q)
     (S : B →ₗ[K] (Fin r → V))
-    (hS : ∀ p z,row j pi (q p) (S z)=0)
+    (hS : ∀ p z, row j pi (q p) (S z) = 0)
     (p₀ : I → K)
-    (hreduce : ∀ c,row j pi (q p₀) c=0 →
-      ∃ (M : Fin r → Fin r → K) (z : B),c-coefficientBoundary (q p₀) M=S z) :
+    (hreduce : ∀ c, row j pi (q p₀) c = 0 →
+      ∃ (M : Fin r → Fin r → K) (z : B), c - coefficientBoundary (q p₀) M = S z) :
     ∃ P : MvPolynomial I K,eval p₀ P≠0 ∧
       ∀ p,eval p P≠0 → ∀ c,row j pi (q p) c=0 →
         ∃ (M : Fin r → Fin r → K) (z : B),c-coefficientBoundary (q p) M=S z := by

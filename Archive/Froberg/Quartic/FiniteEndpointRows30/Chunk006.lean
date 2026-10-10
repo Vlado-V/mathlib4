@@ -26,7 +26,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6144 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_96 (i : Fin 64) (hi : 6144+i.val < 40920) :
+theorem chunk_96 (i : Fin 64) (hi : 6144 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6144+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6144+i.val) := by
   fin_cases i
@@ -102,7 +102,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6208 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_97 (i : Fin 64) (hi : 6208+i.val < 40920) :
+theorem chunk_97 (i : Fin 64) (hi : 6208 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6208+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6208+i.val) := by
   fin_cases i
@@ -178,7 +178,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6272 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_98 (i : Fin 64) (hi : 6272+i.val < 40920) :
+theorem chunk_98 (i : Fin 64) (hi : 6272 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6272+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6272+i.val) := by
   fin_cases i
@@ -254,7 +254,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6336 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_99 (i : Fin 64) (hi : 6336+i.val < 40920) :
+theorem chunk_99 (i : Fin 64) (hi : 6336 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6336+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6336+i.val) := by
   fin_cases i
@@ -330,7 +330,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6400 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_100 (i : Fin 64) (hi : 6400+i.val < 40920) :
+theorem chunk_100 (i : Fin 64) (hi : 6400 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6400+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6400+i.val) := by
   fin_cases i
@@ -406,7 +406,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6464 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_101 (i : Fin 64) (hi : 6464+i.val < 40920) :
+theorem chunk_101 (i : Fin 64) (hi : 6464 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6464+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6464+i.val) := by
   fin_cases i
@@ -482,7 +482,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6528 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_102 (i : Fin 64) (hi : 6528+i.val < 40920) :
+theorem chunk_102 (i : Fin 64) (hi : 6528 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6528+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6528+i.val) := by
   fin_cases i
@@ -558,7 +558,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6592 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_103 (i : Fin 64) (hi : 6592+i.val < 40920) :
+theorem chunk_103 (i : Fin 64) (hi : 6592 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6592+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6592+i.val) := by
   fin_cases i
@@ -634,7 +634,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6656 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_104 (i : Fin 64) (hi : 6656+i.val < 40920) :
+theorem chunk_104 (i : Fin 64) (hi : 6656 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6656+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6656+i.val) := by
   fin_cases i
@@ -710,7 +710,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6720 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_105 (i : Fin 64) (hi : 6720+i.val < 40920) :
+theorem chunk_105 (i : Fin 64) (hi : 6720 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6720+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6720+i.val) := by
   fin_cases i
@@ -786,7 +786,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6784 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_106 (i : Fin 64) (hi : 6784+i.val < 40920) :
+theorem chunk_106 (i : Fin 64) (hi : 6784 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6784+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6784+i.val) := by
   fin_cases i
@@ -862,7 +862,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6848 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_107 (i : Fin 64) (hi : 6848+i.val < 40920) :
+theorem chunk_107 (i : Fin 64) (hi : 6848 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6848+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6848+i.val) := by
   fin_cases i
@@ -938,7 +938,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6912 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_108 (i : Fin 64) (hi : 6912+i.val < 40920) :
+theorem chunk_108 (i : Fin 64) (hi : 6912 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6912+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6912+i.val) := by
   fin_cases i
@@ -1014,7 +1014,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 6976 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_109 (i : Fin 64) (hi : 6976+i.val < 40920) :
+theorem chunk_109 (i : Fin 64) (hi : 6976 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (6976+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(6976+i.val) := by
   fin_cases i
@@ -1090,7 +1090,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 7040 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_110 (i : Fin 64) (hi : 7040+i.val < 40920) :
+theorem chunk_110 (i : Fin 64) (hi : 7040 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (7040+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(7040+i.val) := by
   fin_cases i
@@ -1166,7 +1166,7 @@ certify_sparse_rows certificate from "certificates/finite/n30/sparse.bin"
   row_fn Quartic.FiniteEndpointMetadata30Data.naturalRow nwords 640 start_index 7104 row_count 64
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
-theorem chunk_111 (i : Fin 64) (hi : 7104+i.val < 40920) :
+theorem chunk_111 (i : Fin 64) (hi : 7104 + i.val < 40920) :
     xorSum ((FiniteEndpointMetadata30Data.naturalRow (7104+i.val)).map
       FiniteEndpointInverse30.binaryInverse) = 2^(7104+i.val) := by
   fin_cases i

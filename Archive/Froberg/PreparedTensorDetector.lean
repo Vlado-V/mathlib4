@@ -27,13 +27,13 @@ theorem prepared_tensor_detector_annihilates {X : Type*} [AddCommGroup X] [Modul
     (hd : 2 ≤ d) (T : Poly K h →ₗ[K] X)
     (hT : T.comp (homogeneousComponent 2) = T)
     (Q0 Q : Submodule K (Poly K m)) (D : Submodule K (Poly K h))
-    (hQ : Q0 * Forms K m (d-2) ≤ Q) (hD : D ≤ T.ker)
-    (P : Submodule K (Poly K (h+m)))
-    (hP : P * polynomialTensorSpace (Forms K h 1) (Forms K m (d-1)) ≤
+    (hQ : Q0 * Forms K m (d - 2) ≤ Q) (hD : D ≤ T.ker)
+    (P : Submodule K (Poly K (h + m)))
+    (hP : P * polynomialTensorSpace (Forms K h 1) (Forms K m (d - 1)) ≤
       (splitPolynomialDetector T Q).ker)
-    (W : Submodule K (Forms K (h+m) d))
+    (W : Submodule K (Forms K (h + m) d))
     (H : PreparedLowComponents W (polynomialTensorSpace (Forms K h 0) Q0) P
-      (polynomialTensorSpace D (Forms K m (d-2)))) :
+      (polynomialTensorSpace D (Forms K m (d - 2)))) :
     ∀ w : Forms K (h+m) d, w ∈ W → ∀ a : Forms K (h+m) d,
       splitPolynomialDetector T Q (w.val*a.val) = 0 := by
   apply prepared_background_annihilated W _ _ _ H (splitPolynomialDetector T Q)

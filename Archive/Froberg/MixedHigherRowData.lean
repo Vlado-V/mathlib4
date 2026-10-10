@@ -27,60 +27,60 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedHigherIndex (d : ℕ) (hd3 : 3≤d) :=
+abbrev MixedHigherIndex (d : ℕ) (hd3 : 3 ≤ d) :=
   {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3) hd3)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedHigherSource (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+abbrev MixedHigherSource (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (r : MixedHigherIndex d hd3) :=
   OddHigherBlock K h m d (Nat.le_trans (by decide : 1≤3) hd3) r ⧸
     coordinateRelation (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
       (fun i => mixedPureOddGenerator hd (U i) (P i))).range r
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedAmbientSource (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
+abbrev MixedAmbientSource (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :=
   biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations
     (fun i => oddBiformEmbedding (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i))
     (fun i => mixedPureOddGenerator hd (U i) (P i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedAmbientTarget (hd : Odd d) (hd3 : 3≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
+abbrev MixedAmbientTarget (hd : Odd d) (hd3 : 3 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :=
   biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations
     (fun i => scalarEvenBiform (h := h) (Q i))
     (fun i => oddBiformEmbedding (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i))
     (fun i => mixedPureOddGenerator hd (U i) (P i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedTopTarget (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
+abbrev MixedTopTarget (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :=
   ((Fin b → K) ⊗[K] Forms K m (1+(d-1))) ⧸
     (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1)
       R (rawTopFamily F) (topGrowthParameters (Nat.le_trans (by decide : 1≤3) hd3) Q F).2).range
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedMiddleTarget (hd3 : 3≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+abbrev MixedMiddleTarget (hd3 : 3 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (r : MixedHigherIndex d hd3) :=
   OddRowTensor K h m (2*r.val.val+1) (2*d-(2*r.val.val+1)) ⧸
     tensorOddRowRelations (b := 2*r.val.val+1) (by omega) (by have := r.val.isLt; omega)
       (fun i => scalarBiformEquiv (h := h) (Q i)) F
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev MixedHigherTarget (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+abbrev MixedHigherTarget (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (r : MixedHigherIndex d hd3) :=
   MixedTopTarget hd3 R Q F × MixedMiddleTarget hd3 Q F r
 
  set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem mixedHigherIndex_ge_three (hd3 : 3≤d) (r : MixedHigherIndex d hd3) :
+theorem mixedHigherIndex_ge_three (hd3 : 3 ≤ d) (r : MixedHigherIndex d hd3) :
     3≤2*r.val.val+1 := by
   have hr : r.val.val≠0 := by
     intro hz
@@ -89,10 +89,10 @@ theorem mixedHigherIndex_ge_three (hd3 : 3≤d) (r : MixedHigherIndex d hd3) :
   omega
 
  set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem mixedProjectionKillsU (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (U : Fin u → Forms K h d)
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
-      (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
+theorem mixedProjectionKillsU (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (U : Fin u → Forms K h d)
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
+      (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
     (i : Fin u) :
     R ((topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm (U i))=0 := by
   apply (show (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm (U i)∈R.ker from ?_)
@@ -100,9 +100,9 @@ theorem mixedProjectionKillsU (hd3 : 3≤d)
   exact ⟨U i,Submodule.subset_span ⟨i,rfl⟩,rfl⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def mixedAmbientScalar (hd : Odd d) (hd3 : 3≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+def mixedAmbientScalar (hd : Odd d) (hd3 : 3 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     Forms K m d →ₗ[K] MixedAmbientSource hd hd3 F U P →ₗ[K] MixedAmbientTarget hd hd3 Q F U P :=
   (oddAmbientScalarProduct
     (fun i => scalarEvenBiform (h := h) (Q i))
@@ -110,20 +110,20 @@ def mixedAmbientScalar (hd : Odd d) (hd3 : 3≤d)
     (fun i => mixedPureOddGenerator hd (U i) (P i))).comp scalarBiformEquiv.toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem mixedAmbientScalar_mk (hd : Odd d) (hd3 : 3≤d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+@[simp] theorem mixedAmbientScalar_mk (hd : Odd d) (hd3 : 3 ≤ d)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : biformParitySpace K h m d 1) :
     mixedAmbientScalar hd hd3 Q F U P p ((oddBackgroundCoefficientRelations _ _).mkQ v)=
       (ambientOddRelations _ _ _).mkQ (evenScalarOddProduct (scalarEvenBiform (h := h) p) v) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def mixedHigherProjection (hd : Odd d) (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
-      (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
+def mixedHigherProjection (hd : Odd d) (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
+      (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
     (r : MixedHigherIndex d hd3) :
     MixedAmbientTarget hd hd3 Q F U P →ₗ[K] MixedHigherTarget hd3 R Q F r :=
   if ht : 2*r.val.val+1=d then
@@ -135,12 +135,12 @@ def mixedHigherProjection (hd : Odd d) (hd3 : 3≤d)
         (by have := r.val.isLt; omega) (by omega) (fun i => scalarBiformEquiv (h := h) (Q i)) F U P)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def mixedHigherAction (hd : Odd d) (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
-      (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
+def mixedHigherAction (hd : Odd d) (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
+      (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
     (r : MixedHigherIndex d hd3) :
     Forms K m d →ₗ[K] MixedHigherSource hd hd3 F U P r →ₗ[K] MixedHigherTarget hd3 R Q F r :=
   if ht : 2*r.val.val+1=d then

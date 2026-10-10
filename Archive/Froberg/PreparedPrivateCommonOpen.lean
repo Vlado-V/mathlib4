@@ -24,10 +24,10 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_rows_common_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
-    (B : J → Type*) [∀ R,AddCommGroup (B R)] [∀ R,Module K (B R)]
-    [∀ R,FiniteDimensional K (B R)]
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
+    (B : J → Type*) [∀ R, AddCommGroup (B R)] [∀ R, Module K (B R)]
+    [∀ R, FiniteDimensional K (B R)]
     (Z : (R : J) → B R →ₗ[K] PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)
     (hPZ : ∀ R : J,(privateRowMap (K := K) (σ := σ) (n := n) (d := d) (b := b) P R.val).comp (Z
       R)=0)

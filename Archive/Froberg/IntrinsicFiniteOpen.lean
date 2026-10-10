@@ -18,9 +18,9 @@ variable {K V C : Type*} [Field K] [Infinite K] [Fintype C]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 
 theorem intrinsic_principal_common_open (Good : C → V → Prop)
-    (h : ∀ c,∃ D : MvPolynomial (Fin (finrank K V)) K,
-      (∃ p : V,eval ((Module.finBasis K V).equivFun p) D≠0) ∧
-      ∀ p,eval ((Module.finBasis K V).equivFun p) D≠0 → Good c p) :
+    (h : ∀ c, ∃ D : MvPolynomial (Fin (finrank K V)) K,
+      (∃ p : V, eval ((Module.finBasis K V).equivFun p) D ≠ 0) ∧
+      ∀ p, eval ((Module.finBasis K V).equivFun p) D ≠ 0 → Good c p) :
     ∃ D : MvPolynomial (Fin (finrank K V)) K,
       (∃ p : V,eval ((Module.finBasis K V).equivFun p) D≠0) ∧
       ∀ p,eval ((Module.finBasis K V).equivFun p) D≠0 → ∀ c,Good c p := by

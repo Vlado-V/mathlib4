@@ -34,7 +34,8 @@ theorem graded_flip_image_polynomial (U : Submodule K (Forms K h d)) :
       BilinearImage.product_mem gradedMultiplication.flip U ⟨f,hf⟩ u hu,rfl⟩
 
 theorem pure_cutoff_polynomial (U : Submodule K (Forms K h d))
-    (hU : BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := d) (e := 1)).flip U=⊤) :
+    (hU : BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := d) (e := 1)).flip U =
+      ⊤) :
     U.map (Forms K h d).subtype*Forms K h 1=Forms K h (d+1) := by
   have he := graded_flip_image_polynomial (e := 1) U
   rw [hU,Submodule.map_top,Submodule.range_subtype] at he

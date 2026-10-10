@@ -26,14 +26,14 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_first_coefficient_boundary
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (h2 : 2∈J)
-    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d-1))
-    (hrow : (privateAugmentedRow hO ⟨2,h2⟩ p (fun i => (P i).val)).ker=
-      ((rowConstants hO ⟨2,h2⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j) (h2 : 2 ∈ J)
+    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d - 1))
+    (hrow : (privateAugmentedRow hO ⟨2, h2⟩ p (fun i => (P i).val)).ker =
+      ((rowConstants hO ⟨2, h2⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
     (x f : Label q J counts → MvPolynomial (σ ⊕ Fin n) K)
     (u : Fin b → MvPolynomial (σ ⊕ Fin n) K)
-    (hx : ∀ i,x i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d 2)
+    (hx : ∀ i, x i ∈ coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d 2)
     (hf : ∀ i,f i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d 0)
     (hu : ∀ i,u i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d 1)
     (hrel : (∑ i,scalar p i*x i)+(∑ i,if degree i=2 then high p i*f i else 0)+
@@ -56,13 +56,13 @@ theorem private_first_coefficient_boundary
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_first_component_boundary
-    (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hmin : ∀ j∈J,2≤j) (h2 : 2∈J)
-    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d-1))
-    (hrow : (privateAugmentedRow hO ⟨2,h2⟩ p (fun i => (P i).val)).ker=
-      ((rowConstants hO ⟨2,h2⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
+    (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hmin : ∀ j ∈ J, 2 ≤ j) (h2 : 2 ∈ J)
+    (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d - 1))
+    (hrow : (privateAugmentedRow hO ⟨2, h2⟩ p (fun i => (P i).val)).ker =
+      ((rowConstants hO ⟨2, h2⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
     (U : Fin b → MvPolynomial (σ ⊕ Fin n) K)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
+    (hU : ∀ i, (U i).IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
     (c : Label q J counts → MvPolynomial (σ ⊕ Fin n) K)
     (v : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (hc : ∀ i,(c i).IsHomogeneous d) (hv : ∀ i,(v i).IsHomogeneous d)

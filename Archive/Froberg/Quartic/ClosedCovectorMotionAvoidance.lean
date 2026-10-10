@@ -83,8 +83,8 @@ rank premises from the conclusion. The second rank bound is required only
 on the first kernel, so the two stages are explicitly allowed to depend. -/
 theorem principal_open_all_kernel_ranks
     (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (Q : Fin q → Fin B → K) (slices : Fin (a+1) → ℕ)
-    (Z : (d : Fin (a+1)) → Fin (slices d) → Fin T → K)
+    (Q : Fin q → Fin B → K) (slices : Fin (a + 1) → ℕ)
+    (Z : (d : Fin (a + 1)) → Fin (slices d) → Fin T → K)
     (hempty : ∀ d : Fin (a+1),∀ ell : Fin T → K,
       d.val ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
       ((∀ i v,covector ell (mu (Q i) v)=0) ∧ (∀ j,covector ell (Z d j)=0)) → ell=0)
@@ -143,15 +143,15 @@ feed the general dependent-motion theorem on one joint Q/slice open.
 Only explicit pointwise rank and covector-scaling hypotheses remain on the
 supplied motion matrices; the unsliced base has no assumed dimension. -/
 theorem generic_actual_two_stage (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
-    (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1)
+    (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1)
     (d : ℕ) (hd : d ≤ totalA m (mixedCount m upper))
     (A : Matrix (Fin a₁) (Fin n₁) (MvPolynomial (Fin (finrank K (Tgt K m upper))) K))
     (B₂ : Matrix (Fin a₂) (Fin n₂)
       (MvPolynomial (Fin (finrank K (Tgt K m upper)) ⊕ Fin n₁) K))
-    (hA : ∀ (c : K) ell,evaluated A (c • ell)=c • evaluated A ell)
-    (hB : ∀ (c : K) ell x,evaluated B₂ (Sum.elim (c • ell) x)=
+    (hA : ∀ (c : K) ell, evaluated A (c • ell) = c • evaluated A ell)
+    (hB : ∀ (c : K) ell x, evaluated B₂ (Sum.elim (c • ell) x) =
       c • evaluated B₂ (Sum.elim ell x))
-    (hcount : sliceCount m upper d ≤ r₁+r₂) :
+    (hcount : sliceCount m upper d ≤ r₁ + r₂) :
     ∃ P : MvPolynomial (Fin (finrank K (SlicedInput K m upper d))) K,
       (∃ v : SlicedInput K m upper d,
         eval (PolynomialBilinearCoordinates.coordinates K _ v) P ≠ 0) ∧

@@ -40,7 +40,7 @@ theorem biformVectorDetector_polynomialVector
 theorem biformVectorDetector_homogeneous
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (O : Submodule K (MvPolynomial σ K))
-    {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p∈biformImage O (Forms K n t)) (k : Fin c) :
+    {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p ∈ biformImage O (Forms K n t)) (k : Fin c) :
     (biformVectorDetector T p k).IsHomogeneous t := by
   rcases hp with ⟨_,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with
@@ -55,7 +55,7 @@ theorem biformVectorDetector_homogeneous
 theorem biformVectorDetector_eq_zero
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (Poly K n))
-    (hO : O≤T.ker) {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p∈biformImage O C) :
+    (hO : O ≤ T.ker) {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p ∈ biformImage O C) :
     biformVectorDetector T p=0 := by
   have hz : biformOutputMap T p=0 := biformImage_le_output_kernel T O C hO hp
   funext k

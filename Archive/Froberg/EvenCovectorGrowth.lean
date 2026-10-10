@@ -19,7 +19,7 @@ namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
-variable (hd3 : 3≤d) (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+variable (hd3 : 3 ≤ d) (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
 local notation "hdp" => Nat.le_trans (by decide : 1≤3) hd3
 local notation "F" => bottomTensorFamily g
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
@@ -58,9 +58,9 @@ theorem even_full_bottom_kernel_finrank_le (ell : EvenBackgroundTarget hdp Q F �
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem even_full_higher_kernel_growth
     (t : ℕ)
-    (hmid : ∀ (j : ℕ) (hj : 3≤j) (hjd : j≤d), j%2=1 →
-      OddScalarLayerProperty t (by omega : 1≤j) hjd
-        (F,fun i => scalarBiformEquiv (h := h) (Q i)))
+    (hmid : ∀ (j : ℕ) (hj : 3 ≤ j) (hjd : j ≤ d), j % 2 = 1 →
+      OddScalarLayerProperty t (by omega : 1 ≤ j) hjd
+        (F, fun i => scalarBiformEquiv (h := h) (Q i)))
     (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K) :
     t*(finrank K (QuotientCovectorKernel.relation μ ell).ker-
       finrank K (QuotientCovectorKernel.relation ν (splitTargetBottom eW ell)).ker)≤

@@ -21,7 +21,7 @@ variable {K : Type*} [Field K] {h n a b c e : ℕ}
 
 /-- Tensoring the two uniform divisibility couplings gives the exact ratio of
 target dimension to coefficient dimension. -/
-theorem biform_normalized_growth (hh : 0<h) (hn : 0<n)
+theorem biform_normalized_growth (hh : 0 < h) (hn : 0 < n)
     (L : Submodule K (Forms K h b ⊗[K] Forms K n e)) :
     (h+(b+a)-1).choose (b+a) * (n+e+c-1).choose (e+c) * finrank K L ≤
       (h+b-1).choose b * (n+e-1).choose e *

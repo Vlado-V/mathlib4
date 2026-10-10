@@ -40,8 +40,8 @@ theorem sumBiformMap_range :
   rw [sumBiformMap,LinearMap.range_comp]
   rfl
 
-theorem sumBiformMap_degree_equiv (hx : a+b=r) (hy : e+c=t)
-    (z : Forms K h (a+b) ⊗[K] Forms K n (e+c)) :
+theorem sumBiformMap_degree_equiv (hx : a + b = r) (hy : e + c = t)
+    (z : Forms K h (a + b) ⊗[K] Forms K n (e + c)) :
     sumBiformMap (tensorDegreeEquiv hx hy z)=sumBiformMap z := by
   subst r
   subst t
@@ -50,7 +50,7 @@ theorem sumBiformMap_degree_equiv (hx : a+b=r) (hy : e+c=t)
   | add x y hx hy => simp only [map_add,hx,hy]
 
 /-- The common-target tensor action is actual polynomial multiplication. -/
-theorem sumBiformMap_action (hx : a+b=r) (hy : e+c=t)
+theorem sumBiformMap_action (hx : a + b = r) (hy : e + c = t)
     (p : Forms K h a ⊗[K] Forms K n c) (v : Forms K h b ⊗[K] Forms K n e) :
     sumBiformMap (biformAction hx hy p v)=sumBiformMap p*sumBiformMap v := by
   change sumBiformMap (tensorDegreeEquiv hx hy (tensorFormProduct (gradedMultiplication (d := a) (e
@@ -70,7 +70,7 @@ theorem sumBiformMap_action (hx : a+b=r) (hy : e+c=t)
 /-- Every actual coefficient satisfying the homogeneous biform constraints
 has a tensor preimage. -/
 theorem exists_sumBiformMap_of_homogeneous {f : MvPolynomial (Fin h ⊕ Fin n) K}
-    (hf : f.IsHomogeneous (a+c))
+    (hf : f.IsHomogeneous (a + c))
     (ha : f.IsWeightedHomogeneous (Sum.elim (fun _ => 1) (fun _ => 0)) a) :
     ∃ z : Forms K h a ⊗[K] Forms K n c,sumBiformMap z=f := by
   have hm := mem_biformImage_of_homogeneous hf ha

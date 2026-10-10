@@ -41,7 +41,7 @@ def orderCast (w : ℕ) : Fin (w+1) ≃o Fin (Fintype.card (BoundedExponent w 1)
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev DegreeBlock (K : Type*) [Field K] (t w : ℕ) (j : Fin (w+1)) :=
+abbrev DegreeBlock (K : Type*) [Field K] (t w : ℕ) (j : Fin (w + 1)) :=
   CoreBlock K t w 1 (orderCast w j)
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
@@ -55,7 +55,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem degreeBlock_finrank (ht : 2 ≤ t) (j : Fin (w+1)) :
+theorem degreeBlock_finrank (ht : 2 ≤ t) (j : Fin (w + 1)) :
     finrank K (DegreeBlock K t w j)=blockDimensions (2*(t-1)) w j := by
   change finrank K (Piece K t 0 (1-(enumeration w j).val.degree))=_
   refine Fin.cases ?_ (fun i => ?_) j
@@ -67,7 +67,7 @@ theorem degreeBlock_finrank (ht : 2 ≤ t) (j : Fin (w+1)) :
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Coordinates inside each actual core block, with the manuscript block dimensions. -/
-def blockCoordinates (ht : 2 ≤ t) (j : Fin (w+1)) :
+def blockCoordinates (ht : 2 ≤ t) (j : Fin (w + 1)) :
     DegreeBlock K t w j ≃ₗ[K] (Fin (blockDimensions (2*(t-1)) w j) → K) :=
   (Module.finBasis K (DegreeBlock K t w j)).equivFun.trans
     (LinearEquiv.piCongrLeft' K (fun _ => K) (finCongr (degreeBlock_finrank (K := K) ht j)))
@@ -90,7 +90,7 @@ def coordinates (ht : 2 ≤ t) : Piece K t w 1 ≃ₗ[K]
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem coordinates_apply (ht : 2 ≤ t) (x : Piece K t w 1) (j : Fin (w+1)) :
+@[simp] theorem coordinates_apply (ht : 2 ≤ t) (x : Piece K t w 1) (j : Fin (w + 1)) :
     coordinates ht x j=blockCoordinates ht j (orderedPiecesEquiv x (orderCast w j)) := rfl
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
@@ -98,7 +98,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency true in
 /-- The scalar-coordinate initial ranks are exactly the original quotient initial ranks. -/
 theorem initial_finrank_coordinates (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1))
-    (j : Fin (w+1)) :
+    (j : Fin (w + 1)) :
     finrank K (FilteredImage.initialPiece
       (fun i => Fin (blockDimensions (2*(t-1)) w i) → K)
       (S.map (coordinates ht).toLinearMap) j)=
@@ -149,8 +149,8 @@ set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during t
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Projecting an independent product of coefficient subspaces recovers that component. -/
 theorem map_pi_projection {n : ℕ} {E : Fin n → Type*}
-    [∀ i,AddCommGroup (E i)] [∀ i,Module K (E i)]
-    (C : ∀ i,Submodule K (E i)) (j : Fin n) :
+    [∀ i, AddCommGroup (E i)] [∀ i, Module K (E i)]
+    (C : ∀ i, Submodule K (E i)) (j : Fin n) :
     (Submodule.pi Set.univ C).map (LinearMap.proj j)=C j := by
   classical
   ext v
@@ -250,7 +250,7 @@ theorem initial_free_finrank (S : Submodule K (Piece K t w 1)) (i : Fin w) :
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual ordered prefix ranks, in the scalar coordinates used by polynomial charts. -/
-def ranks (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) (j : Fin (w+1)) : ℕ :=
+def ranks (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) (j : Fin (w + 1)) : ℕ :=
   finrank K (FilteredImage.initialPiece
     (fun i => Fin (blockDimensions (2*(t-1)) w i) → K)
     (S.map (coordinates ht).toLinearMap) j)

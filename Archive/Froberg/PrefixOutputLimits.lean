@@ -18,7 +18,7 @@ open Filter
 open scoped Topology
 
 theorem rounded_prefix_output_count {j x : ℕ} (hj : 0 < j) (τ : ℝ)
-    (hτ : (x.factorial : ℝ)/((j+x).factorial : ℝ) < τ) :
+    (hτ : (x.factorial : ℝ) / ((j + x).factorial : ℝ) < τ) :
     ∀ᶠ n : ℕ in atTop,
       (n+(j+x)-1).choose (j+x) ≤ ⌈τ*(n : ℝ)^j⌉₊*(n+x-1).choose x := by
   have hτ0 : 0 < τ := lt_trans (by positivity) hτ
@@ -45,7 +45,7 @@ theorem rounded_prefix_output_count {j x : ℕ} (hj : 0 < j) (τ : ℝ)
 
 theorem rounded_convolution_blocks_margin {j a e : ℕ} (hj : 0 < j) (ha : 0 < a)
     (τ α : ℝ) (hτ : 0 < τ)
-    (hgap : τ/(((a+e-1).choose e : ℝ)*(e.factorial : ℝ)) < α) :
+    (hgap : τ / (((a + e - 1).choose e : ℝ) * (e.factorial : ℝ)) < α) :
     ∀ᶠ n : ℕ in atTop,
       (convolutionBlockCount ⌈τ*(n : ℝ)^j⌉₊ a e : ℝ)/(e.factorial : ℝ) < α*(n : ℝ)^j := by
   have hq := ceil_normalized_limit (fun n : ℕ => τ*(n : ℝ)^j) hj τ

@@ -25,8 +25,8 @@ variable {K : Type*} [Field K] [Infinite K] {n d r ℓ : ℕ}
 
 /-- A root of unity of any order dividing the central stabilizer gives the
 corresponding divisor of the actual generic cokernel. -/
-theorem genericCokernel_divisibility_of_divisor_primitiveRoot (hn : 0<n)
-    (hℓ : ℓ∣Nat.gcd n (d*r)) (ζ : K) (hζ : IsPrimitiveRoot ζ ℓ) :
+theorem genericCokernel_divisibility_of_divisor_primitiveRoot (hn : 0 < n)
+    (hℓ : ℓ ∣ Nat.gcd n (d * r)) (ζ : K) (hζ : IsPrimitiveRoot ζ ℓ) :
     ℓ∣(2*d)*genericCokernel K n d r := by
   classical
   let R := MvPolynomial (CoefficientIndex n d r) K
@@ -62,8 +62,8 @@ theorem genericCokernel_divisibility_of_divisor_primitiveRoot (hn : 0<n)
 
 /-- A divisor prime to the field characteristic has enough roots after base
 extension, and the resulting rank divisibility descends to the original field. -/
-theorem genericCokernel_divisibility_of_cast_ne_zero (hn : 0<n)
-    (hℓ : ℓ∣Nat.gcd n (d*r)) (hne : (ℓ : K)≠0) :
+theorem genericCokernel_divisibility_of_cast_ne_zero (hn : 0 < n)
+    (hℓ : ℓ ∣ Nat.gcd n (d * r)) (hne : (ℓ : K) ≠ 0) :
     ℓ∣(2*d)*genericCokernel K n d r := by
   letI : NeZero (ℓ : K) := ⟨hne⟩
   let L := AlgebraicClosure K
@@ -73,9 +73,9 @@ theorem genericCokernel_divisibility_of_cast_ne_zero (hn : 0<n)
 
 /-- The integral Euler identity transfers any divisor of the central order
 from the generic cokernel to the generic first homology. -/
-theorem genericHomology_divisor_of_genericCokernel (hn : 0<n)
-    (hr : r≤(n+d-1).choose d) (hℓ : ℓ∣Nat.gcd n (d*r))
-    (hc : ℓ∣(2*d)*genericCokernel K n d r) :
+theorem genericHomology_divisor_of_genericCokernel (hn : 0 < n)
+    (hr : r ≤ (n + d - 1).choose d) (hℓ : ℓ ∣ Nat.gcd n (d * r))
+    (hc : ℓ ∣ (2 * d) * genericCokernel K n d r) :
     ℓ∣(2*d)*genericHomology K n d r := by
   have hc' : (ℓ : ℤ)∣(2*d : ℤ)*(genericCokernel K n d r : ℤ) := by exact_mod_cast hc
   have hℓ' : (ℓ : ℤ)∣(Nat.gcd n (d*r) : ℤ) := by exact_mod_cast hℓ
@@ -87,16 +87,16 @@ theorem genericHomology_divisor_of_genericCokernel (hn : 0<n)
     ring
   exact_mod_cast hh
 
-theorem genericHomology_divisibility_of_cast_ne_zero (hn : 0<n)
-    (hr : r≤(n+d-1).choose d) (hℓ : ℓ∣Nat.gcd n (d*r)) (hne : (ℓ : K)≠0) :
+theorem genericHomology_divisibility_of_cast_ne_zero (hn : 0 < n)
+    (hr : r ≤ (n + d - 1).choose d) (hℓ : ℓ ∣ Nat.gcd n (d * r)) (hne : (ℓ : K) ≠ 0) :
     ℓ∣(2*d)*genericHomology K n d r :=
   genericHomology_divisor_of_genericCokernel hn hr hℓ
     (genericCokernel_divisibility_of_cast_ne_zero hn hℓ hne)
 
 /-- A positive integer is nonzero in the field when its prime divisors avoid
 the characteristic.  The zero-characteristic case is stated separately. -/
-theorem natCast_ne_zero_of_characteristic_coprime (hℓ : 0<ℓ)
-    (hchar : ringChar K=0 ∨ Nat.Coprime ℓ (ringChar K)) : (ℓ : K)≠0 := by
+theorem natCast_ne_zero_of_characteristic_coprime (hℓ : 0 < ℓ)
+    (hchar : ringChar K = 0 ∨ Nat.Coprime ℓ (ringChar K)) : (ℓ : K)≠0 := by
   intro hzero
   have hdvd : ringChar K∣ℓ := (ringChar.spec K ℓ).mp hzero
   rcases hchar with hchar | hchar
@@ -108,9 +108,9 @@ theorem natCast_ne_zero_of_characteristic_coprime (hℓ : 0<ℓ)
     exact CharP.ringChar_ne_one hone
 
 /-- Form used by the field-uniform arithmetic argument. -/
-theorem generic_defects_divisibility_of_characteristic_coprime (hn : 0<n)
-    (hr : r≤(n+d-1).choose d) (hℓ : ℓ∣Nat.gcd n (d*r))
-    (hchar : ringChar K=0 ∨ Nat.Coprime ℓ (ringChar K)) :
+theorem generic_defects_divisibility_of_characteristic_coprime (hn : 0 < n)
+    (hr : r ≤ (n + d - 1).choose d) (hℓ : ℓ ∣ Nat.gcd n (d * r))
+    (hchar : ringChar K = 0 ∨ Nat.Coprime ℓ (ringChar K)) :
     ℓ∣(2*d)*genericHomology K n d r ∧ ℓ∣(2*d)*genericCokernel K n d r := by
   have hℓpos : 0<ℓ := Nat.pos_of_dvd_of_pos
     (hℓ.trans (Nat.gcd_dvd_left _ _)) hn
@@ -126,7 +126,7 @@ def primeToCharacteristicPart (K : Type*) [Field K] (m : ℕ) : ℕ :=
 theorem primeToCharacteristicPart_dvd (m : ℕ) :
     primeToCharacteristicPart K m∣m := Nat.ordCompl_dvd _ _
 
-theorem primeToCharacteristicPart_pos {m : ℕ} (hm : 0<m) :
+theorem primeToCharacteristicPart_pos {m : ℕ} (hm : 0 < m) :
     0<primeToCharacteristicPart K m := Nat.ordCompl_pos _ hm.ne'
 
 theorem primeToCharacteristicPart_eq_of_charZero [CharZero K] (m : ℕ) :
@@ -135,7 +135,7 @@ theorem primeToCharacteristicPart_eq_of_charZero [CharZero K] (m : ℕ) :
   rw [ringChar.eq_zero]
   exact Nat.ordCompl_of_not_prime m 0 (by decide)
 
-theorem primeToCharacteristicPart_cast_ne_zero {m : ℕ} (hm : 0<m) :
+theorem primeToCharacteristicPart_cast_ne_zero {m : ℕ} (hm : 0 < m) :
     (primeToCharacteristicPart K m : K)≠0 := by
   apply natCast_ne_zero_of_characteristic_coprime (primeToCharacteristicPart_pos hm)
   rcases CharP.char_is_prime_or_zero K (ringChar K) with hp | hp
@@ -144,14 +144,14 @@ theorem primeToCharacteristicPart_cast_ne_zero {m : ℕ} (hm : 0<m) :
 
 /-- Every divisor nonzero in the field divides the prime-to-characteristic
 part, giving its maximality in the sense needed by Lemma 7.1. -/
-theorem dvd_primeToCharacteristicPart {m : ℕ} (hℓm : ℓ∣m) (hne : (ℓ : K)≠0) :
+theorem dvd_primeToCharacteristicPart {m : ℕ} (hℓm : ℓ ∣ m) (hne : (ℓ : K) ≠ 0) :
     ℓ∣primeToCharacteristicPart K m :=
   Nat.dvd_ordCompl_of_dvd_not_dvd hℓm (fun h => hne ((ringChar.spec K ℓ).mpr h))
 
 /-- Lemma 7.1, with the largest prime-to-characteristic divisor, for every
 infinite coefficient field. -/
-theorem generic_defects_primeToCharacteristic_divisibility (hn : 0<n)
-    (hr : r≤(n+d-1).choose d) :
+theorem generic_defects_primeToCharacteristic_divisibility (hn : 0 < n)
+    (hr : r ≤ (n + d - 1).choose d) :
     primeToCharacteristicPart K (Nat.gcd n (d*r))∣(2*d)*genericHomology K n d r ∧
     primeToCharacteristicPart K (Nat.gcd n (d*r))∣(2*d)*genericCokernel K n d r := by
   have hpos := Nat.gcd_pos_of_pos_left (d*r) hn

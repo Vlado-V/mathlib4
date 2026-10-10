@@ -26,7 +26,7 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_cross_row_profile_parameter
-    (R j : ℕ) (hj : j≠R-j)
+    (R j : ℕ) (hj : j ≠ R - j)
     (honly : ∀ r : ProductRows.Row J R,ProductRows.Columns counts r → r.val.val=j)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (g : Fin (counts (R-j)) → MvPolynomial (σ ⊕ Fin n) K)
@@ -53,11 +53,11 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_small_cross_profile_parameter {a b v : ℕ}
-    (ha : 0<a) (hb : 0<b) (hv : 0<v)
-    (T : ℕ → Poly K (a+b) →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
-    (hm₂ : counts 2≤((a+2-1).choose 2-finrank K X)*(v+(d-2)-1).choose (d-2))
-    (hm₄ : counts 4≤(b+4-1).choose 4*(v+(d-4)-1).choose (d-4)) :
+    (ha : 0 < a) (hb : 0 < b) (hv : 0 < v)
+    (T : ℕ → Poly K (a + b) →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (hm₂ : counts 2 ≤ ((a + 2 - 1).choose 2 - finrank K X) * (v + (d - 2) - 1).choose (d - 2))
+    (hm₄ : counts 4 ≤ (b + 4 - 1).choose 4 * (v + (d - 4) - 1).choose (d - 4)) :
     ∃ p : Space (v+v) d q J counts (fun j => Forms K (a+b) j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 6) ∧
       ∀ z,(ProductRows.multiplication counts (layers p) J 6 z).IsWeightedHomogeneous
@@ -81,14 +81,14 @@ theorem exists_small_cross_profile_parameter {a b v : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_small_cross_empty_row_parameter {a b v : ℕ}
-    (ha : 0<a) (hb : 0<b) (hv : 0<v)
-    (T : ℕ → Poly K (a+b) →ₗ[K] X) (hT : T 4=0)
-    (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0) (R : J) (hR : R.val=6)
-    (hm₂ : counts 2≤((a+2-1).choose 2-finrank K X)*(v+(d-2)-1).choose (d-2))
-    (hm₄ : counts 4≤(b+4-1).choose 4*(v+(d-4)-1).choose (d-4))
-    (Q : Fin (Fintype.card (Label q J counts)) → Forms K (v+v) d)
+    (ha : 0 < a) (hb : 0 < b) (hv : 0 < v)
+    (T : ℕ → Poly K (a + b) →ₗ[K] X) (hT : T 4 = 0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0) (R : J) (hR : R.val = 6)
+    (hm₂ : counts 2 ≤ ((a + 2 - 1).choose 2 - finrank K X) * (v + (d - 2) - 1).choose (d - 2))
+    (hm₄ : counts 4 ≤ (b + 4 - 1).choose 4 * (v + (d - 4) - 1).choose (d - 4))
+    (Q : Fin (Fintype.card (Label q J counts)) → Forms K (v + v) d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication
-      (fun α => MonomialExpansion.partialDegree (balancedScalarHalf v) α≠d-2) Q (d-R.val))) :
+      (fun α => MonomialExpansion.partialDegree (balancedScalarHalf v) α ≠ d - 2) Q (d - R.val))) :
     ∃ p : Space (v+v) d q J counts (fun j => Forms K (a+b) j⊓(T j).ker),
       LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) R i p) ∧
       (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R p).range := by

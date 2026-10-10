@@ -18,7 +18,7 @@ open Module Filter MvPolynomial
 open scoped Topology
 
 theorem eventually_uniform_quadratic_scalar_data {d h : ℕ}
-    (hd : 3≤d) (hh : 0 < h) (r f : ℕ → ℕ)
+    (hd : 3 ≤ d) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hf : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))

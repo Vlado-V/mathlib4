@@ -22,12 +22,12 @@ open scoped Topology
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem eventually_uniform_actual_prepared_comparison {d k h lo : ℕ}
-    (hd : 3≤d) (ho : d%2=1) (hk : 0<k) (hh : h=k*centralHalfBinomial d)
-    (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hd : 3 ≤ d) (ho : d % 2 = 1) (hk : 0 < k) (hh : h = k * centralHalfBinomial d)
+    (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],
       ∀ pure : OddPureProjectionData K d h (by omega),
       ∀ (O : ℕ → Submodule K (Poly K h))

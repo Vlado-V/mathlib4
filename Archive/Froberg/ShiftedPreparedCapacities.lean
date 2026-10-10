@@ -22,9 +22,9 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
-theorem allEvenLabel_count_limit_shift {d : ℕ} (hd : 3≤d) (h extra z : ℕ)
+theorem allEvenLabel_count_limit_shift {d : ℕ} (hd : 3 ≤ d) (h extra z : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) :
+    (he : ∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (h : ℝ) ^ 2 * (n : ℝ) ^ (d - 2)) :
     Tendsto (fun n : ℕ =>
       (Fintype.card (Label (upperCount (n+z) d) (allEvenIndices d)
         (allEvenCount d h (n+z) (e (n+z)+extra))) : ℝ)/(n : ℝ)^d)
@@ -32,7 +32,7 @@ theorem allEvenLabel_count_limit_shift {d : ℕ} (hd : 3≤d) (h extra z : ℕ)
   normalized_limit_shift (allEvenLabel_count_limit hd h extra e he) z
 
 /-- The block count is fixed before the scalar-variable shift is chosen. -/
-theorem eventually_actual_even_capacities_shift {d : ℕ} (hd : 9≤d) :
+theorem eventually_actual_even_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,
       finrank K X=deletedTargetCount d (2*w) →

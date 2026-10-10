@@ -24,7 +24,7 @@ variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasOddCyclesOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
-    {O : ℕ → Submodule K (Poly K h)} (hO : ∀ j∈J,O j≤Forms K h j) : Prop :=
+    {O : ℕ → Submodule K (Poly K h)} (hO : ∀ j ∈ J, O j ≤ Forms K h j) : Prop :=
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   ∃ P : MvPolynomial (Fin (finrank K
@@ -37,13 +37,13 @@ def HasOddCyclesOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_prepared_odd_cycles_open {d k h lo u : ℕ}
-    (hd : 3≤d) (hdodd : d%2=1) (hk : 0<k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
-    (O : ℕ → Submodule K (Poly K h)) (hO : ∀ j∈activeEvenIndices d,O j≤Forms K h j) :
+    (hd : 3 ≤ d) (hdodd : d % 2 = 1) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
+    (O : ℕ → Submodule K (Poly K h)) (hO : ∀ j ∈ activeEvenIndices d, O j ≤ Forms K h j) :
     ∀ᶠ n : ℕ in atTop,HasOddCyclesOpen (m := n) (d := d) (q := upperCount n d)
       (f := f n) (u := u) (counts := targetLayerCount d h n (e n)) hO := by
   let extra := fun n => e n+(∑ j∈activeHigherIndices d,higherGeneratorCount d h n j)+0

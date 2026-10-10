@@ -24,19 +24,21 @@ variable {n s d R h H m r b : ℕ}
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
 theorem exists_even_polynomial_row
-    (hn : 0<n) (hh : 0<h)
+    (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdegree : ∀ j,(o j).IsHomogeneous R)
+    (hdegree : ∀ j, (o j).IsHomogeneous R)
     (L : (Fin h → K) →ₗ[K] (Fin H → K)) (hL : Function.Injective L)
-    (hLodd : ∀ z,retainMonomials (fun a => Finsupp.weight w a%2=0) (outputCombination o (L z))=0)
-    (hm : m≤b*(n+s-1).choose s) (hcap : b*(s+d).choose s≤h)
-    (hcount : h*(s+d).choose s * (r+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) ≤
-      (h-b*(s+d).choose s)*(n+s+d-1).choose d)
+    (hLodd : ∀ z, retainMonomials (fun a => Finsupp.weight w a % 2 = 0) (outputCombination o (L z))
+      = 0)
+    (hm : m ≤ b * (n + s - 1).choose s) (hcap : b * (s + d).choose s ≤ h)
+    (hcount : h * (s + d).choose s * (r + h * (n + s - 1).choose s + (h * 2 ^ h) * (n + (d - 1) -
+      1).choose (d - 1)) ≤
+      (h - b * (s + d).choose s) * (n + s + d - 1).choose d)
     (counts : ℕ → ℕ)
     (q : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (J : Finset ℕ) (heven : ∀ j∈J,Even j) (hJ : ∀ j∈J,j≤d)
-    (hqX : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
+    (J : Finset ℕ) (heven : ∀ j ∈ J, Even j) (hJ : ∀ j ∈ J, j ≤ d)
+    (hqX : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous
       (Sum.elim w (fun _ : Fin n => 0)) (ProductRows.assignedDegree R j))
     (hqY : ∀ j∈J,∀ i,(q j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight Yhalf))

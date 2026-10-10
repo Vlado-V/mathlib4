@@ -38,7 +38,7 @@ theorem monomial_count_offset_normalized_tendsto (d t : ℕ) :
 
 /-- The lower-order quotient-dimension and exceptional-shadow terms are
 absorbed by exactly the strict sparse-layer capacity inequality. -/
-theorem eventually_intermediate_scalar_budget {d s h B : ℕ} (hs : s<d) (hB : B≤h)
+theorem eventually_intermediate_scalar_budget {d s h B : ℕ} (hs : s < d) (hB : B ≤ h)
     (q : ℕ → ℕ)
     (hq : Tendsto (fun n : ℕ => (q n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ))))

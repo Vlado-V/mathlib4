@@ -28,7 +28,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev HigherLayerIndex (d : ℕ) := {j : ℕ // j∈activeHigherIndices d}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem eventually_middle_rows_common_open {d : ℕ} (hd : 3≤d) :
+theorem eventually_middle_rows_common_open {d : ℕ} (hd : 3 ≤ d) :
     ∃ layer : MiddleTargetIndex d → HigherLayerIndex d,
       (∀ b,(layer b).val<b.val.val ∧ b.val.val<2*(layer b).val) ∧
       ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop,

@@ -23,7 +23,7 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L] [IsAlgClosed L]
   {k a z s b h : ℕ}
 
 theorem private_open_of_geometric_growth (hk : 0 < k) (hs : 2 ≤ s)
-    (hh : h=k*(2*s+1).choose s) (hn : 0 < a+z)
+    (hh : h = k * (2 * s + 1).choose s) (hn : 0 < a + z)
     (hc : 0 < Fintype.card (Labels k a s ⊕ Fin b))
     (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u

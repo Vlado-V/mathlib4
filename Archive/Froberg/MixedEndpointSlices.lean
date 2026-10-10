@@ -25,8 +25,8 @@ attribute [local instance] tensorFormGroup
 attribute [local irreducible] mixedActualSourceDimension mixedActualTargetDimension
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f u e b : ℕ}
 variable (hd : Odd d) (hd3 : 3 ≤ d)
-  (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
-  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+  (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
+  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
 local notation "hdp" => Nat.le_trans (by decide : 1 ≤ 3) hd3
 local notation "F" => bottomTensorFamily g
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
@@ -42,8 +42,8 @@ local notation "j" => nW-e*nV
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixed_actual_thin_open (hh : 0 < h) (hm : 0 < m)
     (hU : LinearIndependent K U)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (hker : R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (hker : R.ker = (Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
     (hi : Function.Injective (projectedTopMap R (topGrowthParameters hdp Q F)))
     (C S : ℝ) (hC : 0 ≤ C)
     (hs₀ : HasClosedKernelSlices (bottomCoordinateScalarAction hdp Q g) (thinSlices T₀ C))

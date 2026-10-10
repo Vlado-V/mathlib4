@@ -31,8 +31,8 @@ theorem attachedPolynomialFamily_factor
 multiplication by arbitrary homogeneous scalar coefficients. -/
 theorem polynomialLayerRow_mem_biform
     (o : J → MvPolynomial σ K) (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i,(e i).degree=s)
-    (O : Submodule K (MvPolynomial σ K)) (ho : ∀ i,outputCombination o (v i)∈O)
+    (he : ∀ i, (e i).degree = s)
+    (O : Submodule K (MvPolynomial σ K)) (ho : ∀ i, outputCombination o (v i) ∈ O)
     (p : I → Forms K n d) :
     AttachedMultiplication.polynomialLayerRow o e v he p∈biformImage O (Forms K n (s+d)) := by
   rw [AttachedMultiplication.polynomialLayerRow_apply]
@@ -45,7 +45,7 @@ theorem polynomialLayerRow_mem_biform
 theorem biformOutputEndomorphism_eq_zero_of_mem
     (T : MvPolynomial σ K →ₗ[K] MvPolynomial σ K)
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (Poly K n))
-    (hO : O≤T.ker) {f : MvPolynomial (σ ⊕ Fin n) K} (hf : f∈biformImage O C) :
+    (hO : O ≤ T.ker) {f : MvPolynomial (σ ⊕ Fin n) K} (hf : f ∈ biformImage O C) :
     biformOutputEndomorphism T f=0 := by
   have ht : biformOutputMap T f=0 := biformImage_le_output_kernel T O C hO hf
   change MvPolynomial.tensorEquivSum K σ (Fin n) K (biformOutputMap T f)=0
@@ -55,9 +55,9 @@ theorem biformOutputEndomorphism_eq_zero_of_mem
 annihilates its actual generator output vectors. -/
 theorem polynomialLayerRow_output_zero
     (o : J → MvPolynomial σ K) (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i,(e i).degree=s)
+    (he : ∀ i, (e i).degree = s)
     (T : MvPolynomial σ K →ₗ[K] MvPolynomial σ K)
-    (ho : ∀ i,T (outputCombination o (v i))=0)
+    (ho : ∀ i, T (outputCombination o (v i)) = 0)
     (p : I → Forms K n d) :
     biformOutputEndomorphism T (AttachedMultiplication.polynomialLayerRow o e v he p)=0 := by
   apply biformOutputEndomorphism_eq_zero_of_mem T T.ker (Forms K n (s+d)) le_rfl

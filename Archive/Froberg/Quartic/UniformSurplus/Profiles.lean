@@ -23,7 +23,7 @@ def OrderedProfile (y₁ y₂ y₃ : ℝ) : Prop :=
   0 ≤ y₃ ∧ y₃ ≤ y₂ ∧ y₂ ≤ y₁ ∧ y₁ ≤ 1
 
 theorem weighted_nonnegative {f : Fin 4 → ℝ} {y₁ y₂ y₃ : ℝ}
-    (hy : OrderedProfile y₁ y₂ y₃) (hf : ∀r, 0 ≤ f r) :
+    (hy : OrderedProfile y₁ y₂ y₃) (hf : ∀ r, 0 ≤ f r) :
     0 ≤ weighted f y₁ y₂ y₃ := by
   unfold weighted
   exact add_nonneg (add_nonneg (add_nonneg
@@ -33,7 +33,7 @@ theorem weighted_nonnegative {f : Fin 4 → ℝ} {y₁ y₂ y₃ : ℝ}
     (mul_nonneg hy.1 (hf 3))
 
 theorem weighted_mono {f g : Fin 4 → ℝ} {y₁ y₂ y₃ : ℝ}
-    (hy : OrderedProfile y₁ y₂ y₃) (hfg : ∀r, f r ≤ g r) :
+    (hy : OrderedProfile y₁ y₂ y₃) (hfg : ∀ r, f r ≤ g r) :
     weighted f y₁ y₂ y₃ ≤ weighted g y₁ y₂ y₃ := by
   have h := weighted_nonnegative hy (fun r => sub_nonneg.mpr (hfg r))
   dsimp [weighted] at *
@@ -61,7 +61,7 @@ theorem weighted_polynomial (cell : Fin 4) (z u x y₁ y₂ y₃ : ℝ) :
   norm_num
   split_ifs <;> ring
 
-theorem sourceDim_pos (z u : ℝ) (hz1 : z ≤ 14/25) (hu1 : u ≤ 1/64) :
+theorem sourceDim_pos (z u : ℝ) (hz1 : z ≤ 14 / 25) (hu1 : u ≤ 1 / 64) :
     0 < sourceDim z u := by
   unfold sourceDim coreA freeW
   linarith
@@ -83,8 +83,8 @@ theorem profileDenominator_lower (cell : Fin 4) (z u x y₁ y₂ y₃ : ℝ) :
 /-- Extension of all 32 polynomial certificates to every ordered profile,
 expressed as its explicit convex combination of prefix image bounds. -/
 theorem weighted_uniform_surplus (z u x y₁ y₂ y₃ : ℝ)
-    (hz0 : 1/2 ≤ z) (hz1 : z ≤ 14/25)
-    (hu0 : 0 ≤ u) (hu1 : u ≤ 1/64)
+    (hz0 : 1 / 2 ≤ z) (hz1 : z ≤ 14 / 25)
+    (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 64)
     (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hy : OrderedProfile y₁ y₂ y₃) :
     targetDim z u/sourceDim z u*profileDim z u x y₁ y₂ y₃+
       (1/100)*min (profileDim z u x y₁ y₂ y₃)

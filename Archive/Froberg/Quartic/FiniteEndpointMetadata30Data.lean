@@ -39,7 +39,7 @@ def exponent4 (i : Fin 40920) : Fin 30 →₀ ℕ := listExponent (vars4 i)
 def quadSupport (g : Fin 99) : List (Fin 465) :=
   (List.finRange 465).filter (fun j => (coefficients.get g.val).testBit j.val)
 def selectedGenerator (i : ℕ) : ℕ := selectedCodes.get i % 4294967296
- def selectedMultiplier (i : ℕ) : ℕ := selectedCodes.get i / 4294967296
+def selectedMultiplier (i : ℕ) : ℕ := selectedCodes.get i / 4294967296
 def selectedRaw (i : ℕ) : Fin 99 × Fin 465 :=
   (⟨selectedGenerator i % 99,Nat.mod_lt _ (by decide)⟩,
    ⟨selectedMultiplier i % 465,Nat.mod_lt _ (by decide)⟩)

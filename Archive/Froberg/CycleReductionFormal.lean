@@ -51,13 +51,13 @@ theorem formalCoefficientMap_boundary (q : Fin r → V) (M : Fin r → Fin r →
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formalCoefficientMap_eq_of_boundary_reduction
     (q c z : Fin r → V) (M : Fin r → Fin r → K)
-    (hz : c-coefficientBoundary q M=z) :
+    (hz : c - coefficientBoundary q M = z) :
     formalCoefficientMap (K := K) q c=formalCoefficientMap (K := K) q z := by
   rw [← hz,map_sub,formalCoefficientMap_boundary,sub_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formalCoefficientMap_mem_products (q z : Fin r → V)
-    (Q A : Submodule K V) (hQ : ∀ i,z i=0 ∨ q i∈Q) (hA : ∀ i,z i∈A) :
+    (Q A : Submodule K V) (hQ : ∀ i, z i = 0 ∨ q i ∈ Q) (hA : ∀ i, z i ∈ A) :
     formalCoefficientMap (K := K) q z∈formalProducts Q A := by
   rw [formalCoefficientMap_apply]
   apply Submodule.sum_mem
@@ -70,7 +70,7 @@ theorem formalCoefficientMap_mem_products (q z : Fin r → V)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formal_relations_of_cycle_reduction
     (mu : SymmetricSquare K V →ₗ[K] Z) (q : Fin r → V)
-    (Q A : Submodule K V) (hQ : Q≤Submodule.span K (Set.range q))
+    (Q A : Submodule K V) (hQ : Q ≤ Submodule.span K (Set.range q))
     (hreduce : ∀ c : Fin r → V,mu (formalCoefficientMap (K := K) q c)=0 →
       ∃ (M : Fin r → Fin r → K) (z : Fin r → V),
         c-coefficientBoundary q M=z ∧ (∀ i,z i=0 ∨ q i∈Q) ∧ (∀ i,z i∈A)) :
@@ -102,7 +102,7 @@ theorem coefficientBoundary_map (j : V →ₗ[K] A)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem boundary_reduction_of_injective_map (j : V →ₗ[K] A)
     (hj : Function.Injective j) (q c z : Fin r → V) (M : Fin r → Fin r → K)
-    (h : (fun i => j (c i))-matrixBoundary (fun i => j (q i)) M=(fun i => j (z i))) :
+    (h : (fun i => j (c i)) - matrixBoundary (fun i => j (q i)) M = (fun i => j (z i))) :
     c-coefficientBoundary q M=z := by
   funext i
   apply hj

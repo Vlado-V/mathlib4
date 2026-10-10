@@ -25,8 +25,8 @@ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_quadratic_extended_row_parameter {σ : Type*} [Fintype σ]
     {a z d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
-    (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,2≤j) (hJd : ∀ j∈J,j≤d) (h2 : 2∈J)
+    (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hJd : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
     (cap : QuadraticRowCapacity a d q b J counts O)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     ∃ p : Space (a+z) d q J counts O,

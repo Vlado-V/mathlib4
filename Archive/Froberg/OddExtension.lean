@@ -33,8 +33,8 @@ def projectedRangeExtension (P : V →ₗ[K] V) (R E : Submodule K V) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A projection kills newly added relations, so its quotient range does not change. -/
 theorem projectedRangeExtension_bijective (P : V →ₗ[K] V) (R E : Submodule K V)
-    (hP : ∀ v,P (P v)=P v)
-    (hR : ∀ v∈R,P v∈R) (hE : E≤P.ker) :
+    (hP : ∀ v, P (P v) = P v)
+    (hR : ∀ v ∈ R, P v ∈ R) (hE : E ≤ P.ker) :
     Function.Bijective (projectedRangeExtension P R E) := by
   constructor
   · apply LinearMap.ker_eq_bot.mp
@@ -66,8 +66,8 @@ theorem projectedRangeExtension_bijective (P : V →ₗ[K] V) (R E : Submodule K
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def projectedRangeExtensionEquiv (P : V →ₗ[K] V) (R E : Submodule K V)
-    (hP : ∀ v,P (P v)=P v)
-    (hR : ∀ v∈R,P v∈R) (hE : E≤P.ker) :
+    (hP : ∀ v, P (P v) = P v)
+    (hR : ∀ v ∈ R, P v ∈ R) (hE : E ≤ P.ker) :
     (R.mkQ.comp P).range ≃ₗ[K] ((R ⊔ E).mkQ.comp P).range :=
   LinearEquiv.ofBijective (projectedRangeExtension P R E)
     (projectedRangeExtension_bijective P R E hP hR hE)

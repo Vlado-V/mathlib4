@@ -23,11 +23,12 @@ variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem exact_counts_all_even_restored_odd_open {d k h lo : ℕ}
-    (hd : 3≤d) (heven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    {δ : ℝ} (hδ : 0<δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
+    (hd : 3 ≤ d) (heven : d % 2 = 0) (hk : 0 < k) (hh : h = k * centralHalfBinomial d) (hhpos : 0 <
+      h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    {δ : ℝ} (hδ : 0 < δ)
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (added : ℕ) :
     ∀ᶠ n : ℕ in atTop,∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)

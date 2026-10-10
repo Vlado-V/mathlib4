@@ -73,7 +73,7 @@ open Filter
 variable {K : Type} [Field K] [Infinite K] {d h : ℕ}
 
 theorem eventual_recurrence_of_core_first_comparison
-    (hD : ∀ᶠ m in atTop,∀ upper : Bool,Nonempty (LocalComparisonData K (h+m) d
+    (hD : ∀ᶠ m in atTop, ∀ upper : Bool,Nonempty (LocalComparisonData K (h+m) d
       (adjacentCriticalCount upper (h+m) d) (criticalDefect K m d))) :
     ∃ start : ℕ,∀ m,start ≤ m → criticalDefect K (m+h) d ≤ criticalDefect K m d := by
   apply eventual_recurrence_of_comparison_data

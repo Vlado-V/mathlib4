@@ -61,8 +61,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The C.8 projection statement for actual multiplication by linear forms.
 All remaining hypotheses are the explicit finite numerical dimension margin. -/
 theorem exists_projected_linear_growth [Infinite K] (hn : 0 < n) {u b : ℕ}
-    (hW : (n+(1+e)-1).choose (1+e)=u+b)
-    (hmargin : ((n+e-1).choose e)*((n+e-1).choose e) < u*b) :
+    (hW : (n + (1 + e) - 1).choose (1 + e) = u + b)
+    (hmargin : ((n + e - 1).choose e) * ((n + e - 1).choose e) < u * b) :
     ∃ P : Forms K n (1+e) →ₗ[K] (Fin b → K),
       Function.Surjective P ∧ finrank K P.ker=u ∧
       ∀ L : Submodule K (Forms K n e),

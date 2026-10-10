@@ -39,7 +39,7 @@ def Separates (S : Submodule K (Ambient K b)) (j : Selectors b r) : Prop :=
     selectedProjection (j i) x=0 → x=0
 
 theorem exists_separating_selectors (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i) :
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i) :
     ∃ j : Selectors b r, Separates S j := by
   classical
   choose j e he using fun i => exists_coordinate_equiv_of_finrank
@@ -104,7 +104,7 @@ theorem selectedOn_injective (S : Submodule K (Ambient K b))
   exact Subtype.ext hflag
 
 theorem selectedOn_surjective (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) : Function.Surjective (selectedOn S j) := by
   apply LinearMap.range_eq_top.mp
   apply Submodule.eq_top_of_finrank_eq
@@ -114,19 +114,19 @@ theorem selectedOn_surjective (S : Submodule K (Ambient K b))
 
 /-- An actual equivalence between the subspace and all its selected coordinates. -/
 def selectedEquiv (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) : S ≃ₗ[K] Ambient K r :=
   LinearEquiv.ofBijective (selectedOn S j)
     ⟨selectedOn_injective S j hj,selectedOn_surjective S hr j hj⟩
 
 @[simp] theorem selectedEquiv_apply (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) (x : S) :
     selectedEquiv S hr j hj x=selected j x.val := rfl
 
 /-- The inverse coordinate map preserves the same ordered prefixes. -/
 theorem selectedEquiv_symm_prefix (S : Submodule K (Ambient K b))
-    (hr : ∀ i,finrank K (initialPiece (fun i => Fin (b i) → K) S i)=r i)
+    (hr : ∀ i, finrank K (initialPiece (fun i => Fin (b i) → K) S i) = r i)
     (j : Selectors b r) (hj : Separates S j) (k : ℕ) (y : Ambient K r)
     (hy : y ∈ coordinateFlag (K := K) (fun i => Fin (r i) → K) k) :
     ((selectedEquiv S hr j hj).symm y).val ∈

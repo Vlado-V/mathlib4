@@ -22,8 +22,8 @@ variable {σ : Type*} [Fintype σ] {n d q r : ℕ} {J : Finset ℕ} {counts : �
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def evenGeneratorLinear (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def evenGeneratorLinear (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) :
     Space n d q J counts O →ₗ[K]
       (Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d) where
@@ -47,7 +47,7 @@ abbrev RestoredSpace (n d q : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredCoordinates (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+def restoredCoordinates (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     RestoredSpace n d q J counts O ≃ₗ[K]
       (Fin (finrank K (RestoredSpace n d q J counts O)) → K) := by
   letI : Module.Finite K (Space n d q J counts O) := finite_space hO
@@ -56,9 +56,9 @@ def restoredCoordinates (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
   exact (Module.finBasis K (RestoredSpace n d q J counts O)).equivFun
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredFamilyLinear (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def restoredFamilyLinear (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (homogeneousSubmodule σ K d)) → Fin r) :
     RestoredSpace n d q J counts O →ₗ[K]
@@ -67,12 +67,12 @@ def restoredFamilyLinear (hd : d%2=0)
     (PolynomialRestoration.pureShift (pureEvenEmbed hd) slot).comp (LinearMap.snd K _ _)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem even_prepared_restoration_principal_open (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
+theorem even_prepared_restoration_principal_open (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (homogeneousSubmodule σ K d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p₀ : Space n d q J counts O) (hp₀ : EvenPositiveReduction p₀) :
     let S := RestoredSpace n d q J counts O
     ∃ D : MvPolynomial (Fin (finrank K S)) K,
@@ -143,16 +143,16 @@ theorem even_prepared_restoration_principal_open (hd : d%2=0)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Any further nonempty principal condition in the same parameter space
 can be imposed together with restoration exactness and a full pure basis. -/
-theorem exists_even_restored_basis_on_open (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
+theorem exists_even_restored_basis_on_open (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (homogeneousSubmodule σ K d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p₀ : Space n d q J counts O) (hp₀ : EvenPositiveReduction p₀)
     (E : MvPolynomial (Fin (finrank K (RestoredSpace n d q J counts O))) K)
     (hE : ∃ p : RestoredSpace n d q J counts O,
-      eval (restoredCoordinates hO p) E≠0) :
+      eval (restoredCoordinates hO p) E ≠ 0) :
     ∃ p : RestoredSpace n d q J counts O,
       eval (restoredCoordinates hO p) E≠0 ∧
       LinearIndependent K p.2 ∧ Submodule.span K (Set.range p.2)=⊤ ∧

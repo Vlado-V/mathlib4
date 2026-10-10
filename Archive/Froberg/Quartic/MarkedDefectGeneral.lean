@@ -26,7 +26,7 @@ theorem coefficient_kernel_range
     (hB : B ≤ B'.comap e) (c : U →ₗ[K] D) (C : Submodule K D)
     (hC : B' ≤ C.comap c)
     (hzero : ∀ x, c (e x) ∈ C)
-    (hred : ∀ a, g a = 0 → c a ∈ C → ∃ b, f b = 0 ∧ a-e b ∈ B') :
+    (hred : ∀ a, g a = 0 → c a ∈ C → ∃ b, f b = 0 ∧ a - e b ∈ B') :
     (quotientCoefficient g c B' C hC).ker =
       (inducedHomologyMap f g e hcomm B B' hB).range := by
   apply le_antisymm

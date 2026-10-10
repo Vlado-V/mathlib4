@@ -23,7 +23,7 @@ attribute [local instance] tensorGroup
 /-- An actual successful row in one H-plane gives a nonempty polynomial
 open of H-frames where that row still has a successful coefficient family. -/
 theorem framed_biform_row_base_open
-    (W : Submodule K (Forms K h j)) (hW : finrank K W=H)
+    (W : Submodule K (Forms K h j)) (hW : finrank K W = H)
     (o : Fin r → W) (f : Fin r → Forms K m e)
     (hs : Function.Surjective (biformFamilyMap (x := x) (y := y) (fun i => (o i).val) f)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin H → Forms K h j))) K,
@@ -57,8 +57,8 @@ theorem framed_biform_row_base_open
 one coefficient family. Each initial witness may have used a different plane. -/
 theorem framed_biform_rows_common_open {J : Type*} [Fintype J] [Nonempty J]
     (x y : J → ℕ)
-    (hwit : ∀ i,∃ (W : Submodule K (Forms K h j)) (o : Fin r → W)
-      (f : Fin r → Forms K m e), finrank K W=H ∧
+    (hwit : ∀ i, ∃ (W : Submodule K (Forms K h j)) (o : Fin r → W)
+      (f : Fin r → Forms K m e), finrank K W = H ∧
         Function.Surjective (biformFamilyMap (x := x i) (y := y i) (fun a => (o a).val) f)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin H → Forms K h j))) K,
       (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 →

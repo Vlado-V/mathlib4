@@ -46,8 +46,8 @@ theorem outer_of_uniform_surplus (q j a D d E : ℝ)
 /-- The two domination estimates convert uniform surplus into the normal
 incidence alternative. No geometric statement is hidden in this implication. -/
 theorem normal_of_uniform_surplus (q c j a h k S D d E : ℝ)
-    (ha : 0 < a) (hh : h=k+S) (hdlo : 0 < d) (hdhi : d < a)
-    (hD₁ : c+4+a-j/a < D) (hD₂ : a+j/a < D)
+    (ha : 0 < a) (hh : h = k + S) (hdlo : 0 < d) (hdhi : d < a)
+    (hD₁ : c + 4 + a - j / a < D) (hD₂ : a + j / a < D)
     (hE : uniformLower q j a D d ≤ E) :
     covectorR j E q a d < 0 ∨
       covectorR j E q a d-codimensionR k S c d ≤ max (j-h) 0-1 := by
@@ -76,9 +76,9 @@ theorem normal_of_uniform_surplus (q c j a h k S D d E : ℝ)
 /-- Both scalar incidence tests follow from uniform surplus and the established
 dimension/ratio domination conditions. -/
 theorem incidence_of_uniform_surplus (q c j a h k S D d E : ℝ)
-    (ha : 0 < a) (hj : 0 ≤ j) (hh : h=k+S)
+    (ha : 0 < a) (hj : 0 ≤ j) (hh : h = k + S)
     (hdlo : 0 < d) (hdhi : d < a)
-    (hDa : a ≤ D) (hD₁ : c+4+a-j/a < D) (hD₂ : a+j/a < D)
+    (hDa : a ≤ D) (hD₁ : c + 4 + a - j / a < D) (hD₂ : a + j / a < D)
     (hE : uniformLower q j a D d ≤ E) :
     d*(q+a-d) ≤ E ∧
       (covectorR j E q a d < 0 ∨

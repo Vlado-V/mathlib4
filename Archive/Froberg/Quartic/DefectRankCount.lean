@@ -42,11 +42,11 @@ theorem split_rank_lower (g : Fin c → MiddleCoordinates.Mixed K m)
   omega
 
 /-- Both actual parent defects are bounded by the same two child defects. -/
-theorem defect_bounds_of_gain (f : Fin (4+(c+q)) → Forms K (3+m) 2)
+theorem defect_bounds_of_gain (f : Fin (4 + (c + q)) → Forms K (3 + m) 2)
     (hf : LinearIndependent K f) (split response c₀ k₀ : ℕ)
-    (hsplit : Counts.b4 (3+m)-Counts.j m q c-c₀ ≤ (split : ℤ))
-    (hresponse : min (Counts.hTotal m q c+c₀-k₀) (Counts.j m q c) ≤ (response : ℤ))
-    (hgain : split+response ≤ finrank K (quadraticMultiplication f).range) :
+    (hsplit : Counts.b4 (3 + m) - Counts.j m q c - c₀ ≤ (split : ℤ))
+    (hresponse : min (Counts.hTotal m q c + c₀ - k₀) (Counts.j m q c) ≤ (response : ℤ))
+    (hgain : split + response ≤ finrank K (quadraticMultiplication f).range) :
     (finrank K (QuarticHomology f) : ℤ) ≤
         max (k₀ : ℤ) ((c₀ : ℤ)-Counts.chi (3+m) (4+(c+q))) ∧
     (finrank K (QuarticQuotient K (3+m)

@@ -21,15 +21,15 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem mixedHigherProjection_scalar (hd : Odd d) (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
-      (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
-    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
-      (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id)
+theorem mixedHigherProjection_scalar (hd : Odd d) (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
+      (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
+    (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+    (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) F
+      (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id)
     (p : Forms K m d) (v : MixedAmbientSource hd hd3 F U P)
     (r : MixedHigherIndex d hd3) :
     mixedHigherProjection hd hd3 R Q F U P hker r
@@ -66,14 +66,14 @@ theorem mixedHigherProjection_scalar (hd : Odd d) (hd3 : 3≤d)
       rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem mixedHigherProjection_weighted_bottom (hd : Odd d) (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
-      (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
+theorem mixedHigherProjection_weighted_bottom (hd : Odd d) (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
+      (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
     (r : MixedHigherIndex d hd3)
-    (v : biformParitySpace K h m (2*d) 1)
+    (v : biformParitySpace K h m (2 * d) 1)
     (hv : v.val.IsWeightedHomogeneous (blockWeight h m) 1) :
     mixedHigherProjection hd hd3 R Q F U P hker r
       ((ambientOddRelations _ _ _).mkQ v)=0 := by

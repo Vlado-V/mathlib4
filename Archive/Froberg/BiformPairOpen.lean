@@ -48,7 +48,7 @@ attribute [local instance] tensorGroup
 theorem row_two_full_principal_open
     (g₁ : (P → K) → Fin r → Forms K h 1 ⊗[K] Forms K m s)
     (g₂ : (P → K) → Fin q → Forms K h 2 ⊗[K] Forms K m e)
-    (hg₁ : IsPolynomialFamily g₁) (hg₂ : IsPolynomialFamily g₂) (he : e+y=s+s)
+    (hg₁ : IsPolynomialFamily g₁) (hg₂ : IsPolynomialFamily g₂) (he : e + y = s + s)
     (a₀ : P → K)
     (ha₀ : Function.Surjective ((biformTensorFamilyMap (x := 1) (y := s) (g₁ a₀)).coprod
       (biformTensorFamilyToDegree (x := 0) he (g₂ a₀)))) :

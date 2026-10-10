@@ -36,13 +36,13 @@ lemma core_fiber_labels_independent {k a z s h : ℕ}
     exact Subtype.ext (congrArg (fun t : U => t.val) hij)
   exact (hv U hU).comp f hf
 
-lemma outer_multiplicity_le {k s h : ℕ} (hh : h=k*(2*s+1).choose s) : k ≤ h := by
+lemma outer_multiplicity_le {k s h : ℕ} (hh : h = k * (2 * s + 1).choose s) : k ≤ h := by
   rw [hh]
   have hH := Nat.choose_pos (show s ≤ 2*s+1 by omega)
   nlinarith
 
 lemma source_capacity_real {k a z s h : ℕ}
-    (hh : h=k*(2*s+1).choose s) (v : Labels k a s → Fin h → K)
+    (hh : h = k * (2 * s + 1).choose s) (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (α : Degree (a+z) s) :
     (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v α.val) : ℝ) =
@@ -56,8 +56,8 @@ lemma source_capacity_real {k a z s h : ℕ}
   · rw [hhR]
     ring
 
-lemma coarse_capacity_real {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
-    (β : Degree (a+z) (2*s+1)) :
+lemma coarse_capacity_real {k a z s h : ℕ} (hh : h = k * (2 * s + 1).choose s)
+    (β : Degree (a + z) (2 * s + 1)) :
     ((h-k*(corePart β.val).degree.choose s : ℕ) : ℝ) =
       (k : ℝ)*(profileAmbientCapacity s - ((corePart β.val).degree.choose s : ℝ)) := by
   have hc : (corePart β.val).degree ≤ 2*s+1 := by
@@ -70,7 +70,7 @@ lemma coarse_capacity_real {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
   rw [hhR]
   ring
 
-lemma target_capacity_real_lower {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
+lemma target_capacity_real_lower {k a z s h : ℕ} (hh : h = k * (2 * s + 1).choose s)
     (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (β : Degree (a+z) (2*s+1)) :
@@ -83,7 +83,7 @@ lemma target_capacity_real_lower {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
   apply core_fiber_labels_independent v hv
   rw [degree_val,← hh]
 
-lemma target_total_capacity_error {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
+lemma target_total_capacity_error {k a z s h : ℕ} (hh : h = k * (2 * s + 1).choose s)
     (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val)) :
     (∑ β : Degree (a+z) (2*s+1),

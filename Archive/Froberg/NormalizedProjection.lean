@@ -22,8 +22,8 @@ variable {K : Type*} [Field K] [Infinite K] {a B N b u : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Uniform normalized growth survives a general projection whenever the
 explicit Schubert margin ub>a² is positive. -/
-theorem normalized_projection_open (ha : 0 < a) (hN : N = u+b)
-    (hmargin : a*a < u*b)
+theorem normalized_projection_open (ha : 0 < a) (hN : N = u + b)
+    (hmargin : a * a < u * b)
     (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin N → K))
     (hmu : ∀ L : Submodule K (Fin a → K),
       N * finrank K L ≤ a * finrank K (BilinearImage.image mu L)) :

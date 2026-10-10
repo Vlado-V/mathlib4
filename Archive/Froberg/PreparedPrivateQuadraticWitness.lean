@@ -26,19 +26,20 @@ variable {σ : Type*} [Fintype σ]
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_quadratic_private_row_parameter {a z d q b t h c : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (MvPolynomial σ K)}
-    (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,2≤j) (hJd : ∀ j∈J,j≤d) (h2 : 2∈J)
+    (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hJd : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
     (cap : QuadraticRowCapacity a d q b J counts O)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
-    (T : MvPolynomial σ K →ₗ[K] (Fin c → K)) (hOT : O 2≤T.ker)
+    (T : MvPolynomial σ K →ₗ[K] (Fin c → K)) (hOT : O 2 ≤ T.ker)
     (w : Fin t → Fin h → K) (ι : Fin t ↪ Fin z)
     (A : Fin t → (Fin h → K) →ₗ[K] (Fin c → K))
-    (hA : ∀ i j,T (outputCombination (fun k => (bo k).val) (w i)*(bo j).val)=A i (Pi.single j 1))
-    (hker : (privatePolynomialMap (a := a) (s := d-1) ι A).ker=
-      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d-1) ι w))))
-    (P : Fin t → FullBiform K σ (a+z) 1 (d-1))
-    (hP : ∀ i,(P i).val=rename Sum.inl (outputCombination (fun k => (bo k).val) (w i))*
-      rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))
+    (hA : ∀ i j, T (outputCombination (fun k => (bo k).val) (w i) * (bo j).val) = A i (Pi.single j
+      1))
+    (hker : (privatePolynomialMap (a := a) (s := d - 1) ι A).ker =
+      Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d - 1) ι w))))
+    (P : Fin t → FullBiform K σ (a + z) 1 (d - 1))
+    (hP : ∀ i, (P i).val = rename Sum.inl (outputCombination (fun k => (bo k).val) (w i)) *
+      rename Sum.inr (monomial (privateExponent a (d - 1) ι i) (1 : K)))
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     ∃ p : Space (a+z) d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO ⟨2,h2⟩ i p) ∧

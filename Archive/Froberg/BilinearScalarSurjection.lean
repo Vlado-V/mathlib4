@@ -64,7 +64,7 @@ variable [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W]
 the number of scalar forms is above the target/source ratio. -/
 theorem generic_surjective_actual_of_strict_shadow [Infinite K] {q : ℕ}
     (mu : F →ₗ[K] V →ₗ[K] W) (R D : ℝ)
-    (hT : (finrank K W : ℝ)=R*finrank K V) (hq : R ≤ q) (hD : (finrank K V : ℝ) ≤ D)
+    (hT : (finrank K W : ℝ) = R * finrank K V) (hq : R ≤ q) (hD : (finrank K V : ℝ) ≤ D)
     (hgrowth : ∀ L : Submodule K V,
       R*finrank K L+D*(min (finrank K L) (finrank K V-finrank K L) : ℕ) ≤
         finrank K (Quartic.BilinearImage.image mu L)) :

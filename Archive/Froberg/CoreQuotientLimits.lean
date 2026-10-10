@@ -19,8 +19,8 @@ open Module Filter OuterInjection
 open scoped Topology
 
 lemma actual_core_dimension_limits {K : Type*} [Field K]
-    {k s h : ℕ} (hk : 0<k) (hs : 0<s) (hh : h=k*(2*s+1).choose s)
-    {σ : ℝ} (hσ : 0<σ) (hσ1 : σ<1)
+    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h = k * (2 * s + 1).choose s)
+    {σ : ℝ} (hσ : 0 < σ) (hσ1 : σ < 1)
     (a z : ℕ → ℕ) (ha : Tendsto a atTop atTop) (hz : Tendsto z atTop atTop)
     (har : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 σ))
     (hzr : Tendsto (fun n : ℕ => (z n : ℝ)/n) atTop (𝓝 (1-σ)))

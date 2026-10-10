@@ -18,7 +18,7 @@ namespace Froberg
 open Filter Module Quartic
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem eventually_odd_tail_projection_uniform {e : ℕ} (he : 2≤e) (ho : Odd (1+e)) :
+theorem eventually_odd_tail_projection_uniform {e : ℕ} (he : 2 ≤ e) (ho : Odd (1 + e)) :
     ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
       ∃ P : Forms K h (1+e) →ₗ[K] (Fin (topComplementCount (1+e) h) → K),
         Function.Surjective P ∧ finrank K P.ker=tailGeneratorCount (1+e) h ∧

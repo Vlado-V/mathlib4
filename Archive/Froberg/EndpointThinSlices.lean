@@ -43,8 +43,8 @@ theorem oddEndpointScalarAction_closed_thin_slices
     (hs : HasClosedKernelSlices
       (targetPostcompose (oddBackgroundScalarProduct Q F G) (oddEvenRelativeMap Q F G E).range.mkQ)
       (BilinearCovectorStrata.thinSlices
-        (finrank K (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q F G)-
-          e*finrank K (biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations F G)) C)) :
+        (finrank K (biformParitySpace K h m (2 * d) 1 ⧸ fullOddRelations Q F G) -
+          e * finrank K (biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations F G)) C)) :
     HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q E) F G)
       (BilinearCovectorStrata.thinSlices
         (finrank K (oddTargetSpace ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)

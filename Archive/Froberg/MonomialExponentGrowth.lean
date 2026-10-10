@@ -26,7 +26,7 @@ def degreeExponentEquiv (n d :
   left_inv _ := rfl
   right_inv _ := rfl
 
-lemma positive_target_sum_le {a z s : ℕ} (b : Degree (a+z) (2*s+1) → ℝ) (hb : ∀ β, 0 ≤ b β) :
+lemma positive_target_sum_le {a z s : ℕ} (b : Degree (a + z) (2 * s + 1) → ℝ) (hb : ∀ β, 0 ≤ b β) :
     (∑ β : Σ j, TargetMonomialFiber a z s j, b (targetExponent β).val) ≤ ∑ β, b β := by
   classical
   have he := (targetMonomialEquiv a z s).sum_comp (fun β => b β.val)

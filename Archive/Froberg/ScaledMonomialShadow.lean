@@ -21,10 +21,10 @@ lemma scale_shadow_inequality {I J : Type*} [Fintype I] [Fintype J]
     (hbase : ∀ (l : I → ℝ) (b : J → ℝ),
       (∀ i, 0 ≤ l i ∧ l i ≤ d i) →
       (∀ i j, R i j → min (c j) (l i) ≤ b j) →
-      (T/A) * (∑ i, l i) + g*(T/A)*min (∑ i, l i) (A-∑ i, l i) ≤ ∑ j, b j)
+      (T / A) * (∑ i, l i) + g * (T / A) * min (∑ i, l i) (A - ∑ i, l i) ≤ ∑ j, b j)
     (l : I → ℝ) (b : J → ℝ)
-    (hl : ∀ i, 0 ≤ l i ∧ l i ≤ K*d i)
-    (hb : ∀ i j, R i j → min (K*c j) (l i) ≤ b j) :
+    (hl : ∀ i, 0 ≤ l i ∧ l i ≤ K * d i)
+    (hb : ∀ i j, R i j → min (K * c j) (l i) ≤ b j) :
     (T/A)*(∑ i, l i) + g*(T/A)*min (∑ i, l i) (K*A-∑ i, l i) ≤ ∑ j, b j := by
   have hu (i : I) : 0 ≤ l i / K ∧ l i / K ≤ d i := by
     refine ⟨div_nonneg (hl i).1 hK.le, (div_le_iff₀ hK).mpr ?_⟩

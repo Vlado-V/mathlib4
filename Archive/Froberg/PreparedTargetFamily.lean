@@ -80,10 +80,10 @@ def generator (U : Fin u → homogeneousSubmodule σ K d)
       rename Sum.inr (p.2.2 i).val+(rename Sum.inl (U i).val+P i) := by
   rfl
 
-theorem generator_homogeneous (hd : 0<d)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d)
+theorem generator_homogeneous (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → homogeneousSubmodule σ K d)
-    (P : Fin u → MvPolynomial (σ ⊕ Fin n) K) (hP : ∀ i,(P i).IsHomogeneous d)
+    (P : Fin u → MvPolynomial (σ ⊕ Fin n) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (p : Space n d q f u J counts O) (i : Label q f u J counts) :
     (generator U P p i).IsHomogeneous d := by
   rcases i with i | (i | i)
@@ -98,7 +98,7 @@ theorem generator_homogeneous (hd : 0<d)
     exact (p.2.2 i).property.rename_isHomogeneous.add
       ((U i).property.rename_isHomogeneous.add (hP i))
 
-theorem finite_space (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+theorem finite_space (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space n d q f u J counts O) := by
   letI : Module.Finite K (PreparedParameters.Space n d q J counts O) :=
     PreparedParameters.finite_space hO

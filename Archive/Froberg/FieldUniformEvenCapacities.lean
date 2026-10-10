@@ -23,11 +23,11 @@ open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
-theorem eventually_field_uniform_empty_higher_capacity {w d : ℕ} (hd : 9≤d)
-    (J : Finset ℕ) (R : J) (hR : 4≤R.val) (hRd : R.val≤d)
-    (hH : 0<oddOutputDimension w R.val)
+theorem eventually_field_uniform_empty_higher_capacity {w d : ℕ} (hd : 9 ≤ d)
+    (J : Finset ℕ) (R : J) (hR : 4 ≤ R.val) (hRd : R.val ≤ d)
+    (hH : 0 < oddOutputDimension w R.val)
     (q : ℕ → ℕ) (counts : ℕ → ℕ → ℕ)
-    (hzero : ∀ n,counts n R.val=0)
+    (hzero : ∀ n, counts n R.val = 0)
     (hr : Tendsto (fun n : ℕ => (Fintype.card (Label (q n) J (counts n)) : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :
     ∀ᶠ v : ℕ in atTop,
@@ -72,7 +72,7 @@ theorem eventually_field_uniform_empty_higher_capacity {w d : ℕ} (hd : 9≤d)
           scalar_open := ⟨D,hD,fun Q hQ => (hgood Q hQ).1⟩ }
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
-theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9≤d) :
+theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

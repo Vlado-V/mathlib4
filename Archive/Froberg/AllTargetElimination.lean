@@ -20,27 +20,27 @@ variable {K : Type} [Field K] {h m d b j : ℕ}
 variable {ι : Type*} [Fintype ι]
 attribute [local instance] tensorGroup
 
-def TargetLift (I : Submodule K (Poly K (h+m))) (d b : ℕ) : Prop :=
+def TargetLift (I : Submodule K (Poly K (h + m))) (d b : ℕ) : Prop :=
   ∀ v : coreCoefficientSpace K h m (2*d) b,
     ∃ q : Forms K (h+m) (2*d), q.val∈I ∧
       coreComponent h m b q.val=v.val ∧
       ∀ k,b<k → coreComponent h m k q.val=0
 
-theorem targetLift_mono {I J : Submodule K (Poly K (h+m))}
-    (hIJ : I≤J) (hI : TargetLift I d b) : TargetLift J d b := by
+theorem targetLift_mono {I J : Submodule K (Poly K (h + m))}
+    (hIJ : I ≤ J) (hI : TargetLift I d b) : TargetLift J d b := by
   intro v
   obtain ⟨q,hq,ht,hu⟩ := hI v
   exact ⟨q,hIJ hq,ht,hu⟩
 
 theorem targetLift_of_biform_degrees {e x y : ℕ}
-    (hgen : j+e=d) (hcoef : x+y=d) (hweight : j+x=b)
-    (p : ι → Poly K (h+m)) (hp : ∀ i,(p i).IsHomogeneous d)
+    (hgen : j + e = d) (hcoef : x + y = d) (hweight : j + x = b)
+    (p : ι → Poly K (h + m)) (hp : ∀ i, (p i).IsHomogeneous d)
     (g : ι → Forms K h j ⊗[K] Forms K m e)
-    (htop : ∀ i,coreComponent h m j (p i)=ambientBiform (g i))
-    (hupper : ∀ i k,j<k → coreComponent h m k (p i)=0)
+    (htop : ∀ i, coreComponent h m j (p i) = ambientBiform (g i))
+    (hupper : ∀ i k, j < k → coreComponent h m k (p i) = 0)
     (hg : Function.Surjective (biformTensorFamilyMap (x := x) (y := y) g))
-    (I : Submodule K (Poly K (h+m)))
-    (hI : (Submodule.span K (Set.range p))*Forms K (h+m) d≤I) :
+    (I : Submodule K (Poly K (h + m)))
+    (hI : (Submodule.span K (Set.range p)) * Forms K (h + m) d ≤ I) :
     TargetLift I d b := by
   have hh := biform_deformed_target_lift p (by simpa only [hgen] using hp)
     g htop hupper hg I (by simpa only [hcoef] using hI)
@@ -50,14 +50,14 @@ theorem targetLift_of_biform_degrees {e x y : ℕ}
 
 /-- The literal multiplication row in degrees `(j,d-j)` and
 `(b-j,d+j-b)` supplies the degree-`2d`, X-degree-`b` target. -/
-theorem targetLift_of_biform (hjd : j≤d) (hjb : j≤b) (hbd : b≤d+j)
-    (p : ι → Poly K (h+m)) (hp : ∀ i,(p i).IsHomogeneous d)
-    (g : ι → Forms K h j ⊗[K] Forms K m (d-j))
-    (htop : ∀ i,coreComponent h m j (p i)=ambientBiform (g i))
-    (hupper : ∀ i k,j<k → coreComponent h m k (p i)=0)
-    (hg : Function.Surjective (biformTensorFamilyMap (x := b-j) (y := d+j-b) g))
-    (I : Submodule K (Poly K (h+m)))
-    (hI : (Submodule.span K (Set.range p))*Forms K (h+m) d≤I) :
+theorem targetLift_of_biform (hjd : j ≤ d) (hjb : j ≤ b) (hbd : b ≤ d + j)
+    (p : ι → Poly K (h + m)) (hp : ∀ i, (p i).IsHomogeneous d)
+    (g : ι → Forms K h j ⊗[K] Forms K m (d - j))
+    (htop : ∀ i, coreComponent h m j (p i) = ambientBiform (g i))
+    (hupper : ∀ i k, j < k → coreComponent h m k (p i) = 0)
+    (hg : Function.Surjective (biformTensorFamilyMap (x := b - j) (y := d + j - b) g))
+    (I : Submodule K (Poly K (h + m)))
+    (hI : (Submodule.span K (Set.range p)) * Forms K (h + m) d ≤ I) :
     TargetLift I d b := by
   have hsource : j+(d-j)=d := by omega
   have hcoef : b-j+(d+j-b)=d := by omega
@@ -71,9 +71,9 @@ theorem targetLift_of_biform (hjd : j≤d) (hjb : j≤b) (hbd : b≤d+j)
 
 /-- Filling all rows of X-degree at least two leaves a representative
 supported in the two bottom X-degrees. -/
-theorem all_target_lifts_eliminate (I : Submodule K (Poly K (h+m)))
-    (hd : 0<d) (hlift : ∀ b,2≤b → b≤2*d → TargetLift I d b)
-    (p : Forms K (h+m) (2*d)) :
+theorem all_target_lifts_eliminate (I : Submodule K (Poly K (h + m)))
+    (hd : 0 < d) (hlift : ∀ b, 2 ≤ b → b ≤ 2 * d → TargetLift I d b)
+    (p : Forms K (h + m) (2 * d)) :
     ∃ q : Forms K (h+m) (2*d),p.val-q.val∈I ∧
       ∀ b,2≤b → b≤2*d → coreComponent h m b q.val=0 := by
   have hs : (2*d-1)+1=2*d := by omega

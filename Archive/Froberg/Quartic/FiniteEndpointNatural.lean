@@ -24,7 +24,7 @@ def finInverse (B : ℕ → ℕ) (i : Fin N) : ℕ := B i.val
 
 /-- Bounded natural indices preserve the literal sparse inverse row equation. -/
 theorem inverse_row_eq (hN : 0 < N) (A : ℕ → List ℕ) (B : ℕ → ℕ)
-    (i : Fin N) (hbound : ∀ j ∈ A i.val,j < N) :
+    (i : Fin N) (hbound : ∀ j ∈ A i.val, j < N) :
     ((finRows hN A i).map (finInverse B)) = (A i.val).map B := by
   simp only [finRows,finInverse,List.map_map,Function.comp_def]
   apply List.map_congr_left
@@ -43,8 +43,8 @@ theorem checkInverse_of_natural_equations (hN : 0 < N) (A : ℕ → List ℕ) (B
 
 /-- Natural-index enumeration can also be checked without introducing Fin proof terms. -/
 theorem checkInverse_of_bounded_equations (hN : 0 < N) (A : ℕ → List ℕ) (B : ℕ → ℕ)
-    (hbound : ∀ i < N,∀ j ∈ A i,j < N)
-    (hrow : ∀ i < N,xorSum ((A i).map B) = 2^i) :
+    (hbound : ∀ i < N, ∀ j ∈ A i, j < N)
+    (hrow : ∀ i < N, xorSum ((A i).map B) = 2 ^ i) :
     checkInverse (finRows hN A) (finInverse B) = true :=
   checkInverse_of_natural_equations hN A B (fun i => hbound i.val i.isLt)
     (fun i => hrow i.val i.isLt)

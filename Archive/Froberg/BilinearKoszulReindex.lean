@@ -25,7 +25,7 @@ variable {K U V A W I J I' J' : Type*} [Field K]
 /-- Reindex both the scalar and the new-layer generators. -/
 theorem bilinearKoszulRow_exact_reindex (eI : I' ≃ I) (eJ : J' ≃ J)
     (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → V) (E : J → U) (P : W →ₗ[K] A)
-    (hexact : (bilinearKoszulRow μ Q E P).ker=
+    (hexact : (bilinearKoszulRow μ Q E P).ker =
       (bilinearKoszulConstants (K := K) (W := W) Q E).range) :
     (bilinearKoszulRow μ (Q ∘ eI) (E ∘ eJ) P).ker=
       (bilinearKoszulConstants (K := K) (W := W) (Q ∘ eI) (E ∘ eJ)).range := by

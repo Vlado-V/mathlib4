@@ -68,7 +68,7 @@ def restoredJointCoordinates : RestoredOuterSpace m d q f J counts O ≃ₗ[K]
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem finite_restoredJointRest (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem finite_restoredJointRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (RestoredJointRest m d J counts O) := by
   letI : Module.Finite K (Space m d 0 J counts O) := finite_space hO
   let pr : RestoredOuterSpace m d 0 0 J counts O →ₗ[K] RestoredJointRest m d J counts O :=
@@ -80,7 +80,7 @@ theorem finite_restoredJointRest (hO : ∀ j∈J,O j≤Forms K h j) :
   rw [LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
+def restoredJointFromCoordinates (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     ((VectorParameters.Index h m (d-1) f ⊕
       (CoefficientIndex m d q ⊕ Fin (finrank K (RestoredJointRest m d J counts O)))) → K) →ₗ[K]
         RestoredOuterSpace m d q f J counts O := by
@@ -97,8 +97,8 @@ def restoredJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
   exact restoredJointCoordinates.symm.toLinearMap.comp (g.prod (Q.prod R))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
-    (pF : VectorParameters.Index h m (d-1) f → K) (pQ : CoefficientIndex m d q → K)
+theorem restoredJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (pF : VectorParameters.Index h m (d - 1) f → K) (pQ : CoefficientIndex m d q → K)
     (pR : Fin (finrank K (RestoredJointRest m d J counts O)) → K) :
     letI : Module.Finite K (RestoredJointRest m d J counts O) := finite_restoredJointRest hO
     restoredJointCoordinates (restoredJointFromCoordinates hO (Sum.elim pF (Sum.elim pQ pR)))=
@@ -110,7 +110,7 @@ theorem restoredJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restoredJointFromCoordinates_surjective (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem restoredJointFromCoordinates_surjective (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Function.Surjective (restoredJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (counts := counts) hO) := by
   letI : Module.Finite K (RestoredJointRest m d J counts O) := finite_restoredJointRest hO

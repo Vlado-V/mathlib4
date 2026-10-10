@@ -21,9 +21,9 @@ variable {n d R : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 
 theorem products_full_biform
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (hR : R≤2*d)
-    (hE : ∀ j∈J,∀ i,(E j i).IsHomogeneous d)
-    (hEX : ∀ j∈J,∀ i,(E j i).IsWeightedHomogeneous
+    (hR : R ≤ 2 * d)
+    (hE : ∀ j ∈ J, ∀ i, (E j i).IsHomogeneous d)
+    (hEX : ∀ j ∈ J, ∀ i, (E j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) j)
     (p : Row J R) (c : Columns counts p) :
     products counts E p c∈FullBiform K σ n R (2*d-R) := by
@@ -47,9 +47,9 @@ theorem products_full_biform
 
 theorem multiplication_range_full_biform
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (hR : R≤2*d)
-    (hE : ∀ j∈J,∀ i,(E j i).IsHomogeneous d)
-    (hEX : ∀ j∈J,∀ i,(E j i).IsWeightedHomogeneous
+    (hR : R ≤ 2 * d)
+    (hE : ∀ j ∈ J, ∀ i, (E j i).IsHomogeneous d)
+    (hEX : ∀ j ∈ J, ∀ i, (E j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) j) :
     (multiplication counts E J R).range≤FullBiform K σ n R (2*d-R) := by
   rw [multiplication,Finsupp.range_linearCombination]

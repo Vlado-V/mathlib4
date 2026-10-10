@@ -22,7 +22,7 @@ open scoped Topology
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- One nonempty principal open supplies all scalar injections and the
 separated paired coefficient space simultaneously. -/
-theorem eventually_uniform_scalar_coefficient_witnesses {d : ℕ} (hd : 2≤d)
+theorem eventually_uniform_scalar_coefficient_witnesses {d : ℕ} (hd : 2 ≤ d)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :
@@ -48,7 +48,7 @@ theorem eventually_uniform_scalar_coefficient_witnesses {d : ℕ} (hd : 2≤d)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Reserving z scalar variables preserves the C.1 asymptotic bound. The
 family has its actual count r(n+z) while its polynomials use only n variables. -/
-theorem eventually_uniform_scalar_coefficient_witnesses_shift {d : ℕ} (hd : 2≤d)
+theorem eventually_uniform_scalar_coefficient_witnesses_shift {d : ℕ} (hd : 2 ≤ d)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ)))) (z : ℕ) :
@@ -70,7 +70,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 in the paired coefficient space. Both count bounds use the full n+z variables,
 while the witness itself is supported on the n core variables. -/
 theorem eventually_uniform_scalar_coefficient_witnesses_capacity_shift {d h : ℕ}
-    (hd : 3≤d) (hh : 0<h) (r f : ℕ → ℕ)
+    (hd : 3 ≤ d) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hf : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))

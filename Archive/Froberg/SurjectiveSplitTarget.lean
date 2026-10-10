@@ -60,7 +60,7 @@ theorem quotientSplit_evaluation (e : A ≃ₗ[K] W₀ × H)
 
 theorem quotientSplit_action_compat (e : A ≃ₗ[K] W₀ × H)
     (pi : A →ₗ[K] W) (muA : P →ₗ[K] V →ₗ[K] A) (mu : P →ₗ[K] V →ₗ[K] W)
-    (hmu : ∀ p v,pi (muA p v)=mu p v) (ell : W →ₗ[K] K) (p : P) (v : V) :
+    (hmu : ∀ p v, pi (muA p v) = mu p v) (ell : W →ₗ[K] K) (p : P) (v : V) :
     ell (mu p v)=
       quotientSplitBottom e pi ell (splitTargetBottomAction e muA p v)+
       quotientSplitHigher e pi ell (splitTargetHigherAction e muA p v) := by

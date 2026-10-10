@@ -23,19 +23,19 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f r r' : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def restoredOuterCountIndexMap (hc : ∀ j∈J,c j≤c' j)
+def restoredOuterCountIndexMap (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c') :
     Fin (r+f) → Fin (r'+f) := fun i =>
   finSumFinEquiv (Sum.map (countIndexMap hc idx idx') id (finSumFinEquiv.symm i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredOuterEndpoint_restrictCounts
-    (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+    (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (p : RestoredOuterSpace m d q f J c' O) (i : Fin (r+f)) :
+    (p : RestoredOuterSpace m d q f J c' O) (i : Fin (r + f)) :
     restoredOuterEndpoint hdp hd hO hJ heven idx slot (restoredRestrictCounts hc p) i=
       restoredOuterEndpoint hdp hd hO hJ heven idx' (countIndexMap hc idx idx' ∘ slot) p
         (restoredOuterCountIndexMap hc idx idx' i) := by
@@ -58,9 +58,9 @@ theorem restoredOuterEndpoint_restrictCounts
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem HasRestoredUpperOpen.extend_counts
-    (hdp : 1≤d) (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j)
+    (hdp : 1 ≤ d) (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c')
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (hu : HasRestoredUpperOpen (m := m) (f := f) hdp hd hO hJ heven idx slot) :

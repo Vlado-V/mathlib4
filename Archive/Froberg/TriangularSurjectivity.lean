@@ -17,18 +17,18 @@ noncomputable section
 namespace Froberg
 open Module
 variable {K : Type*} [Field K] {n : ℕ}
-variable {V S : Fin (n+1) → Type*}
-  [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)]
-  [∀ i,AddCommGroup (S i)] [∀ i,Module K (S i)]
+variable {V S : Fin (n + 1) → Type*}
+  [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+  [∀ i, AddCommGroup (S i)] [∀ i, Module K (S i)]
 
 /-- The sum of the actual relation maps from every target row. -/
-def triangularRowSum (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) → V j)) :
+def triangularRowSum (C : (i : Fin (n + 1)) → S i →ₗ[K] ((j : Fin (n + 1)) → V j)) :
     ((i : Fin (n+1)) → S i) →ₗ[K] ((j : Fin (n+1)) → V j) :=
   ∑ i,(C i).comp (LinearMap.proj i)
 
 @[simp] theorem triangularRowSum_single
-    (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) → V j))
-    (i : Fin (n+1)) (s : S i) : triangularRowSum C (Pi.single i s)=C i s := by
+    (C : (i : Fin (n + 1)) → S i →ₗ[K] ((j : Fin (n + 1)) → V j))
+    (i : Fin (n + 1)) (s : S i) : triangularRowSum C (Pi.single i s)=C i s := by
   classical
   simp only [triangularRowSum,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
   rw [Finset.sum_eq_single i]
@@ -40,9 +40,9 @@ def triangularRowSum (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) →
 /-- Once every positive diagonal row is onto, adjoining the bottom block
 makes the complete triangular relation map onto. -/
 theorem triangular_surjective_with_bottom
-    (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) → V j))
-    (hupper : ∀ i j,i<j → ∀ s,C i s j=0)
-    (hsurj : ∀ i,i≠0 → Function.Surjective (fun s => C i s i)) :
+    (C : (i : Fin (n + 1)) → S i →ₗ[K] ((j : Fin (n + 1)) → V j))
+    (hupper : ∀ i j, i < j → ∀ s, C i s j = 0)
+    (hsurj : ∀ i, i ≠ 0 → Function.Surjective (fun s => C i s i)) :
     Function.Surjective ((LinearMap.single K V 0).coprod (triangularRowSum C)) := by
   classical
   let A := (LinearMap.single K V 0).coprod (triangularRowSum C)
@@ -63,9 +63,9 @@ theorem triangular_surjective_with_bottom
 /-- The positive target projection is onto even when nothing is assumed
 about the scalar row. This is surjectivity modulo the bottom target. -/
 theorem triangular_surjective_mod_bottom
-    (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) → V j))
-    (hupper : ∀ i j,i<j → ∀ s,C i s j=0)
-    (hsurj : ∀ i,i≠0 → Function.Surjective (fun s => C i s i)) :
+    (C : (i : Fin (n + 1)) → S i →ₗ[K] ((j : Fin (n + 1)) → V j))
+    (hupper : ∀ i j, i < j → ∀ s, C i s j = 0)
+    (hsurj : ∀ i, i ≠ 0 → Function.Surjective (fun s => C i s i)) :
     Function.Surjective (fun s : (i : Fin (n+1)) → S i =>
       fun j : Fin n => triangularRowSum C s j.succ) := by
   intro v

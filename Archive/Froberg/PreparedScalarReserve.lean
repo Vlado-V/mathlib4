@@ -18,9 +18,9 @@ namespace Froberg
 open Filter Polynomial
 open scoped Topology
 
-theorem prepared_extra_scalar_count_lower_order {d : ℕ} (hd : 3≤d) (h extra : ℕ)
+theorem prepared_extra_scalar_count_lower_order {d : ℕ} (hd : 3 ≤ d) (h extra : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     Tendsto (fun m : ℕ =>
       ((e m+(∑ j∈activeHigherIndices d,higherGeneratorCount d h m j)+extra : ℕ) : ℝ)/(m : ℝ)^(d-1))
       atTop (𝓝 0) := by
@@ -51,9 +51,9 @@ theorem prepared_extra_scalar_count_lower_order {d : ℕ} (hd : 3≤d) (h extra 
     simp only [Nat.cast_add,add_div]
     ring
 
-theorem prepared_scalar_difference_lower_order {d : ℕ} (hd : 3≤d) (h extra : ℕ)
+theorem prepared_scalar_difference_lower_order {d : ℕ} (hd : 3 ≤ d) (h extra : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     Tendsto (fun m : ℕ =>
       ((preparedScalarCount d h m (e m)+extra-upperCount m d : ℕ) : ℝ)/(m : ℝ)^(d-1))
       atTop (𝓝 0) := by

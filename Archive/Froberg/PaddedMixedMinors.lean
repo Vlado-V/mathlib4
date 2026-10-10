@@ -20,15 +20,15 @@ variable {K α : Type*} [Field K] {r l : ℕ}
 /-- Each mixed row uses its own first `t I` attached vectors, followed by fixed
 complementary coordinate vectors. The labels used in different rows are disjoint. -/
 def paddedVectors {R : Type*} [CommRing R]
-    (t : Set.powersetCard (Fin (r+l)) r → ℕ)
-    (label : (Σ I, Fin (t I)) → α) (v : α → Fin (r+l) → R)
-    (I : Set.powersetCard (Fin (r+l)) r) : Fin l → Fin (r+l) → R :=
+    (t : Set.powersetCard (Fin (r + l)) r → ℕ)
+    (label : (Σ I, Fin (t I)) → α) (v : α → Fin (r + l) → R)
+    (I : Set.powersetCard (Fin (r + l)) r) : Fin l → Fin (r+l) → R :=
   fun j => if hj : j.val < t I then v (label ⟨I,⟨j.val,hj⟩⟩) else complementVectors I j
 
 theorem paddedVectors_map {R S : Type*} [CommRing R] [CommRing S]
-    (f : R →+* S) (t : Set.powersetCard (Fin (r+l)) r → ℕ)
-    (label : (Σ I, Fin (t I)) → α) (v : α → Fin (r+l) → R)
-    (I : Set.powersetCard (Fin (r+l)) r) :
+    (f : R →+* S) (t : Set.powersetCard (Fin (r + l)) r → ℕ)
+    (label : (Σ I, Fin (t I)) → α) (v : α → Fin (r + l) → R)
+    (I : Set.powersetCard (Fin (r + l)) r) :
     paddedVectors t label (fun a j => f (v a j)) I =
       fun i j => f (paddedVectors t label v I i j) := by
   classical
@@ -39,7 +39,7 @@ theorem paddedVectors_map {R S : Type*} [CommRing R] [CommRing S]
 /-- Independent labels let the added vectors be specialized separately to the
 missing coordinate directions in each mixed determinant. -/
 theorem paddedVectors_specialization
-    (t : Set.powersetCard (Fin (r+l)) r → ℕ) (ht : ∀ I, t I ≤ l)
+    (t : Set.powersetCard (Fin (r + l)) r → ℕ) (ht : ∀ I, t I ≤ l)
     (label : (Σ I, Fin (t I)) ↪ α) :
     ∃ v : α → Fin (r+l) → K, ∀ I,
       paddedVectors t label v I = complementVectors I := by
@@ -59,7 +59,7 @@ theorem paddedVectors_specialization
 /-- The finite linear system on Plücker coordinates has a genuinely nonzero
 polynomial determinant. Its witness specializes it to a diagonal matrix of units. -/
 theorem padded_constraint_minor_ne_zero
-    (t : Set.powersetCard (Fin (r+l)) r → ℕ) (ht : ∀ I, t I ≤ l)
+    (t : Set.powersetCard (Fin (r + l)) r → ℕ) (ht : ∀ I, t I ≤ l)
     (label : (Σ I, Fin (t I)) ↪ α) :
     Matrix.det (fun I J => mixedRow
       (paddedVectors t label (fun a j => (X (a,j) : MvPolynomial (α × Fin (r+l)) K)) I) J) ≠ 0 := by

@@ -18,7 +18,7 @@ open Module MvPolynomial
 variable {K I J : Type*} [Field K] [Fintype I] [Fintype J] {n s d : ℕ}
 
 lemma image_relationSpace (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i,(e i).degree=s) :
+    (he : ∀ i, (e i).degree = s) :
     Quartic.BilinearImage.image (vectorMultiply (d := d)) (relationSpace (d := 0) e v he) =
       relationSpace (d := d) e v he := by
   classical
@@ -46,7 +46,7 @@ lemma image_relationSpace (e : I → Fin n →₀ ℕ) (v : I → J → K)
     exact Submodule.sum_mem _ (fun i _ => Quartic.BilinearImage.product_mem _ _ _ _ (hg i))
 
 lemma image_quotient_finrank_add (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i,(e i).degree=s)
+    (he : ∀ i, (e i).degree = s)
     (L : Submodule K ((J → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     finrank K (Quartic.BilinearImage.image (quotientMultiply (d := d) e v he) L)+
       finrank K (relationSpace (d := d) e v he) =
@@ -61,7 +61,7 @@ lemma image_quotient_finrank_add (e : I → Fin n →₀ ℕ) (v : I → J → K
     (Quartic.QuotientBilinearImage.le_preimage _ L)
 
 lemma expansion_iff_ambient (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i,(e i).degree=s) (ell q : ℕ) :
+    (he : ∀ i, (e i).degree = s) (ell q : ℕ) :
     (∀ L : Submodule K ((J → Forms K n s) ⧸ relationSpace (d := 0) e v he),
       finrank K L=ell → q ≤ finrank K (Quartic.BilinearImage.image (quotientMultiply (d := d) e v
         he) L)) ↔

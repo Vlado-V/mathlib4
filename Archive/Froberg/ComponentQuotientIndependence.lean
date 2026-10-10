@@ -20,15 +20,15 @@ variable {K V W : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 theorem quotient_independent_of_projection {I : Type*}
     (A : Submodule K V) (g : I → V) (P : V →ₗ[K] W)
-    (hA : A≤P.ker) (hg : LinearIndependent K (fun i => P (g i))) :
+    (hA : A ≤ P.ker) (hg : LinearIndependent K (fun i => P (g i))) :
     LinearIndependent K (fun i => A.mkQ (g i)) := by
   apply LinearIndependent.of_comp (A.liftQ P hA)
   simpa only [Function.comp_def,Submodule.mkQ_apply,Submodule.liftQ_apply] using hg
 
 theorem quotient_split_independent {I L : Type*} [Fintype I] [Fintype L]
     (A : Submodule K V) (g : I → V) (v : L → V) (P : V →ₗ[K] W)
-    (hA : A≤P.ker) (hg : LinearIndependent K (fun i => A.mkQ (g i)))
-    (hv : LinearIndependent K (fun i => P (v i))) (hzero : ∀ i,P (g i)=0) :
+    (hA : A ≤ P.ker) (hg : LinearIndependent K (fun i => A.mkQ (g i)))
+    (hv : LinearIndependent K (fun i => P (v i))) (hzero : ∀ i, P (g i) = 0) :
     LinearIndependent K (fun i : I ⊕ L => A.mkQ (Sum.elim g v i)) := by
   classical
   apply Fintype.linearIndependent_iff.mpr
@@ -53,7 +53,7 @@ variable {σ : Type*} {w : σ → ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 theorem component_quotient_family_independent
     (A : Submodule K (MvPolynomial σ K))
     (g : (j : J) → Fin (counts j.val) → MvPolynomial σ K)
-    (v : (Σ j : J,Fin (counts j.val)) → MvPolynomial σ K)
+    (v : (Σ j : J, Fin (counts j.val)) → MvPolynomial σ K)
     (hA : ∀ j : J,0<counts j.val → ∀ a∈A,weightedHomogeneousComponent w j.val a=0)
     (hcomp : ∀ (j k : J) (i : Fin (counts k.val)),0<counts j.val →
       weightedHomogeneousComponent w j.val (v ⟨k,i⟩)=if k=j then g k i else 0)

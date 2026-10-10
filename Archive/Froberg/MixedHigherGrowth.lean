@@ -34,12 +34,12 @@ theorem bilinear_growth_injective_postcompose
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem mixedHigherAction_growth (hd : Odd d) (hd3 : 3≤d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
-      (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
+theorem mixedHigherAction_growth (hd : Odd d) (hd3 : 3 ≤ d)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
+      (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
     (t : ℕ)
     (htop : ∀ L : Submodule K (Fin b → K), t*finrank K L≤finrank K
       (BilinearImage.image (projectedTopScalarAction R

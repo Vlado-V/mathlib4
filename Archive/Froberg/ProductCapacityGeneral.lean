@@ -17,8 +17,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem eventually_product_capacity_of_limits {j s : ℕ} (hs : 0<s)
-    (A B : ℕ → ℕ) (a b γ : ℝ) (hγ : 0≤γ)
+theorem eventually_product_capacity_of_limits {j s : ℕ} (hs : 0 < s)
+    (A B : ℕ → ℕ) (a b γ : ℝ) (hγ : 0 ≤ γ)
     (hA : Tendsto (fun h : ℕ => (A h : ℝ)/(h : ℝ)^j) atTop (𝓝 a))
     (hB : Tendsto (fun n : ℕ => (B n : ℝ)/(n : ℝ)^s) atTop (𝓝 b))
     (hgap : γ<a*b) :
@@ -40,8 +40,8 @@ theorem eventually_product_capacity_of_limits {j s : ℕ} (hs : 0<s)
   filter_upwards [eventually_lt_of_normalized_limits _ _ s _ _ hF hG hg] with n hn
   exact_mod_cast hn.le
 
-theorem eventually_exact_product_capacity_of_limits {j s : ℕ} (hs : 0<s)
-    (A B : ℕ → ℕ) (a b γ : ℝ) (hγ : 0≤γ)
+theorem eventually_exact_product_capacity_of_limits {j s : ℕ} (hs : 0 < s)
+    (A B : ℕ → ℕ) (a b γ : ℝ) (hγ : 0 ≤ γ)
     (hA : Tendsto (fun h : ℕ => (A h : ℝ)/(h : ℝ)^j) atTop (𝓝 a))
     (hB : Tendsto (fun n : ℕ => (B n : ℝ)/(n : ℝ)^s) atTop (𝓝 b))
     (hgap : γ<a*b) :

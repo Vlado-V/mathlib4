@@ -45,8 +45,8 @@ theorem eventually_uniform_odd_scalar_layers_open {h d : ℕ}
 /-- The top growth cutoff is uniform both in the field and in the projection. -/
 theorem eventually_uniform_projected_top_growth_open {h e b : ℕ}
     (hh : 0 < h) (he : 2 ≤ e) (hb : 0 < b)
-    (hratio : (h : ℝ)/(2*((1+e : ℕ) : ℝ)) ≤
-      (b : ℝ)/((h+e-1).choose e : ℝ))
+    (hratio : (h : ℝ) / (2 * ((1 + e : ℕ) : ℝ)) ≤
+      (b : ℝ) / ((h + e - 1).choose e : ℝ))
     (qF qS : ℕ → ℕ)
     (hF : Tendsto (fun m : ℕ => (qF m : ℝ)/(m : ℝ)^e) atTop
       (𝓝 ((h : ℝ)*criticalRatio (1+e)/(e.factorial : ℝ))))
@@ -79,8 +79,8 @@ theorem eventually_uniform_counted_odd_scalar_growth {h d k lo : ℕ}
 Only the resulting principal polynomial and its point depend on the field. -/
 theorem eventually_uniform_counted_base_c4_growth {h d b k lo : ℕ}
     (hd : 3 ≤ d) (hh : 0 < h) (hb : 0 < b)
-    (hratio : (h : ℝ)/(2*((1+(d-1) : ℕ) : ℝ)) ≤
-      (b : ℝ)/((h+(d-1)-1).choose (d-1) : ℝ))
+    (hratio : (h : ℝ) / (2 * ((1 + (d - 1) : ℕ) : ℝ)) ≤
+      (b : ℝ) / ((h + (d - 1) - 1).choose (d - 1) : ℝ))
     (upper : Bool) (a f e : ℕ → ℕ)
     (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],

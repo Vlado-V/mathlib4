@@ -40,11 +40,11 @@ lemma eval_polynomialFixLeft (x : I → K) (y : J → K) (P : MvPolynomial (I �
   exact congrArg (fun f : MvPolynomial (I ⊕ J) K →ₐ[K] K => f P) hh
 
 theorem fiberwise_principal_meets_joint_open
-    (D : MvPolynomial I K) (hD : ∃ x,eval x D ≠ 0)
+    (D : MvPolynomial I K) (hD : ∃ x, eval x D ≠ 0)
     (Φ : (I → K) → (J → K) → Prop)
-    (hΦ : ∀ x,eval x D ≠ 0 → ∃ Q : MvPolynomial J K,
-      (∃ y,eval y Q ≠ 0) ∧ ∀ y,eval y Q ≠ 0 → Φ x y)
-    (P : MvPolynomial (I ⊕ J) K) (hP : ∃ z,eval z P ≠ 0) :
+    (hΦ : ∀ x, eval x D ≠ 0 → ∃ Q : MvPolynomial J K,
+      (∃ y, eval y Q ≠ 0) ∧ ∀ y, eval y Q ≠ 0 → Φ x y)
+    (P : MvPolynomial (I ⊕ J) K) (hP : ∃ z, eval z P ≠ 0) :
     ∃ x y,eval x D ≠ 0 ∧ Φ x y ∧ eval (Sum.elim x y) P ≠ 0 := by
   obtain ⟨z,hz⟩ := hP
   let x₀ : I → K := fun i => z (.inl i)
@@ -63,11 +63,11 @@ theorem fiberwise_principal_meets_joint_open
   exact ⟨x,y,hxD,hprop y hyQ,by simpa only [eval_polynomialFixLeft] using hyL⟩
 
 theorem fiberwise_principal_meets_joint_open_with_extra {L : Type*}
-    (D : MvPolynomial I K) (hD : ∃ x,eval x D ≠ 0)
+    (D : MvPolynomial I K) (hD : ∃ x, eval x D ≠ 0)
     (Φ : (I → K) → (J → K) → Prop)
-    (hΦ : ∀ x,eval x D ≠ 0 → ∃ Q : MvPolynomial J K,
-      (∃ y,eval y Q ≠ 0) ∧ ∀ y,eval y Q ≠ 0 → Φ x y)
-    (P : MvPolynomial (I ⊕ (J ⊕ L)) K) (hP : ∃ z,eval z P ≠ 0) :
+    (hΦ : ∀ x, eval x D ≠ 0 → ∃ Q : MvPolynomial J K,
+      (∃ y, eval y Q ≠ 0) ∧ ∀ y, eval y Q ≠ 0 → Φ x y)
+    (P : MvPolynomial (I ⊕ (J ⊕ L)) K) (hP : ∃ z, eval z P ≠ 0) :
     ∃ x y z,eval x D ≠ 0 ∧ Φ x y ∧ eval (Sum.elim x (Sum.elim y z)) P ≠ 0 := by
   have hΦ' : ∀ x,eval x D ≠ 0 → ∃ Q : MvPolynomial (J ⊕ L) K,
       (∃ y,eval y Q ≠ 0) ∧ ∀ y,eval y Q ≠ 0 → Φ x (fun j => y (.inl j)) := by

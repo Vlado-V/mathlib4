@@ -17,11 +17,11 @@ namespace Quartic.MarkedSquareRankCount
 open Module
 variable {K : Type*} [Field K] {m c q : ℕ}
 
-theorem marked_of_gain (f : Fin (4+(c+q)) → Forms K (3+m) 2)
-    (hf : LinearIndependent K f) (ζ : Forms K (3+m) 2) (split response : ℕ)
-    (hsplit : (split:ℤ)=Counts.b4 (3+m)-Counts.j m q c)
-    (hresponse : Counts.hTotal m q c+1 ≤ (response:ℤ))
-    (hgain : split+response ≤ finrank K
+theorem marked_of_gain (f : Fin (4 + (c + q)) → Forms K (3 + m) 2)
+    (hf : LinearIndependent K f) (ζ : Forms K (3 + m) 2) (split response : ℕ)
+    (hsplit : (split : ℤ) = Counts.b4 (3 + m) - Counts.j m q c)
+    (hresponse : Counts.hTotal m q c + 1 ≤ (response : ℤ))
+    (hgain : split + response ≤ finrank K
       (MarkedRankTransfer.augmented (quadraticMultiplication f) (mulQuadratic ζ ζ)).range) :
     MarkedLowerWitness K (3+m) (4+(c+q)) := by
   apply MarkedRankEndpoint.marked_of_augmented_rank f hf ζ

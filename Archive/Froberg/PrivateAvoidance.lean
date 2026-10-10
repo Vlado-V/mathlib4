@@ -19,7 +19,7 @@ open MvPolynomial Quartic.FreeCoefficients
 variable {K : Type*} [Field K] [Infinite K] {a z s b c r : ℕ}
 
 theorem avoidsPrivatePowers_add (ι : Fin b ↪ Fin z)
-    (f g : Fin c → Poly K (a+z))
+    (f g : Fin c → Poly K (a + z))
     (hf : avoidsPrivatePowers (s := s) ι f)
     (hg : avoidsPrivatePowers (s := s) ι g) :
     avoidsPrivatePowers (s := s) ι (f+g) := by
@@ -27,8 +27,8 @@ theorem avoidsPrivatePowers_add (ι : Fin b ↪ Fin z)
   simp only [Pi.add_apply,MvPolynomial.coeff_add,hf k δ i hi,hg k δ i hi,add_zero]
 
 theorem avoidsPrivatePowers_sum {I : Type*} [Fintype I] (ι : Fin b ↪ Fin z)
-    (f : I → Fin c → Poly K (a+z))
-    (hf : ∀ i,avoidsPrivatePowers (s := s) ι (f i)) :
+    (f : I → Fin c → Poly K (a + z))
+    (hf : ∀ i, avoidsPrivatePowers (s := s) ι (f i)) :
     avoidsPrivatePowers (s := s) ι (∑ i,f i) := by
   intro k δ j hj
   simp only [Finset.sum_apply,MvPolynomial.coeff_sum]
@@ -36,7 +36,7 @@ theorem avoidsPrivatePowers_sum {I : Type*} [Fintype I] (ι : Fin b ↪ Fin z)
 
 theorem core_matrix_avoids_private_powers {I : Type*} [Fintype I]
     (ι : Fin b ↪ Fin z) (q : Fin c → I → Poly K a)
-    (p : I → Forms K (a+z) r) (hr : r < s) :
+    (p : I → Forms K (a + z) r) (hr : r < s) :
     avoidsPrivatePowers (s := s) ι (extendedCorePolynomialMatrix q p) := by
   apply avoidsPrivatePowers_of_free_degree_lt
   intro k β hβ

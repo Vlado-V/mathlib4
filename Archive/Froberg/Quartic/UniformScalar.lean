@@ -33,7 +33,7 @@ theorem scalar_incidence_from_uniform_surplus
     (hE :
       (targetCount m (mixedCount m upper) : ℝ) /
         (ProfileCertificate.totalA m (mixedCount m upper) : ℝ) * d +
-      (m : ℝ)^2/100 * min d ((ProfileCertificate.totalA m (mixedCount m upper) : ℝ)-d) ≤ E) :
+      (m : ℝ) ^ 2 / 100 * min d ((ProfileCertificate.totalA m (mixedCount m upper) : ℝ) - d) ≤ E) :
     let q := upperEndpoint m
     let c := mixedCount m upper
     let a : ℝ := ProfileCertificate.totalA m c

@@ -20,7 +20,7 @@ open MvPolynomial
 variable {K : Type} [Field K] {σ τ : Type*} [Fintype σ] [Fintype τ]
 
 theorem weightedParity_rename_equiv (e : σ ≃ τ) (w : σ → ℕ)
-    (f : MvPolynomial σ K) (hf : f∈weightedParitySpace w 0) :
+    (f : MvPolynomial σ K) (hf : f ∈ weightedParitySpace w 0) :
     rename e f∈weightedParitySpace (w ∘ e.symm) 0 := by
   apply (mem_weightedParitySpace_iff _ _ _).mpr
   apply (parity_homogeneous_iff _ _ 0 (by omega)).mp
@@ -44,8 +44,8 @@ def evenRestorationRenameEquiv (e : σ ≃ τ) (w : σ → ℕ) (d : ℕ) :
   map_smul' a f := Subtype.ext (map_smul (rename e) a f.val)
 
 theorem positiveWeightProjection_eq_zero_iff {d : ℕ}
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (f : MvPolynomial σ K)
-    (hf : f.IsHomogeneous (2*d)) :
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (f : MvPolynomial σ K)
+    (hf : f.IsHomogeneous (2 * d)) :
     positiveWeightProjection w d f=0 ↔ f.IsWeightedHomogeneous w 0 := by
   constructor
   · intro hproj a ha
@@ -63,7 +63,7 @@ theorem positiveWeightProjection_eq_zero_iff {d : ℕ}
   · exact positiveWeightProjection_zero w d f
 
 theorem restoration_reduction_rename (e : σ ≃ τ) (w : σ → ℕ)
-    (hw : ∀ x,w x≤1) {d r : ℕ}
+    (hw : ∀ x, w x ≤ 1) {d r : ℕ}
     (g : Fin r → evenRestorationSpace (K := K) w d) (degree : Fin r → ℕ)
     (hreduce : ∀ c : Fin r → evenRestorationSpace (K := K) w d,
       PolynomialRestoration.row (evenRestorationSpace w d).subtype

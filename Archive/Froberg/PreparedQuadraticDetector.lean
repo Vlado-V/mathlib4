@@ -59,7 +59,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem preparedQuadraticDetector_supported
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T) :
+    (hT : T.comp (homogeneousComponent 2) = T) :
     (preparedQuadraticDetector (m := m) T).comp (coreComponent h m 2)=
       preparedQuadraticDetector T := by
   apply LinearMap.ext
@@ -82,7 +82,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
 /-- A detector supported in degree two vanishes on the constant polynomial. -/
 theorem quadratic_output_one_zero (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T) : T 1=0 := by
+    (hT : T.comp (homogeneousComponent 2) = T) : T 1=0 := by
   have he := LinearMap.congr_fun hT (1 : Poly K h)
   change T (homogeneousComponent 2 1)=T 1 at he
   rw [homogeneousComponent_of_mem (isHomogeneous_one _ _)] at he
@@ -92,7 +92,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every polynomial supported only in the scalar variables is invisible. -/
 theorem preparedQuadraticDetector_scalar
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T) (p : Poly K m) :
+    (hT : T.comp (homogeneousComponent 2) = T) (p : Poly K m) :
     preparedQuadraticDetector T (rename (Fin.natAdd h) p)=0 := by
   have hp : rename (Fin.natAdd h) p=
       splitPolynomialEquiv (K := K) h m ((1 : Poly K h) ⊗ₜ[K] p) := by
@@ -106,7 +106,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A killed output subspace remains killed with arbitrary scalar coefficients. -/
 theorem polynomialTensorSpace_le_preparedQuadraticDetector_ker
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m)) (hA : A≤T.ker) :
+    (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m)) (hA : A ≤ T.ker) :
     polynomialTensorSpace A B≤(preparedQuadraticDetector T).ker := by
   rintro p ⟨z,rfl⟩
   change preparedQuadraticDetector T (polynomialTensorMap A B z)=0
@@ -124,7 +124,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_product_le_preparedQuadraticDetector_ker
     (T : Poly K h →ₗ[K] (Fin c → K))
     (A C : Submodule K (Poly K h)) (B E : Submodule K (Poly K m))
-    (hAC : A*C≤T.ker) :
+    (hAC : A * C ≤ T.ker) :
     polynomialTensorSpace A B * polynomialTensorSpace C E≤
       (preparedQuadraticDetector T).ker := by
   apply Submodule.mul_le.mpr
@@ -149,7 +149,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 scalar-only coefficient of the required total degree. -/
 theorem preparedQuadraticDetector_quadratic_product
     (T : Poly K h →ₗ[K] (Fin c → K)) (D : Submodule K (Poly K h))
-    (hD : D≤T.ker) :
+    (hD : D ≤ T.ker) :
     polynomialTensorSpace D (Forms K m (d-2)) * coreCoefficientSpace K h m d 0≤
       (preparedQuadraticDetector T).ker := by
   have hc : coreCoefficientSpace K h m d 0=

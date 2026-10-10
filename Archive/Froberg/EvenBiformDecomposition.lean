@@ -22,7 +22,7 @@ variable {K : Type} [Field K] [Infinite K] {σ : Type*} {d h m : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem even_homogeneous_biform_decomposition (hd : Odd d)
     (f : MvPolynomial (Fin h ⊕ Fin m) K) (hf : f.IsHomogeneous d)
-    (heven : ∀ a,f.coeff a≠0 →
+    (heven : ∀ a, f.coeff a ≠ 0 →
       Finsupp.weight (Sum.elim (fun _ : Fin h => 1) (fun _ : Fin m => 0)) a%2=0) :
     ∃ z : Forms K h 0 ⊗[K] Forms K m d,
     ∃ v : (r : Fin ((d-1)/2)) → Forms K h (2*(r.val+1)) ⊗[K] Forms K m (d-2*(r.val+1)),

@@ -19,7 +19,7 @@ open Quartic.WeightedInitialImage
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s d h : ℕ}
 variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s)
 
-abbrev OrderedFiber (c : ℕ) (i : Fin (Fintype.card (Exponent n (s+c)))) :=
+abbrev OrderedFiber (c : ℕ) (i : Fin (Fintype.card (Exponent n (s + c)))) :=
   (Fin h → K) ⧸ relationFiber e v (OrderedMonomials.enumerate n (s+c) i).val
 
 def orderedFiberEquiv (c : ℕ) :
@@ -29,13 +29,13 @@ def orderedFiberEquiv (c : ℕ) :
     (LinearEquiv.piCongrLeft' K _ (OrderedMonomials.enumerate n (s+c)).symm)
 
 @[simp] theorem orderedFiberEquiv_apply (c : ℕ)
-    (x : (Fin h → Forms K n (s+c)) ⧸ relationSpace (d := c) e v he)
-    (i : Fin (Fintype.card (Exponent n (s+c)))) :
+    (x : (Fin h → Forms K n (s + c)) ⧸ relationSpace (d := c) e v he)
+    (i : Fin (Fintype.card (Exponent n (s + c)))) :
     orderedFiberEquiv e v he c x i =
       quotientFiberEquiv e v he x (OrderedMonomials.enumerate n (s+c) i) := rfl
 
 theorem orderedFiberEquiv_symm_single (c : ℕ)
-    (i : Fin (Fintype.card (Exponent n (s+c)))) (x : OrderedFiber e v c i) :
+    (i : Fin (Fintype.card (Exponent n (s + c)))) (x : OrderedFiber e v c i) :
     (orderedFiberEquiv e v he c).symm (Pi.single i x) =
       (quotientFiberEquiv e v he).symm
         (Pi.single (OrderedMonomials.enumerate n (s+c) i) x) := by
@@ -74,7 +74,7 @@ private theorem coefficient_single (b : Exponent n d) (c : K) :
 and the exact quotient-fiber formula. -/
 theorem orderedMultiply_support (b : Exponent n d)
     (i : Fin (Fintype.card (Exponent n s))) (c : K) (x : OrderedFiber e v 0 i)
-    (j : Fin (Fintype.card (Exponent n (s+d)))) (hji : j ≠ OrderedMonomials.shift b i) :
+    (j : Fin (Fintype.card (Exponent n (s + d)))) (hji : j ≠ OrderedMonomials.shift b i) :
     orderedMultiply e v he (Pi.single b c) (Pi.single i x) j = 0 := by
   classical
   change orderedFiberEquiv e v he d

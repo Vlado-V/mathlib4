@@ -17,7 +17,7 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] {σ : Type*}
 
 theorem multiplication_single_cross_row
-    (e : ℕ → ℕ) (J : Finset ℕ) (R j : ℕ) (hj : j≠R-j)
+    (e : ℕ → ℕ) (J : Finset ℕ) (R j : ℕ) (hj : j ≠ R - j)
     (q : (k : ℕ) → Fin (e k) → MvPolynomial σ K)
     (honly : ∀ r : Row J R,Columns e r → r.val.val=j)
     (hi : LinearIndependent K (fun p : Fin (e j) × Fin (e (R-j)) => q j p.1*q (R-j) p.2)) :
@@ -44,7 +44,7 @@ theorem multiplication_single_cross_row
     exact linearIndependent_empty_type
 
 theorem multiplication_single_cross_row_range
-    (e : ℕ → ℕ) (J : Finset ℕ) (R j : ℕ) (hj : j≠R-j)
+    (e : ℕ → ℕ) (J : Finset ℕ) (R j : ℕ) (hj : j ≠ R - j)
     (q : (k : ℕ) → Fin (e k) → MvPolynomial σ K)
     (honly : ∀ r : Row J R,Columns e r → r.val.val=j)
     (P : Submodule K (MvPolynomial σ K))
@@ -65,7 +65,7 @@ theorem multiplication_single_cross_row_range
 
 theorem sixth_row_only_second
     (e : ℕ → ℕ) (J : Finset ℕ)
-    (hz : ∀ k∈J,k≠2 → k≠4 → e k=0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → e k = 0)
     (r : Row J 6) (c : Columns e r) : r.val.val=2 := by
   have hp := counts_positive_of_column e r c
   have hleft : r.val.val=2 ∨ r.val.val=4 := by

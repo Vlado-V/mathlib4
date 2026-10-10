@@ -58,7 +58,7 @@ theorem card_deficientTargets_le (hn : 0 < n) (he : ∀ i, (e i).degree = s)
 /-- The ideal maximal-rank shadow in one target fiber. -/
 def idealShadow
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
-    (b : Exponent n (s+(s+1))) : ℕ := by
+    (b : Exponent n (s + (s + 1))) : ℕ := by
   classical
   exact univ.sup (fun a : Exponent n s => if a.val ≤ b.val then
     min (finrank K (C a)) (finrank K ((Fin h → K) ⧸ relationFiber e v b.val)) else 0)
@@ -67,7 +67,7 @@ def idealShadow
 to the ideal shadow. -/
 theorem min_le_idealShadow
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
-    (a : Exponent n s) (b : Exponent n (s+(s+1))) (hab : a.val ≤ b.val) :
+    (a : Exponent n s) (b : Exponent n (s + (s + 1))) (hab : a.val ≤ b.val) :
     min (finrank K (C a)) (finrank K ((Fin h → K) ⧸ relationFiber e v b.val)) ≤
       idealShadow e v C b := by
   classical
@@ -80,13 +80,13 @@ theorem min_le_idealShadow
 /-- Coarse target capacities are valid in the same ideal lower bound. -/
 theorem coarse_min_le_idealShadow
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
-    (a : Exponent n s) (b : Exponent n (s+(s+1))) (hab : a.val ≤ b.val)
+    (a : Exponent n s) (b : Exponent n (s + (s + 1))) (hab : a.val ≤ b.val)
     (c : ℕ) (hc : c ≤ finrank K ((Fin h → K) ⧸ relationFiber e v b.val)) :
     min (finrank K (C a)) c ≤ idealShadow e v C b :=
   (min_le_min_left _ hc).trans (min_le_idealShadow e v C a b hab)
 
 theorem idealShadow_le (C : (a : Exponent n s) → Submodule K
-    ((Fin h → K) ⧸ relationFiber e v a.val)) (b : Exponent n (s+(s+1))) :
+    ((Fin h → K) ⧸ relationFiber e v a.val)) (b : Exponent n (s + (s + 1))) :
     idealShadow e v C b ≤ h := by
   classical
   apply Finset.sup_le_iff.mpr
@@ -99,7 +99,7 @@ theorem idealShadow_le (C : (a : Exponent n s) → Submodule K
 shadow dominates the ideal one. -/
 theorem idealShadow_le_actual_of_no_exceptions
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
-    (b : Exponent n (s+(s+1)))
+    (b : Exponent n (s + (s + 1)))
     (hgood : ∀ a, 0 < finrank K (C a) →
       finrank K (C a) < finrank K ((Fin h → K) ⧸ relationFiber e v a.val) →
       b ∉ deficientTargets e v C a) :

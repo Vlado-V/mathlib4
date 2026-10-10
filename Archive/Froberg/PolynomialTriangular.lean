@@ -24,29 +24,29 @@ def coreFormProjection (i : ℕ) :
   ((coreComponent h m i).comp (Forms K (h+m) D).subtype).codRestrict
     (coreCoefficientSpace K h m D i) (fun p => ⟨p.val,p.property,rfl⟩)
 
-@[simp] theorem coreFormProjection_val (i : ℕ) (p : Forms K (h+m) D) :
+@[simp] theorem coreFormProjection_val (i : ℕ) (p : Forms K (h + m) D) :
     (coreFormProjection i p).val=coreComponent h m i p.val := rfl
 
-def homogeneousRowSum {S : Fin (n+1) → Type*}
-    [∀ i,AddCommGroup (S i)] [∀ i,Module K (S i)]
-    (row : (i : Fin (n+1)) → S i →ₗ[K] Forms K (h+m) D) :
+def homogeneousRowSum {S : Fin (n + 1) → Type*}
+    [∀ i, AddCommGroup (S i)] [∀ i, Module K (S i)]
+    (row : (i : Fin (n + 1)) → S i →ₗ[K] Forms K (h + m) D) :
     ((i : Fin (n+1)) → S i) →ₗ[K] Forms K (h+m) D :=
   ∑ i,(row i).comp (LinearMap.proj i)
 
-@[simp] theorem homogeneousRowSum_apply {S : Fin (n+1) → Type*}
-    [∀ i,AddCommGroup (S i)] [∀ i,Module K (S i)]
-    (row : (i : Fin (n+1)) → S i →ₗ[K] Forms K (h+m) D)
-    (s : (i : Fin (n+1)) → S i) : homogeneousRowSum row s=∑ i,row i (s i) := by
+@[simp] theorem homogeneousRowSum_apply {S : Fin (n + 1) → Type*}
+    [∀ i, AddCommGroup (S i)] [∀ i, Module K (S i)]
+    (row : (i : Fin (n + 1)) → S i →ₗ[K] Forms K (h + m) D)
+    (s : (i : Fin (n + 1)) → S i) : homogeneousRowSum row s=∑ i,row i (s i) := by
   simp only [homogeneousRowSum,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
 
 /-- Literal homogeneous relation rows with surjective leading components
 eliminate every selected component above the bottom one. -/
-theorem polynomial_triangular_elimination {S : Fin (n+1) → Type*}
-    [∀ i,AddCommGroup (S i)] [∀ i,Module K (S i)]
-    (weight : Fin (n+1) → ℕ)
-    (row : (i : Fin (n+1)) → S i →ₗ[K] Forms K (h+m) D)
-    (hupper : ∀ i j,i<j → ∀ s,coreComponent h m (weight j) (row i s).val=0)
-    (htop : ∀ i,i≠0 → ∀ v : coreCoefficientSpace K h m D (weight i),
+theorem polynomial_triangular_elimination {S : Fin (n + 1) → Type*}
+    [∀ i, AddCommGroup (S i)] [∀ i, Module K (S i)]
+    (weight : Fin (n + 1) → ℕ)
+    (row : (i : Fin (n + 1)) → S i →ₗ[K] Forms K (h + m) D)
+    (hupper : ∀ i j, i < j → ∀ s, coreComponent h m (weight j) (row i s).val = 0)
+    (htop : ∀ i, i ≠ 0 → ∀ v : coreCoefficientSpace K h m D (weight i),
       ∃ s,coreComponent h m (weight i) (row i s).val=v.val)
     (p : Forms K (h+m) D) :
     ∃ s : (i : Fin (n+1)) → S i, ∀ j : Fin n,
@@ -72,12 +72,12 @@ theorem polynomial_triangular_elimination {S : Fin (n+1) → Type*}
 
 /-- If each row consists of genuine ideal relations, subtraction preserves
 the quotient class while killing all selected positive components. -/
-theorem polynomial_triangular_quotient_representative {S : Fin (n+1) → Type*}
-    [∀ i,AddCommGroup (S i)] [∀ i,Module K (S i)]
-    (weight : Fin (n+1) → ℕ)
-    (row : (i : Fin (n+1)) → S i →ₗ[K] Forms K (h+m) D)
-    (hupper : ∀ i j,i<j → ∀ s,coreComponent h m (weight j) (row i s).val=0)
-    (htop : ∀ i,i≠0 → ∀ v : coreCoefficientSpace K h m D (weight i),
+theorem polynomial_triangular_quotient_representative {S : Fin (n + 1) → Type*}
+    [∀ i, AddCommGroup (S i)] [∀ i, Module K (S i)]
+    (weight : Fin (n + 1) → ℕ)
+    (row : (i : Fin (n + 1)) → S i →ₗ[K] Forms K (h + m) D)
+    (hupper : ∀ i j, i < j → ∀ s, coreComponent h m (weight j) (row i s).val = 0)
+    (htop : ∀ i, i ≠ 0 → ∀ v : coreCoefficientSpace K h m D (weight i),
       ∃ s,coreComponent h m (weight i) (row i s).val=v.val)
     (I : Submodule K (Poly K (h+m))) (hI : ∀ i s,(row i s).val∈I)
     (p : Forms K (h+m) D) :

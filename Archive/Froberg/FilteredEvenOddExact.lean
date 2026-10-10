@@ -20,10 +20,10 @@ open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem filtered_even_odd_exact (hd : 3≤d)
+theorem filtered_even_odd_exact (hd : 3 ≤ d)
     (A : Fin q → biformParitySpace K h m d 0)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
-    (hzero : ∀ i,weightedHomogeneousComponent (blockWeight h m) 0 (A i).val=
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
+    (hzero : ∀ i, weightedHomogeneousComponent (blockWeight h m) 0 (A i).val =
       rename Sum.inr (Q i).val)
     (hfirst : FirstVectorRowExact Q g) (hhigher : HigherOddRows Q g) :
     OddSplitExact A (fun i => linearOddForm (by omega) (g i)) := by

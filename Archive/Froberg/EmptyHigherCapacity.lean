@@ -23,12 +23,12 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
-theorem eventually_empty_higher_capacity {w d : ℕ} (hd : 9≤d)
-    (J : Finset ℕ) (R : J) (hR : 4≤R.val) (hRd : R.val≤d)
-    (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X) (hTR : T R.val=0)
-    (hH : 0<oddOutputDimension w R.val)
+theorem eventually_empty_higher_capacity {w d : ℕ} (hd : 9 ≤ d)
+    (J : Finset ℕ) (R : J) (hR : 4 ≤ R.val) (hRd : R.val ≤ d)
+    (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X) (hTR : T R.val = 0)
+    (hH : 0 < oddOutputDimension w R.val)
     (q : ℕ → ℕ) (counts : ℕ → ℕ → ℕ)
-    (hzero : ∀ n,counts n R.val=0)
+    (hzero : ∀ n, counts n R.val = 0)
     (hr : Tendsto (fun n : ℕ => (Fintype.card (Label (q n) J (counts n)) : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :
     ∀ᶠ v : ℕ in atTop,

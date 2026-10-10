@@ -25,24 +25,24 @@ abbrev RowProducts (R : ℕ) :=
   ((p : ProductRows.Row J R) × ProductRows.Columns counts p) →₀ K
 
 /-- The actual intrinsic row, including every product column. -/
-def row (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+def row (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) :=
   bilinearKoszulRow (fullBiformScalarProduct (R := R.val) (s := d-R.val))
     (fun i => scalarMap i p) (fun i => intrinsicLayerMap hO R i p)
     (ProductRows.multiplication counts (layers p) J R.val)
 
 /-- Mandatory constants in this exact row. -/
-def rowConstants (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+def rowConstants (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) :=
   bilinearKoszulConstants (K := K) (W := RowProducts (K := K) (J := J) (counts := counts) R.val)
     (fun i => scalarMap i p) (fun i => intrinsicLayerMap hO R i p)
 
 /-- One actual witness gives a nonempty determinant open in the common family. -/
 theorem row_principal_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : J) (p₀ : Space n d q J counts O)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : J) (p₀ : Space n d q J counts O)
     (hE : LinearIndependent K (fun i => intrinsicLayerMap hO R i p₀))
-    (hexact : (row hO R p₀).ker=(rowConstants hO R p₀).range) :
+    (hexact : (row hO R p₀).ker = (rowConstants hO R p₀).range) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧
       ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 →
@@ -65,8 +65,8 @@ theorem row_principal_open [Module.Finite K (Space n d q J counts O)]
 /-- Separate row witnesses impose simultaneous exactness on a single
 nonempty principal open of the actual prepared-family parameters. -/
 theorem rows_common_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d)
     (hwitness : ∀ R : J,∃ p : Space n d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO R i p) ∧
       (row hO R p).ker=(rowConstants hO R p).range) :

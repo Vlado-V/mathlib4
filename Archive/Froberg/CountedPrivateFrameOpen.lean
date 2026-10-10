@@ -39,7 +39,7 @@ local instance countedPrivateConstrainedFinite {X : Type*} [AddCommGroup X] [Mod
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_private_frame_reduction_open {d : ℕ}
-    (hd : 9≤d) (hodd : d%2=1) :
+    (hd : 9 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
@@ -116,7 +116,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 nonzero private tuple; every independent frame in it has a nonempty open of
 all its actual prepared coefficients. -/
 theorem eventually_counted_private_frame_open {d : ℕ}
-    (hd : 9≤d) (hodd : d%2=1) :
+    (hd : 9 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

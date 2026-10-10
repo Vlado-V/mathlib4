@@ -48,7 +48,7 @@ def restoredScalarFiberCoordinates : RestoredOuterSpace m d q f J counts O ≃�
   map_smul' c p := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem finite_restoredScalarRest (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem finite_restoredScalarRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (RestoredScalarRest m d q f J counts O) := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   let pr : RestoredOuterSpace m d q f J counts O →ₗ[K] RestoredScalarRest m d q f J counts O :=
@@ -81,7 +81,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
     (restoredScalarFiberCoordinates.symm (a,rest)).2=rest.2.2 := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem principal_open_restored_scalar_fiber_at (hO : ∀ j∈J,O j≤Forms K h j) :
+theorem principal_open_restored_scalar_fiber_at (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∀ (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K)
       (p : RestoredOuterSpace m d q f J counts O),

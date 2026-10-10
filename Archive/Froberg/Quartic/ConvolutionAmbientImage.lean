@@ -44,7 +44,7 @@ def multiplication : Forms K (t+w) 2 →ₗ[K] Target K t w 1 →ₗ[K] Target K
     exact smul_mul_assoc s f.val (v r).val
 
 /-- Each convolution column is an actual degree-one presentation relation. -/
-theorem column_mem (k : Fin (t+2)) : convolutionMixed K t w k ∈ relations K t w 1 := by
+theorem column_mem (k : Fin (t + 2)) : convolutionMixed K t w k ∈ relations K t w 1 := by
   classical
   rw [relations_succ]
   let oneForm : Forms K (t+w) 0 := ⟨C 1, isHomogeneous_C _ _⟩
@@ -120,11 +120,11 @@ theorem relations_three_eq_image :
     rintro _ ⟨v,hv,rfl⟩
     exact rowMul_maps_relations f hv
 
- theorem relations_one_finrank (ht : 2 ≤ t) : finrank K (relations K t w 1) = t+2 := by
+theorem relations_one_finrank (ht : 2 ≤ t) : finrank K (relations K t w 1) = t+2 := by
   rw [relations_succ,LinearMap.finrank_range_of_inj (presentation_injective ht (by omega : 0 ≤ 2))]
   simp [Source,Module.finrank_pi_fintype,finrank_forms]
 
- theorem relations_three_finrank (ht : 2 ≤ t) :
+theorem relations_three_finrank (ht : 2 ≤ t) :
     finrank K (relations K t w 3) = (t+2)*(t+w+1).choose 2 := by
   rw [relations_succ,LinearMap.finrank_range_of_inj (presentation_injective ht (by omega : 2 ≤ 2))]
   simp [Source,Module.finrank_pi_fintype,finrank_forms,Nat.add_assoc]
@@ -137,7 +137,7 @@ theorem image_eq_map (L : Submodule K (Piece K t w 1)) :
   exact QuotientBilinearImage.image_eq_map multiplication (relations K t w 1) (relations K t w 3)
     ConvolutionInitialImage.pieceBilinear (fun _ _ => rfl) L
 
- theorem image_finrank_add (L : Submodule K (Piece K t w 1)) :
+theorem image_finrank_add (L : Submodule K (Piece K t w 1)) :
     finrank K (ConvolutionProfileImage.quadraticImage L) + finrank K (relations K t w 3) =
       finrank K (BilinearImage.image multiplication (L.comap (relations K t w 1).mkQ)) := by
   rw [image_eq_map]

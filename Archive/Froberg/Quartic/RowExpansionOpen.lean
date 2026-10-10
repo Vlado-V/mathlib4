@@ -85,7 +85,7 @@ theorem principal_open [NeZero d] [IsAlgClosed L]
   exact ⟨D,hD,fun p hp => (expands_iff_coordinate _).mpr (hgood p hp)⟩
 
 /-- Actual convolution columns have coefficients 0 and 1 and commute with base extension. -/
-theorem mapRows_convolution (t w : ℕ) (k : Fin (t+2)) :
+theorem mapRows_convolution (t w : ℕ) (k : Fin (t + 2)) :
     mapRows (L := L) (GenericF13Endpoint.convolutionMixed K t w k) =
       GenericF13Endpoint.convolutionMixed L t w k := by
   classical
@@ -99,7 +99,7 @@ theorem mapRows_convolution (t w : ℕ) (k : Fin (t+2)) :
 /-- Specialization at the concrete convolution columns, retaining actual
 polynomial parameter families for all varying mixed columns. -/
 theorem principal_open_convolution {t w d e : ℕ} [NeZero d] [IsAlgClosed L]
-    (g : (I → K) → Fin (t+2) → Rows K (t+w) 1)
+    (g : (I → K) → Fin (t + 2) → Rows K (t + w) 1)
     (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
     (hp₀ : g p₀ = GenericF13Endpoint.convolutionMixed K t w)
     (hwitness : Expands (GenericF13Endpoint.convolutionMixed L t w) d e) :

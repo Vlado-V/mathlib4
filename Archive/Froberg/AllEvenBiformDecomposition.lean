@@ -37,7 +37,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem allEvenCoefficientAssembly_component (v : EvenBiformCoordinates K h m d)
-    (r : Fin (d/2+1)) :
+    (r : Fin (d / 2 + 1)) :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val) (allEvenCoefficientAssembly v).val=
       sumBiformMap (v r) := by
   classical
@@ -100,7 +100,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 0)
-    (r : Fin (d/2+1)) :
+    (r : Fin (d / 2 + 1)) :
     sumBiformMap (evenBiformCoordinatesEquiv v r)=
       weightedHomogeneousComponent (blockWeight h m) (2*r.val) v.val := by
   have hv : allEvenCoefficientAssembly (evenBiformCoordinatesEquiv v)=v :=

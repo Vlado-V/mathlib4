@@ -17,7 +17,7 @@ namespace Froberg.PreparedParameters
 open Froberg Filter Module
 open scoped Topology
 
-theorem eventually_field_uniform_allEven_product_capacities_shift {d : ℕ} (hd : 9≤d) :
+theorem eventually_field_uniform_allEven_product_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,
       ∀ (K : Type) [Field K] [Infinite K], ∀ (X : Type*) [AddCommGroup X] [Module K
         X] [Module.Finite K X],∀ r : ℕ,

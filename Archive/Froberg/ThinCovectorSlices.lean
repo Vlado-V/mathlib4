@@ -62,8 +62,8 @@ theorem principal_open_fixed_threshold_slices
 
 theorem principal_open_thin_slices
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (ha : 0 < a) (hT : T=q*a+j) (G C : ℝ) (hC : 0 ≤ C)
-    (hG₁ : (a : ℝ)+C ≤ G) (hG₂ : (a : ℝ)+(j : ℝ)/a ≤ G)
+    (ha : 0 < a) (hT : T = q * a + j) (G C : ℝ) (hC : 0 ≤ C)
+    (hG₁ : (a : ℝ) + C ≤ G) (hG₂ : (a : ℝ) + (j : ℝ) / a ≤ G)
     (hgrowth : ∀ U : Submodule K (Fin a → K),
       ((T : ℝ)/a)*finrank K U+G*(min (finrank K U) (a-finrank K U) : ℕ) ≤
         finrank K (BilinearImage.image mu U)) :

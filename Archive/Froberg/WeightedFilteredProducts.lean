@@ -19,8 +19,8 @@ variable {K σ : Type*} [Field K]
 
 theorem weighted_component_positive_left_zero (w : σ → ℕ)
     (p q : MvPolynomial σ K) (r : ℕ)
-    (hp : weightedHomogeneousComponent w 0 p=0)
-    (hq : ∀ t,t<r → weightedHomogeneousComponent w t q=0) :
+    (hp : weightedHomogeneousComponent w 0 p = 0)
+    (hq : ∀ t, t < r → weightedHomogeneousComponent w t q = 0) :
     weightedHomogeneousComponent w r (p*q)=0 := by
   rw [weightedHomogeneousComponent_product]
   apply Finset.sum_eq_zero

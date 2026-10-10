@@ -21,8 +21,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def preparedEvenBiform (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def preparedEvenBiform (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : PreparedParameters.Space m d q J counts O) (i : PreparedParameters.Label q J counts) :
     biformParitySpace K h m d 0 :=
   ⟨PreparedParameters.generator p i,PreparedParameters.generator_homogeneous hO hJ p i,
@@ -30,7 +30,7 @@ def preparedEvenBiform (hO : ∀ j∈J,O j≤Forms K h j)
       ((mem_weightedParitySpace_iff _ _ _).mp (PreparedParameters.generator_even hO heven p i))⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem oddGenerator_homogeneous (hd : 0<d) (U : Fin u → Forms K h d)
+theorem oddGenerator_homogeneous (hd : 0 < d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     (oddGenerator U P F k).IsHomogeneous d := by
   apply IsHomogeneous.add
@@ -42,7 +42,7 @@ theorem oddGenerator_homogeneous (hd : 0<d) (U : Fin u → Forms K h d)
     | inr i => exact (U i).property.rename_isHomogeneous
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def preparedOddBiform (hd : 0<d) (hdodd : d%2=1) (U : Fin u → Forms K h d)
+def preparedOddBiform (hd : 0 < d) (hdodd : d % 2 = 1) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     biformParitySpace K h m d 1 :=
   ⟨oddGenerator U P F k,oddGenerator_homogeneous hd U P F k,
@@ -50,21 +50,21 @@ def preparedOddBiform (hd : 0<d) (hdodd : d%2=1) (U : Fin u → Forms K h d)
       ((mem_weightedParitySpace_iff _ _ _).mp (oddGenerator_parity hdodd U P F k))⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def preparedBaseBiform (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def preparedBaseBiform (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : PreparedParameters.Space m d q J counts O) : Fin q → biformParitySpace K h m d 0 :=
   fun i => preparedEvenBiform hO hJ heven p (Sum.inl i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def preparedPositiveBiform (hO : ∀ j∈J,O j≤Forms K h j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def preparedPositiveBiform (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : PreparedParameters.Space m d q J counts O) :
     Fin (Fintype.card (ProductRows.LayerLabel J counts)) → biformParitySpace K h m d 0 :=
   fun i => preparedEvenBiform hO hJ heven p (Sum.inr ((Fintype.equivFin _).symm i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem prepared_odd_split_exact (hd : 0<d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_odd_split_exact (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (H : OddCyclesExact U P p) :
@@ -97,8 +97,8 @@ theorem prepared_odd_split_exact (hd : 0<d) (hdodd : d%2=1)
     by simpa only [Equiv.symm_symm,hS] using hB'⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem prepared_odd_relative_injective (hd : 0<d) (hdodd : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_odd_relative_injective (hd : 0 < d) (hdodd : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (H : OddCyclesExact U P p) :

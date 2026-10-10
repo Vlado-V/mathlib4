@@ -21,11 +21,11 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
- theorem QuadraticRowCapacity.with_labels {n d q q' b : ℕ}
+theorem QuadraticRowCapacity.with_labels {n d q q' b : ℕ}
     {J J' : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (MvPolynomial σ K)}
     (h : QuadraticRowCapacity n d q b J c O)
-    (hcard : Fintype.card (Label q' J' c')=Fintype.card (Label q J c))
-    (hc : c' 2=c 2) : QuadraticRowCapacity n d q' b J' c' O := by
+    (hcard : Fintype.card (Label q' J' c') = Fintype.card (Label q J c))
+    (hc : c' 2 = c 2) : QuadraticRowCapacity n d q' b J' c' O := by
   refine { variables_positive := h.variables_positive
            output_positive := h.output_positive
            enough_generators := ?_
@@ -37,15 +37,15 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
   · rw [hcard]
     exact h.scalar_open
 
- theorem HigherRowCapacity.with_labels {w v d q q' b : ℕ}
+theorem HigherRowCapacity.with_labels {w v d q q' b : ℕ}
     {J J' : Finset ℕ} {c c' : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X} {R : J} {R' : J'}
     (h : HigherRowCapacity w v d q b J c T R)
-    (hR : R'.val=R.val)
-    (hcard : Fintype.card (Label q' J' c')=Fintype.card (Label q J c))
-    (hc : c' R'.val=c R.val)
+    (hR : R'.val = R.val)
+    (hcard : Fintype.card (Label q' J' c') = Fintype.card (Label q J c))
+    (hc : c' R'.val = c R.val)
     (hp : ProductRowCapacity (K := K) (X := X) w v d R'.val J' c')
-    (hpositive : ∀ j∈J',0<j) : HigherRowCapacity w v d q' b J' c' T R' := by
+    (hpositive : ∀ j ∈ J', 0 < j) : HigherRowCapacity w v d q' b J' c' T R' := by
   refine { hw := h.hw
            hv := h.hv
            positive := hpositive

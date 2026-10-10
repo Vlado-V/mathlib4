@@ -18,8 +18,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem odd_row_augmented_factorial_gap {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b≤d)
-    (hh : 0<h) :
+theorem odd_row_augmented_factorial_gap {d b h : ℕ} (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d)
+    (hh : 0 < h) :
     (criticalRatio d/(d.factorial : ℝ)+oddRowExtraDensity d)*
         (((h+b-1).choose b : ℝ)*((d-b).factorial : ℝ)⁻¹) +
       ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))*
@@ -48,7 +48,7 @@ theorem odd_row_augmented_factorial_gap {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) 
   convert hscaled using 1 <;> field_simp [factorial_real_ne_zero,hden.ne'] <;> ring
 
 theorem eventually_augmented_higher_odd_row_budget {d b h : ℕ}
-    (hd : 3≤d) (hb : 3≤b) (hbd : b≤d) (hh : 0<h)
+    (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d) (hh : 0 < h)
     (qS qO : ℕ → ℕ)
     (hS : Tendsto (fun n : ℕ => (qS n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ))))

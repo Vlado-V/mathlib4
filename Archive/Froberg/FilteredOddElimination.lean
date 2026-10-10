@@ -20,23 +20,23 @@ variable {K σ I J : Type*} [Field K] [Fintype I] [Fintype J]
 /-- Once the first odd coefficient row has been removed, all remaining
 coefficients vanish, for every choice of the top forms `U`. -/
 theorem filtered_odd_zero
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ) (hd : 3≤d)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ) (hd : 3 ≤ d)
     (a E c : I → MvPolynomial σ K) (O U v : J → MvPolynomial σ K)
-    (ha : ∀ i,(a i).IsWeightedHomogeneous w 0)
-    (hEzero : ∀ i,weightedHomogeneousComponent w 0 (E i)=0)
-    (hO : ∀ k,(O k).IsWeightedHomogeneous w 1)
-    (hU : ∀ k,(U k).IsWeightedHomogeneous w d)
-    (hc : ∀ i,(c i).IsHomogeneous d) (hv : ∀ k,(v k).IsHomogeneous d)
-    (hcodd : ∀ i α,(c i).coeff α≠0 → Finsupp.weight w α%2=1)
-    (hveven : ∀ k α,(v k).coeff α≠0 → Finsupp.weight w α%2=0)
-    (hcfirst : ∀ i,weightedHomogeneousComponent w 1 (c i)=0)
-    (hvfirst : ∀ k,weightedHomogeneousComponent w 0 (v k)=0)
-    (hcycle : (∑ i,(a i+E i)*c i)+(∑ k,(O k+U k)*v k)=0)
-    (hhigher : ∀ r,3≤r → r≤d+1 → r%2=1 →
+    (ha : ∀ i, (a i).IsWeightedHomogeneous w 0)
+    (hEzero : ∀ i, weightedHomogeneousComponent w 0 (E i) = 0)
+    (hO : ∀ k, (O k).IsWeightedHomogeneous w 1)
+    (hU : ∀ k, (U k).IsWeightedHomogeneous w d)
+    (hc : ∀ i, (c i).IsHomogeneous d) (hv : ∀ k, (v k).IsHomogeneous d)
+    (hcodd : ∀ i α, (c i).coeff α ≠ 0 → Finsupp.weight w α % 2 = 1)
+    (hveven : ∀ k α, (v k).coeff α ≠ 0 → Finsupp.weight w α % 2 = 0)
+    (hcfirst : ∀ i, weightedHomogeneousComponent w 1 (c i) = 0)
+    (hvfirst : ∀ k, weightedHomogeneousComponent w 0 (v k) = 0)
+    (hcycle : (∑ i, (a i + E i) * c i) + (∑ k, (O k + U k) * v k) = 0)
+    (hhigher : ∀ r, 3 ≤ r → r ≤ d + 1 → r % 2 = 1 →
       ∀ (x : I → MvPolynomial σ K) (y : J → MvPolynomial σ K),
-      (∀ i,x i∈coefficientComponentSpace w d r) →
-      (∀ k,y k∈coefficientComponentSpace w d (r-1)) →
-      (∑ i,a i*x i)+(∑ k,O k*y k)=0 → x=0 ∧ y=0) : c=0 ∧ v=0 := by
+      (∀ i, x i ∈ coefficientComponentSpace w d r) →
+      (∀ k, y k ∈ coefficientComponentSpace w d (r - 1)) →
+      (∑ i, a i * x i) + (∑ k, O k * y k) = 0 → x = 0 ∧ y = 0) : c=0 ∧ v=0 := by
   have hrows : ∀ r,r≤d+1 →
       (∀ i,weightedHomogeneousComponent w r (c i)=0) ∧
       (1≤r → ∀ k,weightedHomogeneousComponent w (r-1) (v k)=0) := by
@@ -98,29 +98,29 @@ theorem filtered_odd_zero
 /-- The full odd background has only literal cross-parity constant Koszul
 cycles. In particular, the choice of its pure top-output terms is arbitrary. -/
 theorem filtered_odd_cycles
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ) (hd : 3≤d)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ) (hd : 3 ≤ d)
     (a E c : I → MvPolynomial σ K) (O U v : J → MvPolynomial σ K)
-    (ha : ∀ i,(a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsHomogeneous d ∧ E i∈weightedParitySpace w 0)
-    (hEzero : ∀ i,weightedHomogeneousComponent w 0 (E i)=0)
-    (hO : ∀ k,(O k).IsHomogeneous d ∧ (O k).IsWeightedHomogeneous w 1)
-    (hU : ∀ k,(U k).IsHomogeneous d ∧ (U k).IsWeightedHomogeneous w d)
-    (hUodd : d%2=1 ∨ ∀ k,U k=0)
-    (hc : ∀ i,(c i).IsHomogeneous d) (hv : ∀ k,(v k).IsHomogeneous d)
-    (hcodd : ∀ i α,(c i).coeff α≠0 → Finsupp.weight w α%2=1)
-    (hveven : ∀ k α,(v k).coeff α≠0 → Finsupp.weight w α%2=0)
+    (ha : ∀ i, (a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsHomogeneous d ∧ E i ∈ weightedParitySpace w 0)
+    (hEzero : ∀ i, weightedHomogeneousComponent w 0 (E i) = 0)
+    (hO : ∀ k, (O k).IsHomogeneous d ∧ (O k).IsWeightedHomogeneous w 1)
+    (hU : ∀ k, (U k).IsHomogeneous d ∧ (U k).IsWeightedHomogeneous w d)
+    (hUodd : d % 2 = 1 ∨ ∀ k, U k = 0)
+    (hc : ∀ i, (c i).IsHomogeneous d) (hv : ∀ k, (v k).IsHomogeneous d)
+    (hcodd : ∀ i α, (c i).coeff α ≠ 0 → Finsupp.weight w α % 2 = 1)
+    (hveven : ∀ k α, (v k).coeff α ≠ 0 → Finsupp.weight w α % 2 = 0)
     (hfirst : ∀ (x : I → MvPolynomial σ K) (y : J → MvPolynomial σ K),
-      (∀ i,x i∈coefficientComponentSpace w d 1) →
-      (∀ k,y k∈coefficientComponentSpace w d 0) →
-      (∑ i,a i*x i)+(∑ k,O k*y k)=0 →
+      (∀ i, x i ∈ coefficientComponentSpace w d 1) →
+      (∀ k, y k ∈ coefficientComponentSpace w d 0) →
+      (∑ i, a i * x i) + (∑ k, O k * y k) = 0 →
       ∃ B : I → J → K,
-        (∀ i,x i=∑ k,B i k • O k) ∧ (∀ k,y k = -∑ i,B i k • a i))
-    (hhigher : ∀ r,3≤r → r≤d+1 → r%2=1 →
+        (∀ i, x i = ∑ k, B i k • O k) ∧ (∀ k, y k = -∑ i, B i k • a i))
+    (hhigher : ∀ r, 3 ≤ r → r ≤ d + 1 → r % 2 = 1 →
       ∀ (x : I → MvPolynomial σ K) (y : J → MvPolynomial σ K),
-      (∀ i,x i∈coefficientComponentSpace w d r) →
-      (∀ k,y k∈coefficientComponentSpace w d (r-1)) →
-      (∑ i,a i*x i)+(∑ k,O k*y k)=0 → x=0 ∧ y=0)
-    (hcycle : (∑ i,(a i+E i)*c i)+(∑ k,(O k+U k)*v k)=0) :
+      (∀ i, x i ∈ coefficientComponentSpace w d r) →
+      (∀ k, y k ∈ coefficientComponentSpace w d (r - 1)) →
+      (∑ i, a i * x i) + (∑ k, O k * y k) = 0 → x = 0 ∧ y = 0)
+    (hcycle : (∑ i, (a i + E i) * c i) + (∑ k, (O k + U k) * v k) = 0) :
     ∃ B : I → J → K,
       (∀ i,c i=∑ k,B i k • (O k+U k)) ∧
       (∀ k,v k = -∑ i,B i k • (a i+E i)) := by

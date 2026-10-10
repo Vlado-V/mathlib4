@@ -33,8 +33,8 @@ private theorem uniform_tendsto_double_atTop :
   omega
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem eventually_uniform_criticalComparisonBlock {d : ℕ} (hd : 3≤d)
-    (N₂ : ℕ) (hquad : ∀ h,N₂≤h → ∀ (K : Type) [Field K] [Infinite K],
+theorem eventually_uniform_criticalComparisonBlock {d : ℕ} (hd : 3 ≤ d)
+    (N₂ : ℕ) (hquad : ∀ h, N₂ ≤ h → ∀ (K : Type) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :
     ∀ᶠ w : ℕ in atTop,UniformCriticalComparisonBlock d (2*w) := by
   by_cases he : d%2=0
@@ -64,7 +64,7 @@ theorem eventually_uniform_criticalComparisonBlock {d : ℕ} (hd : 3≤d)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_high_degree_recurrence_of_quadratic_endpoint
-    (hquad : UniformEndpointStatement 2) {d : ℕ} (hd : 3≤d) :
+    (hquad : UniformEndpointStatement 2) {d : ℕ} (hd : 3 ≤ d) :
     UniformCriticalRecurrence d := by
   obtain ⟨N₂,hN₂,hbase⟩ := hquad
   apply uniformCriticalRecurrence_of_comparison_blocks hd

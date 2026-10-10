@@ -25,10 +25,10 @@ def privateSourceEmbedding (hs : 0 < s) (ι : Fin b ↪ Fin z) : Fin b ↪ Degre
     exact privateExponent_injective hs ι (congrArg Subtype.val he)
 
 abbrev fiberCapacity (ι : Fin b ↪ Fin z) (v : Labels k a s → Fin h → K)
-    (w : Fin b → Fin h → K) (β : Fin (a+z) →₀ ℕ) : ℕ :=
+    (w : Fin b → Fin h → K) (β : Fin (a + z) →₀ ℕ) : ℕ :=
   finrank K ((Fin h → K) ⧸ relationFiber (attachedExponent ι) (attachedVectors v w) β)
 
-lemma source_capacity_le_core (hh : h=k*(2*s+1).choose s)
+lemma source_capacity_le_core (hh : h = k * (2 * s + 1).choose s)
     (ι : Fin b ↪ Fin z) (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (α : Degree (a+z) s) :
@@ -42,7 +42,7 @@ lemma source_capacity_le_core (hh : h=k*(2*s+1).choose s)
     exact le_sup_left
   exact LinearMap.finrank_le_finrank_of_surjective (Submodule.factor_surjective hle)
 
-lemma coarse_capacity_le_regular (hh : h=k*(2*s+1).choose s)
+lemma coarse_capacity_le_regular (hh : h = k * (2 * s + 1).choose s)
     (ι : Fin b ↪ Fin z) (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (β : Degree (a+z) (2*s+1)) (hβ : β∉badTargets ι) :
@@ -56,8 +56,8 @@ lemma coarse_capacity_le_regular (hh : h=k*(2*s+1).choose s)
   rw [coarse_capacity_real hh β]
   exact target_capacity_real_lower hh v hv β
 
-lemma private_finite_shadow_bound (hh : h=k*(2*s+1).choose s)
-    (hs : 0 < s) (hn : 0 < a+z) (ι : Fin b ↪ Fin z)
+lemma private_finite_shadow_bound (hh : h = k * (2 * s + 1).choose s)
+    (hs : 0 < s) (hn : 0 < a + z) (ι : Fin b ↪ Fin z)
     (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (ell : Degree (a+z) s → ℕ) (hell : ∀ α,ell α ≤ fiberCapacity ι v w α.val) :

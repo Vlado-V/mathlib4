@@ -87,7 +87,7 @@ theorem weight_halfWeight {n : ℕ} (S : Finset (Fin n)) (a : Fin n →₀ ℕ) 
 retention. -/
 theorem retained_profile_zero {n k p j : ℕ} (S : Finset (Fin n))
     (f : Poly K n) (hf : f.IsWeightedHomogeneous (halfWeight S) k)
-    (hk : k%2=p ∨ k=j) :
+    (hk : k % 2 = p ∨ k = j) :
     retainMonomials (parityProfileRetained S p j) f = 0 := by
   ext a
   rw [coeff_retainMonomials]
@@ -105,7 +105,7 @@ theorem retained_profile_zero {n k p j : ℕ} (S : Finset (Fin n))
 projection, which is independent of the pair block. -/
 theorem products_retained_zero {n : ℕ} (S : Finset (Fin n)) (e : ℕ → ℕ)
     (q : (j : ℕ) → Fin (e j) → Poly K n) {J : Finset ℕ} {R d : ℕ}
-    (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j≤d)
+    (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
     (hq : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous (halfWeight S) (assignedScalarDegree R d j))
     (r : Row J R) (c : Columns e r) :
     retainMonomials (parityProfileRetained S (d%2) (2*((d-R/2)/2))) (products e q r c)=0 := by
@@ -125,7 +125,7 @@ theorem products_retained_zero {n : ℕ} (S : Finset (Fin n)) (e : ℕ → ℕ)
 coordinate subspace. -/
 theorem multiplication_range_le_retention_kernel {n : ℕ} (S : Finset (Fin n))
     (e : ℕ → ℕ) (q : (j : ℕ) → Fin (e j) → Poly K n) {J : Finset ℕ} {R d : ℕ}
-    (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j≤d)
+    (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
     (hq : ∀ j ∈ J, ∀ i, (q j i).IsWeightedHomogeneous (halfWeight S) (assignedScalarDegree R d j)) :
     (multiplication e q J R).range ≤
       (retainMonomials (K := K) (parityProfileRetained S (d%2) (2*((d-R/2)/2)))).ker := by

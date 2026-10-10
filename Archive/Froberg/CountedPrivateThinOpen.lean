@@ -18,11 +18,11 @@ open scoped Topology
 
 theorem exact_counts_private_thin_open {K : Type*} [Field K] [Infinite K]
     {d k h lo b : ℕ} (hd : 3 ≤ d) (hk : 0 < k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0 < h)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
     {δ : ℝ} (hδ : 0 < δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∃ G C : ℝ,0 < G ∧ 0 < C ∧ ∀ᶠ n in atTop,
       ∃ D : MvPolynomial (VectorParameters.Index h n (d-1) (f n+b)) K,
         (∃ p,eval p D ≠ 0) ∧ ∀ p,eval p D ≠ 0 →

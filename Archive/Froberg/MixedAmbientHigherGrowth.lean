@@ -24,15 +24,15 @@ attribute [local
   irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 attribute [local irreducible] oddMixedSourceBlockCoordinates mixedAmbientScalar
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
-variable (hd : Odd d) (hd3 : 3≤d)
-  (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-  (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
-  (hker : R.ker=(Submodule.span K (Set.range U)).map
-    (topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm.toLinearMap)
-  (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) →ₗ[K] (Fin u → K))
-  (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
-    (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id)
+variable (hd : Odd d) (hd3 : 3 ≤ d)
+  (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+  (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+  (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
+  (hker : R.ker = (Submodule.span K (Set.range U)).map
+    (topGrowthDegree (Nat.le_trans (by decide : 1 ≤ 3) hd3) h).symm.toLinearMap)
+  (B : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1 ≤ 3) hd3) →ₗ[K] (Fin u → K))
+  (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1 ≤ 3) hd3) F
+    (fun i => mixedPureOddGenerator hd (U i) (P i))) = LinearMap.id)
 
 local notation "hdp" => Nat.le_trans (by decide : 1≤3) hd3
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
@@ -44,7 +44,7 @@ local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
  set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem mixedHigherProjection_kills_bottom
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
-  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
+  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) (r : MixedHigherIndex d hd3)
     (x : OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp)) :
     mixedHigherProjection hd hd3 R Q F U P hker r
@@ -58,7 +58,7 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include hR hker in
  theorem mixedAmbientHigher_growth
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
-  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
+  (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) =
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)
     (t : ℕ)
     (htop : ∀ L : Submodule K (Fin b → K), t*finrank K L≤finrank K

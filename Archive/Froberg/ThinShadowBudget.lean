@@ -24,9 +24,9 @@ lemma thinSlices_antitone (j : ℕ) {C : ℝ} (hC : 0 ≤ C) :
   exact mul_le_mul_of_nonneg_left (by exact_mod_cast hrs) hC
 
 lemma thin_covector_budget {a r T q j E : ℕ} (ha : 0 < a) (hr : r ≤ a)
-    (hT : T=q*a+j) (G C : ℝ) (hC : 0 ≤ C)
-    (hG₁ : (a : ℝ)+C ≤ G) (hG₂ : (a : ℝ)+(j : ℝ)/a ≤ G)
-    (hE : ((T : ℝ)/a)*r+G*(min r (a-r) : ℕ) ≤ E) :
+    (hT : T = q * a + j) (G C : ℝ) (hC : 0 ≤ C)
+    (hG₁ : (a : ℝ) + C ≤ G) (hG₂ : (a : ℝ) + (j : ℝ) / a ≤ G)
+    (hE : ((T : ℝ) / a) * r + G * (min r (a - r) : ℕ) ≤ E) :
     (r*(a-r) : ℕ)+(T : ℤ)-E-1 < (q*(a-r)+thinSlices j C r : ℕ) := by
   have hap : (0 : ℝ) < a := by exact_mod_cast ha
   have hrR : (r : ℝ) ≤ a := by exact_mod_cast hr

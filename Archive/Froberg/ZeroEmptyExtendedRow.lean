@@ -24,10 +24,10 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 3200000 in -- Preserve the budget during this port.
 theorem empty_row_core_extended_exact_zero
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : J) (hRd : R.val=d)
-    (hz : counts R.val=0) (p₀ : Space a d q J counts O)
-    (hcore : (row hO R p₀).ker=(rowConstants hO R p₀).range)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : J) (hRd : R.val = d)
+    (hz : counts R.val = 0) (p₀ : Space a d q J counts O)
+    (hcore : (row hO R p₀).ker = (rowConstants hO R p₀).range)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     (row hO R (coreExtension z p₀)).ker=
       (rowConstants hO R (coreExtension z p₀)).range := by

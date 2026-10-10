@@ -30,8 +30,8 @@ scalar-product disjointness to remove every formal-product coefficient. -/
 theorem addRow_kernel_separated
     (S : A →ₗ[K] V) (E : B →ₗ[K] V) (P : C →ₗ[K] V)
     (D : Submodule K V) (T : V →ₗ[K] V)
-    (hSD : S.range≤D) (hTD : ∀ x∈D, T x∈D)
-    (hTE : T.comp E=0) (hTP : T.comp P=P)
+    (hSD : S.range ≤ D) (hTD : ∀ x ∈ D, T x ∈ D)
+    (hTE : T.comp E = 0) (hTP : T.comp P = P)
     (hDP : Disjoint D P.range) (hP : Function.Injective P) :
     (addRow (addRow S E) P).ker =
       (addRow S E).ker.map (LinearMap.inl K (A × B) C) := by
@@ -63,10 +63,10 @@ theorem addRow_kernel_eq_mandatory
     {U : Type*} [AddCommGroup U] [Module K U]
     (S : A →ₗ[K] V) (E : B →ₗ[K] V) (P : C →ₗ[K] V)
     (D : Submodule K V) (T : V →ₗ[K] V)
-    (hSD : S.range≤D) (hTD : ∀ x∈D, T x∈D)
-    (hTE : T.comp E=0) (hTP : T.comp P=P)
+    (hSD : S.range ≤ D) (hTD : ∀ x ∈ D, T x ∈ D)
+    (hTE : T.comp E = 0) (hTP : T.comp P = P)
     (hDP : Disjoint D P.range) (hP : Function.Injective P)
-    (Z : U →ₗ[K] (A × B)) (hZ : (addRow S E).ker=Z.range) :
+    (Z : U →ₗ[K] (A × B)) (hZ : (addRow S E).ker = Z.range) :
     (addRow (addRow S E) P).ker =
       ((LinearMap.inl K (A × B) C).comp Z).range := by
   rw [addRow_kernel_separated S E P D T hSD hTD hTE hTP hDP hP,hZ]

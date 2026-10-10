@@ -21,7 +21,7 @@ variable {h m d x y : ℕ}
 attribute [local instance] tensorGroup
 
 theorem vectorFormFamilyMap_one_surjective_of_span (v : ι → V)
-    (hv : Submodule.span K (Set.range v)=⊤) :
+    (hv : Submodule.span K (Set.range v) = ⊤) :
     Function.Surjective (vectorFormFamilyMap (t := y) v (fun _ : ι => constantOneForm K m)) := by
   classical
   have hone (f : Forms K m (0+y)) :
@@ -46,8 +46,8 @@ theorem vectorFormFamilyMap_one_surjective (b : Basis ι K V) :
   vectorFormFamilyMap_one_surjective_of_span b b.span_eq
 
 theorem pure_biform_family_surjective (U : Submodule K (Poly K h))
-    (hU : U≤Forms K h d) (u : ι → U) (hu : Submodule.span K (Set.range u)=⊤)
-    (hfull : U*Forms K h x=Forms K h (d+x)) :
+    (hU : U ≤ Forms K h d) (u : ι → U) (hu : Submodule.span K (Set.range u) = ⊤)
+    (hfull : U * Forms K h x = Forms K h (d + x)) :
     Function.Surjective (biformFamilyMap (x := x) (y := y)
       (fun i => homogeneousInclusion U hU (u i)) (fun _ => constantOneForm K m)) := by
   apply biformFamilyMap_surjective_of_output (homogeneousInclusion U hU)
@@ -57,8 +57,8 @@ theorem pure_biform_family_surjective (U : Submodule K (Poly K h))
   · exact vectorFormFamilyMap_one_surjective_of_span u hu
 
 theorem pure_biform_basis_surjective (U : Submodule K (Poly K h))
-    (hU : U≤Forms K h d) (basis : Basis ι K U)
-    (hfull : U*Forms K h x=Forms K h (d+x)) :
+    (hU : U ≤ Forms K h d) (basis : Basis ι K U)
+    (hfull : U * Forms K h x = Forms K h (d + x)) :
     Function.Surjective (biformFamilyMap (x := x) (y := y)
       (fun i => homogeneousInclusion U hU (basis i)) (fun _ => constantOneForm K m)) := by
   apply biformFamilyMap_surjective_of_output (homogeneousInclusion U hU)

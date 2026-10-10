@@ -37,7 +37,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 identification, and fixed pure tuple. Only the frame-open polynomial and
 the private witness columns are selected at the intermediate stage. -/
 theorem eventually_counted_private_prepared_open {d : ℕ}
-    (hd : 9≤d) (hodd : d%2=1) :
+    (hd : 9 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

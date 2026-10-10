@@ -306,7 +306,7 @@ theorem exists_extension_coefficients
     (S : Submodule K ((Fin v → K) × (Fin w → K)))
     (j : Fin r ↪ Fin v) (k : Fin s ↪ Fin w)
     (A : SubspaceCharts.Parameters K j) (B : SubspaceCharts.Parameters K k)
-    (hA : chartSubspace j A=lower S) (hB : chartSubspace k B=upper S) :
+    (hA : chartSubspace j A = lower S) (hB : chartSubspace k B = upper S) :
     ∃ C : Extension K j s, chart j k (A,B,C)=S := by
   obtain ⟨f,hf⟩ := exists_extension S
   let e : upper S ≃ₗ[K] (Fin s → K) := (LinearEquiv.ofEq _ _ hB.symm).trans (chartEquiv k B)
@@ -342,7 +342,7 @@ theorem exists_extension_coefficients
 
 /-- Every subspace with the prescribed two initial dimensions has one of these charts. -/
 theorem exists_chart (S : Submodule K ((Fin v → K) × (Fin w → K)))
-    (hr : finrank K (lower S)=r) (hs : finrank K (upper S)=s) :
+    (hr : finrank K (lower S) = r) (hs : finrank K (upper S) = s) :
     ∃ j : Fin r ↪ Fin v, ∃ k : Fin s ↪ Fin w,
       ∃ p : Parameters K j k, chart j k p=S := by
   obtain ⟨j,A,hA⟩ := SubspaceCharts.exists_chart (lower S) hr

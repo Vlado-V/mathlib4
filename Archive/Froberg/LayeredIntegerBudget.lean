@@ -19,7 +19,7 @@ open Filter
 open scoped Topology
 
 theorem thinSlices_integer_loss (j L : ℕ) (C : ℝ)
-    (hC : 2*⌈C⌉₊ ≤ L) (r : ℕ) :
+    (hC : 2 * ⌈C⌉₊ ≤ L) (r : ℕ) :
     j ≤ BilinearCovectorStrata.thinSlices j C r+⌈C*(r : ℝ)⌉₊ ∧
       ⌈C*(r : ℝ)⌉₊ ≤ L*r/2 := by
   constructor
@@ -34,8 +34,8 @@ theorem thinSlices_integer_loss (j L : ℕ) (C : ℝ)
       _ = (2*⌈C⌉₊)*r := by ring
       _ ≤ L*r := Nat.mul_le_mul_right r hC
 
-theorem eventually_thin_integer_rate {d : ℕ} (hd : 0<d)
-    {xi delta : ℝ} (hxi : 0 ≤ xi) (hgap : 2*xi<delta) :
+theorem eventually_thin_integer_rate {d : ℕ} (hd : 0 < d)
+    {xi delta : ℝ} (hxi : 0 ≤ xi) (hgap : 2 * xi < delta) :
     ∀ᶠ m : ℕ in atTop,2*⌈xi*(m : ℝ)^d⌉₊ ≤ ⌊delta*(m : ℝ)^d⌋₊ := by
   have hdelta : 0 ≤ delta := by linarith
   have hx := ceil_normalized_limit (fun m : ℕ => xi*(m : ℝ)^d) hd xi
@@ -50,8 +50,8 @@ theorem eventually_thin_integer_rate {d : ℕ} (hd : 0<d)
   filter_upwards [eventually_lt_of_normalized_limits _ _ d (2*xi) delta hleft hl hgap] with m hm
   exact_mod_cast hm.le
 
-theorem eventually_layered_small_budget {d : ℕ} (hd : 0<d)
-    {delta : ℝ} (hdelta : 0<delta) (H A q : ℕ → ℕ)
+theorem eventually_layered_small_budget {d : ℕ} (hd : 0 < d)
+    {delta : ℝ} (hdelta : 0 < delta) (H A q : ℕ → ℕ)
     (hH : Tendsto (fun m : ℕ => (H m : ℝ)/(m : ℝ)^d) atTop (𝓝 0))
     (hA : Tendsto (fun m : ℕ => (A m : ℝ)/(m : ℝ)^d) atTop (𝓝 0))
     (hq : Tendsto (fun m : ℕ => (q m : ℝ)/(m : ℝ)^d) atTop (𝓝 0)) :

@@ -27,7 +27,7 @@ def coreExponent {k a s : ℕ} (z : ℕ) (i : Labels k a s) : Fin (a+z) →₀ �
   exact (exponentEquiv a s i.2).property
 
 /-- Each target has at most k times choose(degβ,s) attached source labels. -/
-theorem card_target_labels_le {k a s : ℕ} (z : ℕ) (β : Fin (a+z) →₀ ℕ) :
+theorem card_target_labels_le {k a s : ℕ} (z : ℕ) (β : Fin (a + z) →₀ ℕ) :
     Fintype.card {i : Labels k a s // coreExponent z i ≤ β} ≤
       k * β.degree.choose s := by
   classical
@@ -57,7 +57,7 @@ theorem card_target_labels_le {k a s : ℕ} (z : ℕ) (β : Fin (a+z) →₀ ℕ
 output dimension meets the target divisor bound. This is the first assertion
 of Theorem B.2, without any asymptotic hypotheses. -/
 theorem exists_injective_attached_multiplication_through {K : Type*} [Field K] [Infinite K]
-    (k a z s d h : ℕ) (hh : k * (s+d).choose s ≤ h) :
+    (k a z s d h : ℕ) (hh : k * (s + d).choose s ≤ h) :
     ∃ v : Labels k a s → Fin h → K, ∀ c ≤ d,
       Function.Injective (AttachedMultiplication.multiplication (d := c) (coreExponent z) v) := by
   classical
@@ -85,7 +85,7 @@ theorem exists_injective_attached_multiplication_through {K : Type*} [Field K] [
 
 /-- Polynomial injectivity at one prescribed coefficient degree. -/
 theorem exists_injective_attached_multiplication {K : Type*} [Field K] [Infinite K]
-    (k a z s d h : ℕ) (hh : k * (s+d).choose s ≤ h) :
+    (k a z s d h : ℕ) (hh : k * (s + d).choose s ≤ h) :
     ∃ v : Labels k a s → Fin h → K,
       Function.Injective (AttachedMultiplication.multiplication (d := d) (coreExponent z) v) := by
   obtain ⟨v,hv⟩ := exists_injective_attached_multiplication_through (K := K) k a z s d h hh

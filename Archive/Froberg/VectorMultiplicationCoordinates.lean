@@ -89,7 +89,7 @@ def coordinate : (Fin (FormCount m d) → K) →ₗ[K]
 
 /-- Multiplication commutes with coefficient-field extension in these coordinates. -/
 theorem coordinate_map (f : Fin (FormCount m d) → K) (v : Fin (RowCount h m s) → K)
-    (k : Fin (RowCount h m (s+d))) :
+    (k : Fin (RowCount h m (s + d))) :
     coordinate (fun i => algebraMap K L (f i)) (fun i => algebraMap K L (v i)) k =
       algebraMap K L (coordinate f v k) := by
   rw [coordinate_apply, ← mapForm_finiteEquiv_symm, ← mapRows_rowFiniteEquiv_symm,

@@ -20,30 +20,30 @@ open MvPolynomial
 variable {K σ I : Type*} [Field K] [Fintype I] [LinearOrder I] {b : ℕ}
 
 theorem matrixBoundary_mem_submodule (V : Submodule K (MvPolynomial σ K))
-    (q : Fin b → MvPolynomial σ K) (hq : ∀ i,q i∈V)
+    (q : Fin b → MvPolynomial σ K) (hq : ∀ i, q i ∈ V)
     (C : Fin b → Fin b → K) (i : Fin b) : matrixBoundary q C i∈V := by
   apply V.sub_mem
   · exact V.sum_mem (fun k _ => V.smul_mem _ (hq k))
   · exact V.sum_mem (fun k _ => V.smul_mem _ (hq k))
 
 theorem private_complete_positive_reduction
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ) (hd : 3≤d) (hodd : d%2=1)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ) (hd : 3 ≤ d) (hodd : d % 2 = 1)
     (a E c : I → MvPolynomial σ K) (P U v : Fin b → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i))
-    (hP : ∀ k,(P k).IsHomogeneous d ∧ (P k).IsWeightedHomogeneous w 1)
-    (hU : ∀ k,(U k).IsHomogeneous d ∧ (U k).IsWeightedHomogeneous w d)
-    (hEzero : ∀ i,j i=0 → E i=0) (hj : ∀ i,j i≤d) (hjeven : ∀ i,j i%2=0)
-    (hc : ∀ i,(c i).IsHomogeneous d) (hv : ∀ k,(v k).IsHomogeneous d)
-    (hceven : ∀ i α,(c i).coeff α≠0 → Finsupp.weight w α%2=0)
-    (hvodd : ∀ k α,(v k).coeff α≠0 → Finsupp.weight w α%2=1)
-    (hfirst : (fun k => weightedHomogeneousComponent w 1 (v k))∈
+    (ha : ∀ i, (a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
+    (hP : ∀ k, (P k).IsHomogeneous d ∧ (P k).IsWeightedHomogeneous w 1)
+    (hU : ∀ k, (U k).IsHomogeneous d ∧ (U k).IsWeightedHomogeneous w d)
+    (hEzero : ∀ i, j i = 0 → E i = 0) (hj : ∀ i, j i ≤ d) (hjeven : ∀ i, j i % 2 = 0)
+    (hc : ∀ i, (c i).IsHomogeneous d) (hv : ∀ k, (v k).IsHomogeneous d)
+    (hceven : ∀ i α, (c i).coeff α ≠ 0 → Finsupp.weight w α % 2 = 0)
+    (hvodd : ∀ k α, (v k).coeff α ≠ 0 → Finsupp.weight w α % 2 = 1)
+    (hfirst : (fun k => weightedHomogeneousComponent w 1 (v k)) ∈
       Submodule.span K (Set.range (koszulVector P)))
-    (hpositive : ∀ r,0<r → r≤2*d → weightedHomogeneousComponent w r
-      ((∑ i,(a i+E i)*c i)+(∑ k,(P k+U k)*v k))=0)
-    (hexact : ∀ r,0<r → r≤2*d → r%2=0 →
+    (hpositive : ∀ r, 0 < r → r ≤ 2 * d → weightedHomogeneousComponent w r
+      ((∑ i, (a i + E i) * c i) + (∑ k, (P k + U k) * v k)) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d → r % 2 = 0 →
       CoefficientRowExact (coefficientComponentSpace w d) a E j r)
-    (hseparate : ∀ r,3≤r → r≤2*d → r%2=0 →
+    (hseparate : ∀ r, 3 ≤ r → r ≤ 2 * d → r % 2 = 0 →
       PrivateRowSeparation (coefficientComponentSpace w d) (coefficientComponentSpace w d) a E P j
         r) :
     ∃ (C : Fin b → Fin b → K) (M : I → I → K) (z : I → MvPolynomial σ K),

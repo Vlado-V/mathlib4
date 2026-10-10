@@ -26,7 +26,7 @@ open scoped Topology
 def preparedEvenSlotCount (d h m e : ℕ) : ℕ :=
   e+∑ j∈activeHigherIndices d,higherGeneratorCount d h m j
 
-theorem preparedEvenSlotCount_eq_card {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
+theorem preparedEvenSlotCount_eq_card {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ) :
     preparedEvenSlotCount d h m e=
       Fintype.card (ProductRows.LayerLabel (PreparedParameters.allEvenIndices d)
         (PreparedParameters.allEvenCount d h m e)) := by
@@ -36,9 +36,9 @@ theorem preparedEvenSlotCount_eq_card {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
   simpa [preparedEvenSlotCount,ProductRows.LayerLabel,Finset.sum_attach] using (sum_targetLayerCount
     hd h m e).symm
 
-theorem preparedEvenSlotCount_lower_order {d : ℕ} (hd : 3≤d) (h extra : ℕ)
+theorem preparedEvenSlotCount_lower_order {d : ℕ} (hd : 3 ≤ d) (h extra : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     Tendsto (fun m : ℕ => (preparedEvenSlotCount d h m (e m+extra) : ℝ)/(m : ℝ)^d)
       atTop (𝓝 0) := by
   have hs : Tendsto (fun m : ℕ =>
@@ -59,9 +59,9 @@ theorem preparedEvenSlotCount_lower_order {d : ℕ} (hd : 3≤d) (h extra : ℕ)
     simp only [preparedEvenSlotCount,Nat.cast_add,Nat.cast_sum]
     ring
 
-theorem preparedEvenSlots_shift_lower_order {d : ℕ} (hd : 3≤d) (h extra z : ℕ)
+theorem preparedEvenSlots_shift_lower_order {d : ℕ} (hd : 3 ≤ d) (h extra z : ℕ)
     (e : ℕ → ℕ)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2)) :
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2)) :
     Tendsto (fun m : ℕ =>
       (Fintype.card (ProductRows.LayerLabel (PreparedParameters.allEvenIndices d)
         (PreparedParameters.allEvenCount d h (m+z) (e (m+z)+extra))) : ℝ)/(m : ℝ)^d)
@@ -69,8 +69,8 @@ theorem preparedEvenSlots_shift_lower_order {d : ℕ} (hd : 3≤d) (h extra z : 
   simpa only [←preparedEvenSlotCount_eq_card hd] using
     normalized_limit_shift (preparedEvenSlotCount_lower_order hd h extra e he) z
 
-theorem thinSlices_positive_integer_base (T k : ℕ) (C : ℝ) (hC : 0≤C)
-    (hs : 0<BilinearCovectorStrata.thinSlices T C k) :
+theorem thinSlices_positive_integer_base (T k : ℕ) (C : ℝ) (hC : 0 ≤ C)
+    (hs : 0 < BilinearCovectorStrata.thinSlices T C k) :
     BilinearCovectorStrata.thinSlices T C k+⌊C⌋₊*k≤T := by
   have hh : ⌊C⌋₊*k≤⌈C*(k : ℝ)⌉₊ := by
     have hr := (mul_le_mul_of_nonneg_right (Nat.floor_le hC) (Nat.cast_nonneg k)).trans
@@ -89,10 +89,10 @@ theorem min_higher_capacity_eq (d m : ℕ) :
 /-- This supplies every integer-rate and lower-order hypothesis of the
 positive-stratum uniform quotient-slice theorem. The only source-dimension
 input is its literal bound by the full odd homogeneous coefficient space. -/
-theorem eventually_prepared_layered_budget {d : ℕ} (hd : 3≤d) (h u z extra : ℕ)
-    (e a : ℕ → ℕ) (Cbottom : ℝ) (hCbottom : 0<Cbottom)
-    (he : ∀ᶠ m : ℕ in atTop,(e m : ℝ)<countBeta d*(h : ℝ)^2*(m : ℝ)^(d-2))
-    (ha : ∀ᶠ m : ℕ in atTop,a m≤oddCoefficientCount d h (m+z)) :
+theorem eventually_prepared_layered_budget {d : ℕ} (hd : 3 ≤ d) (h u z extra : ℕ)
+    (e a : ℕ → ℕ) (Cbottom : ℝ) (hCbottom : 0 < Cbottom)
+    (he : ∀ᶠ m : ℕ in atTop, (e m : ℝ) < countBeta d * (h : ℝ) ^ 2 * (m : ℝ) ^ (d - 2))
+    (ha : ∀ᶠ m : ℕ in atTop, a m ≤ oddCoefficientCount d h (m + z)) :
     ∃ (L : ℕ → ℕ) (ξ : ℝ),0<ξ ∧ ∀ᶠ m : ℕ in atTop,
       0<L m ∧ L m≤⌊Cbottom*(m : ℝ)^d⌋₊ ∧
       L m ≤ min (scalarReserveCount d m) ⌊oddRowExtraDensity d*(m : ℝ)^d⌋₊ ∧

@@ -26,11 +26,11 @@ attribute [local irreducible] PreparedEndpointThin BaseC4GrowthProperty
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exact_counts_prepared_c4_selection {d k h lo u b : ℕ}
-    (hd : 3 ≤ d) (hdodd : d%2=1) (hk : 0 < k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0 < h) (hb : 0 < b)
+    (hd : 3 ≤ d) (hdodd : d % 2 = 1) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h) (hb : 0 < b)
     (U : Fin u → Forms K h d) (hU : LinearIndependent K U)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
-    (hker : R.ker=(Submodule.span K (Set.range U)).map
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
+    (hker : R.ker = (Submodule.span K (Set.range U)).map
       (topGrowthDegree (by omega : 1 ≤ d) h).symm.toLinearMap)
     (hP : ∀ L : Submodule K (Forms K h (d-1)),b*finrank K L ≤
       finrank K (Forms K h (d-1))*

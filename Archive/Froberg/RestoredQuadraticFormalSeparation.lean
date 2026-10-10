@@ -25,18 +25,18 @@ variable {O : ℕ → Submodule K (Poly K h)}
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- C.2 in exactly the endpoint coordinates used by the restored comparison. -/
 theorem restored_quadratic_formal_separation
-    (hd : 3≤d) (hdp : 1≤d) (he : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
-    (heven : ∀ j∈J,j%2=0) (hmin : ∀ j∈J,2≤j)
+    (hd : 3 ≤ d) (hdp : 1 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
+    (heven : ∀ j ∈ J, j % 2 = 0) (hmin : ∀ j ∈ J, 2 ≤ j)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T) (hO₂ : O 2≤T.ker)
+    (hT : T.comp (homogeneousComponent 2) = T) (hO₂ : O 2 ≤ T.ker)
     (p : RestoredOuterSpace m d q f J counts O)
     (hsep : QuadraticSeparated T (restoredC2Projection idx p))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d)
-      (Fin.natAdd h : Fin m → Fin (h+m))).range) :
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d)
+      (Fin.natAdd h : Fin m → Fin (h + m))).range) :
     formalSquare (Submodule.span K (Set.range (fun i => oddPolynomialToForms
       (linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i)))))) ⊓
       ((formalMixed (Submodule.span K (Set.range
@@ -56,13 +56,13 @@ theorem restored_quadratic_formal_separation
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem QuadraticSeparated.restored_formal
-    (hd : 3≤d) (hdp : 1≤d) (he : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
-    (heven : ∀ j∈J,j%2=0) (hmin : ∀ j∈J,2≤j)
+    (hd : 3 ≤ d) (hdp : 1 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
+    (heven : ∀ j ∈ J, j % 2 = 0) (hmin : ∀ j ∈ J, 2 ≤ j)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (hT : T.comp (homogeneousComponent 2)=T) (hO₂ : O 2≤T.ker)
+    (hT : T.comp (homogeneousComponent 2) = T) (hO₂ : O 2 ≤ T.ker)
     (p : RestoredOuterSpace m d q f J counts O)
     (hsep : QuadraticSeparated T (restoredC2Projection idx p)) :
     RestoredFormalQuadraticSeparation hdp he hO hJ heven idx slot p :=

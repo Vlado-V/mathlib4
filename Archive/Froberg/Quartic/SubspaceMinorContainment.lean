@@ -55,7 +55,7 @@ containment equations. -/
 def ContainsMatrix (p : RowChoice a d → K) (E : Matrix (Fin a) (Fin c) K) : Prop :=
   ∀ j : Fin c, ContainsVector p (fun i => E i j)
 
- theorem range_le_of_containsMatrix {p : RowChoice a d → K}
+theorem range_le_of_containsMatrix {p : RowChoice a d → K}
     (E : Matrix (Fin a) (Fin c) K) (hE : ContainsMatrix p E)
     (J : RowChoice a d) (hJ : p J ≠ 0) :
     LinearMap.range E.mulVecLin ≤ LinearMap.range (reconstruction p J).mulVecLin := by

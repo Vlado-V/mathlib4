@@ -22,7 +22,7 @@ variable {K F V V' W W' : Type*} [Field K]
 
 lemma image_eq_map (mu : F →ₗ[K] V →ₗ[K] W) (nu : F →ₗ[K] V' →ₗ[K] W')
     (p : V →ₗ[K] V') (q : W →ₗ[K] W') (hp : Function.Surjective p)
-    (hc : ∀ f v,nu f (p v)=q (mu f v)) (L : Submodule K V') :
+    (hc : ∀ f v, nu f (p v) = q (mu f v)) (L : Submodule K V') :
     Quartic.BilinearImage.image nu L =
       (Quartic.BilinearImage.image mu (L.comap p)).map q := by
   unfold Quartic.BilinearImage.image
@@ -77,7 +77,7 @@ lemma finrank_le_map_add_ker [FiniteDimensional K V]
 lemma image_finrank_le [FiniteDimensional K W]
     (mu : F →ₗ[K] V →ₗ[K] W) (nu : F →ₗ[K] V' →ₗ[K] W')
     (p : V →ₗ[K] V') (q : W →ₗ[K] W') (hp : Function.Surjective p)
-    (hc : ∀ f v,nu f (p v)=q (mu f v)) (L : Submodule K V') :
+    (hc : ∀ f v, nu f (p v) = q (mu f v)) (L : Submodule K V') :
     finrank K (Quartic.BilinearImage.image mu (L.comap p)) ≤
       finrank K (Quartic.BilinearImage.image nu L)+finrank K (LinearMap.ker q) := by
   rw [image_eq_map mu nu p q hp hc]

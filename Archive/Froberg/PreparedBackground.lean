@@ -32,14 +32,14 @@ def coreCoefficientSpace (K : Type) [Field K] (h m d i : ℕ) : Submodule K (Pol
 
 /-- Conditions satisfied by the scalar, private linear, and quadratic pieces
 of each actual background generator. Higher components are unrestricted. -/
-structure PreparedLowComponents (W : Submodule K (Forms K (h+m) d))
-    (S P D : Submodule K (Poly K (h+m))) : Prop where
+structure PreparedLowComponents (W : Submodule K (Forms K (h + m) d))
+    (S P D : Submodule K (Poly K (h + m))) : Prop where
   scalar : ∀ w : Forms K (h+m) d, w ∈ W → coreComponent h m 0 w.val ∈ S
   linear : ∀ w : Forms K (h+m) d, w ∈ W → coreComponent h m 1 w.val ∈ P
   quadratic : ∀ w : Forms K (h+m) d, w ∈ W → coreComponent h m 2 w.val ∈ D
 
 /-- The three denominator pieces seen by quadratic-X-degree extraction. -/
-def preparedProductDenominator (S P D : Submodule K (Poly K (h+m))) :
+def preparedProductDenominator (S P D : Submodule K (Poly K (h + m))) :
     Submodule K (Poly K (h+m)) :=
   S*coreCoefficientSpace K h m d 2 ⊔
     P*coreCoefficientSpace K h m d 1 ⊔ D*coreCoefficientSpace K h m d 0
@@ -47,9 +47,9 @@ def preparedProductDenominator (S P D : Submodule K (Poly K (h+m))) :
 /-- Every old product has its X-degree-two component in the explicit scalar,
 private, and quadratic denominator. No higher component contributes. -/
 theorem prepared_product_component_mem
-    (W : Submodule K (Forms K (h+m) d)) (S P D : Submodule K (Poly K (h+m)))
-    (H : PreparedLowComponents W S P D) (w : Forms K (h+m) d) (hw : w ∈ W)
-    (a : Forms K (h+m) d) :
+    (W : Submodule K (Forms K (h + m) d)) (S P D : Submodule K (Poly K (h + m)))
+    (H : PreparedLowComponents W S P D) (w : Forms K (h + m) d) (hw : w ∈ W)
+    (a : Forms K (h + m) d) :
     coreComponent h m 2 (w.val*a.val) ∈ preparedProductDenominator (d := d) S P D := by
   have ha (i : ℕ) : coreComponent h m i a.val ∈ coreCoefficientSpace K h m d i :=
     ⟨a.val,a.property,rfl⟩
@@ -68,8 +68,8 @@ theorem prepared_product_component_mem
 /-- A detector supported in X-degree two kills all old products once it kills
 the three explicit denominator pieces. This feeds the actual C.2 theorem. -/
 theorem prepared_background_annihilated {X : Type*} [AddCommGroup X] [Module K X]
-    (W : Submodule K (Forms K (h+m) d)) (S P D : Submodule K (Poly K (h+m)))
-    (H : PreparedLowComponents W S P D) (T : Poly K (h+m) →ₗ[K] X)
+    (W : Submodule K (Forms K (h + m) d)) (S P D : Submodule K (Poly K (h + m)))
+    (H : PreparedLowComponents W S P D) (T : Poly K (h + m) →ₗ[K] X)
     (hT : T.comp (coreComponent h m 2) = T)
     (hdenom : preparedProductDenominator (d := d) S P D ≤ T.ker) :
     ∀ w : Forms K (h+m) d, w ∈ W → ∀ a : Forms K (h+m) d, T (w.val*a.val) = 0 := by
@@ -80,8 +80,8 @@ theorem prepared_background_annihilated {X : Type*} [AddCommGroup X] [Module K X
 /-- The formal mixed-product image is also annihilated, without any assertion
 of independence or exactness hidden in the background record. -/
 theorem prepared_formalMixed_map_le_ker {X : Type*} [AddCommGroup X] [Module K X]
-    (W : Submodule K (Forms K (h+m) d)) (S P D : Submodule K (Poly K (h+m)))
-    (H : PreparedLowComponents W S P D) (T : Poly K (h+m) →ₗ[K] X)
+    (W : Submodule K (Forms K (h + m) d)) (S P D : Submodule K (Poly K (h + m)))
+    (H : PreparedLowComponents W S P D) (T : Poly K (h + m) →ₗ[K] X)
     (hT : T.comp (coreComponent h m 2) = T)
     (hdenom : preparedProductDenominator (d := d) S P D ≤ T.ker) :
     (formalMixed W).map formalPolynomialMultiplication ≤

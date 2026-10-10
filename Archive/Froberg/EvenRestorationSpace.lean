@@ -62,7 +62,7 @@ def retainedScalarCoefficients {r : ℕ} (w : σ → ℕ) (d : ℕ)
 
 theorem retainedScalarCoefficients_row_zero {r : ℕ} (w : σ → ℕ) (d : ℕ)
     (degree : Fin r → ℕ) (q : Fin r → evenRestorationSpace (K := K) w d)
-    (hq : ∀ i,degree i=0 → (q i).val.IsWeightedHomogeneous w 0)
+    (hq : ∀ i, degree i = 0 → (q i).val.IsWeightedHomogeneous w 0)
     (z : retainedScalarCoefficients (K := K) w d degree) :
     PolynomialRestoration.row (evenRestorationSpace w d).subtype
       (positiveWeightProjection w d) q z.val=0 := by
@@ -79,7 +79,7 @@ theorem retainedScalarCoefficients_row_zero {r : ℕ} (w : σ → ℕ) (d : ℕ)
 theorem pureShift_eq_zero_away {U V : Type*}
     [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
     {u r : ℕ} (embed : U →ₗ[K] V) (slot : Fin u → Fin r)
-    (v : Fin u → U) (i : Fin r) (hi : ∀ k,slot k≠i) :
+    (v : Fin u → U) (i : Fin r) (hi : ∀ k, slot k ≠ i) :
     PolynomialRestoration.pureShift (K := K) (V := V) embed slot v i=0 := by
   classical
   simp only [PolynomialRestoration.pureShift,LinearMap.sum_apply,Finset.sum_apply,

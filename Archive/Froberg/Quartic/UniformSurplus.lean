@@ -30,9 +30,9 @@ at the actual endpoint counts, for every child dimension at least 320. -/
 theorem source_scalar_inequalities (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m upper))
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper):ℝ))
-    (hdlo : 0 < (i:ℝ)+n₁+n₂+n₃)
-    (hdhi : (i:ℝ)+n₁+n₂+n₃ < (ProfileCertificate.totalA m (mixedCount m upper):ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper) : ℝ))
+    (hdlo : 0 < (i : ℝ) + n₁ + n₂ + n₃)
+    (hdhi : (i : ℝ) + n₁ + n₂ + n₃ < (ProfileCertificate.totalA m (mixedCount m upper) : ℝ)) :
     let q := upperEndpoint m
     let c := mixedCount m upper
     let a : ℝ := ProfileCertificate.totalA m c
@@ -53,9 +53,9 @@ sharp profile expression. -/
 theorem scalar_inequalities_of_profile_bound (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m upper))
     (n₁ n₂ n₃ E : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper):ℝ))
-    (hdlo : 0 < (i:ℝ)+n₁+n₂+n₃)
-    (hdhi : (i:ℝ)+n₁+n₂+n₃ < (ProfileCertificate.totalA m (mixedCount m upper):ℝ))
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper) : ℝ))
+    (hdlo : 0 < (i : ℝ) + n₁ + n₂ + n₃)
+    (hdhi : (i : ℝ) + n₁ + n₂ + n₃ < (ProfileCertificate.totalA m (mixedCount m upper) : ℝ))
     (hE : sourceSharp m (mixedCount m upper) i n₁ n₂ n₃ ≤ E) :
     let q := upperEndpoint m
     let c := mixedCount m upper
@@ -75,7 +75,7 @@ covers the manuscript's complete range `1≤d≤min(q,a)`. -/
 theorem source_outer_inequality (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m upper))
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper):ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper) : ℝ)) :
     let c := mixedCount m upper
     let d := (i:ℝ)+n₁+n₂+n₃
     d*((upperEndpoint m:ℝ)+(ProfileCertificate.totalA m c:ℝ)-d) ≤

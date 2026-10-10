@@ -30,7 +30,7 @@ theorem scalar_layer_constants_of_quotient_injective
     (hQ : Function.Injective (BilinearScalarFamily.multiplication
       (QuotientBilinearImage.quotientMap mu (Submodule.span K (Set.range E))) Q))
     (x : Fin q → U) (y : Fin c → V)
-    (hrow : (∑ i,mu (Q i) (x i))+(∑ j,mu (y j) (E j))=0) :
+    (hrow : (∑ i, mu (Q i) (x i)) + (∑ j, mu (y j) (E j)) = 0) :
     ∃ C : Fin q → Fin c → K,
       (∀ i,x i=∑ j,C i j • E j) ∧
       ∀ j,y j = -∑ i,C i j • Q i := by

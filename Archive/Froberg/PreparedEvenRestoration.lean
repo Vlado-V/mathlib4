@@ -29,8 +29,8 @@ theorem scalar_weight (p : Space n d q J counts O) (i : Label q J counts) :
   rename_weightedHomogeneous (⟨Sum.inr,Sum.inr_injective⟩ : Fin n ↪ σ ⊕ Fin n)
     (fun _ => 0) outputWeight (fun _ => rfl) (weightedHomogeneous_zero_weight (p.1 i).val)
 
-theorem generator_even (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (heven : ∀ j∈J,j%2=0) (p : Space n d q J counts O) (i : Label q J counts) :
+theorem generator_even (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (heven : ∀ j ∈ J, j % 2 = 0) (p : Space n d q J counts O) (i : Label q J counts) :
     generator p i∈weightedParitySpace outputWeight 0 := by
   apply (weightedParitySpace outputWeight 0).add_mem
   · exact IsWeightedHomogeneous.mem_parity (scalar_weight p i) rfl
@@ -39,28 +39,29 @@ theorem generator_even (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     | inl i => rfl
     | inr a => exact heven _ a.1.property
 
-def evenGenerator (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def evenGenerator (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : Space n d q J counts O) (i : Label q J counts) :
     evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d :=
   ⟨generator p i,generator_homogeneous hO hJ p i,generator_even hO heven p i⟩
 
-theorem evenGenerator_scalar (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
-    (p : Space n d q J counts O) (i : Label q J counts) (hi : degree i=0) :
+theorem evenGenerator_scalar (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
+    (p : Space n d q J counts O) (i : Label q J counts) (hi : degree i = 0) :
     (evenGenerator hO hJ heven p i).val.IsWeightedHomogeneous outputWeight 0 := by
   cases i with
   | inl i => simpa only [evenGenerator,generator,high_scalar_label,
       add_zero] using scalar_weight p (Sum.inl i)
   | inr a => have := hpos _ a.1.property; change a.1.val=0 at hi; omega
 
-theorem evenGenerator_reduction (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem evenGenerator_reduction (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p)
     (e : Fin r ≃ Label q J counts)
     (c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d)
     (hc : PolynomialRestoration.row (evenRestorationSpace outputWeight d).subtype
-      (positiveWeightProjection outputWeight d) (fun i => evenGenerator hO hJ heven p (e i)) c=0) :
+      (positiveWeightProjection outputWeight d) (fun i => evenGenerator hO hJ heven p (e i)) c =
+        0) :
     ∃ (M : Fin r → Fin r → K)
       (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (e i))),
       c-coefficientBoundary (fun i => evenGenerator hO hJ heven p (e i)) M=z.val := by
@@ -96,7 +97,7 @@ theorem evenGenerator_reduction (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K 
       e.sum_comp (fun k => M k (e i) • generator p k)]
     exact hh
 
-def pureEvenEmbed (hd : d%2=0) : homogeneousSubmodule σ K d →ₗ[K]
+def pureEvenEmbed (hd : d % 2 = 0) : homogeneousSubmodule σ K d →ₗ[K]
     evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d where
   toFun u := ⟨rename Sum.inl u.val,u.property.rename_isHomogeneous,by
     apply IsWeightedHomogeneous.mem_parity (j := d) _ hd
@@ -108,13 +109,13 @@ def pureEvenEmbed (hd : d%2=0) : homogeneousSubmodule σ K d →ₗ[K]
 
 /-- Actual restoration: for any positive generator slots, a basis of pure
 output forms can be restored while retaining the literal scalar reduction. -/
-theorem restore_even_prepared_basis (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
+theorem restore_even_prepared_basis (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p)
     (e : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (homogeneousSubmodule σ K d)) → Fin r)
-    (hslot : ∀ k,0<degree (e (slot k))) :
+    (hslot : ∀ k, 0 < degree (e (slot k))) :
     ∃ u : Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d,
       LinearIndependent K u ∧
       let g := (fun i => evenGenerator hO hJ heven p (e i))+

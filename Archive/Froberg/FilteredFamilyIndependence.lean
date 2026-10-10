@@ -23,7 +23,7 @@ theorem two_step_linearIndependent (q : I → V) (v : J → V)
     (p₀ : V →ₗ[K] W₀) (p₁ : V →ₗ[K] W₁)
     (hq : LinearIndependent K (fun i => p₀ (q i)))
     (hv : LinearIndependent K (fun j => p₁ (v j)))
-    (hz : ∀ j,p₀ (v j)=0) : LinearIndependent K (Sum.elim q v) := by
+    (hz : ∀ j, p₀ (v j) = 0) : LinearIndependent K (Sum.elim q v) := by
   classical
   apply Fintype.linearIndependent_iff.mpr
   intro c hc i

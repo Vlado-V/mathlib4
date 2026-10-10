@@ -22,7 +22,7 @@ variable {σ : Type*} {a z e : ℕ}
 theorem biformImage_core_extension
     (O : Submodule K (MvPolynomial σ K))
     {p : MvPolynomial (σ ⊕ Fin a) K}
-    (hp : p∈biformImage O (Forms K a e)) :
+    (hp : p ∈ biformImage O (Forms K a e)) :
     rename (Sum.map id (Fin.castAdd z)) p∈biformImage O (Forms K (a+z) e) := by
   rcases hp with ⟨v,⟨t,rfl⟩,rfl⟩
   induction t using TensorProduct.inductionOn with

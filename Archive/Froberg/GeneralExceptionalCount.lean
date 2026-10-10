@@ -18,8 +18,8 @@ namespace Froberg.MonomialExpansion
 /-- Multiples of one monomial with a degree excess have only degree-(d-1)
 many remaining parameters in total degree s+d. -/
 theorem card_targets_above_general {n s d : ℕ} (hn : 0 < n) (p : Fin n →₀ ℕ)
-    (hp : s+1 ≤ p.degree) (T : Finset (Fin n →₀ ℕ))
-    (hT : ∀ b ∈ T, b.degree = s+d ∧ p ≤ b) :
+    (hp : s + 1 ≤ p.degree) (T : Finset (Fin n →₀ ℕ))
+    (hT : ∀ b ∈ T, b.degree = s + d ∧ p ≤ b) :
     T.card ≤ (n+(d-1)-1).choose (d-1) := by
   classical
   let r := s+d-p.degree
@@ -54,7 +54,7 @@ theorem card_targets_above_general {n s d : ℕ} (hn : 0 < n) (p : Fin n →₀ 
 theorem card_common_targets_general {n s d : ℕ} (hn : 0 < n) (a b : Fin n →₀ ℕ)
     (ha : a.degree = s) (hb : b.degree = s) (hne : a ≠ b)
     (T : Finset (Fin n →₀ ℕ))
-    (hT : ∀ c ∈ T, c.degree = s+d ∧ a ≤ c ∧ b ≤ c) :
+    (hT : ∀ c ∈ T, c.degree = s + d ∧ a ≤ c ∧ b ≤ c) :
     T.card ≤ (n+(d-1)-1).choose (d-1) :=
   card_targets_above_general hn (a ⊔ b) (degree_sup_ge_succ ha hb hne) T
     (fun c hc => ⟨(hT c hc).1,sup_le (hT c hc).2.1 (hT c hc).2.2⟩)
@@ -67,7 +67,7 @@ variable {K α : Type*} [Field K] [DecidableEq α]
 theorem card_targets_hit_by_labels_general {n s d : ℕ} (hn : 0 < n)
     (a : Fin n →₀ ℕ) (ha : a.degree = s)
     (e : α → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
-    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = s+d ∧ a ≤ b)
+    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = s + d ∧ a ≤ b)
     (L : Finset α) (hit : ∀ b ∈ E, ∃ i ∈ L, e i ≠ a ∧ e i ≤ b) :
     E.card ≤ L.card * (n+(d-1)-1).choose (d-1) := by
   classical
@@ -91,7 +91,7 @@ theorem card_deficient_targets_general {n s d h : ℕ} (hn : 0 < n)
     (v : α → Fin h → K) (hv : UniversalMixedPosition v)
     (U : Submodule K (Fin h → K)) (a : Fin n →₀ ℕ) (ha : a.degree = s)
     (e : α → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
-    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = s+d ∧ a ≤ b)
+    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = s + d ∧ a ≤ b)
     (sets : (Fin n →₀ ℕ) → Finset α)
     (hsets : ∀ b ∈ E, ∀ i ∈ sets b, e i ≠ a ∧ e i ≤ b)
     (hsize : ∀ b ∈ E, (sets b).card ≤ h)

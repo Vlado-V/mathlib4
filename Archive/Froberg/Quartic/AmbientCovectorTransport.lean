@@ -137,9 +137,9 @@ abbrev AmbientTarget (K : Type*) [Field K] (m : ℕ) (upper : Bool) :=
 /-- The literal coordinate relation kernel is smaller than the ambient kernel
 by exactly the number of independent convolution columns. -/
 theorem actual_kernel_shift (m : ℕ) (upper : Bool)
-    (ht : 2 ≤ coreP (mixedCount m upper)+1)
+    (ht : 2 ≤ coreP (mixedCount m upper) + 1)
     (ell : AmbientTarget K m upper →ₗ[K] K)
-    (hrel : relations K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)) 3 ≤
+    (hrel : relations K (coreP (mixedCount m upper) + 1) (freeW m (mixedCount m upper)) 3 ≤
       LinearMap.ker ell) :
     finrank K (LinearMap.ker (QuotientCovectorKernel.relation
       ConvolutionAmbientImage.multiplication ell)) =
@@ -183,7 +183,7 @@ theorem annihilates_relations (m : ℕ) (upper : Bool)
 /-- Lift the auxiliary quotient vectors and transport the exact closed-section
 witness to ambient multiplication. No varying quotient basis is involved. -/
 theorem transport_closed_section (m : ℕ) (upper : Bool)
-    (ht : 2 ≤ coreP (mixedCount m upper)+1) (d : ℕ)
+    (ht : 2 ≤ coreP (mixedCount m upper) + 1) (d : ℕ)
     (x : SlicedInput K m upper d)
     (hempty : ∀ lam : Fin (finrank K (Tgt K m upper)) → K,
       d ≤ finrank K (LinearMap.ker (relationMap (actualMu m upper ht) lam)) →
@@ -245,7 +245,7 @@ variable {K : Type*} [Field K]
 auxiliary vectors are lifted to the actual polynomial target, not to a
 formal replacement of it. -/
 theorem exists_all_ambient_sections [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
-    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
+    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1) :
     ∃ Q : Fin (upperEndpoint m) → Coeff K m upper,
       ∃ Z : (d : ConvolutionSharedSlices.Threshold m upper) →
         Fin (sliceCount m upper d.val) → AmbientTarget K m upper,
@@ -270,7 +270,7 @@ open RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 for the actual row multiplication tensor. E, Q, and Z can subsequently vary
 without introducing coordinates on any varying quotient. -/
 theorem exists_all_coordinate_sections [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
-    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
+    (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper) + 1) :
     ∃ Q : Fin (upperEndpoint m) → Fin (FormCount
       (coreP (mixedCount m upper)+1+freeW m (mixedCount m upper)) 2) → K,
       ∃ Z : (d : ConvolutionSharedSlices.Threshold m upper) →

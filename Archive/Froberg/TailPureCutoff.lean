@@ -17,13 +17,13 @@ namespace Froberg
 open Filter Module Quartic
 variable {K : Type*} [Field K] [Infinite K]
 
-theorem eventually_tail_dimension_bound {d : ℕ} (hd : 3≤d) :
+theorem eventually_tail_dimension_bound {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,tailGeneratorCount d h≤(h+d-1).choose d := by
   by_cases ho : Odd d
   · exact (odd_top_count_budget_limit hd ho).1
   · exact Eventually.of_forall (fun h => by simp [tailGeneratorCount,ho])
 
-theorem eventually_pure_tail_cutoff {d : ℕ} (hd : 3≤d) :
+theorem eventually_pure_tail_cutoff {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,∃ U : Submodule K (Forms K h d),
       finrank K U=tailGeneratorCount d h ∧
       BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := d) (e := 1)).flip U=⊤ := by

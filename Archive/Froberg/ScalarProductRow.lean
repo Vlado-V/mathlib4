@@ -43,11 +43,11 @@ theorem addRow_injective_of_disjoint
 It therefore allows the stronger small-degree quadratic output witness. -/
 theorem scalar_product_row_injective
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdeg : ∀ i,(o i).IsHomogeneous R)
+    (hdeg : ∀ i, (o i).IsHomogeneous R)
     (Yhalf : Finset (Fin n)) (counts : ℕ → ℕ)
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
-    (J : Finset ℕ) (heven : ∀ j∈J,Even j) (hdegree : ∀ j∈J,j≤d)
-    (hEY : ∀ j∈J,∀ i,(E j i).IsWeightedHomogeneous
+    (J : Finset ℕ) (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
+    (hEY : ∀ j ∈ J, ∀ i, (E j i).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight Yhalf))
       (ProductRows.assignedScalarDegree R d j))
     (hproducts : Function.Injective (ProductRows.multiplication counts E J R))

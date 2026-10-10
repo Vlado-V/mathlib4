@@ -23,7 +23,7 @@ variable {K : Type*} [Field K] [Infinite K] {h s : ℕ}
 theorem eventually_generic_thin_model_strata
     (c q j : ℕ → ℕ) (g : (n : ℕ) → Fin (c n) → Rows K h n s)
     (G α : ℝ) (hG : 0 < G) (hα : 0 < α)
-    (hg : ∀ᶠ n in atTop,StrictModel (g n) (s+1) (G*(n : ℝ)^(s+1)))
+    (hg : ∀ᶠ n in atTop, StrictModel (g n) (s + 1) (G * (n : ℝ) ^ (s + 1)))
     (hA : Tendsto (fun n : ℕ => (finrank K (Source (g n)) : ℝ)/(n : ℝ)^s) atTop (𝓝 α))
     (hJ : Tendsto (fun n : ℕ => (j n : ℝ)/(n : ℝ)^(2*s+1)) atTop (𝓝 0))
     (hT : ∀ᶠ n in atTop,finrank K (Target (g n) (s+1))=q n*finrank K (Source (g n))+j n) :

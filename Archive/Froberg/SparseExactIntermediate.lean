@@ -23,10 +23,11 @@ variable {K : Type*} [Field K] [Infinite K]
 /-- A sparse family of exactly m generators, together with generic injective
 scalar action on its true polynomial quotient. -/
 theorem exists_exact_sparse_intermediate
-    {n s d h b m q : ℕ} (hn : 0<n) (hh : 0<h)
-    (hm : m≤b*(n+s-1).choose s) (hcap : b*(s+d).choose s≤h)
-    (hcount : h*(s+d).choose s * (q+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) ≤
-      (h-b*(s+d).choose s)*(n+s+d-1).choose d) :
+    {n s d h b m q : ℕ} (hn : 0 < n) (hh : 0 < h)
+    (hm : m ≤ b * (n + s - 1).choose s) (hcap : b * (s + d).choose s ≤ h)
+    (hcount : h * (s + d).choose s * (q + h * (n + s - 1).choose s + (h * 2 ^ h) * (n + (d - 1) -
+      1).choose (d - 1)) ≤
+      (h - b * (s + d).choose s) * (n + s + d - 1).choose d) :
     ∃ (e : Fin m → Fin n →₀ ℕ) (v : Fin m → Fin h → K),
       ∃ he : ∀ i, (e i).degree=s,
       (∀ β : Fin n →₀ ℕ, Fintype.card {i : Fin m // e i≤β}≤b*β.degree.choose s) ∧

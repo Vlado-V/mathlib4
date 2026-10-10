@@ -25,9 +25,9 @@ attribute [local instance] tensorGroup
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem preparedLayerTensor_eq_of_values
     (p : PreparedParameters.Space m d q J counts O)
-    (a : J) (hO : O a.val≤Forms K h a.val)
-    (g : Fin (counts a.val) → Forms K h a.val ⊗[K] Forms K m (d-a.val))
-    (hg : ∀ i,(p.2 a i).val=sumBiform (g i)) :
+    (a : J) (hO : O a.val ≤ Forms K h a.val)
+    (g : Fin (counts a.val) → Forms K h a.val ⊗[K] Forms K m (d - a.val))
+    (hg : ∀ i, (p.2 a i).val = sumBiform (g i)) :
     preparedLayerTensor a hO p=g := by
   funext i
   apply sumBiform_injective
@@ -37,9 +37,9 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The tensor parameters and the literal polynomial parameter family have
 exactly the same prescribed high coefficients. -/
 def preparedTargetTensorParameters
-    (g : (a : J) → Fin (counts a.val) → Forms K h a.val ⊗[K] Forms K m (d-a.val))
-    (hg : ∀ a i,sumBiform (g a i)∈biformImage (O a.val) (Forms K m (d-a.val)))
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (g : (a : J) → Fin (counts a.val) → Forms K h a.val ⊗[K] Forms K m (d - a.val))
+    (hg : ∀ a i, sumBiform (g a i) ∈ biformImage (O a.val) (Forms K m (d - a.val)))
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (scalar : PreparedParameters.Label q J counts → Forms K m d)
     (privateScalar : Fin u → Forms K m d) :
     PreparedTarget.Space m d q f u J counts O :=

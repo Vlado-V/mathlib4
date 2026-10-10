@@ -62,7 +62,7 @@ set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 of the unrestricted frame/coefficient parameter space. The frame itself is
 independent, so it represents a plane of exactly the prescribed dimension. -/
 theorem exists_output_frame_lift (W : Submodule K (Forms K h j))
-    (hW : finrank K W=H) (o : Fin r → W) (f : Fin r → Forms K m e) :
+    (hW : finrank K W = H) (o : Fin r → W) (f : Fin r → Forms K m e) :
     ∃ (frame : Fin H → Forms K h j) (c : Fin r → Fin H → Forms K m e),
       LinearIndependent K frame ∧ Submodule.span K (Set.range frame)=W ∧
         framedBiformFamily frame c = fun i => (o i).val ⊗ₜ[K] f i := by

@@ -34,7 +34,7 @@ theorem edgePoint_sum (w s : ℝ) (e : Fin 6) :
 edges. The six edges are indexed exactly as in `SharpCertificate`. -/
 theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
     (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ w)
-    (hs : n₁+n₂+n₃=s) :
+    (hs : n₁ + n₂ + n₃ = s) :
     ∃v : Fin 3 → ℝ, ∃e : Fin 3 → Fin 6,
       (∀j,0 ≤ v j) ∧ (∑j,v j=1) ∧ (∀j,EdgeFeasible w s (e j)) ∧
       (∑j,v j • edgePoint w s (e j)=![n₁,n₂,n₃]) := by
@@ -145,7 +145,7 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
 /-- Every concave numerical function has a no-larger value on one of the six
 prefix edges at the same total layer dimension. -/
 theorem exists_prefix_edge_le (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ w) (hs : n₁+n₂+n₃=s)
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ w) (hs : n₁ + n₂ + n₃ = s)
     (f : Layers → ℝ) (hf : ConcaveOn ℝ (layerBox w) f) :
     ∃e:Fin 6, EdgeFeasible w s e ∧ f (edgePoint w s e) ≤ f ![n₁,n₂,n₃] := by
   obtain ⟨v,e,hv,hvsum,he,hn'⟩ := slice_triangle w s n₁ n₂ n₃ hw hn hs

@@ -44,8 +44,8 @@ theorem replacedFlagBackground_le
 
 theorem formal_square_separation_mono
     (L : SymmetricSquare K V →ₗ[K] W) (A T T' : Submodule K V)
-    (hT : T≤T')
-    (hsep : formalSquare A ⊓ ((formalMixed T').map L).comap L=⊥) :
+    (hT : T ≤ T')
+    (hsep : formalSquare A ⊓ ((formalMixed T').map L).comap L = ⊥) :
     formalSquare A ⊓ ((formalMixed T).map L).comap L=⊥ := by
   apply le_antisymm _ bot_le
   rw [←hsep]
@@ -57,7 +57,7 @@ theorem flag_replacement_separation
     (L : SymmetricSquare K V →ₗ[K] W) (A : Submodule K V)
     (hsep : formalSquare A ⊓
       ((formalMixed ((embeddedFlagSpace j Q ⊔ Submodule.span K (Set.range b)) ⊔
-        Submodule.span K {M})).map L).comap L=⊥) :
+        Submodule.span K {M})).map L).comap L = ⊥) :
     formalSquare A ⊓ ((formalMixed (replacedFlagBackground j Q hq b M ε)).map L).comap L=⊥ :=
   formal_square_separation_mono L A _ _ (replacedFlagBackground_le j Q hq b M ε) hsep
 

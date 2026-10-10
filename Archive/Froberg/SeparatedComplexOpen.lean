@@ -27,9 +27,9 @@ theorem separated_complex_principal_open
     (A : (I → K) → V →ₗ[K] W) (B : (I → K) → U →ₗ[K] V)
     (C : (I → K) → Z →ₗ[K] W)
     (hA : IsPolynomialFamily A) (hB : IsPolynomialFamily B)
-    (hC : IsPolynomialFamily C) (hAB : ∀ p,(A p).comp (B p)=0)
-    (p₀ : I → K) (hexact : (A p₀).ker=(B p₀).range)
-    (hsep : ∀ v z,A p₀ v+C p₀ z=0 → z=0) :
+    (hC : IsPolynomialFamily C) (hAB : ∀ p, (A p).comp (B p) = 0)
+    (p₀ : I → K) (hexact : (A p₀).ker = (B p₀).range)
+    (hsep : ∀ v z, A p₀ v + C p₀ z = 0 → z = 0) :
     ∃ P : MvPolynomial I K,eval p₀ P≠0 ∧
       ∀ p,eval p P≠0 → ∀ v z,A p v+C p z=0 → z=0 := by
   let D (p : I → K) := addRow (A p) (C p)

@@ -84,9 +84,9 @@ theorem quadratic_nuisance_separation_open
     (C : (I → K) → Z →ₗ[K] (Fin c → Poly K n))
     (hQ : IsPolynomialFamily Q) (hP : IsPolynomialFamily P) (hC : IsPolynomialFamily C)
     (p₀ : I → K)
-    (hexact : (quadraticNuisanceRow (t := t) j T (Q p₀) (P p₀)).ker=
+    (hexact : (quadraticNuisanceRow (t := t) j T (Q p₀) (P p₀)).ker =
       (quadraticNuisanceBoundary (P p₀)).range)
-    (hsep : ∀ x z,quadraticNuisanceRow (t := t) j T (Q p₀) (P p₀) x+C p₀ z=0 → z=0) :
+    (hsep : ∀ x z, quadraticNuisanceRow (t := t) j T (Q p₀) (P p₀) x + C p₀ z = 0 → z = 0) :
     ∃ G : MvPolynomial I K,eval p₀ G≠0 ∧
       ∀ p,eval p G≠0 → ∀ x z,
         quadraticNuisanceRow (t := t) j T (Q p) (P p) x+C p z=0 → z=0 := by

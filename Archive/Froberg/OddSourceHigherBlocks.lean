@@ -22,26 +22,26 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-abbrev OddHigherBlock (K : Type) [Field K] (h m d : ℕ) (hd : 1≤d)
+abbrev OddHigherBlock (K : Type) [Field K] (h m d : ℕ) (hd : 1 ≤ d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) :=
   Forms K h (2*r.val.val+1) ⊗[K] Forms K m (d-(2*r.val.val+1))
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-instance oddHigherBlockGroup (hd : 1≤d)
+instance oddHigherBlockGroup (hd : 1 ≤ d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) :
     AddCommGroup (OddHigherBlock K h m d hd r) := tensorFormGroup
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-instance oddHigherBlockModule (hd : 1≤d)
+instance oddHigherBlockModule (hd : 1 ≤ d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) :
     Module K (OddHigherBlock K h m d hd r) := TensorProduct.leftModule
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3) hd3)})
-    (hr : 2*r.val.val+1≠d) (c : Fin u → K) :
+    (hr : 2 * r.val.val + 1 ≠ d) (c : Fin u → K) :
     oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
       (fun i => mixedPureOddGenerator hd (U i) (P i)) c r=0 := by
   have hr1 : 2*r.val.val+1≠1 := by
@@ -59,9 +59,9 @@ theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3≤d)
     map_sum,map_smul,mixedPureOddGenerator_other hd hr1 hr,smul_zero,Finset.sum_const_zero]
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     ∀ x : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3),x∈(oddHigherRelationMap
       (Nat.le_trans (by decide : 1≤3) hd3) F
       (fun i => mixedPureOddGenerator hd (U i) (P i))).range →
@@ -95,9 +95,9 @@ theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3≤d)
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
-def oddHigherBlocksEquiv (hd : Odd d) (hd3 : 3≤d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+def oddHigherBlocksEquiv (hd : Odd d) (hd3 : 3 ≤ d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3) ⧸
       (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range) ≃ₗ[K]

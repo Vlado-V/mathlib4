@@ -21,7 +21,7 @@ def privateMultiplierLowerCount (a z s b : ℕ) : ℕ :=
   (a+z+s).choose (s+1) -
     ((a+s).choose (s+1) + z*(a+s-1).choose s + b*(a+z))
 
-theorem private_nat_tendsto_atTop_of_positive_ratio (a : ℕ → ℕ) {σ : ℝ} (hσ : 0<σ)
+theorem private_nat_tendsto_atTop_of_positive_ratio (a : ℕ → ℕ) {σ : ℝ} (hσ : 0 < σ)
     (ha : Tendsto (fun n : ℕ => (a n : ℝ)/(n : ℝ)) atTop (𝓝 σ)) :
     Tendsto a atTop atTop := by
   have h := Filter.Tendsto.pos_mul_atTop hσ ha (tendsto_natCast_atTop_atTop (R := ℝ))
@@ -31,8 +31,8 @@ theorem private_nat_tendsto_atTop_of_positive_ratio (a : ℕ → ℕ) {σ : ℝ}
   have hn0 : (n : ℝ)≠0 := by exact_mod_cast hn.ne'
   exact div_mul_cancel₀ _ hn0
 
-theorem private_multiplier_raw_limit {s : ℕ} (hs : 2≤ s) (b : ℕ) (a z : ℕ → ℕ)
-    (hsplit : ∀ᶠ n : ℕ in atTop, a n+z n=n)
+theorem private_multiplier_raw_limit {s : ℕ} (hs : 2 ≤ s) (b : ℕ) (a z : ℕ → ℕ)
+    (hsplit : ∀ᶠ n : ℕ in atTop, a n + z n = n)
     (ha : Tendsto (fun n : ℕ => (a n : ℝ)/(n : ℝ)) atTop
       (𝓝 (limitingCoreFraction (s+1)))) :
     Tendsto (fun n : ℕ =>
@@ -83,8 +83,8 @@ theorem private_multiplier_raw_limit {s : ℕ} (hs : 2≤ s) (b : ℕ) (a z : �
   rw [hc] at h
   simpa only [sub_div,add_div] using h
 
-theorem private_multiplier_count_limit {s : ℕ} (hs : 2≤ s) (b : ℕ) (a z : ℕ → ℕ)
-    (hsplit : ∀ᶠ n : ℕ in atTop, a n+z n=n)
+theorem private_multiplier_count_limit {s : ℕ} (hs : 2 ≤ s) (b : ℕ) (a z : ℕ → ℕ)
+    (hsplit : ∀ᶠ n : ℕ in atTop, a n + z n = n)
     (ha : Tendsto (fun n : ℕ => (a n : ℝ)/(n : ℝ)) atTop
       (𝓝 (limitingCoreFraction (s+1)))) :
     Tendsto (fun n : ℕ => (privateMultiplierLowerCount (a n) (z n) s b : ℝ)/(n : ℝ)^(s+1))
@@ -103,8 +103,8 @@ theorem private_multiplier_count_limit {s : ℕ} (hs : 2≤ s) (b : ℕ) (a z : 
       ((n+s).choose (s+1) : ℝ) by linarith)
   simp only [privateMultiplierLowerCount,hn,Nat.cast_sub hbudget,Nat.cast_add,Nat.cast_mul]
 
-theorem private_multiplier_eventually_above_critical {s : ℕ} (hs : 2≤ s) (b : ℕ) (a z : ℕ → ℕ)
-    (hsplit : ∀ᶠ n : ℕ in atTop, a n+z n=n)
+theorem private_multiplier_eventually_above_critical {s : ℕ} (hs : 2 ≤ s) (b : ℕ) (a z : ℕ → ℕ)
+    (hsplit : ∀ᶠ n : ℕ in atTop, a n + z n = n)
     (ha : Tendsto (fun n : ℕ => (a n : ℝ)/(n : ℝ)) atTop
       (𝓝 (limitingCoreFraction (s+1)))) :
     ∀ᶠ n : ℕ in atTop,

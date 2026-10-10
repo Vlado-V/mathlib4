@@ -60,7 +60,7 @@ attribute [local irreducible] backgroundEnumeratedForms upperTargetMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem polynomial_endpoint_rank_open {r : ℕ}
-    (A : (Fin 1 → K) → Fin r → Forms K (h+m) d) (hA : IsPolynomialFamily A)
+    (A : (Fin 1 → K) → Fin r → Forms K (h + m) d) (hA : IsPolynomialFamily A)
     (hi : LinearIndependent K (A 0))
     (hu : Function.Surjective (upperTargetMap (h := h) (m := m) (d := d) (A 0))) :
     ∃ P : MvPolynomial (Fin 1) K,eval 0 P≠0 ∧ ∀ c : K,eval (fun _ => c) P≠0 →
@@ -112,7 +112,7 @@ theorem exists_actual_even_pencil_all_properties [IsAlgClosed K]
     (hi : LinearIndependent K (backgroundEnumeratedForms (Fin.append Q E) F G))
     (hu : Function.Surjective (upperTargetMap (h := h) (m := m) (d := d) (backgroundEnumeratedForms
       (Fin.append Q E) F G)))
-    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P≠0) :
+    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P ≠ 0) :
     ∃ c : K,c≠0 ∧ eval (fun _ => c) P≠0 ∧
       OddSplitExact (Fin.append Q (fun i => E i+c • D i)) (Fin.append F G) ∧
       HasClosedKernelSlices

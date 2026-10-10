@@ -53,7 +53,7 @@ theorem thin_quotient_coefficient_open (mu : Forms K n d →ₗ[K] V →ₗ[K] W
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem thin_generic_flag_principal_open (mu : Forms K n d →ₗ[K] V →ₗ[K] W)
-    (hn : 0 < n) (hrq : r ≤ q) (hq : q ≤ (n+d-1).choose d)
+    (hn : 0 < n) (hrq : r ≤ q) (hq : q ≤ (n + d - 1).choose d)
     (hthin : HasThinQuotientOpen mu q j C) :
     ∃ P : MvPolynomial (CoefficientIndex n d q) K,
       (∃ a,eval a P ≠ 0) ∧ ∀ a,eval a P ≠ 0 →

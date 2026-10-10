@@ -21,7 +21,7 @@ variable {K : Type*} [Field K] [Infinite K] {h b c : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A single quadratic detector retains each private column injectively and
 retains precisely the one-dimensional classical overlap of every pair. -/
-theorem exists_detected_private_outputs (hh : 0<h) (hc : 2*h-1≤c)
+theorem exists_detected_private_outputs (hh : 0 < h) (hc : 2 * h - 1 ≤ c)
     (w : Fin b → Forms K h 1) (hw : ∀ i, w i ≠ 0)
     (hpair : ∀ p : GeneratorPair b,
       LinearIndependent K (![w p.val.1,w p.val.2] : Fin 2 → Forms K h 1)) :

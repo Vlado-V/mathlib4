@@ -49,7 +49,7 @@ structure FourthRowCapacity (w v d q b : ℕ) (J : Finset ℕ) (counts : ℕ →
 
 /-- The complete finite construction lands in the prescribed common family. -/
 theorem exists_fourth_row_parameter {w v d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
-    {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X} (h4 : 4∈J)
+    {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X} (h4 : 4 ∈ J)
     (h : FourthRowCapacity w v d q b J counts T) :
     ∃ p : Space (v+v) d q J counts (constrainedOutputs T),
       LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) ⟨4,h4⟩ i p) ∧

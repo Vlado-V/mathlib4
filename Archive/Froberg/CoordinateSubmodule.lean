@@ -17,10 +17,10 @@ splitting retains every coordinate, including coordinates with no source. -/
 noncomputable section
 namespace Froberg
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I]
-variable {V : I → Type*} [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)]
+variable {V : I → Type*} [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
 
 theorem coordinate_submodule_eq (R : Submodule K ((i : I) → V i))
-    (hR : ∀ x∈R,∀ i,Pi.single i (x i)∈R) :
+    (hR : ∀ x ∈ R, ∀ i, Pi.single i (x i) ∈ R) :
     R=Submodule.pi Set.univ (fun i => R.map (LinearMap.proj i)) := by
   ext x
   constructor
@@ -43,7 +43,7 @@ def coordinateRelation (R : Submodule K ((i : I) → V i)) (i : I) : Submodule K
   R.map (LinearMap.proj i)
 
 def coordinateQuotientEquiv (R : Submodule K ((i : I) → V i))
-    (hR : ∀ x∈R,∀ i,Pi.single i (x i)∈R) :
+    (hR : ∀ x ∈ R, ∀ i, Pi.single i (x i) ∈ R) :
     (((i : I) → V i) ⧸ R) ≃ₗ[K] ((i : I) → (V i ⧸ coordinateRelation R i)) :=
   (Submodule.quotEquivOfEq _ _ (coordinate_submodule_eq R hR)).trans
     (Submodule.quotientPi (fun i => coordinateRelation R i))

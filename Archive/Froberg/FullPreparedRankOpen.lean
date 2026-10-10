@@ -23,9 +23,9 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly 
 theorem upper_target_open_affine {V : Type*}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     (p₀ : Space m d q f u J counts O) (L : V →ₗ[K] Space m d q f u J counts O)
-    (hd : 0 < d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (v₀ : V) (hw : Function.Surjective (upperTargetMap
-      (PreparedTarget.enumerateForms (forms hd hO hJ (p₀+L v₀))))) :
+      (PreparedTarget.enumerateForms (forms hd hO hJ (p₀ + L v₀))))) :
     ∃ D : MvPolynomial (Fin (finrank K V)) K,
       eval ((Module.finBasis K V).equivFun v₀) D≠0 ∧
       ∀ a,eval a D≠0 → Function.Surjective (upperTargetMap
@@ -38,7 +38,7 @@ theorem upper_target_open_affine {V : Type*}
 
 theorem upper_target_open_fixed_pure
     [Module.Finite K (FixedPureSpace m d q f u J counts O)]
-    (hd : 0 < d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : PreparedTarget.OuterSpace K (Fin h) m d u)
     (p : PreparedTarget.Space m d q f u J counts O)
     (hw : Function.Surjective (upperTargetMap
@@ -54,7 +54,7 @@ theorem upper_target_open_fixed_pure
 
 theorem upper_target_open_fixed_pure_zero_scalar
     [Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O)]
-    (hd : 0 < d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+    (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : PreparedTarget.OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × PreparedTarget.OuterSpace K (Fin h) m d f)
     (hw : Function.Surjective (upperTargetMap

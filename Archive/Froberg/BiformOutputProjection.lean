@@ -63,7 +63,7 @@ theorem biformOutputEndomorphism_retain (P : (σ →₀ ℕ) → Prop) :
 theorem biformOutputEndomorphism_preserves [Infinite K]
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (MvPolynomial τ K))
     (T : MvPolynomial σ K →ₗ[K] MvPolynomial σ K)
-    (hT : ∀ f∈O,T f∈O) {f : MvPolynomial (σ ⊕ τ) K} (hf : f∈biformImage O C) :
+    (hT : ∀ f ∈ O, T f ∈ O) {f : MvPolynomial (σ ⊕ τ) K} (hf : f ∈ biformImage O C) :
     biformOutputEndomorphism T f∈biformImage O C := by
   rcases hf with ⟨a,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with

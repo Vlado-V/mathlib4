@@ -26,12 +26,12 @@ variable {B : Type*} [AddCommGroup B] [Module K B] [FiniteDimensional K B]
 
  set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_boundary_row_principal_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (Z : B →ₗ[K] PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)
-    (hPZ : (privateRowMap (d := d) P R.val).comp Z=0)
+    (hPZ : (privateRowMap (d := d) P R.val).comp Z = 0)
     (p₀ : Space n d q J counts O)
-    (hexact : (privateAugmentedRow hO R p₀ P).ker=
+    (hexact : (privateAugmentedRow hO R p₀ P).ker =
       ((rowConstants hO R p₀).prodMap Z).range) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧

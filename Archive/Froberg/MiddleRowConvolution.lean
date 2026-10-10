@@ -52,7 +52,7 @@ theorem eventually_middle_biform_surjective {j x e y : ℕ} (hj : 0 < j)
 /-- The factorial threshold in the manuscript is exactly the threshold of the
 actual finite convolution construction. -/
 theorem convolutionOutputThreshold_targetCost {d j b : ℕ}
-    (hjd : j≤d) (hjb : j≤b) (hbd : b≤d+j) :
+    (hjd : j ≤ d) (hjb : j ≤ b) (hbd : b ≤ d + j) :
     convolutionOutputThreshold j (b-j) (d-j) (d+j-b) = targetCost d j b := by
   rw [targetCost_eq_convolution hjd hbd]
   unfold convolutionOutputThreshold
@@ -63,7 +63,7 @@ theorem convolutionOutputThreshold_targetCost {d j b : ℕ}
 /-- Every strict-prefix middle row has an actual biform surjection at the
 prescribed asymptotic density. -/
 theorem eventually_target_row_from_prefix {d j b : ℕ} (hj : 0 < j) (hjd : j < d)
-    (hjb : j≤b) (hbj : b<2*j) (hbd : b≤d+j) (α : ℝ) (hα : targetCost d j b < α) :
+    (hjb : j ≤ b) (hbj : b < 2 * j) (hbd : b ≤ d + j) (α : ℝ) (hα : targetCost d j b < α) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop,
       ∃ (o : Fin ⌈α*(h : ℝ)^j*(m : ℝ)^(d-j)⌉₊ → Forms K h j)
         (f : Fin ⌈α*(h : ℝ)^j*(m : ℝ)^(d-j)⌉₊ → Forms K m (d-j)),

@@ -27,7 +27,7 @@ theorem matrixBoundary_map (L : A →ₗ[K] B) (q : Fin r → A) (C : Fin r → 
 /-- Every literal constant Koszul vector is represented by one coefficient
 matrix, including in characteristic two. -/
 theorem exists_matrixBoundary_of_mem_koszul (q : Fin r → A) (u : Fin r → A)
-    (hu : u∈Submodule.span K (Set.range (koszulVector q))) :
+    (hu : u ∈ Submodule.span K (Set.range (koszulVector q))) :
     ∃ C : Fin r → Fin r → K,matrixBoundary q C=u := by
   classical
   induction hu using Submodule.span_induction with
@@ -58,9 +58,9 @@ theorem exists_matrixBoundary_of_mem_koszul (q : Fin r → A) (u : Fin r → A)
 
 /-- The low component of a full private boundary is precisely its P-boundary. -/
 theorem private_matrixBoundary_component {σ : Type*}
-    (w : σ → ℕ) (U P : Fin r → MvPolynomial σ K) {d : ℕ} (hd : d≠1)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous w d)
-    (hP : ∀ i,(P i).IsWeightedHomogeneous w 1)
+    (w : σ → ℕ) (U P : Fin r → MvPolynomial σ K) {d : ℕ} (hd : d ≠ 1)
+    (hU : ∀ i, (U i).IsWeightedHomogeneous w d)
+    (hP : ∀ i, (P i).IsWeightedHomogeneous w 1)
     (C : Fin r → Fin r → K) :
     (fun i => weightedHomogeneousComponent w 1 (matrixBoundary (fun i => U i+P i) C i))=
       matrixBoundary P C := by
@@ -73,10 +73,10 @@ theorem private_matrixBoundary_component {σ : Type*}
 /-- Subtracting the full U+P boundary kills the first private coefficient
 component and changes no polynomial relation. -/
 theorem remove_private_first_component {σ : Type*}
-    (w : σ → ℕ) (U P u : Fin r → MvPolynomial σ K) {d : ℕ} (hd : d≠1)
-    (hU : ∀ i,(U i).IsWeightedHomogeneous w d)
-    (hP : ∀ i,(P i).IsWeightedHomogeneous w 1)
-    (hu : (fun i => weightedHomogeneousComponent w 1 (u i))∈
+    (w : σ → ℕ) (U P u : Fin r → MvPolynomial σ K) {d : ℕ} (hd : d ≠ 1)
+    (hU : ∀ i, (U i).IsWeightedHomogeneous w d)
+    (hP : ∀ i, (P i).IsWeightedHomogeneous w 1)
+    (hu : (fun i => weightedHomogeneousComponent w 1 (u i)) ∈
       Submodule.span K (Set.range (koszulVector P))) :
     ∃ C : Fin r → Fin r → K,
       (∀ i,weightedHomogeneousComponent w 1 ((u-matrixBoundary (fun i => U i+P i) C) i)=0) ∧

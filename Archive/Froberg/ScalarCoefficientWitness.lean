@@ -29,7 +29,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 private scalar row. -/
 theorem prefix_injective_sum_eq_zero {n d t q : ℕ}
     (Q : Fin q → Forms K n d) (hQ : Function.Injective (prefixMultiplication Q t))
-    (x : Fin q → Forms K n t) (hx : (∑ i,(Q i).val*(x i).val)=0) : x=0 := by
+    (x : Fin q → Forms K n t) (hx : (∑ i, (Q i).val * (x i).val) = 0) : x=0 := by
   apply hQ
   rw [map_zero]
   apply Subtype.ext
@@ -42,11 +42,11 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 ordinary injection. Its separation simultaneously supplies the paired C.2
 coefficient space. -/
 theorem scalar_coefficient_witness_of_quotient {n d q : ℕ}
-    (hd : 2≤d) (hn : 0<n) (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
+    (hd : 2 ≤ d) (hn : 0 < n) (S : Finset (Fin n)) (hS : S.card ≤ Sᶜ.card)
     (Q : Fin q → Forms K n d)
-    (hQ : Function.Injective (quotientPrefixMultiplication S (2*((d-1)/2)) Q (d-2)))
-    (hsep : Disjoint (familySpace Q * Forms K n (d-2))
-      (deletedBidegreeSpace K S (2*d-2) (2*((d-1)/2)))) :
+    (hQ : Function.Injective (quotientPrefixMultiplication S (2 * ((d - 1) / 2)) Q (d - 2)))
+    (hsep : Disjoint (familySpace Q * Forms K n (d - 2))
+      (deletedBidegreeSpace K S (2 * d - 2) (2 * ((d - 1) / 2)))) :
     (∀ t,t≤d-2 → Function.Injective (prefixMultiplication Q t)) ∧
     ∃ C : Submodule K (Poly K n),
       C≤Forms K n (d-1) ∧ finrank K C=S.card.choose (d-1) ∧
@@ -69,7 +69,7 @@ theorem scalar_coefficient_witness_of_quotient {n d q : ℕ}
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- One nonempty principal open supplies all scalar injections and the
 separated paired coefficient space simultaneously. -/
-theorem eventually_scalar_coefficient_witnesses {d : ℕ} (hd : 2≤d)
+theorem eventually_scalar_coefficient_witnesses {d : ℕ} (hd : 2 ≤ d)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ)))) :
@@ -95,7 +95,7 @@ theorem eventually_scalar_coefficient_witnesses {d : ℕ} (hd : 2≤d)
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Reserving z scalar variables preserves the C.1 asymptotic bound. The
 family has its actual count r(n+z) while its polynomials use only n variables. -/
-theorem eventually_scalar_coefficient_witnesses_shift {d : ℕ} (hd : 2≤d)
+theorem eventually_scalar_coefficient_witnesses_shift {d : ℕ} (hd : 2 ≤ d)
     (r : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ)))) (z : ℕ) :
@@ -117,7 +117,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 in the paired coefficient space. Both count bounds use the full n+z variables,
 while the witness itself is supported on the n core variables. -/
 theorem eventually_scalar_coefficient_witnesses_capacity_shift {d h : ℕ}
-    (hd : 3≤d) (hh : 0<h) (r f : ℕ → ℕ)
+    (hd : 3 ≤ d) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hf : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))

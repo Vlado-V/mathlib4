@@ -39,7 +39,7 @@ theorem block_space_exists (w : ℕ) :
 /-- Restrict the family to any smaller number of generators and rename the
 paired variables injectively into an arbitrary larger variable set. -/
 theorem exists_independent_quadrics {h w m : ℕ}
-    (hvars : 2*w ≤ h) (hcount : m ≤ 2*w.choose 2) :
+    (hvars : 2 * w ≤ h) (hcount : m ≤ 2 * w.choose 2) :
     ∃ q : Fin m → Poly K h,
       (∀ i, q i ∈ Forms K h 2) ∧ LinearIndependent K (pairProducts q) := by
   classical

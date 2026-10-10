@@ -16,7 +16,7 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial Filter PrivateColumns
 
-theorem eventually_uniform_counted_shared_quadratic_frame {d : ℕ} (hd : 3≤d) :
+theorem eventually_uniform_counted_shared_quadratic_frame {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
     ∃ o : Fin (outerColumnCount d h) → Forms K h 1,
       LinearIndependent K (pairProducts (fun i => (o i).val)) ∧

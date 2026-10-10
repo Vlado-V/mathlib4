@@ -18,8 +18,8 @@ namespace Froberg
 open Filter
 
 theorem eventually_of_even_odd_shift (u : ℕ) (P : ℕ → Prop)
-    (heven : ∀ᶠ v : ℕ in atTop,P (2*v+u))
-    (hodd : ∀ᶠ v : ℕ in atTop,P (2*v+u+1)) :
+    (heven : ∀ᶠ v : ℕ in atTop, P (2 * v + u))
+    (hodd : ∀ᶠ v : ℕ in atTop, P (2 * v + u + 1)) :
     ∀ᶠ m : ℕ in atTop,P m := by
   obtain ⟨a,ha⟩ := eventually_atTop.mp heven
   obtain ⟨b,hb⟩ := eventually_atTop.mp hodd
@@ -36,15 +36,15 @@ theorem eventually_of_even_odd_shift (u : ℕ) (P : ℕ → Prop)
     simpa only [ho] using hb ((m-u)/2) (le_trans (le_max_right a b) hv)
 
 theorem eventually_of_twice_add_shifts (u : ℕ) (P : ℕ → Prop)
-    (heven : ∀ᶠ v : ℕ in atTop,P (v+v+u))
-    (hodd : ∀ᶠ v : ℕ in atTop,P (v+v+(u+1))) :
+    (heven : ∀ᶠ v : ℕ in atTop, P (v + v + u))
+    (hodd : ∀ᶠ v : ℕ in atTop, P (v + v + (u + 1))) :
     ∀ᶠ m : ℕ in atTop,P m := by
   apply eventually_of_even_odd_shift u P
   · simpa only [two_mul] using heven
   · simpa only [two_mul,Nat.add_assoc] using hodd
 
 theorem exists_common_eventual_threshold {ι : Type*} [Finite ι]
-    (P : ι → ℕ → Prop) (hP : ∀ i,∀ᶠ m : ℕ in atTop,P i m) :
+    (P : ι → ℕ → Prop) (hP : ∀ i, ∀ᶠ m : ℕ in atTop, P i m) :
     ∃ N : ℕ,∀ m,N ≤ m → ∀ i,P i m :=
   eventually_atTop.mp (eventually_all.mpr hP)
 

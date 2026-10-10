@@ -40,7 +40,7 @@ theorem exists_lifted_convolution_family [Infinite K]
     (π : V →ₗ[K] Q) (hπ : Function.Surjective π)
     {D a e m r : ℕ} (hlo : finrank K Q ≤ D) (hhi : D ≤ finrank K V)
     (ha : 0 < a) (hm : 0 < m)
-    (hr : convolutionBlockCount (finrank K Q) a e*(m+a+e-2).choose e ≤ r) :
+    (hr : convolutionBlockCount (finrank K Q) a e * (m + a + e - 2).choose e ≤ r) :
     ∃ (W : Submodule K V) (o : Fin r → W) (f : Fin r → Forms K m e),
       finrank K W = D ∧
       Function.Surjective (vectorFormFamilyMap (t := a-1) (fun i => π (o i).val) f) := by

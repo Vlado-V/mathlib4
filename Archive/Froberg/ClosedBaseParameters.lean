@@ -28,20 +28,20 @@ def freeParameterForm (i : Fin N) : Forms K (q+N) 1 :=
   ⟨X (Fin.natAdd q i),isHomogeneous_X K (Fin.natAdd q i)⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def baseParameterSlices (ell : Fin (s+1) → Forms K q 1) :
+def baseParameterSlices (ell : Fin (s + 1) → Forms K q 1) :
     Fin (s+N+1) → Forms K (q+N) 1 :=
   Fin.cons (liftBaseForm (N := N) (ell 0))
     (Fin.append (fun i : Fin s => liftBaseForm (N := N) (ell i.succ)) freeParameterForm)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] lemma eval_liftBaseForm (f : Forms K q d) (t : Fin (q+N) → K) :
+@[simp] lemma eval_liftBaseForm (f : Forms K q d) (t : Fin (q + N) → K) :
     eval t (liftBaseForm (N := N) f).val=eval (fun i => t (Fin.castAdd N i)) f.val := by
   exact eval_rename _ _ _
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma baseParameterSlices_empty {L : Type*} [Field L] [Algebra K L]
     (degrees : Fin fcount → ℕ) (f : ∀ i, Forms K q (degrees i))
-    (ell : Fin (s+1) → Forms K q 1)
+    (ell : Fin (s + 1) → Forms K q 1)
     (hempty : ∀ t : Fin q → L, (∀ i, aeval t (f i).val=0) →
       (∀ j, aeval t (ell j).val=0) → t=0) :
     ∀ t : Fin (q+N) → L, (∀ i, aeval t (liftBaseForm (N := N) (f i)).val=0) →
@@ -71,7 +71,7 @@ arbitrary parameters, with exactly N additional units in its dimension budget. -
 theorem principal_open_dehom_with_parameters [Infinite K]
     {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
     (degrees : Fin fcount → ℕ) (f : ∀ i, Forms K q (degrees i))
-    (ell : Fin (s+1) → Forms K q 1)
+    (ell : Fin (s + 1) → Forms K q 1)
     (hempty : ∀ t : Fin q → L, (∀ i, aeval t (f i).val=0) →
       (∀ j, aeval t (ell j).val=0) → t=0)
     (A : Matrix (Fin a) (Fin n) (MvPolynomial (Fin (q+N)) K))

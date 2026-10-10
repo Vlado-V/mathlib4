@@ -31,7 +31,7 @@ theorem of_response_rank (g : Fin c → MiddleCoordinates.Mixed K m)
     (hchild : Function.Surjective (quadraticMultiplication h))
     (hcubic : Function.Injective (CubicGeneric.cubicMap h))
     (h13 : Function.Injective (GeneralF13.f13Map g h))
-    (hresponse : Counts.hTotal m q c+1 ≤
+    (hresponse : Counts.hTotal m q c + 1 ≤
       (finrank K (ActualMarkedSquareResponseOmega.response ω g h r
         (ExtraCorrectionOmega.squareClass h ζ) U p).range : ℤ)) :
     MarkedLowerWitness K (3+m) (4+(c+q)) := by
@@ -53,11 +53,11 @@ theorem of_response_formula (g : Fin c → MiddleCoordinates.Mixed K m)
     (hchild : Function.Surjective (quadraticMultiplication h))
     (hcubic : Function.Injective (CubicGeneric.cubicMap h))
     (h13 : Function.Injective (GeneralF13.f13Map g h))
-    (hdim : (finrank K U:ℤ)=Counts.delta m q)
-    (hpos : 0 < Counts.chi (3+m) (4+(c+q)))
+    (hdim : (finrank K U : ℤ) = Counts.delta m q)
+    (hpos : 0 < Counts.chi (3 + m) (4 + (c + q)))
     (hresponse : (finrank K (ActualMarkedSquareResponseOmega.response ω g h r
-        (ExtraCorrectionOmega.squareClass h ζ) U p).range : ℤ)=
-      min (((2*m+2*c:ℕ):ℤ)+Counts.H m q c+4+finrank K U) (Counts.j m q c)) :
+        (ExtraCorrectionOmega.squareClass h ζ) U p).range : ℤ) =
+      min (((2 * m + 2 * c : ℕ) : ℤ) + Counts.H m q c + 4 + finrank K U) (Counts.j m q c)) :
     MarkedLowerWitness K (3+m) (4+(c+q)) := by
   apply of_response_rank ω g h p r k ζ U hmarked hg hh hs hchild hcubic h13
   rw [hresponse,hdim]

@@ -22,7 +22,7 @@ the common-multiple count, with no genericity hypothesis in this counting step. 
 theorem card_targets_hit_by_labels_le {n s : ℕ} (hn : 0 < n)
     (a : Fin n →₀ ℕ) (ha : a.degree = s)
     (e : α → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
-    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = 2*s+1 ∧ a ≤ b)
+    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = 2 * s + 1 ∧ a ≤ b)
     (L : Finset α)
     (hit : ∀ b ∈ E, ∃ i ∈ L, e i ≠ a ∧ e i ≤ b) :
     E.card ≤ L.card * (n+s-1).choose s := by
@@ -51,7 +51,7 @@ theorem card_deficient_targets_le {n s h : ℕ} (hn : 0 < n)
     (U : Submodule K (Fin h → K))
     (a : Fin n →₀ ℕ) (ha : a.degree = s)
     (e : α → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
-    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = 2*s+1 ∧ a ≤ b)
+    (E : Finset (Fin n →₀ ℕ)) (hE : ∀ b ∈ E, b.degree = 2 * s + 1 ∧ a ≤ b)
     (sets : (Fin n →₀ ℕ) → Finset α)
     (hsets : ∀ b ∈ E, ∀ i ∈ sets b, e i ≠ a ∧ e i ≤ b)
     (hsize : ∀ b ∈ E, (sets b).card ≤ h)

@@ -45,7 +45,7 @@ private theorem multiplication_single [DecidableEq I] (e : I → Fin n →₀ �
 
 /-- Every single attached vector in a target monomial fiber is an actual relation. -/
 theorem single_relationFiber_generator (e : I → Fin n →₀ ℕ) (v : I → J → K)
-    (he : ∀ i, (e i).degree = s) (β : Exponent n (s+d)) (i : I) (hi : e i ≤ β.val) :
+    (he : ∀ i, (e i).degree = s) (β : Exponent n (s + d)) (i : I) (hi : e i ≤ β.val) :
     Pi.single β (v i) ∈ (relationSpace (d := d) e v he).map rowCoordinates.toLinearMap := by
   classical
   have heq : e i + (β.val-e i) = β.val := add_tsub_cancel_of_le hi

@@ -16,7 +16,7 @@ satisfies the strict sparse capacity inequality in every degree at least three. 
 noncomputable section
 namespace Froberg
 
-theorem quadratic_sparse_scalar_margin {d : ℕ} (hd : 3≤d) :
+theorem quadratic_sparse_scalar_margin {d : ℕ} (hd : 3 ≤ d) :
     countBeta d/(scalarCapacity d 2*(1-outerColumnRate d^2))+
       (scalarCapacityBinomial d 2 : ℝ)*criticalRatio d<1 := by
   by_cases hd8 : d≤8
@@ -39,7 +39,7 @@ theorem quadratic_sparse_scalar_margin {d : ℕ} (hd : 3≤d) :
   have hcap := quadratic_scalar_capacity hd9
   linarith
 
-theorem quadratic_sparse_density_gap {d : ℕ} (hd : 3≤d) :
+theorem quadratic_sparse_density_gap {d : ℕ} (hd : 3 ≤ d) :
     countBeta d*((d-2).factorial : ℝ)*(scalarCapacityBinomial d 2 : ℝ)+
       quadraticOutputDensity d*(scalarCapacityBinomial d 2 : ℝ)*criticalRatio d <
         quadraticOutputDensity d := by

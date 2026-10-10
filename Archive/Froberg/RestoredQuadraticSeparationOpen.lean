@@ -35,9 +35,9 @@ def QuadraticSeparated (T : Poly K h →ₗ[K] (Fin c → K))
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem quadratic_separated_principal_open
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (Q₀ : Fin r → Forms K m d) (F₀ : Fin f → FullBiform K (Fin h) m 1 (d-1))
-    (hQ₀ : Function.Injective (prefixMultiplication Q₀ (d-2)))
-    (hsep : QuadraticSeparated T (Q₀,F₀)) :
+    (Q₀ : Fin r → Forms K m d) (F₀ : Fin f → FullBiform K (Fin h) m 1 (d - 1))
+    (hQ₀ : Function.Injective (prefixMultiplication Q₀ (d - 2)))
+    (hsep : QuadraticSeparated T (Q₀, F₀)) :
     ∃ D : MvPolynomial (Fin (finrank K (QuadraticParameters K h m d r f))) K,
       eval ((Module.finBasis K _).equivFun (Q₀,F₀)) D≠0 ∧
       ∀ p : QuadraticParameters K h m d r f,
@@ -89,11 +89,11 @@ theorem quadratic_separated_principal_open
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem restored_quadratic_separation_open
-    (hO : ∀ j∈J,O j≤Forms K h j) (idx : Fin r ≃ Label q J counts)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (idx : Fin r ≃ Label q J counts)
     (T : Poly K h →ₗ[K] (Fin c → K))
-    (Q₀ : Fin r → Forms K m d) (F₀ : Fin f → FullBiform K (Fin h) m 1 (d-1))
-    (hQ₀ : Function.Injective (prefixMultiplication Q₀ (d-2)))
-    (hsep : QuadraticSeparated T (Q₀,F₀)) :
+    (Q₀ : Fin r → Forms K m d) (F₀ : Fin f → FullBiform K (Fin h) m 1 (d - 1))
+    (hQ₀ : Function.Injective (prefixMultiplication Q₀ (d - 2)))
+    (hsep : QuadraticSeparated T (Q₀, F₀)) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∃ D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,
       (∃ p : RestoredOuterSpace m d q f J counts O,
@@ -109,16 +109,16 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 all remaining restored coefficients are free parameters of the open. -/
 theorem restored_quadratic_separation_open_of_scalar_space
     {ι : Type*} [Fintype ι] [DecidableEq ι]
-    (hO : ∀ j∈J,O j≤Forms K h j) (idx : Fin r ≃ Label q J counts)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (idx : Fin r ≃ Label q J counts)
     (T : Poly K h →ₗ[K] (Fin c → K))
     (Q₀ : Fin r → Forms K m d)
-    (hQ₀ : Function.Injective (prefixMultiplication Q₀ (d-2)))
+    (hQ₀ : Function.Injective (prefixMultiplication Q₀ (d - 2)))
     (o : ι → Forms K h 1)
     (ho : LinearIndependent K (fun a => T (pairProducts (fun i => (o i).val) a)))
-    (C : Submodule K (Poly K m)) (hCdeg : C≤Forms K m (d-1))
+    (C : Submodule K (Poly K m)) (hCdeg : C ≤ Forms K m (d - 1))
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCQ : Disjoint (C*C) (familySpace Q₀*Forms K m (d-2)))
-    (hf : f≤Fintype.card ι*(finrank K C/2)) :
+    (hCQ : Disjoint (C * C) (familySpace Q₀ * Forms K m (d - 2)))
+    (hf : f ≤ Fintype.card ι * (finrank K C / 2)) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∃ D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,
       (∃ p : RestoredOuterSpace m d q f J counts O,

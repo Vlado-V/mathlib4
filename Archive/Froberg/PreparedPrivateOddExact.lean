@@ -23,11 +23,11 @@ variable {h m d q r f b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem prepared_even_independent_of_full (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_even_independent_of_full (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : Space m d q J counts O) (P : OuterSpace K (Fin h) m d b)
     (U : Fin b → Forms K h d) (F : OuterSpace K (Fin h) m d f)
-    (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p,F))) :
+    (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p, F))) :
     LinearIndependent K (preparedEvenBiform hO hJ heven p) := by
   let emb : PreparedParameters.Label q J counts → Fin (Fintype.card (PreparedTarget.Label q f b J
     counts)) :=
@@ -46,13 +46,13 @@ theorem prepared_even_independent_of_full (hd : 0<d)
   exact (renameEquiv K finSumFinEquiv).left_inv _
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem prepared_private_odd_split (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_private_odd_split (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)
     (P : OuterSpace K (Fin h) m d b) (U : Fin b → Forms K h d)
     (F : OuterSpace K (Fin h) m d f)
     (hi : LinearIndependent K (preparedEvenBiform hO hJ heven p))
-    (H : OddCyclesExact U P (p,F)) :
+    (H : OddCyclesExact U P (p, F)) :
     OddSplitExact (fun i => evenRestorationBiform (evenGenerator hO hJ heven p (e i)))
       (fun i => oddRestorationBiform (privateOddFamily hd ho P U i)) := by
   let eqv : PreparedParameters.Label q J counts ≃ Fin (q+Fintype.card (ProductRows.LayerLabel J
@@ -87,24 +87,24 @@ theorem prepared_private_odd_split (hd : 0<d) (ho : d%2=1)
   exact hnew
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem prepared_private_endpoint_odd (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_private_endpoint_odd (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)
     (P : OuterSpace K (Fin h) m d b) (U : Fin b → Forms K h d)
     (F : OuterSpace K (Fin h) m d f)
-    (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p,F)))
-    (H : OddCyclesExact U P (p,F))
+    (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p, F)))
+    (H : OddCyclesExact U P (p, F))
     (a : (endpointMultiplication (privateEndpointFamily hd ho hO hJ heven e p P U)).ker)
-    (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
-      (1-biformSplitEndpointParity (q := r) (f := b) i)) :
+    (ha : ∀ i, (a.val i).val.IsWeightedHomogeneous (coreParity h m)
+      (1 - biformSplitEndpointParity (q := r) (f := b) i)) :
     a.val∈oppositeKoszulSpace (privateEndpointFamily hd ho hO hJ heven e p P U)
       (biformSplitEndpointParity (q := r) (f := b)) :=
   odd_split_endpoint _ _ (prepared_private_odd_split hd ho hO hJ heven e p P U F
     (prepared_even_independent_of_full hd hO hJ heven p P U F hi) H) a ha
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem privateEndpointFamily_full_value (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem privateEndpointFamily_full_value (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)
     (P : OuterSpace K (Fin h) m d b) (U : Fin b → Forms K h d)
     (F : OuterSpace K (Fin h) m d f) (i : Fin r ⊕ Fin b) :
@@ -121,12 +121,12 @@ theorem privateEndpointFamily_full_value (hd : 0<d) (ho : d%2=1)
   cases i <;> rfl
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem prepared_private_endpoint_independent (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem prepared_private_endpoint_independent (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)
     (P : OuterSpace K (Fin h) m d b) (U : Fin b → Forms K h d)
     (F : OuterSpace K (Fin h) m d f)
-    (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p,F))) :
+    (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p, F))) :
     LinearIndependent K (privateEndpointFamily hd ho hO hJ heven e p P U) := by
   let emb : Fin (r+b) → Fin (Fintype.card (PreparedTarget.Label q f b J counts)) :=
     fun k => Fintype.equivFin _ (Sum.map e (Sum.inr : Fin b → Fin f ⊕ Fin b) (finSumFinEquiv.symm

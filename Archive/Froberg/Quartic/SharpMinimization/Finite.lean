@@ -77,9 +77,9 @@ rather than merely to the six edges. -/
 theorem finite_sharp_profile_bounds (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 129)
     (upper : Bool) (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m upper))
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper):ℝ))
-    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (ProfileCertificate.totalA m (mixedCount m upper):ℤ))
-    (hd : (i:ℝ)+n₁+n₂+n₃=(d:ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper) : ℝ))
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d < (ProfileCertificate.totalA m (mixedCount m upper) : ℤ))
+    (hd : (i : ℝ) + n₁ + n₂ + n₃ = (d : ℝ)) :
     ImageBoundsReal (scalars m (upperEndpoint m) (mixedCount m upper))
       (sourceSharp m (mixedCount m upper) i n₁ n₂ n₃) d := by
   have hsum : n₁+n₂+n₃=(d:ℝ)-(i:ℝ) := by linarith
@@ -105,9 +105,9 @@ theorem finite_sharp_profile_bounds (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 12
 theorem finite_sharp_outer (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 129)
     (upper : Bool) (i : ℕ) (hi : i ≤ ProfileCertificate.coreA (mixedCount m upper))
     (n₁ n₂ n₃ : ℝ)
-    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper):ℝ))
-    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d ≤ (ProfileCertificate.totalA m (mixedCount m upper):ℤ))
-    (hd : (i:ℝ)+n₁+n₂+n₃=(d:ℝ)) :
+    (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (ProfileCertificate.freeW m (mixedCount m upper) : ℝ))
+    (d : ℤ) (hdlo : 1 ≤ d) (hdhi : d ≤ (ProfileCertificate.totalA m (mixedCount m upper) : ℤ))
+    (hd : (i : ℝ) + n₁ + n₂ + n₃ = (d : ℝ)) :
     (d:ℝ)*((upperEndpoint m:ℝ)+(ProfileCertificate.totalA m (mixedCount m upper):ℝ)-(d:ℝ)) ≤
       sourceSharp m (mixedCount m upper) i n₁ n₂ n₃ := by
   by_cases hlt : d < (ProfileCertificate.totalA m (mixedCount m upper):ℤ)

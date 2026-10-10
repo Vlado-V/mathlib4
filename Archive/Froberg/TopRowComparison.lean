@@ -52,25 +52,25 @@ def topRowScalarCoefficient :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-@[simp] theorem sumBiformMap_topRowTarget (v : Forms K h d ⊗[K] Forms K m (2*d-d)) :
+@[simp] theorem sumBiformMap_topRowTarget (v : Forms K h d ⊗[K] Forms K m (2 * d - d)) :
     sumBiformMap (topRowTarget v)=sumBiformMap v := sumBiformMap_degreeTransport _ _ v
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 @[simp] theorem sumBiformMap_rawTopTarget (hd : 1 ≤ d)
-    (v : Forms K h (1+(d-1)) ⊗[K] Forms K m (1+(d-1))) :
+    (v : Forms K h (1 + (d - 1)) ⊗[K] Forms K m (1 + (d - 1))) :
     sumBiformMap (rawTopTarget hd v)=sumBiformMap v := sumBiformMap_degreeTransport _ _ v
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 @[simp] theorem sumBiformMap_topRowLinearCoefficient
-    (v : Forms K h (d-1) ⊗[K] Forms K m (d-d+1)) :
+    (v : Forms K h (d - 1) ⊗[K] Forms K m (d - d + 1)) :
     sumBiformMap (topRowLinearCoefficient v)=sumBiformMap v := sumBiformMap_degreeTransport _ _ v
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem sumBiformMap_topRowScalarCoefficient
-    (v : Forms K h d ⊗[K] Forms K m (d-d)) :
+    (v : Forms K h d ⊗[K] Forms K m (d - d)) :
     rename Sum.inl (topRowScalarCoefficient v).val=sumBiformMap v := by
   let z := biformDegreeTransport (K := K) (h := h) (m := m) (a := d)
     rfl (Nat.sub_self d) v
@@ -101,8 +101,8 @@ theorem sumBiformMap_tensorProduct {a b c e : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem topRow_linear_action (hd : 1 ≤ d)
-    (p : Forms K h 1 ⊗[K] Forms K m (d-1))
-    (v : Forms K h (d-1) ⊗[K] Forms K m (d-d+1)) :
+    (p : Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (v : Forms K h (d - 1) ⊗[K] Forms K m (d - d + 1)) :
     topRowTarget (oddRowLinearAction hd le_rfl p v)=
       rawTopTarget hd (tensorFormProduct (d := d-1)
         (gradedMultiplication (d := 1) (e := d-1)) p (topRowLinearCoefficient v)) := by
@@ -113,7 +113,7 @@ theorem topRow_linear_action (hd : 1 ≤ d)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem topRow_scalar_action
-    (p : Forms K m d) (v : Forms K h d ⊗[K] Forms K m (d-d)) :
+    (p : Forms K m d) (v : Forms K h d ⊗[K] Forms K m (d - d)) :
     topRowTarget (oddRowScalarAction le_rfl (scalarBiformEquiv (h := h) p) v)=
       topRowScalarCoefficient v ⊗ₜ[K] p := by
   apply sumBiformMap_injective
@@ -136,9 +136,9 @@ def topRowCoefficients :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddTensorRowMap_top_apply (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (a : Fin f → Forms K h (d-1) ⊗[K] Forms K m (d-d+1))
-    (c : Fin q → Forms K h d ⊗[K] Forms K m (d-d)) :
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (a : Fin f → Forms K h (d - 1) ⊗[K] Forms K m (d - d + 1))
+    (c : Fin q → Forms K h d ⊗[K] Forms K m (d - d)) :
     oddTensorRowMap hd le_rfl (fun i => scalarBiformEquiv (h := h) (Q i)) F (a,c)=
       (∑ i,oddRowLinearAction hd le_rfl (F i) (a i))+
         ∑ i,oddRowScalarAction le_rfl (scalarBiformEquiv (h := h) (Q i)) (c i) := by
@@ -147,8 +147,8 @@ theorem oddTensorRowMap_top_apply (hd : 1 ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-theorem rawTopFamily_apply (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (a : Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) :
+theorem rawTopFamily_apply (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (a : Fin f → Forms K h (d - 1) ⊗[K] Forms K m 1) :
     rawTopFamily F a=∑ i,tensorFormProduct (d := d-1)
       (gradedMultiplication (d := 1) (e := d-1)) (F i) (a i) :=
   BilinearScalarFamily.multiplication_apply _ _ _
@@ -157,7 +157,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency true in
 theorem topRow_map_comparison (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (topRowTarget (K := K) (h := h) (m := m) (d := d)).toLinearMap.comp
       (oddTensorRowMap hd le_rfl (fun i => scalarBiformEquiv (h := h) (Q i)) F)=
     (((rawTopTarget hd).toLinearMap.comp (rawTopFamily F)).coprod
@@ -175,7 +175,7 @@ theorem topRow_map_comparison (hd : 1 ≤ d)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem topRow_range_comparison (hd : 1 ≤ d)
-    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+    (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (oddTensorRowMap hd le_rfl (fun i => scalarBiformEquiv (h := h) (Q i)) F).range.map
       topRowTarget.toLinearMap=
     (rawTopFamily F).range.map (rawTopTarget hd).toLinearMap ⊔

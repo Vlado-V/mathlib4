@@ -66,9 +66,9 @@ theorem fullBiform_scalar_injective (Q : Fin r → Forms K m d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem scalar_odd_relation_zero (hm : 0 < m) (Q : Fin r → Forms K m d)
-    (hQ : Function.Injective (prefixMultiplication Q (d-1)))
+    (hQ : Function.Injective (prefixMultiplication Q (d - 1)))
     (v : Fin r → biformParitySpace K h m d 1)
-    (hv : (∑ i,rename Sum.inr (Q i).val*(v i).val)=0) : v=0 := by
+    (hv : (∑ i, rename Sum.inr (Q i).val * (v i).val) = 0) : v=0 := by
   have hcomponent (a : Fin ((d+1)/2)) (i : Fin r) :
       oddBiformCoordinatesEquiv (v i) a=0 := by
     let t := 2*a.val+1

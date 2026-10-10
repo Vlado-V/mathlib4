@@ -24,9 +24,9 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem even_reduction_open_of_witnesses
     [Module.Finite K (Space n d q J counts O)] [LinearOrder (Label q J counts)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,2≤j) (hdegree : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hdegree : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
     (hrows : ∀ R : J,∃ p : Space n d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO R i p) ∧
       (row hO R p).ker=(rowConstants hO R p).range)

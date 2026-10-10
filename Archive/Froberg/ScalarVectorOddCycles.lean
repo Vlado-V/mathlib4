@@ -27,7 +27,7 @@ def scalarEvenForm (p : Forms K m d) : biformParitySpace K h m d 0 :=
   evenBiformEmbedding (t := 0) (Nat.zero_le d) (by decide) (scalarBiformEquiv p)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def linearOddForm (hd : 1≤d) (g : Rows K h m (d-1)) : biformParitySpace K h m d 1 :=
+def linearOddForm (hd : 1 ≤ d) (g : Rows K h m (d - 1)) : biformParitySpace K h m d 1 :=
   oddBiformEmbedding hd (by decide) (linearOutputTensorEquiv g)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -35,12 +35,12 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
     (scalarEvenForm (h := h) p).val=rename Sum.inr p.val := sumBiformMap_scalarBiform p
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem linearOddForm_val (hd : 1≤d) (g : Rows K h m (d-1)) :
+@[simp] theorem linearOddForm_val (hd : 1 ≤ d) (g : Rows K h m (d - 1)) :
     (linearOddForm hd g).val=sumBiformMap (linearOutputTensorEquiv g) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem scalar_vector_odd_exact (hd : 1≤d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+theorem scalar_vector_odd_exact (hd : 1 ≤ d)
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d)) g))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication
       (VectorExpansionOpen.quotientMultiplication g d) Q))
@@ -69,9 +69,9 @@ theorem scalar_vector_odd_exact (hd : 1≤d)
   exact ⟨C,by simpa only [linearOddForm_val] using hC,by simpa only [scalarEvenForm_val] using hC'⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_scalar_vector_odd_exact (hh : 0<h) (hm : 0 < m) (hd : 1≤d) {G : ℝ}
-    (D : MvPolynomial (Fin (finrank K (Fin f → Rows K h m (d-1)))) K)
-    (hD : ∃ g : Fin f → Rows K h m (d-1),eval ((Module.finBasis K _).equivFun g) D≠0)
+theorem exists_scalar_vector_odd_exact (hh : 0 < h) (hm : 0 < m) (hd : 1 ≤ d) {G : ℝ}
+    (D : MvPolynomial (Fin (finrank K (Fin f → Rows K h m (d - 1)))) K)
+    (hD : ∃ g : Fin f → Rows K h m (d - 1), eval ((Module.finBasis K _).equivFun g) D ≠ 0)
     (hmodel : ∀ g : Fin f → Rows K h m (d-1),eval ((Module.finBasis K _).equivFun g) D≠0 →
       VectorExpansionOpen.StrictModel g d G ∧
       q*finrank K (VectorExpansionOpen.Source g)≤finrank K (VectorExpansionOpen.Target g d))

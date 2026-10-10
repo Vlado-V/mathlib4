@@ -20,7 +20,7 @@ open FiniteEndpointChecker FiniteEndpointCheckerPolynomial
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Separately checked rows imply the whole Boolean certificate without evaluating it again. -/
 theorem checkInverse_of_equations {s : ℕ} (A : Fin s → List (Fin s)) (B : Fin s → ℕ)
-    (h : ∀ i, xorSum ((A i).map B) = 2^i.val) : checkInverse A B = true := by
+    (h : ∀ i, xorSum ((A i).map B) = 2 ^ i.val) : checkInverse A B = true := by
   apply List.all_eq_true.mpr
   intro i _
   exact decide_eq_true (h i)
@@ -153,9 +153,9 @@ theorem upper_witness : QuarticWitness K n hi := by
   omega
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem generic_of_certificate (hadjacent : hi ≤ lo+1)
+theorem generic_of_certificate (hadjacent : hi ≤ lo + 1)
     (hlo : 0 ≤ Counts.chi n lo) (hhi : Counts.chi n hi ≤ 0)
-    (r : ℕ) (hr : r ≤ (n+1).choose 2) : GenericQuartic K n r :=
+    (r : ℕ) (hr : r ≤ (n + 1).choose 2) : GenericQuartic K n r :=
   EndpointReduction.adjacent_endpoints_imply_generic lo hi hadjacent
     D.lower_witness D.upper_witness hlo hhi hr
 

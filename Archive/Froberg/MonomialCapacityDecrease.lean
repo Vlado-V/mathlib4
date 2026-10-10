@@ -17,9 +17,9 @@ namespace Froberg
 open Finset MonomialExpansion
 
 lemma monomialProfileJoint_fiber_sum {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
-    (P : Option (Fin s) → Fin (2*s+1) → ℝ)
+    (P : Option (Fin s) → Fin (2 * s + 1) → ℝ)
     (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
-    (α : Σ i, SourceMonomialFiber a z s i) (j : Fin (2*s+1)) :
+    (α : Σ i, SourceMonomialFiber a z s i) (j : Fin (2 * s + 1)) :
     (∑ β : TargetMonomialFiber a z s j, monomialProfileJoint P α ⟨j, β⟩) =
       P α.1 j / (Fintype.card (SourceMonomialFiber a z s α.1) : ℝ) := by
   simp only [monomialProfileJoint, fiberTransport, ← mul_sum]
@@ -30,9 +30,9 @@ lemma monomialProfileJoint_fiber_sum {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
     simp
 
 lemma monomialProfileJoint_weighted_profile_sum {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
-    (P : Option (Fin s) → Fin (2*s+1) → ℝ)
+    (P : Option (Fin s) → Fin (2 * s + 1) → ℝ)
     (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
-    (α : Σ i, SourceMonomialFiber a z s i) (w : Fin (2*s+1) → ℝ) :
+    (α : Σ i, SourceMonomialFiber a z s i) (w : Fin (2 * s + 1) → ℝ) :
     (∑ β : Σ j, TargetMonomialFiber a z s j, monomialProfileJoint P α β * w β.1) =
       (∑ j, P α.1 j * w j) / (Fintype.card (SourceMonomialFiber a z s α.1) : ℝ) := by
   rw [Fintype.sum_sigma]
@@ -41,7 +41,7 @@ lemma monomialProfileJoint_weighted_profile_sum {a z s : ℕ} (ha : 0 < a) (hz :
 
 /-- The decrease coefficient is at least ε/H for every source atom. -/
 theorem monomial_capacity_decrease {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (hs : 0 < s)
-    (P : Option (Fin s) → Fin (2*s+1) → ℝ) (p : Option (Fin s) → ℝ)
+    (P : Option (Fin s) → Fin (2 * s + 1) → ℝ) (p : Option (Fin s) → ℝ)
     (hP0 : ∀ i j, 0 ≤ P i j)
     (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
     (hp : ∀ i, p i ≤ 1) (ε : ℝ) (hε : 0 ≤ ε)

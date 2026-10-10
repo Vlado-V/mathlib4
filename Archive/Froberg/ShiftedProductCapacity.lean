@@ -18,7 +18,7 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem eventually_quadratic_product_capacity_shift {d : ℕ} (hd : 9≤d) :
+theorem eventually_quadratic_product_capacity_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ h : ℕ in atTop,∀ z extra : ℕ,∀ᶠ m : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(h : ℝ)^2*((m+z : ℕ) : ℝ)^(d-2) →
       r+extra≤diagonalProductCount d 2 h m ∧ r+extra≤crossProductCount d 2 h m := by
@@ -40,8 +40,8 @@ theorem eventually_quadratic_product_capacity_shift {d : ℕ} (hd : 9≤d) :
     (Nat.add_le_add_right hrceil extra).trans (hem.trans (by simpa [intermediateDensity] using hm))
   exact ⟨hdiag,hdiag.trans (diagonalProductCount_le_cross (by omega) (by omega))⟩
 
-theorem eventually_higher_product_capacity_shift {d j : ℕ} (hd : 9≤d)
-    (hj : j∈activeHigherIndices d) :
+theorem eventually_higher_product_capacity_shift {d j : ℕ} (hd : 9 ≤ d)
+    (hj : j ∈ activeHigherIndices d) :
     ∀ᶠ h : ℕ in atTop,∀ z : ℕ,∀ᶠ m : ℕ in atTop,
       higherGeneratorCount d h (m+z) j≤diagonalProductCount d j h m ∧
       higherGeneratorCount d h (m+z) j≤crossProductCount d j h m := by
@@ -67,7 +67,7 @@ open Module
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
-theorem eventually_product_row_capacities_shift {d : ℕ} (hd : 9≤d) :
+theorem eventually_product_row_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*((2*v+z : ℕ) : ℝ)^(d-2) →
       finrank K X=deletedTargetCount d (2*w) →
@@ -106,7 +106,7 @@ theorem eventually_product_row_capacities_shift {d : ℕ} (hd : 9≤d) :
     simpa only [crossProductCount,show 2*w/2=w by omega,show 2*v/2=v by omega,hX]
       using (hcap j hj).2
 
-theorem eventually_allEven_product_capacities_shift {d : ℕ} (hd : 9≤d) :
+theorem eventually_allEven_product_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*((2*v+z : ℕ) : ℝ)^(d-2) →
       finrank K X=deletedTargetCount d (2*w) →

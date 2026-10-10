@@ -22,7 +22,7 @@ variable {h m j e x y : ℕ}
 theorem output_tmul_mem_biform_range (O : V →ₗ[K] Forms K h j)
     (o : ι → V) (f : ι → Forms K m e)
     (hconv : Function.Surjective (vectorFormFamilyMap (t := y) o f))
-    (z : V ⊗[K] Forms K h x) (w : Forms K m (e+y)) :
+    (z : V ⊗[K] Forms K h x) (w : Forms K m (e + y)) :
     outputMultiplication O z ⊗ₜ[K] w ∈
       (biformFamilyMap (x := x) (y := y) (fun i => O (o i)) f).range := by
   let R := (biformFamilyMap (x := x) (y := y) (fun i => O (o i)) f).range

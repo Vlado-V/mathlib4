@@ -60,7 +60,7 @@ theorem multiplication_single_diagonal_row_range
 
 theorem eighth_row_only_fourth
     (e : ℕ → ℕ) (J : Finset ℕ)
-    (hz : ∀ k∈J,k≠2 → k≠4 → e k=0)
+    (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → e k = 0)
     (r : Row J 8) (c : Columns e r) : r.val.val=4 := by
   have hp := counts_positive_of_column e r c
   have hleft : r.val.val=2 ∨ r.val.val=4 := by

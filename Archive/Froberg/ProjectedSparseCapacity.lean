@@ -18,7 +18,7 @@ namespace Froberg
 open Filter Polynomial
 open scoped Topology
 
-theorem affine_monomial_count_normalized_small {e d a : ℕ} (ha : 0<a) (hed : e<d) :
+theorem affine_monomial_count_normalized_small {e d a : ℕ} (ha : 0 < a) (hed : e < d) :
     Tendsto (fun n : ℕ => ((a*n+e-1).choose e : ℝ)/(n : ℝ)^d) atTop (𝓝 0) := by
   have hdeg : (affineCountPolynomial e a 0).degree < (X^d : ℝ[X]).degree := by
     apply degree_lt_degree
@@ -33,8 +33,8 @@ theorem affine_monomial_count_normalized_small {e d a : ℕ} (ha : 0<a) (hed : e
 /-- A strict sparse incidence margin absorbs any output loss of smaller
 order, while preserving the already selected block count. -/
 theorem eventually_sparse_projected_capacity
-    (b H loss : ℕ → ℕ) {C c R : ℕ} (hc : c≤C) (rho delta : ℝ)
-    (hdelta : 0<delta) (hCrho : 0<(C : ℝ)*rho)
+    (b H loss : ℕ → ℕ) {C c R : ℕ} (hc : c ≤ C) (rho delta : ℝ)
+    (hdelta : 0 < delta) (hCrho : 0 < (C : ℝ) * rho)
     (hH : Tendsto (fun n : ℕ => (H n : ℝ)/(n : ℝ)^R) atTop (𝓝 delta))
     (hloss : Tendsto (fun n : ℕ => (loss n : ℝ)/(n : ℝ)^R) atTop (𝓝 0))
     (hmargin : ∀ᶠ n : ℕ in atTop,
@@ -53,7 +53,7 @@ theorem eventually_sparse_projected_capacity
   have hsum : b n*c+loss n≤H n := by exact_mod_cast hsumR
   omega
 
-theorem eventually_quadratic_sparse_projected_capacity {d : ℕ} (hd : 3≤d) :
+theorem eventually_quadratic_sparse_projected_capacity {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,
       fullSparseBlockCount (countBeta d) 2 (d-2) h*(d-2+1).choose (d-2) ≤
         quadraticOutputDimension d h-h := by
@@ -74,8 +74,8 @@ theorem eventually_quadratic_sparse_projected_capacity {d : ℕ} (hd : 3≤d) :
   · simpa only [Nat.one_mul,Nat.add_sub_cancel,Nat.choose_one_right] using
       affine_monomial_count_normalized_small (a := 1) (e := 1) (d := 2) (by omega) (by omega)
 
-theorem eventually_higher_sparse_projected_capacity {d R : ℕ} (hd : 3≤d)
-    (hR : R∈activeHigherIndices d) :
+theorem eventually_higher_sparse_projected_capacity {d R : ℕ} (hd : 3 ≤ d)
+    (hR : R ∈ activeHigherIndices d) :
     ∀ᶠ w : ℕ in atTop,
       sparseBlockCount ((101/100 : ℝ)*higherCountGamma d R) R (d-R) w*(d-R+1).choose (d-R) ≤
         oddOutputDimension w R-(2*w+(R-1)-1).choose (R-1) := by

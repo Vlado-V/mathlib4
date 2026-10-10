@@ -16,8 +16,8 @@ namespace Quartic.FilteredCoordinates
 open Module FilteredImage
 variable {K : Type*} [Field K] {n m : ℕ}
 variable {E : Fin n → Type*} {F : Fin m → Type*}
-  [∀ i,AddCommGroup (E i)] [∀ i,Module K (E i)]
-  [∀ i,AddCommGroup (F i)] [∀ i,Module K (F i)]
+  [∀ i, AddCommGroup (E i)] [∀ i, Module K (E i)]
+  [∀ i, AddCommGroup (F i)] [∀ i, Module K (F i)]
 
 /-- Membership in a leading coefficient space uses exactly the later zero coordinates. -/
 theorem mem_initialPiece_iff (S : Submodule K ((i : Fin n) → E i))
@@ -32,8 +32,8 @@ theorem mem_initialPiece_iff (S : Submodule K ((i : Fin n) → E i))
 /-- Ordered blockwise equivalences preserve the actual leading coefficient spaces. -/
 theorem initialPiece_map (σ : Fin m ≃o Fin n)
     (e : ((i : Fin n) → E i) ≃ₗ[K] ((j : Fin m) → F j))
-    (c : ∀ j,E (σ j) ≃ₗ[K] F j)
-    (he : ∀ x j,e x j=c j (x (σ j)))
+    (c : ∀ j, E (σ j) ≃ₗ[K] F j)
+    (he : ∀ x j, e x j = c j (x (σ j)))
     (S : Submodule K ((i : Fin n) → E i)) (j : Fin m) :
     initialPiece F (S.map e.toLinearMap) j=(initialPiece E S (σ j)).map (c j).toLinearMap := by
   ext v
@@ -70,8 +70,8 @@ theorem initialPiece_map (σ : Fin m ≃o Fin n)
 theorem initialPiece_finrank_map
     (σ : Fin m ≃o Fin n)
     (e : ((i : Fin n) → E i) ≃ₗ[K] ((j : Fin m) → F j))
-    (c : ∀ j,E (σ j) ≃ₗ[K] F j)
-    (he : ∀ x j,e x j=c j (x (σ j)))
+    (c : ∀ j, E (σ j) ≃ₗ[K] F j)
+    (he : ∀ x j, e x j = c j (x (σ j)))
     (S : Submodule K ((i : Fin n) → E i)) (j : Fin m) :
     finrank K (initialPiece F (S.map e.toLinearMap) j)=
       finrank K (initialPiece E S (σ j)) := by

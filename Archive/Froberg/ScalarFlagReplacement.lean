@@ -41,7 +41,7 @@ theorem update_append_left {V : Type*} (Q : Fin q → V) (E : Fin e → V) (i : 
     rw [Function.update_of_ne hne,Fin.append_right,Fin.append_right]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-private theorem predicate_reindex_cast {V : Type*} {a b : ℕ} (h : a=b)
+private theorem predicate_reindex_cast {V : Type*} {a b : ℕ} (h : a = b)
     (P : (n : ℕ) → (Fin n → V) → Prop) (v : Fin b → V) :
     P a (v ∘ Fin.cast h) ↔ P b v := by
   subst b
@@ -60,9 +60,9 @@ theorem exists_covered_background_slot_thin [IsAlgClosed K]
     (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1)
     (i : Fin q) (M : biformParitySpace K h m d 0) (C : ℝ)
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(parityForm (coreParity h m) 1).ker)
-    (hc : ∀ p,parityForm (coreParity h m) 0 p∈
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (parityForm (coreParity h m) 1).ker)
+    (hc : ∀ p, parityForm (coreParity h m) 0 p ∈
       D ⊔ (endpointMultiplication (backgroundEnumeratedForms Q F G)).range)
     (hex : OddSplitExact Q (Fin.append F G))
     (hs : HasClosedKernelSlices (oddEndpointScalarAction Q F G)
@@ -70,7 +70,7 @@ theorem exists_covered_background_slot_thin [IsAlgClosed K]
     (hi : LinearIndependent K (backgroundEnumeratedForms Q F G))
     (hu : Function.Surjective (upperTargetMap (h := h) (m := m) (d := d)
       (backgroundEnumeratedForms Q F G)))
-    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P≠0) :
+    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P ≠ 0) :
     ∃ c : K,c≠0 ∧ eval (fun _ => c) P≠0 ∧
       OddSplitExact (Function.update Q i (Q i+c • M)) (Fin.append F G) ∧
       HasClosedKernelSlices (oddEndpointScalarAction (Function.update Q i (Q i+c • M)) F G)

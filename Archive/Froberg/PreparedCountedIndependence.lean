@@ -35,9 +35,9 @@ namespace PreparedTarget
 variable {K : Type} [Field K] [Infinite K]
 
 theorem exact_counts_prepared_independent_open {d k h lo u : ℕ}
-    (hd : 3≤d) (hh : 0<h) (upper : Bool) (a f e : ℕ → ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
-    (O : ℕ → Submodule K (Poly K h)) (hO : ∀ j∈activeEvenIndices d,O j≤Forms K h j) :
+    (hd : 3 ≤ d) (hh : 0 < h) (upper : Bool) (a f e : ℕ → ℕ)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    (O : ℕ → Submodule K (Poly K h)) (hO : ∀ j ∈ activeEvenIndices d, O j ≤ Forms K h j) :
     ∀ᶠ n : ℕ in atTop,HasIndependentOpen (m := n) (q := upperCount n d)
       (f := f n) (u := u) (counts := targetLayerCount d h n (e n)) (by omega : 0<d) hO
       (fun j hj => (activeEvenIndices_bounds hd hj).2.1.le) := by

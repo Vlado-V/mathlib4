@@ -18,13 +18,13 @@ noncomputable section
 namespace Froberg
 open scoped BigOperators
 variable {K : Type*} [Field K] {n : ℕ}
-variable {V S : Fin (n+1) → Type*}
+variable {V S : Fin (n + 1) → Type*}
   [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
   [∀ i, AddCommGroup (S i)] [∀ i, Module K (S i)]
 
 /-- Evaluation of a linear covector is the sum of its component evaluations. -/
-theorem covector_sum_components (ell : ((i : Fin (n+1)) → V i) →ₗ[K] K)
-    (x : (i : Fin (n+1)) → V i) :
+theorem covector_sum_components (ell : ((i : Fin (n + 1)) → V i) →ₗ[K] K)
+    (x : (i : Fin (n + 1)) → V i) :
     ell x = ∑ i, ell (Pi.single i (x i)) := by
   classical
   have hx : (∑ i, Pi.single i (x i)) = x := by
@@ -37,10 +37,10 @@ theorem covector_sum_components (ell : ((i : Fin (n+1)) → V i) →ₗ[K] K)
 /-- Lower terms in a relation do not obstruct induction once the leading
 bidegree maps are onto. No independence of the lower relations is assumed. -/
 theorem triangular_covector_zero
-    (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) → V j))
+    (C : (i : Fin (n + 1)) → S i →ₗ[K] ((j : Fin (n + 1)) → V j))
     (hupper : ∀ i j, i < j → ∀ s, C i s j = 0)
     (hsurj : ∀ i, i ≠ 0 → Function.Surjective (fun s => C i s i))
-    (ell : ((i : Fin (n+1)) → V i) →ₗ[K] K)
+    (ell : ((i : Fin (n + 1)) → V i) →ₗ[K] K)
     (hann : ∀ i, i ≠ 0 → ∀ s, ell (C i s) = 0)
     (hbottom : ∀ x : V 0, ell (Pi.single 0 x) = 0) : ell = 0 := by
   classical
@@ -73,10 +73,10 @@ theorem triangular_covector_zero
 
 /-- Two quotient covectors agreeing on the bottom target agree everywhere. -/
 theorem triangular_covector_ext
-    (C : (i : Fin (n+1)) → S i →ₗ[K] ((j : Fin (n+1)) → V j))
+    (C : (i : Fin (n + 1)) → S i →ₗ[K] ((j : Fin (n + 1)) → V j))
     (hupper : ∀ i j, i < j → ∀ s, C i s j = 0)
     (hsurj : ∀ i, i ≠ 0 → Function.Surjective (fun s => C i s i))
-    (ell eta : ((i : Fin (n+1)) → V i) →ₗ[K] K)
+    (ell eta : ((i : Fin (n + 1)) → V i) →ₗ[K] K)
     (hell : ∀ i, i ≠ 0 → ∀ s, ell (C i s) = 0)
     (heta : ∀ i, i ≠ 0 → ∀ s, eta (C i s) = 0)
     (hbottom : ∀ x : V 0, ell (Pi.single 0 x) = eta (Pi.single 0 x)) : ell = eta := by

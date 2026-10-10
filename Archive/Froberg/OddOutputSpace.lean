@@ -41,7 +41,7 @@ private def oddOutputFamily (w R : ℕ) :
       rename Sum.inr (formsBasis K w (R-x.1.val.val) x.2.2).val)
 
 private theorem oddOutputFamily_weighted (w R : ℕ) (a : OddOutputProfile R)
-    (c : Sym (Fin w) a.val.val × Sym (Fin w) (R-a.val.val)) :
+    (c : Sym (Fin w) a.val.val × Sym (Fin w) (R - a.val.val)) :
     (oddOutputFamily (K := K) w R ⟨a,c⟩).IsWeightedHomogeneous pairedHalfWeight a.val.val := by
   apply rename_weightedHomogeneous
     (halfVariableEquiv (Fin w)).toEmbedding FourBlocks.outputWeight pairedHalfWeight

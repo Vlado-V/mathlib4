@@ -82,7 +82,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem two_family_generic_of_normalized_growth
     (mu₁ : P₁ →ₗ[K] (Fin a₁ → K) →ₗ[K] W)
     (mu₂ : P₂ →ₗ[K] (Fin a₂ → K) →ₗ[K] W)
-    {R₁ R₂ : ℝ} (hR₁ : 0<R₁) (hR₂ : 0<R₂)
+    {R₁ R₂ : ℝ} (hR₁ : 0 < R₁) (hR₂ : 0 < R₂)
     (h₁ : ∀ L : Submodule K (Fin a₁ → K), R₁*finrank K L ≤
       finrank K (BilinearImage.image mu₁ L))
     (h₂ : ∀ L : Submodule K (Fin a₂ → K), R₂*finrank K L ≤

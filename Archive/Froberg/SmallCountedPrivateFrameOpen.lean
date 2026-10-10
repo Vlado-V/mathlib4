@@ -40,7 +40,7 @@ local instance smallCountedPrivateConstrainedFinite {X : Type*} [AddCommGroup X]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_actual_small_private_reduction_open_uniform {d : ℕ}
-    (hd : 3≤d) (hd8 : d≤8) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hd8 : d ≤ 8) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
@@ -79,7 +79,7 @@ theorem eventually_actual_small_private_reduction_open_uniform {d : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_small_private_frame_reduction_open {d : ℕ}
-    (hd : 3≤d) (hd8 : d≤8) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hd8 : d ≤ 8) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
       ∀ (z extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
@@ -155,7 +155,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 nonzero private tuple; every independent frame in it has a nonempty open of
 all its actual prepared coefficients. -/
 theorem eventually_counted_small_private_frame_open {d : ℕ}
-    (hd : 3≤d) (hd8 : d≤8) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hd8 : d ≤ 8) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
       ∀ (z extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

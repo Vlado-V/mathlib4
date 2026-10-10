@@ -22,10 +22,10 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 theorem quadratic_only_extended_leading
-    (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,2≤j) (hJd : ∀ j∈J,j≤d) (h2 : 2∈J)
-    (hz : ∀ j∈J,j≠2 → counts j=0)
-    (hquad : ∃ b,QuadraticRowCapacity a d q b J counts O)
+    (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hJd : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
+    (hz : ∀ j ∈ J, j ≠ 2 → counts j = 0)
+    (hquad : ∃ b, QuadraticRowCapacity a d q b J counts O)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     ∀ R : J,∃ p : Space (a+z) d q J counts O,LinearIndependent K (p.2 R) := by
   classical
@@ -44,10 +44,10 @@ theorem quadratic_only_extended_leading
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 theorem all_even_extended_leading {w v z d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
-    (hd : 3≤d) (hv : 0<v)
+    (hd : 3 ≤ d) (hv : 0 < v)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
-    (hJ : ∀ j∈J,2≤j) (hJd : ∀ j∈J,j≤d) (h2 : 2∈J)
-    (hquad : ∃ b,QuadraticRowCapacity (v+v) d q b J counts (constrainedOutputs T))
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hJd : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
+    (hquad : ∃ b, QuadraticRowCapacity (v + v) d q b J counts (constrainedOutputs T))
     (hhigher : ∀ R : J,R.val≠2 → ∃ b,HigherRowCapacity w v d q b J counts T R) :
     ∀ R : J,∃ p : Space (v+v+z) d q J counts (constrainedOutputs T),
       LinearIndependent K (p.2 R) := by

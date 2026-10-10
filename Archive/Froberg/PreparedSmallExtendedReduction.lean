@@ -25,11 +25,12 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
-    (hd : 5≤d)
+    (hd : 5 ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
-    (hz : ∀ k∈allEvenIndices d,k≠2 → k≠4 → counts k=0)
-    (hquad : ∃ b,QuadraticRowCapacity (v+v) d q b (allEvenIndices d) counts (constrainedOutputs T))
-    (hfour : ∃ b,FourthRowCapacity w v d q b (allEvenIndices d) counts T)
+    (hz : ∀ k ∈ allEvenIndices d, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (hquad : ∃ b, QuadraticRowCapacity (v + v) d q b (allEvenIndices d) counts (constrainedOutputs
+      T))
+    (hfour : ∃ b, FourthRowCapacity w v d q b (allEvenIndices d) counts T)
     (hcore : ∀ R : allEvenIndices d,
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
         LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left :
@@ -91,11 +92,12 @@ theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
 
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem small_extended_reduction_open {w v z d q : ℕ} {counts : ℕ → ℕ}
-    [LinearOrder (Label q (allEvenIndices d) counts)] (hd : 5≤d)
+    [LinearOrder (Label q (allEvenIndices d) counts)] (hd : 5 ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
-    (hz : ∀ k∈allEvenIndices d,k≠2 → k≠4 → counts k=0)
-    (hquad : ∃ b,QuadraticRowCapacity (v+v) d q b (allEvenIndices d) counts (constrainedOutputs T))
-    (hfour : ∃ b,FourthRowCapacity w v d q b (allEvenIndices d) counts T)
+    (hz : ∀ k ∈ allEvenIndices d, k ≠ 2 → k ≠ 4 → counts k = 0)
+    (hquad : ∃ b, QuadraticRowCapacity (v + v) d q b (allEvenIndices d) counts (constrainedOutputs
+      T))
+    (hfour : ∃ b, FourthRowCapacity w v d q b (allEvenIndices d) counts T)
     (hcore : ∀ R : allEvenIndices d,
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
         LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left :

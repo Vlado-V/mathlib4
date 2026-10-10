@@ -84,7 +84,7 @@ theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def PreparedGrowthFiberAt (K : Type) [Field K] [Infinite K]
     {h d b : ℕ} (hd : 1 ≤ d) (n f u : ℕ)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (G C : ℝ) : Prop :=
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (G C : ℝ) : Prop :=
       ∀ (J : Finset ℕ) (counts counts' : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hcounts : ∀ j ∈ J, counts j ≤ counts' j),
       letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f
@@ -125,7 +125,7 @@ def PreparedGrowthFiberAt (K : Type) [Field K] [Infinite K]
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     {h n d f u b : ℕ} (hd : 1 ≤ d) {G C : ℝ} (hnpos : 0 < n)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (houter : StrictThinCoefficientOpen K h n d f G C)
     (hgrowth : HasBaseC4GrowthOpen (m := n) (f := f) (q := upperCount n d)
       hd R (scalarReserveCount d n)) : PreparedGrowthFiberAt K hd n f u R G C := by
@@ -178,9 +178,9 @@ theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def PreparedC4SelectionAt (K : Type) [Field K] [Infinite K] [IsAlgClosed K]
-    {d h u b : ℕ} (hd : 3 ≤ d) (hdodd : d%2=1) (n f e extra : ℕ)
+    {d h u b : ℕ} (hd : 3 ≤ d) (hdodd : d % 2 = 1) (n f e extra : ℕ)
     (U : Fin u → Forms K h d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (G C ξ : ℝ) : Prop :=
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (G C ξ : ℝ) : Prop :=
       ∀ (J : Finset ℕ) (counts counts' : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
         (heven : ∀ j∈J,j%2=0) (hcounts : ∀ j∈J,counts j≤counts' j),
@@ -224,14 +224,14 @@ def PreparedC4SelectionAt (K : Type) [Field K] [Infinite K] [IsAlgClosed K]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem field_uniform_prepared_c4_selection {d k h lo u b : ℕ}
-    (hd : 3 ≤ d) (hdodd : d%2=1) (hhpos : 0 < h) (hb : 0 < b)
-    (hratio : (h : ℝ)/(2*((1+(d-1) : ℕ) : ℝ)) ≤
-      (b : ℝ)/((h+(d-1)-1).choose (d-1) : ℝ))
+    (hd : 3 ≤ d) (hdodd : d % 2 = 1) (hhpos : 0 < h) (hb : 0 < b)
+    (hratio : (h : ℝ) / (2 * ((1 + (d - 1) : ℕ) : ℝ)) ≤
+      (b : ℝ) / ((h + (d - 1) - 1).choose (d - 1) : ℝ))
     (upper : Bool) (a f e : ℕ → ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
     (extra : ℕ) (G C : ℝ) (hC : 0 < C)
     (houter : ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
-      StrictThinCoefficientOpen K h n d (f n) (G*(n : ℝ)^d) (C*(n : ℝ)^d)) :
+      StrictThinCoefficientOpen K h n d (f n) (G * (n : ℝ) ^ d) (C * (n : ℝ) ^ d)) :
     ∃ ξ : ℝ, 0 < ξ ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],
       ∀ U : Fin u → Forms K h d, LinearIndependent K U →
@@ -302,14 +302,14 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Exact counts supply the outer open as well. All three constants and
 all scalar-variable thresholds precede the field and pure-family choices. -/
 theorem uniform_exact_counts_prepared_c4_selection {d k h lo u b : ℕ}
-    (hd : 3 ≤ d) (hdodd : d%2=1) (hk : 0 < k)
-    (hh : h=k*centralHalfBinomial d) (hhpos : 0 < h) (hb : 0 < b)
-    (hratio : (h : ℝ)/(2*((1+(d-1) : ℕ) : ℝ)) ≤
-      (b : ℝ)/((h+(d-1)-1).choose (d-1) : ℝ))
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
+    (hd : 3 ≤ d) (hdodd : d % 2 = 1) (hk : 0 < k)
+    (hh : h = k * centralHalfBinomial d) (hhpos : 0 < h) (hb : 0 < b)
+    (hratio : (h : ℝ) / (2 * ((1 + (d - 1) : ℕ) : ℝ)) ≤
+      (b : ℝ) / ((h + (d - 1) - 1).choose (d - 1) : ℝ))
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper)
     {δ : ℝ} (hδ : 0 < δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n))
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n))
     (extra : ℕ) :
     ∃ G C ξ : ℝ,0<G ∧ 0<C ∧ 0<ξ ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],

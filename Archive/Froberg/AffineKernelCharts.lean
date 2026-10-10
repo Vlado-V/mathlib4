@@ -25,7 +25,7 @@ variable {K : Type} [Field K] [Infinite K]
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 private theorem polynomial_pi {I J V : Type*} [Fintype J]
     [AddCommGroup V] [Module K V] (f : (I → K) → J → V)
-    (hf : ∀ j,IsPolynomialFamily (fun p => f p j)) : IsPolynomialFamily f := by
+    (hf : ∀ j, IsPolynomialFamily (fun p => f p j)) : IsPolynomialFamily f := by
   classical
   have h := IsPolynomialFamily.sum (fun j =>
     (hf j).linear_comp (LinearMap.single K (fun _ : J => V) j))
@@ -60,7 +60,7 @@ theorem graphParameterCount_bound {a k : ℕ} (j : Fin k ↪ Fin a) :
   nlinarith [Nat.sub_le a k]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem exists_graphFromFin {a k : ℕ} (S : Submodule K (Fin a → K)) (hk : finrank K S=k) :
+theorem exists_graphFromFin {a k : ℕ} (S : Submodule K (Fin a → K)) (hk : finrank K S = k) :
     ∃ j : Fin k ↪ Fin a,∃ u : Fin (graphParameterCount j) → K,
       Submodule.span K (Set.range (graphFromFin j u))=S := by
   obtain ⟨j,A,hA⟩ := exists_chart S hk
@@ -102,7 +102,7 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def affineKernelChart
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (muH : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin H → K))
-    (j : Fin k ↪ Fin a) (p : Fin (T₀+graphParameterCount j) → K) :
+    (j : Fin k ↪ Fin a) (p : Fin (T₀ + graphParameterCount j) → K) :
     ((Fin H → K) × K) →ₗ[K] (Fin (k*b) → K) :=
   affineGraphConstraint mu₀ muH (graphFromFin j (chartGraphCoordinates j p)) (chartBottom j p)
 
@@ -117,7 +117,7 @@ theorem affineKernelChart_polynomial
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def chartCovector (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T → K))
-    (j : Fin k ↪ Fin a) (p : Fin (T₀+graphParameterCount j) → K) (x : (Fin H → K) ×
+    (j : Fin k ↪ Fin a) (p : Fin (T₀ + graphParameterCount j) → K) (x : (Fin H → K) ×
       K) : Fin T → K :=
   res (x.2 • chartBottom j p,x.1)
 

@@ -65,11 +65,11 @@ include L
 ambient subspaces containing the varying mixed presentation. -/
 theorem principal_open_family (m : ℕ) (hm : 41 ≤ m) (hmhi : m ≤ 319)
     (hpositive : 0 < Counts.chi (m + 3) (upperEndpoint m + mixedCount m false + 4))
-    (g : (I → K) → Fin ((coreP (mixedCount m false)+1)+2) →
-      Rows K ((coreP (mixedCount m false)+1)+freeW m (mixedCount m false)) 1)
+    (g : (I → K) → Fin ((coreP (mixedCount m false) + 1) + 2) →
+      Rows K ((coreP (mixedCount m false) + 1) + freeW m (mixedCount m false)) 1)
     (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
     (hp₀ : g p₀ = GenericF13Endpoint.convolutionMixed K
-      (coreP (mixedCount m false)+1) (freeW m (mixedCount m false))) :
+      (coreP (mixedCount m false) + 1) (freeW m (mixedCount m false))) :
     ∃ E : Dimensions m false → ℕ, Thresholds m false E ∧
       ∃ D : MvPolynomial I K, eval p₀ D ≠ 0 ∧ ∀ p : I → K, eval p D ≠ 0 →
         ∀ d : Dimensions m false, RowExpansionOpen.Expands (g p)

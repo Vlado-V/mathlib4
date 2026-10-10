@@ -45,7 +45,7 @@ set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
-    (e : (Fin h → K) ≃ₗ[K] Forms K h 1) {w : Fin h → K} (hw : w≠0) :
+    (e : (Fin h → K) ≃ₗ[K] Forms K h 1) {w : Fin h → K} (hw : w ≠ 0) :
     renamedPrivateColumn f e w≠0 := by
   intro hz
   apply hw
@@ -100,15 +100,15 @@ set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 private-row theorem on any equivalent variable type. -/
 theorem private_detector_coordinate_pullback (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
-    (w : Fin b → Fin h → K) (hw : ∀ i,w i≠0)
+    (w : Fin b → Fin h → K) (hw : ∀ i, w i ≠ 0)
     (frame : Fin H → Forms K h 2)
     (O : Submodule K (MvPolynomial σ K))
-    (hO : O.map (rename f).toLinearMap≤outputFrameSpace frame)
+    (hO : O.map (rename f).toLinearMap ≤ outputFrameSpace frame)
     (L₀ : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hL₀ : L₀.ker=Submodule.span K (Set.range frame))
+    (hL₀ : L₀.ker = Submodule.span K (Set.range frame))
     (ι : Fin b ↪ Fin z)
     (hprivate : (privatePolynomialMap (a := a) (s := s) ι
-      (fun i => (L₀.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker=
+      (fun i => (L₀.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker =
       Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι w)))) :
     ∃ (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
       (l : Fin b → homogeneousSubmodule σ K 1)

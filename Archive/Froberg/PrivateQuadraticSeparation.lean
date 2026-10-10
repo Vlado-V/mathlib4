@@ -41,7 +41,7 @@ def coreVectorExtension : (Fin c → Poly K a) →ₗ[K] (Fin c → Poly K (a+z)
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem quadraticScalarRow_injective
     (Q : Fin q → Poly K a)
-    (hQ : ∀ r,r≤t → ∀ x : Fin q → Forms K a r,
+    (hQ : ∀ r, r ≤ t → ∀ x : Fin q → Forms K a r,
       (∑ i,Q i*(x i).val)=0 → x=0) :
     Function.Injective (quadraticScalarRow (z := z) (c := c) (t := t) Q) := by
   apply LinearMap.ker_eq_bot.mp
@@ -72,10 +72,10 @@ theorem private_core_product_separation
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (Q : Fin q → Poly K a) (C : Z →ₗ[K] (Fin c → Poly K a))
     (hC : ∀ (x : Fin q → Fin c → Forms K a t) v,
-      (fun k => (∑ i,Q i*(x i k).val)+C v k)=0 → v=0)
-    (x : Fin q → Fin c → Forms K (a+z) t)
-    (u : Fin b → Fin h → Forms K (a+z) s) (v : Z)
-    (hrel : quadraticScalarRow Q x+privatePolynomialMap ι A u+coreVectorExtension (C v)=0) :
+      (fun k => (∑ i, Q i * (x i k).val) + C v k) = 0 → v = 0)
+    (x : Fin q → Fin c → Forms K (a + z) t)
+    (u : Fin b → Fin h → Forms K (a + z) s) (v : Z)
+    (hrel : quadraticScalarRow Q x + privatePolynomialMap ι A u + coreVectorExtension (C v) = 0) :
     v=0 ∧ privatePolynomialMap ι A u=0 := by
   let res := quadraticScalarRow (z := z) Q x+coreVectorExtension (C v)
   have hres : avoidsPrivatePowers (s := s) ι res := by
@@ -108,10 +108,10 @@ theorem private_scalar_row_exact
     {U : Type*} [AddCommGroup U] [Module K U]
     (hs : 2 ≤ s) (ht : t < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (B : U →ₗ[K] (Fin b → Fin h → Forms K (a+z) s))
-    (hB : (privatePolynomialMap ι A).ker=B.range)
+    (B : U →ₗ[K] (Fin b → Fin h → Forms K (a + z) s))
+    (hB : (privatePolynomialMap ι A).ker = B.range)
     (Q : Fin q → Poly K a)
-    (hQ : ∀ r,r≤t → ∀ x : Fin q → Forms K a r,
+    (hQ : ∀ r, r ≤ t → ∀ x : Fin q → Forms K a r,
       (∑ i,Q i*(x i).val)=0 → x=0) :
     (addRow (quadraticScalarRow (z := z) (c := c) (t := t) Q)
       (privatePolynomialMap ι A)).ker=

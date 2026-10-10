@@ -17,17 +17,17 @@ open Module
 variable {R : Type*} [CommRing R] {r l : ℕ}
 
 /-- The complementary coordinate set. -/
-def complement (I : Set.powersetCard (Fin (r+l)) r) : Set.powersetCard (Fin (r+l)) l :=
+def complement (I : Set.powersetCard (Fin (r + l)) r) : Set.powersetCard (Fin (r+l)) l :=
   Set.powersetCard.compl (by simp [Nat.add_comm]) I
 
-@[simp] theorem complement_val (I : Set.powersetCard (Fin (r+l)) r) :
+@[simp] theorem complement_val (I : Set.powersetCard (Fin (r + l)) r) :
     (complement I).val = I.valᶜ := rfl
 
-def complementVectors (I : Set.powersetCard (Fin (r+l)) r) : Fin l → Fin (r+l) → R :=
+def complementVectors (I : Set.powersetCard (Fin (r + l)) r) : Fin l → Fin (r+l) → R :=
   (Pi.basisFun R (Fin (r+l))) ∘ Set.powersetCard.ofFinEmbEquiv.symm (complement I)
 
 /-- A complementary coordinate row annihilates every other exterior basis vector. -/
-theorem mixedRow_complement_offdiag (I J : Set.powersetCard (Fin (r+l)) r) (h : I ≠ J) :
+theorem mixedRow_complement_offdiag (I J : Set.powersetCard (Fin (r + l)) r) (h : I ≠ J) :
     mixedRow (complementVectors (R := R) I) J = 0 := by
   classical
   have hn : ¬Disjoint J.val (complement I).val := by
@@ -48,7 +48,7 @@ theorem mixedRow_complement_offdiag (I J : Set.powersetCard (Fin (r+l)) r) (h : 
 
 /-- The remaining diagonal entry is a unit: its rows are a permutation of the
 standard basis, with the chosen coordinates first and their complement last. -/
-theorem isUnit_mixedRow_complement (I : Set.powersetCard (Fin (r+l)) r) :
+theorem isUnit_mixedRow_complement (I : Set.powersetCard (Fin (r + l)) r) :
     IsUnit (mixedRow (complementVectors (R := R) I) I) := by
   classical
   let f : Fin r → Fin (r+l) := Set.powersetCard.ofFinEmbEquiv.symm I

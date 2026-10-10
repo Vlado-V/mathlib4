@@ -16,7 +16,7 @@ namespace Froberg.ProductRows
 open Froberg MvPolynomial
 variable {K : Type} [Field K] {σ : Type*}
 
-theorem exists_cross_assignment (e : ℕ → ℕ) {j l : ℕ} (hjl : j≠l)
+theorem exists_cross_assignment (e : ℕ → ℕ) {j l : ℕ} (hjl : j ≠ l)
     (P : (a : ℕ) → (Fin (e a) → MvPolynomial σ K) → Prop)
     (hzero : ∀ a, P a 0)
     (f : Fin (e j) → MvPolynomial σ K) (g : Fin (e l) → MvPolynomial σ K)

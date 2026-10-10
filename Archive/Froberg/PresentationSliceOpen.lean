@@ -23,8 +23,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem presentation_threshold_principal_open
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (A : (I → K) → Fin c → Fin T → K)
-    (hA : ∀ i k,IsPolynomialFamily (fun p => A p i k))
-    (r : Fin (a+1)) {s : ℕ} (Z : Fin s → Forms K T 1) (p₀ : I → K)
+    (hA : ∀ i k, IsPolynomialFamily (fun p => A p i k))
+    (r : Fin (a + 1)) {s : ℕ} (Z : Fin s → Forms K T 1) (p₀ : I → K)
     (hempty : ∀ ell : Fin T → K,
       r.val ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
       (∀ i,covector ell (A p₀ i)=0) → (∀ i,aeval ell (Z i).val=0) → ell=0) :
@@ -73,11 +73,11 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem presentation_slices_principal_open
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (A : (I → K) → Fin c → Fin T → K)
-    (hA : ∀ i k,IsPolynomialFamily (fun p => A p i k))
-    (s : ℕ → ℕ) (Z : (r : Fin (a+1)) → Fin (s r.val) → Forms K T 1) (p₀ : I → K)
+    (hA : ∀ i k, IsPolynomialFamily (fun p => A p i k))
+    (s : ℕ → ℕ) (Z : (r : Fin (a + 1)) → Fin (s r.val) → Forms K T 1) (p₀ : I → K)
     (hempty : ∀ r (ell : Fin T → K),
       r.val ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
-      (∀ i,covector ell (A p₀ i)=0) → (∀ i,aeval ell (Z r i).val=0) → ell=0) :
+      (∀ i, covector ell (A p₀ i) = 0) → (∀ i, aeval ell (Z r i).val = 0) → ell = 0) :
     ∃ P : MvPolynomial I K,eval p₀ P ≠ 0 ∧ ∀ p,eval p P ≠ 0 →
       ∀ r (ell : Fin T → K),
         r.val ≤ finrank K (LinearMap.ker (relationMap mu ell)) →

@@ -19,8 +19,8 @@ namespace Froberg
 
 lemma two_family_weighted_budget {R₁ R₂ c₁ c₂ d₁ d₂ E : ℝ}
     (hR₁ : 0 < R₁) (hR₂ : 0 < R₂) (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂)
-    (hE : 0 ≤ E) (h₁ : R₁*d₁ ≤ E) (h₂ : R₂*d₂ ≤ E)
-    (hratio : c₁/R₁+c₂/R₂ ≤ 1) : c₁*d₁+c₂*d₂ ≤ E := by
+    (hE : 0 ≤ E) (h₁ : R₁ * d₁ ≤ E) (h₂ : R₂ * d₂ ≤ E)
+    (hratio : c₁ / R₁ + c₂ / R₂ ≤ 1) : c₁*d₁+c₂*d₂ ≤ E := by
   have hd₁ : d₁ ≤ E/R₁ := (le_div_iff₀ hR₁).mpr (by simpa [mul_comm] using h₁)
   have hd₂ : d₂ ≤ E/R₂ := (le_div_iff₀ hR₂).mpr (by simpa [mul_comm] using h₂)
   calc
@@ -34,8 +34,8 @@ lemma two_family_weighted_budget {R₁ R₂ c₁ c₂ d₁ d₂ E : ℝ}
 shadow slopes whenever the sum of the two enlarged dimension ratios is ≤1. -/
 theorem two_family_incidence_budget {a₁ a₂ q₁ q₂ d₁ d₂ E : ℕ}
     {R₁ R₂ : ℝ} (hR₁ : 0 < R₁) (hR₂ : 0 < R₂)
-    (h₁ : R₁*d₁ ≤ E) (h₂ : R₂*d₂ ≤ E)
-    (hratio : ((q₁+a₁ : ℕ) : ℝ)/R₁+((q₂+a₂ : ℕ) : ℝ)/R₂ ≤ 1) :
+    (h₁ : R₁ * d₁ ≤ E) (h₂ : R₂ * d₂ ≤ E)
+    (hratio : ((q₁ + a₁ : ℕ) : ℝ) / R₁ + ((q₂ + a₂ : ℕ) : ℝ) / R₂ ≤ 1) :
     d₁*(a₁-d₁)+q₁*d₁+d₂*(a₂-d₂)+q₂*d₂ ≤ E := by
   have he := two_family_weighted_budget hR₁ hR₂
     (show (0 : ℝ) ≤ (q₁+a₁ : ℕ) by positivity)

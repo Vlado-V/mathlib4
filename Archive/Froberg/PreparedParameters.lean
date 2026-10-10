@@ -65,7 +65,7 @@ def layers {J : Finset ℕ} {counts : ℕ → ℕ}
 /-- Every entry of the common family is a genuine total degree-d form. -/
 theorem generator_homogeneous {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space n d q J counts O) (i : Label q J counts) :
     (generator p i).IsHomogeneous d := by
   apply IsHomogeneous.add
@@ -81,7 +81,7 @@ theorem generator_homogeneous {J : Finset ℕ} {counts : ℕ → ℕ}
 /-- The whole common parameter space is finite-dimensional. -/
 theorem finite_space {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space n d q J counts O) := by
   letI (j : J) : Module.Finite K (O j.val) := by
     letI : Module.Finite K (homogeneousSubmodule σ K j.val) :=

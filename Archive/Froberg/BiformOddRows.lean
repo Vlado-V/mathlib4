@@ -24,14 +24,14 @@ variable {h n d b qS qO : ℕ}
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The ordinary scalar/linear odd row has maximal rank on a concrete
 nonempty polynomial open in its actual two lists of biform coefficients. -/
-theorem higher_odd_biform_open (hh : 0<h) (hn : 0<n)
-    (hb : 1≤b) (hbd : b≤d)
+theorem higher_odd_biform_open (hh : 0 < h) (hn : 0 < n)
+    (hb : 1 ≤ b) (hbd : b ≤ d)
     (hcount :
-      (qS+(h+b-1).choose b*(n+(d-b)-1).choose (d-b))*
-        ((h+b-1).choose b*(n+(d-b)-1).choose (d-b))+
-      (qO+(h+(b-1)-1).choose (b-1)*(n+(d-b+1)-1).choose (d-b+1))*
-        ((h+(b-1)-1).choose (b-1)*(n+(d-b+1)-1).choose (d-b+1)) ≤
-      (h+b-1).choose b*(n+(2*d-b)-1).choose (2*d-b)) :
+      (qS + (h + b - 1).choose b * (n + (d - b) - 1).choose (d - b)) *
+        ((h + b - 1).choose b * (n + (d - b) - 1).choose (d - b)) +
+      (qO + (h + (b - 1) - 1).choose (b - 1) * (n + (d - b + 1) - 1).choose (d - b + 1)) *
+        ((h + (b - 1) - 1).choose (b - 1) * (n + (d - b + 1) - 1).choose (d - b + 1)) ≤
+      (h + b - 1).choose b * (n + (2 * d - b) - 1).choose (2 * d - b)) :
     ∃ D : MvPolynomial (Fin (finrank K
       ((Fin qS → Forms K h 0 ⊗[K] Forms K n d) ×
        (Fin qO → Forms K h 1 ⊗[K] Forms K n (d-1))))) K,
@@ -81,7 +81,7 @@ theorem single_family_generic_of_natural_growth
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     [AddCommGroup W] [Module K W] [FiniteDimensional K W]
     {q T : ℕ} (mu : F →ₗ[K] V →ₗ[K] W)
-    (hV : 0<finrank K V)
+    (hV : 0 < finrank K V)
     (hgrowth : ∀ L : Submodule K V,
       T*finrank K L≤finrank K V*finrank K (Quartic.BilinearImage.image mu L))
     (hcount : (q+finrank K V)*finrank K V≤T) :
@@ -111,9 +111,9 @@ theorem single_family_generic_of_natural_growth
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The last odd row has only linear-output generators and constant scalar
 coefficients, so its open follows from the one-family natural budget. -/
-theorem upper_odd_biform_open (hh : 0<h) (hn : 0<n) (hd : 1≤d)
-    (hcount : (qO+(h+d-1).choose d)*(h+d-1).choose d≤
-      (h+(d+1)-1).choose (d+1)*(n+(d-1)-1).choose (d-1)) :
+theorem upper_odd_biform_open (hh : 0 < h) (hn : 0 < n) (hd : 1 ≤ d)
+    (hcount : (qO + (h + d - 1).choose d) * (h + d - 1).choose d ≤
+      (h + (d + 1) - 1).choose (d + 1) * (n + (d - 1) - 1).choose (d - 1)) :
     ∃ D : MvPolynomial (Fin (finrank K
       (Fin qO → Forms K h 1 ⊗[K] Forms K n (d-1)))) K,
       (∃ p : Fin qO → Forms K h 1 ⊗[K] Forms K n (d-1),

@@ -23,8 +23,8 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_prepared_independent_odd_on_open (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+theorem exists_prepared_independent_odd_on_open (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u) (counts := counts) hd hO hJ)
     (ho : HasOddCyclesOpen (m := m) (d := d) (q := q) (f := f) (u := u) (counts := counts) hO) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
@@ -56,9 +56,9 @@ theorem exists_prepared_independent_odd_on_open (hd : 0<d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_prepared_odd_upper [CharZero K] {H r : ℕ}
-    (hd : 3≤d) (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
+    (hd : 3 ≤ d) (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u)
-      (counts := targetLayerCount d h m r) (by omega : 0<d)
+      (counts := targetLayerCount d h m r) (by omega : 0 < d)
       (fun j _ => targetLayerOutput_homogeneous frame j)
       (fun j hj => (activeEvenIndices_bounds hd hj).2.1.le))
     (ho : HasOddCyclesOpen (m := m) (d := d) (q := q) (f := f) (u := u) (J := activeEvenIndices d)

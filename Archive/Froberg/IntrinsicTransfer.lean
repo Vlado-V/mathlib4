@@ -20,11 +20,11 @@ variable {W U : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [AddCommGroup U] [Module K U]
 variable {n d r : ℕ}
 
-theorem intrinsic_transfer_bounds (hn : 0 < n) (hr : r ≤ (n+d-1).choose d)
-    (pi : Forms K n (2*d) →ₗ[K] W) (hpi : Function.Surjective pi)
+theorem intrinsic_transfer_bounds (hn : 0 < n) (hr : r ≤ (n + d - 1).choose d)
+    (pi : Forms K n (2 * d) →ₗ[K] W) (hpi : Function.Surjective pi)
     (q p : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (coeff : ProjectedEndpointHomology pi q →ₗ[K] U)
-    (hNormal : finrank K (projectedNormalMap pi q p).range=
+    (hNormal : finrank K (projectedNormalMap pi q p).range =
       min (finrank K (ProjectedEndpointHomology pi q ⧸ coeff.ker))
         (finrank K (ProjectedEndpointCokernel pi q))) :
     (genericHomology K n d r : ℤ) ≤ max (finrank K coeff.ker : ℤ)
@@ -39,11 +39,11 @@ theorem intrinsic_transfer_bounds (hn : 0 < n) (hr : r ≤ (n+d-1).choose d)
     (finrank K (ProjectedEndpointCokernel pi q)) (finrank K pi.ker)
     (by omega) rfl hT hNormal
 
-theorem transfer_bounds_le_of_intrinsic (hn : 0 < n) (hr : r ≤ (n+d-1).choose d)
-    (pi : Forms K n (2*d) →ₗ[K] W) (hpi : Function.Surjective pi)
+theorem transfer_bounds_le_of_intrinsic (hn : 0 < n) (hr : r ≤ (n + d - 1).choose d)
+    (pi : Forms K n (2 * d) →ₗ[K] W) (hpi : Function.Surjective pi)
     (q p : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (coeff : ProjectedEndpointHomology pi q →ₗ[K] U)
-    (hNormal : finrank K (projectedNormalMap pi q p).range=
+    (hNormal : finrank K (projectedNormalMap pi q p).range =
       min (finrank K (ProjectedEndpointHomology pi q ⧸ coeff.ker))
         (finrank K (ProjectedEndpointCokernel pi q)))
     (B : ℕ) (hcoeff : finrank K coeff.ker ≤ B) (hdelete : finrank K pi.ker ≤ B) :

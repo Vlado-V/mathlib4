@@ -21,8 +21,8 @@ variable {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def HasRestoredFormalQuadraticOpen (hdp : 1≤d) (he : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def HasRestoredFormalQuadraticOpen (hdp : 1 ≤ d) (he : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r) : Prop :=
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO

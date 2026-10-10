@@ -19,9 +19,9 @@ noncomputable section
 namespace Froberg
 open Finset MonomialExpansion
 
- theorem monomial_shadow_growth {a z s : ℕ}
+theorem monomial_shadow_growth {a z s : ℕ}
     (ha : 0 < a) (hz : 0 < z) (hs : 0 < s)
-    (P : Option (Fin s) → Fin (2*s+1) → ℝ)
+    (P : Option (Fin s) → Fin (2 * s + 1) → ℝ)
     (hP0 : ∀ i j, 0 ≤ P i j)
     (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
     (hrow : ∀ i, ∑ j, P i j = finiteSourceProfile (profileAmbientCapacity s) s a z i /

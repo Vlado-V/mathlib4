@@ -26,7 +26,7 @@ def weights (s y₁ y₂ y₃ : ℚ) : Fin 8 → ℚ  :=
   ![(1-s)*(1-y₁),s*(1-y₁),(1-s)*(y₁-y₂),s*(y₁-y₂),
     (1-s)*(y₂-y₃),s*(y₂-y₃),(1-s)*y₃,s*y₃]
 
-theorem weights_nonnegative (s y₁ y₂ y₃ : ℚ) (hs0 : 0  ≤  s) (hs1 : s  ≤  1)
+theorem weights_nonnegative (s y₁ y₂ y₃ : ℚ) (hs0 : 0 ≤ s) (hs1 : s ≤ 1)
     (hy : Ordered y₁ y₂ y₃) (v : Fin 8) : 0  ≤  weights s y₁ y₂ y₃ v  :=  by
   have h0 : 0  ≤  1-s  :=  by linarith
   have h1 : 0  ≤  1-y₁  :=  by linarith [hy.2.2.2]
@@ -40,7 +40,7 @@ theorem weights_sum (s y₁ y₂ y₃ : ℚ) : ∑v,weights s y₁ y₂ y₃ v=1
   ring
 
 theorem weighted_mono {f g : Fin 4 → ℚ} {y₁ y₂ y₃ : ℚ}
-    (hy : Ordered y₁ y₂ y₃) (hfg : ∀r,f r ≤ g r) :
+    (hy : Ordered y₁ y₂ y₃) (hfg : ∀ r, f r ≤ g r) :
     weighted f y₁ y₂ y₃ ≤ weighted g y₁ y₂ y₃  :=  by
   have h0  :=  mul_le_mul_of_nonneg_left (hfg 0) (sub_nonneg.mpr hy.2.2.2)
   have h1  :=  mul_le_mul_of_nonneg_left (hfg 1) (sub_nonneg.mpr hy.2.2.1)
@@ -59,11 +59,11 @@ theorem knot_interval (x : ℚ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
   · exact ⟨2,by norm_num [endpoint,knot]; exact ⟨by linarith,h2⟩⟩
   exact ⟨3,by norm_num [endpoint,knot]; exact ⟨by linarith,hx1⟩⟩
 
-theorem endpoint_gap (cell:Fin 4) : 0<endpoint cell 1-endpoint cell 0  :=  by
+theorem endpoint_gap (cell : Fin 4) : 0<endpoint cell 1-endpoint cell 0  :=  by
   fin_cases cell <;> norm_num [endpoint,knot]
 
-theorem max_interpolate (lo hi x k s : ℚ) (hxlo:lo ≤ x) (hxhi:x ≤ hi)
-    (hside:k ≤ lo ∨ hi ≤ k) (hx:x=(1-s)*lo+s*hi) :
+theorem max_interpolate (lo hi x k s : ℚ) (hxlo : lo ≤ x) (hxhi : x ≤ hi)
+    (hside : k ≤ lo ∨ hi ≤ k) (hx : x = (1 - s) * lo + s * hi) :
     max x k=(1-s)*max lo k+s*max hi k  :=  by
   rcases hside with h|h
   · rw [max_eq_left (h.trans hxlo),max_eq_left h,max_eq_left (h.trans (hxlo.trans hxhi))]
@@ -71,9 +71,9 @@ theorem max_interpolate (lo hi x k s : ℚ) (hxlo:lo ≤ x) (hxhi:x ≤ hi)
   · rw [max_eq_right (hxhi.trans h),max_eq_right ((hxlo.trans hxhi).trans h),max_eq_right h]
     ring
 
-theorem image_interpolate (A B w Q C : ℤ) (cell r:Fin 4) (x s:ℚ)
-    (hxlo:endpoint cell 0 ≤ x) (hxhi:x ≤ endpoint cell 1)
-    (hx:x=(1-s)*endpoint cell 0+s*endpoint cell 1) :
+theorem image_interpolate (A B w Q C : ℤ) (cell r : Fin 4) (x s : ℚ)
+    (hxlo : endpoint cell 0 ≤ x) (hxhi : x ≤ endpoint cell 1)
+    (hx : x = (1 - s) * endpoint cell 0 + s * endpoint cell 1) :
     weakImage A B w Q C x r=
       (1-s)*weakImage A B w Q C (endpoint cell 0) r+
       s*weakImage A B w Q C (endpoint cell 1) r  :=  by
@@ -87,14 +87,14 @@ theorem image_interpolate (A B w Q C : ℤ) (cell r:Fin 4) (x s:ℚ)
     max_interpolate _ _ _ _ _ hxlo hxhi hhalf hx]
   ring
 
-theorem weighted_source (A w:ℤ) (x y₁ y₂ y₃:ℚ) :
+theorem weighted_source (A w : ℤ) (x y₁ y₂ y₃ : ℚ) :
     weighted (fun r=>weakSource A w x r) y₁ y₂ y₃=
       (A:ℚ)*x+(w:ℚ)*(y₁+y₂+y₃)  :=  by
   norm_num [weighted,weakSource]
   ring
 
-theorem vertex_source_sum (m c:ℕ) (cell:Fin 4) (x s y₁ y₂ y₃:ℚ)
-    (hx:x=(1-s)*endpoint cell 0+s*endpoint cell 1) :
+theorem vertex_source_sum (m c : ℕ) (cell : Fin 4) (x s y₁ y₂ y₃ : ℚ)
+    (hx : x = (1 - s) * endpoint cell 0 + s * endpoint cell 1) :
     (∑v,weights s y₁ y₂ y₃ v*((vertex m c cell v).x:ℚ)/6)=
       (coreA c:ℚ)*x+(freeW m c:ℚ)*(y₁+y₂+y₃)  :=  by
   simp_rw [mul_div_assoc,vertex_source]
@@ -103,9 +103,9 @@ theorem vertex_source_sum (m c:ℕ) (cell:Fin 4) (x s y₁ y₂ y₃:ℚ)
   simp only [endpoint,Fin.val_zero,Fin.val_one,add_zero]
   ring
 
-theorem vertex_image_sum (m c:ℕ) (cell:Fin 4) (x s y₁ y₂ y₃:ℚ)
-    (hxlo:endpoint cell 0 ≤ x) (hxhi:x ≤ endpoint cell 1)
-    (hx:x=(1-s)*endpoint cell 0+s*endpoint cell 1) :
+theorem vertex_image_sum (m c : ℕ) (cell : Fin 4) (x s y₁ y₂ y₃ : ℚ)
+    (hxlo : endpoint cell 0 ≤ x) (hxhi : x ≤ endpoint cell 1)
+    (hx : x = (1 - s) * endpoint cell 0 + s * endpoint cell 1) :
     (∑v,weights s y₁ y₂ y₃ v*((vertex m c cell v).y:ℚ)/6)=
       weighted (fun r=>weakImage (coreA c) (coreB c) (freeW m c)
         (b2 (freeW m c)) (b3 (freeW m c)) x r) y₁ y₂ y₃  :=  by
@@ -119,8 +119,8 @@ theorem vertex_image_sum (m c:ℕ) (cell:Fin 4) (x s y₁ y₂ y₃:ℚ)
   ring
 
 /-- A profile prefix mixture belongs to the certified hull in its knot cell. -/
-theorem weighted_in_hull (m c:ℕ) (cell:Fin 4) (x y₁ y₂ y₃:ℚ)
-    (hxlo:endpoint cell 0 ≤ x) (hxhi:x ≤ endpoint cell 1) (hy:Ordered y₁ y₂ y₃) :
+theorem weighted_in_hull (m c : ℕ) (cell : Fin 4) (x y₁ y₂ y₃ : ℚ)
+    (hxlo : endpoint cell 0 ≤ x) (hxhi : x ≤ endpoint cell 1) (hy : Ordered y₁ y₂ y₃) :
     InVertexHull m c cell ((coreA c:ℚ)*x+(freeW m c:ℚ)*(y₁+y₂+y₃))
       (weighted (fun r=>weakImage (coreA c) (coreB c) (freeW m c)
         (b2 (freeW m c)) (b3 (freeW m c)) x r) y₁ y₂ y₃)  :=  by

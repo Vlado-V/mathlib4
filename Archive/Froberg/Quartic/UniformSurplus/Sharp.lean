@@ -72,10 +72,10 @@ theorem weighted_max_bound (x y₁ y₂ y₃ : ℝ)
 
 /-- The exact sharp layer polynomial dominates the explicit prefix average. -/
 theorem weighted_le_sharp (z u b x y₁ y₂ y₃ : ℝ)
-    (hz0 : 1/2 ≤ z) (hz1 : z ≤ 14/25)
-    (hu0 : 0 ≤ u) (hu1 : u ≤ 1/64)
+    (hz0 : 1 / 2 ≤ z) (hz1 : z ≤ 14 / 25)
+    (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 64)
     (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hy : OrderedProfile y₁ y₂ y₃)
-    (hb : coreB z u*x ≤ b) :
+    (hb : coreB z u * x ≤ b) :
     weighted (fun r => imageBound z u x r) y₁ y₂ y₃ ≤
       sharpNormalized z u b x y₁ y₂ y₃ := by
   have hw : 0 ≤ freeW z := by unfold freeW; linarith
@@ -108,10 +108,10 @@ theorem weighted_le_sharp (z u b x y₁ y₂ y₃ : ℝ)
 /-- The numerical content of `sc:uniform-surplus` for every real ordered
 profile. No minimum or geometric degeneration hypothesis is needed here. -/
 theorem sharp_normalized_surplus (z u b x y₁ y₂ y₃ : ℝ)
-    (hz0 : 1/2 ≤ z) (hz1 : z ≤ 14/25)
-    (hu0 : 0 ≤ u) (hu1 : u ≤ 1/64)
+    (hz0 : 1 / 2 ≤ z) (hz1 : z ≤ 14 / 25)
+    (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 64)
     (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hy : OrderedProfile y₁ y₂ y₃)
-    (hb : coreB z u*x ≤ b) :
+    (hb : coreB z u * x ≤ b) :
     targetDim z u/sourceDim z u*profileDim z u x y₁ y₂ y₃+
       (1/100)*min (profileDim z u x y₁ y₂ y₃)
         (sourceDim z u-profileDim z u x y₁ y₂ y₃) ≤

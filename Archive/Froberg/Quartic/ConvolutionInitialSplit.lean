@@ -29,7 +29,7 @@ variable {K : Type*} [Field K] {t w : ℕ}
 one bounded free-monomial coefficient. -/
 theorem coefficient_projection_mem (S : Submodule K (Piece K t w 1))
     (C : (i : Fin (Fintype.card (BoundedExponent w 1))) → Submodule K (CoreBlock K t w 1 i))
-    (hS : S.map orderedPiecesEquiv.toLinearMap=Submodule.pi Set.univ C)
+    (hS : S.map orderedPiecesEquiv.toLinearMap = Submodule.pi Set.univ C)
     (x : Piece K t w 1) (hx : x ∈ S) (b : BoundedExponent w 1) :
     boundedInsert b (quotientPiecesEquiv x b) ∈ S := by
   classical
@@ -110,7 +110,7 @@ theorem reconstruct_degreeOne (x : Piece K t w 1) :
 /-- Any full degree-one coefficient product is precisely its core/output split. -/
 theorem coefficient_product_eq_split (S : Submodule K (Piece K t w 1))
     (C : (i : Fin (Fintype.card (BoundedExponent w 1))) → Submodule K (CoreBlock K t w 1 i))
-    (hS : S.map orderedPiecesEquiv.toLinearMap=Submodule.pi Set.univ C) :
+    (hS : S.map orderedPiecesEquiv.toLinearMap = Submodule.pi Set.univ C) :
     S=splitSource (corePart S) (freePart S) := by
   apply le_antisymm
   · intro x hx

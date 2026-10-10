@@ -33,10 +33,10 @@ def slices (m : ℕ) (upper : Bool) (S : ℕ) : ℕ → ℕ :=
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The scalar implication is independent of the correction count `S`. -/
 theorem scalar_bounds_of_uniform_surplus (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
-    (S d E : ℝ) (hdlo : 0<d) (hdhi : d<(totalA m (mixedCount m upper) : ℝ))
+    (S d E : ℝ) (hdlo : 0 < d) (hdhi : d < (totalA m (mixedCount m upper) : ℝ))
     (hE : (UniformScalar.targetCount m (mixedCount m upper) : ℝ) /
-      (totalA m (mixedCount m upper) : ℝ)*d +
-      (m : ℝ)^2/100*min d ((totalA m (mixedCount m upper) : ℝ)-d) ≤ E) :
+      (totalA m (mixedCount m upper) : ℝ) * d +
+      (m : ℝ) ^ 2 / 100 * min d ((totalA m (mixedCount m upper) : ℝ) - d) ≤ E) :
     UniformScalar.covectorR (Counts.j m (upperEndpoint m) (mixedCount m upper))
       E (upperEndpoint m) (totalA m (mixedCount m upper)) d < 0 ∨
     UniformScalar.covectorR (Counts.j m (upperEndpoint m) (mixedCount m upper))

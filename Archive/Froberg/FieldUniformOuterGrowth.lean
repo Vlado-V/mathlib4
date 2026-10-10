@@ -68,7 +68,7 @@ theorem uniform_shadow_surplus_numeric
     exact hnnear.trans (div_le_div_of_nonneg_right hT hnA.le)
 
 theorem field_uniform_core_outer_growth
-    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h=k*(2*s+1).choose s)
+    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h = k * (2 * s + 1).choose s)
     {σ : ℝ} (hσ : 0 < σ) (hσ1 : σ < 1)
     (a z : ℕ → ℕ) (ha : Tendsto a atTop atTop) (hz : Tendsto z atTop atTop)
     (har : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 σ))

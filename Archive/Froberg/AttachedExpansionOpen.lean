@@ -20,7 +20,7 @@ variable {K L P : Type*} [Field K] [Field L] [Algebra K L]
   {h n s d c : ℕ}
 
 lemma generator_expands_of_quotient (e : Fin c → Fin n →₀ ℕ)
-    (v : Fin c → Fin h → K) (he : ∀ i,(e i).degree=s) (hn : 0 < n)
+    (v : Fin c → Fin h → K) (he : ∀ i, (e i).degree = s) (hn : 0 < n)
     (hi₀ : Function.Injective (AttachedMultiplication.multiplication (d := 0) e v))
     (hi : Function.Injective (AttachedMultiplication.multiplication (d := d) e v))
     (ell q : ℕ)
@@ -46,20 +46,20 @@ lemma generator_expands_of_quotient (e : Fin c → Fin n →₀ ℕ)
 
 theorem principal_open_attached_witness [IsAlgClosed L] {A : Type*} [Fintype A]
     (e : Fin c → Fin n →₀ ℕ) (v : Fin c → Fin h → K)
-    (he : ∀ i,(e i).degree=s) (hn : 0 < n)
+    (he : ∀ i, (e i).degree = s) (hn : 0 < n)
     (g : (P → K) → Fin c → Rows K h n s)
-    (hg : ∀ j,IsPolynomialFamily (fun p => g p j)) (p₀ : P → K)
-    (hp₀ : g p₀=generator e v he)
+    (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : P → K)
+    (hp₀ : g p₀ = generator e v he)
     (hi₀ : Function.Injective (AttachedMultiplication.multiplication (d := 0) e v))
     (hi : Function.Injective (AttachedMultiplication.multiplication (d := d) e v))
     (hgeom₀ : Function.Injective (AttachedMultiplication.multiplication (d := 0) e
       (fun i j => algebraMap K L (v i j))))
     (hgeom : Function.Injective (AttachedMultiplication.multiplication (d := d) e
       (fun i j => algebraMap K L (v i j))))
-    (ell bound : A → ℕ) (hell : ∀ i,0 < ell i+c)
+    (ell bound : A → ℕ) (hell : ∀ i, 0 < ell i + c)
     (hbound : ∀ i (U : Submodule L ((Fin h → Forms L n s) ⧸
       relationSpace (d := 0) e (fun i j => algebraMap K L (v i j)) he)),
-      finrank L U=ell i → bound i ≤ finrank L (BilinearImage.image
+      finrank L U = ell i → bound i ≤ finrank L (BilinearImage.image
         (quotientMultiply (d := d) e (fun i j => algebraMap K L (v i j)) he) U)) :
     ∃ D : MvPolynomial P K,eval p₀ D ≠ 0 ∧ ∀ p : P → K,eval p D ≠ 0 →
       LinearIndependent K (g p) ∧

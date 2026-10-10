@@ -27,7 +27,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 principal open of actual projection maps. -/
 theorem projection_family_rank_open
     (A : (I → K) → (U →ₗ[K] V)) (hA : IsPolynomialFamily A)
-    (hcount : Fintype.card I + t*(b-t) < w*(b-t)) :
+    (hcount : Fintype.card I + t * (b - t) < w * (b - t)) :
     ∃ D : MvPolynomial (Fin (finrank K (V →ₗ[K] (Fin b → K)))) K,
       (∃ x, eval x D ≠ 0) ∧
       ∀ x, eval x D ≠ 0 → ∀ p,

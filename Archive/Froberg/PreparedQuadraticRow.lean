@@ -41,8 +41,8 @@ structure QuadraticRowCapacity (n d q b : ℕ) (J : Finset ℕ) (counts : ℕ �
 space used for every higher even row. -/
 theorem exists_quadratic_row_parameter {n d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,2≤j) (h2 : 2∈J)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, 2 ≤ j) (h2 : 2 ∈ J)
     (h : QuadraticRowCapacity n d q b J counts O) :
     ∃ p : Space n d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO ⟨2,h2⟩ i p) ∧

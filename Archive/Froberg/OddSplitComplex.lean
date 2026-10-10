@@ -100,7 +100,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_exact_principal_open {ι : Type*}
     (Q : Fin q → (ι → K) → biformParitySpace K h m d 0)
     (E : Fin f → (ι → K) → biformParitySpace K h m d 1)
-    (hQ : ∀ i,IsPolynomialFamily (Q i)) (hE : ∀ j,IsPolynomialFamily (E j))
+    (hQ : ∀ i, IsPolynomialFamily (Q i)) (hE : ∀ j, IsPolynomialFamily (E j))
     (p₀ : ι → K) (hex : OddSplitExact (fun i => Q i p₀) (fun j => E j p₀)) :
     ∃ P : MvPolynomial ι K,eval p₀ P≠0 ∧
       ∀ p,eval p P≠0 → OddSplitExact (fun i => Q i p) (fun j => E j p) := by

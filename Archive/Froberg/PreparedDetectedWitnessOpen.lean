@@ -25,24 +25,24 @@ variable {O : ℕ → Submodule K (Poly K h)}
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem prepared_outer_open_of_detected_scalar_witness
     {I : Type*} [Fintype I] [DecidableEq I]
-    (hd : 3≤d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hmin : ∀ j∈J,2≤j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
+    (hd : 3 ≤ d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hmin : ∀ j ∈ J, 2 ≤ j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
-    (hO₂ : O 2≤(quadraticPolynomialDetector L).ker)
+    (hO₂ : O 2 ≤ (quadraticPolynomialDetector L).ker)
     (w : Fin u → Fin h → K) (ι : Fin u ↪ Fin z)
-    (hker : (privatePolynomialMap (a := a) (s := d-1) ι
-      (fun i => (L.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker=
-        Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d-1) ι w))))
-    (Q : Fin r → Forms K a d) (hQ : ∀ t,t≤d-2 → Function.Injective (prefixMultiplication Q t))
+    (hker : (privatePolynomialMap (a := a) (s := d - 1) ι
+      (fun i => (L.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker =
+        Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := d - 1) ι w))))
+    (Q : Fin r → Forms K a d) (hQ : ∀ t, t ≤ d - 2 → Function.Injective (prefixMultiplication Q t))
     (o : I → Forms K h 1)
     (hdet : LinearIndependent K (fun p => quadraticPolynomialDetector L
       (pairProducts (fun i => (o i).val) p)))
-    (C : Submodule K (Poly K a)) (hCdeg : C≤Forms K a (d-1))
+    (C : Submodule K (Poly K a)) (hCdeg : C ≤ Forms K a (d - 1))
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
-    (hCQ : Disjoint (C*C) (familySpace Q*Forms K a (d-2)))
-    (hf : f≤Fintype.card I*(finrank K C/2)) :
+    (hCQ : Disjoint (C * C) (familySpace Q * Forms K a (d - 2)))
+    (hf : f ≤ Fintype.card I * (finrank K C / 2)) :
     letI : Module.Finite K (FixedPureZeroScalarSpace (a+z) d q f u J counts O) :=
       finite_fixedPureZeroScalarSpace hO
     ∃ D : MvPolynomial (Fin (finrank K (FixedPureZeroScalarSpace (a+z) d q f u J counts O))) K,

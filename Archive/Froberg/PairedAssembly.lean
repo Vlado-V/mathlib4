@@ -101,9 +101,9 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Products of permitted monomials in distinct fibers have distinct exponents. -/
 theorem eq_of_permitted_products (F G : ProductFiber X s) (p : F.Columns) (q : G.Columns)
     {e f g h : (X × Bool) →₀ ℕ}
-    (he : e ∈ formTerms s (F.label (p,false))) (hf : f ∈ formTerms s (F.label (p,true)))
-    (hg : g ∈ formTerms s (G.label (q,false))) (hh : h ∈ formTerms s (G.label (q,true)))
-    (heq : e+f = g+h) : F = G := by
+    (he : e ∈ formTerms s (F.label (p, false))) (hf : f ∈ formTerms s (F.label (p, true)))
+    (hg : g ∈ formTerms s (G.label (q, false))) (hh : h ∈ formTerms s (G.label (q, true)))
+    (heq : e + f = g + h) : F = G := by
   obtain ⟨A,_,rfl⟩ := Finset.mem_image.mp he
   obtain ⟨B,_,rfl⟩ := Finset.mem_image.mp hf
   obtain ⟨C,_,rfl⟩ := Finset.mem_image.mp hg

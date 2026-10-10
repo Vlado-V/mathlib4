@@ -19,7 +19,7 @@ open Froberg Module MvPolynomial Filter
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
-theorem eventually_actual_quadratic_capacity_shift_late {d : ℕ} (hd : 3≤d) :
+theorem eventually_actual_quadratic_capacity_shift_late {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

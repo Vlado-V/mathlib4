@@ -35,7 +35,7 @@ def privatePolynomialMapAt (ι : Fin b ↪ Fin z)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privatePolynomialMapAt_coefficient (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (v : Fin b → Fin h → Forms K (a+z) t) (β : Fin (a+z) →₀ ℕ) (k : Fin c) :
+    (v : Fin b → Fin h → Forms K (a + z) t) (β : Fin (a + z) →₀ ℕ) (k : Fin c) :
     (privatePolynomialMapAt (s := s) ι A v k).coeff β =
       privateCoefficient (s := s) ι A (privateSourceCoefficient v) β k := by
   classical
@@ -54,7 +54,7 @@ theorem privatePolynomialMapAt_coefficient (ι : Fin b ↪ Fin z)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A coefficient of degree strictly below the private exponent cannot meet
 another private column, so injectivity is unconditional in this range. -/
-theorem privatePolynomialMapAt_injective (ht : t<s) (ι : Fin b ↪ Fin z)
+theorem privatePolynomialMapAt_injective (ht : t < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (hA : ∀ i, Function.Injective (A i)) :
     Function.Injective (privatePolynomialMapAt (a := a) (s := s) (t := t) ι A) := by
@@ -98,7 +98,7 @@ theorem privatePolynomialMapAt_injective (ht : t<s) (ι : Fin b ↪ Fin z)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privatePolynomialMapAt_homogeneous (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
-    (v : Fin b → Fin h → Forms K (a+z) t) (k : Fin c) :
+    (v : Fin b → Fin h → Forms K (a + z) t) (k : Fin c) :
     (privatePolynomialMapAt (s := s) ι A v k).IsHomogeneous (s+t) := by
   apply MvPolynomial.IsHomogeneous.sum
   intro i _

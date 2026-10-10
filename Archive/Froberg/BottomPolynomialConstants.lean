@@ -23,17 +23,17 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem bottom_polynomial_constants (hd : 1≤d)
-    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+theorem bottom_polynomial_constants (hd : 1 ≤ d)
+    (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d)) g))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication
       (VectorExpansionOpen.quotientMultiplication g d) Q))
     (u : Fin q → MvPolynomial (Fin h ⊕ Fin m) K)
     (v : Fin f → MvPolynomial (Fin h ⊕ Fin m) K)
-    (hu : ∀ i,u i∈coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d 1)
-    (hv : ∀ i,v i∈coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d 0)
-    (hrow : (∑ i,rename Sum.inr (Q i).val*u i)+
-      (∑ j,sumBiformMap (linearOutputTensorEquiv (g j))*v j)=0) :
+    (hu : ∀ i, u i ∈ coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d 1)
+    (hv : ∀ i, v i ∈ coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d 0)
+    (hrow : (∑ i, rename Sum.inr (Q i).val * u i) +
+      (∑ j, sumBiformMap (linearOutputTensorEquiv (g j)) * v j) = 0) :
     ∃ C : Fin q → Fin f → K,
       (∀ i,u i=∑ j,C i j • sumBiformMap (linearOutputTensorEquiv (g j))) ∧
       ∀ j,v j = -∑ i,C i j • rename Sum.inr (Q i).val := by

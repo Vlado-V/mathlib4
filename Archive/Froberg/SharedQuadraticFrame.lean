@@ -24,9 +24,9 @@ variable {K : Type} [Field K] [Infinite K] {a z s b h H L : ℕ}
 theorem shared_quadratic_frame_open
     (o : Fin L → Forms K h 1)
     (ho : LinearIndependent K (pairProducts (fun i => (o i).val)))
-    (houter : H+(L+1).choose 2≤finrank K (Forms K h 2))
-    (hh : 2≤h) (hprivate : H+(2*h-1)≤finrank K (Forms K h 2))
-    (hs : 0<s) (ι : Fin b ↪ Fin z) :
+    (houter : H + (L + 1).choose 2 ≤ finrank K (Forms K h 2))
+    (hh : 2 ≤ h) (hprivate : H + (2 * h - 1) ≤ finrank K (Forms K h 2))
+    (hs : 0 < s) (ι : Fin b ↪ Fin z) :
     ∃ (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin b → Fin h → K)
       (P : MvPolynomial (Fin (finrank K (Fin H → Forms K h 2))) K),
       (∀ i,w i≠0) ∧ (∃ x,eval x P≠0) ∧

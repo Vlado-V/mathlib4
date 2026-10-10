@@ -39,8 +39,8 @@ variable {n d : ℕ}
 
 def oddCoefficientExtensionEquiv
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
-    (f : Fin t → Forms K n d) (hf : ∀ i,(f i).val.IsWeightedHomogeneous w 0) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
+    (f : Fin t → Forms K n d) (hf : ∀ i, (f i).val.IsWeightedHomogeneous w 0) :
     oddCoefficientSpace w q ≃ₗ[K] oddCoefficientSpace w (Fin.append q f) := by
   unfold oddCoefficientSpace generatorQuotient
   rw [span_fin_append]
@@ -54,8 +54,8 @@ def oddCoefficientExtensionEquiv
 
 theorem oddCoefficientSpace_append_finrank
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
-    (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
-    (f : Fin t → Forms K n d) (hf : ∀ i,(f i).val.IsWeightedHomogeneous w 0) :
+    (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
+    (f : Fin t → Forms K n d) (hf : ∀ i, (f i).val.IsWeightedHomogeneous w 0) :
     finrank K (oddCoefficientSpace w (Fin.append q f))=finrank K (oddCoefficientSpace w q) :=
   (oddCoefficientExtensionEquiv w e q hq f hf).finrank_eq.symm
 

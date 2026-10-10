@@ -18,7 +18,7 @@ open Module
 variable {K : Type*} [Field K]
 
 def piSplitAtLinear {I : Type*} [DecidableEq I] (V : I → Type*)
-    [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)] (i : I) :
+    [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)] (i : I) :
     ((j : I) → V j) ≃ₗ[K] V i × ((j : {j // j≠i}) → V j.val) :=
   { Equiv.piSplitAt i V with
     map_add' := fun _ _ => rfl

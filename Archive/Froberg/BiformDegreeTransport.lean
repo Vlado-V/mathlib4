@@ -19,11 +19,11 @@ open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m a b c e : ℕ}
 
-def biformDegreeTransport (ha : a=b) (hc : c=e) :
+def biformDegreeTransport (ha : a = b) (hc : c = e) :
     (Forms K h a ⊗[K] Forms K m c) ≃ₗ[K] (Forms K h b ⊗[K] Forms K m e) :=
   TensorProduct.congr (formDegreeEquiv ha) (formDegreeEquiv hc)
 
-@[simp] theorem sumBiformMap_degreeTransport (ha : a=b) (hc : c=e)
+@[simp] theorem sumBiformMap_degreeTransport (ha : a = b) (hc : c = e)
     (v : Forms K h a ⊗[K] Forms K m c) :
     sumBiformMap (biformDegreeTransport ha hc v)=sumBiformMap v := by
   subst b

@@ -18,8 +18,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem higher_sparse_scalar_margin_all {d R : ℕ} (hd : 3≤d)
-    (hR : R∈activeHigherIndices d) :
+theorem higher_sparse_scalar_margin_all {d R : ℕ} (hd : 3 ≤ d)
+    (hR : R ∈ activeHigherIndices d) :
     2*((101/100 : ℝ)*higherCountGamma d R)/scalarCapacity d R+
       (scalarCapacityBinomial d R : ℝ)*criticalRatio d<1 := by
   by_cases hd8 : d≤8
@@ -32,8 +32,8 @@ theorem higher_sparse_scalar_margin_all {d R : ℕ} (hd : 3≤d)
     exact small_fourth_scalar_capacity (by omega) hd8
   · exact higher_sparse_scalar_margin (by omega) hR
 
-theorem eventually_higher_sparse_layer_budget_all {d R : ℕ} (hd : 3≤d)
-    (hR : R∈activeHigherIndices d) :
+theorem eventually_higher_sparse_layer_budget_all {d R : ℕ} (hd : 3 ≤ d)
+    (hR : R ∈ activeHigherIndices d) :
     ∀ᶠ w : ℕ in atTop,
       let b := sparseBlockCount ((101/100 : ℝ)*higherCountGamma d R) R (d-R) w
       let H := oddOutputDimension w R

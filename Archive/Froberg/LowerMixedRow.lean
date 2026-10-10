@@ -22,19 +22,19 @@ variable {n q s d : ℕ}
 
 /-- Compare two independent linear lifts to the endpoint. Only the actual
 constant-column part of endpoint exactness is needed. -/
-theorem lower_mixed_row_zero (hs : 1 ≤ s) (hd : 1≤d)
+theorem lower_mixed_row_zero (hs : 1 ≤ s) (hd : 1 ≤ d)
     (E : I → J → Poly K n) (Q : Fin q → Poly K n)
     (hlinear : Function.Injective (linearVectorCombination E))
-    (hinj : Function.Injective (corePolynomialMatrix (t := d-1) (fun j i => E i j)))
+    (hinj : Function.Injective (corePolynomialMatrix (t := d - 1) (fun j i => E i j)))
     (ell : Fin 2 → Forms K n 1) (hell : LinearIndependent K ell)
     (hendpoint : ∀ (x : Fin q → J → Poly K n) (p : I → Poly K n),
-      (∀ i j,(x i j).IsHomogeneous s) → (∀ i,(p i).IsHomogeneous d) →
-      (∀ j,(∑ i,Q i*x i j)+(∑ a,E a j*p a)=0) →
-      ∃ C : Fin q → I → K,∀ i j,x i j=∑ a,C i a • E a j)
+      (∀ i j, (x i j).IsHomogeneous s) → (∀ i, (p i).IsHomogeneous d) →
+      (∀ j, (∑ i, Q i * x i j) + (∑ a, E a j * p a) = 0) →
+      ∃ C : Fin q → I → K, ∀ i j, x i j = ∑ a, C i a • E a j)
     (x : Fin q → J → Poly K n) (p : I → Poly K n)
-    (hx : ∀ i j,(x i j).IsHomogeneous (s-1))
-    (hp : ∀ i,(p i).IsHomogeneous (d-1))
-    (hrel : ∀ j,(∑ i,Q i*x i j)+(∑ a,E a j*p a)=0) : x=0 ∧ p=0 := by
+    (hx : ∀ i j, (x i j).IsHomogeneous (s - 1))
+    (hp : ∀ i, (p i).IsHomogeneous (d - 1))
+    (hrel : ∀ j, (∑ i, Q i * x i j) + (∑ a, E a j * p a) = 0) : x=0 ∧ p=0 := by
   have hstep (l : Fin 2) : ∃ C : Fin q → I → K,
       ∀ i j,(ell l).val*x i j=∑ a,C i a • E a j := by
     apply hendpoint (fun i j => (ell l).val*x i j) (fun a => (ell l).val*p a)
@@ -77,14 +77,14 @@ row by multiplication with one nonzero linear form. -/
 theorem mixed_row_lower_zero {A B a b : ℕ}
     (E : I → J → Poly K n) (Q : Fin q → Poly K n)
     (hzero : ∀ (x : Fin q → J → Poly K n) (p : I → Poly K n),
-      (∀ i j,(x i j).IsHomogeneous A) → (∀ i,(p i).IsHomogeneous B) →
-      (∀ j,(∑ i,Q i*x i j)+(∑ k,E k j*p k)=0) → x=0 ∧ p=0)
-    (ell : Forms K n 1) (hell : ell≠0)
-    (ha : a≤A) (hb : b≤B) (hab : A-a=B-b)
+      (∀ i j, (x i j).IsHomogeneous A) → (∀ i, (p i).IsHomogeneous B) →
+      (∀ j, (∑ i, Q i * x i j) + (∑ k, E k j * p k) = 0) → x = 0 ∧ p = 0)
+    (ell : Forms K n 1) (hell : ell ≠ 0)
+    (ha : a ≤ A) (hb : b ≤ B) (hab : A - a = B - b)
     (x : Fin q → J → Poly K n) (p : I → Poly K n)
-    (hx : ∀ i j,(x i j).IsHomogeneous a)
-    (hp : ∀ i,(p i).IsHomogeneous b)
-    (hrel : ∀ j,(∑ i,Q i*x i j)+(∑ k,E k j*p k)=0) : x=0 ∧ p=0 := by
+    (hx : ∀ i j, (x i j).IsHomogeneous a)
+    (hp : ∀ i, (p i).IsHomogeneous b)
+    (hrel : ∀ j, (∑ i, Q i * x i j) + (∑ k, E k j * p k) = 0) : x=0 ∧ p=0 := by
   let l : Poly K n := ell.val^(A-a)
   have hl : l≠0 := pow_ne_zero _ (fun h => hell (Subtype.ext h))
   have hld : l.IsHomogeneous (A-a) := by

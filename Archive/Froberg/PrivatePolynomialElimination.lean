@@ -19,22 +19,22 @@ open MvPolynomial Finset
 variable {K σ I J : Type*} [Field K] [Fintype I] [LinearOrder I] [Fintype J]
 
 theorem private_polynomial_positive_rows_reduce
-    (w : σ → ℕ) (hw : ∀ x,w x≤1) (d : ℕ) (hd : 2≤d)
+    (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (d : ℕ) (hd : 2 ≤ d)
     (a E c : I → MvPolynomial σ K) (P U v : J → MvPolynomial σ K) (j : I → ℕ)
-    (ha : ∀ i,(a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
-    (hE : ∀ i,(E i).IsWeightedHomogeneous w (j i))
-    (hP : ∀ k,(P k).IsWeightedHomogeneous w 1)
-    (hU : ∀ k,(U k).IsWeightedHomogeneous w d)
-    (hEzero : ∀ i,j i=0 → E i=0) (hj : ∀ i,j i≤d) (hjeven : ∀ i,j i%2=0)
-    (hc : ∀ i,(c i).IsHomogeneous d) (hv : ∀ k,(v k).IsHomogeneous d)
-    (hceven : ∀ i α,(c i).coeff α≠0 → Finsupp.weight w α%2=0)
-    (hvodd : ∀ k α,(v k).coeff α≠0 → Finsupp.weight w α%2=1)
-    (hfirst : ∀ k,weightedHomogeneousComponent w 1 (v k)=0)
-    (hpositive : ∀ r,0<r → r≤2*d → weightedHomogeneousComponent w r
-      ((∑ i,(a i+E i)*c i)+(∑ k,(P k+U k)*v k))=0)
-    (hexact : ∀ r,0<r → r≤2*d → r%2=0 →
+    (ha : ∀ i, (a i).IsHomogeneous d ∧ (a i).IsWeightedHomogeneous w 0)
+    (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
+    (hP : ∀ k, (P k).IsWeightedHomogeneous w 1)
+    (hU : ∀ k, (U k).IsWeightedHomogeneous w d)
+    (hEzero : ∀ i, j i = 0 → E i = 0) (hj : ∀ i, j i ≤ d) (hjeven : ∀ i, j i % 2 = 0)
+    (hc : ∀ i, (c i).IsHomogeneous d) (hv : ∀ k, (v k).IsHomogeneous d)
+    (hceven : ∀ i α, (c i).coeff α ≠ 0 → Finsupp.weight w α % 2 = 0)
+    (hvodd : ∀ k α, (v k).coeff α ≠ 0 → Finsupp.weight w α % 2 = 1)
+    (hfirst : ∀ k, weightedHomogeneousComponent w 1 (v k) = 0)
+    (hpositive : ∀ r, 0 < r → r ≤ 2 * d → weightedHomogeneousComponent w r
+      ((∑ i, (a i + E i) * c i) + (∑ k, (P k + U k) * v k)) = 0)
+    (hexact : ∀ r, 0 < r → r ≤ 2 * d → r % 2 = 0 →
       CoefficientRowExact (coefficientComponentSpace w d) a E j r)
-    (hseparate : ∀ r,3≤r → r≤2*d → r%2=0 →
+    (hseparate : ∀ r, 3 ≤ r → r ≤ 2 * d → r % 2 = 0 →
       PrivateRowSeparation (coefficientComponentSpace w d) (coefficientComponentSpace w d) a E P j
         r) :
     v=0 ∧ ∃ (M : I → I → K) (z : I → MvPolynomial σ K),

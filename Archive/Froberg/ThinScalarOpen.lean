@@ -23,9 +23,9 @@ variable {K F V W : Type*} [Field K] [Infinite K]
 variable {q j : ℕ}
 
 theorem principal_open_thin_injective (mu : F →ₗ[K] V →ₗ[K] W)
-    (ha : 0 < finrank K V) (hT : finrank K W=q*finrank K V+j)
-    (G C : ℝ) (hC : 0 ≤ C) (hG₁ : (finrank K V : ℝ)+C ≤ G)
-    (hG₂ : (finrank K V : ℝ)+(j : ℝ)/finrank K V ≤ G)
+    (ha : 0 < finrank K V) (hT : finrank K W = q * finrank K V + j)
+    (G C : ℝ) (hC : 0 ≤ C) (hG₁ : (finrank K V : ℝ) + C ≤ G)
+    (hG₂ : (finrank K V : ℝ) + (j : ℝ) / finrank K V ≤ G)
     (hgrowth : ∀ U : Submodule K V,
       ((finrank K W : ℝ)/finrank K V)*finrank K U+
         G*(min (finrank K U) (finrank K V-finrank K U) : ℕ) ≤

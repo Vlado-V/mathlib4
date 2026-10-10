@@ -16,8 +16,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem private_upper_loss_limit {s : ℕ} (hs : 0<s) (A M : ℕ → ℝ)
-    (b a m : ℝ) (ha : 0<a)
+theorem private_upper_loss_limit {s : ℕ} (hs : 0 < s) (A M : ℕ → ℝ)
+    (b a m : ℝ) (ha : 0 < a)
     (hA : Tendsto (fun n : ℕ => A n/(n : ℝ)^s) atTop (𝓝 a))
     (hM : Tendsto (fun n : ℕ => M n/(n : ℝ)^(s+1)) atTop (𝓝 m)) :
     Tendsto (fun n : ℕ => (b*M n/A n)/(n : ℝ)^(s+1)) atTop (𝓝 (0 : ℝ)) := by
@@ -29,8 +29,8 @@ theorem private_upper_loss_limit {s : ℕ} (hs : 0<s) (A M : ℕ → ℝ)
   simp only [Pi.div_apply]
   field_simp
 
-theorem private_upper_loss_eventually {s : ℕ} (hs : 0<s) (A M : ℕ → ℝ)
-    (b a m g : ℝ) (ha : 0<a) (hg : 0<g)
+theorem private_upper_loss_eventually {s : ℕ} (hs : 0 < s) (A M : ℕ → ℝ)
+    (b a m g : ℝ) (ha : 0 < a) (hg : 0 < g)
     (hA : Tendsto (fun n : ℕ => A n/(n : ℝ)^s) atTop (𝓝 a))
     (hM : Tendsto (fun n : ℕ => M n/(n : ℝ)^(s+1)) atTop (𝓝 m)) :
     ∀ᶠ n : ℕ in atTop, b*M n/A n ≤ (g/2)*(n : ℝ)^(s+1) := by
@@ -43,7 +43,7 @@ theorem private_upper_loss_eventually {s : ℕ} (hs : 0<s) (A M : ℕ → ℝ)
 /-- A common strictly positive gain survives both the perturbed core bound
 and the independent private-column bound. -/
 theorem private_lower_common_margin (d : ℕ) (R G E D R' : ℕ → ℝ)
-    (ρ g δ : ℝ) (hg : 0<g) (hδ : ρ<δ)
+    (ρ g δ : ℝ) (hg : 0 < g) (hδ : ρ < δ)
     (hR : Tendsto (fun n : ℕ => R n/(n : ℝ)^d) atTop (𝓝 ρ))
     (hG : Tendsto (fun n : ℕ => G n/(n : ℝ)^d) atTop (𝓝 g))
     (hE : Tendsto (fun n : ℕ => E n/(n : ℝ)^d) atTop (𝓝 (0 : ℝ)))

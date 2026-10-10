@@ -22,7 +22,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_generator_component_zero
-    (hO : ∀ j∈J,O j≤Forms K h j) (hpos : ∀ j∈J,0<j)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hpos : ∀ j ∈ J, 0 < j)
     (p : PreparedParameters.Space m d q J counts O) (i : PreparedParameters.Label q J counts) :
     weightedHomogeneousComponent (blockWeight h m) 0 (PreparedParameters.generator p i)=
       PreparedParameters.scalar p i := by
@@ -58,7 +58,7 @@ theorem combinedPure_weight (U : Fin u → Forms K h d) (k : Fin f ⊕ Fin u) :
       (fun _ => 1) (blockWeight h m) (fun _ => rfl) (U i).property
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem oddGenerator_component_zero (hd : 0<d) (U : Fin u → Forms K h d)
+theorem oddGenerator_component_zero (hd : 0 < d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     weightedHomogeneousComponent (blockWeight h m) 0 (oddGenerator U P F k)=0 := by
   change weightedHomogeneousComponent (blockWeight h m) 0 (combinedLinear P F k+combinedPure U k)=0
@@ -67,7 +67,7 @@ theorem oddGenerator_component_zero (hd : 0<d) (U : Fin u → Forms K h d)
     if_neg (by omega),zero_add]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem oddGenerator_component_one (hd : 1<d) (U : Fin u → Forms K h d)
+theorem oddGenerator_component_one (hd : 1 < d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     weightedHomogeneousComponent (blockWeight h m) 1 (oddGenerator U P F
       k)=combinedLinear P F k := by
@@ -77,8 +77,8 @@ theorem oddGenerator_component_one (hd : 1<d) (U : Fin u → Forms K h d)
     if_neg (by omega),add_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem prepared_family_independent (hd : 1<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
+theorem prepared_family_independent (hd : 1 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (hscalar : LinearIndependent K p.1.1) (hlinear : LinearIndependent K (combinedLinear P p.2)) :

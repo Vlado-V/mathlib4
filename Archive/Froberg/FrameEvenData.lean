@@ -34,7 +34,7 @@ def FrameEvenData {h : ℕ} (d n e : ℕ)
     ∀ p : A,eval ((Module.finBasis K A).equivFun p) D≠0 → EvenPositiveReduction p
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
-theorem eventually_frame_even_data {d : ℕ} (hd : 3≤d) :
+theorem eventually_frame_even_data {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       ∀ᶠ n : ℕ in atTop,

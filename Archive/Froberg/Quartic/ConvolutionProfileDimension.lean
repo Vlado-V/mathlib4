@@ -26,7 +26,7 @@ variable {K : Type*} [Field K] {t w : ℕ}
 /-- Product of the actual guaranteed subspaces in all three families of layers. -/
 abbrev LayerDomain (L : Submodule K (Piece K t 0 1))
     (D : Fin w → Submodule K (Piece K t 0 0)) :=
-  (∀i,linearLayer L D i) ×
+  (∀ i, linearLayer L D i) ×
     (∀b:ExactExponent w 2,quadraticLayer L D b) ×
     (∀b:ExactExponent w 3,cubicLayer D b)
 

@@ -26,7 +26,7 @@ local instance fieldUniformDetectorSpaceFinite {X : Type*} [AddCommGroup X] [Mod
     Module.Finite K (Space n d q J counts (constrainedOutputs T)) :=
   finite_space (fun _ _ => inf_le_left)
 
-theorem eventually_field_uniform_private_reduction {d : ℕ} (hd : 9≤d) (hodd : d%2=1) :
+theorem eventually_field_uniform_private_reduction {d : ℕ} (hd : 9 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

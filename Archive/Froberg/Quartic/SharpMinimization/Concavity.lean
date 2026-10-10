@@ -75,8 +75,8 @@ theorem layerPolynomial_concave (w C L e₁ e₂ : ℝ) (he₁ : 0 ≤ e₁) (he
 whose value is at most the value at the combination. -/
 theorem exists_le_of_combination {w : ℝ} {f : Layers → ℝ}
     (hf : ConcaveOn ℝ (layerBox w) f) (v : Fin 3 → ℝ) (p : Fin 3 → Layers)
-    (hv : ∀j, 0 ≤ v j) (hvsum : ∑j, v j=1) (hp : ∀j, p j ∈ layerBox w)
-    (n : Layers) (hn : ∑j, v j • p j=n) :
+    (hv : ∀ j, 0 ≤ v j) (hvsum : ∑ j, v j = 1) (hp : ∀ j, p j ∈ layerBox w)
+    (n : Layers) (hn : ∑ j, v j • p j = n) :
     ∃j, f (p j) ≤ f n := by
   obtain ⟨j,hj⟩ := Finite.exists_min (fun j : Fin 3 => f (p j))
   refine ⟨j, ?_⟩

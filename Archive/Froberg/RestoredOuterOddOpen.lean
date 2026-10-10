@@ -56,11 +56,12 @@ theorem restoredOuterVectorParameters_surjective (idx : Fin r ≃ Label q J coun
     exact congrArg Q (idx.symm_apply_apply i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem restored_outer_odd_open (hh : 0<h) (hm : 0 < m) (hd : 3≤d) (hdeven : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
+theorem restored_outer_odd_open (hh : 0 < h) (hm : 0 < m) (hd : 3 ≤ d) (hdeven : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈
+      J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (D : MvPolynomial (Fin (finrank K (Fin f → Rows K h m (d-1)))) K)
-    (hD : ∃ g : Fin f → Rows K h m (d-1),eval ((Module.finBasis K _).equivFun g) D≠0)
+    (D : MvPolynomial (Fin (finrank K (Fin f → Rows K h m (d - 1)))) K)
+    (hD : ∃ g : Fin f → Rows K h m (d - 1), eval ((Module.finBasis K _).equivFun g) D ≠ 0)
     (hmodel : ∀ g : Fin f → Rows K h m (d-1),eval ((Module.finBasis K _).equivFun g) D≠0 →
       VectorExpansionOpen.StrictModel g d G ∧
       r*finrank K (VectorExpansionOpen.Source g)≤finrank K (VectorExpansionOpen.Target g d))

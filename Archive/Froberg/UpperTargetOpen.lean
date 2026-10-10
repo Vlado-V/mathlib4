@@ -24,21 +24,21 @@ def lowTargetSubspace : Submodule K (Forms K (h+m) (2*d)) :=
   ⨅ (b : ℕ) (_ : 2≤b) (_ : b≤2*d),
     ((coreComponent h m b).comp (Forms K (h+m) (2*d)).subtype).ker
 
-@[simp] theorem mem_lowTargetSubspace (p : Forms K (h+m) (2*d)) :
+@[simp] theorem mem_lowTargetSubspace (p : Forms K (h + m) (2 * d)) :
     p∈lowTargetSubspace (K := K) (h := h) (m := m) (d := d) ↔
       ∀ b,2≤b → b≤2*d → coreComponent h m b p.val=0 := by
   simp only [lowTargetSubspace,Submodule.mem_iInf,LinearMap.mem_ker,
     LinearMap.comp_apply,Submodule.subtype_apply]
 
-def upperTargetMap (q : Fin r → Forms K (h+m) d) :
+def upperTargetMap (q : Fin r → Forms K (h + m) d) :
     (Fin r → Forms K (h+m) d) →ₗ[K]
       (Forms K (h+m) (2*d)) ⧸ lowTargetSubspace (K := K) (h := h) (m := m) (d := d) :=
   (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ.comp (endpointMultiplication q)
 
-theorem upperTargetMap_surjective_of_lifts (q : Fin r → Forms K (h+m) d)
-    (hd : 0<d)
-    (hlift : ∀ b,2≤b → b≤2*d →
-      TargetLift ((Submodule.span K (Set.range (fun i => (q i).val)))*Forms K (h+m) d) d b) :
+theorem upperTargetMap_surjective_of_lifts (q : Fin r → Forms K (h + m) d)
+    (hd : 0 < d)
+    (hlift : ∀ b, 2 ≤ b → b ≤ 2 * d →
+      TargetLift ((Submodule.span K (Set.range (fun i => (q i).val))) * Forms K (h + m) d) d b) :
     Function.Surjective (upperTargetMap q) := by
   intro z
   obtain ⟨p,rfl⟩ := (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ_surjective z
@@ -54,8 +54,8 @@ theorem upperTargetMap_surjective_of_lifts (q : Fin r → Forms K (h+m) d)
     (Submodule.Quotient.mk_eq_zero _).mpr ((mem_lowTargetSubspace v).mpr hvlow)
   rw [hc,map_sub,hz,sub_zero]
 
-theorem upperTargetMap_surjective_representative (q : Fin r → Forms K (h+m) d)
-    (hq : Function.Surjective (upperTargetMap q)) (p : Forms K (h+m) (2*d)) :
+theorem upperTargetMap_surjective_representative (q : Fin r → Forms K (h + m) d)
+    (hq : Function.Surjective (upperTargetMap q)) (p : Forms K (h + m) (2 * d)) :
     ∃ v : Forms K (h+m) (2*d),
       p.val-v.val∈(Submodule.span K (Set.range (fun i => (q i).val)))*Forms K (h+m) d ∧
       ∀ b,2≤b → b≤2*d → coreComponent h m b v.val=0 := by
@@ -76,11 +76,12 @@ theorem upperTargetMap_surjective_representative (q : Fin r → Forms K (h+m) d)
 
 /-- A covector annihilating the actual product row is determined by its two
 bottom X-degree components. -/
-theorem upperTargetMap_annihilator (q : Fin r → Forms K (h+m) d)
+theorem upperTargetMap_annihilator (q : Fin r → Forms K (h + m) d)
     (hq : Function.Surjective (upperTargetMap q))
-    (ell : Forms K (h+m) (2*d) →ₗ[K] K)
-    (hproducts : ∀ c,ell (endpointMultiplication q c)=0)
-    (hlow : ∀ p,p∈lowTargetSubspace (K := K) (h := h) (m := m) (d := d) → ell p=0) : ell=0 := by
+    (ell : Forms K (h + m) (2 * d) →ₗ[K] K)
+    (hproducts : ∀ c, ell (endpointMultiplication q c) = 0)
+    (hlow : ∀ p, p ∈ lowTargetSubspace (K := K) (h := h) (m := m) (d := d) → ell p =
+      0) : ell=0 := by
   apply LinearMap.ext
   intro p
   obtain ⟨v,hpv,hv⟩ := upperTargetMap_surjective_representative q hq p
@@ -111,7 +112,7 @@ def endpointMultiplicationOperator : (Fin r → Forms K (h+m) d) →ₗ[K]
 /-- One successful prepared family yields a nonempty principal open on the
 full parameter space where every high target is generated simultaneously. -/
 theorem upperTarget_principal_open [Infinite K] {P : Type*}
-    (q : (P → K) → Fin r → Forms K (h+m) d) (hpoly : IsPolynomialFamily q)
+    (q : (P → K) → Fin r → Forms K (h + m) d) (hpoly : IsPolynomialFamily q)
     (a₀ : P → K) (hq : Function.Surjective (upperTargetMap (q a₀))) :
     ∃ D : MvPolynomial P K,eval a₀ D≠0 ∧
       ∀ a,eval a D≠0 → Function.Surjective (upperTargetMap (q a)) := by

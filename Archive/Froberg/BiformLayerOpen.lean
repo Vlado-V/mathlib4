@@ -25,7 +25,7 @@ abbrev BiformLayerFamily (K : Type*) [Field K] (h m : ℕ) (j e r : J → ℕ) :
   (a : J) → Fin (r a) → Forms K h (j a) ⊗[K] Forms K m (e a)
 
 theorem biform_layers_common_open (j e r : J → ℕ) (layer : B → J) (x y : B → ℕ)
-    (hwit : ∀ b,∃ g : Fin (r (layer b)) → Forms K h (j (layer b)) ⊗[K] Forms K m (e (layer b)),
+    (hwit : ∀ b, ∃ g : Fin (r (layer b)) → Forms K h (j (layer b)) ⊗[K] Forms K m (e (layer b)),
       Function.Surjective (biformTensorFamilyMap (x := x b) (y := y b) g)) :
     ∃ D : MvPolynomial (Fin (finrank K (BiformLayerFamily K h m j e r))) K,
       (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → ∀ b,
@@ -46,7 +46,7 @@ theorem biform_layers_common_open (j e r : J → ℕ) (layer : B → J) (x y : B
 /-- Each witness may start as a pure convolution family. The common family
 is allowed to be an arbitrary biform, exactly as in the prepared parameters. -/
 theorem biform_layers_common_open_of_pure (j e r : J → ℕ) (layer : B → J) (x y : B → ℕ)
-    (hwit : ∀ b,∃ (o : Fin (r (layer b)) → Forms K h (j (layer b)))
+    (hwit : ∀ b, ∃ (o : Fin (r (layer b)) → Forms K h (j (layer b)))
       (f : Fin (r (layer b)) → Forms K m (e (layer b))),
       Function.Surjective (biformFamilyMap (x := x b) (y := y b) o f)) :
     ∃ D : MvPolynomial (Fin (finrank K (BiformLayerFamily K h m j e r))) K,

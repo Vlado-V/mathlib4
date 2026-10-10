@@ -18,7 +18,7 @@ open Filter
 open scoped Topology
 
 /-- The ratio of adjacent homogeneous dimensions, without division. -/
-theorem consecutive_monomial_counts {h b : ℕ} (hh : 0<h) (hb : 0<b) :
+theorem consecutive_monomial_counts {h b : ℕ} (hh : 0 < h) (hb : 0 < b) :
     ((h : ℝ)+b-1)*((h+(b-1)-1).choose (b-1) : ℝ) =
       ((h+b-1).choose b : ℝ)*b := by
   have he := Nat.add_one_mul_choose_eq (h+b-2) (b-1)
@@ -28,8 +28,8 @@ theorem consecutive_monomial_counts {h b : ℕ} (hh : 0<h) (hb : 0<b) :
   rw [show h+(b-1)-1=h+b-2 by omega,←hh']
   exact_mod_cast he
 
-theorem odd_row_factorial_gap {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b≤d)
-    (hh : 0<h) :
+theorem odd_row_factorial_gap {d b h : ℕ} (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d)
+    (hh : 0 < h) :
     (criticalRatio d/(d.factorial : ℝ))*
         (((h+b-1).choose b : ℝ)*((d-b).factorial : ℝ)⁻¹) +
       ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))*
@@ -60,7 +60,7 @@ theorem odd_row_factorial_gap {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b�
 /-- The finite two-family budget includes the dimensions of the source spaces
 in addition to the prescribed scalar and outer-column family sizes. -/
 theorem eventually_higher_odd_row_budget {d b h : ℕ}
-    (hd : 3≤d) (hb : 3≤b) (hbd : b≤d) (hh : 0<h)
+    (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d) (hh : 0 < h)
     (qS qO : ℕ → ℕ)
     (hS : Tendsto (fun n : ℕ => (qS n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ))))
@@ -107,7 +107,7 @@ theorem eventually_higher_odd_row_budget {d b h : ℕ}
   exact_mod_cast hfin
 
 /-- The upper odd row has only the outer family. -/
-theorem odd_endpoint_factorial_gap {d h : ℕ} (hd : 3≤d) (hh : 0<h) :
+theorem odd_endpoint_factorial_gap {d h : ℕ} (hd : 3 ≤ d) (hh : 0 < h) :
     ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))*((h+d-1).choose d : ℝ) <
       ((h+(d+1)-1).choose (d+1) : ℝ)*((d-1).factorial : ℝ)⁻¹ := by
   have hp : (0 : ℝ)<(h+(d+1)-1).choose (d+1) := by
@@ -127,7 +127,7 @@ theorem odd_endpoint_factorial_gap {d h : ℕ} (hd : 3≤d) (hh : 0<h) :
   rw [hsolve]
   convert hs using 1 <;> field_simp [factorial_real_ne_zero,hden.ne'] <;> ring
 
-theorem eventually_upper_odd_row_budget {d h : ℕ} (hd : 3≤d) (hh : 0<h)
+theorem eventually_upper_odd_row_budget {d h : ℕ} (hd : 3 ≤ d) (hh : 0 < h)
     (qO : ℕ → ℕ)
     (hO : Tendsto (fun n : ℕ => (qO n : ℝ)/(n : ℝ)^(d-1)) atTop
       (𝓝 ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ)))) :

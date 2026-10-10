@@ -56,7 +56,7 @@ theorem sum_indicator {α : Type*} [Fintype α] (P : α → Prop) [DecidablePred
   simp [Fintype.card_subtype,Finset.sum_ite,Finset.sum_const,mul_comm]
 
 /-- The total block rank equals the sum of its three layer counts. -/
-theorem rank_sum_eq_layers {w : ℕ} (r : Fin w → ℕ) (hr : ∀ν,r ν ≤ 3) :
+theorem rank_sum_eq_layers {w : ℕ} (r : Fin w → ℕ) (hr : ∀ ν, r ν ≤ 3) :
     (∑ν, (r ν:ℤ))=(levelCount r 1:ℤ)+(levelCount r 2:ℤ)+(levelCount r 3:ℤ) := by
   classical
   have hp (ν : Fin w) : (r ν:ℤ)=
@@ -68,7 +68,7 @@ theorem rank_sum_eq_layers {w : ℕ} (r : Fin w → ℕ) (hr : ∀ν,r ν ≤ 3)
   simp only [sum_indicator,one_mul,levelCount]
 
 /-- Natural-number version for the source decomposition dimension. -/
-theorem rank_sum_nat_eq_layers {w : ℕ} (r : Fin w → ℕ) (hr : ∀ν,r ν ≤ 3) :
+theorem rank_sum_nat_eq_layers {w : ℕ} (r : Fin w → ℕ) (hr : ∀ ν, r ν ≤ 3) :
     (∑ν,r ν)=levelCount r 1+levelCount r 2+levelCount r 3 := by
   exact_mod_cast rank_sum_eq_layers r hr
 
@@ -89,7 +89,7 @@ def sharpCount (w p i : ℕ) (B b : ℤ) (n₁ n₂ n₃ : ℕ) : ℤ :=
 /-- One-variable layers: the core shadow is always present, and a nonzero
 output block supplies the full core degree-two space. -/
 theorem linear_rank_sum {w : ℕ} (r R : Fin w → ℕ) (B b : ℤ)
-    (hbase : ∀ν,b ≤ (R ν:ℤ)) (hfull : ∀ν,0 < r ν → B ≤ (R ν:ℤ)) :
+    (hbase : ∀ ν, b ≤ (R ν : ℤ)) (hfull : ∀ ν, 0 < r ν → B ≤ (R ν : ℤ)) :
     b*(w:ℤ)+(B-b)*(levelCount r 1:ℤ) ≤ ∑ν,(R ν:ℤ) := by
   classical
   have hp (ν : Fin w) : b+(if 1 ≤ r ν then B-b else 0) ≤ (R ν:ℤ) := by
@@ -103,9 +103,9 @@ theorem linear_rank_sum {w : ℕ} (r R : Fin w → ℕ) (B b : ℤ)
     mul_comm] using h
 
 /-- The nested quadratic thresholds combine into the two source coefficients. -/
-theorem quadratic_pointwise (p i R : ℕ) (_hi : i ≤ 2*p) (P₁ P₂ : Prop)
+theorem quadratic_pointwise (p i R : ℕ) (_hi : i ≤ 2 * p) (P₁ P₂ : Prop)
     [Decidable P₁] [Decidable P₂] (hsub : P₂ → P₁)
-    (hbase : i ≤ R) (h₁ : P₁ → p ≤ R) (h₂ : P₂ → 2*p ≤ R) :
+    (hbase : i ≤ R) (h₁ : P₁ → p ≤ R) (h₂ : P₂ → 2 * p ≤ R) :
     (i:ℤ)+(if P₁ then max ((p:ℤ)-(i:ℤ)) 0 else 0)+
       (if P₂ then ((2*p:ℕ):ℤ)-max (i:ℤ) (p:ℤ) else 0) ≤ (R:ℤ) := by
   by_cases hP₂ : P₂
@@ -134,8 +134,8 @@ theorem quadratic_pointwise (p i R : ℕ) (_hi : i ≤ 2*p) (P₁ P₂ : Prop)
 
 /-- Summing quadratic layer ranks gives exactly the source H₂ contributions. -/
 theorem quadratic_rank_sum {w : ℕ} (r : Fin w → ℕ) (R : ExactExponent w 2 → ℕ)
-    (p i : ℕ) (hi : i ≤ 2*p) (hbase : ∀β,i ≤ R β)
-    (h₁ : ∀β,Meets r 1 β → p ≤ R β) (h₂ : ∀β,Meets r 2 β → 2*p ≤ R β) :
+    (p i : ℕ) (hi : i ≤ 2 * p) (hbase : ∀ β, i ≤ R β)
+    (h₁ : ∀ β, Meets r 1 β → p ≤ R β) (h₂ : ∀ β, Meets r 2 β → 2 * p ≤ R β) :
     (i:ℤ)*b2 w+max ((p:ℤ)-(i:ℤ)) 0*h2 w (levelCount r 1)+
       (((2*p:ℕ):ℤ)-max (i:ℤ) (p:ℤ))*h2 w (levelCount r 2) ≤ ∑β,(R β:ℤ) := by
   classical
@@ -153,7 +153,7 @@ theorem quadratic_rank_sum {w : ℕ} (r : Fin w → ℕ) (R : ExactExponent w 2 
 /-- Cubic layers contain all incident output blocks, so each met rank threshold
 contributes one to a valid lower bound. -/
 theorem cubic_rank_sum {w : ℕ} (r : Fin w → ℕ) (R : ExactExponent w 3 → ℕ)
-    (hincident : ∀β ν,0 < β.val ν → r ν ≤ R β) :
+    (hincident : ∀ β ν, 0 < β.val ν → r ν ≤ R β) :
     h3 w (levelCount r 1)+h3 w (levelCount r 2)+h3 w (levelCount r 3) ≤ ∑β,(R β:ℤ) := by
   classical
   have hlevel (β : ExactExponent w 3) (h : ℕ) (hβ : Meets r h β) : h ≤ R β := by
@@ -187,11 +187,11 @@ theorem cubic_rank_sum {w : ℕ} (r : Fin w → ℕ) (R : ExactExponent w 3 → 
 two and three free-monomial layers. -/
 theorem sharp_rank_sum {w : ℕ} (r R₁ : Fin w → ℕ)
     (R₂ : ExactExponent w 2 → ℕ) (R₃ : ExactExponent w 3 → ℕ)
-    (p i : ℕ) (B b : ℤ) (hi : i ≤ 2*p)
-    (hbase₁ : ∀ν,b ≤ (R₁ ν:ℤ)) (hfull₁ : ∀ν,0 < r ν → B ≤ (R₁ ν:ℤ))
-    (hbase₂ : ∀β,i ≤ R₂ β)
-    (h₁₂ : ∀β,Meets r 1 β → p ≤ R₂ β) (h₂₂ : ∀β,Meets r 2 β → 2*p ≤ R₂ β)
-    (hincident₃ : ∀β ν,0 < β.val ν → r ν ≤ R₃ β) :
+    (p i : ℕ) (B b : ℤ) (hi : i ≤ 2 * p)
+    (hbase₁ : ∀ ν, b ≤ (R₁ ν : ℤ)) (hfull₁ : ∀ ν, 0 < r ν → B ≤ (R₁ ν : ℤ))
+    (hbase₂ : ∀ β, i ≤ R₂ β)
+    (h₁₂ : ∀ β, Meets r 1 β → p ≤ R₂ β) (h₂₂ : ∀ β, Meets r 2 β → 2 * p ≤ R₂ β)
+    (hincident₃ : ∀ β ν, 0 < β.val ν → r ν ≤ R₃ β) :
     sharpCount w p i B b (levelCount r 1) (levelCount r 2) (levelCount r 3) ≤
       (∑ν,(R₁ ν:ℤ))+(∑β,(R₂ β:ℤ))+(∑β,(R₃ β:ℤ)) := by
   have h₁ := linear_rank_sum r R₁ B b hbase₁ hfull₁
@@ -237,12 +237,12 @@ of actual free-monomial layers, assuming precisely the stated pointwise bounds. 
 theorem source_sharp_rank_sum (m c i : ℕ) (hi : i ≤ coreA c)
     (r R₁ : Fin (freeW m c) → ℕ)
     (R₂ : ExactExponent (freeW m c) 2 → ℕ) (R₃ : ExactExponent (freeW m c) 3 → ℕ)
-    (hbase₁ : ∀ν,SharpCertificate.coreShadow c i ≤ (R₁ ν:ℤ))
-    (hfull₁ : ∀ν,0 < r ν → coreB c ≤ (R₁ ν:ℤ))
-    (hbase₂ : ∀β,i ≤ R₂ β)
-    (h₁₂ : ∀β,Meets r 1 β → coreP c ≤ R₂ β)
-    (h₂₂ : ∀β,Meets r 2 β → coreA c ≤ R₂ β)
-    (hincident₃ : ∀β ν,0 < β.val ν → r ν ≤ R₃ β) :
+    (hbase₁ : ∀ ν, SharpCertificate.coreShadow c i ≤ (R₁ ν : ℤ))
+    (hfull₁ : ∀ ν, 0 < r ν → coreB c ≤ (R₁ ν : ℤ))
+    (hbase₂ : ∀ β, i ≤ R₂ β)
+    (h₁₂ : ∀ β, Meets r 1 β → coreP c ≤ R₂ β)
+    (h₂₂ : ∀ β, Meets r 2 β → coreA c ≤ R₂ β)
+    (hincident₃ : ∀ β ν, 0 < β.val ν → r ν ≤ R₃ β) :
     UniformSurplus.sourceSharp m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) ≤
       (((∑ν,R₁ ν)+(∑β,R₂ β)+(∑β,R₃ β):ℕ):ℝ) := by
   have h := sharp_rank_sum r R₁ R₂ R₃ (coreP c) i (coreB c)

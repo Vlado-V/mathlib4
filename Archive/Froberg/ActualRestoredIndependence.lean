@@ -21,9 +21,9 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
 theorem exact_counts_actual_restored_independent_open {d k h lo : ℕ}
-    (hd : 3≤d) (hdeven : d%2=0) (hh : 0<h)
+    (hd : 3 ≤ d) (hdeven : d % 2 = 0) (hh : 0 < h)
     (upper : Bool) (a f e : ℕ → ℕ) (added : ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     ∀ᶠ n : ℕ in atTop,∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
       (slot : Fin (finrank K (Forms K h d)) →

@@ -123,7 +123,7 @@ theorem polynomialMatrix_kernel_iff (B : Matrix (Fin a) (Fin n) (MvPolynomial I 
 previous-stage motions held fixed. -/
 theorem polynomialMatrix_scaling {n₁ : ℕ}
     (B : Matrix (Fin a) (Fin n) (MvPolynomial (Fin T ⊕ Fin n₁) K))
-    (hB : ∀ (s : K) ell x,evaluated B (Sum.elim (s • ell) x)=s • evaluated B (Sum.elim ell x))
+    (hB : ∀ (s : K) ell x, evaluated B (Sum.elim (s • ell) x) = s • evaluated B (Sum.elim ell x))
     (s : K) (ell : Fin T → K) (x : Fin n₁ → K) :
     evaluated (polynomialMatrix (e := e) B (fun k => X (Sum.inl k))) (Sum.elim (s • ell) x)=
       s • evaluated (polynomialMatrix (e := e) B (fun k => X (Sum.inl k))) (Sum.elim ell x) := by

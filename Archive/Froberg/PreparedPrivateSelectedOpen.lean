@@ -24,12 +24,12 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_common_open_of_row_witnesses [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (h2 : 2∈J)
-    (P : Fin b → FullBiform K σ n 1 (d-1))
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
+    (P : Fin b → FullBiform K σ n 1 (d - 1))
     (hfirst : ∃ p : Space n d q J counts O,
-      (privateAugmentedRow hO ⟨2,h2⟩ p (fun i => (P i).val)).ker=
-        ((rowConstants hO ⟨2,h2⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
+      (privateAugmentedRow hO ⟨2, h2⟩ p (fun i => (P i).val)).ker =
+        ((rowConstants hO ⟨2, h2⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
     (hlater : ∀ R : J,R.val≠2 → ∃ p : Space n d q J counts O,
       (privateAugmentedRow hO R p (fun i => (P i).val)).ker=
         (privateAugmentedConstants (b := b) hO R p).range) :

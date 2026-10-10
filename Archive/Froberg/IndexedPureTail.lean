@@ -23,7 +23,7 @@ variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem exists_indexed_submodule_basis {V : Type*} [AddCommGroup V] [Module K V]
-    [Module.Finite K V] (W : Submodule K V) {u : ℕ} (hu : finrank K W=u) :
+    [Module.Finite K V] (W : Submodule K V) {u : ℕ} (hu : finrank K W = u) :
     ∃ v : Fin u → V,LinearIndependent K v ∧ Submodule.span K (Set.range v)=W := by
   let b := Module.finBasisOfFinrankEq K W hu
   refine ⟨fun i => (b i).val, b.linearIndependent.map' W.subtype (Submodule.ker_subtype W), ?_⟩
@@ -33,10 +33,10 @@ theorem exists_indexed_submodule_basis {V : Type*} [AddCommGroup V] [Module K V]
     using hs
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem formDegreeEquiv_cutoff {h a b : ℕ} (hab : a=b)
+theorem formDegreeEquiv_cutoff {h a b : ℕ} (hab : a = b)
     (W : Submodule K (Forms K h a))
     (hW : BilinearImage.image (gradedMultiplication (K := K) (n := h)
-      (d := a) (e := 1)).flip W=⊤) :
+      (d := a) (e := 1)).flip W = ⊤) :
     BilinearImage.image (gradedMultiplication (K := K) (n := h)
       (d := b) (e := 1)).flip (W.map (formDegreeEquiv hab).toLinearMap)=⊤ := by
   subst b

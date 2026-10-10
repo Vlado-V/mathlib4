@@ -127,7 +127,7 @@ theorem exists_actual_even_pencil_replacement [IsAlgClosed K]
     (E D : Fin e → biformParitySpace K h m d 0) (s : ℕ → ℕ)
     (hex : OddSplitExact (Fin.append Q E) (Fin.append F G))
     (hs : HasClosedKernelSlices (oddBackgroundScalarProduct (Fin.append Q E) F G) s)
-    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P≠0) :
+    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P ≠ 0) :
     ∃ c : K,c≠0 ∧ eval (fun _ => c) P≠0 ∧
       OddSplitExact (Fin.append Q (fun i => E i+c • D i)) (Fin.append F G) ∧
       HasClosedKernelSlices
@@ -149,7 +149,7 @@ theorem exists_actual_even_slot_replacement [IsAlgClosed K]
     (M : biformParitySpace K h m d 0) (s : ℕ → ℕ)
     (hex : OddSplitExact (Fin.append Q E) (Fin.append F G))
     (hs : HasClosedKernelSlices (oddBackgroundScalarProduct (Fin.append Q E) F G) s)
-    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P≠0) :
+    (P : MvPolynomial (Fin 1) K) (hP : eval 0 P ≠ 0) :
     ∃ c : K,c≠0 ∧ eval (fun _ => c) P≠0 ∧
       OddSplitExact (Fin.append Q (Function.update E i (E i+c • M))) (Fin.append F G) ∧
       HasClosedKernelSlices

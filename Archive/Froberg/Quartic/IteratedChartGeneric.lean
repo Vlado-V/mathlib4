@@ -29,7 +29,7 @@ variable {V W : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 abbrev Profiles (b : Fin n → ℕ) := (i : Fin n) → Fin (b i+1)
 
 /-- Prefix ranks of an actual subspace in the flattened block coordinates. -/
-def profile (S : Submodule K (Fin (∑ i,b i) → K)) : Profiles b :=
+def profile (S : Submodule K (Fin (∑ i, b i) → K)) : Profiles b :=
   fun i => ⟨finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
     (S.comap (coordinates K b).toLinearMap) i), by
       have h := Submodule.finrank_le (FilteredImage.initialPiece (fun i => Fin (b i) → K)
@@ -39,7 +39,7 @@ def profile (S : Submodule K (Fin (∑ i,b i) → K)) : Profiles b :=
 
 /-- Actual tuple spans are covered by the finite polynomial charts of their
 own prefix profile, with the exact number of displayed basis vectors. -/
-theorem cover_tuple_span (F : Fin q → Fin (∑ i,b i) → K) :
+theorem cover_tuple_span (F : Fin q → Fin (∑ i, b i) → K) :
     ∃ j : Selectors b (fun i => (profile (Submodule.span K (Set.range F)) i).val),
       ∃ p : Parameters K j,
         PolynomialSubspaceCovectorCharts.subspace (graphPolynomial j) p=
@@ -50,7 +50,7 @@ theorem cover_tuple_span (F : Fin q → Fin (∑ i,b i) → K) :
 nonzero relation tuple. Its finite polynomial chart cover then gives a
 nonempty principal open of injective specializations. -/
 theorem generic_injective [Infinite K]
-    (B : (Fin q → Fin (∑ i,b i) → K) →ₗ[K] V →ₗ[K] W)
+    (B : (Fin q → Fin (∑ i, b i) → K) →ₗ[K] V →ₗ[K] W)
     (hbound : ∀ F : Fin q → Fin (∑ i,b i) → K,F ≠ 0 →
       let r := fun i => (profile (Submodule.span K (Set.range F)) i).val
       parameterCount b r+q*(∑ i,r i) ≤ finrank K (LinearMap.range (B F))) :

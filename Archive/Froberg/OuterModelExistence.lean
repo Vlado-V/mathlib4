@@ -19,14 +19,14 @@ open Module Finset Filter OuterInjection
 open scoped Topology
 
 lemma core_source_dimension_le {K : Type*} [Field K] {k a z s h : ℕ}
-    (hn : 0 < a+z) (v : Labels k a s → Fin h → K) :
+    (hn : 0 < a + z) (v : Labels k a s → Fin h → K) :
     finrank K (CoreSourceSpace (z := z) v) ≤ h*(a+z+s-1).choose s := by
   have hh := (AttachedMultiplication.relationSpace (d := 0)
     (coreExponent z) v (coreExponent_degree z)).finrank_quotient_le
   simpa [CoreSourceSpace,Module.finrank_pi_fintype,finrank_forms K (a+z) s hn] using hh
 
 theorem eventually_exists_strict_core_model {K : Type*} [Field K] [Infinite K]
-    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h=k*(2*s+1).choose s)
+    {k s h : ℕ} (hk : 0 < k) (hs : 0 < s) (hh : h = k * (2 * s + 1).choose s)
     {σ : ℝ} (hσ : 0 < σ) (hσ1 : σ < 1)
     (a z : ℕ → ℕ) (ha : Tendsto a atTop atTop) (hz : Tendsto z atTop atTop)
     (har : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 σ))

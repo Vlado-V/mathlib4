@@ -49,7 +49,7 @@ def graphPolynomial (j : Fin d ↪ Fin a) (i : Fin d) (k : Fin a) :
   · simp [graphPolynomial, hk, graphVector, chartLift_outside j _ _ ⟨k,hk⟩,
       parameterMap_apply, graphCoefficients, Pi.single_apply]
 
- theorem graphVector_span (j : Fin d ↪ Fin a) (p : GraphParameters j → K) :
+theorem graphVector_span (j : Fin d ↪ Fin a) (p : GraphParameters j → K) :
     Submodule.span K (Set.range (graphVector j p)) = chartSubspace j (graphCoefficients j p) := by
   classical
   have hfun : graphVector j p = chartLift j (graphCoefficients j p) ∘ Pi.basisFun K (Fin d) := by
@@ -72,8 +72,8 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
   fun l k => ∑ h : Fin a, graphPolynomial j (finProdFinEquiv.symm l).1 h *
     C (mu (Pi.single (finProdFinEquiv.symm l).2 1) (Pi.single h 1) k)
 
- theorem eval_constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (l : Fin (d*b)) (k : Fin T) :
+theorem eval_constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+    (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (l : Fin (d * b)) (k : Fin T) :
     evaluated (constraint mu j) p l k =
       mu (Pi.single (finProdFinEquiv.symm l).2 1) (graphVector j p (finProdFinEquiv.symm
         l).1) k := by
@@ -117,8 +117,8 @@ def covector (ell : Fin T → K) : (Fin T → K) →ₗ[K] K :=
 @[simp] theorem covector_apply (ell x : Fin T → K) : covector ell x = ∑ k, ell k * x k := by
   simp [covector, smul_eq_mul]
 
- theorem constraint_mulVec (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (ell : Fin T → K) (l : Fin (d*b)) :
+theorem constraint_mulVec (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+    (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (ell : Fin T → K) (l : Fin (d * b)) :
     (evaluated (constraint mu j) p *ᵥ ell) l = covector ell
       (mu (Pi.single (finProdFinEquiv.symm l).2 1) (graphVector j p (finProdFinEquiv.symm
         l).1)) := by

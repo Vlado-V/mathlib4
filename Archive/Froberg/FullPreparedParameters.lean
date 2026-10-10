@@ -69,14 +69,14 @@ theorem private_homogeneous (hd : 0 < d)
   simpa only [show 1+(d-1)=d by omega] using hp
 
 theorem generator_homogeneous (hd : 0 < d)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) (i : PreparedTarget.Label q f u J counts) :
     (generator p i).IsHomogeneous d :=
   PreparedTarget.generator_homogeneous hd hO hJ p.1 (fun i => (p.2.1 i).val)
     (private_homogeneous hd p.2.1) p.2.2 i
 
 def forms (hd : 0 < d)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d) :
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d) :
     Space m d q f u J counts O →ₗ[K]
       (PreparedTarget.Label q f u J counts → homogeneousSubmodule (σ ⊕ Fin m) K d) where
   toFun p i := ⟨generator p i,generator_homogeneous hd hO hJ p i⟩
@@ -90,17 +90,17 @@ def forms (hd : 0 < d)
     exact congrFun (map_smul generator a p) i
 
 @[simp] theorem forms_val (hd : 0 < d)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) (i : PreparedTarget.Label q f u J counts) :
     (forms hd hO hJ p i).val=generator p i := rfl
 
 theorem forms_eq_fixed (hd : 0 < d)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) :
     forms hd hO hJ p=PreparedTarget.forms hd hO hJ p.1 (fun i => (p.2.1 i).val)
       (private_homogeneous hd p.2.1) p.2.2 := rfl
 
-theorem finite_space (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+theorem finite_space (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space m d q f u J counts O) := by
   letI : Module.Finite K (PreparedTarget.Space m d q f u J counts O) :=
     PreparedTarget.finite_space hO
@@ -131,7 +131,7 @@ theorem zeroPrivateScalar_injective : Function.Injective
   · exact congrArg (fun x : Space m d q f u J counts O => x.2.2.1) he
   · exact congrArg (fun x : Space m d q f u J counts O => x.2.2.2.1) he
 
-theorem finite_zeroScalarSpace (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
+theorem finite_zeroScalarSpace (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (ZeroScalarSpace m d q f u J counts O) := by
   letI : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   exact Module.Finite.of_injective zeroPrivateScalar zeroPrivateScalar_injective
@@ -139,7 +139,7 @@ theorem finite_zeroScalarSpace (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j
 theorem forms_polynomial_linear_parameters {V : Type*}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     (L : V →ₗ[K] Space m d q f u J counts O) (hd : 0 < d)
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (hJ : ∀ j∈J,j≤d) :
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d) :
     IsPolynomialFamily (fun a : Fin (finrank K V) → K =>
       forms hd hO hJ (L ((Module.finBasis K V).equivFun.symm a))) :=
   isPolynomialFamily_linear (((forms hd hO hJ).comp L).comp
@@ -149,7 +149,7 @@ theorem enumerated_forms_polynomial_linear_parameters {V : Type*} {h : ℕ}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     {O : ℕ → Submodule K (Poly K h)}
     (L : V →ₗ[K] Space m d q f u J counts O) (hd : 0 < d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) :
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) :
     IsPolynomialFamily (fun a : Fin (finrank K V) → K =>
       PreparedTarget.enumerateForms (forms hd hO hJ
         (L ((Module.finBasis K V).equivFun.symm a)))) :=

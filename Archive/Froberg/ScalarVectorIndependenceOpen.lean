@@ -19,7 +19,7 @@ open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K]
 
 theorem finite_family_independence_open {V : Type*} [AddCommGroup V] [Module K V]
-    [Module.Finite K V] {r : ℕ} (hr : r≤finrank K V) :
+    [Module.Finite K V] {r : ℕ} (hr : r ≤ finrank K V) :
     ∃ P : MvPolynomial (Fin (finrank K (Fin r → V))) K,
       (∃ v : Fin r → V,eval ((Module.finBasis K _).equivFun v) P≠0) ∧
       ∀ v : Fin r → V,eval ((Module.finBasis K _).equivFun v) P≠0 → LinearIndependent K v := by
@@ -35,7 +35,7 @@ theorem finite_family_independence_open {V : Type*} [AddCommGroup V] [Module K V
     LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply] using hgood (b w) hw
 
 theorem scalar_vector_independence_open {h m d f q : ℕ}
-    (hq : q≤finrank K (Forms K m d)) (hf : f≤finrank K (Rows K h m (d-1))) :
+    (hq : q ≤ finrank K (Forms K m d)) (hf : f ≤ finrank K (Rows K h m (d - 1))) :
     ∃ P : MvPolynomial (Fin (finrank K (ScalarVectorParameters K h m d f q))) K,
       (∃ p : ScalarVectorParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) P≠0) ∧
       ∀ p : ScalarVectorParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) P≠0 →

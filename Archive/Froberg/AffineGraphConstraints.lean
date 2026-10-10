@@ -33,7 +33,7 @@ def tupleProductConstraint
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 @[simp] theorem tupleProductConstraint_apply
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (H : Fin N → Fin a → K) (ell : Fin T → K) (l : Fin (N*b)) :
+    (H : Fin N → Fin a → K) (ell : Fin T → K) (l : Fin (N * b)) :
     tupleProductConstraint mu H ell l=covector ell
       (mu (Pi.single (finProdFinEquiv.symm l).2 1) (H (finProdFinEquiv.symm l).1)) := by
   simp only [tupleProductConstraint,LinearMap.pi_apply,covector_apply,mul_comm]

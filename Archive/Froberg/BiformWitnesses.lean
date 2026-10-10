@@ -126,7 +126,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Project a pair-valued weight grading to its first coordinate. -/
 theorem weightedHomogeneous_fst {υ : Type*} [Fintype υ]
     (w : υ → ℕ × ℕ) {p : MvPolynomial υ K} {a b : ℕ}
-    (hp : p.IsWeightedHomogeneous w (a,b)) :
+    (hp : p.IsWeightedHomogeneous w (a, b)) :
     p.IsWeightedHomogeneous (fun i => (w i).1) a := by
   intro α hα
   have he : Finsupp.weight (fun i => (w i).1) α = (Finsupp.weight w α).1 := by

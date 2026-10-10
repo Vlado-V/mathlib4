@@ -17,7 +17,7 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem convolutionBlockCount_normalized_limit {j a e : ℕ} (hj : 0<j) (ha : 0<a)
+theorem convolutionBlockCount_normalized_limit {j a e : ℕ} (hj : 0 < j) (ha : 0 < a)
     (q : ℕ → ℕ) (c : ℝ)
     (hq : Tendsto (fun n : ℕ => (q n : ℝ)/(n : ℝ)^j) atTop (𝓝 c)) :
     Tendsto (fun n : ℕ => (convolutionBlockCount (q n) a e : ℝ)/(n : ℝ)^j)
@@ -36,7 +36,7 @@ theorem convolutionBlockCount_normalized_limit {j a e : ℕ} (hj : 0<j) (ha : 0<
     rw [show q n+Q-1=q n+(Q-1) by omega,Nat.cast_add,add_div]
   exact natural_division_normalized_limit _ hj hQ c hnum
 
-theorem convolutionGeneratorCount_normalized_limit (k e : ℕ) {a : ℕ} (ha : 0<a) :
+theorem convolutionGeneratorCount_normalized_limit (k e : ℕ) {a : ℕ} (ha : 0 < a) :
     Tendsto (fun n : ℕ => ((k*(n+a+e-2).choose e : ℕ) : ℝ)/(n : ℝ)^e)
       atTop (𝓝 ((k : ℝ)/(e.factorial : ℝ))) := by
   let v : ℕ → ℕ := fun n => n+(a-1)
@@ -57,8 +57,8 @@ theorem convolutionGeneratorCount_normalized_limit (k e : ℕ) {a : ℕ} (ha : 0
   rw [heq,Nat.cast_mul]
   ring
 
-theorem convolutionGeneratorCount_eventually_fits {k e a : ℕ} (he : 0<e) (ha : 0<a)
-    (c : ℝ) (hgap : (k : ℝ)/(e.factorial : ℝ)<c) :
+theorem convolutionGeneratorCount_eventually_fits {k e a : ℕ} (he : 0 < e) (ha : 0 < a)
+    (c : ℝ) (hgap : (k : ℝ) / (e.factorial : ℝ) < c) :
     ∀ᶠ n : ℕ in atTop, k*(n+a+e-2).choose e ≤ ⌈c*(n : ℝ)^e⌉₊ := by
   have hc : 0≤c := le_of_lt (lt_of_le_of_lt (by positivity) hgap)
   have hceil := ceil_normalized_limit (fun n : ℕ => c*(n : ℝ)^e) he c

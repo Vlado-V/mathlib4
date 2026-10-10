@@ -25,13 +25,14 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem mixed_ambient_higher_kernel (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
+theorem mixed_ambient_higher_kernel (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (Q : Fin q → Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (hU : LinearIndependent K U)
-    (hQ : ∀ i,(scalarEvenBiform (h := h) (Q i)).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(oddBiformEmbedding hdp (by decide) (F i)).val.IsWeightedHomogeneous (blockWeight h m)
+    (hQ : ∀ i, (scalarEvenBiform (h := h) (Q i)).val.IsWeightedHomogeneous (blockWeight h m) 0)
+    (hF : ∀ i, (oddBiformEmbedding hdp (by decide) (F i)).val.IsWeightedHomogeneous (blockWeight h
+      m)
       1)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
       (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range

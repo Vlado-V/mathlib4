@@ -25,9 +25,9 @@ of which all even positive-row relations reduce to the old scalar labels. -/
 theorem finite_even_reduction_open {w v d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     [LinearOrder (Label q J counts)]
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
-    (hJ : ∀ j∈J,2≤j) (hdegree : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (h2 : 2∈J) (hcover : ∀ r,0<r → r≤d → r%2=0 → r∈J)
-    (hquad : ∃ b,QuadraticRowCapacity (v+v) d q b J counts (constrainedOutputs T))
+    (hJ : ∀ j ∈ J, 2 ≤ j) (hdegree : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (h2 : 2 ∈ J) (hcover : ∀ r, 0 < r → r ≤ d → r % 2 = 0 → r ∈ J)
+    (hquad : ∃ b, QuadraticRowCapacity (v + v) d q b J counts (constrainedOutputs T))
     (hhigher : ∀ R : J,R.val≠2 → ∃ b,HigherRowCapacity w v d q b J counts T R)
     (hproduct : ∀ R,d<R → R≤2*d → R%2=0 →
       ProductRowCapacity (K := K) (X := X) w v d R J counts) :

@@ -245,7 +245,6 @@ theorem exists_injective_parameter (hc : c ≤ m)
     apply (quotientAugmented_span_eq ω _ h r₀ Q hspan).mpr
     rw [productMap_specialization, hr₀]
     exact hr
-
   refine ⟨encode (mixedFamily hc) h r₀, ?_, ?_, ?_⟩
   · simpa only [coefficientMixed_encode] using hg
   · simpa only [coefficientChild_encode] using hh

@@ -17,7 +17,7 @@ namespace Froberg
 open Filter Module Quartic
 variable {K : Type*} [Field K] [Infinite K]
 
-theorem eventually_odd_tail_projection {e : ℕ} (he : 2≤e) (ho : Odd (1+e)) :
+theorem eventually_odd_tail_projection {e : ℕ} (he : 2 ≤ e) (ho : Odd (1 + e)) :
     ∀ᶠ h : ℕ in atTop,
       ∃ P : Forms K h (1+e) →ₗ[K] (Fin (topComplementCount (1+e) h) → K),
         Function.Surjective P ∧ finrank K P.ker=tailGeneratorCount (1+e) h ∧

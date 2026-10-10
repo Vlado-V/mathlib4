@@ -28,10 +28,10 @@ theorem independent_pluckerCoordinates_ne_zero {n : ℕ}
 /-- A nonzero mixed minor guarantees that at least one of the selected prefixes
 extends any fixed independent tuple independently. -/
 theorem exists_independent_prefix
-    (t : Set.powersetCard (Fin (r+l)) r → ℕ) (ht : ∀ I, t I ≤ l)
-    (label : (Σ I, Fin (t I)) → α) (v : α → Fin (r+l) → K)
+    (t : Set.powersetCard (Fin (r + l)) r → ℕ) (ht : ∀ I, t I ≤ l)
+    (label : (Σ I, Fin (t I)) → α) (v : α → Fin (r + l) → K)
     (hdet : Matrix.det (fun I J => mixedRow (paddedVectors t label v I) J) ≠ 0)
-    (a : Fin r → Fin (r+l) → K) (ha : LinearIndependent K a) :
+    (a : Fin r → Fin (r + l) → K) (ha : LinearIndependent K a) :
     ∃ I, LinearIndependent K (Fin.append a (fun j : Fin (t I) => v (label ⟨I,j⟩))) := by
   obtain ⟨I,hI⟩ := not_all_mixed_exterior_zero (paddedVectors t label v) hdet a
     (independent_pluckerCoordinates_ne_zero a ha)
@@ -50,10 +50,10 @@ theorem exists_independent_prefix
 not just a previously selected subspace. -/
 theorem universal_exists_independent_prefix {h : ℕ}
     (v : α → Fin h → K) (hv : UniversalMixedPosition v)
-    (r : Fin (h+1))
-    (t : Set.powersetCard (Fin (r.val+(h-r.val))) r.val → Fin ((h-r.val)+1))
+    (r : Fin (h + 1))
+    (t : Set.powersetCard (Fin (r.val + (h - r.val))) r.val → Fin ((h - r.val) + 1))
     (label : (Σ I, Fin (t I).val) ↪ α)
-    (a : Fin r.val → Fin (r.val+(h-r.val)) → K) (ha : LinearIndependent K a) :
+    (a : Fin r.val → Fin (r.val + (h - r.val)) → K) (ha : LinearIndependent K a) :
     ∃ I, LinearIndependent K (Fin.append a
       (fun j : Fin (t I).val => fun x =>
         v (label ⟨I,j⟩) (Fin.cast (Nat.add_sub_of_le (Nat.le_of_lt_succ r.isLt)) x))) := by

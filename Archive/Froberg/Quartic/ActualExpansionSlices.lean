@@ -131,7 +131,7 @@ theorem correctionCount_cast (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual quotient target has precisely the integer source count T. -/
 theorem target_finrank_cast (g : Fin c → Rows K m 1) (hg : LinearIndependent K g)
-    (e₀ : ℕ) (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2)) :
+    (e₀ : ℕ) (hzero : RowExpansionOpen.Expands g c (e₀ + c * (m + 1).choose 2)) :
     (finrank K (Target g):ℤ)=UniformScalar.targetCount m c := by
   have h := (Relations g).finrank_quotient_add_finrank
   have hr := ExpansionCommonOpen.relation_finrank_of_zero_expansion g hg e₀ hzero
@@ -151,7 +151,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem surplus_cast (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
     (g : Fin (mixedCount m upper) → Rows K m 1) (hg : LinearIndependent K g)
     (e₀ : ℕ) (hzero : RowExpansionOpen.Expands g (mixedCount m upper)
-      (e₀+mixedCount m upper*(m+1).choose 2)) :
+      (e₀ + mixedCount m upper * (m + 1).choose 2)) :
     upperEndpoint m*totalA m (mixedCount m upper) ≤ finrank K (Target g) ∧
     ((finrank K (Target g)-upperEndpoint m*totalA m (mixedCount m upper):ℕ):ℤ)=
       Counts.j m (upperEndpoint m) (mixedCount m upper) := by
@@ -267,7 +267,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Products with the mixed generators are exactly the relations killed
 before quotient covectors are formed. -/
 theorem annihilates_relations (g : Fin c → Rows K m 1) (ell : Rows K m 3 →ₗ[K] K)
-    (hE : ∀ j f,ell (multiplication f (g j))=0) : Relations g ≤ LinearMap.ker ell := by
+    (hE : ∀ j f, ell (multiplication f (g j)) = 0) : Relations g ≤ LinearMap.ker ell := by
   apply iSup_le
   intro f
   rintro z ⟨v,hv,rfl⟩

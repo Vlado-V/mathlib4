@@ -26,7 +26,7 @@ lemma weight_natCast_mod_two (w : σ → ℕ) (a : σ →₀ ℕ) :
 
 /-- Equivalence with the literal support parity used by the background proof. -/
 theorem parity_homogeneous_iff (w : σ → ℕ) (f : MvPolynomial σ K)
-    (p : ℕ) (hp : p<2) :
+    (p : ℕ) (hp : p < 2) :
     f.IsWeightedHomogeneous (fun i => (w i : ZMod 2)) (p : ZMod 2) ↔
       ∀ a, f.coeff a ≠ 0 → Finsupp.weight w a%2=p := by
   constructor

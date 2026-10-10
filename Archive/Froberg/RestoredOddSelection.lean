@@ -19,14 +19,14 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
-theorem exists_even_restored_odd_basis_on_open (hd : d%2=0)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)
+theorem exists_even_restored_odd_basis_on_open (hd : d % 2 = 0)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (idx : Fin r ≃ Label q J counts)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
-    (hslot : ∀ k,0<degree (idx (slot k)))
+    (hslot : ∀ k, 0 < degree (idx (slot k)))
     (p₀ : Space m d q J counts O) (hp₀ : EvenPositiveReduction p₀)
     (D : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K)
-    (hD : ∃ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0)
+    (hD : ∃ p : RestoredSpace m d q J counts O, eval (restoredCoordinates hO p) D ≠ 0)
     (hodd : ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →
       Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot p)))
     (E : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K)

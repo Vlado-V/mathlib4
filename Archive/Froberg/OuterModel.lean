@@ -18,7 +18,7 @@ namespace Froberg.OuterInjection
 open Module
 
 /-- The label bound in the finite-set form used by the quotient projection theorem. -/
-theorem core_labelsBelow_card_le {k a z s : ℕ} (b : Fin (a+z) →₀ ℕ) :
+theorem core_labelsBelow_card_le {k a z s : ℕ} (b : Fin (a + z) →₀ ℕ) :
     (AttachedMultiplication.labelsBelow (coreExponent (k := k) (s := s) z) b).card ≤
       k * b.degree.choose s := by
   classical
@@ -28,8 +28,8 @@ theorem core_labelsBelow_card_le {k a z s : ℕ} (b : Fin (a+z) →₀ ℕ) :
 /-- Exact dimensions for every injective attached presentation, so the same
 presentation can be used in all subsequent generic and uniform assertions. -/
 theorem outer_presentation_dimensions {K : Type*} [Field K]
-    {k a z s h : ℕ} (hn : 0 < a+z) (v : Labels k a s → Fin h → K)
-    (hi : ∀ c ≤ s+1, Function.Injective
+    {k a z s h : ℕ} (hn : 0 < a + z) (v : Labels k a s → Fin h → K)
+    (hi : ∀ c ≤ s + 1, Function.Injective
       (AttachedMultiplication.multiplication (d := c) (coreExponent z) v)) :
     finrank K ((Fin h → Forms K (a+z) s) ⧸
       AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree z)) =

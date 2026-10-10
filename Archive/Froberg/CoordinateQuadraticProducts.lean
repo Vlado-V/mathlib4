@@ -17,7 +17,7 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {h L : ℕ}
 
-def coordinateLinearForms (hL : L≤h) : Fin L → Forms K h 1 :=
+def coordinateLinearForms (hL : L ≤ h) : Fin L → Forms K h 1 :=
   fun i => ⟨X (Fin.castLE hL i),isHomogeneous_X _ _⟩
 
 def quadraticPairForms (o : Fin L → Forms K h 1) : Sym2 (Fin L) → Forms K h 2 :=
@@ -28,7 +28,7 @@ def quadraticPairForms (o : Fin L → Forms K h 1) : Sym2 (Fin L) → Forms K h 
   induction p using Sym2.inductionOn with
   | _ i j => rfl
 
-theorem coordinateLinearForms_pairProducts_independent (hL : L≤h) :
+theorem coordinateLinearForms_pairProducts_independent (hL : L ≤ h) :
     LinearIndependent K (pairProducts (fun i => (coordinateLinearForms (K := K) hL i).val)) := by
   have hh := (linearIndependent_pairProducts_X (K := K) (ι := Fin L)).map'
     (rename (Fin.castLE hL)).toLinearMap

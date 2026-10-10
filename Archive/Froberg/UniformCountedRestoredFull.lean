@@ -22,7 +22,7 @@ namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial
 
 set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
-theorem eventually_uniform_counted_restored_full_open {d : ℕ} (hd : 3≤d) (heven : d%2=0) :
+theorem eventually_uniform_counted_restored_full_open {d : ℕ} (hd : 3 ≤ d) (heven : d % 2 = 0) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (k lo : ℕ),0<k → h=k*centralHalfBinomial d → 0<h →
       ∀ (upper : Bool) (a f e : ℕ → ℕ),(∀ n,a n≤n) →
       (∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) →

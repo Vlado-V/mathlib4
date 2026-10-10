@@ -16,7 +16,7 @@ namespace Froberg.PrivateColumns
 open Finset OuterInjection MonomialExpansion
 
 /-- Removing a fixed monomial identifies its divisible multiples with the residual degree. -/
-def divisibleDegreeEquiv {n s t : ℕ} (α : Fin n →₀ ℕ) (hα : α.degree=s) :
+def divisibleDegreeEquiv {n s t : ℕ} (α : Fin n →₀ ℕ) (hα : α.degree = s) :
     {β : Degree n (s+t) // α≤β.val} ≃ Degree n t where
   toFun β := ⟨β.val.val-α, mem_exponents.mpr (by
     have h := congrArg Finsupp.degree (tsub_add_cancel_of_le β.property)
@@ -27,14 +27,14 @@ def divisibleDegreeEquiv {n s t : ℕ} (α : Fin n →₀ ℕ) (hα : α.degree=
   left_inv β := by apply Subtype.ext; apply Subtype.ext; exact tsub_add_cancel_of_le β.property
   right_inv γ := by apply Subtype.ext; simp
 
-theorem card_divisible_degree {n s t : ℕ} (α : Fin n →₀ ℕ) (hα : α.degree=s) :
+theorem card_divisible_degree {n s t : ℕ} (α : Fin n →₀ ℕ) (hα : α.degree = s) :
     Fintype.card {β : Degree n (s+t) // α≤β.val} = (n+t-1).choose t := by
   rw [Fintype.card_congr (divisibleDegreeEquiv α hα),card_degree]
 
 def coreGoodMultipliers (a z s : ℕ) : Finset (Degree (a+z) (s+1)) :=
   univ.filter (fun γ => (corePart γ.val).degree≤ s-1)
 
-theorem coreGoodMultipliers_card (a z : ℕ) {s : ℕ} (hs : 0<s) :
+theorem coreGoodMultipliers_card (a z : ℕ) {s : ℕ} (hs : 0 < s) :
     (coreGoodMultipliers a z s).card + (a+(s+1)-1).choose (s+1) +
       z*(a+s-1).choose s = (a+z+(s+1)-1).choose (s+1) := by
   let S : Finset (Degree (a+z) (s+1)) := univ.filter (fun γ => (corePart γ.val).degree=s)
@@ -72,7 +72,7 @@ def privateGoodMultipliers {b : ℕ} (a s : ℕ) {z : ℕ} (ι : Fin b ↪ Fin z
     Finset (Degree (a+z) (s+1)) :=
   (coreGoodMultipliers a z s).filter (fun γ => ∀ j, ¬privateExponent a s ι j≤γ.val)
 
-theorem privateGoodMultipliers_card_lower {a z s b : ℕ} (hs : 0<s)
+theorem privateGoodMultipliers_card_lower {a z s b : ℕ} (hs : 0 < s)
     (ι : Fin b ↪ Fin z) :
     (a+z+(s+1)-1).choose (s+1) ≤ (privateGoodMultipliers a s ι).card +
       (a+(s+1)-1).choose (s+1) + z*(a+s-1).choose s + b*(a+z) := by
@@ -99,8 +99,8 @@ theorem privateGoodMultipliers_card_lower {a z s b : ℕ} (hs : 0<s)
 
 /-- The shifted target has just the selected private divisor. -/
 theorem privateGoodMultipliers_unique_divisor {a z s b : ℕ}
-    (ι : Fin b ↪ Fin z) (i : Fin b) {γ : Degree (a+z) (s+1)}
-    (hγ : γ∈privateGoodMultipliers a s ι) :
+    (ι : Fin b ↪ Fin z) (i : Fin b) {γ : Degree (a + z) (s + 1)}
+    (hγ : γ ∈ privateGoodMultipliers a s ι) :
     privateDivisors (s := s) ι (privateExponent a s ι i+γ.val)={i} := by
   classical
   have hgood := (mem_filter.mp hγ).2

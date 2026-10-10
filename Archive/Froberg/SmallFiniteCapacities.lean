@@ -19,13 +19,13 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-private theorem small_beta_pos {d : ℕ} (hd : 3≤d) : 0<countBeta d := by
+private theorem small_beta_pos {d : ℕ} (hd : 3 ≤ d) : 0<countBeta d := by
   have hG := (countTauFour_pos hd).trans_le (countTauFour_le_gamma d)
   unfold countBeta
   positivity
 
 /-- The special quadratic symmetric-product space fits in the prescribed D. -/
-theorem eventually_special_quadratic_output_fits {d : ℕ} (hd : 3≤d) :
+theorem eventually_special_quadratic_output_fits {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop, 5*h^2/32≤quadraticOutputDimension d h := by
   have hA := natural_monomial_div_limit 5 (by omega : 0<32) (by omega : 0<2)
   filter_upwards [eventually_lt_of_normalized_limits _ _ 2 _ _ hA
@@ -76,7 +76,7 @@ theorem eventually_quintic_quartic_diagonal_capacity :
   simpa only [higherGeneratorCount,smallGamma,show 5-4=1 by omega,pow_one] using hh
 
 /-- For d=6,7,8 the quartic output witness combines with paired scalar forms. -/
-theorem eventually_small_quartic_diagonal_capacity {d : ℕ} (hd : 6≤d) (hd8 : d≤8) :
+theorem eventually_small_quartic_diagonal_capacity {d : ℕ} (hd : 6 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ n : ℕ in atTop,
       higherGeneratorCount d h n 4≤(h^4/256)*((n/2).choose (d-4)/2) := by
   have hA := natural_monomial_div_limit 1 (by omega : 0<256) (by omega : 0<4)

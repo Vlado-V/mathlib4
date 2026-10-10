@@ -34,9 +34,9 @@ def layerCondition (w v R d j : ℕ)
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Exact finite capacities suffice for an injective product row with the
 prescribed output constraints. No separate-pair independence is assumed. -/
-theorem exists_constrained_product_row {w v d R : ℕ} (hw : 0<w) (hv : 0<v)
+theorem exists_constrained_product_row {w v d R : ℕ} (hw : 0 < w) (hv : 0 < v)
     (J : Finset ℕ) (e : ℕ → ℕ)
-    (heven : ∀ j∈J, Even j) (hdegree : ∀ j∈J, j≤d)
+    (heven : ∀ j ∈ J, Even j) (hdegree : ∀ j ∈ J, j ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
     (hdiag : ∀ r : Row J R, r.val.val=R-r.val.val →
       e r.val.val ≤ (w.choose r.val.val-finrank K X) * (v.choose (d-r.val.val)/2))

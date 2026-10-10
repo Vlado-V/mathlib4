@@ -38,7 +38,7 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) : Matrix N (Fin c × Fin b) K :=
   fun j z => covector ell (mu (Pi.single z.2 1) (H j z.1))
 
- theorem rank_eq (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+theorem rank_eq (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) :
     (constraint mu ell H).rank = finrank K
       ((Submodule.span K (Set.range H)).map (CoefficientConstraintRank.repeated (relationMap mu
@@ -117,7 +117,7 @@ def polynomialConstraint
   fun j z => ∑ v : Fin a, ∑ k : Fin T,
     H j z.1 v * ell k * C (mu (Pi.single z.2 1) (Pi.single v 1) k)
 
- theorem eval_polynomialConstraint
+theorem eval_polynomialConstraint
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → MvPolynomial I K) (H : N → Fin c → Fin a → MvPolynomial I K)
     (p : I → K) :

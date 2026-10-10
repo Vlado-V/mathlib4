@@ -30,7 +30,7 @@ theorem two_family_nonzero_open
     (hbound : ∀ F₁ F₂, F₁ ≠ 0 → F₂ ≠ 0 →
       let d₁ := finrank K (tupleSpan F₁)
       let d₂ := finrank K (tupleSpan F₂)
-      d₁*(a₁-d₁)+q₁*d₁+d₂*(a₂-d₂)+q₂*d₂ ≤ finrank K (B (F₁,F₂)).range) :
+      d₁ * (a₁ - d₁) + q₁ * d₁ + d₂ * (a₂ - d₂) + q₂ * d₂ ≤ finrank K (B (F₁, F₂)).range) :
     ∃ D : MvPolynomial (Fin (finrank K V)) K, (∃ x, eval x D ≠ 0) ∧
       ∀ x, eval x D ≠ 0 → ∀ F₁ F₂, F₁ ≠ 0 → F₂ ≠ 0 →
         B (F₁,F₂) ((Module.finBasis K V).equivFun.symm x) ≠ 0 := by

@@ -25,19 +25,19 @@ variable {h m d q r b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-def privateEndpointFamily (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+def privateEndpointFamily (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
-    (P : Fin b → FullBiform K (Fin h) m 1 (d-1)) (U : Fin b → Forms K h d) :
+    (P : Fin b → FullBiform K (Fin h) m 1 (d - 1)) (U : Fin b → Forms K h d) :
     Fin (r+b) → Forms K (h+m) d :=
   privateSplitEndpoint (fun i => evenGenerator hO hJ heven p (e i)) (privateOddFamily hd ho P U)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem privateEndpointFamily_scalar (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem privateEndpointFamily_scalar (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
-    (P : Fin b → FullBiform K (Fin h) m 1 (d-1)) (U : Fin b → Forms K h d)
-    (i : Fin r) (j : Fin q) (he : e i=Sum.inl j) :
+    (P : Fin b → FullBiform K (Fin h) m 1 (d - 1)) (U : Fin b → Forms K h d)
+    (i : Fin r) (j : Fin q) (he : e i = Sum.inl j) :
     privateEndpointFamily hd ho hO hJ heven e p P U (finSumFinEquiv (Sum.inl i))=
       renameForm (Fin.natAdd h) (p.1 (Sum.inl j)) := by
   apply Subtype.ext
@@ -54,14 +54,14 @@ theorem privateEndpointFamily_scalar (hd : 0<d) (ho : d%2=1)
   simp [generator,scalar,high]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem prepared_private_formal_relations (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hpos : ∀ j∈J,0<j) (e : Fin r ≃ Label q J counts)
-    (p : Space m d q J counts O) (P : Fin b → FullBiform K (Fin h) m 1 (d-1))
+theorem prepared_private_formal_relations (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hpos : ∀ j ∈ J, 0 < j) (e : Fin r ≃ Label q J counts)
+    (p : Space m d q J counts O) (P : Fin b → FullBiform K (Fin h) m 1 (d - 1))
     (U : Fin b → Forms K h d)
     (hi : LinearIndependent K (privateEndpointFamily hd ho hO hJ heven e p P U))
-    (D : Submodule K (Forms K (h+m) (2*d)))
-    (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range)
+    (D : Submodule K (Forms K (h + m) (2 * d)))
+    (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)
     (hodd : ∀ a : (endpointMultiplication (privateEndpointFamily hd ho hO hJ heven e p P U)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
         (1-biformSplitEndpointParity (q := r) (f := b) i)) →
@@ -113,10 +113,10 @@ def privateBackgroundFlagIndex (e : Fin r ≃ Label q J counts) :
       (Equiv.refl (Fin b))).trans finSumFinEquiv)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
-    (P : Fin b → FullBiform K (Fin h) m 1 (d-1)) (U : Fin b → Forms K h d)
+    (P : Fin b → FullBiform K (Fin h) m 1 (d - 1)) (U : Fin b → Forms K h d)
     (F : PreparedTarget.OuterSpace K (Fin h) m d f) :
     privateEndpointFamily hd ho hO hJ heven e p P U ∘ privateBackgroundFlagIndex e=
       Sum.elim (fun j => renameForm (Fin.natAdd h) (p.1 (Sum.inl j)))
@@ -154,10 +154,10 @@ theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0<d) (ho : d%2=1)
     exact ((renameEquiv K finSumFinEquiv).left_inv _).symm
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem privateEndpointFamily_flag_span {f : ℕ} (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
+theorem privateEndpointFamily_flag_span {f : ℕ} (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
-    (P : Fin b → FullBiform K (Fin h) m 1 (d-1)) (U : Fin b → Forms K h d)
+    (P : Fin b → FullBiform K (Fin h) m 1 (d - 1)) (U : Fin b → Forms K h d)
     (F : PreparedTarget.OuterSpace K (Fin h) m d f) :
     Submodule.span K (Set.range (privateEndpointFamily hd ho hO hJ heven e p P U))=
       embeddedFlagSpace (renameForm (Fin.natAdd h)) (fun j : Fin q => p.1 (Sum.inl j)) ⊔

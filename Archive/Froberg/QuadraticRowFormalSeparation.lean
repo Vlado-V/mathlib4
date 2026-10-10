@@ -27,9 +27,9 @@ theorem formalSquare_separated_of_coefficient_row
     (mu : SymmetricSquare K V →ₗ[K] W) (R : W →ₗ[K] Y)
     (A : X →ₗ[K] Y) (q : Fin f → V) (L : Submodule K V)
     (hrow : ∀ x (a : Sym2 (Fin f) → K),
-      A x+(∑ s,a s • R (mu (formalPair q s)))=0 → a=0)
-    (hL : (formalMixed L).map mu≤A.range.comap R)
-    (D : Submodule K W) (hD : D≤A.range.comap R) :
+      A x + (∑ s, a s • R (mu (formalPair q s))) = 0 → a = 0)
+    (hL : (formalMixed L).map mu ≤ A.range.comap R)
+    (D : Submodule K W) (hD : D ≤ A.range.comap R) :
     formalSquare (Submodule.span K (Set.range q)) ⊓
       ((formalMixed L).map (D.mkQ.comp mu)).comap (D.mkQ.comp mu)=⊥ := by
   classical

@@ -59,7 +59,7 @@ def denominator (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     cases z <;> rfl
   rw [hf]
 
- theorem rationalMap_eq_reconstruct (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
+theorem rationalMap_eq_reconstruct (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (u : Fin r ↪ Fin a) (v : Fin r ↪ Fin n)
     (t : I → K) (y : Fin q × Outside v → K)
     (hdet : (KernelCharts.minor (evaluated A t) u v).det ≠ 0) :

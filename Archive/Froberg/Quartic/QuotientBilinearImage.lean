@@ -63,7 +63,7 @@ theorem finrank_map_mkQ_add [FiniteDimensional K W] (R S : Submodule K W) (hRS :
   rw [hr,hk,(Submodule.comapSubtypeEquivOfLe hRS).finrank_eq] at hn
   exact hn
 
- theorem le_preimage (E : Submodule K V) (L : Submodule K (V ⧸ E)) :
+theorem le_preimage (E : Submodule K V) (L : Submodule K (V ⧸ E)) :
     E ≤ L.comap E.mkQ := by
   intro v hv
   change E.mkQ v ∈ L
@@ -71,7 +71,7 @@ theorem finrank_map_mkQ_add [FiniteDimensional K W] (R S : Submodule K W) (hRS :
   rw [hz]
   exact L.zero_mem
 
- theorem finrank_preimage [FiniteDimensional K V] (E : Submodule K V)
+theorem finrank_preimage [FiniteDimensional K V] (E : Submodule K V)
     (L : Submodule K (V ⧸ E)) :
     finrank K (L.comap E.mkQ) = finrank K L + finrank K E := by
   have h := finrank_map_mkQ_add E (L.comap E.mkQ) (le_preimage E L)
@@ -97,7 +97,7 @@ theorem image_eq_map (mu : F →ₗ[K] V →ₗ[K] W) (E : Submodule K V) (R : S
   · rintro ⟨w,⟨v,hv,rfl⟩,rfl⟩
     exact ⟨E.mkQ v,hv,hcomm f v⟩
 
- theorem image_mono (mu : F →ₗ[K] V →ₗ[K] W) {S T : Submodule K V} (hST : S ≤ T) :
+theorem image_mono (mu : F →ₗ[K] V →ₗ[K] W) {S T : Submodule K V} (hST : S ≤ T) :
     BilinearImage.image mu S ≤ BilinearImage.image mu T := by
   apply iSup_le
   intro f

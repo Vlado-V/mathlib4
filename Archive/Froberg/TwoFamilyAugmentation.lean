@@ -30,7 +30,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem twoFamily_append_coprod_injective
     (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W) (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W)
     (F : Fin q₁ → P₁) (Q : Fin q₂ → P₂) (A : Fin t → P₂)
-    (h : Function.Injective (twoFamilyMultiplication mu₁ mu₂ (F,Fin.append Q A))) :
+    (h : Function.Injective (twoFamilyMultiplication mu₁ mu₂ (F, Fin.append Q A))) :
     Function.Injective ((twoFamilyMultiplication mu₁ mu₂ (F,Q)).coprod
       (BilinearScalarFamily.multiplication mu₂ A)) := by
   exact scalar_append_coprod_injective (BilinearScalarFamily.multiplication mu₁ F) mu₂ Q A h
@@ -41,7 +41,7 @@ not change the old generator count or its actual quotient. -/
 theorem twoFamily_augmented_quotient_growth
     (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W) (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W)
     (F : Fin q₁ → P₁) (Q : Fin q₂ → P₂) (A : Fin t → P₂)
-    (h : Function.Injective (twoFamilyMultiplication mu₁ mu₂ (F,Fin.append Q A)))
+    (h : Function.Injective (twoFamilyMultiplication mu₁ mu₂ (F, Fin.append Q A)))
     (L : Submodule K V₂) :
     t*finrank K L≤finrank K (Quartic.BilinearImage.image
       (scalarModulo (twoFamilyMultiplication mu₁ mu₂ (F,Q)) mu₂) L) :=

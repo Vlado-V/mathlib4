@@ -31,10 +31,10 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Normalization of a principal open, for any condition invariant under
 nonzero scalar multiplication of the full parameter vector. -/
 theorem principal_open_affine_normalization
-    (D : MvPolynomial (Fin (n+1)) K) (hD : ∃ y,eval y D≠0)
-    (Good : (Fin (n+1) → K) → Prop)
-    (hgood : ∀ y,eval y D≠0 → Good y)
-    (hscale : ∀ (c : K),c≠0 → ∀ y,Good (c • y) → Good y) :
+    (D : MvPolynomial (Fin (n + 1)) K) (hD : ∃ y, eval y D ≠ 0)
+    (Good : (Fin (n + 1) → K) → Prop)
+    (hgood : ∀ y, eval y D ≠ 0 → Good y)
+    (hscale : ∀ (c : K), c ≠ 0 → ∀ y, Good (c • y) → Good y) :
     ∃ P : MvPolynomial (Fin n) K,
       (∃ x,eval x P≠0) ∧ ∀ x,eval x P≠0 → Good (Fin.snoc x 1) := by
   classical

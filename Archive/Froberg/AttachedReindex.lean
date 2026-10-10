@@ -25,7 +25,7 @@ lemma multiplication_reindex (r : I' ≃ I) (e : I → Fin n →₀ ℕ) (v : I 
   simpa only [multiplication_apply,Function.comp_apply,Equiv.symm_apply_apply] using heq
 
 lemma homogeneousMultiplication_reindex (r : I' ≃ I) (e : I → Fin n →₀ ℕ)
-    (v : I → J → K) (he : ∀ i,(e i).degree=s) (a : I' → Forms K n d) :
+    (v : I → J → K) (he : ∀ i, (e i).degree = s) (a : I' → Forms K n d) :
     homogeneousMultiplication (e ∘ r) (v ∘ r) (fun i => he (r i)) a=
       homogeneousMultiplication e v he (a ∘ r.symm) := by
   funext j
@@ -42,7 +42,7 @@ lemma multiplication_injective_reindex (r : I' ≃ I) (e : I → Fin n →₀ �
   simpa only [Function.comp_apply,Equiv.symm_apply_apply] using congrFun hh (r i)
 
 lemma relationSpace_reindex (r : I' ≃ I) (e : I → Fin n →₀ ℕ)
-    (v : I → J → K) (he : ∀ i,(e i).degree=s) :
+    (v : I → J → K) (he : ∀ i, (e i).degree = s) :
     relationSpace (d := d) (e ∘ r) (v ∘ r) (fun i => he (r i))=relationSpace (d := d) e v he := by
   ext x
   constructor

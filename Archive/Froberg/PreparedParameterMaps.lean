@@ -43,8 +43,8 @@ def layerMap (j : ℕ) (i : Fin (counts j)) :
   by_cases hj : j∈J <;> simp [layerMap,layers,hj]
 
 def homogeneousLayerMap
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (j : ℕ) (i : Fin (counts j)) :
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (j : ℕ) (i : Fin (counts j)) :
     Space n d q J counts O →ₗ[K] homogeneousSubmodule (σ ⊕ Fin n) K d :=
   (layerMap (q := q) j i).codRestrict (homogeneousSubmodule (σ ⊕ Fin n) K d) (by
     intro p
@@ -57,7 +57,7 @@ def homogeneousLayerMap
     · simp [layerMap,layers,hj])
 
 def intrinsicLayerMap
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (i : Fin (counts R.val)) :
     Space n d q J counts O →ₗ[K] FullBiform K σ n R.val (d-R.val) :=
   (layerMap (q := q) R.val i).codRestrict (FullBiform K σ n R.val (d-R.val)) (by
@@ -71,8 +71,8 @@ def intrinsicLayerMap
 /-- All actual product columns are polynomial on the common parameter space. -/
 theorem product_polynomial
     [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : ℕ) :
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : ℕ) :
     IsPolynomialFamily (fun a : Fin (finrank K (Space n d q J counts O)) → K =>
       ProductRows.multiplication counts
         (layers ((Module.finBasis K (Space n d q J counts O)).equivFun.symm a)) J R) := by

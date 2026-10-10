@@ -16,8 +16,8 @@ public import Archive.Froberg.OddRowGeneralBudget
 noncomputable section
 namespace Froberg
 
-theorem oddRow_leading_ratio_sharp {d b h : ℕ} (hd : 3≤d) (hb : 3≤b) (hbd : b≤d)
-    (hh : 0<h) :
+theorem oddRow_leading_ratio_sharp {d b h : ℕ} (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d)
+    (hh : 0 < h) :
     criticalRatio d*((b : ℝ)*h/((h : ℝ)+b-1)*((2*d-b).choose (d-1) : ℝ)+
       ((2*d-b).choose d : ℝ)) < 13/25 := by
   have hden : 0<(h : ℝ)+b-1 := by
@@ -44,7 +44,7 @@ theorem oddRowExtraDensity_pos (d : ℕ) : 0<oddRowExtraDensity d := by
   unfold oddRowExtraDensity
   positivity
 
-theorem oddRow_extra_ratio_le {d b : ℕ} (hb : b≤d) :
+theorem oddRow_extra_ratio_le {d b : ℕ} (hb : b ≤ d) :
     oddRowExtraDensity d*(d.factorial : ℝ)*((2*d-b).choose d : ℝ) ≤ 1/100 := by
   have hc : (2*d-b).choose d*d.factorial≤(2*d).factorial := by
     calc
@@ -64,7 +64,7 @@ theorem oddRow_extra_ratio_le {d b : ℕ} (hb : b≤d) :
   nlinarith
 
 theorem oddRow_augmented_leading_ratio_lt {d b h : ℕ}
-    (hd : 3≤d) (hb : 3≤b) (hbd : b≤d) (hh : 0<h) :
+    (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d) (hh : 0 < h) :
     criticalRatio d*((b : ℝ)*h/((h : ℝ)+b-1)*((2*d-b).choose (d-1) : ℝ)+
       ((2*d-b).choose d : ℝ))+
       oddRowExtraDensity d*(d.factorial : ℝ)*((2*d-b).choose d : ℝ) < 1 := by

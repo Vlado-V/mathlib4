@@ -17,8 +17,8 @@ namespace Froberg
 open Filter
 open scoped Topology
 
-theorem layered_capacity_eventually {d : ℕ} (hd : 0<d)
-    (H a q C : ℕ → ℕ) (c δ : ℝ) (hc : 0<c) (hδ : 0<δ)
+theorem layered_capacity_eventually {d : ℕ} (hd : 0 < d)
+    (H a q C : ℕ → ℕ) (c δ : ℝ) (hc : 0 < c) (hδ : 0 < δ)
     (hH : Tendsto (fun n : ℕ => (H n : ℝ)/(n : ℝ)^d) atTop (𝓝 0))
     (ha : Tendsto (fun n : ℕ => (a n : ℝ)/(n : ℝ)^d) atTop (𝓝 0))
     (hq : Tendsto (fun n : ℕ => (q n : ℝ)/(n : ℝ)^d) atTop (𝓝 0))

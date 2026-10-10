@@ -30,9 +30,9 @@ variable {b r : Fin n → ℕ}
 /-- A genuine prefix profile is empty after adjoining s actual homogeneous
 linear slices when its joint projective parameter budget is negative. -/
 theorem principal_open_excludes_profile_of_int_bound
-    (mu : (Fin B → K) →ₗ[K] (Fin (∑ i,b i) → K) →ₗ[K] (Fin T → K))
-    (g : ℤ) (hg : (parameterCount b r:ℤ) ≤ g)
-    (hcount : g+(T:ℤ)-(e:ℤ)-1 < (q*((∑ i,b i)-(∑ i,r i))+s:ℕ)) :
+    (mu : (Fin B → K) →ₗ[K] (Fin (∑ i, b i) → K) →ₗ[K] (Fin T → K))
+    (g : ℤ) (hg : (parameterCount b r : ℤ) ≤ g)
+    (hcount : g + (T : ℤ) - (e : ℤ) - 1 < (q * ((∑ i, b i) - (∑ i, r i)) + s : ℕ)) :
     ∃ P : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K B T q s))) K,
       (∃ x : SharedCovectorPolynomial.Input K B T q s,
         eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0) ∧
@@ -57,12 +57,13 @@ open ProfileChartBound ProfileCertificate LayerRankCounts
 /-- The manuscript Cell bound applies to the same actual ordered kernel
 profile, while the auxiliary target columns supply s further equations. -/
 theorem principal_open_excludes_Cell_profile
-    (m c i : ℕ) (hi : i ≤ coreA c) (r : Fin (freeW m c) → ℕ) (hr : ∀ k,r k ≤ 3)
+    (m c i : ℕ) (hi : i ≤ coreA c) (r : Fin (freeW m c) → ℕ) (hr : ∀ k, r k ≤ 3)
     (mu : (Fin B → K) →ₗ[K]
-      (Fin (∑ k,blockDimensions (coreA c) (freeW m c) k) → K) →ₗ[K] (Fin T → K))
-    (hcount : Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3)+
-      (T:ℤ)-(e:ℤ)-1 < (q*(totalA m c-profileDim i (levelCount r 1) (levelCount r 2) (levelCount r
-        3))+s:ℕ)) :
+      (Fin (∑ k, blockDimensions (coreA c) (freeW m c) k) → K) →ₗ[K] (Fin T → K))
+    (hcount : Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) +
+      (T : ℤ) - (e : ℤ) - 1 < (q * (totalA m c - profileDim i (levelCount r 1) (levelCount r 2)
+        (levelCount r
+        3)) + s : ℕ)) :
     ∃ P : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K B T q s))) K,
       (∃ x : SharedCovectorPolynomial.Input K B T q s,
         eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0) ∧

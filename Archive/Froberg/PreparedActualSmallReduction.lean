@@ -23,8 +23,8 @@ variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem allEvenCount_off_two_small {d : ℕ} (hd : d=3 ∨ d=4)
-    (h n e : ℕ) {j : ℕ} (hj : j≠2) : allEvenCount d h n e j=0 := by
+theorem allEvenCount_off_two_small {d : ℕ} (hd : d = 3 ∨ d = 4)
+    (h n e : ℕ) {j : ℕ} (hj : j ≠ 2) : allEvenCount d h n e j=0 := by
   apply allEvenCount_inactive
   intro ha
   have hb := activeEvenIndices_bounds (by omega : 3≤d) ha

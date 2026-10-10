@@ -37,7 +37,8 @@ def privateGoodTargets (ι : Fin b ↪ Fin z) (i : Fin b) :
       ι).card := card_map _
 
 lemma privateGoodTargets_properties (hs : 0 < s) (ι : Fin b ↪ Fin z)
-    (i : Fin b) {β : Degree (a+z) (2*s+1)} (hβ : β∈privateGoodTargets (a := a) (s := s) ι i) :
+    (i : Fin b) {β : Degree (a + z) (2 * s + 1)} (hβ : β ∈ privateGoodTargets (a := a) (s := s) ι
+      i) :
     (corePart β.val).degree < s ∧ privateExponent a s ι i ≤ β.val ∧
       ∀ j, privateExponent a s ι j ≤ β.val → j=i := by
   obtain ⟨γ,hγ,rfl⟩ := mem_map.mp hβ

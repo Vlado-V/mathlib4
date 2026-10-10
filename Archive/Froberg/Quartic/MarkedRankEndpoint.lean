@@ -34,7 +34,7 @@ theorem multiplication_rank_le (q : Fin r → Forms K n 2) (hq : LinearIndepende
   omega
 
 theorem kernel_le_of_rank (q : Fin r → Forms K n 2) (hq : LinearIndependent K q)
-    (hrank : r*(n+1).choose 2-r.choose 2≤finrank K (quadraticMultiplication q).range) :
+    (hrank : r * (n + 1).choose 2 - r.choose 2 ≤ finrank K (quadraticMultiplication q).range) :
     (quadraticMultiplication q).ker≤koszulSpace q := by
   have hB : finrank K (koszulSpace q)=r.choose 2 :=
     (finrank_span_eq_card (koszulVector_linearIndependent q hq)).trans card_generatorPair
@@ -52,7 +52,7 @@ theorem kernel_le_of_rank (q : Fin r → Forms K n 2) (hq : LinearIndependent K 
 
 theorem exact_and_square_survives (q : Fin r → Forms K n 2)
     (hq : LinearIndependent K q) (ζ : Forms K n 2)
-    (haug : r*(n+1).choose 2-r.choose 2+1≤
+    (haug : r * (n + 1).choose 2 - r.choose 2 + 1 ≤
       finrank K (augmented (quadraticMultiplication q) (mulQuadratic ζ ζ)).range) :
     (quadraticMultiplication q).ker≤koszulSpace q ∧
       mulQuadratic ζ ζ∉(quadraticMultiplication q).range := by
@@ -62,7 +62,7 @@ theorem exact_and_square_survives (q : Fin r → Forms K n 2)
 
 theorem marked_of_augmented_rank (q : Fin r → Forms K n 2)
     (hq : LinearIndependent K q) (ζ : Forms K n 2)
-    (haug : r*(n+1).choose 2-r.choose 2+1≤
+    (haug : r * (n + 1).choose 2 - r.choose 2 + 1 ≤
       finrank K (augmented (quadraticMultiplication q) (mulQuadratic ζ ζ)).range) :
     MarkedLowerWitness K n r := by
   obtain ⟨he,hs⟩ := exact_and_square_survives q hq ζ haug

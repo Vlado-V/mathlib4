@@ -26,7 +26,7 @@ variable {c : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_slices_principal_open (mu : F →ₗ[K] V →ₗ[K] W)
-    (A : (I → K) → Fin c → W) (hA : ∀ i,IsPolynomialFamily (fun p => A p i))
+    (A : (I → K) → Fin c → W) (hA : ∀ i, IsPolynomialFamily (fun p => A p i))
     (s : ℕ → ℕ) (p₀ : I → K)
     (hzero : HasClosedKernelSlices
       (targetPostcompose mu (Submodule.span K (Set.range (A p₀))).mkQ) s) :

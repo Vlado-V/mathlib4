@@ -26,7 +26,7 @@ lemma outer_deficit_eq_reserve (d h b n : ℕ) (f : ℕ → ℕ) :
 
 theorem outer_deficit_eventually_positive {d h b : ℕ} (hd : 3 ≤ d)
     (f : ℕ → ℕ) {δ : ℝ} (hδ : 0 < δ)
-    (hreserve : ∀ᶠ n : ℕ in atTop,δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n (f n)) :
+    (hreserve : ∀ᶠ n : ℕ in atTop, δ * (n : ℝ) ^ (2 * d - 2) < dimensionReserve d h n (f n)) :
     ∀ᶠ n in atTop,
       0 < outerTargetCount d h b f n-(upperCount n d : ℝ)*outerSourceCount d h b f n := by
   have hb : Tendsto (fun n : ℕ => (b : ℝ)*((n+d-1).choose d : ℝ)/(n : ℝ)^(2*d-2))

@@ -19,7 +19,7 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d : ℕ} {I : Type*}
 
-theorem scalar_quotient_independence_transport (g : I → Forms K (h+m) d)
+theorem scalar_quotient_independence_transport (g : I → Forms K (h + m) d)
     (hg : LinearIndependent K (fun i =>
       (weightedHomogeneousSubmodule K (blockWeight h m) 0).mkQ
         (rename finSumFinEquiv.symm (g i).val))) :

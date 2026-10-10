@@ -30,7 +30,7 @@ theorem augmented_range (M : V →ₗ[K] W) (z : W) :
     (augmented M z).range=M.range ⊔ Submodule.span K {z} := by
   rw [augmented,LinearMap.range_coprod,LinearMap.range_toSpanSingleton]
 
-theorem augmented_range_of_mem (M : V →ₗ[K] W) {z : W} (hz : z∈M.range) :
+theorem augmented_range_of_mem (M : V →ₗ[K] W) {z : W} (hz : z ∈ M.range) :
     (augmented M z).range=M.range := by
   rw [augmented_range]
   exact sup_eq_left.mpr (Submodule.span_le.mpr (by
@@ -39,8 +39,8 @@ theorem augmented_range_of_mem (M : V →ₗ[K] W) {z : W} (hz : z∈M.range) :
     exact hz))
 
 theorem rank_and_survival [FiniteDimensional K W] (M : V →ₗ[K] W) (z : W)
-    (r : ℕ) (hupper : finrank K M.range≤r)
-    (haug : r+1≤finrank K (augmented M z).range) :
+    (r : ℕ) (hupper : finrank K M.range ≤ r)
+    (haug : r + 1 ≤ finrank K (augmented M z).range) :
     finrank K M.range=r ∧ z∉M.range ∧ finrank K (augmented M z).range=r+1 := by
   have hz : z∉M.range := by
     intro hz
@@ -64,16 +64,16 @@ theorem pencil_eq (M₀ M₁ : V →ₗ[K] W) (z : W) (ε : K) :
   abel
 
 /-- The added fixed column supplies precisely the extra split-kernel vector. -/
-def extraCycle (M₀ : V →ₗ[K] W) (z : W) (b : V) (hb : M₀ b=z) :
+def extraCycle (M₀ : V →ₗ[K] W) (z : W) (b : V) (hb : M₀ b = z) :
     (augmented M₀ z).ker :=
   ⟨(b,-1),by change M₀ b+(-1 : K) • z=0; simp [hb]⟩
 
 @[simp] theorem extra_first_response (M₀ M₁ : V →ₗ[K] W) (z : W)
-    (b : V) (hb : M₀ b=z) :
+    (b : V) (hb : M₀ b = z) :
     perturbation M₁ (extraCycle M₀ z b hb).val=M₁ b := rfl
 
 theorem extra_pencil_response (M₀ M₁ : V →ₗ[K] W) (z : W)
-    (b : V) (hb : M₀ b=z) (ε : K) :
+    (b : V) (hb : M₀ b = z) (ε : K) :
     augmented (M₀+ε • M₁) z (extraCycle M₀ z b hb).val=ε • M₁ b := by
   rw [pencil_eq]
   exact deformation_first_response (augmented M₀ z) (perturbation M₁) ε
@@ -85,8 +85,8 @@ variable {J T : Type*} [Infinite K] [FiniteDimensional K V] [FiniteDimensional K
   [AddCommGroup T] [Module K T]
 
 omit [Infinite K] [FiniteDimensional K V] [FiniteDimensional K W] [FiniteDimensional K J] in
-theorem projection_annihilates (M₀ : V →ₗ[K] W) (z : W) (hz : z∈M₀.range)
-    (π : W →ₗ[K] J) (hπ : π.comp M₀=0) : π.comp (augmented M₀ z)=0 := by
+theorem projection_annihilates (M₀ : V →ₗ[K] W) (z : W) (hz : z ∈ M₀.range)
+    (π : W →ₗ[K] J) (hπ : π.comp M₀ = 0) : π.comp (augmented M₀ z)=0 := by
   obtain ⟨b,hb⟩ := hz
   have hzero : π z=0 := by rw [←hb]; exact LinearMap.congr_fun hπ b
   apply LinearMap.ext
@@ -99,8 +99,8 @@ theorem projection_annihilates (M₀ : V →ₗ[K] W) (z : W) (hz : z∈M₀.ran
 open on which the original map has its prescribed rank and the marked column
 survives. The rank premise is only the usual a priori upper bound. -/
 theorem marked_principal_open_of_realizations
-    (M₀ M₁ : V →ₗ[K] W) (z : W) (hz : z∈M₀.range)
-    (π : W →ₗ[K] J) (N : T →ₗ[K] J) (hπ : π.comp M₀=0)
+    (M₀ M₁ : V →ₗ[K] W) (z : W) (hz : z ∈ M₀.range)
+    (π : W →ₗ[K] J) (N : T →ₗ[K] J) (hπ : π.comp M₀ = 0)
     (hreal : ∀ ξ : T,∃ a b : V × K,
       augmented M₀ z a=0 ∧ augmented M₀ z b= -perturbation M₁ a ∧
         π (perturbation M₁ b)=N ξ)

@@ -29,7 +29,7 @@ def sharpReal (A B w b i n₁ n₂ n₃ : ℝ) : ℝ :=
 def totalReal (A B w : ℝ) : ℝ := B*w+A*quadraticReal w+3*cubicReal w
 
 theorem normalized_counts (m t A B w : ℝ) (hm : m ≠ 0)
-    (hA : A=2*(t-1)) (hB : B=t*(t-1)/2) (hw : w=m-t) :
+    (hA : A = 2 * (t - 1)) (hB : B = t * (t - 1) / 2) (hw : w = m - t) :
     coreA (t/m) (1/m)=A/m ∧ coreB (t/m) (1/m)=B/m^2 ∧
     freeW (t/m)=w/m ∧ quadratic (t/m) (1/m)=quadraticReal w/m^2 ∧
     cubic (t/m) (1/m)=cubicReal w/m^3 ∧
@@ -65,7 +65,7 @@ theorem max_minus (i p : ℝ) : max i p-i = max (p-i) 0 := by
 
 theorem normalized_dimension (m t A w i n₁ n₂ n₃ : ℝ)
     (hm : m ≠ 0) (hA : A ≠ 0) (hw : w ≠ 0)
-    (hcore : coreA (t/m) (1/m)=A/m) (hfree : freeW (t/m)=w/m) :
+    (hcore : coreA (t / m) (1 / m) = A / m) (hfree : freeW (t / m) = w / m) :
     profileDim (t/m) (1/m) (i/A) (n₁/w) (n₂/w) (n₃/w)=
       (i+n₁+n₂+n₃)/m := by
   unfold profileDim
@@ -75,9 +75,9 @@ theorem normalized_dimension (m t A w i n₁ n₂ n₃ : ℝ)
 
 theorem normalized_sharp (m t A B w b i n₁ n₂ n₃ : ℝ)
     (hm : m ≠ 0) (hA : 0 < A) (hw : w ≠ 0)
-    (hcounts : coreA (t/m) (1/m)=A/m ∧ coreB (t/m) (1/m)=B/m^2 ∧
-      freeW (t/m)=w/m ∧ quadratic (t/m) (1/m)=quadraticReal w/m^2 ∧
-      cubic (t/m) (1/m)=cubicReal w/m^3) :
+    (hcounts : coreA (t / m) (1 / m) = A / m ∧ coreB (t / m) (1 / m) = B / m ^ 2 ∧
+      freeW (t / m) = w / m ∧ quadratic (t / m) (1 / m) = quadraticReal w / m ^ 2 ∧
+      cubic (t / m) (1 / m) = cubicReal w / m ^ 3) :
     sharpNormalized (t/m) (1/m) (b/m^2) (i/A) (n₁/w) (n₂/w) (n₃/w)=
       sharpReal A B w b i n₁ n₂ n₃/m^3 := by
   have hAne := ne_of_gt hA
@@ -92,11 +92,11 @@ theorem normalized_sharp (m t A B w b i n₁ n₂ n₃ : ℝ)
 /-- The exact uniform numerical surplus, in the original (unscaled) real
 sharp expression, for every real ordered layer profile. -/
 theorem sharp_real_surplus (m t A B w b i n₁ n₂ n₃ : ℝ)
-    (hm : 64 ≤ m) (htlo : m/2 ≤ t) (hthi : t ≤ 14*m/25)
-    (hA : A=2*(t-1)) (hB : B=t*(t-1)/2) (hw : w=m-t)
+    (hm : 64 ≤ m) (htlo : m / 2 ≤ t) (hthi : t ≤ 14 * m / 25)
+    (hA : A = 2 * (t - 1)) (hB : B = t * (t - 1) / 2) (hw : w = m - t)
     (hi0 : 0 ≤ i) (hiA : i ≤ A)
     (hn : 0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ w)
-    (hb : B*i/A ≤ b) :
+    (hb : B * i / A ≤ b) :
     totalReal A B w/(A+3*w)*(i+n₁+n₂+n₃)+
       m^2/100*min (i+n₁+n₂+n₃) (A+3*w-(i+n₁+n₂+n₃)) ≤
     sharpReal A B w b i n₁ n₂ n₃ := by

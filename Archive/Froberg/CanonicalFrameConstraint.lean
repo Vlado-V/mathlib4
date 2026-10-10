@@ -46,11 +46,11 @@ theorem canonicalFrameConstraint_outputs (frame : Fin H → Forms K h 2) (j : �
   · simp only [canonicalFrameConstraint,targetLayerOutput,if_neg hj,LinearMap.ker_zero,inf_top_eq]
 
 theorem canonicalFrameConstraint_ge_four (frame : Fin H → Forms K h 2)
-    {j : ℕ} (hj : 4≤j) : canonicalFrameConstraint frame j=0 := by
+    {j : ℕ} (hj : 4 ≤ j) : canonicalFrameConstraint frame j=0 := by
   simp only [canonicalFrameConstraint,if_neg (show j≠2 by omega)]
 
-theorem canonicalFrameConstraint_dimension {d : ℕ} (hh : 0<h)
-    (hcolumn : outerColumnCount d h≤h)
+theorem canonicalFrameConstraint_dimension {d : ℕ} (hh : 0 < h)
+    (hcolumn : outerColumnCount d h ≤ h)
     (frame : Fin (quadraticOutputDimension d h) → Forms K h 2)
     (hframe : LinearIndependent K frame) :
     frameQuotientDimension frame=deletedTargetCount d h := by

@@ -24,11 +24,11 @@ variable {F V W : Type*}
 variable {m n d r t c : ℕ}
 
 theorem exists_local_comparison_of_odd_separation (hm : 0 < m)
-    (D : Submodule K (Forms K n (2*d)))
+    (D : Submodule K (Forms K n (2 * d)))
     (w : Fin n → ZMod 2) (parity : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
-    (hqparity : ∀ i,(q i).val.IsWeightedHomogeneous w (parity i))
-    (hD : ∀ z,D.mkQ z=0 → parityForm w 1 z=0)
+    (hqparity : ∀ i, (q i).val.IsWeightedHomogeneous w (parity i))
+    (hD : ∀ z, D.mkQ z = 0 → parityForm w 1 z = 0)
     (hodd : ∀ a : (endpointMultiplication q).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous w (1-parity i)) →
       a.val∈oppositeKoszulSpace q parity)

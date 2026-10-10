@@ -19,7 +19,7 @@ namespace Froberg
 open Module Finset MonomialExpansion OuterInjection
 
 lemma attached_quotient_dimension_sum {K I : Type*} [Field K] [Fintype I] [DecidableEq I]
-    {n s d h : ℕ} (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree=s) :
+    {n s d h : ℕ} (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s) :
     (finrank K ((Fin h → Forms K n (s+d)) ⧸ AttachedMultiplication.relationSpace (d := d) e v he) :
       ℝ) =
       ∑ β : Degree n (s+d), (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber e v
@@ -35,7 +35,7 @@ lemma attached_quotient_dimension_sum {K I : Type*} [Field K] [Fintype I] [Decid
   rfl
 
 lemma outer_source_dimension_profile {K : Type*} [Field K] {k a z s h : ℕ}
-    (hh : h=k*(2*s+1).choose s) (v : Labels k a s → Fin h → K)
+    (hh : h = k * (2 * s + 1).choose s) (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val)) :
     (finrank K ((Fin h → Forms K (a+z) s) ⧸
       AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree z)) :
@@ -65,7 +65,7 @@ lemma outer_target_dimension_sum {K : Type*} [Field K] {k a z s h : ℕ}
     (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) : ℝ)))
 
 lemma outer_target_dimension_budget {K : Type*} [Field K] {k a z s h : ℕ}
-    (hh : h=k*(2*s+1).choose s) (v : Labels k a s → Fin h → K)
+    (hh : h = k * (2 * s + 1).choose s) (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val)) :
     let T := (finrank K ((Fin h → Forms K (a+z) (s+(s+1))) ⧸
       AttachedMultiplication.relationSpace (d := s+1) (coreExponent z) v (coreExponent_degree z)) :

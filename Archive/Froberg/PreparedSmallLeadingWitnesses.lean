@@ -22,7 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_extended_leading_witnesses_late_output {d : ℕ}
-    (hd : 5≤d) (hd8 : d≤8) :
+    (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
       ∀ᶠ v : ℕ in atTop,
@@ -74,7 +74,7 @@ theorem eventually_actual_middle_extended_leading_witnesses_late_output {d : ℕ
 
 set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_all_scalar_leading_witnesses_late_output {d : ℕ}
-    (hd : 5≤d) (hd8 : d≤8) :
+    (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
       ∀ᶠ m : ℕ in atTop,

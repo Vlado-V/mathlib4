@@ -48,8 +48,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem biformTensorComponent_even (ht : t ≤ d) (he : t%2=0)
-    (v : Forms K h t ⊗[K] Forms K m (d-t)) :
+theorem biformTensorComponent_even (ht : t ≤ d) (he : t % 2 = 0)
+    (v : Forms K h t ⊗[K] Forms K m (d - t)) :
     biformTensorComponent ht (evenBiformEmbedding ht he v)=v := by
   apply sumBiformMap_injective
   rw [biformTensorComponent_spec,evenBiformEmbedding_val]
@@ -57,8 +57,8 @@ theorem biformTensorComponent_even (ht : t ≤ d) (he : t%2=0)
     (sumBiformMap_range.le ⟨v,rfl⟩)).weightedHomogeneousComponent_same
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem biformTensorComponent_odd (ht : t ≤ d) (ho : t%2=1)
-    (v : Forms K h t ⊗[K] Forms K m (d-t)) :
+theorem biformTensorComponent_odd (ht : t ≤ d) (ho : t % 2 = 1)
+    (v : Forms K h t ⊗[K] Forms K m (d - t)) :
     biformTensorComponent ht (oddBiformEmbedding ht ho v)=v := by
   apply sumBiformMap_injective
   rw [biformTensorComponent_spec,oddBiformEmbedding_val]
@@ -66,18 +66,18 @@ theorem biformTensorComponent_odd (ht : t ≤ d) (ho : t%2=1)
     (sumBiformMap_range.le ⟨v,rfl⟩)).weightedHomogeneousComponent_same
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem biformTensorComponent_even_surjective (ht : t ≤ d) (he : t%2=0) :
+theorem biformTensorComponent_even_surjective (ht : t ≤ d) (he : t % 2 = 0) :
     Function.Surjective (biformTensorComponent (K := K) (h := h) (m := m) (p := 0) ht) :=
   fun v => ⟨evenBiformEmbedding ht he v,biformTensorComponent_even ht he v⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem biformTensorComponent_odd_surjective (ht : t ≤ d) (ho : t%2=1) :
+theorem biformTensorComponent_odd_surjective (ht : t ≤ d) (ho : t % 2 = 1) :
     Function.Surjective (biformTensorComponent (K := K) (h := h) (m := m) (p := 1) ht) :=
   fun v => ⟨oddBiformEmbedding ht ho v,biformTensorComponent_odd ht ho v⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_eq_oddCoordinates (v : biformParitySpace K h m d 1)
-    (r : Fin ((d+1)/2)) :
+    (r : Fin ((d + 1) / 2)) :
     biformTensorComponent (by omega : 2*r.val+1 ≤ d) v=oddBiformCoordinatesEquiv v r := by
   apply sumBiformMap_injective
   rw [biformTensorComponent_spec,oddBiformCoordinatesEquiv_component]

@@ -34,7 +34,7 @@ local instance allOddPrivatePreparedWitnessFinite {h H m d q : ℕ}
   PreparedParameters.finite_space (fun j _ => privateFrameOutputs_homogeneous frame j)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-def CountedPrivatePreparedAt {d : ℕ} (hd : 0<d) (hodd : d%2=1) (w : ℕ) : Prop :=
+def CountedPrivatePreparedAt {d : ℕ} (hd : 0 < d) (hodd : d % 2 = 1) (w : ℕ) : Prop :=
   ∀ (z extra : ℕ) (err : ℕ → ℕ),
     (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
     ∀ᶠ v : ℕ in atTop,
@@ -63,7 +63,7 @@ def CountedPrivatePreparedAt {d : ℕ} (hd : 0<d) (hodd : d%2=1) (w : ℕ) : Pro
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_small_private_prepared_open {d : ℕ}
-    (hd : 3≤d) (hd8 : d≤8) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hd8 : d ≤ 8) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → CountedPrivatePreparedAt (K := K) (by omega) hodd w := by
   filter_upwards [eventually_counted_small_private_frame_open (K := K) hd hd8 hodd] with w hw
   intro hfour z extra err herr
@@ -84,7 +84,7 @@ theorem eventually_counted_small_private_prepared_open {d : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_all_odd_private_prepared_open {d : ℕ}
-    (hd : 3≤d) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → CountedPrivatePreparedAt (K := K) (by omega) hodd w := by
   by_cases hd9 : 9≤d
   · filter_upwards [eventually_counted_private_prepared_open (K := K) hd9 hodd] with w hw
@@ -96,7 +96,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Here the paired half-size is `2*k`, so the actual output dimension is
 `4*k`; no divisibility premise remains. -/
 theorem eventually_counted_all_odd_private_prepared_cofinal {d : ℕ}
-    (hd : 3≤d) (hodd : d%2=1) :
+    (hd : 3 ≤ d) (hodd : d % 2 = 1) :
     ∀ᶠ k : ℕ in atTop,CountedPrivatePreparedAt (K := K) (by omega) hodd (2*k) := by
   obtain ⟨W,hW⟩ := eventually_atTop.mp
     (eventually_counted_all_odd_private_prepared_open (K := K) hd hodd)

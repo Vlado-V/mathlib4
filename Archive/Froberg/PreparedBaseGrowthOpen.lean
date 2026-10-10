@@ -24,8 +24,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly 
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem prepared_base_growth_open (hd : 1 ≤ d)
-    (hO : ∀ j∈J,O j≤Forms K h j)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j)
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (hgrowth : HasBaseC4GrowthOpen (m := m) (f := f) (q := q) hd R t) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
       FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -42,7 +42,7 @@ theorem prepared_base_growth_open (hd : 1 ≤ d)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem restored_base_ordinary_growth_open
-    (hO : ∀ j∈J,O j≤Forms K h j)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hgrowth : HasOddScalarLayersOpen K h m d f q t) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∃ D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,

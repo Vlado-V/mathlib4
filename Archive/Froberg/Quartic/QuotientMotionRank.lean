@@ -32,7 +32,7 @@ variable {K V W T C : Type*} [Field K]
 omit [FiniteDimensional K V] in
 /-- Coordinatewise descent commutes with the actual repeated map. -/
 theorem repeated_comp_quotient (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R) :
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R) :
     (repeated (c := k) Rbar).comp (repeated E.mkQ)=repeated R := by
   apply LinearMap.ext
   intro x
@@ -43,7 +43,7 @@ omit [FiniteDimensional K V] in
 /-- The repeated relation image of a raw subspace is exactly its quotient
 image followed by the descended relation map. -/
 theorem map_quotient_relation (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (U : Submodule K (Fin k → V)) :
     (U.map (repeated E.mkQ)).map (repeated Rbar)=U.map (repeated R) := by
   rw [← Submodule.map_comp,repeated_comp_quotient E R Rbar hcomm]
@@ -51,7 +51,7 @@ theorem map_quotient_relation (E : Submodule K V) (R : V →ₗ[K] W)
 /-- Quotient-aware additive rank bound. No containment of E^k in U is
 required: only the actual quotient coefficient image is measured. -/
 theorem quotient_image_le_rank_add (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (U : Submodule K (Fin k → V)) :
     finrank K (U.map (repeated E.mkQ)) ≤
@@ -66,7 +66,7 @@ theorem quotient_image_le_rank_add (E : Submodule K V) (R : V →ₗ[K] W)
 
 /-- The subtraction form of the same actual rank estimate. -/
 theorem quotient_rank_bound (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (U : Submodule K (Fin k → V)) :
     finrank K (U.map (repeated E.mkQ))-k*d ≤ finrank K (U.map (repeated R)) := by
@@ -75,7 +75,7 @@ theorem quotient_rank_bound (E : Submodule K V) (R : V →ₗ[K] W)
 
 /-- Integer subtraction version for the manuscript's signed dimension counts. -/
 theorem quotient_rank_bound_int (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (U : Submodule K (Fin k → V)) :
     (finrank K (U.map (repeated E.mkQ)) : ℤ)-(k:ℤ)*d ≤
@@ -99,7 +99,7 @@ theorem liftQ_rank_bound (E : Submodule K V) (R : V →ₗ[K] W)
 full source dimension, even when it is merely covered by a raw motion
 coefficient space rather than lifted injectively to that space. -/
 theorem coefficient_injection_le_rank_add (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (U : Submodule K (Fin k → V)) (coeff : T →ₗ[K] (Fin k → (V ⧸ E)))
     (hinj : Function.Injective coeff)
@@ -114,7 +114,7 @@ theorem coefficient_injection_le_rank_add (E : Submodule K V) (R : V →ₗ[K] W
 actual raw linear map. The coefficient map may have a different domain;
 its injective range need only be covered after quotienting. -/
 theorem coefficient_map_rank_bound (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (raw : C →ₗ[K] (Fin k → V)) (coeff : T →ₗ[K] (Fin k → (V ⧸ E)))
     (hinj : Function.Injective coeff)
@@ -129,10 +129,10 @@ theorem coefficient_map_rank_bound (E : Submodule K V) (R : V →ₗ[K] W)
 
 /-- A commuting actual lift is one sufficient way to verify coverage. -/
 theorem coefficient_lift_rank_bound (E : Submodule K V) (R : V →ₗ[K] W)
-    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ=R)
+    (Rbar : (V ⧸ E) →ₗ[K] W) (hcomm : Rbar.comp E.mkQ = R)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (raw : T →ₗ[K] (Fin k → V)) (coeff : T →ₗ[K] (Fin k → (V ⧸ E)))
-    (hinj : Function.Injective coeff) (hlift : (repeated E.mkQ).comp raw=coeff) :
+    (hinj : Function.Injective coeff) (hlift : (repeated E.mkQ).comp raw = coeff) :
     finrank K T-k*d ≤ finrank K (LinearMap.range ((repeated R).comp raw)) := by
   apply coefficient_map_rank_bound E R Rbar hcomm hker raw coeff hinj
   rw [hlift]
@@ -166,7 +166,7 @@ theorem constraint_rank_bound
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin D → K))
     (ell : Fin D → K) (E : Submodule K (Fin a → K))
     (Rbar : ((Fin a → K) ⧸ E) →ₗ[K] (Fin b → K))
-    (hcomm : Rbar.comp E.mkQ=relationMap mu ell)
+    (hcomm : Rbar.comp E.mkQ = relationMap mu ell)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (H : N → Fin k → Fin a → K) :
     finrank K ((Submodule.span K (Set.range H)).map (repeated E.mkQ))-k*d ≤
@@ -179,7 +179,7 @@ theorem constraint_rank_bound_int
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin D → K))
     (ell : Fin D → K) (E : Submodule K (Fin a → K))
     (Rbar : ((Fin a → K) ⧸ E) →ₗ[K] (Fin b → K))
-    (hcomm : Rbar.comp E.mkQ=relationMap mu ell)
+    (hcomm : Rbar.comp E.mkQ = relationMap mu ell)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (H : N → Fin k → Fin a → K) :
     (finrank K ((Submodule.span K (Set.range H)).map (repeated E.mkQ)) : ℤ)-(k:ℤ)*d ≤
@@ -193,7 +193,7 @@ theorem constraint_coefficient_rank_bound
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin D → K))
     (ell : Fin D → K) (E : Submodule K (Fin a → K))
     (Rbar : ((Fin a → K) ⧸ E) →ₗ[K] (Fin b → K))
-    (hcomm : Rbar.comp E.mkQ=relationMap mu ell)
+    (hcomm : Rbar.comp E.mkQ = relationMap mu ell)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (H : N → Fin k → Fin a → K)
     (coeff : T →ₗ[K] (Fin k → ((Fin a → K) ⧸ E)))

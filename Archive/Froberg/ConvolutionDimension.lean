@@ -19,7 +19,7 @@ variable {K W : Type*} [Field K] [Infinite K]
   [AddCommMonoid W] [Module K W] [Module.Finite K W]
 
 theorem exists_convolution_blocks_of_dimension {a e m k : ℕ}
-    (ha : 0<a) (hm : 0<m) (hdim : finrank K W ≤ k*(a+e-1).choose e) :
+    (ha : 0 < a) (hm : 0 < m) (hdim : finrank K W ≤ k * (a + e - 1).choose e) :
     ∃ (o : Fin k × ConvolutionSubset (m+a-1) e → W)
       (f : Fin k × ConvolutionSubset (m+a-1) e → Forms K m e),
       Function.Surjective (vectorFormFamilyMap (t := a-1) o f) := by
@@ -31,7 +31,7 @@ theorem exists_convolution_blocks_of_dimension {a e m k : ℕ}
 
 def convolutionBlockCount (q a e : ℕ) : ℕ := (q + (a+e-1).choose e - 1) / (a+e-1).choose e
 
-theorem convolutionBlockCount_sufficient (q e : ℕ) {a : ℕ} (ha : 0<a) :
+theorem convolutionBlockCount_sufficient (q e : ℕ) {a : ℕ} (ha : 0 < a) :
     q ≤ convolutionBlockCount q a e * (a+e-1).choose e := by
   have hp : 0 < (a+e-1).choose e := Nat.choose_pos (by omega)
   have hmod := Nat.mod_lt (q + (a+e-1).choose e - 1) hp
@@ -42,7 +42,7 @@ theorem convolutionBlockCount_sufficient (q e : ℕ) {a : ℕ} (ha : 0<a) :
 
 /-- The last block may be partial: only the ceiling of the output dimension
 by the block output size is required. -/
-theorem exists_rounded_convolution_family {a e m : ℕ} (ha : 0<a) (hm : 0<m) :
+theorem exists_rounded_convolution_family {a e m : ℕ} (ha : 0 < a) (hm : 0 < m) :
     ∃ (o : Fin (convolutionBlockCount (finrank K W) a e) ×
         ConvolutionSubset (m+a-1) e → W)
       (f : Fin (convolutionBlockCount (finrank K W) a e) ×

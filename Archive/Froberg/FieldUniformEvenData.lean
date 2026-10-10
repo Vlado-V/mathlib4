@@ -20,7 +20,7 @@ noncomputable section
 universe u
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
-theorem eventually_field_uniform_even_all_scalar_data {d : ℕ} (hd : 9≤d) :
+theorem eventually_field_uniform_even_all_scalar_data {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

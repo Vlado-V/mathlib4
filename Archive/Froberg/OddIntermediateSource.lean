@@ -23,16 +23,16 @@ variable {K : Type} [Field K] [Infinite K] {h m d b q f u : ℕ}
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_weight_ne {j : ℕ} (hb : b ≤ d)
     (v : biformParitySpace K h m d 1)
-    (hv : v.val.IsWeightedHomogeneous (blockWeight h m) j) (hj : b≠j) :
+    (hv : v.val.IsWeightedHomogeneous (blockWeight h m) j) (hj : b ≠ j) :
     biformTensorComponent hb v=0 := by
   apply sumBiformMap_injective
   rw [biformTensorComponent_spec,map_zero]
   exact hv.weightedHomogeneousComponent_ne b hj
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
+def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations
       (fun i => oddBiformEmbedding (by have := hd.pos; omega) (by decide) (F i))
       (fun i => mixedPureOddGenerator hd (U i) (P i))) →ₗ[K]
@@ -51,19 +51,19 @@ def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
       exact mixedPureOddGenerator_other hd (by omega) (by omega) (U i) (P i))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-@[simp] theorem oddIntermediateSourceProjection_mk (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+@[simp] theorem oddIntermediateSourceProjection_mk (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d)
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : biformParitySpace K h m d 1) :
     oddIntermediateSourceProjection hd hb hbd F U P
       ((oddBackgroundCoefficientRelations _ _).mkQ v)=biformTensorComponent (by omega) v := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddIntermediateSourceProjection_scalar (hd : Odd d)
-    (hb : 3 ≤ b) (hbd : b<d) (ho : b%2=1)
+    (hb : 3 ≤ b) (hbd : b < d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
-    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
-    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
+    (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
+    (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K h 0 ⊗[K] Forms K m d)
     (v : biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations
       (fun i => oddBiformEmbedding (by have := hd.pos; omega) (by decide) (F i))

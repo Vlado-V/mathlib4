@@ -23,7 +23,7 @@ attribute [local instance] tensorGroup
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_target_row_from_prefix_uniform {d j b : ℕ} (hj : 0 < j) (hjd : j < d)
-    (hjb : j≤b) (hbj : b<2*j) (hbd : b≤d+j) (α : ℝ) (hα : targetCost d j b < α) :
+    (hjb : j ≤ b) (hbj : b < 2 * j) (hbd : b ≤ d + j) (α : ℝ) (hα : targetCost d j b < α) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop, ∀ (K : Type u) [Field K] [Infinite K],
       ∃ (o : Fin ⌈α*(h : ℝ)^j*(m : ℝ)^(d-j)⌉₊ → Forms K h j)
         (f : Fin ⌈α*(h : ℝ)^j*(m : ℝ)^(d-j)⌉₊ → Forms K m (d-j)),
@@ -45,7 +45,7 @@ theorem eventually_higher_target_row_uniform {d b : ℕ} (hd : 3 ≤ d) (hb : 5 
     omega) _ hcost
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem eventually_middle_rows_common_open_uniform {d : ℕ} (hd : 3≤d) :
+theorem eventually_middle_rows_common_open_uniform {d : ℕ} (hd : 3 ≤ d) :
     ∃ layer : MiddleTargetIndex d → HigherLayerIndex d,
       (∀ b,(layer b).val<b.val.val ∧ b.val.val<2*(layer b).val) ∧
       ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop, ∀ (K : Type u) [Field K] [Infinite K],

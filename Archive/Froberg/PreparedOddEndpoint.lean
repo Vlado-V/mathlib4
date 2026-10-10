@@ -25,8 +25,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def splitParity : Label q f u J counts → ZMod 2 := Sum.elim (fun _ => 0) (fun _ => 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def zeroScalarEndpointFamily (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+def zeroScalarEndpointFamily (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f) :
     Fin (Fintype.card (Label q f u J counts)) → Forms K (h+m) d :=
@@ -38,8 +38,8 @@ def endpointSplitParity : Fin (Fintype.card (Label q f u J counts)) → ZMod 2 :
   splitParity ∘ (Fintype.equivFin _).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem zeroScalarEndpointFamily_back (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+theorem zeroScalarEndpointFamily_back (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (i : Label q f u J counts) :
@@ -62,14 +62,14 @@ theorem zeroScalarEndpointFamily_back (hd : 0<d)
     add_comm]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem odd_cycles_endpoint (hd : 0<d)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
+theorem odd_cycles_endpoint (hd : 0 < d)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f)
     (H : OddCyclesExact U P p)
     (a : (endpointMultiplication (zeroScalarEndpointFamily hd hO hJ U P p)).ker)
-    (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
-      (1-endpointSplitParity (q := q) (f := f) (u := u) (J := J) (counts := counts) i)) :
+    (ha : ∀ i, (a.val i).val.IsWeightedHomogeneous (coreParity h m)
+      (1 - endpointSplitParity (q := q) (f := f) (u := u) (J := J) (counts := counts) i)) :
     a.val∈oppositeKoszulSpace (zeroScalarEndpointFamily hd hO hJ U P p)
       (endpointSplitParity (q := q) (f := f) (u := u) (J := J) (counts := counts)) := by
   classical

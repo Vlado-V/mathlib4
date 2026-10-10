@@ -54,7 +54,7 @@ lemma scalarQuotient_product_zero (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q �
   exact (Submodule.Quotient.mk_eq_zero _).mpr (scalar_product_mem_range mu Q i v)
 
 theorem transport_scalar_quotient_slices (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
-    (s : ℕ → ℕ) (Z : (r : Fin (finrank K V+1)) → Fin (s r.val) → W)
+    (s : ℕ → ℕ) (Z : (r : Fin (finrank K V + 1)) → Fin (s r.val) → W)
     (hZ : ∀ r : Fin (finrank K V+1),∀ ell : W →ₗ[K] K,
       r.val ≤ finrank K (LinearMap.ker (relation mu ell)) →
       (∀ i v,ell (mu (Q i) v)=0) → (∀ t,ell (Z r t)=0) → ell=0) :

@@ -52,7 +52,7 @@ attribute [local irreducible] OddScalarLayerProperty
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem top_scalar_growth_open (hd : 1 ≤ d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (htop : ProjectedTopGrowthOpen R m f q t) :
     ∃ D : MvPolynomial (Fin (finrank K (OddScalarParameters K h m d f q))) K,
       (∃ p : OddScalarParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) D≠0) ∧
@@ -85,7 +85,7 @@ theorem top_scalar_growth_open (hd : 1 ≤ d)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem base_c4_growth_open (hd : 1 ≤ d)
-    (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
+    (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (htop : ProjectedTopGrowthOpen R m f q t)
     (hmid : HasOddScalarLayersOpen K h m d f q t) :
     ∃ D : MvPolynomial (Fin (finrank K (OddScalarParameters K h m d f q))) K,

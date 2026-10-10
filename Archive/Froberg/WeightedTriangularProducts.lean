@@ -41,8 +41,8 @@ theorem weighted_component_mul_homogeneous (w : σ → ℕ)
 on its product with a homogeneous coefficient. -/
 theorem weighted_component_product_above (w : σ → ℕ)
     (p q : MvPolynomial σ K) (j b t : ℕ)
-    (hp : ∀ k, j<k → weightedHomogeneousComponent w k p=0)
-    (hq : q.IsWeightedHomogeneous w b) (ht : j+b<t) :
+    (hp : ∀ k, j < k → weightedHomogeneousComponent w k p = 0)
+    (hq : q.IsWeightedHomogeneous w b) (ht : j + b < t) :
     weightedHomogeneousComponent w t (p*q)=0 := by
   have he : t=(t-b)+b := by omega
   rw [he,weighted_component_mul_homogeneous w p q (t-b) b hq,
@@ -52,7 +52,7 @@ theorem weighted_component_product_above (w : σ → ℕ)
 prepared generator, so every lower perturbation disappears there. -/
 theorem weighted_component_product_top (w : σ → ℕ)
     (p high q : MvPolynomial σ K) (j b : ℕ)
-    (hp : weightedHomogeneousComponent w j p=high)
+    (hp : weightedHomogeneousComponent w j p = high)
     (hq : q.IsWeightedHomogeneous w b) :
     weightedHomogeneousComponent w (j+b) (p*q)=high*q := by
   rw [weighted_component_mul_homogeneous w p q j b hq,hp]
@@ -60,7 +60,7 @@ theorem weighted_component_product_top (w : σ → ℕ)
 /-- A scalar shift and a positive weighted-degree piece have exactly the
 required top component and upper support. -/
 theorem scalar_shift_top_components (w : σ → ℕ)
-    (scalar high : MvPolynomial σ K) {j : ℕ} (hj : 0<j)
+    (scalar high : MvPolynomial σ K) {j : ℕ} (hj : 0 < j)
     (hs : scalar.IsWeightedHomogeneous w 0) (hh : high.IsWeightedHomogeneous w j) :
     weightedHomogeneousComponent w j (scalar+high)=high ∧
       ∀ k, j<k → weightedHomogeneousComponent w k (scalar+high)=0 := by

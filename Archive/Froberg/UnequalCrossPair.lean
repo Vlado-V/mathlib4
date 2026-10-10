@@ -100,10 +100,10 @@ cross capacity, with a single scalar profile for every product. -/
 theorem exists_unequal_constrained_cross_pair
     {X₁ X₂ : Type*} [AddCommGroup X₁] [Module K X₁] [Module.Finite K X₁]
     [AddCommGroup X₂] [Module K X₂] [Module.Finite K X₂]
-    {a b v j l s t r u : ℕ} (ha : 0<a) (hb : 0<b) (hv : 0<v)
-    (T₁ : Poly K (a+b) →ₗ[K] X₁) (T₂ : Poly K (a+b) →ₗ[K] X₂)
-    (hr : r≤((a+j-1).choose j-finrank K X₁)*(v+s-1).choose s)
-    (hu : u≤((b+l-1).choose l-finrank K X₂)*(v+t-1).choose t) :
+    {a b v j l s t r u : ℕ} (ha : 0 < a) (hb : 0 < b) (hv : 0 < v)
+    (T₁ : Poly K (a + b) →ₗ[K] X₁) (T₂ : Poly K (a + b) →ₗ[K] X₂)
+    (hr : r ≤ ((a + j - 1).choose j - finrank K X₁) * (v + s - 1).choose s)
+    (hu : u ≤ ((b + l - 1).choose l - finrank K X₂) * (v + t - 1).choose t) :
     ∃ (f : Fin r → MvPolynomial (Fin (a+b) ⊕ Fin (v+v)) K)
       (g : Fin u → MvPolynomial (Fin (a+b) ⊕ Fin (v+v)) K),
       (∀ i,f i∈biformImage (Forms K (a+b) j⊓T₁.ker) (Forms K (v+v) s)) ∧

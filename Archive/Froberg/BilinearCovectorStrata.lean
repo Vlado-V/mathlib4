@@ -119,7 +119,7 @@ theorem surjective_of_covectors
 of surjective scalar-family maps. -/
 theorem generic_surjective_of_budgets [Infinite K]
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
-    (E : Fin (a+1) → ℕ)
+    (E : Fin (a + 1) → ℕ)
     (hgrowth : ∀ r : Fin (a+1), ∀ L : Submodule K (Fin a → K), finrank K L = r.val →
       E r ≤ finrank K (BilinearImage.image mu L))
     (hcount : ∀ r : Fin (a+1), (r.val*(a-r.val) : ℕ)+(T : ℤ)-E r-1 < (q*(a-r.val) : ℕ)) :

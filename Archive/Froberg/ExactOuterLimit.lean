@@ -19,11 +19,11 @@ open scoped Topology
 
 theorem exact_counts_outer_limit {d h : ℕ} (hd : 3 ≤ d)
     (g r f e : ℕ → ℕ)
-    (hr : ∀ n,0 < n → lowerCount n d ≤ r n ∧ r n ≤ upperCount n d)
-    (hg : Tendsto (fun n => (g n : ℝ)/(n : ℝ)^(d-1)) atTop (𝓝 0))
+    (hr : ∀ n, 0 < n → lowerCount n d ≤ r n ∧ r n ≤ upperCount n d)
+    (hg : Tendsto (fun n => (g n : ℝ) / (n : ℝ) ^ (d - 1)) atTop (𝓝 0))
     (hcounts : ∀ᶠ n : ℕ in atTop,
-      upperCount n d+f n+g n+e n=r (n+h) ∧
-      (e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) :
+      upperCount n d + f n + g n + e n = r (n + h) ∧
+      (e n : ℝ) < countBeta d * (h : ℝ) ^ 2 * (n : ℝ) ^ (d - 2)) :
     Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1)) atTop
       (𝓝 ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))) := by
   have heUpper : Tendsto (fun n : ℕ =>
@@ -47,7 +47,7 @@ theorem exact_counts_outer_limit {d h : ℕ} (hd : 3 ≤ d)
 
 theorem exact_conditions_outer_limit {d k h lo : ℕ} (hd : 3 ≤ d)
     (upper : Bool) (a f e : ℕ → ℕ)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1)) atTop
       (𝓝 ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ))) := by
   apply exact_counts_outer_limit hd (auxiliaryGeneratorCount d h)

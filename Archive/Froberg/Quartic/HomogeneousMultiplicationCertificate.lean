@@ -27,7 +27,7 @@ def term {d : ℕ} (f : Forms K s d) (N : ℕ) : Forms K s (N-d) →ₗ[K] Forms
       map_smul' := fun a u => Subtype.ext (smul_mul_assoc _ _ _) }
   else 0
 
-@[simp] theorem term_val {d : ℕ} (f : Forms K s d) (N : ℕ) (u : Forms K s (N-d)) :
+@[simp] theorem term_val {d : ℕ} (f : Forms K s d) (N : ℕ) (u : Forms K s (N - d)) :
     (term f N u).val = if d ≤ N then u.val*f.val else 0 := by
   unfold term
   split_ifs <;> rfl
@@ -38,7 +38,7 @@ def multiplication (d : Fin r → ℕ) (f : ∀ j, Forms K s (d j)) (N : ℕ) :
   ∑ j, (term (f j) N).comp (LinearMap.proj j)
 
 @[simp] theorem multiplication_val (d : Fin r → ℕ) (f : ∀ j, Forms K s (d j))
-    (N : ℕ) (u : ∀ j, Forms K s (N-d j)) :
+    (N : ℕ) (u : ∀ j, Forms K s (N - d j)) :
     (multiplication d f N u).val = ∑ j, if d j ≤ N then (u j).val*(f j).val else 0 := by
   simp [multiplication]
 

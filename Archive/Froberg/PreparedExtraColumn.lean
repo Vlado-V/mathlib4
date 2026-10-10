@@ -22,7 +22,7 @@ variable {K : Type} {V I J : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem span_range_eq_sup_extra (g : J → V) (b : I → J) (k : J)
-    (hcover : ∀ j,(∃ i,b i=j) ∨ j=k) :
+    (hcover : ∀ j, (∃ i, b i = j) ∨ j = k) :
     Submodule.span K (Set.range g)=
       Submodule.span K (Set.range (g ∘ b)) ⊔ Submodule.span K {g k} := by
   apply le_antisymm
@@ -44,37 +44,37 @@ variable [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-def countPositiveIndex (hc : ∀ j∈J,c j≤c' j) :
+def countPositiveIndex (hc : ∀ j ∈ J, c j ≤ c' j) :
     Fin (Fintype.card (ProductRows.LayerLabel J c)) →
       Fin (Fintype.card (ProductRows.LayerLabel J c')) :=
   fun i => Fintype.equivFin _ (countLayerMap hc ((Fintype.equivFin _).symm i))
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-theorem countPositiveIndex_injective (hc : ∀ j∈J,c j≤c' j) :
+theorem countPositiveIndex_injective (hc : ∀ j ∈ J, c j ≤ c' j) :
     Function.Injective (countPositiveIndex hc) :=
   (Fintype.equivFin _).injective.comp
     ((countLayerMap_injective hc).comp (Fintype.equivFin _).symm.injective)
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-def countBackgroundIndex (hc : ∀ j∈J,c j≤c' j) :
+def countBackgroundIndex (hc : ∀ j ∈ J, c j ≤ c' j) :
     Fin (Fintype.card (ProductRows.LayerLabel J c)) ⊕ Fin u →
       Fin (Fintype.card (ProductRows.LayerLabel J c')) ⊕ Fin u :=
   Sum.map (countPositiveIndex hc) id
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-theorem countBackgroundIndex_injective (hc : ∀ j∈J,c j≤c' j) :
+theorem countBackgroundIndex_injective (hc : ∀ j ∈ J, c j ≤ c' j) :
     Function.Injective (countBackgroundIndex (u := u) hc) :=
   (countPositiveIndex_injective hc).sumMap Function.injective_id
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-def quadraticExtraLayer {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
+def quadraticExtraLayer {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ) :
     ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m (e+1)) :=
   ⟨⟨2,mem_allEvenIndices.mpr ⟨le_rfl,by omega,by decide⟩⟩,
     ⟨e,by simp only [allEvenCount_active h m _ (two_mem_activeEvenIndices hd),
       targetLayerCount,ite_true]; omega⟩⟩
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-theorem quadraticExtraLayer_not_old {d : ℕ} (hd : 3≤d) (h m e : ℕ)
+theorem quadraticExtraLayer_not_old {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ)
     (i : ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m e)) :
     countLayerMap (allEvenCount_le_append hd h m e 1) i≠quadraticExtraLayer hd h m e := by
   intro hi
@@ -86,8 +86,8 @@ theorem quadraticExtraLayer_not_old {d : ℕ} (hd : 3≤d) (h m e : ℕ)
   exact quadraticTailSlot_ne_old hd h m e 1 0 (Sum.inr i) hs
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
-theorem quadraticExtraLayer_cover {d : ℕ} (hd : 3≤d) (h m e : ℕ)
-    (i : ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m (e+1))) :
+theorem quadraticExtraLayer_cover {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ)
+    (i : ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m (e + 1))) :
     (∃ j,countLayerMap (allEvenCount_le_append hd h m e 1) j=i) ∨
       i=quadraticExtraLayer hd h m e := by
   rcases i with ⟨⟨j,hjmem⟩,i⟩
@@ -125,8 +125,8 @@ variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K 
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem preparedPositiveBiform_restrictCounts
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j) (p : PreparedParameters.Space m d q J c' O)
     (i : Fin (Fintype.card (ProductRows.LayerLabel J c))) :
     preparedPositiveBiform hO hJ heven (restrictCounts hc p) i=
       preparedPositiveBiform hO hJ heven p (countPositiveIndex hc i) := by
@@ -136,9 +136,9 @@ theorem preparedPositiveBiform_restrictCounts
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem preparedBackground_restrictCounts
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j) (p : PreparedParameters.Space m d q J c' O)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) :
     backgroundPositiveForms (preparedPositiveBiform hO hJ heven p)
@@ -155,14 +155,14 @@ theorem preparedBackground_restrictCounts
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem prepared_extra_positive_independent
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j) (p : PreparedParameters.Space m d q J c' O)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (extra : ProductRows.LayerLabel J c')
-    (hmiss : ∀ i,countLayerMap hc i≠extra)
+    (hmiss : ∀ i, countLayerMap hc i ≠ extra)
     (hi : LinearIndependent K (fun i =>
-      (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range.mkQ
+      (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h + m))).range.mkQ
         (backgroundPositiveForms (preparedPositiveBiform hO hJ heven p)
           (fun j => preparedOddBiform hd ho U P F (Sum.inr j)) i))) :
     LinearIndependent K (fun i : Option (Fin (Fintype.card (ProductRows.LayerLabel J c)) ⊕ Fin u) =>
@@ -190,12 +190,12 @@ theorem prepared_extra_positive_independent
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem prepared_extra_background_span
-    (hd : 0<d) (ho : d%2=1)
-    (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-    (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)
+    (hd : 0 < d) (ho : d % 2 = 1)
+    (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
+    (hc : ∀ j ∈ J, c j ≤ c' j) (p : PreparedParameters.Space m d q J c' O)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (extra : ProductRows.LayerLabel J c')
-    (hcover : ∀ j,(∃ i,countLayerMap hc i=j) ∨ j=extra) :
+    (hcover : ∀ j, (∃ i, countLayerMap hc i = j) ∨ j = extra) :
     Submodule.span K (Set.range (backgroundPositiveForms (preparedPositiveBiform hO hJ heven p)
       (fun j => preparedOddBiform hd ho U P F (Sum.inr j))))=
     Submodule.span K (Set.range (backgroundPositiveForms

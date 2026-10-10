@@ -25,8 +25,8 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 /-- A product witness gives a principal open in the full common parameter
 space, including the scalar coordinates. -/
 theorem product_principal_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (R : ℕ) (p₀ : Space n d q J counts O)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (R : ℕ) (p₀ : Space n d q J counts O)
     (hp₀ : Function.Injective (ProductRows.multiplication counts (layers p₀) J R)) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧
@@ -51,9 +51,9 @@ theorem product_principal_open [Module.Finite K (Space n d q J counts O)]
 
 /-- All product rows can be imposed on one nonempty principal open. -/
 theorem products_common_open [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (T : Finset ℕ)
-    (hwitness : ∀ R∈T,∃ p : Space n d q J counts O,
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (T : Finset ℕ)
+    (hwitness : ∀ R ∈ T, ∃ p : Space n d q J counts O,
       Function.Injective (ProductRows.multiplication counts (layers p) J R)) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       (∃ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0) ∧

@@ -25,7 +25,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenScalarOddFamily_append_apply
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin e → biformParitySpace K h m d 0)
-    (a : Fin (q+e) → biformParitySpace K h m d 1) :
+    (a : Fin (q + e) → biformParitySpace K h m d 1) :
     evenScalarOddFamily (Fin.append Q E) a=
       evenScalarOddFamily Q (fun i => a (i.castAdd e))+
         evenScalarOddFamily E (fun i => a (i.natAdd q)) := by

@@ -29,7 +29,7 @@ theorem exists_higher_extended_row_parameter {w v z d q b : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
     (R : J) (h : HigherRowCapacity w v d q b J counts T R)
-    (ell : Fin 2 → Forms K (v+v) 1) (hell : LinearIndependent K ell) :
+    (ell : Fin 2 → Forms K (v + v) 1) (hell : LinearIndependent K ell) :
     let hO : ∀ j∈J,constrainedOutputs T j≤homogeneousSubmodule (Fin w × Bool) K j :=
       fun _ _ => inf_le_left
     ∃ p : Space (v+v+z) d q J counts (constrainedOutputs T),

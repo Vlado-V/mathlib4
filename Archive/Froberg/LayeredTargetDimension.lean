@@ -27,9 +27,9 @@ variable {K A W W₀ H V : Type} [Field K]
 variable {q j loss : ℕ}
 
 theorem layered_target_dimension (e : A ≃ₗ[K] W₀ × H)
-    (hambient : finrank K A ≤ finrank K W+loss)
+    (hambient : finrank K A ≤ finrank K W + loss)
     (f : (Fin q → V) →ₗ[K] W) (hf : Function.Injective f)
-    (hj : finrank K (W ⧸ f.range)=j) :
+    (hj : finrank K (W ⧸ f.range) = j) :
     finrank K W₀+finrank K H ≤ j+q*finrank K V+loss := by
   have he : finrank K A=finrank K W₀+finrank K H := by
     rw [e.finrank_eq,Module.finrank_prod]

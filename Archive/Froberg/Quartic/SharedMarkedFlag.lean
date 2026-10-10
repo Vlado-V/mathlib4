@@ -21,10 +21,10 @@ set_option backward.isDefEq.respectTransparency false
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem principal_open [Infinite K]
-    (f : (ι → K) → (Fin (r+1) → Forms K n 2))
+    (f : (ι → K) → (Fin (r + 1) → Forms K n 2))
     (hf : IsPolynomialFamily f) (hfSurj : Function.Surjective f)
-    (hlow : GenericQuartic K n r) (hhigh : GenericQuartic K n (r+1))
-    (hlo : 0 < Counts.chi n r) (hhi : Counts.chi n (r+1) ≤ 0)
+    (hlow : GenericQuartic K n r) (hhigh : GenericQuartic K n (r + 1))
+    (hlo : 0 < Counts.chi n r) (hhi : Counts.chi n (r + 1) ≤ 0)
     (q₀ : Fin r → Forms K n 2)
     (hd₀ : finrank K (QuarticQuotient K n
       (Submodule.span K (Set.range (fun i => (q₀ i).val)))) = expectedDimension n r)

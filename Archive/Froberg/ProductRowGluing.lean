@@ -19,8 +19,8 @@ variable {K : Type} [Field K] {σ : Type*} {J : Finset ℕ} {R : ℕ}
 
 /-- A layer belongs to at most one unordered pair with a prescribed sum. -/
 theorem row_eq_of_common_layer (a b : Row J R) {j : ℕ}
-    (ha : j=a.val.val ∨ j=R-a.val.val)
-    (hb : j=b.val.val ∨ j=R-b.val.val) : a=b := by
+    (ha : j = a.val.val ∨ j = R - a.val.val)
+    (hb : j = b.val.val ∨ j = R - b.val.val) : a=b := by
   apply Subtype.ext
   apply Fin.ext
   have ha' := a.property.2.2
@@ -36,7 +36,7 @@ def assembledFamily (e : ℕ → ℕ)
 
 theorem assembledFamily_eq (e : ℕ → ℕ)
     (q : (r : Row J R) → (j : ℕ) → Fin (e j) → MvPolynomial σ K)
-    (r : Row J R) {j : ℕ} (hj : j=r.val.val ∨ j=R-r.val.val) :
+    (r : Row J R) {j : ℕ} (hj : j = r.val.val ∨ j = R - r.val.val) :
     assembledFamily e q j = q r j := by
   have h : ∃ r : Row J R, j=r.val.val ∨ j=R-r.val.val := ⟨r,hj⟩
   rw [assembledFamily,dif_pos h]
@@ -44,7 +44,7 @@ theorem assembledFamily_eq (e : ℕ → ℕ)
 
 theorem products_congr (e : ℕ → ℕ)
     (q q' : (j : ℕ) → Fin (e j) → MvPolynomial σ K) (r : Row J R)
-    (hl : q r.val.val = q' r.val.val) (hr : q (R-r.val.val) = q' (R-r.val.val)) :
+    (hl : q r.val.val = q' r.val.val) (hr : q (R - r.val.val) = q' (R - r.val.val)) :
     products e q r = products e q' r := by
   funext c
   unfold products

@@ -22,7 +22,7 @@ variable {K : Type*} [Field K] [Infinite K]
 theorem eventually_extended_middle_biform {j x e y : ℕ}
     (hj : 0 < j) (hxj : x < j) (he : 0 < e)
     (α δ : ℝ) (hα : convolutionOutputThreshold j x e y < α)
-    (hδ : (x.factorial : ℝ)/((j+x).factorial : ℝ) < δ)
+    (hδ : (x.factorial : ℝ) / ((j + x).factorial : ℝ) < δ)
     (D : ℕ → ℕ)
     (hDlim : Tendsto (fun n : ℕ => (D n : ℝ)/(n : ℝ)^j) atTop (𝓝 δ))
     (hDupper : ∀ᶠ n : ℕ in atTop, D n ≤ (n+j-1).choose j) :
@@ -65,7 +65,7 @@ theorem convolutionOutputThreshold_row_three {d : ℕ} (hd : 3 ≤ d) :
   ring
 
 theorem eventually_quadratic_row_three {d : ℕ} (hd : 3 ≤ d)
-    (D : ℕ → ℕ) (δ : ℝ) (hδ : (1/6 : ℝ) < δ)
+    (D : ℕ → ℕ) (δ : ℝ) (hδ : (1 / 6 : ℝ) < δ)
     (hDlim : Tendsto (fun n : ℕ => (D n : ℝ)/(n : ℝ)^2) atTop (𝓝 δ))
     (hDupper : ∀ᶠ n : ℕ in atTop, D n ≤ (n+1).choose 2) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop,

@@ -21,7 +21,7 @@ namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates BilinearScalarFamily
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f e : ℕ}
-variable (hd3 : 3 ≤ d) (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
+variable (hd3 : 3 ≤ d) (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
 local notation "hdp" => Nat.le_trans (by decide : 1 ≤ 3) hd3
 local notation "F" => bottomTensorFamily g
 local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
@@ -38,15 +38,15 @@ local notation "j" => finrank K W-e*finrank K V
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem even_actual_affine_slices
     (s₀ : ℕ → ℕ) (hs₀ : HasClosedKernelSlices nu s₀) (M : ℕ)
-    (hmid : ∀ (k : ℕ) (hk : 3 ≤ k) (hkd : k ≤ d), k%2=1 →
+    (hmid : ∀ (k : ℕ) (hk : 3 ≤ k) (hkd : k ≤ d), k % 2 = 1 →
       OddScalarLayerProperty M (by omega : 1 ≤ k) hkd
-        (F,fun i => scalarBiformEquiv (h := h) (Q i)))
+        (F, fun i => scalarBiformEquiv (h := h) (Q i)))
     (E : Fin e → biformParitySpace K h m d 0)
     (P₀ : MvPolynomial (Fin (finrank K (Fin e → Forms K m d))) K)
-    (hP₀ : ∃ a : Fin e → Forms K m d,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)
-    (hinj : ∀ a,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
+    (hP₀ : ∃ a : Fin e → Forms K m d, eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)
+    (hinj : ∀ a, eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
       Function.Injective (oddEvenRelativeMap Q₀ F₁ emptyOddFamily (oddEvenAffineFamily E a)))
-    (hupper : ∀ a,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
+    (hupper : ∀ a, eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
       Function.Surjective (upperTargetMap (backgroundEnumeratedForms
         (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁ emptyOddFamily)))
     (slices : ℕ → ℕ) (hslices0 : j ≤ slices 0)

@@ -25,7 +25,7 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 /-- An active positive layer is exactly the corresponding slice of the
 common scalar-and-layer indexing type. -/
-def layerSliceEquiv (R : J) (hR : 0<R.val) :
+def layerSliceEquiv (R : J) (hR : 0 < R.val) :
     Fin (counts R.val) ≃ {i : Label q J counts // degree i=R.val} := by
   classical
   apply Equiv.ofBijective (fun i => ⟨Sum.inr ⟨R,i⟩,rfl⟩)
@@ -45,9 +45,9 @@ def layerSliceEquiv (R : J) (hR : 0<R.val) :
 /-- Product columns are independent whenever the full row has only its
 mandatory scalar-layer relations. -/
 theorem products_injective_of_row_exact
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O)
-    (hker : (row hO R p).ker=(rowConstants hO R p).range) :
+    (hker : (row hO R p).ker = (rowConstants hO R p).range) :
     Function.Injective (ProductRows.multiplication counts (layers p) J R.val) := by
   apply LinearMap.ker_eq_bot.mp
   apply le_antisymm ?_ bot_le
@@ -67,10 +67,10 @@ theorem products_injective_of_row_exact
 /-- The common prepared row implies the literal scalar/new-layer/product
 coefficient identity, using the same generator labels everywhere. -/
 theorem coefficient_row_of_exact
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (R : J) (p : Space n d q J counts O)
-    (hker : (row hO R p).ker=(rowConstants hO R p).range) :
+    (hker : (row hO R p).ker = (rowConstants hO R p).range) :
     CoefficientRowExact
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
       (scalar p) (high p) degree R.val := by

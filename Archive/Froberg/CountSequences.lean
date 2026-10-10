@@ -17,7 +17,7 @@ open Filter
 open scoped Topology
 
 theorem choose_exact_count_sequences {d k h lo : ℕ} {δ : ℝ}
-    (hc : ∀ᶠ n in atTop,∀ upper : Bool,∃ a f e,
+    (hc : ∀ᶠ n in atTop, ∀ upper : Bool,∃ a f e,
       ExactCountConditions d k h lo n a f e upper ∧
       δ*(n : ℝ)^(2*d-2)<dimensionReserve d h n f) :
     ∃ a f e : Bool → ℕ → ℕ,
@@ -50,7 +50,7 @@ theorem nat_tendsto_atTop_of_positive_ratio (a : ℕ → ℕ) {σ : ℝ} (hσ : 
   exact tendsto_atTop_mono' atTop hbound
     (Tendsto.const_mul_atTop (by positivity) tendsto_natCast_atTop_atTop)
 
-theorem complement_ratio_limit (a : ℕ → ℕ) (ha : ∀ n,a n ≤ n) {σ : ℝ}
+theorem complement_ratio_limit (a : ℕ → ℕ) (ha : ∀ n, a n ≤ n) {σ : ℝ}
     (hr : Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 σ)) :
     Tendsto (fun n : ℕ => ((n-a n : ℕ) : ℝ)/n) atTop (𝓝 (1-σ)) := by
   apply ((tendsto_const_nhds (x := (1 : ℝ))).sub hr).congr'
@@ -59,9 +59,9 @@ theorem complement_ratio_limit (a : ℕ → ℕ) (ha : ∀ n,a n ≤ n) {σ : �
   rw [Nat.cast_sub (ha n),sub_div,div_self hnp]
 
 theorem exact_conditions_core_limits {d k h lo : ℕ} (hd : 3 ≤ d)
-    (hk : 0 < k) (hh : h=k*centralHalfBinomial d)
-    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)
-    (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
+    (hk : 0 < k) (hh : h = k * centralHalfBinomial d)
+    (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n, a n ≤ n)
+    (hc : ∀ᶠ n in atTop, ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
     Tendsto a atTop atTop ∧ Tendsto (fun n => n-a n) atTop atTop ∧
     Tendsto (fun n : ℕ => (a n : ℝ)/n) atTop (𝓝 (limitingCoreFraction d)) ∧
     Tendsto (fun n : ℕ => ((n-a n : ℕ) : ℝ)/n) atTop (𝓝 (1-limitingCoreFraction d)) := by

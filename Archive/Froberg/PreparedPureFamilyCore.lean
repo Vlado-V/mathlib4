@@ -24,7 +24,7 @@ def PureFamilyAdmissible {h d u : ℕ} (U : Fin u → Forms K h d) : Prop :=
   (¬Odd d → Submodule.span K (Set.range U)=⊤)
 
 theorem pureFamilyAdmissible_of_span_top {h d u : ℕ} (U : Fin u → Forms K h d)
-    (hU : Submodule.span K (Set.range U)=⊤) : PureFamilyAdmissible U := by
+    (hU : Submodule.span K (Set.range U) = ⊤) : PureFamilyAdmissible U := by
   refine ⟨?_,fun _ => hU⟩
   rw [hU]
   apply Submodule.map_injective_of_injective (f := (Forms K h (d+1)).subtype)

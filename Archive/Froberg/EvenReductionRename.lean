@@ -55,8 +55,8 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem even_positive_reduction_output_rename
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (e : σ ≃ τ)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p) :
     EvenPositiveReduction (outputRename e p) := by
   classical
@@ -113,11 +113,11 @@ theorem even_positive_reduction_output_rename
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem even_positive_reduction_open_output_rename
     [Module.Finite K (Space n d q J counts O)]
-    (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
-    (hJ : ∀ j∈J,j≤d) (e : σ ≃ τ)
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
+    (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
     [Module.Finite K (Space n d q J counts (fun j => (O j).map (rename e).toLinearMap))]
     (D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K)
-    (hD : ∃ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0)
+    (hD : ∃ p : Space n d q J counts O, eval ((Module.finBasis K _).equivFun p) D ≠ 0)
     (hgood : ∀ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0 →
       EvenPositiveReduction p) :
     let A := Space n d q J counts (fun j => (O j).map (rename e).toLinearMap)
@@ -146,7 +146,7 @@ theorem evenReductionOpen_congr_outputs
     {O O' : ℕ → Submodule K (MvPolynomial σ K)}
     [Module.Finite K (Space n d q J counts O)]
     [Module.Finite K (Space n d q J counts O')]
-    (hO : O=O') :
+    (hO : O = O') :
     EvenReductionOpen (n := n) (d := d) (q := q) (J := J) (counts := counts) O ↔
       EvenReductionOpen (n := n) (d := d) (q := q) (J := J) (counts := counts) O' := by
   subst O'
@@ -156,7 +156,7 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem even_positive_reduction_open_constraint_rename
     {X : Type*} [AddCommGroup X] [Module K X]
     (T : ℕ → MvPolynomial τ K →ₗ[K] X) (e : σ ≃ τ)
-    (hJ : ∀ j∈J,j≤d)
+    (hJ : ∀ j ∈ J, j ≤ d)
     [Module.Finite K (Space n d q J counts
       (fun j => homogeneousSubmodule σ K j ⊓ ((T j).comp (rename e).toLinearMap).ker))]
     [Module.Finite K (Space n d q J counts
@@ -165,7 +165,7 @@ theorem even_positive_reduction_open_constraint_rename
       (fun j => homogeneousSubmodule σ K j ⊓ ((T j).comp (rename e).toLinearMap).ker)))) K)
     (hD : ∃ p : Space n d q J counts
       (fun j => homogeneousSubmodule σ K j ⊓ ((T j).comp (rename e).toLinearMap).ker),
-      eval ((Module.finBasis K _).equivFun p) D≠0)
+      eval ((Module.finBasis K _).equivFun p) D ≠ 0)
     (hgood : ∀ p : Space n d q J counts
       (fun j => homogeneousSubmodule σ K j ⊓ ((T j).comp (rename e).toLinearMap).ker),
       eval ((Module.finBasis K _).equivFun p) D≠0 → EvenPositiveReduction p) :

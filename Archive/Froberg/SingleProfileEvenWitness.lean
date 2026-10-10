@@ -25,19 +25,21 @@ variable {V : Type*} [AddCommGroup V] [Module K V]
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
 theorem exists_single_profile_even_polynomial_row
-    (hn : 0<n) (hh : 0<h)
+    (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
-    (hdegree : ∀ j,(o j).IsHomogeneous R)
+    (hdegree : ∀ j, (o j).IsHomogeneous R)
     (L : (Fin h → K) →ₗ[K] (Fin H → K)) (hL : Function.Injective L)
-    (hLodd : ∀ z,retainMonomials (fun a => Finsupp.weight w a%2=0) (outputCombination o (L z))=0)
-    (hm : m≤b*(n+s-1).choose s) (hcap : b*(s+d).choose s≤h)
-    (hcount : h*(s+d).choose s * (r+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) ≤
-      (h-b*(s+d).choose s)*(n+s+d-1).choose d)
+    (hLodd : ∀ z, retainMonomials (fun a => Finsupp.weight w a % 2 = 0) (outputCombination o (L z))
+      = 0)
+    (hm : m ≤ b * (n + s - 1).choose s) (hcap : b * (s + d).choose s ≤ h)
+    (hcount : h * (s + d).choose s * (r + h * (n + s - 1).choose s + (h * 2 ^ h) * (n + (d - 1) -
+      1).choose (d - 1)) ≤
+      (h - b * (s + d).choose s) * (n + s + d - 1).choose d)
     (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K) (hP : Function.Injective P)
     (hPX : (biformOutputEndomorphism (retainMonomials
-      (fun α => Finsupp.weight w α%2=0))).comp P=P)
-    (hPY : ∀ p,(P p).IsWeightedHomogeneous
+      (fun α => Finsupp.weight w α % 2 = 0))).comp P = P)
+    (hPY : ∀ p, (P p).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight Yhalf)) j)
     (hscalarOpen : ∃ D : MvPolynomial (Fin (finrank K (Fin r → Forms K n d))) K,
       (∃ Q : Fin r → Forms K n d,eval (coordinates K _ Q) D≠0) ∧
