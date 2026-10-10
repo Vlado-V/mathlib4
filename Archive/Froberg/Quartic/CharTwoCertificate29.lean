@@ -32,7 +32,7 @@ theorem first_exponent :
   by_cases hi : i = 0
   · subst i
     simp [FiniteEndpointCheckerPolynomial.listExponent]
-  · simp [FiniteEndpointCheckerPolynomial.listExponent, Finsupp.single_apply, hi, Ne.symm hi]
+  · simp [FiniteEndpointCheckerPolynomial.listExponent, hi]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem surviving_bit : (certificate.inverse (0 : Fin 35960)).testBit 35834 = true := by
