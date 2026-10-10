@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.Quartic.HullCertificate.Certificate
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-! The integer certificate vertices and lines agree with the original rational formulas. -/
 
