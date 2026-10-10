@@ -95,6 +95,7 @@ def affineGraphConstraint
   affineHomogenization (tupleProductConstraint mu H) (tupleProductConstraint mu₀ H ell₀)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem affineGraphConstraint_rank
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))

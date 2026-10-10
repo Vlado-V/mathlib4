@@ -38,6 +38,7 @@ def oddActualRowScalarAction (hb : 1 ≤ b) (hbd : b ≤ d)
     (oddRowScalarAction hbd)).comp scalarBiformEquiv.toLinearMap
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddActualRowScalarAction_apply (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : Forms K h b ⊗[K] Forms K m (d - b)) :
@@ -46,6 +47,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
         (oddRowScalarAction hbd (scalarBiformEquiv (h := h) p) v) := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddActualRowScalarAction_growth (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (t : ℕ) (hg : OddScalarLayerProperty t hb hbd

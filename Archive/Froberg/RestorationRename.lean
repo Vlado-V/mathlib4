@@ -65,7 +65,8 @@ theorem positiveWeightProjection_eq_zero_iff [Finite σ] {d : ℕ}
     exact ha hc
   · exact positiveWeightProjection_zero w d f
 
-theorem restoration_reduction_rename (e : σ ≃ τ) (w : σ → ℕ)
+omit [Fintype σ] [Fintype τ] in
+theorem restoration_reduction_rename [Finite τ] (e : σ ≃ τ) (w : σ → ℕ)
     (hw : ∀ x, w x ≤ 1) {d r : ℕ}
     (g : Fin r → evenRestorationSpace (K := K) w d) (degree : Fin r → ℕ)
     (hreduce : ∀ c : Fin r → evenRestorationSpace (K := K) w d,
@@ -81,6 +82,7 @@ theorem restoration_reduction_rename (e : σ ≃ τ) (w : σ → ℕ)
         (z : retainedScalarCoefficients (K := K) (w ∘ e.symm) d degree),
         c-coefficientBoundary (fun i => evenRestorationRenameEquiv e w d (g i)) M=z.val := by
   classical
+  let := Fintype.ofFinite τ
   intro c hc
   let f := evenRestorationRenameEquiv (K := K) e w d
   let c₀ : Fin r → evenRestorationSpace (K := K) w d := fun i => f.symm (c i)

@@ -34,6 +34,7 @@ private theorem oddScalarProduct_val (a : biformParitySpace K h m d 1)
     (oddPrivateProduct a b).val=a.val*b.val := rfl
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalar_span_private_product_mem
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (g : biformParitySpace K h m d 1)
@@ -54,7 +55,7 @@ theorem scalar_span_private_product_mem
     apply Subtype.ext
     simp only [evenScalarOddFamily,LinearMap.sum_apply,LinearMap.comp_apply,
       LinearMap.proj_apply,Submodule.coe_sum,L,scalarOddProduct_val,oddScalarProduct_val,
-      evenBiformEmbedding_val,LinearMap.comp_apply]
+      LinearMap.comp_apply]
     rw [Finset.sum_eq_single j]
     · rw [Pi.single_eq_same]
       exact mul_comm _ _
@@ -65,6 +66,7 @@ theorem scalar_span_private_product_mem
   exact hs hv
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateScalarRelations_mem_scalar_background
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (G : Fin u → biformParitySpace K h m d 1)

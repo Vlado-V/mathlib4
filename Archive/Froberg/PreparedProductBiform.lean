@@ -19,7 +19,7 @@ open Froberg MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 variable {n d R : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 theorem products_full_biform [Finite σ]
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hR : R ≤ 2 * d)

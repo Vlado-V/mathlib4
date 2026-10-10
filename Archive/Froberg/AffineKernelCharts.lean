@@ -114,6 +114,7 @@ def affineKernelChart
   affineGraphConstraint mu₀ muH (graphFromFin j (chartGraphCoordinates j p)) (chartBottom j p)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem affineKernelChart_polynomial
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (muH : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin H → K))

@@ -20,6 +20,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] in
 theorem sparse_witness_parameter_exact
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (R : J)
     (o : Fin (finrank K (homogeneousSubmodule σ K R.val)) → MvPolynomial σ K)

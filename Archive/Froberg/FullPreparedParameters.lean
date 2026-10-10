@@ -70,7 +70,7 @@ theorem private_homogeneous (hd : 0 < d)
   change (P i).val∈homogeneousSubmodule (σ ⊕ Fin m) K d
   simpa only [show 1+(d-1)=d by omega] using hp
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 theorem generator_homogeneous [Finite σ] (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) (i : PreparedTarget.Label q f u J counts) :
@@ -93,18 +93,20 @@ def forms (hd : 0 < d)
     apply Subtype.ext
     exact congrFun (map_smul generator a p) i
 
+omit [Infinite K] in
 @[simp] theorem forms_val (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) (i : PreparedTarget.Label q f u J counts) :
     (forms hd hO hJ p i).val=generator p i := rfl
 
+omit [Infinite K] in
 theorem forms_eq_fixed (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) :
     forms hd hO hJ p=PreparedTarget.forms hd hO hJ p.1 (fun i => (p.2.1 i).val)
       (private_homogeneous hd p.2.1) p.2.2 := rfl
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 theorem finite_space [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space m d q f u J counts O) := by
   let : Fintype σ := Fintype.ofFinite σ
@@ -138,12 +140,13 @@ theorem zeroPrivateScalar_injective : Function.Injective
   · exact congrArg (fun x : Space m d q f u J counts O => x.2.2.1) he
   · exact congrArg (fun x : Space m d q f u J counts O => x.2.2.2.1) he
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 theorem finite_zeroScalarSpace [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (ZeroScalarSpace m d q f u J counts O) := by
   let : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   exact Module.Finite.of_injective zeroPrivateScalar zeroPrivateScalar_injective
 
+omit [Infinite K] in
 theorem forms_polynomial_linear_parameters {V : Type*}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     (L : V →ₗ[K] Space m d q f u J counts O) (hd : 0 < d)
@@ -153,6 +156,7 @@ theorem forms_polynomial_linear_parameters {V : Type*}
   isPolynomialFamily_linear (((forms hd hO hJ).comp L).comp
     (Module.finBasis K V).equivFun.symm.toLinearMap)
 
+omit [Infinite K] in
 theorem enumerated_forms_polynomial_linear_parameters {V : Type*} {h : ℕ}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     {O : ℕ → Submodule K (Poly K h)}

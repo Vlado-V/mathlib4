@@ -31,6 +31,7 @@ def oddCoefficientAssembly : OddBiformCoordinates K h m d →ₗ[K] biformParity
     (oddBiformEmbedding (t := 2*r.val+1) (by omega) (by omega)).comp (LinearMap.proj r)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddCoefficientAssembly_val (v : OddBiformCoordinates K h m d) :
     (oddCoefficientAssembly v).val=∑ r,sumBiformMap (v r) := by
   simp [oddCoefficientAssembly]

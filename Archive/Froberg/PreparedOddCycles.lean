@@ -53,6 +53,7 @@ def OddCyclesExact (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
       (∀ k,v k = -∑ i,B i k • PreparedParameters.generator p.1 i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem zero_scalar_odd_cycles_exact (hd : 3 ≤ d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (hpos : ∀ j ∈ J, 0 < j) (heven : ∀ j ∈ J, j % 2 = 0)

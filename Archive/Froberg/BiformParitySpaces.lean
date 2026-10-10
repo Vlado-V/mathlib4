@@ -56,6 +56,7 @@ def evenBiformEmbedding (ht : t ≤ d) (heven : t % 2 = 0) :
       rw [hw,heven])
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem evenBiformEmbedding_val (ht : t ≤ d) (heven : t % 2 = 0)
     (v : Forms K h t ⊗[K] Forms K m (d - t)) :
     (evenBiformEmbedding ht heven v).val=sumBiformMap v := rfl
@@ -79,6 +80,7 @@ def oddBiformEmbedding (ht : t ≤ d) (hodd : t % 2 = 1) :
       rw [hw,hodd])
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddBiformEmbedding_val (ht : t ≤ d) (hodd : t % 2 = 1)
     (v : Forms K h t ⊗[K] Forms K m (d - t)) :
     (oddBiformEmbedding ht hodd v).val=sumBiformMap v := rfl
@@ -93,6 +95,7 @@ def positiveEvenAssembly : HigherEvenCoefficients K h m d →ₗ[K] biformParity
     (evenBiformEmbedding (t := 2*(r.val+1)) (by omega) (by omega)).comp (LinearMap.proj r)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem positiveEvenAssembly_val (v : HigherEvenCoefficients K h m d) :
     (positiveEvenAssembly v).val=∑ r,sumBiformMap (v r) := by
   simp [positiveEvenAssembly]

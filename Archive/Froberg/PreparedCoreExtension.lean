@@ -19,6 +19,7 @@ open MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z e : ℕ}
 
+omit [Infinite K] in
 theorem biformImage_core_extension
     (O : Submodule K (MvPolynomial σ K))
     {p : MvPolynomial (σ ⊕ Fin a) K}
@@ -55,26 +56,26 @@ def coreExtension (z : ℕ) : Space a d q J counts O →ₗ[K] Space (a+z) d q J
     · funext j i; apply Subtype.ext
       exact map_smul (rename (Sum.map id (Fin.castAdd z))).toLinearMap c _
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem coreExtension_scalar (p : Space a d q J counts O) (i : Label q J counts) :
     scalar (coreExtension z p) i=rename (Sum.map id (Fin.castAdd z)) (scalar p i) := by
   simp only [scalar,coreExtension,LinearMap.coe_mk,AddHom.coe_mk,rename_rename]
   rfl
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem coreExtension_high (p : Space a d q J counts O) (i : Label q J counts) :
     high (coreExtension z p) i=rename (Sum.map id (Fin.castAdd z)) (high p i) := by
   cases i with
   | inl i => simp only [high_scalar_label,map_zero]
   | inr i => rfl
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem coreExtension_generator (p : Space a d q J counts O) (i : Label q J counts) :
     generator (coreExtension z p) i=
       rename (Sum.map id (Fin.castAdd z)) (generator p i) := by
   simp only [generator,coreExtension_scalar,coreExtension_high,map_add]
 
-omit [Fintype σ] in
+omit [Infinite K] [Fintype σ] in
 theorem coreExtension_injective : Function.Injective (coreExtension (a := a) (O := O)
     (d := d) (q := q) (J := J) (counts := counts) z) := by
   intro p r h

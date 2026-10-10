@@ -22,6 +22,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d u t : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateScalarRelations_val
     (G : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
@@ -30,6 +31,7 @@ theorem privateScalarRelations_val
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarBiform_polynomial (v : Forms K h 0 ⊗[K] Forms K m d) :
     sumBiformMap v=rename Sum.inr ((scalarBiformEquiv (h := h)).symm v).val := by
   obtain ⟨a,rfl⟩ := (scalarBiformEquiv (K := K) (h := h) (n := m) (d := d)).surjective v
@@ -38,6 +40,7 @@ theorem scalarBiform_polynomial (v : Forms K h 0 ⊗[K] Forms K m d) :
   simp
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateScalarRelations_component
     (G : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :

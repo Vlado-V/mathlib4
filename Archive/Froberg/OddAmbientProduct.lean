@@ -27,6 +27,7 @@ def tensorScalarParityProduct : (Forms K h 0 ⊗[K] Forms K m d) →ₗ[K]
   evenOddBiformProduct.comp (evenBiformEmbedding (Nat.zero_le d) (by decide))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem tensorScalarParityProduct_private_mem
     (G : Fin u → biformParitySpace K h m d 1)
     (p : Forms K h 0 ⊗[K] Forms K m d) (i : Fin u) :
@@ -100,6 +101,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
       (ambientOddRelations Q F G).mkQ (tensorScalarParityProduct p v) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientOddRelations_le_full
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :

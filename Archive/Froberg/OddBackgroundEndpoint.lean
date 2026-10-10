@@ -68,6 +68,7 @@ theorem backgroundParityCoefficients_surjective :
   rcases i with i | (i | i) <;> rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundParityEndpoint_comp (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
     (parityPolynomialEndpoint (fun i => (blockWeight h m i : ZMod 2)) backgroundParity
@@ -86,6 +87,7 @@ theorem backgroundParityEndpoint_comp (Q : Fin q → biformParitySpace K h m d 0
     Fintype.sum_sum_type]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem fullOddRelations_eq_parityEndpoint_range (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
     fullOddRelations Q F G=

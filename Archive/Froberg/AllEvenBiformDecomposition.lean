@@ -31,6 +31,7 @@ def allEvenCoefficientAssembly : EvenBiformCoordinates K h m d →ₗ[K] biformP
     (evenBiformEmbedding (t := 2*r.val) (by omega) (by omega)).comp (LinearMap.proj r)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem allEvenCoefficientAssembly_val (v : EvenBiformCoordinates K h m d) :
     (allEvenCoefficientAssembly v).val=∑ r,sumBiformMap (v r) := by
   simp [allEvenCoefficientAssembly]

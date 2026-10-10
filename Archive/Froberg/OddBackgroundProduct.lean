@@ -37,6 +37,7 @@ def evenOddBiformProduct : biformParitySpace K h m d 0 →ₗ[K]
     exact smul_mul_assoc c p.val v.val
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenOddBiformProduct_generator_mem
     (F : Fin f → biformParitySpace K h m d 1)
     (p : biformParitySpace K h m d 0) (i : Fin f) :
@@ -118,6 +119,7 @@ def scalarEvenBiform : Forms K m d →ₗ[K] biformParitySpace K h m d 0 :=
     (scalarBiformEquiv (h := h)).toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem scalarEvenBiform_val (p : Forms K m d) :
     (scalarEvenBiform (h := h) p).val=rename Sum.inr p.val := by
   change sumBiformMap (scalarBiformEquiv (h := h) p)=_

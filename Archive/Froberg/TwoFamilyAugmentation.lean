@@ -27,7 +27,8 @@ variable {K P₁ P₂ V₁ V₂ W : Type*} [Field K]
 variable {q₁ q₂ t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-omit [FiniteDimensional K P₁] [FiniteDimensional K V₁] in
+omit [FiniteDimensional K P₁] [FiniteDimensional K V₁] [FiniteDimensional K P₂]
+    [FiniteDimensional K V₂] [FiniteDimensional K W] in
 theorem twoFamily_append_coprod_injective
     (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W) (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W)
     (F : Fin q₁ → P₁) (Q : Fin q₂ → P₂) (A : Fin t → P₂)
@@ -37,7 +38,7 @@ theorem twoFamily_append_coprod_injective
   exact scalar_append_coprod_injective (BilinearScalarFamily.multiplication mu₁ F) mu₂ Q A h
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-omit [FiniteDimensional K P₁] [FiniteDimensional K V₁] in
+omit [FiniteDimensional K P₁] [FiniteDimensional K V₁] [FiniteDimensional K P₂] in
 /-- The auxiliary forms are witnesses for a uniform shadow estimate and do
 not change the old generator count or its actual quotient. -/
 theorem twoFamily_augmented_quotient_growth

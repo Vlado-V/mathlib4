@@ -95,7 +95,7 @@ theorem projection_annihilates (M₀ : V →ₗ[K] W) (z : W) (hz : z ∈ M₀.r
   rw [map_add,map_smul,hzero,smul_zero,add_zero]
   exact LinearMap.congr_fun hπ v
 
-omit [FiniteDimensional K J] in
+omit [FiniteDimensional K J] [Infinite K] in
 /-- Exact corrected columns of the augmented pencil yield a common principal
 open on which the original map has its prescribed rank and the marked column
 survives. The rank premise is only the usual a priori upper bound. -/

@@ -17,6 +17,7 @@ open MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*} {n e : ℕ}
 
+omit [Infinite K] in
 theorem biformImage_output_rename (f : σ → τ)
     (O : Submodule K (MvPolynomial σ K))
     {p : MvPolynomial (σ ⊕ Fin n) K} (hp : p ∈ biformImage O (Forms K n e)) :
@@ -24,6 +25,7 @@ theorem biformImage_output_rename (f : σ → τ)
   have hh := biformImage_rename f (id : Fin n → Fin n) O (Forms K n e) ⟨p,hp,rfl⟩
   simpa only [rename_id,AlgHom.toLinearMap_id,Submodule.map_id,AlgHom.toLinearMap_apply] using hh
 
+omit [Infinite K] in
 theorem biformImage_output_rename_eq (f : σ → τ)
     (O : Submodule K (MvPolynomial σ K)) :
     (biformImage O (Forms K n e)).map (rename (Sum.map f id)).toLinearMap=
@@ -63,14 +65,14 @@ def outputRename (f : σ → τ) : Space n d q J counts O →ₗ[K]
     · funext j i; apply Subtype.ext
       exact map_smul (rename (Sum.map f id)).toLinearMap c _
 
-omit [Fintype σ] [Fintype τ] in
+omit [Fintype σ] [Fintype τ] [Infinite K] in
 @[simp] theorem outputRename_scalar (f : σ → τ) (p : Space n d q J counts O)
     (i : Label q J counts) :
     scalar (outputRename f p) i=rename (Sum.map f id) (scalar p i) := by
   simp only [scalar,outputRename,LinearMap.coe_mk,AddHom.coe_mk,rename_rename]
   rfl
 
-omit [Fintype σ] [Fintype τ] in
+omit [Fintype σ] [Fintype τ] [Infinite K] in
 @[simp] theorem outputRename_high (f : σ → τ) (p : Space n d q J counts O)
     (i : Label q J counts) :
     high (outputRename f p) i=rename (Sum.map f id) (high p i) := by
@@ -78,7 +80,7 @@ omit [Fintype σ] [Fintype τ] in
   | inl i => simp only [high_scalar_label,map_zero]
   | inr i => rfl
 
-omit [Fintype σ] [Fintype τ] in
+omit [Fintype σ] [Fintype τ] [Infinite K] in
 @[simp] theorem outputRename_generator [Finite σ] [Finite τ]
     (f : σ → τ) (p : Space n d q J counts O)
     (i : Label q J counts) :
@@ -88,7 +90,7 @@ omit [Fintype σ] [Fintype τ] in
   let := Fintype.ofFinite τ
   simp only [generator,outputRename_scalar,outputRename_high,map_add]
 
-omit [Fintype σ] [Fintype τ] in
+omit [Fintype σ] [Fintype τ] [Infinite K] in
 theorem outputRename_surjective (f : σ → τ) :
     Function.Surjective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O :=
       O) f) := by
@@ -106,7 +108,7 @@ theorem outputRename_surjective (f : σ → τ) :
   · rfl
   · funext j i; exact Subtype.ext (hz j i)
 
-omit [Fintype σ] [Fintype τ] in
+omit [Fintype σ] [Fintype τ] [Infinite K] in
 theorem outputRename_injective (f : σ → τ) (hf : Function.Injective f) :
     Function.Injective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O)
       f) := by

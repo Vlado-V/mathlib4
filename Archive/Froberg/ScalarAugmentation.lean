@@ -55,6 +55,7 @@ theorem scalar_append_coprod_injective (f : A →ₗ[K] W)
   subst y'
   rfl
 
+omit [FiniteDimensional K P] in
 theorem scalar_augmentation_growth (f : A →ₗ[K] W)
     (mu : P →ₗ[K] V →ₗ[K] W) (Q : Fin q → P) (R : Fin r → P)
     (h : Function.Injective (f.coprod (BilinearScalarFamily.multiplication mu (Fin.append Q R))))

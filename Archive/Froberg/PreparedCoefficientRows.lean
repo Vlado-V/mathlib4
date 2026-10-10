@@ -42,6 +42,7 @@ def layerSliceEquiv (R : J) (hR : 0 < R.val) :
       subst S
       exact ⟨i,rfl⟩
 
+omit [Infinite K] in
 /-- Product columns are independent whenever the full row has only its
 mandatory scalar-layer relations. -/
 theorem products_injective_of_row_exact
@@ -64,6 +65,7 @@ theorem products_injective_of_row_exact
   have h := congrArg Prod.snd hC
   exact h.symm
 
+omit [Infinite K] in
 /-- The common prepared row implies the literal scalar/new-layer/product
 coefficient identity, using the same generator labels everywhere. -/
 theorem coefficient_row_of_exact

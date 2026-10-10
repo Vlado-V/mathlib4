@@ -81,6 +81,7 @@ def mixedPureOddGenerator (hd : Odd d) (U : Forms K h d)
   oddBiformEmbedding (t := 1) (by have := hd.pos; omega) (by decide) P
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem mixedPureOddGenerator_val (hd : Odd d) (U : Forms K h d)
     (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (mixedPureOddGenerator hd U P).val=rename Sum.inl U.val+sumBiformMap P := by

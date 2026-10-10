@@ -72,6 +72,7 @@ theorem sumBiformMap_action (hx : a + b = r) (hy : e + c = t)
     | add x y hx hy => simp only [map_add,hx,hy,mul_add]
   | add x y hx hy => simp only [map_add,LinearMap.add_apply,hx,hy,add_mul]
 
+omit [Infinite K] in
 /-- Every actual coefficient satisfying the homogeneous biform constraints
 has a tensor preimage. -/
 theorem exists_sumBiformMap_of_homogeneous {f : MvPolynomial (Fin h ⊕ Fin n) K}

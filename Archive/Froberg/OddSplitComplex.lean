@@ -98,6 +98,7 @@ theorem odd_split_exact_iff_kernel
         Submodule.coe_smul,Submodule.coe_neg] using (congrArg (fun x => (x.1.2 j).val) hC).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_split_exact_principal_open {ι : Type*}
     (Q : Fin q → (ι → K) → biformParitySpace K h m d 0)
     (E : Fin f → (ι → K) → biformParitySpace K h m d 1)

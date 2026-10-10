@@ -18,6 +18,7 @@ namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K] {σ τ : Type*}
 
+omit [Infinite K] in
 theorem biformImage_product_le
     (O O' : Submodule K (MvPolynomial σ K)) (C C' : Submodule K (MvPolynomial τ K)) :
     biformImage O C*biformImage O' C'≤biformImage (O*O') (C*C') := by
@@ -53,6 +54,7 @@ theorem deletedBidegreeSpace_half_weight (S : Finset (Fin n)) :
   by_contra hn
   exact ha (((mem_deletedBidegreeSpace_iff S j f).mp hf).2 a hn)
 
+omit [Infinite K] in
 theorem biform_pairProducts_single_profile
     (S : Finset (Fin n)) (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (Poly K n))

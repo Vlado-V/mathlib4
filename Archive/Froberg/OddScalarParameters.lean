@@ -38,6 +38,7 @@ def oddScalarBiformParameters : OddScalarParameters K h n d qO qS →ₗ[K]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddScalarBiformParameters_surjective :
     Function.Surjective (oddScalarBiformParameters (K := K) (h := h) (n := n)
       (d := d) (qO := qO) (qS := qS)) := by

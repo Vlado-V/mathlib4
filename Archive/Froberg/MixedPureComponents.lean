@@ -24,6 +24,7 @@ theorem pureOutput_weighted (U : Forms K h d) :
   apply weighted_homogeneous_rename ⟨Sum.inl,Sum.inl_injective⟩ (blockWeight h m) U.val d
   exact U.property
 
+omit [Infinite K] in
 theorem linearOutput_weighted (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (sumBiformMap P).IsWeightedHomogeneous (blockWeight h m) 1 :=
   biformImage_output_weight (Forms K h 1) (Forms K m (d-1)) le_rfl
