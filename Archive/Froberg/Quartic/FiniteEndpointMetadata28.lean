@@ -79,16 +79,4 @@ theorem lower_selected (i : Fin 31261) : (selected ⟨i.val,by omega⟩).1.val <
   rw [Nat.mod_eq_of_lt (by omega)]
   exact h
 
-set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-#print axioms exponent2_injective
-set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-#print axioms exponent4_injective
-set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-#print axioms product_exponents
-set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-#print axioms product_supports
-set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-#print axioms naturalRow_bound
-set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-#print axioms lower_selected
 end Quartic.FiniteEndpointMetadata28

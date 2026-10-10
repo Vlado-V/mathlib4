@@ -164,7 +164,6 @@ syntax (name := supportLookups) "certify_support_lookups " ident
   for g in [:data.supports.size] do
     liftTermElabM do
       let _ ← ensureSupport stem fn.getId data g
-  logInfo m!"Kernel checked {data.supports.size} generator support equalities."
 
 /-- Precheck a flat interval of the product table. Intervals can be split among
 independent modules with the same stem, then imported by the row modules. -/
@@ -186,7 +185,6 @@ syntax (name := productLookups) "certify_product_lookups " ident
   for k in [start:start + count] do
     liftTermElabM do
       let _ ← ensureProduct stem fn data (k / data.dimension) (k % data.dimension)
-  logInfo m!"Kernel checked {count} product lookup equalities from {start}."
 
 /-- Optional sample preparation: precheck only products used by a row interval.
 This allows timing warm row checking separately from its reusable memo setup. -/
@@ -210,7 +208,6 @@ syntax (name := rowProductLookups) "certify_row_product_lookups " ident
     for j in data.supports[g]! do
       liftTermElabM do
         let _ ← ensureProduct stem fn data j m
-  logInfo m!"Kernel checked products used by {count} rows from {start}."
 
 end
 end Quartic.FiniteEndpointShapeMemo

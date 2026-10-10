@@ -157,8 +157,6 @@ def main() -> int:
             print("Certificate manifest mismatch: " + ", ".join(bad), file=sys.stderr)
             print("Regenerate both manifests after an intentional data revision.", file=sys.stderr)
             return 1
-        print(f"Certificate inputs verified: {manifest['file_count']} files, "
-              f"{manifest['total_bytes']} bytes.")
         return 0
     for path, text in outputs:
         path.parent.mkdir(parents=True, exist_ok=True)

@@ -184,7 +184,6 @@ syntax (name := memoLookups) "certify_inverse_lookups " ident " from " str
   for j in [:nr.getNat] do
     liftTermElabM do
       let _ ← ensureLookup stem fn.getId (pure bytes) nw.getNat j
-  logInfo m!"Kernel checked {nr.getNat} inverse lookup equalities."
 
 syntax (name := memoRows) "certify_sparse_rows " ident " from " str
   " inverse_file " str " inverse_fn " ident " row_fn " ident
@@ -209,8 +208,6 @@ syntax (name := memoRows) "certify_sparse_rows " ident " from " str
     let values := rows[offset]!
     liftTermElabM do
       certifyRow stem invFn.getId rowFn.getId loadInvBytes nw.getNat i values metadata
-  logInfo m!"Kernel checked {count.getNat} sparse rows from index {
-    start.getNat}, with memoized lookup equalities."
 
 end
 end Quartic.FiniteEndpointCheckerMemo

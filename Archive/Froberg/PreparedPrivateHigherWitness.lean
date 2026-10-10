@@ -48,7 +48,6 @@ theorem exists_higher_private_row_parameter {w v z d q b t : ℕ}
     ∃ p : Space (v+v+z) d q J counts (constrainedOutputs T),
       (privateAugmentedRow hO r p P).ker=(privateAugmentedConstants (b := t) hO r p).range := by
   classical
-  trace "higher private: statement elaborated"
   obtain ⟨e,zv,he,Q,E,hproj,hER,hRdeg,hrest,hfull,hker⟩ :=
     exists_finite_even_projected_row h.hw h.hv bo
       (fun i => (privateOutputMatrix bi bo (l i)).range) hrelations counts J

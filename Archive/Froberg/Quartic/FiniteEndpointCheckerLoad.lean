@@ -75,7 +75,6 @@ syntax (name := packedRows) "load_packed_rows " ident " from " str " nrows " num
   liftTermElabM do
     let value ← mkArrayLit (mkConst ``Nat) exprs.toList
     addData fullname (mkApp (mkConst ``Array [.zero]) (mkConst ``Nat)) value
-  logInfo m!"Reified {rowCount} packed Nat rows ({rowCount*wordCount*8} bytes); no rank assertion."
 
 syntax (name := packedTree) "load_packed_tree " ident " from " str " nrows " num
   " nwords " num : command
@@ -100,7 +99,6 @@ syntax (name := packedTree) "load_packed_tree " ident " from " str " nrows " num
   let fullname := (← getCurrNamespace) ++ name.getId
   liftTermElabM do
     addData fullname (mkConst ``NatTree) (buildTree exprs 0 exprs.size)
-  logInfo m!"Reified {rowCount} packed Nat rows as a balanced tree; no rank assertion."
 
 syntax (name := sparseRows) "load_sparse_rows " ident " from " str " nrows " num : command
 
@@ -127,7 +125,6 @@ syntax (name := sparseRows) "load_sparse_rows " ident " from " str " nrows " num
     let listNat := mkApp (mkConst ``List [.zero]) (mkConst ``Nat)
     let value ← mkArrayLit listNat vals
     addData fullname (mkApp (mkConst ``Array [.zero]) listNat) value
-  logInfo m!"Reified {nr.getNat} sparse Nat rows; no rank assertion."
 
 end
 end Quartic.FiniteEndpointCheckerLoad
