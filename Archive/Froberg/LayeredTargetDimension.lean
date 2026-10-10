@@ -26,6 +26,7 @@ variable {K A W W₀ H V : Type} [Field K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 variable {q j loss : ℕ}
 
+omit [FiniteDimensional K A] in
 theorem layered_target_dimension (e : A ≃ₗ[K] W₀ × H)
     (hambient : finrank K A ≤ finrank K W + loss)
     (f : (Fin q → V) →ₗ[K] W) (hf : Function.Injective f)
@@ -40,6 +41,7 @@ theorem layered_target_dimension (e : A ≃ₗ[K] W₀ × H)
   rw [hj,hr] at hq
   omega
 
+omit [FiniteDimensional K W] in
 theorem ambient_dimension_of_kernel_bound (pi : A →ₗ[K] W)
     (hpi : Function.Surjective pi) (hloss : finrank K pi.ker ≤ loss) :
     finrank K A ≤ finrank K W+loss := by

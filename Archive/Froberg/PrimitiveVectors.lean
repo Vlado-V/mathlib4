@@ -90,7 +90,7 @@ theorem isPrimitiveVector_iff_ofFn {n : ℕ} (v : Fin n → R) :
   · simpa only [Polynomial.ofFn_coeff_eq_val_of_lt v hj] using ha ⟨j, hj⟩
   · simp only [Polynomial.ofFn_coeff_eq_zero_of_ge v (Nat.le_of_not_gt hj), dvd_zero]
 
-omit [IsDomain R] in
+omit [IsDomain R] [DecidableEq R] in
 /-- Every nonzero tuple over a gcd domain has a primitive part, obtained by
 dividing its coordinates by their common content. -/
 theorem exists_primitive_vector_factor {n : ℕ} (v : Fin n → R) (hv : v ≠ 0) :
@@ -127,6 +127,7 @@ theorem exists_primitive_vector_factor {n : ℕ} (v : Fin n → R) (hv : v ≠ 0
       P.eq_C_content_mul_primPart
     simpa [P, w, Polynomial.toFn] using hi
 
+omit [DecidableEq R] in
 /-- Every nonzero finite-dimensional fraction-field vector is a nonzero
 fraction-field scalar times a primitive vector over the original gcd domain.
 This is the normalization needed for a generic Plücker line. -/
@@ -165,6 +166,7 @@ theorem exists_primitive_fraction_vector {n : ℕ} (v : Fin n → K) (hv : v ≠
         (algebraMap R K a * algebraMap R K (w i)) := by rw [← hi]
     _ = (algebraMap R K a / algebraMap R K (b : R)) * algebraMap R K (w i) := by ring
 
+omit [DecidableEq R] in
 /-- Primitive vectors proportional over a fraction field differ by a unit
 scalar from the original gcd domain.  In particular this applies to a UFD
 of polynomial coefficients in a primitive Plücker-vector construction. -/
@@ -173,6 +175,7 @@ theorem primitive_vector_fraction_scalar
     (hv : IsPrimitiveVector v) (hw : IsPrimitiveVector w)
     (c : K) (hrel : ∀ i, algebraMap R K (w i) = c * algebraMap R K (v i)) :
     ∃ a : R, IsUnit a ∧ algebraMap R K a = c ∧ ∀ i, w i = a * v i := by
+  classical
   have hp : (Polynomial.ofFn n w).map (algebraMap R K) =
       C c * (Polynomial.ofFn n v).map (algebraMap R K) := by
     ext j
@@ -193,13 +196,15 @@ theorem primitive_vector_fraction_scalar
     Polynomial.ofFn_coeff_eq_val_of_lt v i.isLt,
     Polynomial.ofFn_coeff_eq_val_of_lt w i.isLt] using hi
 
+omit [DecidableEq R] in
 /-- The proportionality theorem for any finite coordinate type. -/
 theorem primitive_family_fraction_scalar
-    {ι : Type*} [Fintype ι] (v w : ι → R)
+    {ι : Type*} [Finite ι] (v w : ι → R)
     (hv : IsPrimitiveVector v) (hw : IsPrimitiveVector w)
     (c : K) (hrel : ∀ i, algebraMap R K (w i) = c * algebraMap R K (v i)) :
     ∃ a : R, IsUnit a ∧ algebraMap R K a = c ∧ ∀ i, w i = a * v i := by
   classical
+  let := Fintype.ofFinite ι
   let e := Fintype.equivFin ι
   obtain ⟨a, ha, hac, heq⟩ := primitive_vector_fraction_scalar
     (fun i => v (e.symm i)) (fun i => w (e.symm i))
@@ -208,13 +213,15 @@ theorem primitive_family_fraction_scalar
   intro i
   simpa only [e.symm_apply_apply] using heq (e i)
 
+omit [DecidableEq R] in
 /-- A primitive representative exists for any nonzero finite family over
 the fraction field, independently of the coordinate indexing. -/
 theorem exists_primitive_fraction_family
-    {ι : Type*} [Fintype ι] (v : ι → K) (hv : v ≠ 0) :
+    {ι : Type*} [Finite ι] (v : ι → K) (hv : v ≠ 0) :
     ∃ c : K, c ≠ 0 ∧ ∃ w : ι → R,
       IsPrimitiveVector w ∧ ∀ i, v i = c * algebraMap R K (w i) := by
   classical
+  let := Fintype.ofFinite ι
   let e := Fintype.equivFin ι
   have hv' : (fun i => v (e.symm i)) ≠ 0 := by
     intro h
@@ -264,7 +271,7 @@ the ground field. -/
 theorem primitive_polynomial_vectors_constant_scalar
     {k F σ : Type*} [Field k] [Field F]
     [Algebra (MvPolynomial σ k) F] [IsFractionRing (MvPolynomial σ k) F]
-    {ι : Type*} [Fintype ι] (v w : ι → MvPolynomial σ k)
+    {ι : Type*} [Finite ι] (v w : ι → MvPolynomial σ k)
     (hv : IsPrimitiveVector v) (hw : IsPrimitiveVector w)
     (c : F) (hrel : ∀ i,
       algebraMap (MvPolynomial σ k) F (w i) =

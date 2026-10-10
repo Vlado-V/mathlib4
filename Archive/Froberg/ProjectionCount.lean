@@ -21,7 +21,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 Grassmannian source family whenever ub>a². -/
 theorem projection_failure_count_real {a u b ell w t : ℝ}
     (ha : 0 < a) (hu : 0 ≤ u) (hb : 0 ≤ b) (hl : 0 < ell) (hla : ell ≤ a)
-    (ht : 0 ≤ t) (hw : (u + b) * ell ≤ a * w) (hfail : a * t < b * ell)
+    (_ht : 0 ≤ t) (hw : (u + b) * ell ≤ a * w) (hfail : a * t < b * ell)
     (hmargin : a * a < u * b) :
     ell*(a-ell)+t*(b-t) < w*(b-t) := by
   have hu0 : 0 < u := by nlinarith [sq_nonneg a]

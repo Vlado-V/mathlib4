@@ -16,11 +16,12 @@ namespace Froberg
 open Matrix Module
 
 variable {K L m n : Type*} [Field K] [Field L]
-  [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
+  [Fintype n]
 
 /-- A rank-`r` matrix factors through a vector space of dimension `r`. -/
 theorem exists_rank_factorization (M : Matrix m n K) :
     ∃ X : Matrix m (Fin M.rank) K, ∃ Y : Matrix (Fin M.rank) n K, M = X * Y := by
+  classical
   let f := M.mulVecLin
   change ∃ X : Matrix m (Fin (finrank K f.range)) K,
     ∃ Y : Matrix (Fin (finrank K f.range)) n K, M = X * Y
@@ -38,8 +39,10 @@ theorem exists_rank_factorization (M : Matrix m n K) :
 
 /-- Scalar extension preserves matrix rank.  Both inequalities have
 finite algebraic witnesses: a factorization and a nonsingular compression. -/
-theorem matrix_rank_map_field (φ : K →+* L) (M : Matrix m n K) :
+theorem matrix_rank_map_field [Finite m] (φ : K →+* L) (M : Matrix m n K) :
     (M.map φ).rank = M.rank := by
+  classical
+  let := Fintype.ofFinite m
   apply Nat.le_antisymm
   · obtain ⟨X, Y, hM⟩ := exists_rank_factorization M
     have hfac : M.map φ = X.map φ * Y.map φ := by

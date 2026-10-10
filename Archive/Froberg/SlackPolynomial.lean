@@ -87,14 +87,14 @@ theorem transferSlackPolynomial_second {d : ℕ} (hd : 2 ≤ d)
     have hh := monomialCountPolynomial_subleading (d - 1) (by omega)
     rw [show d - 1 - 1 = d - 2 by omega, Nat.cast_sub (by omega : 1 ≤ d)] at hh
     push_cast at hh
-    convert hh using 1 <;> ring
+    convert hh using 1; ring
   have ht : (monomialCountPolynomial (2 * d - 1)).coeff (2 * d - 2) =
       (2 * (d : ℝ) - 1) * (2 * (d : ℝ) - 2) / (2 * ((2 * d - 1).factorial : ℝ)) := by
     have hh := monomialCountPolynomial_subleading (2 * d - 1) (by omega)
     rw [show 2 * d - 1 - 1 = 2 * d - 2 by omega,
       Nat.cast_sub (by omega : 1 ≤ 2 * d)] at hh
     push_cast at hh
-    convert hh using 1 <;> ring
+    convert hh using 1; ring
   simp only [transferSlackPolynomial, coeff_sub, coeff_C_mul, hPS, hFD, hs, ht,
     monomialCountPolynomial_top, monomialCountPolynomial_subleading d (by omega : 0 < d)]
   ring

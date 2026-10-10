@@ -26,9 +26,9 @@ theorem exists_linearEquiv_of_equal_dimension_range (F : M →ₗ[K] V) (J : N �
     (hJ : Function.Injective J) (himage : LinearMap.range J ≤ LinearMap.range F)
     (hdim : finrank K M = finrank K N) :
     ∃ E : M ≃ₗ[K] N, ∀ x, J (E x) = F x := by
-  letI : AddCommGroup M := Module.addCommMonoidToAddCommGroup K
-  letI : AddCommGroup N := Module.addCommMonoidToAddCommGroup K
-  letI : AddCommGroup V := Module.addCommMonoidToAddCommGroup K
+  let : AddCommGroup M := Module.addCommMonoidToAddCommGroup K
+  let : AddCommGroup N := Module.addCommMonoidToAddCommGroup K
+  let : AddCommGroup V := Module.addCommMonoidToAddCommGroup K
   have hdJ := LinearMap.finrank_range_of_inj hJ
   have hle := Submodule.finrank_mono himage
   have heqDim : finrank K (LinearMap.range J) = finrank K (LinearMap.range F) := by

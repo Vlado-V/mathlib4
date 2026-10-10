@@ -27,7 +27,7 @@ namespace Froberg
 open Matrix Module
 
 variable {K m n : Type*} [Field K]
-  [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
+  [Fintype m] [Fintype n]
 
 /-- A matrix of rank `r` admits a square compression equal to the identity
 of size `r`.  The witnesses are obtained from a basis of its actual image. -/
@@ -62,6 +62,7 @@ theorem exists_rank_compression (M : Matrix m n K) :
 theorem rank_ge_of_compression_det_ne_zero
     {r : ℕ} (M : Matrix m n K) (X : Matrix n (Fin r) K) (Y : Matrix (Fin r) m K)
     (hdet : (Y * M * X).det ≠ 0) : r ≤ M.rank := by
+  classical
   have hle := (Matrix.rank_mul_le_left (Y * M) X).trans (Matrix.rank_mul_le_right Y M)
   rwa [Matrix.rank_of_det_ne_zero hdet, Fintype.card_fin] at hle
 
@@ -70,8 +71,9 @@ section Denominators
 variable {R F : Type*} [CommRing R] [IsDomain R] [Field F]
   [Algebra R F] [IsFractionRing R F]
 
+omit [Fintype m] [Fintype n] in
 /-- A single nonzero scalar clears all entries of a finite matrix. -/
-theorem exists_matrix_integer_multiple (A : Matrix m n F) :
+theorem exists_matrix_integer_multiple [Finite m] [Finite n] (A : Matrix m n F) :
     ∃ s : R, s ≠ 0 ∧ ∃ A₀ : Matrix m n R,
       A₀.map (algebraMap R F) = algebraMap R F s • A := by
   classical
@@ -90,13 +92,15 @@ section Polynomial
 variable {σ F : Type*} [Field F]
   [Algebra (MvPolynomial σ K) F] [IsFractionRing (MvPolynomial σ K) F]
 
+omit [Fintype m] in
 /-- Every pointwise specialization has rank at most the rank over the
 fraction field of the polynomial coefficient ring. -/
-theorem specialization_rank_le_fraction_rank
+theorem specialization_rank_le_fraction_rank [Finite m]
     (M : Matrix m n (MvPolynomial σ K)) (a : σ → K) :
     (M.map (MvPolynomial.eval a)).rank ≤
       (M.map (algebraMap (MvPolynomial σ K) F)).rank := by
   classical
+  let := Fintype.ofFinite m
   obtain ⟨X, Y, hYX⟩ := exists_rank_compression (M.map (MvPolynomial.eval a))
   let X₀ := X.map (MvPolynomial.C : K →+* MvPolynomial σ K)
   let Y₀ := Y.map (MvPolynomial.C : K →+* MvPolynomial σ K)
@@ -117,14 +121,16 @@ theorem specialization_rank_le_fraction_rank
     simpa only [D, RingHom.map_det, RingHom.mapMatrix_apply, Matrix.map_mul] using hDF
   exact rank_ge_of_compression_det_ne_zero _ _ _ hdet
 
+omit [Fintype m] in
 /-- The fraction-field rank is attained at an actual ground-field point
 when the ground field is infinite.  Denominators of the two compression
 matrices are cleared before specializing. -/
-theorem exists_specialization_rank_eq_fraction_rank [Infinite K]
+theorem exists_specialization_rank_eq_fraction_rank [Finite m] [Infinite K]
     (M : Matrix m n (MvPolynomial σ K)) :
     ∃ a : σ → K, (M.map (MvPolynomial.eval a)).rank =
       (M.map (algebraMap (MvPolynomial σ K) F)).rank := by
   classical
+  let := Fintype.ofFinite m
   let φ := algebraMap (MvPolynomial σ K) F
   obtain ⟨X, Y, hYX⟩ := exists_rank_compression (M.map φ)
   obtain ⟨s, hs, X₀, hX⟩ := exists_matrix_integer_multiple (R := MvPolynomial σ K) X
