@@ -87,6 +87,7 @@ def multiplier (i : Fin b₂) : Forms K n 2 :=
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def product (i : Fin b₄) : Forms K n 4 := rowForm D.exponent₄ D.degree₄ (D.rows i)
 
+omit [CharZero K] in
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem product_identity (i : Fin b₄) : D.product (K := K) i =
     mulQuadratic (D.quadrics (D.selected i).1) (D.multiplier (D.selected i).2) := by

@@ -58,6 +58,7 @@ def bilinearKoszulConstants (Q : I → V) (E : J → U) :
     · simp
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K U] [FiniteDimensional K V] [FiniteDimensional K W] in
 /-- The mandatory constants are relations without any independence assumption. -/
 theorem bilinearKoszulRow_constants (μ : V →ₗ[K] U →ₗ[K] A)
     (Q : I → V) (E : J → U) (P : W →ₗ[K] A) :
@@ -71,6 +72,7 @@ theorem bilinearKoszulRow_constants (μ : V →ₗ[K] U →ₗ[K] A)
   exact add_neg_cancel _
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K U] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem bilinearKoszulConstants_injective (Q : I → V) (E : J → U)
     (hE : LinearIndependent K E) :
     Function.Injective (bilinearKoszulConstants (K := K) (W := W) Q E) := by
@@ -95,6 +97,7 @@ theorem bilinearKoszulRow_polynomial
       (hP.linear_comp (LinearMap.applyₗ (R := K) (M₂ := A) x.2))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K U] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem bilinearKoszulConstants_polynomial
     (Q : I → (ι → K) → V) (E : J → (ι → K) → U)
     (hQ : ∀ i, IsPolynomialFamily (Q i)) (hE : ∀ j, IsPolynomialFamily (E j)) :

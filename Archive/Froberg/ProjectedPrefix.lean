@@ -18,7 +18,7 @@ namespace Froberg.ProjectedPrefix
 open Module MvPolynomial MonomialExpansion
 open Quartic.PolynomialBilinearCoordinates
 variable {K : Type*} [Field K] {n d e r : ℕ}
-variable (P : (Fin n →₀ ℕ) → Prop) [DecidablePred P]
+variable (P : (Fin n →₀ ℕ) → Prop)
 
 abbrev RetainedForms (D : ℕ) := (Forms K n D).map (retainMonomials P)
 
@@ -82,6 +82,7 @@ theorem generic_injective_of_growth [Infinite K] (hn : 0 < n) (a b : ℕ) (hb : 
       (∃ f : Fin r → Forms K n d, eval (coordinates K _ f) Q ≠ 0) ∧
       ∀ f : Fin r → Forms K n d, eval (coordinates K _ f) Q ≠ 0 →
         Function.Injective (multiplication P f e) := by
+  classical
   apply Quartic.BilinearGeneric.generic_injective_actual (bilinear P)
   intro v hv
   dsimp only

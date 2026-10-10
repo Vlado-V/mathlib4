@@ -48,8 +48,9 @@ omit [DecidableEq X] in
     Finset.mem_inter, Finset.mem_sdiff]
   split_ifs <;> simp_all
 
-@[simp] theorem degree_pairedExponent [Fintype X] (S A : Finset X) :
+@[simp] theorem degree_pairedExponent [Finite X] (S A : Finset X) :
     (pairedExponent S A).degree = S.card := by
+  let : Fintype X := Fintype.ofFinite X
   rw [Finsupp.degree_eq_sum, Fintype.sum_prod_type]
   have he (x : X) : (∑ b : Bool, pairedExponent S A (x,b)) = if x ∈ S then 1 else 0 := by
     simpa only [Fintype.sum_bool, indexDegree, add_comm] using congrFun (indexDegree_pairedExponent

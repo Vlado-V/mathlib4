@@ -44,7 +44,7 @@ theorem polynomial_even_positive_rows_reduce_to_scalar
     intro r hr hrd u b B hu hb hB hrel
     by_cases hre : r%2=0
     · apply hexact r hr hrd hre u b B
-      · simpa only [V,if_pos hre] using hu
+      · simpa only [V,ite_eq_left hre] using hu
       · simpa only [hVzero] using hb
       · exact hB
       · exact hrel

@@ -27,7 +27,7 @@ open Module MvPolynomial
 variable {K V W J : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
-  [AddCommGroup J] [Module K J] [FiniteDimensional K J]
+  [AddCommGroup J] [Module K J]
 
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
@@ -43,6 +43,7 @@ def secondResponse (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J) :
   π.comp (M₁.comp ((LinearMap.snd K V V).comp (equations M₀ M₁).ker.subtype))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem column_equations (M₀ M₁ : V →ₗ[K] W) (a : (equations M₀ M₁).ker) :
     M₀ a.val.1 = 0 ∧ M₀ a.val.2 = -M₁ a.val.1 := by
   have h := a.property

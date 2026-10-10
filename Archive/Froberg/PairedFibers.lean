@@ -21,36 +21,44 @@ variable {X : Type*} [Fintype X] [DecidableEq X]
 def liftPart (R : Finset X) (P : Finset R) : Finset X :=
   P.map (Function.Embedding.subtype _)
 
+omit [Fintype X] [DecidableEq X] in
 @[simp] theorem card_liftPart (R : Finset X) (P : Finset R) :
     (liftPart R P).card = P.card := Finset.card_map _
 
+omit [Fintype X] [DecidableEq X] in
 theorem liftPart_subset (R : Finset X) (P : Finset R) : liftPart R P ⊆ R := by
   intro x hx
   exact Finset.property_of_mem_map_subtype P hx
 
+omit [Fintype X] [DecidableEq X] in
 @[simp] theorem mem_liftPart (R : Finset X) (P : Finset R) (x : R) :
     x.1 ∈ liftPart R P ↔ x ∈ P := by
   simp only [liftPart, Finset.mem_map]
   exact ⟨fun ⟨y, hy, he⟩ => by have := Subtype.ext he; subst y; exact hy,
     fun hx => ⟨x,hx,rfl⟩⟩
 
+omit [Fintype X] [DecidableEq X] in
 theorem liftPart_injective (R : Finset X) : Function.Injective (liftPart R) :=
   Finset.map_injective _
 
+omit [Fintype X] [DecidableEq X] in
 @[simp] theorem liftPart_univ (R : Finset X) : liftPart R Finset.univ = R := by
+  classical
   ext x
   simp [liftPart]
 
+omit [Fintype X] in
 @[simp] theorem liftPart_compl (R : Finset X) (P : Finset R) :
     liftPart R Pᶜ = R \ liftPart R P := by
   ext x
   by_cases hx : x ∈ R
-  · simpa only [mem_liftPart R Pᶜ ⟨x,hx⟩, Finset.mem_compl,
+  · simp only [mem_liftPart R Pᶜ ⟨x,hx⟩, Finset.mem_compl,
       Finset.mem_sdiff, hx, true_and, mem_liftPart R P ⟨x,hx⟩]
   · have h₁ : x ∉ liftPart R P := fun h => hx (liftPart_subset R P h)
     have h₂ : x ∉ liftPart R Pᶜ := fun h => hx (liftPart_subset R Pᶜ h)
     simp [hx,h₁,h₂]
 
+omit [Fintype X] in
 @[simp] theorem liftPart_inter (R : Finset X) (P Q : Finset R) :
     liftPart R (P ∩ Q) = liftPart R P ∩ liftPart R Q := Finset.map_inter _ _
 

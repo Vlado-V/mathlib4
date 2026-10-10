@@ -32,10 +32,12 @@ def multiplication (e : I → Fin n →₀ ℕ) (v : I → J → K) :
     simp only [Pi.smul_apply, Submodule.coe_smul, mul_smul_comm, Finset.smul_sum,
       RingHom.id_apply]
 
+omit [Fintype J] in
 @[simp] theorem multiplication_apply (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (a : I → Forms K n d) (j : J) :
     multiplication e v a j = ∑ i, monomial (e i) (v i j) * (a i).val := rfl
 
+omit [Fintype J] in
 /-- The target coefficient lies in the span of the vectors attached to its divisors. -/
 theorem coefficient_formula (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (a : I → Forms K n d) (β : Fin n →₀ ℕ) (j : J) :
@@ -50,6 +52,7 @@ theorem coefficient_formula (e : I → Fin n →₀ ℕ) (v : I → J → K)
   intro i _
   split_ifs <;> simp [mul_comm]
 
+omit [Fintype J] in
 /-- Independence in each actual target fiber proves polynomial injectivity in
 the requested degree. Only degree-(s+d) target fibers are needed. -/
 theorem injective_of_independent_fibers (e : I → Fin n →₀ ℕ) (v : I → J → K)
@@ -83,6 +86,7 @@ theorem injective_of_independent_fibers (e : I → Fin n →₀ ℕ) (v : I → 
   apply hker
   rw [map_sub,hab,sub_self]
 
+omit [Fintype J] in
 /-- Every output has the expected total degree. -/
 theorem multiplication_homogeneous (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (a : I → Forms K n d) (j : J) :
@@ -98,6 +102,7 @@ def homogeneousMultiplication (e : I → Fin n →₀ ℕ) (v : I → J → K)
   LinearMap.pi (fun j => (((LinearMap.proj j).comp (multiplication e v)).codRestrict
     (Forms K n (s+d)) (fun a => multiplication_homogeneous e v he a j)))
 
+omit [Fintype J] in
 @[simp] theorem homogeneousMultiplication_val (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (a : I → Forms K n d) (j : J) :
     (homogeneousMultiplication e v he a j).val = multiplication e v a j := rfl
@@ -106,6 +111,7 @@ def homogeneousMultiplication (e : I → Fin n →₀ ℕ) (v : I → J → K)
 def relationSpace (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s) :
     Submodule K (J → Forms K n (s+d)) := LinearMap.range (homogeneousMultiplication e v he)
 
+omit [Fintype J] in
 theorem homogeneousMultiplication_injective (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (hv : Function.Injective (multiplication (d := d) e v)) :
     Function.Injective (homogeneousMultiplication (d := d) e v he) := by

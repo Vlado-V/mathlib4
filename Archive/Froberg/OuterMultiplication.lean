@@ -29,9 +29,11 @@ def vectorMultiply : Forms K n d →ₗ[K] (J → Forms K n s) →ₗ[K] (J → 
   map_smul' := by
     intro c f; apply LinearMap.ext; intro p; funext j; apply Subtype.ext; exact smul_mul_assoc _ _ _
 
+omit [Fintype J] in
 @[simp] theorem vectorMultiply_val (f : Forms K n d) (p : J → Forms K n s) (j : J) :
     (vectorMultiply f p j).val = f.val * (p j).val := rfl
 
+omit [Fintype J] in
 /-- Multiplying an actual presentation relation produces an actual higher-degree relation. -/
 theorem vectorMultiply_relation (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (f : Forms K n d)
@@ -76,6 +78,7 @@ def quotientMultiply (e : I → Fin n →₀ ℕ) (v : I → J → K)
       c • (relationSpace (d := d) e v he).mkQ (vectorMultiply f p)
     simp
 
+omit [Fintype J] in
 @[simp] theorem quotientMultiply_mk (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (f : Forms K n d) (p : J → Forms K n s) :
     quotientMultiply e v he f ((relationSpace (d := 0) e v he).mkQ p) =

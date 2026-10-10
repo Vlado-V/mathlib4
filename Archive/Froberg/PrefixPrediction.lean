@@ -52,7 +52,7 @@ theorem monomial_quotient_antitone {n : ℕ} (hn : 0 < n) (d : ℕ) :
           (countReal n e * (n + e) / (e + 1)) =
         (countReal n (d + e) / countReal n e) *
           (((n : ℝ) + (d + e)) * (e + 1) / ((d + e + 1) * (n + e))) := by
-    field_simp [hN.ne', hnp.ne', hdp.ne', hp.ne'] <;> ring
+    field_simp [hN.ne', hnp.ne', hdp.ne', hp.ne']
   rw [heq]
   exact mul_le_of_le_one_right (div_nonneg hM.le hN.le)
     ((div_le_one₀ (mul_pos hdp hnp)).mpr hstep)

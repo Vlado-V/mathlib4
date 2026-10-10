@@ -35,7 +35,9 @@ theorem affineCountPolynomial_eval (d a b m : ℕ) :
     (affineCountPolynomial d a b).eval (m : ℝ) = ((a * m + b + d - 1).choose d : ℝ) := by
   rw [affineCountPolynomial, eval_comp]
   simp only [eval_add, eval_mul, eval_C, eval_X]
-  convert monomialCountPolynomial_eval d (a * m + b) using 1 <;> push_cast <;> ring
+  convert monomialCountPolynomial_eval d (a * m + b) using 1
+  push_cast
+  ring
 
 /-- The binomial law in a balanced split puts at most one half of its mass
 in any single bidegree. -/

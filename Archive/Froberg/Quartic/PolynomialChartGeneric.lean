@@ -23,7 +23,7 @@ noncomputable section
 namespace Quartic.PolynomialChartGeneric
 open Module Matrix MvPolynomial KernelPolynomialCharts PolynomialSubspaceTupleCharts
 open PolynomialSubspaceCovectorCharts (subspace)
-variable {K C : Type*} [Field K] [Fintype C]
+variable {K C : Type*} [Field K] [Finite C]
 variable {I : C → Type*} [∀ c, Fintype (I c)] {N : C → ℕ} {a q n b : ℕ}
 
 /-- A finite polynomial cover with the actual incidence rank bound gives
@@ -37,6 +37,7 @@ theorem generic_injective [Infinite K]
     ∃ P : MvPolynomial (Fin n) K,(∃ x : Fin n → K,eval x P ≠ 0) ∧
       ∀ x,eval x P ≠ 0 → Function.Injective (B.flip x) := by
   classical
+  let : Fintype C := Fintype.ofFinite C
   let Choices := (c : C) × Pivot q (N c)
   have hchart (c : Choices) :
       ∃ P : MvPolynomial (Fin n) K,(∃ x : Fin n → K,eval x P ≠ 0) ∧

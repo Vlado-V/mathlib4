@@ -51,7 +51,7 @@ theorem private_polynomial_positive_rows_reduce
     intro r hr hrd x b B hx hb hB hrel
     by_cases hre : r%2=0
     · apply hexact r hr hrd hre x b B
-      · simpa only [V,if_pos hre] using hx
+      · simpa only [V,ite_eq_left hre] using hx
       · simpa only [hVzero] using hb
       · exact hB
       · exact hrel
@@ -72,10 +72,10 @@ theorem private_polynomial_positive_rows_reduce
     intro r hr hrd x b B u hx hb hu hB hrel
     by_cases hre : r%2=0
     · apply hseparate r hr hrd hre x b B u
-      · simpa only [V,if_pos hre] using hx
+      · simpa only [V,ite_eq_left hre] using hx
       · simpa only [hVzero] using hb
       · have hodd : (r-1)%2=1 := by omega
-        simpa only [W,if_pos hodd] using hu
+        simpa only [W,ite_eq_left hodd] using hu
       · exact hB
       · exact hrel
     · have hnodd : (r-1)%2≠1 := by omega
@@ -112,10 +112,10 @@ theorem private_polynomial_positive_rows_reduce
       rw [map_add,mixed_generator_component_row w a E c j (fun i => (ha i).2) hE r] at hh
       simp only [map_sum,add_mul,map_add,Finset.sum_add_distrib,
         weightedComponent_homogeneous_left w (hP _),
-        weightedComponent_homogeneous_left w (hU _),if_pos (by omega : 1≤r)] at hh
+        weightedComponent_homogeneous_left w (hU _),ite_eq_left (by omega : 1≤r)] at hh
       by_cases hrd' : d≤r
-      · simpa only [if_pos hrd',add_assoc] using hh
-      · simpa only [if_neg hrd',Finset.sum_const_zero,add_zero,add_assoc] using hh)
+      · simpa only [ite_eq_left hrd',add_assoc] using hh
+      · simpa only [ite_eq_right hrd',Finset.sum_const_zero,add_zero,add_assoc] using hh)
     hrows hsep
   refine ⟨hvzero,M,z,hz,hzs,?_⟩
   intro i

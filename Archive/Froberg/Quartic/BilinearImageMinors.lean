@@ -42,10 +42,11 @@ theorem imageMatrix_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (
   rw [hc]
 
 /-- Rank below e is exactly vanishing of every e-by-e minor, also for e=0. -/
-theorem rank_lt_iff_minors_zero {R C : Type*} [Fintype R] [Fintype C]
-    [DecidableEq R] [DecidableEq C] (A : Matrix R C K) (e : ℕ) :
+theorem rank_lt_iff_minors_zero {R C : Type*} [Finite R] [Fintype C]
+    (A : Matrix R C K) (e : ℕ) :
     A.rank < e ↔ ∀ u : Fin e → R, ∀ v : Fin e → C, (A.submatrix u v).det = 0 := by
   classical
+  let := Fintype.ofFinite R
   constructor
   · intro h u v
     by_contra hn

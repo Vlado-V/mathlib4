@@ -26,6 +26,7 @@ variable {K V W : Type*} [Field K] [Infinite K]
 variable {m : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K W] in
 /-- Every fixed linear quotient admits vectors whose small projected
 subfamilies are independent, up to the exact quotient-image dimension. -/
 theorem exists_projected_general_vectors (F : V →ₗ[K] W) :
@@ -83,13 +84,14 @@ theorem projected_general_vectors_open (F : V →ₗ[K] W) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Finitely many projection requirements use one and the same vector tuple. -/
-theorem finite_projected_general_vectors_open {I : Type*} [Fintype I]
+theorem finite_projected_general_vectors_open {I : Type*} [Finite I]
     (F : I → V →ₗ[K] W) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin m → V))) K,
       (∃ x,eval x D≠0) ∧ ∀ x,eval x D≠0 →
         ∀ i (S : Finset (Fin m)),S.card≤finrank K (F i).range →
           LinearIndependent K (fun j : S => F i ((coordinates K (Fin m → V)).symm x j.val)) := by
   classical
+  let := Fintype.ofFinite I
   choose D hD hgood using fun i => projected_general_vectors_open (m := m) (F i)
   have hne (i) : D i≠0 := by
     obtain ⟨x,hx⟩ := hD i

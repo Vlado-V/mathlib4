@@ -17,7 +17,7 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial
 variable {K V I : Type*} [Field K] [Infinite K]
-  [AddCommGroup V] [Module K V] [Module.Finite K V] [Fintype I]
+  [AddCommGroup V] [Module K V] [Module.Finite K V] [Finite I]
 
 theorem finite_basis_principal_intersection
     (D : I → MvPolynomial (Fin (finrank K V)) K)

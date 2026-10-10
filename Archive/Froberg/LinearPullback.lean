@@ -28,7 +28,7 @@ def linearPullback (L : (I → K) →ₗ[K] (I → K)) :
     (a : I → K) (P : MvPolynomial I K) :
     eval a (linearPullback L P) = eval (L a) P := by
   have hh : (eval a).comp (linearPullback L).toRingHom = eval (L a) := by
-    ext c i <;> simp [linearPullback, eval_polynomialOfLinear]
+    ext c <;> simp [linearPullback, eval_polynomialOfLinear]
   exact RingHom.congr_fun hh P
 
 variable [Infinite K]

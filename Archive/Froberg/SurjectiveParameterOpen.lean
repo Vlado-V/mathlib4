@@ -19,6 +19,7 @@ variable {K P J : Type*} [Field K] [Infinite K]
 variable {E T : Type*} [AddCommGroup E] [Module K E] [Module.Finite K E]
   [AddCommGroup T] [Module K T] [Module.Finite K T]
 
+omit [Infinite K] in
 theorem surjective_polynomial_principal_open (A : (P → K) → E →ₗ[K] T)
     (hA : IsPolynomialFamily A) (a₀ : P → K) (ha₀ : Function.Surjective (A a₀)) :
     ∃ D : MvPolynomial P K, eval a₀ D≠0 ∧
@@ -31,7 +32,7 @@ theorem surjective_polynomial_principal_open (A : (P → K) → E →ₗ[K] T)
   exact Submodule.eq_top_of_finrank_eq (le_antisymm (Submodule.finrank_le _) hr)
 
 section FiniteRows
-variable [Fintype J]
+variable [Finite J]
 variable {E T : J → Type*}
   [∀ j, AddCommGroup (E j)] [∀ j, Module K (E j)] [∀ j, Module.Finite K (E j)]
   [∀ j, AddCommGroup (T j)] [∀ j, Module K (T j)] [∀ j, Module.Finite K (T j)]
@@ -45,6 +46,7 @@ theorem surjective_polynomial_common_open
     ∃ D : MvPolynomial P K, (∃ a,eval a D≠0) ∧
       ∀ a,eval a D≠0 → ∀ j,Function.Surjective (A j a) := by
   classical
+  let := Fintype.ofFinite J
   choose a ha using hwit
   choose D hD hgood using fun j => surjective_polynomial_principal_open (A j) (hA j) (a j) (ha j)
   have hnz (j : J) : D j≠0 := by

@@ -49,8 +49,7 @@ theorem principal_open_second_dehom {L : Type*} [Field L] [Algebra K L] [IsAlgCl
   obtain ⟨P,hP,havoid⟩ := FiniteAlgebraicKernelAvoidance.principal_open_second_stage
     slices base A B hcount
   refine ⟨P,hP,?_⟩
-  intro z hz x t htf htℓ
-  intro hr hs
+  intro z hz x t htf htℓ hr hs
   have hJ : J ≤ RingHom.ker (aeval t).toRingHom := by
     apply sup_le
     · apply Ideal.span_le.mpr
@@ -103,8 +102,7 @@ theorem principal_open_second_projective_succ {L : Type*} [Field L] [Algebra K L
     exact hz (by rw [he,map_zero])
   refine ⟨∏ i, P i,PolynomialImageAvoidance.exists_eval_ne_zero
     (Finset.prod_ne_zero_iff.mpr (fun i _ => hPnz i)),?_⟩
-  intro z hz x t ht htf
-  intro hr hs
+  intro z hz x t ht htf hr hs
   by_contra! hbad
   obtain ⟨i,hi,huf,hul,_⟩ := exists_normalized_chart_of_geometric_empty d f ℓ hempty t ht htf
   let u := normalize (ℓ i) t

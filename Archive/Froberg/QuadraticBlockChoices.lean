@@ -52,6 +52,7 @@ theorem canonicalLabel_injective (e : X ↪ Fin 4) : Function.Injective (canonic
 def pullbackSubset (e : X ↪ Fin 4) (S : Finset (Fin 4)) : Finset X :=
   Finset.univ.filter (fun x => e x ∈ S)
 
+omit [DecidableEq X] in
 @[simp] theorem mem_pullbackSubset (e : X ↪ Fin 4) (S : Finset (Fin 4)) (x : X) :
     x ∈ pullbackSubset e S ↔ e x ∈ S := by simp [pullbackSubset]
 

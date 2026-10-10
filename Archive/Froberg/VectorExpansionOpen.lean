@@ -89,7 +89,7 @@ theorem principal_open [NeZero d] [IsAlgClosed L]
 
 /-- A single principal open preserves every member of a finite list of
 all-plane expansion bounds, retaining the given geometric witness. -/
-theorem principal_open_finite {A : Type*} [Fintype A] [IsAlgClosed L]
+theorem principal_open_finite {A : Type*} [Finite A] [IsAlgClosed L]
     (g : (I → K) → Fin c → Rows K h m s)
     (hg : ∀ j, IsPolynomialFamily (fun p => g p j)) (p₀ : I → K)
     (degree imageBound : A → ℕ) (hdegree : ∀ i, 0 < degree i)
@@ -97,9 +97,10 @@ theorem principal_open_finite {A : Type*} [Fintype A] [IsAlgClosed L]
     ∃ D : MvPolynomial I K,eval p₀ D ≠ 0 ∧ ∀ p : I → K,eval p D ≠ 0 →
       ∀ i,Expands (g p) t (degree i) (imageBound i) := by
   classical
+  let := Fintype.ofFinite A
   have hex (i : A) : ∃ D : MvPolynomial I K,eval p₀ D ≠ 0 ∧
       ∀ p : I → K,eval p D ≠ 0 → Expands (g p) t (degree i) (imageBound i) := by
-    letI : NeZero (degree i) := ⟨(hdegree i).ne'⟩
+    let : NeZero (degree i) := ⟨(hdegree i).ne'⟩
     exact principal_open g hg p₀ (hwitness i)
   choose D hD hgood using hex
   refine ⟨∏ i,D i,?_,?_⟩

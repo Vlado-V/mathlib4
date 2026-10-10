@@ -17,7 +17,7 @@ namespace Froberg.VectorExpansionOpen
 open Module MvPolynomial VectorMultiplicationCoordinates Quartic
 open HomogeneousCoefficientCoordinates
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
-variable {h m c s t : ℕ} {I A : Type*} [Fintype A]
+variable {h m c s t : ℕ} {I A : Type*} [Finite A]
 
 lemma polynomial_tupleMap
     (g : (I → K) → Fin c → Rows K h m s)
@@ -58,6 +58,7 @@ theorem quotient_principal_open [IsAlgClosed L]
         finrank K U=ell i → bound i ≤ finrank K (BilinearImage.image
           (QuotientBilinearImage.quotientMap (multiplication (d := t))
             (Submodule.span K (Set.range (g p)))) U) := by
+  let : Fintype A := Fintype.ofFinite A
   obtain ⟨D₁,hD₁,h₁⟩ := independent_polynomial_principal_open
     (fun j p => g p j) hg p₀ hsource
   obtain ⟨D₂,hD₂,h₂⟩ := injective_polynomial_principal_open

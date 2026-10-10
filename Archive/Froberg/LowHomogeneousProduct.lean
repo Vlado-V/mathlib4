@@ -25,7 +25,7 @@ theorem weightedHomogeneousComponent_product (w : σ → ℕ)
     weightedHomogeneousComponent w n (p*q) =
       ∑ ij ∈ Finset.antidiagonal n,
         weightedHomogeneousComponent w ij.1 p * weightedHomogeneousComponent w ij.2 q := by
-  letI : GradedAlgebra (weightedHomogeneousSubmodule K w) := MvPolynomial.weightedGradedAlgebra K w
+  let : GradedAlgebra (weightedHomogeneousSubmodule K w) := MvPolynomial.weightedGradedAlgebra K w
   have he (r : MvPolynomial σ K) (j : ℕ) :
       (DirectSum.decompose (weightedHomogeneousSubmodule K w) r j : MvPolynomial σ K) =
         weightedHomogeneousComponent w j r := MvPolynomial.weightedDecomposition.decompose'_apply K
@@ -51,7 +51,7 @@ theorem homogeneousComponent_product (p q : MvPolynomial σ K) (n : ℕ) :
     homogeneousComponent n (p*q) =
       ∑ ij ∈ Finset.antidiagonal n,
         homogeneousComponent ij.1 p * homogeneousComponent ij.2 q := by
-  letI : GradedAlgebra (homogeneousSubmodule σ K) := MvPolynomial.gradedAlgebra
+  let : GradedAlgebra (homogeneousSubmodule σ K) := MvPolynomial.gradedAlgebra
   have he (r : MvPolynomial σ K) (j : ℕ) :
       (DirectSum.decompose (homogeneousSubmodule σ K) r j : MvPolynomial σ K) =
         homogeneousComponent j r := MvPolynomial.decomposition.decompose'_apply r j

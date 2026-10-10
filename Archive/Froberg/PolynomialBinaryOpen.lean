@@ -24,11 +24,11 @@ theorem principal_property_inter {P Q : (I → K) → Prop}
     ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → P a ∧ Q a := by
   obtain ⟨D,⟨a,ha⟩,hD⟩ := hP
   obtain ⟨E,⟨b,hb⟩,hE⟩ := hQ
-  have hd : D≠0 := by intro hz; simpa [hz] using ha
-  have he : E≠0 := by intro hz; simpa [hz] using hb
+  have hd : D≠0 := by intro hz; simp [hz] at ha
+  have he : E≠0 := by intro hz; simp [hz] at hb
   have hex : ∃ a,eval a (D*E)≠0 := by
     by_contra hh
-    push_neg at hh
+    push Not at hh
     apply mul_ne_zero hd he
     apply MvPolynomial.funext
     intro a

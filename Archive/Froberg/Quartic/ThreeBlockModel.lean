@@ -74,7 +74,8 @@ def blockSpace : Submodule K (Quartic.Poly K 3) :=
 
 theorem cubicPreimages_homogeneous (i : Fin 10) (j : Fin 4) :
     IsHomogeneous (cubicPreimages (K := K) i j) 1 := by
-  fin_cases i <;> fin_cases j <;> simp [cubicPreimages, x, y, z]
+  fin_cases i <;> fin_cases j <;>
+    simp only [cubicPreimages, x, y, z, Fin.reduceFinMk, Fin.zero_eta, Fin.mk_one, Fin.isValue]
   all_goals first | exact isHomogeneous_X K _ | exact (isHomogeneous_X K _).neg |
     exact isHomogeneous_zero _ K _
 

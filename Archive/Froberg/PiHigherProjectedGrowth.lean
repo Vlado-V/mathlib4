@@ -17,7 +17,7 @@ noncomputable section
 
 namespace Froberg
 open Module Quartic
-variable {K P V V₀ W I : Type*} [Field K] [Fintype I]
+variable {K P V V₀ W I : Type*} [Field K] [Finite I]
   [AddCommGroup P] [Module K P]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup V₀] [Module K V₀] [FiniteDimensional K V₀]
@@ -27,6 +27,7 @@ variable {Vi Wi : I → Type*}
   [∀ i, AddCommGroup (Wi i)] [∀ i, Module K (Wi i)] [∀ i, FiniteDimensional K (Wi i)]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K V] in
 theorem higher_growth_of_pi_projection
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (pi : W →ₗ[K] ((i : I) → Wi i))
@@ -55,6 +56,8 @@ theorem higher_growth_of_pi_projection
 variable {W₀ : Type*} [AddCommGroup W₀] [Module K W₀]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Finite I] [FiniteDimensional K V] [FiniteDimensional K V₀]
+  [FiniteDimensional K W] [∀ i, FiniteDimensional K (Vi i)] in
 theorem pi_bottom_kernel_eq
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)
@@ -79,6 +82,8 @@ theorem pi_bottom_kernel_eq
     exact LinearMap.congr_fun hx p
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Finite I] [FiniteDimensional K V₀] [FiniteDimensional K W]
+  [∀ i, FiniteDimensional K (Vi i)] in
 theorem pi_bottom_kernel_finrank_le
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)

@@ -24,6 +24,7 @@ putting zero in the scalar-scalar block. -/
 def alternatingCompletion (P : Finset I) (B : I → I → K) (i j : I) : K :=
   if j∈P then B i j else if i∈P then -B j i else 0
 
+omit [Fintype I] in
 theorem alternatingCompletion_skew (P : Finset I) (B : I → I → K)
     (hB : ∀ i ∈ P, ∀ j ∈ P, B i j = -B j i) (i j : I) :
     alternatingCompletion P B i j = -alternatingCompletion P B j i := by
@@ -31,6 +32,7 @@ theorem alternatingCompletion_skew (P : Finset I) (B : I → I → K)
   · simpa [alternatingCompletion,hi,hj] using hB i hi j hj
   all_goals simp [alternatingCompletion,hi,hj]
 
+omit [Fintype I] in
 theorem alternatingCompletion_diag (P : Finset I) (B : I → I → K)
     (hB : ∀ i ∈ P, B i i = 0) (i : I) : alternatingCompletion P B i i=0 := by
   by_cases hi : i∈P
@@ -68,7 +70,7 @@ theorem scalar_cycle_reduction
   funext i
   simp only [Pi.sub_apply,matrixCombination]
   by_cases hi : i∈P
-  · rw [if_pos hi,hb i hi]
+  · rw [ite_eq_left hi,hb i hi]
     have hC (j : I) : alternatingCompletion P B i j = -B j i := by
       by_cases hj : j∈P
       · simpa [alternatingCompletion,hj] using hskew i hi j hj
@@ -84,7 +86,7 @@ theorem scalar_cycle_reduction
       · simp [hE j hjP]
     rw [hs]
     abel
-  · rw [if_neg hi]
+  · rw [ite_eq_right hi]
     have hC (j : I) : alternatingCompletion P B i j = B i j := by
       by_cases hj : j∈P
       · simp [alternatingCompletion,hj]

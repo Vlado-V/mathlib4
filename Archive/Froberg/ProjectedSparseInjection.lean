@@ -19,7 +19,7 @@ noncomputable section
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic.PolynomialBilinearCoordinates
-variable {K I V : Type*} [Field K] [Infinite K] [Fintype I]
+variable {K I V : Type*} [Field K] [Infinite K] [Finite I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 variable {n s d m H : ℕ}
 
@@ -34,6 +34,7 @@ theorem projected_sparse_injection_open
         Function.Injective (AttachedMultiplication.multiplication (d := c) e
           (fun j => F i ((coordinates K (Fin m → V)).symm x j))) := by
   classical
+  let := Fintype.ofFinite I
   obtain ⟨D,hD,hgood⟩ := finite_projected_general_vectors_open (m := m) F
   refine ⟨D,hD,?_⟩
   intro x hx i c hc

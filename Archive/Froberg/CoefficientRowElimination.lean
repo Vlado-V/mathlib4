@@ -88,14 +88,14 @@ theorem CoefficientRowsSolved.step
       apply sum_congr rfl
       intro k hk
       by_cases hkt : j k=N+1
-      · rw [if_pos hkt,hB.support i k (Or.inr (by omega)),zero_add]
-      · rw [if_neg hkt,hDs i k hkt,zero_smul]
+      · rw [ite_eq_left hkt,hB.support i k (Or.inr (by omega)),zero_add]
+      · rw [ite_eq_right hkt,hDs i k hkt,zero_smul]
     · rw [hB.representation t ht (by omega) i]
       apply sum_congr rfl
       intro k hk
       by_cases hkt : j k=t
-      · rw [if_pos hkt,if_pos hkt,hDs i k (by omega),add_zero]
-      · rw [if_neg hkt,if_neg hkt]
+      · rw [ite_eq_left hkt,ite_eq_left hkt,hDs i k (by omega),add_zero]
+      · rw [ite_eq_right hkt,ite_eq_right hkt]
   · intro k hk hkN
     by_cases hkeq : j k=N+1
     · rw [hDb k hkeq]

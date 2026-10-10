@@ -44,7 +44,7 @@ theorem gcd_dvd_weighted_euler (n d r : ℕ) :
   have hd : g ∣ d * (n + d - 1).choose d :=
     (Nat.gcd_dvd_left n (d * r)).trans (variables_dvd_degree_mul_monomials n d)
   have h₁ : g ∣ (2 * d) * r * (n + d - 1).choose d := by
-    convert dvd_mul_of_dvd_right hd (2 * r) using 1 <;> ring
+    convert dvd_mul_of_dvd_right hd (2 * r) using 1; ring
   have h₂ : g ∣ (2 * d) * r.choose 2 := by
     have hh := dvd_mul_of_dvd_left (Nat.gcd_dvd_right n (d * r)) (r - 1)
     convert hh using 1
@@ -56,7 +56,7 @@ theorem gcd_dvd_weighted_euler (n d r : ℕ) :
     exact_mod_cast h₁
   have h₂' : (g : ℤ) ∣ (2 * d : ℤ) * (r.choose 2 : ℤ) := by
     exact_mod_cast h₂
-  convert dvd_add (dvd_sub h₀' h₁') h₂' using 1 <;> unfold euler <;> ring
+  convert dvd_add (dvd_sub h₀' h₁') h₂' using 1; unfold euler; ring
 
 /-- Cokernel divisibility implies the corresponding divisibility of the
 actual generic first homology via its already proved Euler identity. -/

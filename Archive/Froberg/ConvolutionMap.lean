@@ -62,7 +62,7 @@ theorem convolutionHom_momentLinear (a m : ℕ) (t : K) :
     intro k hk
     exact convolution_inner_sum t i k _
   · simp only [← MvPolynomial.smul_eq_C_mul, TensorProduct.sum_tmul, TensorProduct.tmul_sum,
-      TensorProduct.smul_tmul', TensorProduct.tmul_smul, smul_smul, pow_add]
+      TensorProduct.smul_tmul', TensorProduct.tmul_smul, pow_add]
     simp only [Finset.smul_sum, ← TensorProduct.smul_tmul', smul_smul]
     rw [Finset.sum_comm]
     simp only [mul_comm]

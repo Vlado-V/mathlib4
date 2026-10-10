@@ -16,12 +16,14 @@ namespace Froberg.ShadowDeletion
 open Finset
 variable {J P : Type*} [Fintype J] [Fintype P] [DecidableEq J] [DecidableEq P]
 
+omit [DecidableEq P] in
 lemma disjoint_shadow_sum (B : Finset J) (G : P → Finset J)
     (hG : Pairwise (fun i j => Disjoint (G i) (G j)))
     (hGB : ∀ i, G i ⊆ B) (regular actual : J → ℕ) (l : P → ℕ)
     (hr : ∀ j, j ∉ B → regular j ≤ actual j)
     (hp : ∀ i j, j ∈ G i → l i ≤ actual j) :
     (∑ j ∈ univ\B,regular j)+(∑ i,(G i).card*l i) ≤ ∑ j,actual j := by
+  classical
   let U := univ.biUnion G
   have hU : U ⊆ B := by
     intro j hj

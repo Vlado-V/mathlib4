@@ -21,8 +21,9 @@ open Module Quartic.FilteredImage Quartic.WeightedInitialImage
 variable {K B V W I : Type*} [Field K]
   [AddCommGroup B] [Module K B] [AddCommGroup V] [Module K V]
   [AddCommGroup W] [Module K W] [Module.Finite K V] [Module.Finite K W]
-  [Fintype I] [DecidableEq I] {n q : ℕ}
+  [DecidableEq I] {n q : ℕ}
 
+omit [Module.Finite K V] in
 /-- Each incident source initial fiber satisfies the original image bound
 inside the corresponding target initial fiber. -/
 theorem initial_fiber_growth

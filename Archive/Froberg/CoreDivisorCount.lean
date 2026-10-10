@@ -99,9 +99,9 @@ theorem coarse_target_error {k a z s h r : ℕ}
         (h - k * (OuterInjection.corePart β.val).degree.choose s) +
           if ∃ i, 2 ≤ β.val i then h else 0 := by
     by_cases hb : ∃ i, 2 ≤ β.val i
-    · rw [if_pos hb, quotientFiber_finrank _ _ β.val (hi β), Fintype.card_fin]
+    · rw [ite_eq_left hb, quotientFiber_finrank _ _ β.val (hi β), Fintype.card_fin]
       omega
-    · rw [if_neg hb, add_zero, core_quotientFiber_squarefree v β.val (hi β)]
+    · rw [ite_eq_right hb, add_zero, core_quotientFiber_squarefree v β.val (hi β)]
       intro i
       have hh : ¬2 ≤ β.val (Fin.castAdd z i) := fun h => hb ⟨_, h⟩
       change β.val (Fin.castAdd z i) ≤ 1

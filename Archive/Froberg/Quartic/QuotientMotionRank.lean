@@ -158,7 +158,7 @@ end Bilinear
 
 section Coordinates
 open BilinearCoefficientKernel BilinearCovectorCharts
-variable {a b D : ℕ} {N : Type*} [Fintype N]
+variable {a b D : ℕ} {N : Type*} [Finite N]
 
 /-- The existing literal motion matrix satisfies the sharp quotient-aware
 bound for arbitrary spanning columns, whether or not they are independent. -/
@@ -171,6 +171,7 @@ theorem constraint_rank_bound
     (H : N → Fin k → Fin a → K) :
     finrank K ((Submodule.span K (Set.range H)).map (repeated E.mkQ))-k*d ≤
       (BilinearMotionConstraints.constraint mu ell H).rank := by
+  let : Fintype N := Fintype.ofFinite N
   rw [BilinearMotionConstraints.rank_eq]
   exact quotient_rank_bound E _ Rbar hcomm hker _
 
@@ -184,6 +185,7 @@ theorem constraint_rank_bound_int
     (H : N → Fin k → Fin a → K) :
     (finrank K ((Submodule.span K (Set.range H)).map (repeated E.mkQ)) : ℤ)-(k:ℤ)*d ≤
       (BilinearMotionConstraints.constraint mu ell H).rank := by
+  let : Fintype N := Fintype.ofFinite N
   rw [BilinearMotionConstraints.rank_eq]
   exact quotient_rank_bound_int E _ Rbar hcomm hker _
 
@@ -201,6 +203,7 @@ theorem constraint_coefficient_rank_bound
     (hcover : LinearMap.range coeff ≤
       (Submodule.span K (Set.range H)).map (repeated E.mkQ)) :
     finrank K T-k*d ≤ (BilinearMotionConstraints.constraint mu ell H).rank := by
+  let : Fintype N := Fintype.ofFinite N
   rw [BilinearMotionConstraints.rank_eq]
   have h := coefficient_injection_le_rank_add E _ Rbar hcomm hker _ coeff hinj hcover
   omega

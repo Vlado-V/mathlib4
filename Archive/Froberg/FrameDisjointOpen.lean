@@ -18,9 +18,10 @@ noncomputable section
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic
-variable {K V I : Type*} [Field K] [Infinite K] [Fintype I]
+variable {K V I : Type*} [Field K] [Infinite K] [Finite I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V] {H : ℕ}
 
+omit [Infinite K] [FiniteDimensional K V] in
 lemma frame_disjoint_of_quotient_independent (R : Submodule K V) (f : Fin H → V)
     (hf : LinearIndependent K (fun i => R.mkQ (f i))) :
     Disjoint (Submodule.span K (Set.range f)) R := by
@@ -44,6 +45,7 @@ theorem frame_disjoint_principal_open (R : I → Submodule K V)
       ∀ f : Fin H → V,eval ((Module.finBasis K _).equivFun f) D≠0 →
         ∀ i,Disjoint (Submodule.span K (Set.range f)) (R i) := by
   classical
+  let := Fintype.ofFinite I
   let e := (Module.finBasis K (Fin H → V)).equivFun
   have hlocal (i : I) :
       ∃ D : MvPolynomial (Fin (finrank K (Fin H → V))) K,

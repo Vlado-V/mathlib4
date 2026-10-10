@@ -19,6 +19,7 @@ open Module MvPolynomial Quartic Quartic.SubspaceCharts Quartic.BilinearCovector
 variable {K : Type*} [Field K] [Infinite K] {a B N b ell t w : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Graph-chart basis vectors are literal polynomial families. -/
 theorem graphVector_coordinate_polynomial (j : Fin ell ↪ Fin a) (i : Fin ell) :
     IsPolynomialFamily (fun p : GraphParameters j → K => graphVector j p i) := by
@@ -37,6 +38,7 @@ theorem graphVector_coordinate_polynomial (j : Fin ell ↪ Fin a) (i : Fin ell) 
       simp [Finset.sum_apply,Pi.smul_apply,Pi.single_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The actual product map on a graph-chart basis varies polynomially. -/
 theorem graphTupleMap_polynomial
     (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin N → K))

@@ -18,7 +18,7 @@ namespace Froberg
 closed-base and graph dimensions under the displayed finite gain margin. -/
 theorem layered_covector_equation_budget
     {T₀ H H₀ j q a k k₀ C M g base slices loss : ℕ}
-    (hk : k ≤ a) (hk₀ : k₀ ≤ k)
+    (hk : k ≤ a)
     (hbase : base + C * k₀ ≤ T₀)
     (hambient : T₀ + H ≤ j + q * a + H₀)
     (hgraph : g ≤ a * k) (hslices : j ≤ slices + loss)

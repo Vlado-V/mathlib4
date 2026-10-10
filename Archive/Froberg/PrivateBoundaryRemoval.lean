@@ -68,7 +68,7 @@ theorem private_matrixBoundary_component {σ : Type*}
   congr 1
   funext i
   simp only [map_add,weightedHomogeneousComponent_of_mem (hU i),
-    weightedHomogeneousComponent_of_mem (hP i),ite_true,if_neg (Ne.symm hd),zero_add]
+    weightedHomogeneousComponent_of_mem (hP i),ite_true,ite_eq_right (Ne.symm hd),zero_add]
 
 /-- Subtracting the full U+P boundary kills the first private coefficient
 component and changes no polynomial relation. -/

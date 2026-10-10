@@ -27,7 +27,7 @@ theorem eq_weightedComponent_of_other_zero (w : σ → ℕ) (f : MvPolynomial σ
   rw [coeff_weightedHomogeneousComponent]
   by_cases ha : Finsupp.weight w a=r
   · simp [ha]
-  · rw [if_neg ha]
+  · rw [ite_eq_right ha]
     have h := congrArg (fun f : MvPolynomial σ K => f.coeff a) (hf (Finsupp.weight w a) ha)
     simpa [coeff_weightedHomogeneousComponent] using h
 
@@ -77,8 +77,8 @@ theorem scalar_linear_odd_cycles
       (∑ j,O j*weightedHomogeneousComponent w (r-1) (e j))=0 := by
     have h := congrArg (weightedHomogeneousComponent w r) hcycle
     simpa only [map_add,map_sum,map_zero,weightedComponent_homogeneous_left w (hS _),
-      Nat.zero_le,Nat.sub_zero,if_true,weightedComponent_homogeneous_left w (hO _),
-      if_pos (show 1≤r by omega)] using h
+      Nat.zero_le,Nat.sub_zero,ite_true,weightedComponent_homogeneous_left w (hO _),
+      ite_eq_left (show 1≤r by omega)] using h
   have hhigh (r : ℕ) (hr : 3≤r) (hrd : r≤d+1) (hrp : r%2=1) :=
     hhigher r hr hrd hrp (fun i => weightedHomogeneousComponent w r (c i))
       (fun j => weightedHomogeneousComponent w (r-1) (e j)) (hmemS r) (hmemO (r-1))

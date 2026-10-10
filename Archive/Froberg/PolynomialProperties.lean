@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.Quartic.PolynomialRankOpen
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! Explicit certificates for finite intersections of polynomial conditions. -/
 
@@ -14,7 +15,7 @@ public import Archive.Froberg.Quartic.PolynomialRankOpen
 noncomputable section
 namespace Froberg
 open MvPolynomial Quartic
-variable {K I J : Type*} [Field K] [Infinite K] [Fintype J]
+variable {K I J : Type*} [Field K] [Infinite K] [Finite J]
 
 theorem principal_property_common_open (P : J → (I → K) → Prop)
     (hP : ∀ j, ∃ D : MvPolynomial I K, (∃ a, eval a D ≠ 0) ∧
@@ -22,6 +23,7 @@ theorem principal_property_common_open (P : J → (I → K) → Prop)
     ∃ D : MvPolynomial I K, (∃ a,eval a D≠0) ∧
       ∀ a,eval a D≠0 → ∀ j,P j a := by
   classical
+  let := Fintype.ofFinite J
   choose D hD hprop using hP
   have hne (j : J) : D j≠0 := by
     obtain ⟨a,ha⟩ := hD j

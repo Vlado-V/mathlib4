@@ -107,7 +107,7 @@ theorem intrinsic_uniform_quotient_slices_positive
   intro r hr k k₀ ht hkk hs
   have hloss' : loss r.val≤L*k.val/2 := (hloss r hr).trans
     (Nat.div_le_div_right (Nat.mul_le_mul_left L ht))
-  exact layered_covector_equation_budget (by omega) hkk (hbase k₀ hs) hambient
+  exact layered_covector_equation_budget (by omega) (hbase k₀ hs) hambient
     (le_refl _) (hslices r hr)
     (layered_covector_gain (hr.trans_le ht) hkk hC hM hloss' hsmall)
 

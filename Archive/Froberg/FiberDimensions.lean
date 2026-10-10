@@ -17,6 +17,7 @@ namespace Froberg.AttachedMultiplication
 open Module
 variable {K I J : Type*} [Field K] [Fintype I] [Fintype J] {n : ℕ}
 
+omit [Fintype J] in
 theorem relationFiber_finrank (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (β : Fin n →₀ ℕ) (hi : LinearIndependent K (fun i : {i // e i ≤ β} => v i.val)) :
     finrank K (relationFiber e v β) = Fintype.card {i // e i ≤ β} := by

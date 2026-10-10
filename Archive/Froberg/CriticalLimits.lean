@@ -40,8 +40,7 @@ theorem approximated_polynomial_increment_limit (f : ℕ → ℝ)
     (nat_power_tendsto_atTop k hk)
   have hl := he.add (finite_difference_normalized_limit P (h : ℝ) k hP)
   convert hl using 1
-  · congr 1
-    funext n
+  · funext n
     simp only [Function.comp_apply, Nat.cast_add]
     ring
   · simp
@@ -100,8 +99,7 @@ theorem rounded_critical_increment_limit {d : ℕ} (hd : 2 ≤ d) (h : ℕ)
     (nat_power_tendsto_atTop (d - 1) (by omega))
   have hl := he.add (kappa_increment_limit hd h)
   convert hl using 1
-  · congr 1
-    funext n
+  · funext n
     dsimp only [E]
     ring
   · simp

@@ -33,9 +33,9 @@ theorem odd_homogeneous_components (w : σ → ℕ) (hw : ∀ x, w x ≤ 1)
   let r : Fin ((d+1)/2) := ⟨Finsupp.weight w a/2,by omega⟩
   have hr : Finsupp.weight w a=2*r.val+1 := by dsimp [r]; omega
   rw [sum_eq_single r]
-  · rw [if_pos hr]
+  · rw [ite_eq_left hr]
   · intro s _ hsr
-    rw [if_neg]
+    rw [ite_eq_right]
     intro hs
     apply hsr
     apply Fin.ext

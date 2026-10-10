@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.WeightedParitySpace
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! Two successive linear projections detect independence of a family
 whose second block vanishes under the first projection. -/
@@ -17,7 +18,7 @@ namespace Froberg
 open Module
 variable {K V W₀ W₁ I J : Type*} [Field K]
   [AddCommGroup V] [Module K V] [AddCommGroup W₀] [Module K W₀]
-  [AddCommGroup W₁] [Module K W₁] [Fintype I] [Fintype J]
+  [AddCommGroup W₁] [Module K W₁] [Finite I] [Finite J]
 
 theorem two_step_linearIndependent (q : I → V) (v : J → V)
     (p₀ : V →ₗ[K] W₀) (p₁ : V →ₗ[K] W₁)
@@ -25,6 +26,8 @@ theorem two_step_linearIndependent (q : I → V) (v : J → V)
     (hv : LinearIndependent K (fun j => p₁ (v j)))
     (hz : ∀ j, p₀ (v j) = 0) : LinearIndependent K (Sum.elim q v) := by
   classical
+  let := Fintype.ofFinite I
+  let := Fintype.ofFinite J
   apply Fintype.linearIndependent_iff.mpr
   intro c hc i
   have hqrel := congrArg p₀ hc
@@ -32,7 +35,7 @@ theorem two_step_linearIndependent (q : I → V) (v : J → V)
     hz,smul_zero,Finset.sum_const_zero,add_zero,map_zero] at hqrel
   have hcz : ∀ i,c (Sum.inl i)=0 := Fintype.linearIndependent_iff.mp hq _ hqrel
   have hvrel := congrArg p₁ hc
-  simp only [map_sum,map_add,map_smul,Fintype.sum_sum_type,Sum.elim_inl,Sum.elim_inr,
+  simp only [map_sum,map_smul,Fintype.sum_sum_type,Sum.elim_inl,Sum.elim_inr,
     hcz,zero_smul,Finset.sum_const_zero,zero_add,map_zero] at hvrel
   cases i with
   | inl i => exact hcz i

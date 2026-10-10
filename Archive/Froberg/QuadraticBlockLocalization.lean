@@ -25,7 +25,7 @@ def restrictLabel (U : Finset X) (l : BoundedLabel U) : Label U :=
 
 @[simp] theorem restrictLabel_support (U : Finset X) (l : BoundedLabel U) :
     (support (restrictLabel U l)).map (Function.Embedding.subtype (· ∈ U)) = support l.val :=
-  Finset.subtype_map_of_mem (fun x hx => l.property hx)
+  Finset.subtype_map_of_mem (fun _ hx => l.property hx)
 
 theorem restrictLabel_injective (U : Finset X) : Function.Injective (restrictLabel U) := by
   intro l m h
@@ -41,6 +41,7 @@ theorem restrictLabel_injective (U : Finset X) : Function.Injective (restrictLab
 def liftSubset (U : Finset X) (A : Finset U) : Finset X :=
   A.map (Function.Embedding.subtype (· ∈ U))
 
+omit [Fintype X] [DecidableEq X] in
 @[simp] theorem mem_liftSubset (U : Finset X) (A : Finset U) (x : U) :
     x.val ∈ liftSubset U A ↔ x ∈ A := by simp [liftSubset]
 

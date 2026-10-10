@@ -17,10 +17,12 @@ namespace Froberg.ExceptionBudget
 open Finset
 variable {I J : Type*} [Fintype I] [Fintype J] [DecidableEq I] [DecidableEq J]
 
+omit [DecidableEq I] in
 /-- Nonzero proper source fibers consume both dimension and codimension. -/
 theorem card_proper_le_min (d l : I → ℕ) (hl : ∀ i, l i ≤ d i) :
     (univ.filter (fun i => 0 < l i ∧ l i < d i)).card ≤
       min (∑ i, l i) ((∑ i, d i) - ∑ i, l i) := by
+  classical
   let P := univ.filter (fun i => 0 < l i ∧ l i < d i)
   have hleft : P.card ≤ ∑ i, l i := by
     calc
@@ -40,6 +42,7 @@ theorem card_proper_le_min (d l : I → ℕ) (hl : ∀ i, l i ≤ d i) :
   change P.card ≤ min (∑ i, l i) ((∑ i, d i) - ∑ i, l i)
   exact le_min hleft (by omega)
 
+omit [DecidableEq I] [DecidableEq J] in
 /-- A uniform exception count per proper source fiber gives a loss proportional
 to the smaller of total dimension and total codimension. -/
 theorem sum_loss_le (d l : I → ℕ) (hl : ∀ i, l i ≤ d i)

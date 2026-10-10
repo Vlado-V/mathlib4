@@ -45,7 +45,7 @@ lemma single_two_le {n : ℕ} (b : Fin n →₀ ℕ) (i : Fin n) (hi : 2 ≤ b i
   by_cases hij : i = j
   · subst j
     simpa using hi
-  · simp [Finsupp.single_apply, hij, Ne.symm hij]
+  · simp [Ne.symm hij]
 
 lemma degree_remove_two {n r : ℕ} (b : Degree n r) (i : Fin n) (hi : 2 ≤ b.val i) :
     (b.val - Finsupp.single i 2).degree = r - 2 := by

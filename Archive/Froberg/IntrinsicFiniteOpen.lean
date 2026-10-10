@@ -14,7 +14,7 @@ public import Archive.Froberg.PolynomialProperties
 noncomputable section
 namespace Froberg
 open Module MvPolynomial
-variable {K V C : Type*} [Field K] [Infinite K] [Fintype C]
+variable {K V C : Type*} [Field K] [Infinite K] [Finite C]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 
 theorem intrinsic_principal_common_open (Good : C → V → Prop)
@@ -24,6 +24,7 @@ theorem intrinsic_principal_common_open (Good : C → V → Prop)
     ∃ D : MvPolynomial (Fin (finrank K V)) K,
       (∃ p : V,eval ((Module.finBasis K V).equivFun p) D≠0) ∧
       ∀ p,eval ((Module.finBasis K V).equivFun p) D≠0 → ∀ c,Good c p := by
+  let : Fintype C := Fintype.ofFinite C
   have hh : ∀ c,∃ D : MvPolynomial (Fin (finrank K V)) K,
       (∃ x,eval x D≠0) ∧ ∀ x,eval x D≠0 →
         Good c ((Module.finBasis K V).equivFun.symm x) := by

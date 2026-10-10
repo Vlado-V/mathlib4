@@ -208,6 +208,7 @@ theorem exists_prefix_surjective_at_partial_count (hn : 0 < n) (hed : e < d)
   refine ⟨f, ?_⟩
   rwa [prefixBilinear_flip] at hf
 
+omit [Infinite K] in
 /-- Extra zero generators preserve surjectivity of homogeneous multiplication. -/
 theorem exists_prefix_surjective_mono {r t : ℕ} (hrt : r ≤ t)
     (h : ∃ f : Fin r → Forms K n d, Function.Surjective (prefixMultiplication f e)) :

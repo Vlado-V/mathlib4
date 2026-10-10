@@ -24,11 +24,13 @@ def coordinateRepresentation {V : Type*} [AddCommGroup V] [Module K V]
     (b : Basis I K V) (ρ : Representation K G V) : Representation K G (I → K) :=
   b.equivFun.conjRingEquiv.toMonoidHom.comp ρ
 
+omit [Infinite K] [DecidableEq I] in
 @[simp] theorem coordinateRepresentation_apply {V : Type*}
     [AddCommGroup V] [Module K V] (b : Basis I K V)
     (ρ : Representation K G V) (g : G) (v : I → K) :
     coordinateRepresentation b ρ g v = b.equivFun (ρ g (b.equivFun.symm v)) := rfl
 
+omit [Infinite K] in
 theorem coordinateRepresentation_toMatrix {V : Type*}
     [AddCommGroup V] [Module K V] (b : Basis I K V)
     (ρ : Representation K G V) (g : G) :
@@ -61,15 +63,17 @@ def polynomialSectionAction (ρP : Representation K G (P → K))
     intro i j
     exact (((representationPullback ρP) g).commutes _).symm
 
+omit [DecidableEq I] in
 /-- Equality of evaluated covariance matrices implies equality of the
 polynomial matrices themselves. -/
 theorem polynomial_matrix_covariance_of_evaluation {J : Type*}
-    [Fintype J] [DecidableEq J]
+    [Fintype J]
     (ρP : Representation K G (P → K)) (g : G)
     (M : Matrix I J (MvPolynomial P K)) (A : Matrix J J K) (B : Matrix I I K)
     (h : ∀ a : P → K, M.map (eval a) * A =
       B * M.map (eval (ρP g⁻¹ a))) :
     M * A.map C = B.map C * M.map (representationPullback ρP g) := by
+  classical
   apply Matrix.ext
   intro i j
   apply MvPolynomial.funext

@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Quartic.SharedCovectorPolynomial
 public import Archive.Froberg.Quartic.PolynomialSubspaceCovectorCharts
+public import Mathlib.Data.Fintype.EquivFin
 
 /-!
 # Empty sliced covector strata from actual polynomial charts
@@ -24,7 +25,7 @@ namespace Quartic.SlicedCovectorAvoidance
 open Module Matrix MvPolynomial KernelPolynomialCharts PolynomialBilinearCoordinates
 open BilinearCoefficientKernel BilinearCovectorCharts
 open PolynomialSubspaceCovectorCharts
-variable {K C : Type*} [Field K] [Infinite K] [Fintype C]
+variable {K C : Type*} [Field K] [Infinite K] [Finite C]
 variable {I : C → Type*} [∀ c, Fintype (I c)] {a b T N d e q s : ℕ}
 
 /-- A nonempty joint coefficient/slice open excludes the entire covered
@@ -44,6 +45,7 @@ theorem principal_open_excludes_sliced_stratum
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ¬((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 j)=0)) := by
   classical
+  let := Fintype.ofFinite C
   let Choices := C × ChartType b T N e
   let A (c : Choices) := SharedCovectorPolynomial.polynomialMatrix (q := q) (e := s)
     mu (numerator mu (H c.1) c.2)
@@ -118,6 +120,7 @@ theorem principal_open_excludes_sliced_stratum_of_int_bound
         Covered H (LinearMap.ker (relationMap mu ell)) →
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ¬((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 j)=0)) := by
+  let := Fintype.ofFinite C
   by_cases he : e<T
   · apply principal_open_excludes_sliced_stratum (e := e) mu H
     intro c

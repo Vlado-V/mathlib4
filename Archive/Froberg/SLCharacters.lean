@@ -32,9 +32,8 @@ theorem sl_diag2n_transvection (i j : I) (hij : i ≠ j) (a b : K) (ha : a ≠ 0
   all_goals
     simp_all [SpecialLinearGroup.diag2n_coe, SpecialLinearGroup.coe_mul,
       SpecialLinearGroup.transvection_coe, Matrix.diagonal_mul, Matrix.mul_diagonal,
-      Matrix.one_apply, Matrix.single_apply, eq_comm, pow_two]
+      Matrix.one_apply, eq_comm, pow_two]
   all_goals field_simp
-  all_goals ring
 
 variable [Infinite K]
 

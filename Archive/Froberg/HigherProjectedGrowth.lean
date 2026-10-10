@@ -41,6 +41,7 @@ variable {n : ℕ} {Vi Wi : Fin (n + 1) → Type*}
   [FiniteDimensional K V] [FiniteDimensional K W]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K V] in
 theorem higher_growth_of_block_projection
     (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i))
     (pi : W →ₗ[K] ((i : Fin (n + 1)) → Wi i))
@@ -69,6 +70,7 @@ theorem higher_growth_of_block_projection
   exact hg.trans (Submodule.finrank_map_le _ _)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [∀ i, FiniteDimensional K (Vi i)] [FiniteDimensional K V] in
 theorem initialPiece_zero_eq_comap
     (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i)) (L : Submodule K V) :
     initialPiece Vi (L.map eV.toLinearMap) 0=
@@ -97,13 +99,13 @@ theorem initialPiece_zero_eq_comap
     · exact ⟨eV.symm (Pi.single 0 x),hx,eV.apply_symm_apply _⟩
     · intro i hi
       change 1 ≤ i.val at hi
-      change (Pi.single 0 x : (i : Fin (n+1)) → Vi i) i=0
       simp only [Pi.single_eq_of_ne (show i≠0 from by intro he; subst i; simp at hi)]
     · exact Pi.single_eq_same 0 x
 
 variable {W0 : Type*} [AddCommGroup W0] [Module K W0]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [∀ i, FiniteDimensional K (Vi i)] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem kernel_initialPiece_zero
     (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] Vi 0 →ₗ[K] W0)
@@ -128,6 +130,7 @@ theorem kernel_initialPiece_zero
     exact LinearMap.congr_fun hx p
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K W] in
 theorem bottom_kernel_finrank_le
     (eV : V ≃ₗ[K] ((i : Fin (n + 1)) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] Vi 0 →ₗ[K] W0)

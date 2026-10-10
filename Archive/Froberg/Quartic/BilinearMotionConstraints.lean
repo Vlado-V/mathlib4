@@ -22,7 +22,7 @@ spanning columns need not be independent or form a chosen quotient basis.
 noncomputable section
 namespace Quartic.BilinearMotionConstraints
 open Module Matrix MvPolynomial BilinearCoefficientKernel BilinearCovectorCharts
-variable {K I N : Type*} [Field K] [Fintype N] {a b T c : ℕ}
+variable {K I N : Type*} [Field K] {a b T c : ℕ}
 
 /-- Flatten coefficient components without changing any field coordinates. -/
 def flatten : (Fin c → Fin b → K) ≃ₗ[K] (Fin c × Fin b → K) where
@@ -38,11 +38,12 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) : Matrix N (Fin c × Fin b) K :=
   fun j z => covector ell (mu (Pi.single z.2 1) (H j z.1))
 
-theorem rank_eq (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+theorem rank_eq [Finite N] (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) :
     (constraint mu ell H).rank = finrank K
       ((Submodule.span K (Set.range H)).map (CoefficientConstraintRank.repeated (relationMap mu
         ell))) := by
+  let : Fintype N := Fintype.ofFinite N
   rw [← Matrix.rank_transpose,Matrix.rank_eq_finrank_span_cols]
   let R := CoefficientConstraintRank.repeated (c := c) (relationMap mu ell)
   have he : (constraint mu ell H).transpose.col = fun j => flatten (R (H j)) := rfl
@@ -54,7 +55,7 @@ theorem rank_eq (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T →
   rw [hs,LinearEquiv.finrank_map_eq]
 
 /-- The actual motion conditions lose at most c times the covector kernel dimension. -/
-theorem rank_bound (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+theorem rank_bound [Finite N] (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) :
     finrank K (Submodule.span K (Set.range H)) - c * finrank K (LinearMap.ker (relationMap mu
       ell)) ≤

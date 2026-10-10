@@ -65,7 +65,7 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem minorCertificate_nonempty (F : ProductFiber X s) : Nonempty (MinorCertificate K F) := by
   classical
   by_cases ht : F.halfSize = 0
-  · letI := F.columns_subsingleton ht
+  · let := F.columns_subsingleton ht
     refine ⟨⟨fun p => defaultTerm (F.label (p,false)) + defaultTerm (F.label (p,true)), ?_, ?_⟩⟩
     · exact productMinor_ne_zero (formTerms s)
         (fun p => F.label (p,false)) (fun p => F.label (p,true)) defaultTerm
@@ -116,6 +116,7 @@ theorem eq_of_permitted_products (F G : ProductFiber X s) (p : F.Columns) (q : G
   exact eq_of_keys F G hk.1 hk.2
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Nontrivial K] in
 /-- A selected minor row has zero coefficient in every other fiber. -/
 theorem MinorCertificate.cross {F G : ProductFiber X s} (M : MinorCertificate K F)
     (hFG : F ≠ G) (p : F.Columns) (q : G.Columns) :

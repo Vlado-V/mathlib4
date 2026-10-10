@@ -38,7 +38,7 @@ theorem eventually_generic_scalar_separation {d : ℕ} (hd : 2 ≤ d)
   obtain ⟨n₁, hn₁⟩ := eventually_atTop.mp (eventually_critical_scalar_incidence_budget hd r hr)
   refine ⟨max (2 * m₀ + 1) n₁, ?_⟩
   intro n hn S hle hupper j
-  have hcard : S.card + Sᶜ.card = n := by simpa using Finset.card_add_card_compl S
+  have hcard : S.card + Sᶜ.card = n := by simp
   have hm : m₀ ≤ S.card := by omega
   have hnpos : 0 < n := by omega
   have hc : 5 * (n + (d - 2) - 1).choose (d - 2) *

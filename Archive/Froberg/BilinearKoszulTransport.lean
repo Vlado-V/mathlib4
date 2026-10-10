@@ -23,6 +23,8 @@ variable {K U U' V A W I J : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [Fintype I] [Fintype J]
 
+omit [FiniteDimensional K U] [FiniteDimensional K U']
+  [FiniteDimensional K V] [FiniteDimensional K W] in
 /-- Transport a literal exact row along a complete change of output coordinates. -/
 theorem bilinearKoszulRow_exact_transport
     (e : U ≃ₗ[K] U') (μ : V →ₗ[K] U →ₗ[K] A)

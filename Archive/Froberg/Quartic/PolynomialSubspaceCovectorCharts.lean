@@ -182,7 +182,7 @@ theorem image_finrank_lt (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (
   annihilated_finrank_lt _ ell hnz hann
 
 section FiniteFamily
-variable {C : Type*} [Fintype C] {I : C → Type*} [∀ c, Fintype (I c)] {d q : ℕ}
+variable {C : Type*} [Finite C] {I : C → Type*} [∀ c, Fintype (I c)] {d q : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Coverage by the supplied literal polynomial chart vectors. -/
@@ -205,6 +205,7 @@ theorem principal_open_excludes_covered_stratum [Infinite K]
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ∃ i : Fin q,∃ v : Fin a → K,covector ell (mu (fun k => Q (i,k)) v) ≠ 0 := by
   classical
+  let := Fintype.ofFinite C
   let Choices := C × ChartType b T N e
   let A (c : Choices) := polynomialMatrix mu (numerator mu (H c.1) c.2)
   have hchart (c : Choices) :

@@ -104,7 +104,7 @@ theorem exists_deleted_row_threshold {d : ℕ} (hd : 0 < d) (e : ℕ) :
   let ε := Sᶜ.card - S.card
   have hε : ε ≤ 1 := by dsimp [ε]; omega
   have hsplit : Sᶜ.card = S.card + ε := by dsimp [ε]; omega
-  have hcard : S.card + Sᶜ.card = n := by simpa using card_add_card_compl S
+  have hcard : S.card + Sᶜ.card = n := by simp
   have hn : 0 < n := by omega
   have hn' : n = 2 * S.card + ε := by omega
   have hi : partialDegree S a ≤ e := ha ▸ partialDegree_le_degree S a

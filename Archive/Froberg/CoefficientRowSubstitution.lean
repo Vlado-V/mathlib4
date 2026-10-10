@@ -48,14 +48,14 @@ theorem coefficient_row_substitution
     simp [heq,hmat]
   by_cases hlt : j i<r
   · have ht : 0<r-j i := by omega
-    have htr : r-j i<r := by omega
-    rw [if_pos (Nat.le_of_lt hlt),if_neg heq,zero_add,hc _ ht htr i,mul_sum]
+    have htr : r-j i<r := Nat.sub_lt hr (Nat.pos_of_ne_zero hzero)
+    rw [ite_eq_left (Nat.le_of_lt hlt),ite_eq_right heq,zero_add,hc _ ht htr i,mul_sum]
     apply sum_congr rfl
     intro k hk
     by_cases hkdeg : j k=r-j i
     · have hkpos : 0<j k := by omega
       have hsum : j i+j k=r := by omega
-      rw [if_pos hkdeg,degreeProductMatrix,if_pos ⟨by omega,hkpos,hsum⟩]
+      rw [ite_eq_left hkdeg,degreeProductMatrix,ite_eq_left ⟨by omega,hkpos,hsum⟩]
       exact mul_smul_comm _ _ _
     · have hmat : ¬(0<j i ∧ 0<j k ∧ j i+j k=r) := by omega
       simp [hkdeg,degreeProductMatrix,hmat]

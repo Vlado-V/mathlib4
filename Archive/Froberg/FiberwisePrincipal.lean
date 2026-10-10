@@ -23,6 +23,7 @@ def polynomialFixRight (y : J → K) : MvPolynomial (I ⊕ J) K →ₐ[K] MvPoly
 def polynomialFixLeft (x : I → K) : MvPolynomial (I ⊕ J) K →ₐ[K] MvPolynomial J K :=
   aeval (Sum.elim (fun i => C (x i)) X)
 
+omit [Infinite K] in
 lemma eval_polynomialFixRight (x : I → K) (y : J → K) (P : MvPolynomial (I ⊕ J) K) :
     eval x (polynomialFixRight y P)=eval (Sum.elim x y) P := by
   have hh : (aeval x).comp (polynomialFixRight y)=aeval (Sum.elim x y) := by
@@ -31,6 +32,7 @@ lemma eval_polynomialFixRight (x : I → K) (y : J → K) (P : MvPolynomial (I �
     cases i <;> simp [polynomialFixRight]
   exact congrArg (fun f : MvPolynomial (I ⊕ J) K →ₐ[K] K => f P) hh
 
+omit [Infinite K] in
 lemma eval_polynomialFixLeft (x : I → K) (y : J → K) (P : MvPolynomial (I ⊕ J) K) :
     eval y (polynomialFixLeft x P)=eval (Sum.elim x y) P := by
   have hh : (aeval y).comp (polynomialFixLeft x)=aeval (Sum.elim x y) := by

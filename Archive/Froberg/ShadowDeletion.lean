@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.ExceptionBudget
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! Finite shadow bookkeeping after deleting a fixed collection of target
 monomials. The loss is charged only to active source fibers. -/
@@ -20,14 +21,18 @@ variable {I J : Type*} [Fintype I] [Fintype J] [DecidableEq I] [DecidableEq J]
 def shadow (rel : I → J → Prop) [DecidableRel rel] (l : I → ℕ) (c : J → ℕ) (j : J) : ℕ :=
   univ.sup (fun i => if rel i j then min (l i) (c j) else 0)
 
+omit [Fintype J] [DecidableEq I] [DecidableEq J] in
 lemma min_le_shadow (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (i : I) (j : J) (hij : rel i j) :
     min (l i) (c j) ≤ shadow rel l c j := by
+  classical
   simpa only [shadow,ite_eq_left hij] using (le_sup (f := fun i => if rel i j then min (l i) (c j)
     else 0) (mem_univ i))
 
+omit [Fintype J] [DecidableEq I] [DecidableEq J] in
 lemma shadow_le (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (j : J) : shadow rel l c j ≤ c j := by
+  classical
   unfold shadow
   apply Finset.sup_le
   intro i _
@@ -35,30 +40,37 @@ lemma shadow_le (rel : I → J → Prop) [DecidableRel rel]
   · exact min_le_right _ _
   · exact Nat.zero_le _
 
+omit [Fintype J] [DecidableEq I] [DecidableEq J] in
 lemma shadow_eq_zero_of_no_active (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (j : J)
     (hz : ∀ i, 0 < l i → ¬rel i j) : shadow rel l c j = 0 := by
+  classical
   apply Nat.eq_zero_of_le_zero
   unfold shadow
   apply Finset.sup_le
   intro i _
   by_cases hi : 0 < l i
-  · rw [if_neg (hz i hi)]
+  · rw [ite_eq_right (hz i hi)]
   · have hi0 : l i=0 := by omega
     simp [hi0]
 
+omit [DecidableEq I] in
 lemma card_active_le (l : I → ℕ) : (univ.filter (fun i => 0 < l i)).card ≤ ∑ i,l i := by
+  classical
   calc
     _ = ∑ i ∈ univ.filter (fun i => 0 < l i), 1 := by simp
     _ ≤ ∑ i ∈ univ.filter (fun i => 0 < l i), l i :=
       sum_le_sum (fun i hi => (mem_filter.mp hi).2)
     _ ≤ _ := sum_le_sum_of_subset (filter_subset _ _)
 
-lemma discarded_shadow_le (rel : I → J → Prop) [DecidableRel rel]
+omit [Fintype J] [DecidableEq I] [DecidableEq J] in
+lemma discarded_shadow_le [Finite J] (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (B : Finset J) (C H : ℕ)
     (hc : ∀ j, c j ≤ H)
     (hC : ∀ i, 0 < l i → (B.filter (rel i)).card ≤ C) :
     (∑ j ∈ B, shadow rel l c j) ≤ H*C*(∑ i,l i) := by
+  classical
+  let := Fintype.ofFinite J
   let P := univ.filter (fun i => 0 < l i)
   let E := P.biUnion (fun i => B.filter (rel i))
   have hE : E.card ≤ C*(∑ i,l i) := by
@@ -86,12 +98,14 @@ lemma discarded_shadow_le (rel : I → J → Prop) [DecidableRel rel]
   rw [hi] at hsum
   nlinarith
 
+omit [DecidableEq I] in
 lemma retained_shadow_bound (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (B : Finset J) (C H : ℕ)
     (hc : ∀ j, c j ≤ H)
     (hC : ∀ i, 0 < l i → (B.filter (rel i)).card ≤ C) :
     (∑ j,shadow rel l c j) ≤
       (∑ j ∈ univ\B,shadow rel l c j)+H*C*(∑ i,l i) := by
+  classical
   have hsplit := sum_sdiff (subset_univ B) (f := shadow rel l c)
   have hl := discarded_shadow_le rel l c B C H hc hC
   omega

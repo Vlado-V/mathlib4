@@ -20,6 +20,7 @@ variable {K V I : Type*} [Field K] [Infinite K] [Fintype I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 variable {n s d m h b : ℕ}
 
+omit [Infinite K] in
 lemma finrank_comap_le_of_injective (L : (Fin h → K) →ₗ[K] V)
     (hL : Function.Injective L) (R : Submodule K V) :
     finrank K (R.comap L)≤finrank K R := by
@@ -31,10 +32,11 @@ lemma finrank_comap_le_of_injective (L : (Fin h → K) →ₗ[K] V)
   apply hL
   exact congrArg Subtype.val hxy
 
+omit [Fintype I] in
 /-- The output-relation open is expressed in the same `Fin m → Fin h → K`
 coordinates as the sparse quotient-incidence open, so the two can be
 intersected before choosing a single vector tuple. -/
-theorem sparse_embedded_relations_open
+theorem sparse_embedded_relations_open [Finite I]
     (L : (Fin h → K) →ₗ[K] V) (hL : Function.Injective L)
     (R : I → Submodule K V)
     (e : Fin m → Fin n →₀ ℕ) (he : ∀ i, (e i).degree = s)
@@ -45,6 +47,7 @@ theorem sparse_embedded_relations_open
       ∀ v : Fin m → Fin h → K,eval (coordinates K _ v) D≠0 →
         ∀ i c,c≤d → ∀ p : Fin m → Forms K n c,
           (∀ β,sparseOutputCoefficient e (fun j => L (v j)) p β∈R i) → p=0 := by
+  let : Fintype I := Fintype.ofFinite I
   let F : I → (Fin h → K) →ₗ[K] (Fin h → K) :=
     fun i => relationProjection ((R i).comap L)
   have hF (i) : b*(s+d).choose s≤finrank K (F i).range := by
@@ -75,6 +78,6 @@ theorem sparse_embedded_relations_open
   have hz : F i (sparseOutputCoefficient e v p β)=0 := by
     exact (show (R i).comap L≤(F i).ker from (relationProjection_kernel _).ge) hmem
   simpa only [sparseOutputCoefficient,map_sum,map_smul,Finset.sum_apply,Pi.smul_apply,
-    smul_eq_mul,Pi.zero_apply,MvPolynomial.coeff_zero,Finsupp.zero_apply] using congrFun hz j
+    smul_eq_mul,Pi.zero_apply,AddMonoidAlgebra.coeff_zero,Finsupp.zero_apply] using congrFun hz j
 
 end Froberg

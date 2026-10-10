@@ -40,12 +40,12 @@ theorem weighted_sum {A B : Type*} [Fintype A] [Fintype B]
       H*w a b*g b + if b ∈ bad a then H*w a b*ell a else 0 := by
     intro a b
     by_cases hb : b ∈ bad a
-    · rw [if_pos hb]
+    · rw [ite_eq_left hb]
       have hh := Nat.mul_le_mul_right (w a b*ell a) (Nat.sub_le H K)
       have hh' : (H-K)*w a b*ell a ≤ H*w a b*ell a := by
         simpa only [mul_assoc] using hh
       exact hh'.trans (Nat.le_add_left _ _)
-    · rw [if_neg hb,add_zero]
+    · rw [ite_eq_right hb,add_zero]
       exact hgood a b hb
   have hr : ∀ a, (H-K)*R*ell a ≤ H*(∑ b, w a b*g b) + H*C*E*ell a := by
     intro a

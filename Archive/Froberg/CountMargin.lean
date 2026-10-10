@@ -56,7 +56,7 @@ theorem count_bound_polynomial_capacities {d : ℕ} (hd : 3 ≤ d)
   have hDcoeff : 0 < D.coeff d := by
     dsimp only [D]
     rw [coeff_sub, monomialCountPolynomial_top, adjustedCritical_coeff P (by omega), hL]
-    convert div_pos (sub_pos.mpr hρ) hf using 1 <;> ring
+    convert div_pos (sub_pos.mpr hρ) hf using 1; ring
   let A := C (h : ℝ) * monomialCountPolynomial (d - 1) - outerCountBoundPolynomial P d h α
   have hAdeg : A.natDegree ≤ d - 1 := (natDegree_sub_le _ _).trans
     (max_le ((natDegree_C_mul_le _ _).trans (monomialCountPolynomial_natDegree _).le)
@@ -69,7 +69,7 @@ theorem count_bound_polynomial_capacities {d : ℕ} (hd : 3 ≤ d)
       mul_pos (div_pos (mul_pos (by exact_mod_cast hh) (by exact_mod_cast (show 0 < d by omega)))
         hf)
         (sub_pos.mpr hρ)
-    convert hp using 1 <;> ring
+    convert hp using 1; ring
   filter_upwards [eventually_polynomial_pos D d hDdeg hDcoeff,
     eventually_polynomial_pos A (d - 1) hAdeg hAcoeff] with n hnD hnA
   dsimp only [D] at hnD

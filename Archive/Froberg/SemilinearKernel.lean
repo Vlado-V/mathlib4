@@ -42,6 +42,7 @@ theorem semilinear_covariance_apply
       B *ᵥ (fun i => e ((M *ᵥ v) i)) := by
   rw [Matrix.mulVec_mulVec, hcov, ← Matrix.mulVec_mulVec, map_matrix_mulVec]
 
+omit [DecidableEq m] [DecidableEq n] in
 /-- The actual kernel is stable under any covariant semilinear action. -/
 theorem semilinear_matrix_kernel_covariant
     (e : R ≃+* R) (M : Matrix m n R)
@@ -55,6 +56,7 @@ theorem semilinear_matrix_kernel_covariant
   simp only [Pi.zero_apply, map_zero]
   exact Matrix.mulVec_zero B
 
+omit [DecidableEq m] [DecidableEq n] in
 /-- The actual image is stable under the same covariance square. -/
 theorem semilinear_matrix_image_covariant
     (e : R ≃+* R) (M : Matrix m n R)

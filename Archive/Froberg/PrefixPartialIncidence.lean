@@ -31,9 +31,9 @@ theorem relation_expansion (R : Relations K N q) :
   classical
   apply Prod.ext
   · funext i j
-    simp [Prod.fst_sum, Prod.snd_sum, Finset.sum_apply, Pi.smul_apply, Pi.single_apply, ite_apply]
+    simp [Prod.fst_sum, Finset.sum_apply, Pi.smul_apply, Pi.single_apply]
   · funext j
-    simp [Prod.fst_sum, Prod.snd_sum, Finset.sum_apply, Pi.smul_apply, Pi.single_apply, ite_apply]
+    simp [Prod.snd_sum, Finset.sum_apply, Pi.smul_apply, Pi.single_apply]
 
 /-- Matrix of the bilinear relation equation on a normalized partial-row chart. -/
 def chartMatrix (B : Relations K N q →ₗ[K] (Fin v → K) →ₗ[K] (Fin w → K))
@@ -57,7 +57,7 @@ theorem eval_chartMatrix (B : Relations K N q →ₗ[K] (Fin v → K) →ₗ[K] 
   change eval a (chartMatrix B T p j h l) = _
   rw [LinearMap.toMatrix'_apply]
   conv_rhs => rw [relation_expansion (rowMap T p j a, lastMap T p j a)]
-  simp [chartMatrix, rowMap, lastMap, map_sum, map_smul, hleft, hright,
+  simp [chartMatrix, rowMap, lastMap, map_sum, hleft, hright,
     LinearMap.sum_apply, LinearMap.smul_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
 
 theorem chart_mulVec (B : Relations K N q →ₗ[K] (Fin v → K) →ₗ[K] (Fin w → K))

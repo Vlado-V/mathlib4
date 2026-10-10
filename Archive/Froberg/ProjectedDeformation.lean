@@ -34,6 +34,7 @@ def projectedNormalCycles (π : Forms K n (2 * d) →ₗ[K] W)
     ((projectedEndpointMultiplication π p).comp (projectedEndpointMultiplication π q).ker.subtype)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K W] in
 theorem incoming_le_ker_projectedNormalCycles (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) :
     kernelBoundary (projectedEndpointMultiplication π q) (koszulSpace q) ≤
@@ -61,12 +62,14 @@ def projectedNormalMap (π : Forms K n (2 * d) →ₗ[K] W)
     (projectedNormalCycles π q p) (incoming_le_ker_projectedNormalCycles π q p)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K W] in
 theorem range_projectedNormalMap (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) :
     (projectedNormalMap π q p).range = (projectedNormalCycles π q p).range := by
   exact range_descendCycleMap _ _ _ _
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K W] in
 theorem projectedEndpointMultiplication_motion (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) (ε : K) :
     projectedEndpointMultiplication π (q + ε • p) =

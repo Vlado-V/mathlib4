@@ -69,10 +69,11 @@ def upperMatrix (C : I → I → K) (i j : I) : K :=
 
 def lowerMatrix (C : I → I → K) (i j : I) : K := if j < i then C i j else 0
 
+omit [Fintype I] in
 theorem matrix_sub_upper (C : I → I → K) (i j : I) :
     C i j-upperMatrix C i j=lowerMatrix C i j-lowerMatrix C j i := by
   rcases lt_trichotomy i j with h|rfl|h
-  · simp [upperMatrix,lowerMatrix,h,not_lt_of_ge (le_of_lt h),ne_of_lt h]
+  · simp [upperMatrix,lowerMatrix,h,not_lt_of_ge (le_of_lt h)]
   · simp [upperMatrix,lowerMatrix]
   · simp [upperMatrix,lowerMatrix,h,not_lt_of_ge (le_of_lt h),ne_of_gt h]
 

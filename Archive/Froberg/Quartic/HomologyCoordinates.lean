@@ -33,10 +33,12 @@ set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The three displayed polynomial cycles as homogeneous quadratic arrays. -/
 def cycles (j : Fin 3) (i : Fin 4) : Forms K 3 2 :=
   ⟨(![quarticCycle₁, quarticCycle₂, quarticCycle₃] j) i, by
-    fin_cases j <;> fin_cases i <;> simp [quarticCycle₁, quarticCycle₂, quarticCycle₃, x, y, z]
+    fin_cases j <;> fin_cases i <;> simp only [quarticCycle₁, quarticCycle₂, quarticCycle₃, x, y, z,
+      Nat.succ_eq_add_one, Nat.reduceAdd, Fin.zero_eta, Fin.isValue, Fin.mk_one,
+      Fin.reduceFinMk, Matrix.cons_val', Matrix.cons_val_fin_one, Matrix.cons_val,
+      Matrix.cons_val_one, Matrix.cons_val_zero, mem_homogeneousSubmodule, isHomogeneous_zero]
     all_goals first | exact isHomogeneous_X_pow _ _ |
-      exact ((isHomogeneous_X K _).mul (isHomogeneous_X K _)).neg |
-      exact (isHomogeneous_X K _).mul (isHomogeneous_X K _)⟩
+      exact ((isHomogeneous_X K _).mul (isHomogeneous_X K _)).neg⟩
 
 set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- Linear combinations of the actual displayed cycles. -/

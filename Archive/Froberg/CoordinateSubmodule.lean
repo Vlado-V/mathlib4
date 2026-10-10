@@ -19,9 +19,11 @@ namespace Froberg
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I]
 variable {V : I → Type*} [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
 
-theorem coordinate_submodule_eq (R : Submodule K ((i : I) → V i))
+omit [Fintype I] in
+theorem coordinate_submodule_eq [Finite I] (R : Submodule K ((i : I) → V i))
     (hR : ∀ x ∈ R, ∀ i, Pi.single i (x i) ∈ R) :
     R=Submodule.pi Set.univ (fun i => R.map (LinearMap.proj i)) := by
+  let : Fintype I := Fintype.ofFinite I
   ext x
   constructor
   · intro hx

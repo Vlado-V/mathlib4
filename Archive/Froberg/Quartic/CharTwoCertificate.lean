@@ -46,7 +46,7 @@ theorem rows_independent {N : ℕ} (A : Fin N → List (Fin N)) (B : Fin N → �
   have hd : ((sparseMatrix A).map (binaryMap (K := K))).det ≠ 0 :=
     MinorLift.det_ne_zero_under_injective_map (binaryMap (K := K)) binaryMap_injective
       (sparseMatrix A) (determinant_ne_zero A B h)
-  have hi := Matrix.linearIndependent_rows_iff_isUnit.mpr
+  have hi := Matrix.linearIndependent_row_iff_isUnit.mpr
     ((Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hd))
   have he : ((sparseMatrix A).map (binaryMap (K := K))).row =
       fun i => ((A i).map (fun j => Pi.single j (1 : K))).sum := by
@@ -68,6 +68,7 @@ theorem polynomials_independent {N n : ℕ}
   exact rows_independent A B h
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem coefficients_rowPolynomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     (hE : Function.Injective E) (s : List (Fin N)) :
     (fun j => (rowPolynomial (K := K) E s).coeff (E j)) =
@@ -86,6 +87,7 @@ theorem coefficients_rowPolynomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     simp [Pi.single_apply, eq_comm]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem sparse_count {N : ℕ} (s : List (Fin N)) (j : Fin N) :
     (s.map (fun i => Pi.single i (1 : K))).sum j = (s.count j : K) := by
   classical
@@ -99,15 +101,17 @@ theorem sparse_count {N : ℕ} (s : List (Fin N)) (j : Fin N) :
       simp only [Pi.single_eq_same, List.count_cons_self, Nat.cast_add, Nat.cast_one]
       exact add_comm _ _
     · rw [List.count_cons_of_ne h]
-      simp [Pi.single_apply, h, Ne.symm h]
+      simp [Ne.symm h]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem rowPolynomial_coeff_count {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     (hE : Function.Injective E) (s : List (Fin N)) (j : Fin N) :
     (rowPolynomial (K := K) E s).coeff (E j) = (s.count j : K) := by
   rw [congrFun (coefficients_rowPolynomial E hE s) j, sparse_count]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem rowPolynomial_mul_monomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     (s : List (Fin N)) (e : Fin n →₀ ℕ) :
     rowPolynomial (K := K) E s * monomial e 1 =
@@ -119,6 +123,7 @@ theorem rowPolynomial_mul_monomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     exact congrArg (fun z => monomial (E i + e) (1 : K) + z) ih
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem product_mem_range {n r : ℕ} (q : Fin r → Forms K n 2) (i : Fin r)
     (a : Forms K n 2) : mulQuadratic (q i) a ∈ LinearMap.range (quadraticMultiplication q) := by
   classical
@@ -132,6 +137,7 @@ theorem product_mem_range {n r : ℕ} (q : Fin r → Forms K n 2) (i : Fin r)
   · simp
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem rank_lower_bound {n r s : ℕ} (q : Fin r → Forms K n 2)
     (f : Fin s → Forms K n 4) (hf : LinearIndependent K f)
     (hmem : ∀ i, f i ∈ LinearMap.range (quadraticMultiplication q)) :
@@ -144,6 +150,7 @@ variable {n lo hi b₂ b₄ L : ℕ} (D : Data n lo hi b₂ b₄ L)
 include D
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem product_identity (i : Fin b₄) : D.product (K := K) i =
     mulQuadratic (D.quadrics (D.selected i).1) (D.multiplier (D.selected i).2) := by
   apply Subtype.ext
@@ -187,6 +194,7 @@ theorem lowerQuadrics_independent : LinearIndependent K (D.lowerQuadrics (K := K
   (quadrics_independent D).comp (Fin.castLE D.lo_le_hi) (Fin.castLE_injective D.lo_le_hi)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem lower_product_mem (i : Fin L) : D.product (K := K) (D.lowerIndex i) ∈
     LinearMap.range (quadraticMultiplication (D.lowerQuadrics (K := K))) := by
   rw [product_identity D]

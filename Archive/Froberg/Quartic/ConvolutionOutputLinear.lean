@@ -246,7 +246,9 @@ theorem outputDeterminant_ne_zero {v : Fin 2 → (Fin 3 → K)} (hv : LinearInde
   simp only [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, coeff_C_mul,
     X_pow_eq_monomial, coeff_X, coeff_monomial, coeff_C, AddMonoidAlgebra.coeff_zero,
     Finsupp.zero_apply] at h0 h1 h2
-  simp at h0 h1 h2
+  simp only [↓reduceIte, Fin.isValue, Finsupp.single_eq_zero, one_ne_zero, mul_zero,
+    add_zero, OfNat.ofNat_ne_zero, mul_one, Finsupp.unique_single_eq_iff,
+    OfNat.ofNat_ne_one, OfNat.one_ne_ofNat] at h0 h1 h2
   simp only [h0, ite_self, zero_add] at h1 h2
   have hw (i j : Fin 3) : v 0 i * v 1 j = v 1 i * v 0 j := by
     fin_cases i <;> fin_cases j <;> dsimp at *

@@ -15,7 +15,7 @@ public import Mathlib.Data.Finset.Powerset
 
 namespace Froberg.ExceptionalFamilies
 
-variable {α T : Type*} [DecidableEq α] [DecidableEq T]
+variable {α T : Type*}
 
 /-- The combinatorial step turning a uniform bound on pairwise disjoint failures
 into a bounded collection of labels meeting every failure. -/

@@ -86,7 +86,7 @@ theorem outside_lower_of_inverse_bit (t j : Fin b₄) (hj : L ≤ j.val)
     apply Submodule.span_le.mpr
     rintro _ ⟨i, rfl⟩
     change f (D.product (D.lowerIndex i)) = 0
-    rw [hp, if_neg]
+    rw [hp, ite_eq_right]
     intro he
     have := congrArg Fin.val he
     change i.val = j.val at this
@@ -118,6 +118,7 @@ def coordinateQuadratic (z : Fin n) : Forms K n 2 :=
   ⟨monomial (Finsupp.single z 2) 1, isHomogeneous_monomial _ (by simp)⟩
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [CharP K 2] in
 theorem coordinateQuadratic_square (z : Fin n) :
     (mulQuadratic (coordinateQuadratic (K := K) z) (coordinateQuadratic z)).val =
       monomial (Finsupp.single z 4) (1 : K) := by

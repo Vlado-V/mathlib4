@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.PairedFibers
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! Matching targets and their concrete factorizations in each paired-variable fiber. -/
 
@@ -92,8 +93,10 @@ theorem Targets.target_injective {F : ProductFiber X s} {a : ℕ} (T : Targets F
   apply T.subset_injective
   exact targetExponent_inj F.disjoint (T.subset_subset p) (T.subset_subset q) h
 
-private theorem union_lift_compl (R : Finset X) (P : Finset R) :
+omit [Fintype X] in
+private theorem union_lift_compl [Finite X] (R : Finset X) (P : Finset R) :
     liftPart R P ∪ liftPart R Pᶜ = R := by
+  let := Fintype.ofFinite X
   rw [liftPart_compl]
   exact Finset.union_sdiff_of_subset (liftPart_subset R P)
 

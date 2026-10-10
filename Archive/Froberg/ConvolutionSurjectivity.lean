@@ -77,8 +77,7 @@ theorem biform_range_le_convolution_range [Infinite K] {a e m : ℕ}
     LinearMap.range (biformInclusion (K := K) a m e (a + e - 1)) ≤
       LinearMap.range (symmetricConvolutionMap (K := K) a e m) := by
   rintro x ⟨w, rfl⟩
-  induction w using TensorProduct.induction_on with
-  | zero => exact Submodule.zero_mem _
+  induction w using TensorProduct.inductionOn with
   | tmul v w => exact convolution_all_pure_tensors ha hm v w
   | add x y hx hy => simpa only [map_add] using Submodule.add_mem _ hx hy
 

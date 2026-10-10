@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Quartic.PolynomialRankOpen
 public import Mathlib.LinearAlgebra.Dimension.Free
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! A single linear projection is injective on any finite family of subspaces
 whose dimensions fit in its target. The simultaneous condition is open. -/
@@ -17,7 +18,7 @@ noncomputable section
 
 namespace Froberg
 open Module MvPolynomial Quartic
-variable {K V W I : Type*} [Field K] [Infinite K] [Fintype I]
+variable {K V W I : Type*} [Field K] [Infinite K] [Finite I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
@@ -31,6 +32,7 @@ theorem finite_subspace_projection_open (U : I → Submodule K V)
         Function.Injective (((Module.finBasis K (V →ₗ[K] W)).equivFun.symm x).comp (U
           i).subtype) := by
   classical
+  let := Fintype.ofFinite I
   let b := Module.finBasis K (V →ₗ[K] W)
   have hi (i : I) : ∃ L : V →ₗ[K] W, Function.Injective (L.comp (U i).subtype) := by
     obtain ⟨j,hj⟩ := finrank_le_iff_exists_linearMap.mp (hU i)
@@ -70,6 +72,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_finite_subspace_projection (U : I → Submodule K V)
     (hU : ∀ i, finrank K (U i) ≤ finrank K W) :
     ∃ L : V →ₗ[K] W, ∀ i, Function.Injective (L.comp (U i).subtype) := by
+  let := Fintype.ofFinite I
   obtain ⟨D,⟨x,hx⟩,hgood⟩ := finite_subspace_projection_open U hU
   exact ⟨(Module.finBasis K (V →ₗ[K] W)).equivFun.symm x,hgood x hx⟩
 

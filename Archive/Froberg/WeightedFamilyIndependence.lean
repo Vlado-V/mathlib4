@@ -33,7 +33,7 @@ theorem weighted_family_independent
     · subst j
       simp
     · have hv : i.1.val≠j.val := fun h => hj (Subtype.ext h.symm)
-      rw [if_neg hv,if_neg hj]
+      rw [ite_eq_right hv,ite_eq_right hj]
   have hrel := congrArg (weightedHomogeneousComponent w i.1.val) hc
   simp only [map_sum,map_smul,map_zero,Fintype.sum_sigma,hcomp] at hrel
   have hi : (∑ k,c ⟨i.1,k⟩ • g i.1 k)=0 := by

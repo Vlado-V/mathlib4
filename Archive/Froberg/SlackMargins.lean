@@ -48,7 +48,7 @@ theorem slackQuadraticCoefficient_pos {d : ℕ} (hd : 3 ≤ d) (P : Polynomial �
   have hgap : 0 < (d.factorial : ℝ)⁻¹ - P.coeff d := by
     rw [hL]
     have hh := div_pos (sub_pos.mpr hρ) hf
-    convert hh using 1 <;> ring
+    convert hh using 1; ring
   have hc : (d.choose 2 : ℝ) * P.coeff d =
       (d : ℝ) * ((d : ℝ) - 1) * criticalRatio d / (2 * (d.factorial : ℝ)) := by
     rw [hL, Nat.cast_choose_two]

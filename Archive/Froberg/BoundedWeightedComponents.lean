@@ -68,7 +68,7 @@ theorem homogeneous_eq_weightedComponents (w : σ → ℕ) (hw : ∀ x, w x ≤ 
       rw [sum_eq_single (Finsupp.weight w a)]
       · simp
       · intro t ht hne
-        exact if_neg (Ne.symm hne)
+        exact ite_eq_right (Ne.symm hne)
       · exact fun h => False.elim (h hmem)
   rw [sum_range_succ'] at hs
   simpa only [add_comm] using hs.symm

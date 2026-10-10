@@ -25,12 +25,14 @@ theorem quotient_independent_of_projection {I : Type*}
   apply LinearIndependent.of_comp (A.liftQ P hA)
   simpa only [Function.comp_def,Submodule.mkQ_apply,Submodule.liftQ_apply] using hg
 
-theorem quotient_split_independent {I L : Type*} [Fintype I] [Fintype L]
+theorem quotient_split_independent {I L : Type*} [Finite I] [Finite L]
     (A : Submodule K V) (g : I → V) (v : L → V) (P : V →ₗ[K] W)
     (hA : A ≤ P.ker) (hg : LinearIndependent K (fun i => A.mkQ (g i)))
     (hv : LinearIndependent K (fun i => P (v i))) (hzero : ∀ i, P (g i) = 0) :
     LinearIndependent K (fun i : I ⊕ L => A.mkQ (Sum.elim g v i)) := by
   classical
+  let := Fintype.ofFinite I
+  let := Fintype.ofFinite L
   apply Fintype.linearIndependent_iff.mpr
   intro c hc i
   have hm : (∑ k,c k • Sum.elim g v k)∈A := by
@@ -60,6 +62,8 @@ theorem component_quotient_family_independent
     (hg : ∀ j,LinearIndependent K (g j)) :
     LinearIndependent K (fun i => A.mkQ (v i)) := by
   classical
+  let := Fintype.ofFinite I
+  let := Fintype.ofFinite L
   apply Fintype.linearIndependent_iff.mpr
   intro c hc i
   have hmem : (∑ k,c k • v k)∈A := by

@@ -54,7 +54,7 @@ theorem absorb_shadow_error {A T T₀ I ℓ D E c g K : ℝ}
 /-- Near full dimension, a quadratic bound on missing targets gives the
 same linear surplus. -/
 theorem absorb_quadratic_cokernel {A T I ℓ U K g : ℝ}
-    (hA : 0 < A) (hℓ : 0 ≤ ℓ) (hℓA : ℓ ≤ A) (hU : 0 ≤ U)
+    (hA : 0 < A) (_hℓ : 0 ≤ ℓ) (hℓA : ℓ ≤ A) (hU : 0 ≤ U)
     (hK : A - ℓ ≤ K) (hg : 0 ≤ g)
     (hI : T - U * (A - ℓ) ^ 2 ≤ I) (hgap : U * K + g ≤ T / A) :
     T / A * ℓ + g * min ℓ (A - ℓ) ≤ I := by

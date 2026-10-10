@@ -21,6 +21,7 @@ namespace Froberg
 open Module MvPolynomial Quartic Quartic.ProjectiveTupleCharts
 variable {K : Type*} [Field K] [Infinite K] {a₁ a₂ q₁ q₂ d₁ d₂ : ℕ}
 
+omit [Infinite K] in
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The existing projective tuple chart is a polynomial vector-space family. -/
 theorem projectiveTuple_polynomial (c : ChartType a₁ q₁ d₁) :
@@ -29,7 +30,6 @@ theorem projectiveTuple_polynomial (c : ChartType a₁ q₁ d₁) :
   intro L
   refine ⟨∑ i, ∑ j, tuplePolynomial c i j * C (L (Pi.single i (Pi.single j 1))),?_⟩
   intro p
-  change _ = L (tupleMap c p)
   simp only [map_sum,map_mul,MvPolynomial.eval_C]
   calc
     _ = L (∑ i, ∑ j, tupleMap c p i j • Pi.single i (Pi.single j 1)) := by
@@ -69,6 +69,7 @@ theorem twoTuple_parameter_count (c₁ : ChartType a₁ q₁ d₁) (c₂ : Chart
   simp only [TwoTupleParameters,Fintype.card_sum,Fintype.card_unit] at hc₁ hc₂ ⊢
   omega
 
+omit [Infinite K] in
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every pair with both families nonzero has one common scaling and a
 literal value of the combined polynomial chart. -/

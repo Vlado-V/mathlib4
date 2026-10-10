@@ -59,9 +59,9 @@ theorem CoefficientRowsSolved.reduce_to_scalar [LinearOrder I]
     simp [z,(hP i).mpr hi]
   · intro i
     by_cases hi : i∈P
-    · simp only [z,if_pos hi]
+    · simp only [z,ite_eq_left hi]
       exact (V 0).zero_mem
-    · simp only [z,if_neg hi]
+    · simp only [z,ite_eq_right hi]
       apply (V 0).sub_mem (hcV 0 i)
       apply Submodule.sum_mem
       intro k hk

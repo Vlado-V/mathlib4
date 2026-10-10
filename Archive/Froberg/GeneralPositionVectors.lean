@@ -17,6 +17,7 @@ namespace Froberg.GeneralPositionVectors
 open MvPolynomial
 variable {K α : Type*} [Field K] [Fintype α] [DecidableEq α]
 
+omit [Fintype α] in
 /-- A generic coordinate minor is nonzero whenever its selected coordinates are distinct. -/
 theorem coordinate_minor_ne_zero (h : ℕ) (S : Finset α) (row : S ↪ Fin h) :
     Matrix.det (fun i j : S => (X (j.val,row i) : MvPolynomial (α × Fin h) K)) ≠ 0 := by
@@ -37,14 +38,16 @@ theorem coordinate_minor_ne_zero (h : ℕ) (S : Finset α) (row : S ↪ Fin h) :
   rw [hinj.extend_apply]
   rfl
 
+omit [Fintype α] [DecidableEq α] in
 /-- Over an infinite field one can attach vectors to arbitrarily many labels,
 with every subfamily of size at most the ambient dimension independent. -/
-theorem exists_small_subfamilies_independent [Infinite K] (h : ℕ) :
+theorem exists_small_subfamilies_independent [Finite α] [Infinite K] (h : ℕ) :
     ∃ v : α → Fin h → K, ∀ S : Finset α, S.card ≤ h →
       LinearIndependent K (fun i : S => v i.val) := by
   classical
+  let : Fintype α := Fintype.ofFinite α
   let Subsets := {S : Finset α // S.card ≤ h}
-  letI : Fintype Subsets := inferInstance
+  let : Fintype Subsets := inferInstance
   have hrow (S : Subsets) : Nonempty (S.val ↪ Fin h) :=
     Function.Embedding.nonempty_of_card_le (by simpa using S.property)
   let row (S : Subsets) : S.val ↪ Fin h := Classical.choice (hrow S)

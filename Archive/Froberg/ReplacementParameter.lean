@@ -26,10 +26,11 @@ theorem exists_nonzero_replacement_parameter (P : MvPolynomial Unit K)
   have he : (fun _ : Unit => p ())=p := by funext i; cases i; rfl
   rwa [he]
 
-theorem exists_nonzero_replacement_intersection {S : Type*} [Fintype S]
+theorem exists_nonzero_replacement_intersection {S : Type*} [Finite S]
     (P : S → MvPolynomial Unit K) (hP : ∀ i, eval (fun _ => 0) (P i) ≠ 0) :
     ∃ e : K,e ≠ 0 ∧ ∀ i,eval (fun _ => e) (P i) ≠ 0 := by
   classical
+  let : Fintype S := Fintype.ofFinite S
   obtain ⟨e,he,hgood⟩ := exists_nonzero_replacement_parameter (∏ i,P i)
     (by simpa only [map_prod] using Finset.prod_ne_zero_iff.mpr (fun i _ => hP i))
   refine ⟨e,he,?_⟩
@@ -47,10 +48,11 @@ theorem exists_nonzero_replacement_fin (P : MvPolynomial (Fin 1) K)
     exact Subsingleton.elim _ _
   rwa [he]
 
-theorem exists_nonzero_replacement_fin_intersection {S : Type*} [Fintype S]
+theorem exists_nonzero_replacement_fin_intersection {S : Type*} [Finite S]
     (P : S → MvPolynomial (Fin 1) K) (hP : ∀ i, eval 0 (P i) ≠ 0) :
     ∃ e : K,e ≠ 0 ∧ ∀ i,eval (fun _ => e) (P i) ≠ 0 := by
   classical
+  let : Fintype S := Fintype.ofFinite S
   obtain ⟨e,he,hgood⟩ := exists_nonzero_replacement_fin (∏ i,P i)
     (by simpa only [map_prod] using Finset.prod_ne_zero_iff.mpr (fun i _ => hP i))
   refine ⟨e,he,?_⟩

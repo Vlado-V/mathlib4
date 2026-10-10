@@ -16,17 +16,18 @@ open Finset
 
 /-- A rational lower bound on the weight retained by every source gives the
 same lower bound on the weighted size of the retained target. -/
-theorem weighted_retention_bound {S T : Type*} [DecidableEq S] [DecidableEq T]
-    (w : T → S → ℕ) (A : Finset S) (B : Finset T) (a b L C : ℕ)
+theorem weighted_retention_bound {S T : Type*} (w : T → S → ℕ) (A : Finset S)
+    (B : Finset T) (a b L C : ℕ)
     (hsource : ∀ s ∈ A, a * L ≤ b * ∑ t ∈ B, w t s)
     (htarget : ∀ t ∈ B, ∑ s ∈ A, w t s ≤ C) :
     a * L * A.card ≤ b * C * B.card := by
+  classical
   calc
     a * L * A.card = ∑ s ∈ A, a * L := by simp [Nat.mul_comm]
     _ ≤ ∑ s ∈ A, b * ∑ t ∈ B, w t s := sum_le_sum hsource
     _ = b * ∑ t ∈ B, ∑ s ∈ A, w t s := by rw [← mul_sum, sum_comm]
     _ ≤ b * ∑ t ∈ B, C := Nat.mul_le_mul_left b (sum_le_sum htarget)
-    _ = b * C * B.card := by simp [Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+    _ = b * C * B.card := by simp [Nat.mul_comm, Nat.mul_left_comm]
 
 /-- The total-weight identity converts a retained-weight bound into the
 normalized dimension inequality, without introducing rational divisions. -/

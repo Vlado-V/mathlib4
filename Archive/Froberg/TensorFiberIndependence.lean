@@ -8,6 +8,7 @@ module
 public import Mathlib.LinearAlgebra.TensorProduct.Associator
 public import Mathlib.LinearAlgebra.Basis.VectorSpace
 public import Mathlib.LinearAlgebra.LinearIndependent.Basic
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! Linear independence can be checked separately in the fibers of an
 independent first tensor factor. -/
@@ -19,12 +20,14 @@ open TensorProduct
 namespace Froberg
 variable {K : Type*} [Field K]
 variable {A B : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
-variable {δ : Type*} [Fintype δ] {J : δ → Type*} [∀ d, Fintype (J d)]
+variable {δ : Type*} [Finite δ] {J : δ → Type*} [∀ d, Finite (J d)]
 
 theorem linearIndependent_tensor_fibers (o : δ → A) (ho : LinearIndependent K o)
     (q : (d : δ) → J d → B) (hq : ∀ d, LinearIndependent K (q d)) :
     LinearIndependent K (fun z : Sigma J => o z.1 ⊗ₜ[K] q z.1 z.2) := by
   classical
+  let := Fintype.ofFinite δ
+  let : ∀ d, Fintype (J d) := fun d => Fintype.ofFinite (J d)
   obtain ⟨s,hs⟩ := (Finsupp.linearCombination K o).exists_leftInverse_of_injective
     (LinearMap.ker_eq_bot.mpr ho)
   have hs_o (d : δ) : s (o d) = Finsupp.single d 1 := by

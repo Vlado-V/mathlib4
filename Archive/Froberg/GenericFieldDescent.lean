@@ -24,23 +24,19 @@ set_option backward.isDefEq.respectTransparency false
 variable {K L : Type*} [Field K] [Field L] {n d r : ℕ}
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
-private theorem basis_transport_repr {V I : Type*} [AddCommGroup V] [Module K V]
-    (P Q : Submodule K V) (h : P = Q) (b : Basis I K Q) (T : I → V → K)
-    (hb : ∀ p i, b.repr p i = T i p.val) (p : P) (i : I) :
-    ((congrArg (fun S : Submodule K V => Basis I K S) h).mpr b).repr p i = T i p.val := by
-  subst Q
-  exact hb p i
-
-set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem formsBasis_equivFun_coeff (p : Forms K n d) (s : Sym (Fin n) d) :
     (formsBasis K n d).equivFun p s = p.val.coeff (exponentEquiv n d s).val := by
   rw [Basis.equivFun_apply]
-  simpa only [formsBasis, eq_mpr_eq_cast, cast_cast] using
-    basis_transport_repr (Forms K n d) _
-      (homogeneousSubmodule_eq_finsupp_supported (Fin n) K d)
-      ((basisRestrictSupport K {e : Fin n →₀ ℕ | e.degree = d}).reindex
-        (exponentEquiv n d).symm)
-      (fun s p => p.coeff (exponentEquiv n d s).val) (fun _ _ => rfl) p s
+  have hdec : (fun a b : Fin n => Classical.propDecidable (a = b)) =
+      (inferInstance : DecidableEq (Fin n)) := Subsingleton.elim _ _
+  unfold formsBasis MvPolynomial.basisHomogeneousSym
+  rw [hdec, Basis.repr_reindex_apply]
+  simp only [MvPolynomial.basisHomogeneous, Basis.map_repr, LinearEquiv.trans_apply,
+    LinearEquiv.ofEq_symm]
+  change (LinearEquiv.ofEq _ _
+    (homogeneousSubmodule_eq_finsupp_supported (Fin n) K d) p).val.coeff _ = _
+  rw [LinearEquiv.coe_ofEq_apply]
+  rfl
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def mapForm (f : K →+* L) (p : Forms K n d) : Forms L n d :=
@@ -155,7 +151,8 @@ theorem monomialMultiplicationMatrix_map (f : K →+* L) :
   funext row col
   change MvPolynomial.map f (polynomialOfLinear (multiplicationEntryLinear row col)) =
     polynomialOfLinear (multiplicationEntryLinear row col)
-  simp only [polynomialOfLinear, map_sum, map_mul, map_C, map_X]
+  simp only [Froberg.polynomialOfLinear, MvPolynomial.polynomialOfLinear,
+    map_sum, map_mul, map_C, map_X]
   apply Finset.sum_congr rfl
   intro i _
   congr 2
