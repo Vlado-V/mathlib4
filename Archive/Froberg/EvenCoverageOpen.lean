@@ -78,7 +78,8 @@ theorem evenCoverageMap_polynomial {I : Type*}
       ((Fin r → Forms K n d) →ₗ[K] Forms K n (2*d)) :=
     endpointMultiplicationOperator (K := K) (h := n) (m := 0) (d := d) (r := r)
   have hr := hq.linear_comp (W := (Fin r → Forms K n d) →ₗ[K] Forms K n (2*d)) op
-  have he := hr.linear_comp (W := Forms K n (2*d)) (LinearMap.applyₗ (R := K) (M₂ := Forms K n (2*d)) x.1.2)
+  have he := hr.linear_comp (W := Forms K n (2*d)) (LinearMap.applyₗ (R := K) (M₂ := Forms K n
+    (2*d)) x.1.2)
   exact ((isPolynomialFamily_const x.1.1.val).add he).add
     (isPolynomialFamily_const (parityForm w 1 x.2))
 

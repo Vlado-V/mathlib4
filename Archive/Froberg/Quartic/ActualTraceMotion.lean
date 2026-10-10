@@ -114,7 +114,8 @@ def homologyParameter (g : Mixed K m c) : CycleParameters K m c →ₗ[K] Homolo
   (cycleClassProjection (multiplication g) (LinearMap.range (boundary g))).comp (cycleLift g)
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
-theorem homologyParameter_surjective (g : Mixed K m c) : Function.Surjective (homologyParameter g) :=
+theorem homologyParameter_surjective (g : Mixed K m c) : Function.Surjective (homologyParameter
+  g) :=
   (cycleClassProjection_surjective _ _).comp (cycleLift_surjective g)
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
@@ -143,7 +144,8 @@ def coordinateTrace (g : Mixed K m c) :
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem coordinateTrace_injective (g : Mixed K m c)
-    (hg : Function.Injective (mixedMultiplication g)) : Function.Injective (coordinateTrace e g) := by
+    (hg : Function.Injective (mixedMultiplication g)) : Function.Injective (coordinateTrace e
+      g) := by
   intro x y h
   apply trace_injective g hg
   funext i
@@ -181,7 +183,8 @@ def columns (g : Mixed K m c) :
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem span_columns (g : Mixed K m c) :
     Submodule.span K (Set.range (columns e g)) = LinearMap.range (coordinateRaw e g) := by
-  change Submodule.span K (Set.range ((coordinateRaw e g) ∘ Module.finBasis K (CycleParameters K m c))) = _
+  change Submodule.span K (Set.range ((coordinateRaw e g) ∘ Module.finBasis K (CycleParameters K m
+    c))) = _
   rw [Set.range_comp, ← Submodule.map_span, Basis.span_eq, Submodule.map_top]
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
@@ -285,7 +288,8 @@ set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 include hg in
 theorem columns_polynomial (j : Fin (finrank K (CycleParameters K m c))) (i : Fin 4) (v : Fin a) :
     IsPolynomialFamily (fun p => columns e (g p) j i v) := by
-  exact (((rawCoefficients_polynomial g hg (Module.finBasis K (CycleParameters K m c) j)).linear_comp
+  exact (((rawCoefficients_polynomial g hg (Module.finBasis K (CycleParameters K m c)
+    j)).linear_comp
     (CoefficientConstraintRank.repeated e.toLinearMap)).linear_comp
       (LinearMap.proj i)).linear_comp (LinearMap.proj v)
 
@@ -420,10 +424,12 @@ open RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The two orientations encode exactly the same mixed polynomial. -/
-theorem traceCoordinates_injective : Function.Injective (SplitBlock22.traceCoordinates (K := K) (m := m)) := by
+theorem traceCoordinates_injective : Function.Injective (SplitBlock22.traceCoordinates (K := K) (m
+  := m)) := by
   intro x y h
   apply SplitBlock22.mixedEmbedding_injective
-  rw [← SplitBlock22.linearYEmbed_traceCoordinates x,← SplitBlock22.linearYEmbed_traceCoordinates y,h]
+  rw [← SplitBlock22.linearYEmbed_traceCoordinates x,← SplitBlock22.linearYEmbed_traceCoordinates
+    y,h]
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Reorienting the actual mixed coefficients is a linear equivalence. -/
@@ -591,7 +597,8 @@ theorem eval_covectorMatrix_rank_bound_of_ambient (g : Fin c → Rows K m 1)
     2*m+2*c-4*d ≤ ((covectorMatrix g).map (eval ell)).rank := by
   rw [eval_covectorMatrix]
   apply finiteConstraint_rank_bound_of_ambient rowCoordinates coordinate (rowMixed g)
-    (hgi.map' SplitBlock22.traceCoordinates (LinearMap.ker_eq_bot.mpr traceCoordinates_injective)) hg ell
+    (hgi.map' SplitBlock22.traceCoordinates (LinearMap.ker_eq_bot.mpr
+      traceCoordinates_injective)) hg ell
   · intro j f
     simpa only [rowMixed,rowCoordinates_traceCoordinates,coordinate_apply,
       LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm f)

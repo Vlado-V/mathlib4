@@ -186,7 +186,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The uniform (3,1) entry of the split-complex homology inventory. -/
 theorem homology_finrank (g : Mixed K m c) : finrank K (Homology g) = 2 * m + 2 * c := by
   have hhom := finrank_kernelModulo_add (multiplication g) (LinearMap.range (boundary g))
-  have hb : finrank K (kernelBoundary (multiplication g) (LinearMap.range (boundary g))) = 4 * c := by
+  have hb : finrank K (kernelBoundary (multiplication g) (LinearMap.range (boundary
+    g))) = 4 * c := by
     unfold kernelBoundary
     rw [(Submodule.comapSubtypeEquivOfLe (boundary_range_le_kernel g)).finrank_eq]
     exact boundary_finrank g

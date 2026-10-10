@@ -102,7 +102,8 @@ theorem exists_motion_excluding_covectors [Infinite K] [IsAlgClosed K]
       (L := K) (degrees k) (eqs k) (cuts k) (hempty k)
       A (0 : Matrix (Fin 0) (Fin 0) (MvPolynomial (Fin T ⊕ Fin n) K))
       (augmentedPolynomialConstraint_scaling mu E)
-      (by intros; ext i; exact Fin.elim0 i) (r₁ := finrank K H-f*k.val+e) (r₂ := 0) (by simpa using hcount k)
+      (by intros; ext i; exact Fin.elim0 i) (r₁ := finrank K H-f*k.val+e) (r₂ := 0) (by simpa using
+        hcount k)
     refine ⟨P,hP,?_⟩
     intro z hz ell hell heqs hr
     have hh := hgood z hz ell hell heqs hr (Nat.zero_le _)

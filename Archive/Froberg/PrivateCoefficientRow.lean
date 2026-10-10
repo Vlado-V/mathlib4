@@ -56,7 +56,8 @@ theorem private_coefficient_row_separation (hd : 3≤d) (hR : 2≤R) (hRd : R+1�
   have huf (i : Fin b) : u i∈biformImage (homogeneousSubmodule σ K R)
       (Forms K (a+z) (d-R)) := by
     apply mem_biformImage_of_homogeneous
-    · simpa only [Nat.add_sub_of_le (by omega : R≤d)] using (show (u i).IsHomogeneous d from (hu i).1)
+    · simpa only [Nat.add_sub_of_le (by omega : R≤d)] using (show (u i).IsHomogeneous d from (hu
+      i).1)
     · simpa only [Nat.add_sub_cancel] using
       (show (u i).IsWeightedHomogeneous
         (Sum.elim (fun _ : σ => 1) (fun _ : Fin (a+z) => 0)) (R+1-1) from (hu i).2)
@@ -64,7 +65,8 @@ theorem private_coefficient_row_separation (hd : 3≤d) (hR : 2≤R) (hRd : R+1�
     fun i => homogeneous_output_zero_exists (hf i).1 (hf i).2
   choose ff hff using hf'
   let p : Fin m → Forms K (a+z) ((d-1)+1) := fun i =>
-    ⟨(ff (ρ i).val).val,by simpa only [Nat.sub_add_cancel (by omega : 1≤d)] using (ff (ρ i).val).property⟩
+    ⟨(ff (ρ i).val).val,by simpa only [Nat.sub_add_cancel (by omega : 1≤d)] using (ff (ρ
+      i).val).property⟩
   let C : MvPolynomial (σ ⊕ Fin a) K := ∑ i,∑ k,B i k • (E i*E k)
   have hCd : C.IsHomogeneous (2*d) := by
     change (∑ i,∑ k,B i k • (E i*E k))∈homogeneousSubmodule (σ ⊕ Fin a) K (2*d)

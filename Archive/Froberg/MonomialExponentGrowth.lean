@@ -19,7 +19,8 @@ namespace Froberg
 open Finset Filter MonomialExpansion OuterInjection
 open scoped Topology
 
-def degreeExponentEquiv (n d : ℕ) : Degree n d ≃ Quartic.HomogeneousCoefficientCoordinates.Exponent n d where
+def degreeExponentEquiv (n d :
+  ℕ) : Degree n d ≃ Quartic.HomogeneousCoefficientCoordinates.Exponent n d where
   toFun a := ⟨a.val, degree_val a⟩
   invFun a := ⟨a.val, mem_exponents.mpr a.property⟩
   left_inv _ := rfl
@@ -66,7 +67,8 @@ theorem uniform_exponent_shadow {σ : ℝ} {s : ℕ}
       (β : Σ j, TargetMonomialFiber (a n) (z n) s j)
       (hdiv : joinParts α.2.1.val α.2.2.val ≤ joinParts β.2.1.val β.2.2.val) :
       min (K*profileTargetCapacity s β.1) (ell (sourceExponent α)) ≤ b (targetExponent β).val := by
-    simpa only [target_capacity_at_exponent] using hshadow (sourceExponent α) (targetExponent β).val hdiv
+    simpa only [target_capacity_at_exponent] using hshadow (sourceExponent α) (targetExponent
+      β).val hdiv
   have hh := hn (fun α => ell (sourceExponent α)) (fun β => b (targetExponent β).val) hl hs'
   have he := (sourceMonomialEquiv (a n) (z n) s).sum_comp ell
   change (∑ α : Σ i, SourceMonomialFiber (a n) (z n) s i, ell (sourceExponent α)) = ∑ α, ell α at he

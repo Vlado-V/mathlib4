@@ -70,7 +70,8 @@ theorem generic_injective [Infinite K]
   by_contra hnz
   obtain ⟨c,t,hmem,hrank⟩ := hcover F hnz
   obtain ⟨z,p,s,hs,_,hscale⟩ := cover_tuple (H c) t F hnz hmem
-  have hrank' : Fintype.card (I c)+q*N c ≤ finrank K (LinearMap.range (B (tupleMap (H c) z p))) := by
+  have hrank' : Fintype.card (I c)+q*N c ≤ finrank K (LinearMap.range (B (tupleMap (H c) z
+    p))) := by
     rw [hscale,map_smul,LinearMap.range_smul _ s hs] at hrank
     exact hrank
   apply hgood ⟨c,z⟩ x (hxP ⟨c,z⟩) p hrank'

@@ -34,7 +34,8 @@ its exact vector-quotient dimension. -/
 theorem core_quotientFiber_capacity {k a z s h : ℕ}
     (v : OuterInjection.Labels k a s → Fin h → K) (β : Fin (a+z) →₀ ℕ)
     (hi : LinearIndependent K
-      (fun i : {i : OuterInjection.Labels k a s // OuterInjection.coreExponent z i ≤ β} => v i.val)) :
+      (fun i : {i : OuterInjection.Labels k a s // OuterInjection.coreExponent z i ≤ β} => v
+        i.val)) :
     h - k * (OuterInjection.corePart β).degree.choose s ≤
       finrank K ((Fin h → K) ⧸ relationFiber (OuterInjection.coreExponent z) v β) := by
   rw [quotientFiber_finrank _ _ β hi, Fintype.card_fin]

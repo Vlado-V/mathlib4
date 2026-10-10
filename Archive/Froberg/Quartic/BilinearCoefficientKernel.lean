@@ -171,7 +171,8 @@ theorem kernel_image_annihilated (ell : Fin T → K) :
 
 /-- Source subspaces with annihilated full image are exactly subspaces of the relation kernel. -/
 theorem image_annihilated_iff (ell : Fin T → K) (S : Submodule K (Fin a → K)) :
-    BilinearImage.image mu S ≤ LinearMap.ker (covector ell) ↔ S ≤ LinearMap.ker (relationMap mu ell) := by
+    BilinearImage.image mu S ≤ LinearMap.ker (covector ell) ↔ S ≤ LinearMap.ker (relationMap mu
+      ell) := by
   constructor
   · intro h v hv
     apply (relationMap_kernel_iff mu ell v).mpr
@@ -217,7 +218,8 @@ theorem evaluated_polynomialMatrix_rank (N : Fin T → MvPolynomial I K)
 theorem evaluated_polynomialMatrix_kernel (N : Fin T → MvPolynomial I K)
     (G : MvPolynomial I K) (p : I → K) (hG : eval p G ≠ 0) :
     LinearMap.ker (evaluated (polynomialMatrix mu N) p).mulVecLin =
-      LinearMap.ker (coefficientMatrix mu (RationalImageAvoidance.rationalMap N G p)).mulVecLin := by
+      LinearMap.ker (coefficientMatrix mu (RationalImageAvoidance.rationalMap N G
+        p)).mulVecLin := by
   rw [evaluated_polynomialMatrix, eval_covector_eq_smul_rationalMap N G p hG,
     coefficientMatrix_kernel_smul mu _ hG]
 

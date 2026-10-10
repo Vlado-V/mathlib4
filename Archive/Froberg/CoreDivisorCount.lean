@@ -86,7 +86,8 @@ on repeated-variable monomials, whose number is one order smaller. -/
 theorem coarse_target_error {k a z s h r : ℕ}
     (v : OuterInjection.Labels k a s → Fin h → K)
     (hi : ∀ β : MonomialExpansion.Degree (a + z) r, LinearIndependent K
-      (fun i : {i : OuterInjection.Labels k a s // OuterInjection.coreExponent z i ≤ β.val} => v i.val)) :
+      (fun i : {i : OuterInjection.Labels k a s // OuterInjection.coreExponent z i ≤ β.val} => v
+        i.val)) :
     (∑ β : MonomialExpansion.Degree (a + z) r,
       finrank K ((Fin h → K) ⧸ relationFiber (OuterInjection.coreExponent z) v β.val)) ≤
     (∑ β : MonomialExpansion.Degree (a + z) r,
@@ -105,7 +106,8 @@ theorem coarse_target_error {k a z s h r : ℕ}
       have hh : ¬2 ≤ β.val (Fin.castAdd z i) := fun h => hb ⟨_, h⟩
       change β.val (Fin.castAdd z i) ≤ 1
       omega
-  have hs := sum_le_sum (fun β (_ : β ∈ (univ : Finset (MonomialExpansion.Degree (a + z) r))) => hp β)
+  have hs := sum_le_sum (fun β (_ : β ∈ (univ : Finset (MonomialExpansion.Degree (a + z) r))) => hp
+    β)
   rw [sum_add_distrib] at hs
   have hsum : (∑ β : MonomialExpansion.Degree (a + z) r, if ∃ i, 2 ≤ β.val i then h else 0) =
       Fintype.card {β : MonomialExpansion.Degree (a + z) r // ∃ i, 2 ≤ β.val i} * h := by

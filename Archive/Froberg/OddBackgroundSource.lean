@@ -77,7 +77,8 @@ theorem background_source_relations_map
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
     (Submodule.span K (Set.range F) ⊔ Submodule.span K (Set.range G)).map
-      (parityPolynomialToFormsEquiv finSumFinEquiv (fun i => (blockWeight h m i : ZMod 2)) 1).toLinearMap=
+      (parityPolynomialToFormsEquiv finSumFinEquiv (fun i => (blockWeight h m i : ZMod 2))
+        1).toLinearMap=
     Submodule.span K (Set.range (fun i => parityProjectionToPart
       ((fun j => (blockWeight h m j : ZMod 2)) ∘ finSumFinEquiv.symm) 1
       (backgroundEnumeratedForms Q F G i))) := by

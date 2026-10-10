@@ -48,7 +48,8 @@ def deformedFamily (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Fo
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quadraticMultiplication_add_smul {n t : ℕ} (f v : Fin t → Forms K n 2) (ε : K) :
-    quadraticMultiplication (f + ε • v) = quadraticMultiplication f + ε • quadraticMultiplication v := by
+    quadraticMultiplication (f + ε •
+      v) = quadraticMultiplication f + ε • quadraticMultiplication v := by
   apply LinearMap.ext
   intro a
   apply Subtype.ext
@@ -61,7 +62,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem deformed_multiplication (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (s : Fin q → Forms K 3 2) (ε : K) :
     quadraticMultiplication (deformedFamily g h p r s ε) =
-      quadraticMultiplication (SplitBlock22.fullGenerators g h) + ε • quadraticMultiplication (motionFamily p r s) :=
+      quadraticMultiplication (SplitBlock22.fullGenerators g
+        h) + ε • quadraticMultiplication (motionFamily p r s) :=
   quadraticMultiplication_add_smul _ _ ε
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -89,10 +91,12 @@ theorem firstVariation_middle (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K
     (s : Fin q → Forms K 3 2) (a : SplitBlock22.Source K m c q) :
     projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding a)) =
       ∑ j, RowMultiplicationCoordinates.multiplication (p j) (a.2.1 j) := by
-  simp only [quadraticMultiplication, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply]
+  simp only [quadraticMultiplication, LinearMap.sum_apply, LinearMap.comp_apply,
+    LinearMap.proj_apply]
   rw [map_sum, Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [motionFamily, Fin.addCases_left, Fin.addCases_right,
-    SplitBlock22.sourceEmbedding_pure, SplitBlock22.sourceEmbedding_mixed, SplitBlock22.sourceEmbedding_child,
+    SplitBlock22.sourceEmbedding_pure, SplitBlock22.sourceEmbedding_mixed,
+      SplitBlock22.sourceEmbedding_child,
     projection13_child_mul, SplitBlock22.middleProjection_childEmbed,
     SplitBlock22.middleProjection_mixedEmbedding, map_zero,
     projection13_core_mul, rowProduct_eq_multiplication, Finset.sum_const_zero, zero_add, add_zero]
@@ -108,10 +112,12 @@ theorem firstVariation_trace (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K 
     (s : Fin q → Forms K 3 2) (a : SplitMiddle31.Source K m c) :
     projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock31.sourceEmbedding a)) =
       ∑ i, RowMultiplicationCoordinates.multiplication (r i) (traceRows (a.2 i)) := by
-  simp only [quadraticMultiplication, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply]
+  simp only [quadraticMultiplication, LinearMap.sum_apply, LinearMap.comp_apply,
+    LinearMap.proj_apply]
   rw [map_sum, Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [motionFamily, Fin.addCases_left, Fin.addCases_right,
-    SplitBlock31.sourceEmbedding_pure, SplitBlock31.sourceEmbedding_mixed, SplitBlock31.sourceEmbedding_child,
+    SplitBlock31.sourceEmbedding_pure, SplitBlock31.sourceEmbedding_mixed,
+      SplitBlock31.sourceEmbedding_child,
     projection13_child_mul, SplitBlock22.middleProjection_coreEmbed,
     rowProduct_eq_multiplication, map_zero, Finset.sum_const_zero, add_zero]
   rfl
@@ -132,18 +138,21 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem trace_first_order (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (s : Fin q → Forms K 3 2)
     (a : SplitMiddle31.Source K m c)
-    (ha : SplitMiddle31.multiplication (fun j => SplitBlock22.traceCoordinates (g j)) a = 0) (ε : K) :
+    (ha : SplitMiddle31.multiplication (fun j => SplitBlock22.traceCoordinates (g j)) a = 0) (ε :
+      K) :
     quadraticMultiplication (deformedFamily g h p r s ε) (SplitBlock31.sourceEmbedding a) =
       ε • quadraticMultiplication (motionFamily p r s) (SplitBlock31.sourceEmbedding a) := by
   rw [deformed_multiplication]
   apply deformation_first_response
-  change quadraticMultiplication (SplitBlock31.generators (fun j => SplitBlock22.traceCoordinates (g j)) h)
+  change quadraticMultiplication (SplitBlock31.generators (fun j => SplitBlock22.traceCoordinates (g
+    j)) h)
     (SplitBlock31.sourceEmbedding a) = 0
   rw [SplitBlock31.multiplication_commutes, ha, map_zero]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The unreduced (2,2) first response of an actual pure quartic source. -/
-def pureFirstResponse (r : Fin 4 → Forms K m 2) (a : Fin 4 → Forms K 3 2) : SplitBlock22.Target K m :=
+def pureFirstResponse (r : Fin 4 → Forms K m 2) (a : Fin 4 → Forms K 3
+  2) : SplitBlock22.Target K m :=
   ∑ i, a i ⊗ₜ[K] r i
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -165,7 +174,8 @@ theorem firstVariation_pure (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The unreduced (2,2) first response of a child quartic source. -/
-def childFirstResponse (s : Fin q → Forms K 3 2) (a : Fin q → Forms K m 2) : SplitBlock22.Target K m :=
+def childFirstResponse (s : Fin q → Forms K 3 2) (a : Fin q → Forms K m
+  2) : SplitBlock22.Target K m :=
   ∑ i, s i ⊗ₜ[K] a i
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -221,10 +231,13 @@ theorem corrected_column (g : Fin c → MiddleCoordinates.Mixed K m)
       (∀ ε : K, quadraticMultiplication (deformedFamily g h p r s ε)
         (a + ε • SplitBlock22.sourceEmbedding b) =
           ε^2 • quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding b)) ∧
-      projectionRawJ g h (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding b)) =
-        (GeneralF13.combined g h).range.mkQ (∑ j, RowMultiplicationCoordinates.multiplication (p j) (z j)) := by
+      projectionRawJ g h (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding
+        b)) =
+        (GeneralF13.combined g h).range.mkQ (∑ j, RowMultiplicationCoordinates.multiplication (p j)
+          (z j)) := by
   obtain ⟨b,hb,hprod⟩ := prescribed_middle_completion g h t z hz
-  have hc : quadraticMultiplication (SplitBlock22.fullGenerators g h) (SplitBlock22.sourceEmbedding b) =
+  have hc : quadraticMultiplication (SplitBlock22.fullGenerators g h) (SplitBlock22.sourceEmbedding
+    b) =
       -quadraticMultiplication (motionFamily p r s) a := by
     rw [SplitBlock22.full_multiplication_commutes, hprod, ht]
     exact (SplitBlock22.targetEmbedding (K := K) (m := m)).map_neg t
@@ -233,7 +246,8 @@ theorem corrected_column (g : Fin c → MiddleCoordinates.Mixed K m)
     rw [deformed_multiplication]
     exact deformation_second_response _ _ ε a _ ha hc
   · change (GeneralF13.combined g h).range.mkQ
-      (projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding b))) = _
+      (projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding
+        b))) = _
     rw [firstVariation_middle, hb]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -265,7 +279,8 @@ theorem marked_child_elimination (h : Fin q → Forms K m 2) (k : Fin q)
     (a : Fin q → Forms K m 2) :
     SplitBlock22.elimination (Submodule.span K (Set.range h))
       (childFirstResponse (Pi.single k (markedDirection ω)) a) =
-        (ω • (Submodule.span K (Set.range h)).mkQ (a k), -(Submodule.span K (Set.range h)).mkQ (a k)) := by
+        (ω • (Submodule.span K (Set.range h)).mkQ (a k), -(Submodule.span K (Set.range h)).mkQ (a
+          k)) := by
   classical
   have he : childFirstResponse (Pi.single k (markedDirection ω (K := K))) a =
       markedDirection ω ⊗ₜ[K] a k := by
@@ -293,13 +308,15 @@ theorem trace_response_compatibility (g : Fin c → MiddleCoordinates.Mixed K m)
       (SplitBlock31.sourceEmbedding a.val)) =
       ActualDeformationResponseOmega.traceResponse g h r (Submodule.Quotient.mk a) := by
   change (GeneralF13.combined g h).range.mkQ
-    (projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock31.sourceEmbedding a.val))) = _
+    (projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock31.sourceEmbedding
+      a.val))) = _
   rw [firstVariation_trace,ActualDeformationResponseOmega.traceResponse_mk]
   simp only [traceRows_eq]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every pure homology class has an actual polynomial cycle representative. -/
-theorem pure_class_surjective : Function.Surjective (HomologyCoordinates.homologyClass (K := K)) := by
+theorem pure_class_surjective : Function.Surjective (HomologyCoordinates.homologyClass (K :=
+  K)) := by
   exact Submodule.mkQ_surjective _
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -321,7 +338,8 @@ theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K 
     ∃ byCycle : (quadraticMultiplication h).ker,
       MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)) z.val =
         SplitBlock22.elimination (Submodule.span K (Set.range h))
-          (pureFirstResponse r bx.val + childFirstResponse (Pi.single k (markedDirection ω)) byCycle.val) := by
+          (pureFirstResponse r bx.val + childFirstResponse (Pi.single k (markedDirection ω))
+            byCycle.val) := by
   have hz := z.property
   change ∃ u, MovingMiddleCorrectionOmega.traceMap ω
     (fun i => (Submodule.span K (Set.range h)).mkQ (r i)) markedU u =
@@ -331,7 +349,8 @@ theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K 
   obtain ⟨byCycle,hby⟩ := hmarked u
   refine ⟨bx,byCycle,?_⟩
   rw [map_add,pureFirstResponse_elimination,marked_child_elimination,hbx,hby,← he]
-  apply Prod.ext <;> simp only [MovingMiddleCorrectionOmega.traceMap_apply ω,Prod.fst_add,Prod.snd_add] <;> abel
+  apply Prod.ext <;> simp only [MovingMiddleCorrectionOmega.traceMap_apply
+    ω,Prod.fst_add,Prod.snd_add] <;> abel
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual marked child coefficient on the actual child cycle space. -/
@@ -362,9 +381,12 @@ theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
       quadraticMultiplication (SplitBlock22.fullGenerators g h) a₁ =
         -quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a ∧
       (∀ ε : K, quadraticMultiplication (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε)
-        (a + ε • a₁) = ε^2 • quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a₁) ∧
-      projectionRawJ g h (quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a₁) =
-        ActualDeformationResponseOmega.correctionResponse ω g h r markedU p (Submodule.Quotient.mk z) := by
+        (a + ε • a₁) = ε^2 • quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection
+          ω))) a₁) ∧
+      projectionRawJ g h (quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection
+        ω))) a₁) =
+        ActualDeformationResponseOmega.correctionResponse ω g h r markedU p (Submodule.Quotient.mk
+          z) := by
   classical
   obtain ⟨bx,byCycle,hz⟩ := trace_preimage_representatives ω g h r k markedU hmarked z
   let a : Fin (4+(c+q)) → Forms K (3+m) 2 :=
@@ -384,13 +406,15 @@ theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
       SplitBlock22.targetEmbedding t := by
     dsimp [a,t]
     rw [map_neg,map_add,firstVariation_pure,firstVariation_child]
-    rw [← neg_one_smul K (pureFirstResponse r bx.val + childFirstResponse (Pi.single k (markedDirection ω)) byCycle.val),
+    rw [← neg_one_smul K (pureFirstResponse r bx.val + childFirstResponse (Pi.single k
+      (markedDirection ω)) byCycle.val),
       map_smul,map_add]
     exact (neg_one_smul K _).symm
   have hzt : MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)) z.val =
       -SplitBlock22.elimination (Submodule.span K (Set.range h)) t := by
     dsimp [t]
-    rw [← neg_one_smul K (pureFirstResponse r bx.val + childFirstResponse (Pi.single k (markedDirection ω)) byCycle.val),
+    rw [← neg_one_smul K (pureFirstResponse r bx.val + childFirstResponse (Pi.single k
+      (markedDirection ω)) byCycle.val),
       map_smul,neg_one_smul,neg_neg]
     exact hz
   obtain ⟨b,hb,hcancel,hpoly,hresponse⟩ :=
@@ -430,8 +454,10 @@ theorem correction_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
       quadraticMultiplication (SplitBlock22.fullGenerators g h) a₁ =
         -quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a ∧
       (∀ ε : K, quadraticMultiplication (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε)
-        (a + ε • a₁) = ε^2 • quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a₁) ∧
-      projectionRawJ g h (quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a₁) =
+        (a + ε • a₁) = ε^2 • quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection
+          ω))) a₁) ∧
+      projectionRawJ g h (quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection
+        ω))) a₁) =
         ActualDeformationResponseOmega.correctionResponse ω g h r markedU p ξ := by
   induction ξ using Submodule.Quotient.induction_on with | H z =>
   exact correction_response_realized ω g h p r k markedU hmarked z

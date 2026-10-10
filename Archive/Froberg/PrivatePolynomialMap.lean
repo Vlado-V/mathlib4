@@ -108,7 +108,8 @@ def homogeneousPrivatePolynomialMap (ι : Fin b ↪ Fin z)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem homogeneousPrivatePolynomialMap_kernel (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) :
-    (homogeneousPrivatePolynomialMap (a := a) (s := s) ι A).ker=(privatePolynomialMap (a := a) (s := s) ι A).ker := by
+    (homogeneousPrivatePolynomialMap (a := a) (s := s) ι A).ker=(privatePolynomialMap (a := a) (s :=
+      s) ι A).ker := by
   ext v
   constructor
   · intro hv

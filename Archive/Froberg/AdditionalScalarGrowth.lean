@@ -41,7 +41,8 @@ theorem scalar_growth_of_injective_family (mu : P →ₗ[K] V →ₗ[K] W)
     rintro _ ⟨v,rfl⟩
     change Quartic.BilinearImage.tupleMap mu (inc v) Q∈_
     rw [Quartic.BilinearImage.tupleMap_apply]
-    exact Submodule.sum_mem _ (fun i _ => Quartic.BilinearImage.product_mem mu L (Q i) _ (v i).property)
+    exact Submodule.sum_mem _ (fun i _ => Quartic.BilinearImage.product_mem mu L (Q i) _ (v
+      i).property)
   calc
     q*finrank K L=finrank K (Fin q → L) := by
       rw [Module.finrank_pi_fintype]

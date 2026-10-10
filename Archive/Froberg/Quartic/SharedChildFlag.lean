@@ -54,7 +54,8 @@ theorem quartic_open (f : (ι → K) → (Fin r → Forms K n 2))
     (fun i a => f a i) (fun i => hf.linear_comp (LinearMap.proj i)) b hbLin
   obtain ⟨D₂,hD₂,h₂⟩ := rank_polynomial_principal_open
     (fun a => quadraticMultiplication (f a))
-    (by simpa only [multiplicationLinear_apply] using hf.linear_comp (W := ((Fin r → Forms K n 2) →ₗ[K] Forms K n 4)) (multiplicationLinear (K := K) (n := n) (r := r))) b
+    (by simpa only [multiplicationLinear_apply] using hf.linear_comp (W := ((Fin r → Forms K n 2)
+      →ₗ[K] Forms K n 4)) (multiplicationLinear (K := K) (n := n) (r := r))) b
   refine ⟨D₁*D₂,⟨b,by simpa only [map_mul] using mul_ne_zero hD₁ hD₂⟩,?_⟩
   intro a ha
   rw [map_mul,mul_ne_zero_iff] at ha
@@ -122,12 +123,14 @@ theorem withSquare_polynomial (f : (ι → K) → (Fin (r+1) → Forms K n 2))
   have hpre : IsPolynomialFamily (fun a => prefixFamily (f a)) :=
     hf.linear_comp (LinearMap.funLeft K (Forms K n 2) Fin.castSucc)
   have hmap : IsPolynomialFamily (fun a => multiplicationLinear (prefixFamily (f a))) :=
-    hpre.linear_comp (W := ((Fin r → Forms K n 2) →ₗ[K] Forms K n 4)) (multiplicationLinear (K := K) (n := n) (r := r))
+    hpre.linear_comp (W := ((Fin r → Forms K n 2) →ₗ[K] Forms K n 4)) (multiplicationLinear (K := K)
+      (n := n) (r := r))
   have hmul := hmap.linear_comp
     (LinearMap.applyₗ (R := K) (M₂ := Forms K n 4) x.1)
   have hlast := hf.linear_comp (LinearMap.proj (Fin.last r))
   have hsq := hlast.bilinear hlast quadraticProduct
-  have hscale : IsPolynomialFamily (fun a => x.2 • mulQuadratic (f a (Fin.last r)) (f a (Fin.last r))) :=
+  have hscale : IsPolynomialFamily (fun a => x.2 • mulQuadratic (f a (Fin.last r)) (f a (Fin.last
+    r))) :=
     (isPolynomialFamily_const x.2).smul hsq
   simpa only [withSquare,LinearMap.coprod_apply,LinearMap.toSpanSingleton_apply,
     multiplicationLinear_apply,LinearMap.applyₗ_apply_apply] using hmul.add hscale
@@ -164,7 +167,8 @@ theorem principal_open [CharZero K]
   obtain ⟨A,⟨a₀,ha₀⟩,hA⟩ := quartic_open pre hpre hpreSurj hlow
   obtain ⟨B,⟨b₀,hb₀⟩,hB⟩ := quartic_open f hf hfSurj hhigh
   obtain ⟨hi₀,hd₀⟩ := hA a₀ ha₀
-  have hproper : quarticProducts K n (Submodule.span K (Set.range (fun i => (pre a₀ i).val))) ≠ ⊤ := by
+  have hproper : quarticProducts K n (Submodule.span K (Set.range (fun i => (pre a₀
+    i).val))) ≠ ⊤ := by
     intro htop
     have hzero : finrank K (QuarticQuotient K n
         (Submodule.span K (Set.range (fun i => (pre a₀ i).val))))=0 := by
@@ -213,7 +217,8 @@ theorem principal_open [CharZero K]
     intro hsquare
     have hsame : (withSquare (f a)).range=(quadraticMultiplication (pre a)).range := by
       rw [withSquare_range]
-      exact sup_eq_left.mpr (Submodule.span_le.mpr (by intro v hv; rcases hv with rfl; exact hsquare))
+      exact sup_eq_left.mpr (Submodule.span_le.mpr (by intro v hv; rcases hv with rfl; exact
+        hsquare))
     have hr := hCrank a ha.2
     rw [hCdim,hsame] at hr
     have hd0 := quartic_quotient_add_rank (pre a₀)

@@ -28,7 +28,8 @@ structure ProductRowCapacity (w v d R : ℕ) (J : Finset ℕ) (counts : ℕ → 
   diagonal : ∀ r : ProductRows.Row J R,r.val.val=R-r.val.val →
     counts r.val.val≤(w.choose r.val.val-finrank K X)*(v.choose (d-r.val.val)/2)
   cross : ∀ r : ProductRows.Row J R,r.val.val≠R-r.val.val →
-    counts r.val.val≤((w+r.val.val-1).choose r.val.val-finrank K X)*(v+(d-r.val.val)-1).choose (d-r.val.val) ∧
+    counts r.val.val≤((w+r.val.val-1).choose r.val.val-finrank K
+      X)*(v+(d-r.val.val)-1).choose (d-r.val.val) ∧
     counts (R-r.val.val)≤((w+(R-r.val.val)-1).choose (R-r.val.val)-finrank K X)*
       (v+(d-(R-r.val.val))-1).choose (d-(R-r.val.val))
 

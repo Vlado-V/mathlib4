@@ -34,7 +34,8 @@ theorem prepared_generator_component_zero
   cases i with
   | inl i => exact map_zero _
   | inr i =>
-    have hh : (PreparedParameters.high p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h m) i.1.val :=
+    have hh : (PreparedParameters.high p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h
+      m) i.1.val :=
       PreparedParameters.high_weight hO p (Sum.inr i)
     rw [weightedHomogeneousComponent_of_mem hh]
     exact if_neg (by have := hpos _ i.1.property; change ¬0=i.1.val; omega)
@@ -68,7 +69,8 @@ theorem oddGenerator_component_zero (hd : 0<d) (U : Fin u → Forms K h d)
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddGenerator_component_one (hd : 1<d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
-    weightedHomogeneousComponent (blockWeight h m) 1 (oddGenerator U P F k)=combinedLinear P F k := by
+    weightedHomogeneousComponent (blockWeight h m) 1 (oddGenerator U P F
+      k)=combinedLinear P F k := by
   change weightedHomogeneousComponent (blockWeight h m) 1 (combinedLinear P F k+combinedPure U k)=_
   rw [map_add,weightedHomogeneousComponent_of_mem (combinedLinear_weight P F k),
     weightedHomogeneousComponent_of_mem (combinedPure_weight U k),if_pos rfl,

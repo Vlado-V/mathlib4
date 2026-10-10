@@ -45,7 +45,8 @@ theorem principal_open_thin_quotient_strata (mu : F →ₗ[K] V →ₗ[K] W)
       ∀ Q : Fin q → F,eval (fun ik => coordinates K F (Q ik.1) ik.2) P ≠ 0 →
         Function.Injective (multiplication mu Q) ∧
         finrank K (ScalarQuotient mu Q)=j ∧
-        HasClosedKernelSlices (scalarQuotientBilinear mu Q) (BilinearCovectorStrata.thinSlices j C) := by
+        HasClosedKernelSlices (scalarQuotientBilinear mu Q) (BilinearCovectorStrata.thinSlices j
+          C) := by
   obtain ⟨P,Z,hP,hgood⟩ := principal_open_thin_injective mu ha hT G C hC hG₁ hG₂ hgrowth
   refine ⟨P,hP,?_⟩
   intro Q hQ

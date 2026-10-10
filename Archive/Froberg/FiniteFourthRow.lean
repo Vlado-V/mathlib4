@@ -45,7 +45,8 @@ theorem exists_finite_fourth_row
       ∀ Q : Fin r → Forms K (v+v) d,eval (coordinates K _ Q) D≠0 →
         Function.Injective (ProjectedPrefix.multiplication
           (fun α => MonomialExpansion.partialDegree (balancedScalarHalf v) α≠2*((d-2)/2)) Q s)) :
-    ∃ (o : Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K 4)) → MvPolynomial (Fin w × Bool) K)
+    ∃ (o : Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K 4)) → MvPolynomial (Fin w × Bool)
+      K)
       (e : Fin (counts 4) → Fin (v+v) →₀ ℕ)
       (z : Fin (counts 4) → Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K 4)) → K),
       ∃ he : ∀ i,(e i).degree=s,
@@ -58,7 +59,8 @@ theorem exists_finite_fourth_row
         (q j i).IsWeightedHomogeneous (Sum.elim (fun _ => 1) (fun _ => 0)) j ∧
         biformOutputMap (T j) (q j i)=0) ∧
       (∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e z he)) ∧
-      (addRow (polynomialIntermediateRow o e z he Q) (ProductRows.multiplication counts q J 4)).ker =
+      (addRow (polynomialIntermediateRow o e z he Q) (ProductRows.multiplication counts q J
+        4)).ker =
         ((LinearMap.inl K
           ((Fin r → Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K 4)) → Forms K (v+v) s) ×
             (Fin (counts 4) → Forms K (v+v) d))

@@ -36,7 +36,8 @@ def countedRestorationSlot (hd : 3 ≤ d) (hh : 0 < h) (he : d%2=0)
       have hu := even_tail_eq_finrank (K := K) hh he
       have hc : allEvenCount d h m (e+tailGeneratorCount d h+extra) 2=
           e+tailGeneratorCount d h+extra := by
-        simp only [allEvenCount_active h m _ (two_mem_activeEvenIndices hd),targetLayerCount,ite_true]
+        simp only [allEvenCount_active h m _ (two_mem_activeEvenIndices
+          hd),targetLayerCount,ite_true]
       rw [hc]
       omega⟩⟩)
 

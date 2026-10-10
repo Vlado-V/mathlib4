@@ -43,7 +43,8 @@ theorem products_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j⊓
       ((T j).comp (rename e).toLinearMap).ker)) (R : ℕ) :
     ProductRows.multiplication counts (layers (renameOutputParameter e T p)) J R=
-      (rename (Sum.map e id)).toLinearMap.comp (ProductRows.multiplication counts (layers p) J R) := by
+      (rename (Sum.map e id)).toLinearMap.comp (ProductRows.multiplication counts (layers p) J
+        R) := by
   rw [layers_renameOutputParameter,ProductRows.multiplication_rename]
 
 theorem renameOutputParameter_injective_products (e : σ ≃ τ)
@@ -51,7 +52,8 @@ theorem renameOutputParameter_injective_products (e : σ ≃ τ)
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j⊓
       ((T j).comp (rename e).toLinearMap).ker)) {R : ℕ}
     (hp : Function.Injective (ProductRows.multiplication counts (layers p) J R)) :
-    Function.Injective (ProductRows.multiplication counts (layers (renameOutputParameter e T p)) J R) := by
+    Function.Injective (ProductRows.multiplication counts (layers (renameOutputParameter e T p)) J
+      R) := by
   rw [products_renameOutputParameter]
   exact (rename_injective _ (Sum.map_injective.mpr ⟨e.injective,Function.injective_id⟩)).comp hp
 
@@ -60,7 +62,8 @@ theorem renameOutputParameter_profile (e : σ ≃ τ) (T : ℕ → MvPolynomial 
       ((T j).comp (rename e).toLinearMap).ker)) {R k : ℕ} (S : Finset (Fin n))
     (hp : ∀ a,(ProductRows.multiplication counts (layers p) J R a).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) k) :
-    ∀ a,(ProductRows.multiplication counts (layers (renameOutputParameter e T p)) J R a).IsWeightedHomogeneous
+    ∀ a,(ProductRows.multiplication counts (layers (renameOutputParameter e T p)) J R
+      a).IsWeightedHomogeneous
       (Sum.elim (fun _ : τ => 0) (ProductRows.halfWeight S)) k := by
   intro a
   rw [products_renameOutputParameter]

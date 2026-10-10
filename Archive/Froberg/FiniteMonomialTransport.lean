@@ -44,13 +44,15 @@ lemma targetMonomialFiber_card_pos {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (j : 
   exact Nat.mul_pos (Nat.choose_pos (by omega)) (Nat.choose_pos (by omega))
 
 lemma finiteSourceProfile_eq_card (H : ℝ) (a z s : ℕ) (i : Option (Fin s)) :
-    finiteSourceProfile H s a z i = profileSourceCapacity H i * Fintype.card (SourceMonomialFiber a z s i) := by
+    finiteSourceProfile H s a z i = profileSourceCapacity H i * Fintype.card (SourceMonomialFiber a
+      z s i) := by
   rw [sourceMonomialFiber_card, Nat.cast_mul]
   unfold finiteSourceProfile finiteProfileWeight
   ring
 
 lemma finiteTargetProfile_eq_card (a z s : ℕ) (j : Fin (2 * s + 1)) :
-    finiteTargetProfile s a z j = profileTargetCapacity s j * Fintype.card (TargetMonomialFiber a z s j) := by
+    finiteTargetProfile s a z j = profileTargetCapacity s j * Fintype.card (TargetMonomialFiber a z
+      s j) := by
   rw [targetMonomialFiber_card, Nat.cast_mul]
   unfold finiteTargetProfile finiteProfileWeight
   ring
@@ -105,7 +107,8 @@ lemma monomialProfileJoint_zero_of_not_divides {a z s : ℕ} (ha : 0 < a) (hz : 
   by_cases hij : profileAllowed α.1 β.1
   · have hz' : localMonomialCoupling α.1 β.1 α.2 β.2 = 0 := by
       apply le_antisymm _ (localMonomialCoupling_nonneg α.1 β.1 α.2 β.2)
-      exact le_of_not_gt (fun hp => hdiv ((localMonomialCoupling_pos_iff ha hz α.1 β.1 hij α.2 β.2).mp hp))
+      exact le_of_not_gt (fun hp => hdiv ((localMonomialCoupling_pos_iff ha hz α.1 β.1 hij α.2
+        β.2).mp hp))
     rw [hz', mul_zero]
   · rw [hPzero α.1 β.1 hij, zero_mul]
 

@@ -31,7 +31,8 @@ theorem prepared_odd_cycles_open (hh : 0<h) (hm : 0 < m) (hd : 3≤d) (hdodd : d
       VectorExpansionOpen.StrictModel g d G ∧
       Fintype.card (PreparedParameters.Label q J counts)*finrank K (VectorExpansionOpen.Source g)≤
         finrank K (VectorExpansionOpen.Target g d))
-    (hscalar : HasOddScalarLayersOpen K h m d (f+u) (Fintype.card (PreparedParameters.Label q J counts)) t)
+    (hscalar : HasOddScalarLayersOpen K h m d (f+u) (Fintype.card (PreparedParameters.Label q J
+      counts)) t)
     (hupper : ((f+u)+(h+d-1).choose d)*(h+d-1).choose d≤
       (h+(d+1)-1).choose (d+1)*(m+(d-1)-1).choose (d-1)) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
@@ -48,7 +49,8 @@ theorem prepared_odd_cycles_open (hh : 0<h) (hm : 0 < m) (hd : 3≤d) (hdodd : d
   obtain ⟨P,hP,hgood⟩ := scalar_vector_rows_open hh hm (by omega) D hD hmodel hscalar hupper
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback
     (preparedOddVectorParameters (K := K) (h := h) (m := m) (d := d) (q := q) (f := f)
-      (u := u) (J := J) (counts := counts) (O := O)) preparedOddVectorParameters_surjective P hP _ hgood
+      (u := u) (J := J) (counts := counts) (O :=
+        O)) preparedOddVectorParameters_surjective P hP _ hgood
   refine ⟨E,hE,?_⟩
   intro p hp U
   obtain ⟨hfirst,hhigher⟩ := hEgood p hp

@@ -56,7 +56,8 @@ theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
           (allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)) (constrainedOutputs T)
         (∀ R : allEvenIndices d,∃ p : A,
           LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) R i p) ∧
-          (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R p).range) ∧
+          (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R
+            p).range) ∧
         (∀ R,d<R → R≤2*d → R%2=0 → ∃ p : A,
           Function.Injective (ProductRows.multiplication
             (allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)) (layers p) (allEvenIndices d) R)) := by

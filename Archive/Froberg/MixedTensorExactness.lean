@@ -48,7 +48,8 @@ theorem mixedTensorMap_kernel (U : Submodule K X) (Q : Submodule K Y)
   constructor
   · intro hv
     have hleft : TensorProduct.map U.subtype LinearMap.id v ∈ leftRelations U := ⟨v,rfl⟩
-    have hboth : TensorProduct.map U.subtype LinearMap.id v ∈ leftRelations U ⊓ (rightRelations Q ⊔ E) :=
+    have hboth : TensorProduct.map U.subtype LinearMap.id v ∈ leftRelations U ⊓ (rightRelations Q ⊔
+      E) :=
       ⟨hleft,hv⟩
     rw [mixed_intersection_of_disjoint _ _ _ hE] at hboth
     have hz : TensorProduct.map (LinearMap.id : X →ₗ[K] X) Q.mkQ
@@ -92,7 +93,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
     mixedTensorInjection U Q E hE (u ⊗ₜ[K] Q.mkQ y)=
       (rightRelations Q ⊔ E).mkQ (u.val ⊗ₜ[K] y) := by
   simpa only [TensorProduct.map_tmul,LinearMap.id_apply,mixedTensorMap,
-    LinearMap.comp_apply,Submodule.subtype_apply] using mixedTensorInjection_map U Q E hE (u ⊗ₜ[K] y)
+    LinearMap.comp_apply,Submodule.subtype_apply] using mixedTensorInjection_map U Q E hE (u ⊗ₜ[K]
+      y)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedTensorInjection_injective (U : Submodule K X) (Q : Submodule K Y)
@@ -134,7 +136,8 @@ theorem mixedTensor_finrank [FiniteDimensional K X] [FiniteDimensional K Y]
     finrank K ((X ⊗[K] Y) ⧸ (rightRelations Q ⊔ E)) =
       finrank K (U ⊗[K] (Y ⧸ Q)) +
         finrank K ((X ⊗[K] Y) ⧸ ((leftRelations U ⊔ rightRelations Q) ⊔ E)) := by
-  have hd := (mixedQuotientProjection (leftRelations U) (rightRelations Q) E).finrank_range_add_finrank_ker
+  have hd := (mixedQuotientProjection (leftRelations U) (rightRelations Q)
+    E).finrank_range_add_finrank_ker
   rw [LinearMap.range_eq_top.mpr (mixedQuotientProjection_surjective _ _ _),finrank_top,
     ← mixedTensor_exact U Q E hE,
     LinearMap.finrank_range_of_inj (mixedTensorInjection_injective U Q E hE)] at hd

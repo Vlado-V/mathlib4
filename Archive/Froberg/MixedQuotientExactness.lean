@@ -31,7 +31,8 @@ theorem mixed_intersection_of_disjoint (A B E : Submodule K V)
     have heAB : e ∈ A ⊔ B := by
       have heq : e=x-b := by rw [← hbe]; abel
       rw [heq]
-      exact Submodule.sub_mem _ ((show A ≤ A ⊔ B from le_sup_left) hx.1) ((show B ≤ A ⊔ B from le_sup_right) hb)
+      exact Submodule.sub_mem _ ((show A ≤ A ⊔ B from le_sup_left) hx.1) ((show B ≤ A ⊔ B from
+        le_sup_right) hb)
     have he0 : e=0 := (Submodule.mem_bot K).mp (disjoint_iff_inf_le.mp hE ⟨he,heAB⟩)
     have hbx : b=x := by simpa only [he0,add_zero] using hbe
     exact ⟨hx.1,hbx ▸ hb⟩

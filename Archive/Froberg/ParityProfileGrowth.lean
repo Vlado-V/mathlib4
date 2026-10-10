@@ -49,6 +49,7 @@ theorem exists_parity_profile_growth_threshold {d : ℕ} (hd : 9 ≤ d) (e : ℕ
   rw [Finset.sum_filter]
   rw [Finset.sum_filter]
   exact sum_coe_sort (exponents n (e+d))
-    (fun β : Fin n →₀ ℕ => if partialDegree S β % 2 ≠ p ∧ partialDegree S β ≠ j then weight β α.val else 0)
+    (fun β : Fin n →₀ ℕ => if partialDegree S β % 2 ≠ p ∧ partialDegree S β ≠ j then weight β α.val
+      else 0)
 
 end Froberg

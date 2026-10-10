@@ -28,12 +28,15 @@ lemma private_lower_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose 
     (hm : MixedExterior.UniversalMixedPosition (attachedVectors v w))
     (R G P : ℝ)
     (hbase : ∀ (ell : Degree (a+z) s → ℝ) (out : Degree (a+z) (2*s+1) → ℝ),
-      (∀ α,0 ≤ ell α ∧ ell α ≤ (k : ℝ)*(profileAmbientCapacity s-if (corePart α.val).degree=s then 1 else 0)) →
+      (∀ α,0 ≤ ell α ∧ ell α ≤ (k : ℝ)*(profileAmbientCapacity s-if (corePart α.val).degree=s then 1
+        else 0)) →
       (∀ β,0 ≤ out β) →
       (∀ α β,α.val ≤ β.val →
-        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤ out β) →
+        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤
+          out β) →
       R*(∑ α,ell α)+G*min (∑ α,ell α)
-        ((k : ℝ)*(∑ i,finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α,ell α) ≤ ∑ β,out β)
+        ((k : ℝ)*(∑ i,finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α,ell α) ≤ ∑ β,out
+          β)
     (hregular : P ≤ R+G-(h*(b*(a+z+s-1).choose s) : ℕ))
     (hprivate : P ≤ (privateGoodMultipliers a s ι).card)
     (L : Submodule K (PrivateSourceSpace ι (attachedVectors v w)))
@@ -66,13 +69,16 @@ lemma private_lower_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose 
       rw [← outer_source_dimension_profile hh v hv]
       have hle : 2*(∑ α,ell α) ≤ finrank K (CoreSourceSpace (z := z) v) := by
         rw [he]
-        change finrank K (PrivateSourceSpace ι (attachedVectors v w))+b=finrank K (CoreSourceSpace (z := z) v) at hdim
+        change finrank K (PrivateSourceSpace ι (attachedVectors v w))+b=finrank K (CoreSourceSpace
+          (z := z) v) at hdim
         omega
       exact_mod_cast hle
-    have hnum := private_lower_numeric hh (by omega) hn ι v w hv R G P hbase hregular hprivate ell hell hcore
+    have hnum := private_lower_numeric hh (by
+      omega) hn ι v w hv R G P hbase hregular hprivate ell hell hcore
     have hpt (β : Degree (a+z) (2*s+1)) :
         ShadowDeletion.shadow rel ell (fun β => fiberCapacity ι v w β.val) β ≤
-          idealShadow (attachedExponent ι) (attachedVectors v w) C (outerTargetExponentEquiv (a+z) s β) := by
+          idealShadow (attachedExponent ι) (attachedVectors v w) C (outerTargetExponentEquiv (a+z) s
+            β) := by
       unfold ShadowDeletion.shadow
       apply Finset.sup_le
       intro α _
@@ -86,6 +92,7 @@ lemma private_lower_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose 
     rw [he] at hnum
     simpa only [zero_mul,zero_add] using hnum.trans (Nat.cast_le.mpr htot)
   simpa only [zero_mul,zero_add] using lower_half_growth_of_ideal_bound
-    (attachedExponent ι) (attachedVectors v w) (attachedExponent_degree ι) hn hu hm hsize 0 P hbound L hL
+    (attachedExponent ι) (attachedVectors v w) (attachedExponent_degree
+      ι) hn hu hm hsize 0 P hbound L hL
 
 end Froberg.PrivateColumns

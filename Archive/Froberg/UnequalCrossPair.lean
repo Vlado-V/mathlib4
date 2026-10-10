@@ -115,8 +115,10 @@ theorem exists_unequal_constrained_cross_pair
       LinearIndependent K (fun p : Fin r × Fin u => f p.1*g p.2) := by
   let O₁ := Forms K a j⊓(T₁.comp (rename (Fin.castAdd b)).toLinearMap).ker
   let O₂ := Forms K b l⊓(T₂.comp (rename (Fin.natAdd a)).toLinearMap).ker
-  letI : Module.Finite K O₁ := Submodule.finiteDimensional_of_le (show O₁≤Forms K a j from inf_le_left)
-  letI : Module.Finite K O₂ := Submodule.finiteDimensional_of_le (show O₂≤Forms K b l from inf_le_left)
+  letI : Module.Finite K O₁ := Submodule.finiteDimensional_of_le (show O₁≤Forms K a j from
+    inf_le_left)
+  letI : Module.Finite K O₂ := Submodule.finiteDimensional_of_le (show O₂≤Forms K b l from
+    inf_le_left)
   have hdim₁ := finrank_intersection_kernel_lower_bound (Forms K a j)
     (T₁.comp (rename (Fin.castAdd b)).toLinearMap)
   have hdim₂ := finrank_intersection_kernel_lower_bound (Forms K b l)

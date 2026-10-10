@@ -61,8 +61,10 @@ theorem exists_small_cross_profile_parameter {a b v : ℕ}
     ∃ p : Space (v+v) d q J counts (fun j => Forms K (a+b) j⊓(T j).ker),
       Function.Injective (ProductRows.multiplication counts (layers p) J 6) ∧
       ∀ z,(ProductRows.multiplication counts (layers p) J 6 z).IsWeightedHomogeneous
-        (Sum.elim (fun _ : Fin (a+b) => 0) (ProductRows.halfWeight (balancedScalarHalf v))) (d-2) := by
-  obtain ⟨f,g,hf,hg,hfw,hgw,hi⟩ := exists_unequal_constrained_cross_pair (j := 2) (l := 4) (s := d-2) (t := d-4)
+        (Sum.elim (fun _ : Fin (a+b) => 0) (ProductRows.halfWeight (balancedScalarHalf
+          v))) (d-2) := by
+  obtain ⟨f,g,hf,hg,hfw,hgw,hi⟩ := exists_unequal_constrained_cross_pair (j := 2) (l := 4) (s :=
+    d-2) (t := d-4)
     (r := counts 2) (u := counts 4) ha hb hv
     (T 2) (0 : Poly K (a+b) →ₗ[K] Fin 0 → K) hm₂ (by simpa using hm₄)
   have hg' : ∀ i,g i∈biformImage (Forms K (a+b) 4⊓(T 4).ker) (Forms K (v+v) (d-4)) := by

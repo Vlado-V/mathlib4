@@ -60,7 +60,8 @@ theorem eventually_counted_restored_full_open {d : ℕ} (hd : 3≤d) (heven : d%
   have he := hc.mono fun n hn => hn.quadratic_upper
   have hred := hh hdiv added e he
   have hback := eventually_counted_restored_odd_open (K := K) hd heven h added e he
-  have hi := exact_counts_actual_restored_independent_open (K := K) hd heven hhpos upper a f e added hc
+  have hi := exact_counts_actual_restored_independent_open (K :=
+    K) hd heven hhpos upper a f e added hc
   have ho := exact_counts_all_even_restored_odd_open (K := K) hd heven hk hkh hhpos
     upper a f e ha hc hδ hres added
   filter_upwards [hred,hback,hi,ho] with n hnred hnback hni hno

@@ -21,7 +21,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly 
 
 def preparedOddVectorParameters :
     FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
-      ScalarVectorParameters K h m d (f+u) (Fintype.card (PreparedParameters.Label q J counts)) where
+      ScalarVectorParameters K h m d (f+u) (Fintype.card (PreparedParameters.Label q J
+        counts)) where
   toFun p := (combinedVectorEnumeration p.1 p.2.2,scalarEnumeration p.2.1)
   map_add' p p' := by
     apply Prod.ext

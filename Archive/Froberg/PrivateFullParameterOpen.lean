@@ -70,7 +70,8 @@ theorem private_full_parameter_principal_open
     (evenGeneratorLinear hO hJ heven e).comp (LinearMap.fst K _ _)
   let P : S →ₗ[K] (Fin b → oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d) :=
     (privateOddLinear hd).comp (LinearMap.snd K _ _)
-  let R := retainedScalarCoefficients (K := K) (outputWeight (σ := σ) (n := n)) d (fun i => degree (e i))
+  let R := retainedScalarCoefficients (K := K) (outputWeight (σ := σ) (n := n)) d (fun i => degree
+    (e i))
   obtain ⟨D,hD,hgood⟩ := SplitRestoration.split_linear_restoration_open
     (K := K) (σ := σ ⊕ Fin n) (E := S)
     (V := evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d)

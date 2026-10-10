@@ -21,7 +21,8 @@ variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i)
 theorem sum_source_fiber_finrank :
     (∑ a : Exponent n s, finrank K ((Fin h → K) ⧸ relationFiber e v a.val)) =
       finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he) := by
-  simpa only [Nat.add_zero, Module.finrank_pi_fintype] using (quotientFiberEquiv (d := 0) e v he).finrank_eq.symm
+  simpa only [Nat.add_zero, Module.finrank_pi_fintype] using (quotientFiberEquiv (d := 0) e v
+    he).finrank_eq.symm
 
 /-- All geometric steps of the outer-module growth proof. The sole remaining
 input is an explicitly finite numerical ideal-shadow lower bound. -/

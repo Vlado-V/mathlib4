@@ -43,7 +43,8 @@ theorem projectedRangeExtension_bijective (P : V →ₗ[K] V) (R E : Submodule K
     obtain ⟨v,hv⟩ := x.property
     have he : (R ⊔ E).mkQ (P v)=0 := by
       have hh := congrArg Subtype.val hx
-      change (Submodule.mapQ R (R ⊔ E) LinearMap.id (by simpa using (le_sup_left : R≤R⊔E))) x.val=0 at hh
+      change (Submodule.mapQ R (R ⊔ E) LinearMap.id (by simpa using (le_sup_left :
+        R≤R⊔E))) x.val=0 at hh
       rw [← hv] at hh
       exact hh
     have hm : P v∈R⊔E := (Submodule.Quotient.mk_eq_zero _).mp he

@@ -60,7 +60,8 @@ theorem monomial_capacity_decrease {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (hs :
     · exact mul_nonneg (hP0 _ _) (profileCapacityDrop_nonneg hs _ _ hj)
     · rw [hPzero _ _ hj, zero_mul]
   have hgood : ε / profileAmbientCapacity s ≤
-      P α.1 (capacityDropTarget hs α.1) * profileCapacityDrop s α.1 (capacityDropTarget hs α.1) := by
+      P α.1 (capacityDropTarget hs α.1) * profileCapacityDrop s α.1 (capacityDropTarget hs
+        α.1) := by
     calc
       _ = ε * (1 / profileAmbientCapacity s) := by ring
       _ ≤ _ := mul_le_mul (hPlower _ _ (capacityDropTarget_allowed hs α.1))

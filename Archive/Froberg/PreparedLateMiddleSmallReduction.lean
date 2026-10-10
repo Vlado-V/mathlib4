@@ -37,13 +37,15 @@ theorem eventually_actual_middle_small_witnesses_shift_late_output {d : ℕ}
           (allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)) (constrainedOutputs T)
         (∀ R : allEvenIndices d,∃ p : A,
           LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) R i p) ∧
-          (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R p).range) ∧
+          (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R
+            p).range) ∧
         (∀ R,d<R → R≤2*d → R%2=0 → ∃ p : A,
           Function.Injective (ProductRows.multiplication
             (allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)) (layers p) (allEvenIndices d) R)) := by
   classical
   filter_upwards [eventually_counted_fourth_row_capacity_shift_late_output (K := K) hd hd8,
-    tendsto_twice_nat.eventually (eventually_quadratic_capacity_shift_late (K := K) (d := d) (by omega)),
+    tendsto_twice_nat.eventually (eventually_quadratic_capacity_shift_late (K := K) (d := d) (by
+      omega)),
     tendsto_twice_nat.eventually (eventually_small_quadratic_cross_capacity_shift hd hd8),
     tendsto_twice_nat.eventually (eventually_small_quartic_cross_capacity_shift hd hd8),
     tendsto_twice_nat.eventually (eventually_middle_quartic_diagonal_capacity_shift hd hd8),

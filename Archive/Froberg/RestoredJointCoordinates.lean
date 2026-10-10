@@ -63,7 +63,8 @@ def restoredJointCoordinates : RestoredOuterSpace m d q f J counts O ≃ₗ[K]
   map_smul' a p := by
     apply Prod.ext
     · funext i
-      exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d := d)).symm a (p.2 i)
+      exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d :=
+        d)).symm a (p.2 i)
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

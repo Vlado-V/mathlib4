@@ -41,7 +41,8 @@ theorem exists_projected_general_vectors (F : V →ₗ[K] W) :
   intro S hS
   have hli := ((hw S hS).map' e.toLinearMap (LinearMap.ker_eq_bot.mpr e.injective)).map'
     F.range.subtype F.range.ker_subtype
-  simpa only [Function.comp_def,LinearMap.comp_apply,LinearEquiv.coe_coe,Submodule.subtype_apply,← hv] using hli
+  simpa only [Function.comp_def,LinearMap.comp_apply,LinearEquiv.coe_coe,Submodule.subtype_apply,←
+    hv] using hli
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Projected general position holds on a principal open in the actual
@@ -65,7 +66,8 @@ theorem projected_general_vectors_open (F : V →ₗ[K] W) :
       isPolynomialFamily_linear (F.comp ((LinearMap.proj (e j).val).comp
         (coordinates K (Fin m → V)).symm.toLinearMap))
     have hq : LinearIndependent K (fun j => q j (coordinates K _ v)) := by
-      simpa only [q,Function.comp_def,LinearEquiv.symm_apply_apply] using (hv c.val c.property).comp e e.injective
+      simpa only [q,Function.comp_def,LinearEquiv.symm_apply_apply] using (hv c.val
+        c.property).comp e e.injective
     obtain ⟨D,hD,hgood⟩ := independent_polynomial_principal_open q hpoly _ hq
     refine ⟨D,hD,?_⟩
     intro x hx

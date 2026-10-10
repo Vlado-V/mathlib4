@@ -38,28 +38,34 @@ theorem actual_outer_growth_of_exponent_shadow {K : Type*} [Field K]
         if (corePart α.val).degree=s then 1 else 0)) →
       (∀ β, 0 ≤ b β) →
       (∀ α β, α.val ≤ β.val →
-        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤ b β) →
+        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤ b
+          β) →
       R*(∑ α, ell α)+g*min (∑ α, ell α)
-        ((k : ℝ)*(∑ i, finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α, ell α) ≤ ∑ β, b β) :
+        ((k : ℝ)*(∑ i, finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α, ell α) ≤ ∑ β, b
+          β) :
     ∀ L : Submodule K ((Fin h → Forms K (a+z) s) ⧸
       AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree z)),
       R*(finrank K L : ℝ)+(g-(h : ℝ)*((h*2^h)*(a+z+s-1).choose s))*
         min (finrank K L : ℝ)
           ((finrank K ((Fin h → Forms K (a+z) s) ⧸
-            AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree z)) : ℝ)-finrank K L) ≤
-        (finrank K (AttachedMultiplication.outerImage (d := s+1) (coreExponent z) v (coreExponent_degree z) L) : ℝ) := by
+            AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree
+              z)) : ℝ)-finrank K L) ≤
+        (finrank K (AttachedMultiplication.outerImage (d := s+1) (coreExponent z) v
+          (coreExponent_degree z) L) : ℝ) := by
   classical
   have hbound (C : (α : Exponent (a+z) s) →
       Submodule K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v α.val)) :
       R*(∑ α, finrank K (C α) : ℕ)+g*
         (min (∑ α, finrank K (C α))
           (finrank K ((Fin h → Forms K (a+z) s) ⧸
-            AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree z))-
+            AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree
+              z))-
             ∑ α, finrank K (C α)) : ℕ) ≤
         (∑ β, AttachedMultiplication.idealShadow (coreExponent z) v C β : ℕ) := by
     let ell := fun α : Degree (a+z) s => (finrank K (C (degreeExponentEquiv (a+z) s α)) : ℝ)
     let b := fun β : Degree (a+z) (2*s+1) =>
-      (AttachedMultiplication.idealShadow (coreExponent z) v C (outerTargetExponentEquiv (a+z) s β) : ℝ)
+      (AttachedMultiplication.idealShadow (coreExponent z) v C (outerTargetExponentEquiv (a+z) s β)
+        : ℝ)
     have hl (α : Degree (a+z) s) : 0 ≤ ell α ∧ ell α ≤
         (k : ℝ)*(profileAmbientCapacity s-if (corePart α.val).degree=s then 1 else 0) := by
       refine ⟨Nat.cast_nonneg _, ?_⟩
@@ -68,11 +74,13 @@ theorem actual_outer_growth_of_exponent_shadow {K : Type*} [Field K]
       exact_mod_cast Submodule.finrank_le (C (degreeExponentEquiv (a+z) s α))
     have hb (β : Degree (a+z) (2*s+1)) : 0 ≤ b β := Nat.cast_nonneg _
     have hmin (α : Degree (a+z) s) (β : Degree (a+z) (2*s+1)) (hab : α.val ≤ β.val) :
-        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤ b β := by
+        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell
+          α) ≤ b β := by
       have hminNat := AttachedMultiplication.min_le_idealShadow (coreExponent z) v C
         (degreeExponentEquiv (a+z) s α) (outerTargetExponentEquiv (a+z) s β) hab
       have hr : min (ell α)
-          (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) : ℝ) ≤ b β := by
+          (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) :
+            ℝ) ≤ b β := by
         dsimp only [ell,b]
         exact_mod_cast hminNat
       rw [min_comm]
@@ -87,8 +95,10 @@ theorem actual_outer_growth_of_exponent_shadow {K : Type*} [Field K]
       exact (outerTargetExponentEquiv (a+z) s).sum_comp (fun β =>
         (AttachedMultiplication.idealShadow (coreExponent z) v C β : ℝ))
     have hle : (∑ α, finrank K (C α)) ≤ finrank K ((Fin h → Forms K (a+z) s) ⧸
-        AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree z)) := by
-      rw [← AttachedMultiplication.sum_source_fiber_finrank (coreExponent z) v (coreExponent_degree z)]
+        AttachedMultiplication.relationSpace (d := 0) (coreExponent z) v (coreExponent_degree
+          z)) := by
+      rw [← AttachedMultiplication.sum_source_fiber_finrank (coreExponent z) v (coreExponent_degree
+        z)]
       exact sum_le_sum fun α _ => Submodule.finrank_le (C α)
     rw [hs,ht,← outer_source_dimension_profile hh v hv] at hbnd
     simpa only [Nat.cast_min,Nat.cast_sub hle] using hbnd

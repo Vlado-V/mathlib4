@@ -259,7 +259,8 @@ theorem constraint_rank_bound (g : Fin c → MiddleCoordinates.Mixed K m)
     (hcomm : Rbar.comp (Submodule.span K (Set.range g)).mkQ=sourceRelation ell)
     (hker : finrank K (LinearMap.ker Rbar) ≤ d)
     (hg : LinearIndependent K g) (hh : LinearIndependent K h)
-    (ha : Function.Injective (AugmentedGeneric.quotientAugmented (AugmentedGeneric.productMap g) h r))
+    (ha : Function.Injective (AugmentedGeneric.quotientAugmented (AugmentedGeneric.productMap g) h
+      r))
     (hs : Function.Surjective (middleMap g h)) :
     Counts.H m q c+3+finrank K markedU-(c:ℤ)*d ≤
       (constraint g h markedU sectionMap r ell).rank := by
@@ -281,7 +282,8 @@ theorem sourceRelation_kernel_finrank (ell : Fin (RowCount m 3) → K) :
       (relationMap RowMultiplicationCoordinates.coordinate ell).range := by
     exact LinearMap.range_comp_of_range_eq_top _ rowFiniteEquiv.range
   have h₁ := (sourceRelation ell).finrank_range_add_finrank_ker
-  have h₂ := (relationMap (RowMultiplicationCoordinates.coordinate (K := K) (m := m)) ell).finrank_range_add_finrank_ker
+  have h₂ := (relationMap (RowMultiplicationCoordinates.coordinate (K := K) (m := m))
+    ell).finrank_range_add_finrank_ker
   have hd : finrank K (MiddleCoordinates.Mixed K m) =
       finrank K (Fin (RowCount m 1) → K) :=
     (rowFiniteEquiv (K := K) (m := m) (d := 1)).finrank_eq
@@ -297,7 +299,8 @@ theorem descended_kernel_bound (g : Fin c → MiddleCoordinates.Mixed K m)
     (hg : LinearIndependent K g) (d : ℕ)
     (hambient : finrank K (LinearMap.ker
       (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c+d) :
-    finrank K (LinearMap.ker ((Submodule.span K (Set.range g)).liftQ (sourceRelation ell) hE)) ≤ d := by
+    finrank K (LinearMap.ker ((Submodule.span K (Set.range g)).liftQ (sourceRelation ell)
+      hE)) ≤ d := by
   let E := Submodule.span K (Set.range g)
   let Rbar := E.liftQ (sourceRelation ell) hE
   have hc : Rbar.comp E.mkQ=sourceRelation ell := by ext x; rfl
@@ -319,7 +322,8 @@ theorem constraint_rank_bound_ambient (g : Fin c → MiddleCoordinates.Mixed K m
     (hambient : finrank K (LinearMap.ker
       (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c+d)
     (hg : LinearIndependent K g) (hh : LinearIndependent K h)
-    (ha : Function.Injective (AugmentedGeneric.quotientAugmented (AugmentedGeneric.productMap g) h r))
+    (ha : Function.Injective (AugmentedGeneric.quotientAugmented (AugmentedGeneric.productMap g) h
+      r))
     (hs : Function.Surjective (middleMap g h)) :
     Counts.H m q c+3+finrank K markedU-(c:ℤ)*d ≤
       (constraint g h markedU sectionMap r ell).rank := by
@@ -370,11 +374,13 @@ def constraintLinear (g : Fin c → MiddleCoordinates.Mixed K m)
   (constraint g h markedU sectionMap r ell).mulVecLin.comp motionEncode
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem motionEncode_surjective : Function.Surjective (motionEncode (K := K) (m := m) (c := c)) := by
+theorem motionEncode_surjective : Function.Surjective (motionEncode (K := K) (m := m) (c :=
+  c)) := by
   intro x
   refine ⟨fun i => HomogeneousCoefficientCoordinates.finiteEquiv.symm (fun b => x (i,b)),?_⟩
   funext z
-  exact congrFun (HomogeneousCoefficientCoordinates.finiteEquiv.apply_symm_apply (fun b => x (z.1,b))) z.2
+  exact congrFun (HomogeneousCoefficientCoordinates.finiteEquiv.apply_symm_apply (fun b => x
+    (z.1,b))) z.2
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem constraintLinear_rank (g : Fin c → MiddleCoordinates.Mixed K m)

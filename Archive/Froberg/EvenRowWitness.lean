@@ -71,7 +71,8 @@ theorem exists_even_polynomial_row
   have hzero : Function.Injective (homogeneousMultiplication (d := 0) e (fun i => L (v i)) he) := by
     intro p p' hp
     apply hinj 0 (Nat.zero_le d)
-    have hbase : homogeneousMultiplication (d := 0) e v he p=homogeneousMultiplication e v he p' := by
+    have hbase : homogeneousMultiplication (d :=
+      0) e v he p=homogeneousMultiplication e v he p' := by
       apply vectorOutputMap_injective L hL
       simpa only [vectorOutputMap_homogeneousMultiplication] using hp
     exact congrArg (fun f j => (f j).val) hbase

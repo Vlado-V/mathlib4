@@ -40,13 +40,15 @@ theorem quadraticOutputDimension_limit {d : ℕ} (hd : 3 ≤ d) :
     Tendsto (fun h : ℕ => (quadraticOutputDimension d h : ℝ)/(h : ℝ)^2) atTop
       (𝓝 (quadraticOutputDensity d)) := by
   have hN : Tendsto (fun h : ℕ => ((h+1).choose 2 : ℝ)/(h : ℝ)^2) atTop (𝓝 (1/2 : ℝ)) := by
-    simpa [show ∀ h : ℕ, h+2-1=h+1 by omega, Nat.factorial] using monomial_count_normalized_tendsto 2
+    simpa [show ∀ h : ℕ, h+2-1=h+1 by omega,
+      Nat.factorial] using monomial_count_normalized_tendsto 2
   have hrq : Tendsto (fun h : ℕ => (((h+1).choose 2 : ℝ)-(deletedTargetCount d h : ℝ))/(h : ℝ)^2)
       atTop (𝓝 (quadraticOutputDensity d)) := by
     simpa only [sub_div,quadraticOutputDensity] using hN.sub (deletedTargetCount_limit hd)
   have hc : 0 < quadraticOutputDensity d := lt_trans (by norm_num) (quadraticOutputDensity_lower hd)
   have hg : Tendsto (fun h : ℕ => ((0 : ℕ) : ℝ)/(h : ℝ)^2) atTop (𝓝 (0 : ℝ)) := by
-    simpa only [Nat.cast_zero,zero_div] using (tendsto_const_nhds : Tendsto (fun _ : ℕ => (0 : ℝ)) atTop (𝓝 0))
+    simpa only [Nat.cast_zero,zero_div] using (tendsto_const_nhds : Tendsto (fun _ : ℕ => (0 : ℝ))
+      atTop (𝓝 0))
   simpa only [quadraticOutputDimension,Nat.sub_zero] using
     (natural_budget_limit (fun h => (h+1).choose 2) (deletedTargetCount d) (fun _ => 0)
       (by omega : 0 < 2) (quadraticOutputDensity d) hc hrq hg).2

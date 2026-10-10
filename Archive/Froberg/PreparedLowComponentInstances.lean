@@ -156,8 +156,10 @@ theorem renamed_prepared_low_components
     hs.weightedHomogeneousComponent_same,
     hs.weightedHomogeneousComponent_ne 1 (by omega),
     hs.weightedHomogeneousComponent_ne 2 (by omega),
-    show weightedHomogeneousComponent (coreWeight h m) 0 (rename finSumFinEquiv (high p i))=0 from hh.1,
-    show weightedHomogeneousComponent (coreWeight h m) 1 (rename finSumFinEquiv (high p i))=0 from hh.2.1,
+    show weightedHomogeneousComponent (coreWeight h m) 0 (rename finSumFinEquiv (high p i))=0 from
+      hh.1,
+    show weightedHomogeneousComponent (coreWeight h m) 1 (rename finSumFinEquiv (high p i))=0 from
+      hh.2.1,
     add_zero,zero_add]
   exact ⟨hsmem,trivial,hh.2.2⟩
 

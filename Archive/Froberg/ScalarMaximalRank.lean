@@ -42,7 +42,8 @@ theorem exists_scalar_maximal_rank (mu : F →ₗ[K] V →ₗ[K] W) (q : ℕ) (D
       apply (div_le_iff₀ hAr).mpr
       exact_mod_cast (show finrank K W ≤ q*finrank K V by omega)
     have hT : (finrank K W : ℝ)=R*finrank K V := by dsimp [R]; field_simp
-    obtain ⟨P,⟨Q,hQ⟩,hP⟩ := generic_surjective_actual_of_strict_shadow (q := q) mu R D hT hqR hD hgrowth
+    obtain ⟨P,⟨Q,hQ⟩,hP⟩ := generic_surjective_actual_of_strict_shadow (q :=
+      q) mu R D hT hqR hD hgrowth
     refine ⟨Q,?_⟩
     rw [LinearMap.range_eq_top.mpr (hP Q hQ),finrank_top,min_eq_right (by omega)]
 

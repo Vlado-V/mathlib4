@@ -28,7 +28,8 @@ theorem backgroundEnumeratedForms_even
     backgroundEnumeratedForms Q F G (backgroundEvenIndex i)=evenPolynomialToForms (Q i) := by
   apply Subtype.ext
   change rename finSumFinEquiv
-    (backgroundParityFamily Q F G ((Fintype.equivFin _).symm ((Fintype.equivFin _) (Sum.inl i)))).val=
+    (backgroundParityFamily Q F G ((Fintype.equivFin _).symm ((Fintype.equivFin _) (Sum.inl
+      i)))).val=
       rename finSumFinEquiv (Q i).val
   rw [Equiv.symm_apply_apply]
   rfl
@@ -48,14 +49,16 @@ theorem backgroundEnumeratedForms_update
   · by_cases hj : j=i
     · subst j
       rw [←backgroundEvenIndex,Function.update_self,backgroundEnumeratedForms_even,Function.update_self]
-    · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inl j)≠backgroundEvenIndex (f := f) (u := u) i := by
+    · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inl j)≠backgroundEvenIndex (f :=
+      f) (u := u) i := by
         intro he
         exact hj (Sum.inl.inj ((Fintype.equivFin (BackgroundLabel q f u)).injective he))
       rw [Function.update_of_ne hij]
       change backgroundEnumeratedForms (Function.update Q i M) F G (backgroundEvenIndex j)=_
       rw [backgroundEnumeratedForms_even,Function.update_of_ne hj]
       exact (backgroundEnumeratedForms_even Q F G j).symm
-  · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inr (Sum.inl j))≠backgroundEvenIndex (f := f) (u := u) i := by
+  · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inr (Sum.inl
+    j))≠backgroundEvenIndex (f := f) (u := u) i := by
       intro he
       have hh := (Fintype.equivFin (BackgroundLabel q f u)).injective he
       cases hh
@@ -68,7 +71,8 @@ theorem backgroundEnumeratedForms_update
         ((Fintype.equivFin _).symm ((Fintype.equivFin _) (Sum.inr (Sum.inl j))))).val
     rw [Equiv.symm_apply_apply]
     rfl
-  · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inr (Sum.inr j))≠backgroundEvenIndex (f := f) (u := u) i := by
+  · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inr (Sum.inr
+    j))≠backgroundEvenIndex (f := f) (u := u) i := by
       intro he
       have hh := (Fintype.equivFin (BackgroundLabel q f u)).injective he
       cases hh

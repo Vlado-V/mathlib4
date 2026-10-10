@@ -50,7 +50,8 @@ theorem balanced_weight_leading_gap {d u v : ℕ} (hd : 0 < d) (huv : u + v = d)
       simpa only [Nat.sub_add_cancel hd] using Nat.choose_succ_le_two_pow (d - 1) u)
   have hfac : (d.choose u : ℝ) * (u.factorial : ℝ) * (v.factorial : ℝ) = d.factorial := by
     exact_mod_cast (show d.choose u * u.factorial * v.factorial = d.factorial by
-      simpa only [show d - u = v by omega] using Nat.choose_mul_factorial_mul_factorial (show u ≤ d by omega))
+      simpa only [show d - u = v by omega] using Nat.choose_mul_factorial_mul_factorial (show u ≤ d
+        by omega))
   have he : (u.factorial : ℝ)⁻¹ * (v.factorial : ℝ)⁻¹ = (d.choose u : ℝ) / d.factorial := by
     field_simp [hu, hv, hf.ne']
     nlinarith [hfac]

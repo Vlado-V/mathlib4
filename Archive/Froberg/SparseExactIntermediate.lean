@@ -36,12 +36,14 @@ theorem exists_exact_sparse_intermediate
       ∃ P : MvPolynomial (Fin (finrank K (Fin q → Forms K n d))) K,
         (∃ Q : Fin q → Forms K n d, eval (coordinates K _ Q) P ≠ 0) ∧
         ∀ Q : Fin q → Forms K n d, eval (coordinates K _ Q) P ≠ 0 →
-          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he) Q) := by
+          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he)
+            Q) := by
   classical
   have hcard : m≤Fintype.card (Labels b n s) := by
     simpa only [Labels,Fintype.card_prod,Fintype.card_fin,Sym.card_sym_eq_choose] using hm
   let f : Fin m ↪ Labels b n s :=
-    (⟨Fin.castLE hcard,Fin.castLE_injective hcard⟩ : Fin m ↪ Fin (Fintype.card (Labels b n s))).trans
+    (⟨Fin.castLE hcard,Fin.castLE_injective hcard⟩ : Fin m ↪ Fin (Fintype.card (Labels b n
+      s))).trans
       (Fintype.equivFin (Labels b n s)).symm.toEmbedding
   let e : Fin m → Fin n →₀ ℕ := fun i => coreExponent 0 (f i)
   have he (i : Fin m) : (e i).degree=s := coreExponent_degree 0 (f i)

@@ -31,7 +31,8 @@ theorem odd_split_relative_injective
   rw [LinearMap.ker_eq_bot']
   intro a ha
   choose v hv using fun i => (oddBackgroundCoefficientRelations F G).mkQ_surjective (a i)
-  have haeq : a=fun i => (oddBackgroundCoefficientRelations F G).mkQ (v i) := funext fun i => (hv i).symm
+  have haeq : a=fun i => (oddBackgroundCoefficientRelations F G).mkQ (v i) := funext fun i => (hv
+    i).symm
   rw [haeq,oddEvenRelativeMap_mk] at ha
   have hmem : evenScalarOddFamily E v∈fullOddRelations Q F G :=
     (Submodule.Quotient.mk_eq_zero _).mp ha
@@ -67,11 +68,13 @@ theorem odd_split_relative_injective
   refine Fin.addCases ?_ ?_ j
   · intro k
     rw [Fin.append_left]
-    apply (show Submodule.span K (Set.range F)≤oddBackgroundCoefficientRelations F G from le_sup_left)
+    apply (show Submodule.span K (Set.range F)≤oddBackgroundCoefficientRelations F G from
+      le_sup_left)
     exact Submodule.subset_span ⟨k,rfl⟩
   · intro k
     rw [Fin.append_right]
-    apply (show Submodule.span K (Set.range G)≤oddBackgroundCoefficientRelations F G from le_sup_right)
+    apply (show Submodule.span K (Set.range G)≤oddBackgroundCoefficientRelations F G from
+      le_sup_right)
     exact Submodule.subset_span ⟨k,rfl⟩
 
 end Froberg

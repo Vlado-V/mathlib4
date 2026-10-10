@@ -109,7 +109,8 @@ theorem productOne_polynomial (f : Fin e → (I → K) → Forms K s 1)
     IsPolynomialFamily (fun p => productOne (fun i => f i p)) := by
   induction e with
   | zero =>
-    convert isPolynomialFamily_const (ι := I) (productOne (fun i : Fin 0 => f i (fun _ => 0))) using 1
+    convert isPolynomialFamily_const (ι := I) (productOne (fun i : Fin 0 => f i (fun _ =>
+      0))) using 1
     funext p
     apply Subtype.ext
     simp [productOne]

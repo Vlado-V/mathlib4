@@ -113,7 +113,8 @@ theorem symmetricMultiplication_injective_of_pairProducts (q : ι → A)
     have hx' := formalSquare_span_le_pairFormal q hx
     rw [← Finsupp.range_linearCombination] at hx'
     obtain ⟨c,hc⟩ := hx'
-    have he : symmetricMultiplication (K := K) (Finsupp.linearCombination K (pairFormal (K := K) q) c) =
+    have he : symmetricMultiplication (K := K) (Finsupp.linearCombination K (pairFormal (K := K) q)
+      c) =
         Finsupp.linearCombination K (pairProducts q) c := by
       simp only [Finsupp.linearCombination_apply, Finsupp.sum, map_sum, map_smul,
         symmetricMultiplication_pairFormal]

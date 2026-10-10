@@ -45,7 +45,8 @@ theorem biformOutputEndomorphism_retain (P : (σ →₀ ℕ) → Prop) :
   induction f using MvPolynomial.induction_on' with
   | add p q hp hq => simp only [map_add,hp,hq]
   | monomial a c =>
-    obtain ⟨⟨u,v⟩,rfl⟩ := (Finsupp.sumFinsuppEquivProdFinsupp (α := σ) (β := τ) (γ := ℕ)).symm.surjective a
+    obtain ⟨⟨u,v⟩,rfl⟩ := (Finsupp.sumFinsuppEquivProdFinsupp (α := σ) (β := τ) (γ :=
+      ℕ)).symm.surjective a
     change biformOutputEndomorphism (retainMonomials P) (monomial (u.sumElim v) c) =
       retainMonomials (fun a => P (outputExponent a)) (monomial (u.sumElim v) c)
     rw [retainMonomials_monomial]

@@ -80,13 +80,15 @@ theorem exists_covered_background_slot_thin [IsAlgClosed K]
       Function.Surjective (upperTargetMap (h := h) (m := m) (d := d)
         (backgroundEnumeratedForms (Function.update Q i (Q i+c • M)) F G)) ∧
       ∀ p,parityForm (coreParity h m) 0 p∈D ⊔
-        (endpointMultiplication (backgroundEnumeratedForms (Function.update Q i (Q i+c • M)) F G)).range := by
+        (endpointMultiplication (backgroundEnumeratedForms (Function.update Q i (Q i+c • M)) F
+          G)).range := by
   let Good (r : ℕ) (S : Fin r → biformParitySpace K h m d 0) : Prop :=
     OddSplitExact S (Fin.append F G) ∧
     HasClosedKernelSlices (oddEndpointScalarAction S F G)
       (BilinearCovectorStrata.thinSlices (backgroundOddTargetDimension S F G) C) ∧
     LinearIndependent K (backgroundEnumeratedForms S F G) ∧
-    Function.Surjective (upperTargetMap (h := h) (m := m) (d := d) (backgroundEnumeratedForms S F G)) ∧
+    Function.Surjective (upperTargetMap (h := h) (m := m) (d := d) (backgroundEnumeratedForms S F
+      G)) ∧
     ∀ p,parityForm (coreParity h m) 0 p∈D ⊔
       (endpointMultiplication (backgroundEnumeratedForms S F G)).range
   have hg : Good (0+q) (Fin.append (Fin.elim0 : Fin 0 → biformParitySpace K h m d 0) Q) :=

@@ -35,7 +35,8 @@ theorem convolutionFamily_single {a e m : ℕ}
     (t : Fin (m+a-1+e-1) → K) (I : ConvolutionSubset (m+a-1) e)
     (g : Forms K m (a-1)) :
     biformInclusion a m e (e+(a-1))
-      (vectorFormFamilyMap (momentSubproduct (e := e) a t) (momentSubproduct (e := e) m t) (Pi.single I g)) =
+      (vectorFormFamilyMap (momentSubproduct (e := e) a t) (momentSubproduct (e := e) m t)
+        (Pi.single I g)) =
       symmetricConvolutionMap a e m (momentProduct t I ⊗ₜ[K] g) := by
   classical
   rw [vectorFormFamilyMap_single, symmetricConvolutionMap_tmul,
@@ -51,7 +52,8 @@ theorem convolutionFamily_surjective {a e m : ℕ} (ha : 0<a) (hm : 0<m)
     Function.Surjective (vectorFormFamilyMap (t := a-1)
       (momentSubproduct (e := e) a t) (momentSubproduct (e := e) m t)) := by
   classical
-  let F := vectorFormFamilyMap (t := a-1) (momentSubproduct (e := e) a t) (momentSubproduct (e := e) m t)
+  let F := vectorFormFamilyMap (t := a-1) (momentSubproduct (e := e) a t) (momentSubproduct (e := e)
+    m t)
   let J := biformInclusion (K := K) a m e (e+(a-1))
   let R := (J.comp F).range
   let B := momentProductsBasis (show 0 < m+a-1 by omega) t ht
@@ -91,7 +93,8 @@ theorem exists_convolution_family [Infinite K] {a e m : ℕ} (ha : 0<a) (hm : 0<
       Function.Surjective (vectorFormFamilyMap (t := a-1) o f) := by
   let t : Fin (m+a-1+e-1) → K := fun i => Infinite.natEmbedding K i.val
   have ht : Function.Injective t := (Infinite.natEmbedding K).injective.comp Fin.val_injective
-  exact ⟨momentSubproduct (e := e) a t, momentSubproduct (e := e) m t, convolutionFamily_surjective ha hm t ht⟩
+  exact ⟨momentSubproduct (e := e) a t, momentSubproduct (e := e) m t, convolutionFamily_surjective
+    ha hm t ht⟩
 
 theorem convolution_family_card {a e m : ℕ} (ha : 0<a) (hm : 0<m) :
     Fintype.card (ConvolutionSubset (m+a-1) e) = (m+a+e-2).choose e := by

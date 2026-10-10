@@ -67,7 +67,8 @@ lemma attached_fiber_independent {K : Type*} [Field K]
     (hu : ∀ U : Finset (Labels k a s ⊕ Fin b), U.card ≤ h →
       LinearIndependent K (fun i : U => u i.val))
     (β : Fin (a+z) →₀ ℕ) (hβ : β.degree ≤ 2*s+1) :
-    LinearIndependent K (fun i : {i : Labels k a s ⊕ Fin b // attachedExponent ι i ≤ β} => u i.val) := by
+    LinearIndependent K (fun i : {i : Labels k a s ⊕ Fin b // attachedExponent ι i ≤ β} => u
+      i.val) := by
   classical
   let U := univ.filter (fun i : Labels k a s ⊕ Fin b => attachedExponent ι i ≤ β)
   have hU : U.card ≤ h := by
@@ -101,7 +102,8 @@ lemma attached_quotient_finrank {K : Type*} [Field K]
       LinearIndependent K (fun i : U => u i.val))
     (hn : 0 < a+z) (c : ℕ) (hc : c ≤ s+1) :
     finrank K ((Fin h → Forms K (a+z) (s+c)) ⧸
-      AttachedMultiplication.relationSpace (d := c) (attachedExponent ι) u (attachedExponent_degree ι)) =
+      AttachedMultiplication.relationSpace (d := c) (attachedExponent ι) u (attachedExponent_degree
+        ι)) =
       h*(a+z+(s+c)-1).choose (s+c) -
         (Fintype.card (Labels k a s)+b)*(a+z+c-1).choose c := by
   simpa only [Fintype.card_fin,Fintype.card_sum] using

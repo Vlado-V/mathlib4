@@ -32,7 +32,8 @@ theorem prefix_injective_principal_open (hn : 0<n) (hed : e<d)
   have hA : IsPolynomialFamily A := by
     simpa only [A,LinearMap.coe_comp,Function.comp_def,LinearMap.comp_apply,LinearEquiv.coe_coe] using
       isPolynomialFamily_linear (K := K)
-        (V := (Fin r → Forms K n e) →ₗ[K] Forms K n (d+e)) ((prefixBilinear (K := K) (n := n) (d := d) (e := e) (r := r)).flip.comp
+        (V := (Fin r → Forms K n e) →ₗ[K] Forms K n (d+e)) ((prefixBilinear (K := K) (n := n) (d :=
+          d) (e := e) (r := r)).flip.comp
         c.symm.toLinearMap)
   obtain ⟨D,hD,hgood⟩ := injective_polynomial_principal_open A hA (c Q)
     (by simpa only [A,LinearEquiv.symm_apply_apply,prefixBilinear_flip] using hQ)

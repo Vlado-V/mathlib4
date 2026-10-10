@@ -81,7 +81,8 @@ instance (a z s : ℕ) : Fintype (PositiveTargetMonomial a z s) := by
   exact inferInstanceAs (Fintype {β : Degree (a + z) (2 * s + 1) //
     (corePart β.val).degree < 2 * s + 1})
 
-def targetExponent {a z s : ℕ} (β : Σ j, TargetMonomialFiber a z s j) : PositiveTargetMonomial a z s :=
+def targetExponent {a z s : ℕ} (β : Σ j, TargetMonomialFiber a z s
+  j) : PositiveTargetMonomial a z s :=
   ⟨⟨joinParts β.2.1.val β.2.2.val, mem_exponents.mpr (by
     rw [degree_joinParts, degree_val, degree_val]
     have hj := β.1.isLt

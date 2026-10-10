@@ -53,7 +53,8 @@ theorem evaluated_rank_bound
     (fun i : Fin p => (X : K[X]) ^ i.val) t₀
   change ∀ᶠ t in cofinite,
     finrank K (LinearMap.range (evaluation H (fun i : Fin p => ((X : K[X]) ^ i.val).eval t₀))) ≤
-      finrank K (LinearMap.range (evaluation H (fun i : Fin p => ((X : K[X]) ^ i.val).eval t))) at hlarge
+      finrank K (LinearMap.range (evaluation H (fun i : Fin p => ((X : K[X]) ^ i.val).eval
+        t))) at hlarge
   have heval (t : K) : (fun i : Fin p => ((X : K[X]) ^ i.val).eval t) =
       RationalCurve.point p t := by
     funext i

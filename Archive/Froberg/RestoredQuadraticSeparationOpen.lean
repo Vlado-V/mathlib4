@@ -70,7 +70,8 @@ theorem quadratic_separated_principal_open
         detectedSymmetricProductRow j (biformVectorDetector T) F₀ x.2=0 := by
       simpa only [A,addRow_apply,LinearEquiv.symm_apply_apply] using hx
     have hz := hsep x.1 x.2 he
-    have hx0 : x.1=0 := scalarCoefficientRow_injective Q₀ hQ₀ (by simpa only [hz,map_zero,add_zero] using he)
+    have hx0 : x.1=0 := scalarCoefficientRow_injective Q₀ hQ₀ (by simpa only [hz,map_zero,add_zero]
+      using he)
     exact Prod.ext hx0 hz
   obtain ⟨D,hD,hgood⟩ := rank_polynomial_general_open A hpoly (coord (Q₀,F₀))
   refine ⟨D,hD,?_⟩

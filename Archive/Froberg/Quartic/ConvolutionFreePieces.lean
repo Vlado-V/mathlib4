@@ -173,7 +173,8 @@ theorem relations_succ : relations K t w (j + 1) =
   · rintro ⟨a, rfl⟩
     refine ⟨fun k => (a k).val, ?_⟩
     funext r
-    simp only [polyPresentation_apply, targetInclusion_apply, ConvolutionFree.presentation_apply_val]
+    simp only [polyPresentation_apply, targetInclusion_apply,
+      ConvolutionFree.presentation_apply_val]
 
 /-- The polynomial presentation has no relations in degree zero. -/
 theorem relations_zero : relations K t w 0 = ⊥ := by

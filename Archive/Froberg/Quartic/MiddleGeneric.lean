@@ -81,7 +81,8 @@ def combinedLinear : Parameters K c w r q →ₗ[K] (Domain K c w r q →ₗ[K] 
     have hm : multiplication (p.1 + s.1) a = multiplication p.1 a + multiplication s.1 a := by
       simp only [multiplication, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply,
         Pi.add_apply, map_add, LinearMap.add_apply, Finset.sum_add_distrib]
-    simp only [combined, LinearMap.add_apply, LinearMap.coprod_apply, Prod.fst_add, Prod.snd_add, hm,
+    simp only [combined, LinearMap.add_apply, LinearMap.coprod_apply, Prod.fst_add, Prod.snd_add,
+      hm,
       childMap, LinearMap.coe_mk, AddHom.coe_mk, Pi.add_apply, smul_add, Finset.sum_add_distrib]
     apply Prod.ext <;> simp only [Prod.fst_add, Prod.snd_add] <;> abel
   map_smul' s p := by
@@ -188,7 +189,8 @@ theorem genericMiddle_of_witness (p₀ : Parameters K c w r q)
   obtain ⟨Dh, hDh, hopenH⟩ := independent_principal_open H a₀ hh₀
   obtain ⟨Dr, hDr, hopenR⟩ := rank_principal_open
     (coordinateMap (K := K) (c := c) (w := w) (r := r) (q := q)) a₀
-  refine ⟨Dg * Dh * Dr, ⟨a₀, by simp only [map_mul]; exact mul_ne_zero (mul_ne_zero hDg hDh) hDr⟩, ?_⟩
+  refine ⟨Dg * Dh * Dr, ⟨a₀, by simp only [map_mul]; exact mul_ne_zero (mul_ne_zero hDg hDh) hDr⟩,
+    ?_⟩
   intro a ha
   have hparts : eval a Dg ≠ 0 ∧ eval a Dh ≠ 0 ∧ eval a Dr ≠ 0 := by
     simpa only [map_mul, mul_ne_zero_iff, and_assoc] using ha

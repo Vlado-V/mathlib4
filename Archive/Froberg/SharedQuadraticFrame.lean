@@ -38,7 +38,8 @@ theorem shared_quadratic_frame_open
             (pairProducts (fun i => (o i).val) p)) ∧
           (privatePolynomialMap (a := a) (s := s) ι
             (fun i => (T.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker=
-            Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι w))) := by
+            Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι
+              w))) := by
   classical
   let S := Submodule.span K (Set.range (quadraticPairForms o))
   obtain ⟨Q,hQ,hQgood⟩ := frame_disjoint_principal_open (K := K) (H := H)
@@ -62,7 +63,8 @@ theorem shared_quadratic_frame_open
       exact (hQgood frame hgood.2 ()).symm)
   convert hmap using 1
   funext p
-  change quadraticPolynomialDetector T (pairProducts (fun i => (o i).val) p)=T (quadraticPairForms o p)
+  change quadraticPolynomialDetector T (pairProducts (fun i => (o i).val) p)=T (quadraticPairForms o
+    p)
   rw [←quadraticPairForms_val,quadraticPolynomialDetector_form]
 
 end Froberg

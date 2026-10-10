@@ -81,7 +81,8 @@ theorem eventually_field_uniform_all_private_reduction {d : ℕ}
     filter_upwards [hw z extra e he] with v hv
     intro K _ _ X _ _ _ T hX hO _
     exact hv K X T hX hO
-  · filter_upwards [eventually_field_uniform_middle_private_reduction (by omega : 5≤d) (by omega : d≤8) hodd] with w hw
+  · filter_upwards [eventually_field_uniform_middle_private_reduction (by omega : 5≤d) (by omega :
+    d≤8) hodd] with w hw
     intro hdiv z extra e he
     filter_upwards [hw hdiv z extra e he] with v hv
     intro K _ _ X _ _ _ T hX hO hT

@@ -35,7 +35,8 @@ theorem private_polynomial_positive_rows_reduce
     (hexact : ∀ r,0<r → r≤2*d → r%2=0 →
       CoefficientRowExact (coefficientComponentSpace w d) a E j r)
     (hseparate : ∀ r,3≤r → r≤2*d → r%2=0 →
-      PrivateRowSeparation (coefficientComponentSpace w d) (coefficientComponentSpace w d) a E P j r) :
+      PrivateRowSeparation (coefficientComponentSpace w d) (coefficientComponentSpace w d) a E P j
+        r) :
     v=0 ∧ ∃ (M : I → I → K) (z : I → MvPolynomial σ K),
       c-matrixBoundary (fun i => a i+E i) M=z ∧
       (∀ i,0<j i → z i=0) ∧

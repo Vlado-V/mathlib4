@@ -33,7 +33,8 @@ theorem exists_empty_profile_row_parameter
     (hprofile : ∀ a,(ProductRows.multiplication counts (layers p₀) J R.val a).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
     (Q : Fin (Fintype.card (Label q J counts)) → Forms K n d)
-    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q (d-R.val))) :
+    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q
+      (d-R.val))) :
     ∃ p : Space n d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO R i p) ∧
       (row hO R p).ker=(rowConstants hO R p).range := by
@@ -61,7 +62,8 @@ theorem exists_strong_quartic_empty_row_parameter {h : ℕ}
     (S : Finset (Fin n)) (hS : S.card≤Sᶜ.card)
     (hm : counts 2≤(2*(h/2).choose 2-finrank K X)*(S.card.choose 2/2))
     (Q : Fin (Fintype.card (Label q J counts)) → Forms K n 4)
-    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠2) Q (4-R.val))) :
+    (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠2) Q
+      (4-R.val))) :
     ∃ p : Space n 4 q J counts (fun j => Forms K h j⊓(T j).ker),
       LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) R i p) ∧
       (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R p).range := by

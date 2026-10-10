@@ -42,7 +42,8 @@ theorem eventually_field_uniform_middle_extended_data {d : ℕ}
   classical
   filter_upwards [eventually_field_uniform_actual_middle_small_witnesses_shift hd hd8,
     eventually_field_uniform_counted_fourth_row_capacity_shift hd hd8,
-    tendsto_twice_nat.eventually (eventually_field_uniform_quadratic_capacity_shift_late (d := d) (by omega))]
+    tendsto_twice_nat.eventually (eventually_field_uniform_quadratic_capacity_shift_late (d := d)
+      (by omega))]
     with w hcore hfour hquad
   intro hdiv z extra e he
   have hecast : ∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*((2*w : ℕ) : ℝ)^2*(n : ℝ)^(d-2) := by

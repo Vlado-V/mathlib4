@@ -50,10 +50,12 @@ theorem product_checked (i j : Fin 465) : naturalProduct i.val j.val < 40920 ∧
   simpa only [productCondition,hi,hj] using h
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem product_bound (i j : Fin 465) : naturalProduct i.val j.val < 40920 := (product_checked i j).1
+theorem product_bound (i j : Fin 465) : naturalProduct i.val j.val < 40920 := (product_checked i
+  j).1
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem product_exponents (i j : Fin 465) : exponent4 (productIndex i j)=exponent2 i+exponent2 j := by
+theorem product_exponents (i j : Fin 465) : exponent4 (productIndex i
+  j)=exponent2 i+exponent2 j := by
   unfold exponent4 exponent2
   rw [(product_checked i j).2,listExponent_sort,listExponent_append]
 

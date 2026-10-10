@@ -31,7 +31,8 @@ theorem parent_defect_witness (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
       (finrank K (QuarticHomology f) : ℤ) ≤ max (genericHomology K m 2 (upperEndpoint m-1) : ℤ)
           ((genericCokernel K m 2 (upperEndpoint m) : ℤ)-
             Counts.chi (3+m) (4+(mixedCount m upper+upperEndpoint m))) ∧
-      (finrank K (QuadraticChildFlag.Coker f) : ℤ) ≤ max (genericCokernel K m 2 (upperEndpoint m) : ℤ)
+      (finrank K (QuadraticChildFlag.Coker f) : ℤ) ≤ max (genericCokernel K m 2 (upperEndpoint m) :
+        ℤ)
           ((genericHomology K m 2 (upperEndpoint m-1) : ℤ)+
             Counts.chi (3+m) (4+(mixedCount m upper+upperEndpoint m))) := by
   classical
@@ -66,7 +67,8 @@ theorem parent_defect_witness (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
   have hr₀ := hblock.1.2.2.2
   rw [AugmentedGeneric.coefficientMixed_encode,AugmentedGeneric.coefficientChild_encode] at hs hr₀
   rw [AugmentedGeneric.coefficientMotions_encode] at hr₀
-  have htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed g)) := by
+  have htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed
+    g)) := by
     simpa only [AugmentedGeneric.coefficientMixed_encode] using
       ActualTraceMotion.mixedMultiplication_injective_of_blockConditions
         (AugmentedGeneric.encode g h r₀) hblock

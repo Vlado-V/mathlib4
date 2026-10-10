@@ -47,7 +47,8 @@ lemma source_capacity_total (H : ℝ) (a z s : ℕ) :
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 lemma target_capacity_at_exponent {a z s : ℕ}
     (β : Σ j, TargetMonomialFiber a z s j) :
-    ((((2 * s + 1).choose s : ℕ) : ℝ) - ((corePart (targetExponent β).val.val).degree.choose s : ℝ)) =
+    ((((2 * s + 1).choose s : ℕ) : ℝ) - ((corePart (targetExponent β).val.val).degree.choose s :
+      ℝ)) =
       profileTargetCapacity s β.1 := by
   simp only [targetExponent, corePart_joinParts, degree_val, profileTargetCapacity]
 
@@ -77,7 +78,8 @@ lemma target_capacity_total (a z s : ℕ) :
   change (∑ β : PositiveTargetMonomial a z s, f β.val) = _
   rw [← (targetMonomialEquiv a z s).sum_comp (fun β => f β.val)]
   change (∑ β : Σ j, TargetMonomialFiber a z s j,
-    ((((2 * s + 1).choose s : ℕ) : ℝ) - ((corePart (targetExponent β).val.val).degree.choose s : ℝ))) = _
+    ((((2 * s + 1).choose s : ℕ) : ℝ) - ((corePart (targetExponent β).val.val).degree.choose s :
+      ℝ))) = _
   simp only [target_capacity_at_exponent, Fintype.sum_sigma, sum_const, card_univ,
     nsmul_eq_mul, finiteTargetProfile_eq_card]
   apply sum_congr rfl

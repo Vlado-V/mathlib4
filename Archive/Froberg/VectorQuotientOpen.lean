@@ -60,7 +60,8 @@ theorem quotient_principal_open [IsAlgClosed L]
   obtain ⟨D₁,hD₁,h₁⟩ := independent_polynomial_principal_open
     (fun j p => g p j) hg p₀ hsource
   obtain ⟨D₂,hD₂,h₂⟩ := injective_polynomial_principal_open
-    (fun p => BilinearImage.tupleMap (multiplication (d := t)) (g p)) (polynomial_tupleMap g hg) p₀ htarget
+    (fun p => BilinearImage.tupleMap (multiplication (d := t)) (g p)) (polynomial_tupleMap g
+      hg) p₀ htarget
   obtain ⟨D₃,hD₃,h₃⟩ := principal_open_finite g hg p₀
     (fun i => ell i+c) (fun i => bound i+c*FormCount m t) hell hwitness
   refine ⟨D₁*D₂*D₃,by simpa only [map_mul] using mul_ne_zero (mul_ne_zero hD₁ hD₂) hD₃,?_⟩

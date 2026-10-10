@@ -59,9 +59,11 @@ lemma quotient_upper_growth
   have hdim := image_finrank_le mu nu p q hp hc L
   have hdVR : (finrank K V' : ℝ)+finrank K (LinearMap.ker p)=finrank K V := by exact_mod_cast hdV
   have hdWR : (finrank K W' : ℝ)+finrank K (LinearMap.ker q)=finrank K W := by exact_mod_cast hdW
-  have hdSR : (finrank K (L.comap p) : ℝ)=finrank K L+finrank K (LinearMap.ker p) := by exact_mod_cast hdS
+  have hdSR : (finrank K (L.comap p) : ℝ)=finrank K L+finrank K (LinearMap.ker
+    p) := by exact_mod_cast hdS
   have hdIR : (finrank K (Quartic.BilinearImage.image mu (L.comap p)) : ℝ) ≤
-      finrank K (Quartic.BilinearImage.image nu L)+finrank K (LinearMap.ker q) := by exact_mod_cast hdim
+      finrank K (Quartic.BilinearImage.image nu L)+finrank K (LinearMap.ker
+        q) := by exact_mod_cast hdim
   have hpos : (0 : ℝ) < finrank K V' := by exact_mod_cast hA
   have hr : (0 : ℝ) ≤ finrank K (LinearMap.ker p) := Nat.cast_nonneg _
   have hm : min (finrank K (L.comap p) : ℝ) ((finrank K V : ℝ)-finrank K (L.comap p)) =

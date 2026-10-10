@@ -34,7 +34,8 @@ theorem extendCounts_generator_old (hc : ∀ j∈J,c j≤c' j) (p : Space n d q 
   | inl i => rfl
   | inr a =>
     rcases a with ⟨j,i⟩
-    simp only [generator,scalar,high,extendCounts,countLabelMap,Sum.elim_inr,Fin.coe_castLE,dif_pos i.isLt]
+    simp only [generator,scalar,high,extendCounts,countLabelMap,Sum.elim_inr,Fin.coe_castLE,dif_pos
+      i.isLt]
 
 theorem extendCounts_generator_new (hc : ∀ j∈J,c j≤c' j) (p : Space n d q J c O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :

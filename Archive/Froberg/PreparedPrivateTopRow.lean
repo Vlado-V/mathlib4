@@ -56,7 +56,8 @@ theorem private_top_core_injective
       (fun j hj i => (homogeneousLayerMap hO hJ j i p₀).property)
       (fun j hj i => biformImage_output_weight _ _ (hO j hj) (by
         simpa only [layers,dif_pos hj] using (p₀.2 ⟨j,hj⟩ i).property))
-    have hc := hh (show C∈(ProductRows.multiplication counts (layers p₀) J (d+1)).range from ⟨x,rfl⟩)
+    have hc := hh (show C∈(ProductRows.multiplication counts (layers p₀) J (d+1)).range from
+      ⟨x,rfl⟩)
     simpa only [show 2*d-(d+1)=d-1 by omega] using hc
   have hu := private_biform_core_zero (s := d-1) (r := 0) (by omega) (by omega)
     bi bo l hl ι C hC (fun i => (u i).val) (by
@@ -87,12 +88,15 @@ theorem private_top_principal_open [Module.Finite K (Space n d q J counts O)]
     intro x
     exact (hp.linear_comp (LinearMap.applyₗ (R := K) (M₂ := MvPolynomial (σ ⊕ Fin n) K) x.1)).add
       (isPolynomialFamily_const (privateRowMap (d := d) P (d+1) x.2))
-  obtain ⟨D,hD,hgood⟩ := rank_polynomial_general_open (fun a => privateTopRow (e.symm a) P) hpoly (e p₀)
+  obtain ⟨D,hD,hgood⟩ := rank_polynomial_general_open (fun a => privateTopRow (e.symm a) P) hpoly (e
+    p₀)
   refine ⟨D,hD,?_⟩
   intro p hp
   have hh := hgood (e p) hp
-  have hleft := congrArg (fun x : Space n d q J counts O => finrank K (privateTopRow x P).range) (e.symm_apply_apply p₀)
-  have hright := congrArg (fun x : Space n d q J counts O => finrank K (privateTopRow x P).range) (e.symm_apply_apply p)
+  have hleft := congrArg (fun x : Space n d q J counts O => finrank K (privateTopRow x
+    P).range) (e.symm_apply_apply p₀)
+  have hright := congrArg (fun x : Space n d q J counts O => finrank K (privateTopRow x
+    P).range) (e.symm_apply_apply p)
   have hh' : finrank K (privateTopRow p₀ P).range ≤ finrank K (privateTopRow p P).range :=
     hleft ▸ hright ▸ hh
   rw [LinearMap.finrank_range_of_inj hp₀] at hh'

@@ -68,11 +68,13 @@ def middleMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K
   MiddleCoordinates.quotientMap g (ChildSpace h)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-abbrev ColumnSpace (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra : MiddleTarget h)
+abbrev ColumnSpace (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra :
+  MiddleTarget h)
     (markedU : Submodule K (ChildQuotient h)) :=
   LinearMap.ker (middleMap g h) × (K × (markedU × BlockHomology K))
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-abbrev ColumnIndex (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra : MiddleTarget h)
+abbrev ColumnIndex (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra :
+  MiddleTarget h)
     (markedU : Submodule K (ChildQuotient h)) := Fin (finrank K (ColumnSpace g h extra markedU))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
@@ -85,12 +87,14 @@ theorem exists_section (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q �
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual spanning map: fixed middle cycles plus lifts of the moving trace. -/
-def rawMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra : MiddleTarget h)
+def rawMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra : MiddleTarget
+  h)
     (markedU : Submodule K (ChildQuotient h))
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c) (r : Pure K m) :
     ColumnSpace g h extra markedU →ₗ[K] Raw K m c :=
   (LinearMap.ker (middleMap g h)).subtype.coprod
-    (sectionMap.comp (ExtraTraceOmega.extraTrace ω extra (fun i => (ChildSpace h).mkQ (r i)) markedU))
+    (sectionMap.comp (ExtraTraceOmega.extraTrace ω extra (fun i => (ChildSpace h).mkQ (r i))
+      markedU))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem rawMap_apply (g : Fin c → MiddleCoordinates.Mixed K m)
@@ -98,7 +102,8 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c) (r : Pure K m)
     (z : ColumnSpace g h extra markedU) :
     rawMap ω g h extra markedU sectionMap r z = z.1.val +
-      sectionMap (ExtraTraceOmega.extraTrace ω extra (fun i => (ChildSpace h).mkQ (r i)) markedU z.2) := rfl
+      sectionMap (ExtraTraceOmega.extraTrace ω extra (fun i => (ChildSpace h).mkQ (r i)) markedU
+        z.2) := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The fixed-section columns span exactly the actual moving preimage. -/
@@ -112,7 +117,8 @@ theorem rawMap_range (g : Fin c → MiddleCoordinates.Mixed K m)
     LinearMap.congr_fun hsection a
   apply le_antisymm
   · rintro _ ⟨z,rfl⟩
-    change middleMap g h (z.1.val + sectionMap _) ∈ ExtraCorrectionOmega.extraSpace ω h r extra markedU
+    change middleMap g h (z.1.val + sectionMap
+      _) ∈ ExtraCorrectionOmega.extraSpace ω h r extra markedU
     rw [map_add,show middleMap g h z.1.val=0 from z.1.property,zero_add,hs]
     exact ⟨z.2,rfl⟩
   · intro a ha
@@ -243,8 +249,10 @@ theorem constraint_rank_eq (g : Fin c → MiddleCoordinates.Mixed K m)
     (hsection : (middleMap g h).comp sectionMap=LinearMap.id) (r : Pure K m)
     (ell : Fin (RowCount m 3) → K) :
     (constraint ω g h extra markedU sectionMap r ell).rank = finrank K
-      (((ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h)).map (repeated (sourceRelation ell))) := by
-  rw [constraint,BilinearMotionConstraints.rank_eq,columns_span ω g h extra markedU sectionMap hsection r,
+      (((ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h)).map (repeated
+        (sourceRelation ell))) := by
+  rw [constraint,BilinearMotionConstraints.rank_eq,columns_span ω g h extra markedU sectionMap
+    hsection r,
     ← Submodule.map_comp]
   congr 2
 
@@ -269,7 +277,8 @@ theorem constraint_rank_bound (g : Fin c → MiddleCoordinates.Mixed K m)
     (Submodule.span K (Set.range g)) (sourceRelation ell) Rbar hcomm hker
     ((ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h))
   have he : (((ExtraCorrectionOmega.extraSpace ω h r extra markedU).comap (middleMap g h)).map
-      (repeated (Submodule.span K (Set.range g)).mkQ)) = ExtraCorrectionOmega.coefficientImage ω g h r extra markedU := rfl
+      (repeated (Submodule.span K (Set.range
+        g)).mkQ)) = ExtraCorrectionOmega.coefficientImage ω g h r extra markedU := rfl
   rw [he,ExtraCorrectionOmega.coefficientImage_finrank ω g h r extra hg hh ha hs markedU] at hb
   rw [constraint_rank_eq ω g h extra markedU sectionMap hsection r ell]
   exact hb
@@ -283,7 +292,8 @@ theorem sourceRelation_kernel_finrank (ell : Fin (RowCount m 3) → K) :
       (relationMap RowMultiplicationCoordinates.coordinate ell).range := by
     exact LinearMap.range_comp_of_range_eq_top _ rowFiniteEquiv.range
   have h₁ := (sourceRelation ell).finrank_range_add_finrank_ker
-  have h₂ := (relationMap (RowMultiplicationCoordinates.coordinate (K := K) (m := m)) ell).finrank_range_add_finrank_ker
+  have h₂ := (relationMap (RowMultiplicationCoordinates.coordinate (K := K) (m := m))
+    ell).finrank_range_add_finrank_ker
   have hd : finrank K (MiddleCoordinates.Mixed K m) =
       finrank K (Fin (RowCount m 1) → K) :=
     (rowFiniteEquiv (K := K) (m := m) (d := 1)).finrank_eq
@@ -299,7 +309,8 @@ theorem descended_kernel_bound (g : Fin c → MiddleCoordinates.Mixed K m)
     (hg : LinearIndependent K g) (d : ℕ)
     (hambient : finrank K (LinearMap.ker
       (relationMap RowMultiplicationCoordinates.coordinate ell)) ≤ c+d) :
-    finrank K (LinearMap.ker ((Submodule.span K (Set.range g)).liftQ (sourceRelation ell) hE)) ≤ d := by
+    finrank K (LinearMap.ker ((Submodule.span K (Set.range g)).liftQ (sourceRelation ell)
+      hE)) ≤ d := by
   let E := Submodule.span K (Set.range g)
   let Rbar := E.liftQ (sourceRelation ell) hE
   have hc : Rbar.comp E.mkQ=sourceRelation ell := by ext x; rfl
@@ -372,11 +383,13 @@ def constraintLinear (g : Fin c → MiddleCoordinates.Mixed K m)
   (constraint ω g h extra markedU sectionMap r ell).mulVecLin.comp motionEncode
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem motionEncode_surjective : Function.Surjective (motionEncode (K := K) (m := m) (c := c)) := by
+theorem motionEncode_surjective : Function.Surjective (motionEncode (K := K) (m := m) (c :=
+  c)) := by
   intro x
   refine ⟨fun i => HomogeneousCoefficientCoordinates.finiteEquiv.symm (fun b => x (i,b)),?_⟩
   funext z
-  exact congrFun (HomogeneousCoefficientCoordinates.finiteEquiv.apply_symm_apply (fun b => x (z.1,b))) z.2
+  exact congrFun (HomogeneousCoefficientCoordinates.finiteEquiv.apply_symm_apply (fun b => x
+    (z.1,b))) z.2
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem constraintLinear_rank (g : Fin c → MiddleCoordinates.Mixed K m)
@@ -400,7 +413,8 @@ theorem constraintLinear_apply (g : Fin c → MiddleCoordinates.Mixed K m)
     constraintLinear ω g h extra markedU sectionMap r ell p j =
       covector ell (rowFiniteEquiv (∑ i : Fin c,
         RowMultiplicationCoordinates.multiplication (p i)
-          (rawMap ω g h extra markedU sectionMap r ((coordinates K _).symm (Pi.single j 1)) i))) := by
+          (rawMap ω g h extra markedU sectionMap r ((coordinates K _).symm (Pi.single j 1))
+            i))) := by
   change (constraint ω g h extra markedU sectionMap r ell *ᵥ motionEncode p) j=_
   rw [constraint,BilinearMotionConstraints.mulVec_apply]
   simp only [motionEncode,LinearMap.coe_mk,AddHom.coe_mk,RowMultiplicationCoordinates.coordinate_apply,columns,
@@ -465,7 +479,8 @@ theorem finitePolynomialConstraint_rank (g : Fin c → MiddleCoordinates.Mixed K
     (ell : Fin (RowCount m 3) → K) (r : PureIndex m → K) :
     ((finitePolynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell r))).rank =
       (constraint ω g h extra markedU sectionMap (pureCoordinates.symm r) ell).rank := by
-  change (((polynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell r))).submatrix
+  change (((polynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell
+    r))).submatrix
     (Equiv.refl _) (Fintype.equivFin _).symm).rank=_
   rw [Matrix.rank_submatrix,eval_polynomialConstraint]
 
@@ -475,7 +490,8 @@ theorem finitePolynomialConstraint_scaling (g : Fin c → MiddleCoordinates.Mixe
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
     (a : K) (ell : Fin (RowCount m 3) → K) (r : PureIndex m → K) :
     (finitePolynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim (a • ell) r)) =
-      a • (finitePolynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell r)) := by
+      a • (finitePolynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell
+        r)) := by
   have hh := polynomialConstraint_scaling ω g h extra markedU sectionMap a ell r
   exact congrArg (fun M => M.submatrix (Equiv.refl _)
     (Fintype.equivFin (Fin c × Fin (FormCount m 2))).symm) hh
@@ -492,8 +508,10 @@ theorem finitePolynomialConstraint_mulVec (g : Fin c → MiddleCoordinates.Mixed
     (sectionMap : MiddleTarget h →ₗ[K] Raw K m c)
     (ell : Fin (RowCount m 3) → K) (r : PureIndex m → K) (p : MotionIndex m c → K) :
     (finitePolynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell r)) *ᵥ p =
-      constraintLinear ω g h extra markedU sectionMap (pureCoordinates.symm r) ell (motionDecode p) := by
-  change (((polynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell r))).submatrix
+      constraintLinear ω g h extra markedU sectionMap (pureCoordinates.symm r) ell (motionDecode
+        p) := by
+  change (((polynomialConstraint ω g h extra markedU sectionMap).map (eval (Sum.elim ell
+    r))).submatrix
     (Equiv.refl _) (Fintype.equivFin _).symm) *ᵥ p=_
   rw [Matrix.submatrix_mulVec_equiv,eval_polynomialConstraint]
   change _ = constraint ω g h extra markedU sectionMap (pureCoordinates.symm r) ell *ᵥ

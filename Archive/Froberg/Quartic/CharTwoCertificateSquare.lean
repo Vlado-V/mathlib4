@@ -64,7 +64,8 @@ theorem outside_lower_of_inverse_bit (t j : Fin b₄) (hj : L ≤ j.val)
   let A : Matrix (Fin b₄) (Fin b₄) K := (sparseMatrix D.rows).map (binaryMap (K := K))
   let B : Matrix (Fin b₄) (Fin b₄) K := (packedMatrix b₄ D.inverse).map (binaryMap (K := K))
   have hab : A * B = 1 := by
-    have h := congrArg (binaryMap (K := K)).mapMatrix (inverse_identity D.rows D.inverse D.inverse_checked)
+    have h := congrArg (binaryMap (K := K)).mapMatrix (inverse_identity D.rows D.inverse
+      D.inverse_checked)
     simpa only [map_mul, map_one, RingHom.mapMatrix_apply, A, B] using h
   let C : Forms K n 4 →ₗ[K] (Fin b₄ → K) :=
     (LinearMap.pi (fun k => MvPolynomial.lcoeff K (D.exponent₄ k))).comp (Forms K n 4).subtype

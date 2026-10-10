@@ -64,7 +64,8 @@ theorem eventually_actual_cubic_extended_reduction_open :
       tendsto_twice_nat.eventually hc] with v hv hcv
     have hb := hcv.trans (by simpa only [show 3-2=1 by omega,pow_one] using hv)
     simpa only [two_mul] using hb
-  filter_upwards [hq,hp,tendsto_twice_nat.eventually hc,eventually_gt_atTop 0] with v hqv hpv hcv hvpos
+  filter_upwards [hq,hp,tendsto_twice_nat.eventually hc,eventually_gt_atTop
+    0] with v hqv hpv hcv hvpos
   intro X _ _ _ T hX hO
   let O := fun j => Forms K h j⊓(T j).ker
   have hqv' : QuadraticRowCapacity (v+v) 3 (q (v+v))
@@ -122,7 +123,8 @@ theorem eventually_actual_quartic_extended_reduction_open :
     simpa only [two_mul,balancedScalarHalf_card,show (v+v)/2=v by omega] using hb
   obtain ⟨n₀,hn₀⟩ := eventually_small_single_profile_scalar_open (K := K)
     (d := 4) (R := 4) (by omega) (by omega) (Or.inl rfl) le_rfl r hcount
-  filter_upwards [hq,hp,tendsto_twice_nat.eventually hc,eventually_ge_atTop n₀,eventually_gt_atTop 0] with v hqv hpv hcv hv hvpos
+  filter_upwards [hq,hp,tendsto_twice_nat.eventually hc,eventually_ge_atTop n₀,eventually_gt_atTop
+    0] with v hqv hpv hcv hv hvpos
   intro X _ _ _ T hX hO
   let O := fun j => Forms K h j⊓(T j).ker
   have hqv' : QuadraticRowCapacity (v+v) 4 (q (v+v))
@@ -140,6 +142,7 @@ theorem eventually_actual_quartic_extended_reduction_open :
     (by simp only [balancedScalarHalf_card,balancedScalarHalf_compl_card];omega) 2
   exact finite_quartic_extended_reduction_open T ell hell
     (fun j _ hj => allEvenCount_off_two_small (Or.inr rfl) _ _ _ hj)
-    (balancedScalarHalf v) hbal hpv' ⟨_,hqv'⟩ Q (by simpa only [show 4-4=0 by omega] using hgood Q hQ)
+    (balancedScalarHalf v) hbal hpv' ⟨_,hqv'⟩ Q (by simpa only [show 4-4=0 by omega] using hgood Q
+      hQ)
 
 end Froberg.PreparedParameters

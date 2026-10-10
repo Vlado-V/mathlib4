@@ -91,7 +91,8 @@ theorem principal_open_two_stage [IsAlgClosed K] (hm : 28 ≤ m) (p : Parameters
           r₁ ≤ (evaluated A ell).rank →
           r₂ ≤ (evaluated B (Sum.elim ell (fun i => z (Sum.inl i)))).rank →
           evaluated A ell *ᵥ (fun i => z (Sum.inl i)) ≠ 0 ∨
-            evaluated B (Sum.elim ell (fun i => z (Sum.inl i))) *ᵥ (fun j => z (Sum.inr j)) ≠ 0 := by
+            evaluated B (Sum.elim ell (fun i => z (Sum.inl i))) *ᵥ (fun j => z (Sum.inr
+              j)) ≠ 0 := by
   obtain ⟨P,hP,hgood⟩ := SliceMotionAvoidance.principal_open_projective (L := K)
     (AmbientCovectorSpreading.finiteDegree (RowCount m 1) (FormCount m 2)
       (mixedCount m upper) (upperEndpoint m) d.val)
@@ -132,7 +133,8 @@ theorem principal_open_all_kernel_ranks [IsAlgClosed K] (hm : 28 ≤ m)
           (∀ j f,covector ell (coordinate f (mixed p j))=0) →
           (∀ i v,covector ell (coordinate (child p i) v)=0) →
           evaluated A ell *ᵥ (fun i => z (Sum.inl i)) ≠ 0 ∨
-            evaluated B (Sum.elim ell (fun i => z (Sum.inl i))) *ᵥ (fun j => z (Sum.inr j)) ≠ 0 := by
+            evaluated B (Sum.elim ell (fun i => z (Sum.inl i))) *ᵥ (fun j => z (Sum.inr
+              j)) ≠ 0 := by
   classical
   choose P hP hgood using fun d : Threshold m upper =>
     principal_open_two_stage hm p hp d A B hA hB (hcount d)

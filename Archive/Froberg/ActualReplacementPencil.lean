@@ -109,12 +109,14 @@ theorem odd_even_pencil_exact_open
     · intro j
       simpa only [A,Fin.append_left] using isPolynomialFamily_const (ι := Fin 1) (Q j)
     · intro j
-      simpa only [A,Fin.append_right,LinearMap.proj_apply] using (isPolynomialFamily_const (E j)).add
+      simpa only [A,Fin.append_right,LinearMap.proj_apply] using (isPolynomialFamily_const (E
+        j)).add
         ((isPolynomialFamily_linear (LinearMap.proj (0 : Fin 1))).smul
           (isPolynomialFamily_const (D j)))
   obtain ⟨P,hP,hgood⟩ := odd_split_exact_principal_open A
     (fun j (_ : Fin 1 → K) => Fin.append F G j) hA
-    (fun j => isPolynomialFamily_const _) 0 (by simpa only [A,Pi.zero_apply,zero_smul,add_zero] using hex)
+    (fun j => isPolynomialFamily_const _) 0 (by simpa only [A,Pi.zero_apply,zero_smul,add_zero]
+      using hex)
   exact ⟨P,hP,fun c hc => hgood (fun _ => c) hc⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -155,7 +157,8 @@ theorem exists_actual_even_slot_replacement [IsAlgClosed K]
   classical
   obtain ⟨c,hc,hP,hex,hs⟩ := exists_actual_even_pencil_replacement Q F G E
     (Pi.single i M) s hex hs P hP
-  have he : (fun j => E j+c • (Pi.single i M : Fin e → biformParitySpace K h m d 0) j)=Function.update E i (E i+c • M) := by
+  have he : (fun j => E j+c • (Pi.single i M : Fin e → biformParitySpace K h m d 0)
+    j)=Function.update E i (E i+c • M) := by
     funext j
     by_cases hj : j=i
     · subst j

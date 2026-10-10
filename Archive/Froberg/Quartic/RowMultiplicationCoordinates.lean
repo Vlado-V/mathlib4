@@ -57,7 +57,8 @@ theorem mapForm_finiteEquiv_symm (x : Fin (FormCount m d) → K) :
   rw [finiteEquiv_mapForm,LinearEquiv.apply_symm_apply,LinearEquiv.apply_symm_apply]
 
 theorem mapRows_rowFiniteEquiv_symm (x : Fin (RowCount m d) → K) :
-    mapRows (L := L) (rowFiniteEquiv.symm x) = rowFiniteEquiv.symm (fun i => algebraMap K L (x i)) := by
+    mapRows (L := L) (rowFiniteEquiv.symm x) = rowFiniteEquiv.symm (fun i => algebraMap K L (x
+      i)) := by
   apply rowFiniteEquiv.injective
   funext i
   rw [rowFiniteEquiv_mapRows,LinearEquiv.apply_symm_apply,LinearEquiv.apply_symm_apply]
@@ -82,7 +83,8 @@ def coordinate : (Fin (FormCount m 2) → K) →ₗ[K]
     finiteEquiv.symm.toLinearMap
 
 @[simp] theorem coordinate_apply (f : Fin (FormCount m 2) → K) (v : Fin (RowCount m 1) → K) :
-    coordinate f v = rowFiniteEquiv (multiplication (finiteEquiv.symm f) (rowFiniteEquiv.symm v)) := rfl
+    coordinate f v = rowFiniteEquiv (multiplication (finiteEquiv.symm f) (rowFiniteEquiv.symm
+      v)) := rfl
 
 /-- Multiplication commutes with coefficient-field extension in these coordinates. -/
 theorem coordinate_map (f : Fin (FormCount m 2) → K) (v : Fin (RowCount m 1) → K)

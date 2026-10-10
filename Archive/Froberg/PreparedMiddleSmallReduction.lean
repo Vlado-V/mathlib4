@@ -65,10 +65,12 @@ theorem finite_middle_small_witnesses
     (hcross₄ : counts 4≤(b+4-1).choose 4*(v+(d-4)-1).choose (d-4))
     (hdiagonal₄ : if d=5 then counts 4≤((w+w)^4/256)*((v+v)/2)
       else counts 4≤((w+w)^4/256)*(v.choose (d-4)/2))
-    (hscalar₆ : 6≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v) d,
+    (hscalar₆ : 6≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v)
+      d,
       Function.Injective (ProjectedPrefix.multiplication
         (fun α => partialDegree (balancedScalarHalf v) α≠d-2) Q (d-6)))
-    (hscalar₈ : 8≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v) d,
+    (hscalar₈ : 8≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v)
+      d,
       Function.Injective (ProjectedPrefix.multiplication
         (fun α => partialDegree (balancedScalarHalf v) α≠2*((d-4)/2)) Q (d-8))) :
     (∀ R : allEvenIndices d,∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
@@ -76,21 +78,25 @@ theorem finite_middle_small_witnesses
       (row (fun _ _ => inf_le_left) R p).ker=(rowConstants (fun _ _ => inf_le_left) R p).range) ∧
     (∀ R,d<R → R≤2*d → R%2=0 →
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
-        Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) R)) := by
+        Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d)
+          R)) := by
   classical
   let ecross : Fin (a+b) ≃ (Fin w × Bool) := (finCongr hab).trans (pairedScalarEquiv w).symm
   let ediag := (pairedScalarEquiv w).symm
   have hS : (balancedScalarHalf v).card≤(balancedScalarHalf v)ᶜ.card := by
     simp only [balancedScalarHalf_card,balancedScalarHalf_compl_card,le_refl]
-  have h6 := exists_small_cross_profile_parameter_equiv (q := q) ecross ha hb hv T hT hz hcross₂ hcross₄
+  have h6 := exists_small_cross_profile_parameter_equiv (q :=
+    q) ecross ha hb hv T hT hz hcross₂ hcross₄
   have h8p : d≠5 → ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
       Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) 8) ∧
-      ∀ z,(ProductRows.multiplication counts (layers p) (allEvenIndices d) 8 z).IsWeightedHomogeneous
+      ∀ z,(ProductRows.multiplication counts (layers p) (allEvenIndices d) 8
+        z).IsWeightedHomogeneous
         (Sum.elim (fun _ : Fin w × Bool => 0) (ProductRows.halfWeight (balancedScalarHalf v)))
         (2*((d-4)/2)) := by
     intro hd5
     exact exists_strong_fourth_profile_parameter_equiv (q := q) ediag hh hfour T hT hz
-      (balancedScalarHalf v) hS (by simpa only [if_neg hd5,balancedScalarHalf_card] using hdiagonal₄)
+      (balancedScalarHalf v) hS (by simpa only [if_neg hd5,balancedScalarHalf_card] using
+        hdiagonal₄)
   have h8 : ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
       Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) 8) := by
     by_cases hd5 : d=5
@@ -150,10 +156,12 @@ theorem finite_middle_small_reduction_open
     (hcross₄ : counts 4≤(b+4-1).choose 4*(v+(d-4)-1).choose (d-4))
     (hdiagonal₄ : if d=5 then counts 4≤((w+w)^4/256)*((v+v)/2)
       else counts 4≤((w+w)^4/256)*(v.choose (d-4)/2))
-    (hscalar₆ : 6≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v) d,
+    (hscalar₆ : 6≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v)
+      d,
       Function.Injective (ProjectedPrefix.multiplication
         (fun α => partialDegree (balancedScalarHalf v) α≠d-2) Q (d-6)))
-    (hscalar₈ : 8≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v) d,
+    (hscalar₈ : 8≤d → ∃ Q : Fin (Fintype.card (Label q (allEvenIndices d) counts)) → Forms K (v+v)
+      d,
       Function.Injective (ProjectedPrefix.multiplication
         (fun α => partialDegree (balancedScalarHalf v) α≠2*((d-4)/2)) Q (d-8))) :
     let A := Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T)

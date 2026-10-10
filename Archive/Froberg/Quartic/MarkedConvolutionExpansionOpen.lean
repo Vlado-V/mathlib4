@@ -56,7 +56,8 @@ def Thresholds (m : ℕ) (upper : Bool) (E : Dimensions m upper → ℕ) : Prop 
     (d.val : ℝ) * ((upperEndpoint m : ℝ) + (totalA m (mixedCount m upper) : ℝ) - d.val) ≤ E d ∧
     (0 < d.val → d.val < totalA m (mixedCount m upper) →
       SharpMinimization.ImageBoundsReal
-        (HullCertificate.markedScalars (HullCertificate.scalars m (upperEndpoint m) (mixedCount m upper))) (E d : ℝ) d.val)
+        (HullCertificate.markedScalars (HullCertificate.scalars m (upperEndpoint m) (mixedCount m
+          upper))) (E d : ℝ) d.val)
 
 include L
 
@@ -78,12 +79,14 @@ theorem principal_open_family (m : ℕ) (hm : 41 ≤ m) (hmhi : m ≤ 319)
       (d.val : ℝ) * ((upperEndpoint m : ℝ) + (totalA m (mixedCount m false) : ℝ) - d.val) ≤ e ∧
       (0 < d.val → d.val < totalA m (mixedCount m false) →
         SharpMinimization.ImageBoundsReal
-          (HullCertificate.markedScalars (HullCertificate.scalars m (upperEndpoint m) (mixedCount m false))) (e : ℝ) d.val) ∧
+          (HullCertificate.markedScalars (HullCertificate.scalars m (upperEndpoint m) (mixedCount m
+            false))) (e : ℝ) d.val) ∧
       RowExpansionOpen.Expands (GenericF13Endpoint.convolutionMixed L
         (coreP (mixedCount m false)+1) (freeW m (mixedCount m false)))
         (d.val+mixedCount m false) (e+mixedCount m false*(m+1).choose 2) := by
     intro d
-    obtain ⟨e,ho,hs,hb⟩ := MarkedConvolutionAmbientBounds.exists_threshold (K := L) m hm hmhi hpositive d.val (by omega)
+    obtain ⟨e,ho,hs,hb⟩ := MarkedConvolutionAmbientBounds.exists_threshold (K :=
+      L) m hm hmhi hpositive d.val (by omega)
     exact ⟨e,ho,hs,hb⟩
   choose E houter hscalar hbound using hthreshold
   have hopen : ∀ d : Dimensions m false, ∃ D : MvPolynomial I K,

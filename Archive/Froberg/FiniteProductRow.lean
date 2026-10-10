@@ -41,7 +41,8 @@ theorem exists_constrained_product_row {w v d R : ℕ} (hw : 0<w) (hv : 0<v)
     (hdiag : ∀ r : Row J R, r.val.val=R-r.val.val →
       e r.val.val ≤ (w.choose r.val.val-finrank K X) * (v.choose (d-r.val.val)/2))
     (hcross : ∀ r : Row J R, r.val.val≠R-r.val.val →
-      e r.val.val ≤ ((w+r.val.val-1).choose r.val.val-finrank K X) * (v+(d-r.val.val)-1).choose (d-r.val.val) ∧
+      e r.val.val ≤ ((w+r.val.val-1).choose r.val.val-finrank K X) * (v+(d-r.val.val)-1).choose
+        (d-r.val.val) ∧
       e (R-r.val.val) ≤ ((w+(R-r.val.val)-1).choose (R-r.val.val)-finrank K X) *
         (v+(d-(R-r.val.val))-1).choose (d-(R-r.val.val))) :
     ∃ q : (j : ℕ) → Fin (e j) → MvPolynomial (FourBlocks.Variables (Fin w) (Fin v)) K,

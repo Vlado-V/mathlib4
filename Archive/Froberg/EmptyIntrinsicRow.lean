@@ -67,13 +67,15 @@ theorem intrinsic_empty_single_profile_exact
     apply Prod.ext
     · apply Prod.ext
       · funext i
-        have hz' := congrArg (fun y : (Fin r → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s) × V => y.1 i) hz
+        have hz' := congrArg (fun y : (Fin r → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms
+          K n s) × V => y.1 i) hz
         change c.symm (x.1.1 i) = 0 at hz'
         change x.1.1 i = 0
         apply c.symm.injective
         simpa only [map_zero] using hz'
       · exact Subsingleton.elim _ _
-    · have hh := congrArg (fun y : (Fin r → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s) × V => y.2) hz
+    · have hh := congrArg (fun y : (Fin r → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n
+      s) × V => y.2) hz
       change x.2 = 0
       exact hh
   rw [hker]

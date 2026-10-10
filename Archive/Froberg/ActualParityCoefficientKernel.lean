@@ -66,7 +66,8 @@ theorem actual_odd_coefficient_kernel (w : Fin n → ZMod 2) (e : Fin r → ZMod
   · intro hx
     change ((coords.toLinearMap.comp (oddCoefficientProjection w e q hq)).compLeft (Fin t))
       (projectedHomologyCoefficients pi q hi (Submodule.span K (Set.range q)) dual x)=0
-    rw [show projectedHomologyCoefficients pi q hi (Submodule.span K (Set.range q)) dual x=0 from hx,
+    rw [show projectedHomologyCoefficients pi q hi (Submodule.span K (Set.range q)) dual x=0 from
+      hx,
       map_zero]
 
 /-- C.2 separation constructs the duals and identifies the retained kernel

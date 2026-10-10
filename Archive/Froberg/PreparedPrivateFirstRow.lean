@@ -44,7 +44,8 @@ theorem private_first_core_row_exact
     (hrow : (row hO ⟨2,h2J⟩ (coreExtension z p₀)).ker=
       (rowConstants hO ⟨2,h2J⟩ (coreExtension z p₀)).range) :
     (privateAugmentedRow hO ⟨2,h2J⟩ (coreExtension z p₀) (fun i => (P i).val)).ker=
-      ((rowConstants hO ⟨2,h2J⟩ (coreExtension z p₀)).prodMap (intrinsicPrivateBoundary P)).range := by
+      ((rowConstants hO ⟨2,h2J⟩ (coreExtension z p₀)).prodMap (intrinsicPrivateBoundary
+        P)).range := by
   classical
   apply addRow_exact_of_boundary_separation _ _ _ _ hrow (intrinsicPrivateBoundary_cycle P)
   intro x u hrel
@@ -53,7 +54,8 @@ theorem private_first_core_row_exact
       (∑ i : Fin (Fintype.card (Label q J counts)),
         rename Sum.inr (rename (Fin.castAdd z) (p₀.1 (f.symm i)).val)*
           (x.1.1 (f.symm i)).val)=
-      ∑ i : Label q J counts,rename Sum.inr (rename (Fin.castAdd z) (p₀.1 i).val)*(x.1.1 i).val := by
+      ∑ i : Label q J counts,rename Sum.inr (rename (Fin.castAdd z) (p₀.1 i).val)*(x.1.1
+        i).val := by
     exact Fintype.sum_equiv f.symm _ _ (fun i => rfl)
   have hraw := first_private_intrinsic_row hd bo T w ι A hA hker
     (fun i => p₀.1 (f.symm i)) (layers (coreExtension z p₀) 2) hE

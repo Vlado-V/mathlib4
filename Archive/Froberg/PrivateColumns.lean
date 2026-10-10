@@ -123,7 +123,8 @@ lemma relationFiber_attached {K : Type*} [Field K] (ι : Fin b ↪ Fin z)
     (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K) (β : Fin (a+z) →₀ ℕ) :
     AttachedMultiplication.relationFiber (attachedExponent ι) (attachedVectors v w) β =
       AttachedMultiplication.relationFiber (coreExponent z) v β ⊔
-        Submodule.span K (Set.range (fun i : {i : Fin b // privateExponent a s ι i ≤ β} => w i.val)) := by
+        Submodule.span K (Set.range (fun i : {i : Fin b // privateExponent a s ι i ≤ β} => w
+          i.val)) := by
   apply le_antisymm
   · apply Submodule.span_le.mpr
     rintro _ ⟨i,rfl⟩

@@ -49,7 +49,8 @@ theorem split_linear_restoration_open
     (isPolynomialFamily_linear g)
     ((isPolynomialFamily_linear (P.comp coord.symm.toLinearMap)).add (isPolynomialFamily_const U))
     T (fun x z => hT (coord.symm x) z) (coord a₀) (by
-      simpa only [g,p,LinearMap.comp_apply,LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply] using hreduce)
+      simpa only [g,p,LinearMap.comp_apply,LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply] using
+        hreduce)
   refine ⟨D,hD,?_⟩
   intro a ha c v hc
   have hg : g (coord a)=G a := by

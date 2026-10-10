@@ -32,7 +32,8 @@ theorem exact_counts_all_even_restored_odd_open {d k h lo : ℕ}
     ∀ᶠ n : ℕ in atTop,∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
       (slot : Fin (finrank K (Forms K h d)) →
-        Fin (Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e n+added))))),
+        Fin (Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e
+          n+added))))),
       HasRestoredOuterOddOpen (m := n) (f := f n) (by omega : 1≤d) heven hO
         (fun j hj => (mem_allEvenIndices.mp hj).2.1)
         (fun j hj => (mem_allEvenIndices.mp hj).2.2) (Fintype.equivFin _).symm slot := by
@@ -43,7 +44,8 @@ theorem exact_counts_all_even_restored_odd_open {d k h lo : ℕ}
     upper a f e extra ha hc hδ hreserve hextra
   filter_upwards [hopen] with n hn
   have hcard : upperCount n d+extra n=
-      Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e n+added))) := by
+      Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e
+        n+added))) := by
     rw [allEvenLabel_card hd,preparedLabel_card,sum_targetLayerCount hd]
     dsimp only [extra]
     omega

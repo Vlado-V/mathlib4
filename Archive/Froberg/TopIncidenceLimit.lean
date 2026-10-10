@@ -43,7 +43,8 @@ theorem eventually_top_incidence_budget {d a b : ℕ} (hd : 3≤d)
     field_simp
     <;> ring
   rw [he,←mul_div_assoc] at hm
-  have hnat := (div_lt_div_iff_of_pos_right (pow_pos (show (0 : ℝ)<m by exact_mod_cast hmpos) d)).mp hm
+  have hnat := (div_lt_div_iff_of_pos_right (pow_pos (show (0 : ℝ)<m by exact_mod_cast hmpos)
+    d)).mp hm
   exact_mod_cast hnat.le
 
 end Froberg

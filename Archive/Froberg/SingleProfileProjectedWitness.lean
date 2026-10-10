@@ -74,14 +74,17 @@ theorem exists_single_profile_even_row_with_relations
   have hQa : coordinates K _ Q=a := (coordinates K _).apply_symm_apply a
   have hQP : eval (coordinates K _ Q) D₀≠0 := hQa.symm ▸ haP
   have hQD : eval (coordinates K _ Q) D≠0 := hQa.symm ▸ haD
-  have hzero : ∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e (fun i => L (v i)) he) := by
+  have hzero : ∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e (fun i => L (v i))
+    he) := by
     intro c hc p p' hp
     apply hinj c hc
-    have hbase : homogeneousMultiplication (d := c) e v he p=homogeneousMultiplication e v he p' := by
+    have hbase : homogeneousMultiplication (d :=
+      c) e v he p=homogeneousMultiplication e v he p' := by
       apply vectorOutputMap_injective L hL
       simpa only [vectorOutputMap_homogeneousMultiplication] using hp
     exact congrArg (fun f j => (f j).val) hbase
-  refine ⟨v,Q,hrelationsGood v hvextra,attachedPolynomialFamily_homogeneous o hdegree e _ he,hzero,?_⟩
+  refine ⟨v,Q,hrelationsGood v hvextra,attachedPolynomialFamily_homogeneous o hdegree e _
+    he,hzero,?_⟩
   exact single_profile_even_row_kernel w Yhalf o ho hdegree L hL hLodd e v he Q
     (hinj d le_rfl) (hPQ Q hQP) P hP hPX hPY (hDQ Q hQD)
 

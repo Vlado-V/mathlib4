@@ -162,7 +162,8 @@ theorem quadrics_independent : LinearIndependent K (D.quadrics (K := K)) := by
     D.quadMinor D.quadInverse D.quad_inverse_checked
   intro i
   funext j
-  change (rowPolynomial (K := K) D.exponent₂ (D.support i)).coeff (D.exponent₂ (D.quadColumns j)) = _
+  change (rowPolynomial (K := K) D.exponent₂ (D.support i)).coeff (D.exponent₂ (D.quadColumns
+    j)) = _
   rw [rowPolynomial_coeff_count D.exponent₂ D.injective₂, sparse_count]
   exact congrArg (fun n : ℕ => (n : K)) (D.quad_counts i j)
 
@@ -174,7 +175,8 @@ theorem products_independent : LinearIndependent K (D.product (K := K)) := by
   exact coefficients_rowPolynomial D.exponent₄ D.injective₄ (D.rows i)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem upper_rank : b₄ ≤ finrank K (LinearMap.range (quadraticMultiplication (D.quadrics (K := K)))) := by
+theorem upper_rank : b₄ ≤ finrank K (LinearMap.range (quadraticMultiplication (D.quadrics (K :=
+  K)))) := by
   apply rank_lower_bound _ _ (products_independent D)
   intro i
   rw [product_identity D]

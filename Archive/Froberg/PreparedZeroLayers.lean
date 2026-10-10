@@ -102,7 +102,8 @@ def zeroLabels (hJ : J⊆J') (hc : ∀ j∈J,c j=c' j)
     (hz : ∀ j∈J',j∉J → c' j=0) (p : Space m d q f u J c O)
     (U : Fin u → Forms K h d) (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
     (i : Label q f u J c) :
-    renamedGenerator U P (zeroLayers hJ hc hz p) (zeroLabels hJ hc hz i)=renamedGenerator U P p i := by
+    renamedGenerator U P (zeroLayers hJ hc hz p) (zeroLabels hJ hc hz
+      i)=renamedGenerator U P p i := by
   unfold renamedGenerator
   congr 1
   rcases i with i | (i | i)
@@ -119,7 +120,8 @@ theorem zeroLayers_target_lifts (hJ : J⊆J') (hc : ∀ j∈J,c j=c' j)
     (hlift : ∀ b,2≤b → b≤2*d → TargetLift
       ((Submodule.span K (Set.range (renamedGenerator U P p)))*Forms K (h+m) d) d b) :
     ∀ b,2≤b → b≤2*d → TargetLift
-      ((Submodule.span K (Set.range (renamedGenerator U P (zeroLayers hJ hc hz p))))*Forms K (h+m) d) d b := by
+      ((Submodule.span K (Set.range (renamedGenerator U P (zeroLayers hJ hc hz p))))*Forms K (h+m)
+        d) d b := by
   intro b hb hbd
   apply targetLift_mono _ (hlift b hb hbd)
   apply mul_le_mul' _ le_rfl

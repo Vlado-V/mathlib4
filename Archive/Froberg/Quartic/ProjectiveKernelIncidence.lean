@@ -110,7 +110,8 @@ theorem generic_injective [Infinite K]
     have hparam : Fintype.card (ParameterIndex c.2) < c.1.val * (a - c.1.val) + q * c.1.val := by
       rw [parameter_count]
       omega
-    obtain ⟨P, hP, hp⟩ := PolynomialKernelAvoidance.principal_open_avoids_kernels (chartMatrix B c.2) hparam
+    obtain ⟨P, hP, hp⟩ := PolynomialKernelAvoidance.principal_open_avoids_kernels (chartMatrix B
+      c.2) hparam
     refine ⟨P, hP, ?_⟩
     intro x hx p hrank
     have hnz : tupleMap c.2 p ≠ 0 := by

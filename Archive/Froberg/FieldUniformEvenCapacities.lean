@@ -111,7 +111,8 @@ theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9�
     eventually_all.mpr fun R => oddOutputDimension_eventually_positive
       (by have := (mem_allEvenIndices.mp R.property).1;omega)
   filter_upwards [hhigh,hpos,eventually_field_uniform_allEven_product_capacities_shift hd,
-    tendsto_twice_nat.eventually (eventually_field_uniform_quadratic_capacity_shift_late (by omega : 3≤d))]
+    tendsto_twice_nat.eventually (eventually_field_uniform_quadratic_capacity_shift_late (by omega :
+      3≤d))]
     with w hhigher hpos hproduct hquadratic
   intro z extra e he
   have hecast : ∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*((2*w : ℕ):ℝ)^2*(n:ℝ)^(d-2) := by
@@ -172,7 +173,8 @@ theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9�
       have hRlt := (activeEvenIndices_bounds (by omega : 3≤d) ha).2.1
       have hcover := tendsto_twice_nat.eventually
         (sparseBlockCount_eventually_covers_shift_add ((101/100 : ℝ)*higherCountGamma d R.val)
-          (mul_nonneg (by norm_num) (higherCountGamma_pos d R.val).le) R.val w z 0 (by omega : 0<d-R.val))
+          (mul_nonneg (by norm_num) (higherCountGamma_pos d R.val).le) R.val w z 0 (by omega :
+            0<d-R.val))
       obtain ⟨n₀,hn₀⟩ := eventually_field_uniform_generic_profile_scalar_separation hd
         (show d-R.val+4≤d by omega) r hcount
       filter_upwards [hbudget,hcover,hp,eventually_ge_atTop n₀] with v hb hc hprod hv
@@ -203,7 +205,8 @@ theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9�
         (fun n => allEvenCount_inactive _ _ _ ha) hcount
       filter_upwards [hempty,hp] with v hv hpv
       intro K _ _ X _ _ _ T hX hT
-      exact hv K X T (hT _ hR4) (hpv K X hX R.val) (fun j hj => by have := (mem_allEvenIndices.mp hj).1;omega)
+      exact hv K X T (hT _ hR4) (hpv K X hX R.val) (fun j hj => by have := (mem_allEvenIndices.mp
+        hj).1;omega)
   filter_upwards [hq,hp,eventually_all.mpr (fun R : {R : allEvenIndices d // R.val≠2} =>
     hRcap R.val R.property)] with v hqv hpv hRv
   intro K _ _ X _ _ _ T hX hO hT

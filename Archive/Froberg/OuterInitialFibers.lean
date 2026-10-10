@@ -21,7 +21,8 @@ variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i)
 def initialMonomialFibers
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he))
     (a : Exponent n s) : Submodule K ((Fin h → K) ⧸ relationFiber e v a.val) :=
-  coordinateSubmodule ((outerInitial e v he L).map (quotientFiberEquiv (d := 0) e v he).toLinearMap) a
+  coordinateSubmodule ((outerInitial e v he L).map (quotientFiberEquiv (d := 0) e v
+    he).toLinearMap) a
 
 theorem map_initial_monomial_fibers
     (L : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :

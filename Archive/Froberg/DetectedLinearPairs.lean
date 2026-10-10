@@ -51,7 +51,8 @@ theorem detected_linear_pair_relation (hn : 0 < n)
     simp only [endpointMultiplication,LinearMap.sum_apply,LinearMap.add_apply,
       LinearMap.comp_apply,LinearMap.proj_apply,Fin.sum_univ_two,a,
       Matrix.cons_val_zero,Matrix.cons_val_one,Matrix.cons_val_fin_one]
-  have hz : (⟨endpointMultiplication q a,LinearMap.mem_range_self _ a⟩ : (endpointMultiplication q).range)=0 := by
+  have hz : (⟨endpointMultiplication q a,LinearMap.mem_range_self _ a⟩ : (endpointMultiplication
+    q).range)=0 := by
     apply hL
     change L (endpointMultiplication q a)=L 0
     rw [ha,map_add,hxy,map_zero]

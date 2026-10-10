@@ -37,7 +37,8 @@ theorem enumerate_forms_productSpace (hd : 0<d)
     (U : Fin u → Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K) (hP : ∀ i,(P i).IsHomogeneous d)
     (p : Space m d q f u J counts O) :
-    (Submodule.span K (Set.range (fun i => (enumerateForms (forms hd hO hJ U P hP p) i).val)))*Forms K (h+m) d=
+    (Submodule.span K (Set.range (fun i => (enumerateForms (forms hd hO hJ U P hP p)
+      i).val)))*Forms K (h+m) d=
       (Submodule.span K (Set.range (renamedGenerator U P p)))*Forms K (h+m) d := by
   rw [enumerateForms_range]
   rfl

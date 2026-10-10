@@ -40,7 +40,8 @@ theorem augmented_motion_open {m c q N : ℕ}
     rw [LinearEquiv.symm_apply_apply]
     exact AugmentedGenericOmega.lifted_injective_of_quotient ω _ _ _ hh hr₀
   obtain ⟨D,hD,hgood⟩ := injective_polynomial_principal_open
-    (fun x : Fin N → K => AugmentedGenericOmega.lifted ω (AugmentedGeneric.productMap g) h (e.symm x))
+    (fun x : Fin N → K => AugmentedGenericOmega.lifted ω (AugmentedGeneric.productMap g) h (e.symm
+      x))
     hpoly (e r₀) hw
   exact ⟨D,hD,fun x hx => AugmentedGenericOmega.quotient_injective_of_lifted ω _ _ _ (hgood x hx)⟩
 

@@ -232,7 +232,8 @@ theorem endpoint_rectangle (m : ℕ) (hm : 320 ≤ m) (upper : Bool) :
 parameters, with no upper bound on the child dimension. -/
 theorem actual_endpoint_bernstein (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (cell r : Fin 4) (side : Fin 2) :
-    0 ≤ UniformCertificate.inequalityPolynomial cell r side (normalizedZ m upper) (normalizedU m) := by
+    0 ≤ UniformCertificate.inequalityPolynomial cell r side (normalizedZ m upper) (normalizedU
+      m) := by
   have h := endpoint_rectangle m hm upper
   exact UniformCertificate.uniform_bernstein_inequality cell r side _ _
     h.1 h.2.1 h.2.2.1 h.2.2.2
@@ -241,7 +242,8 @@ theorem actual_endpoint_bernstein (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
 theorem upperEndpoint_eq_table (n : ℕ) (hn : n ≤ 322) :
     upperEndpoint n = FiniteCounts.upperEndpoint n := by
   have ht := FiniteCounts.endpoint_table_verified ⟨n, by omega⟩
-  change FiniteCounts.EndpointValid n (FiniteCounts.lowerEndpoint n) (FiniteCounts.upperEndpoint n) at ht
+  change FiniteCounts.EndpointValid n (FiniteCounts.lowerEndpoint n) (FiniteCounts.upperEndpoint
+    n) at ht
   rcases ht with ⟨hlu, hadj, hquad, hlo, hup, hroot, hstrict⟩
   simp only [FiniteCounts.euler_eq_chi] at hlo hup hroot hstrict
   have hule : FiniteCounts.upperEndpoint n ≤ (n + 1).choose 2 := by
@@ -272,7 +274,8 @@ theorem upperEndpoint_eq_table (n : ℕ) (hn : n ≤ 322) :
 theorem lowerEndpoint_eq_table (n : ℕ) (hn : n ≤ 322) :
     lowerEndpoint n = FiniteCounts.lowerEndpoint n := by
   have ht := FiniteCounts.endpoint_table_verified ⟨n, by omega⟩
-  change FiniteCounts.EndpointValid n (FiniteCounts.lowerEndpoint n) (FiniteCounts.upperEndpoint n) at ht
+  change FiniteCounts.EndpointValid n (FiniteCounts.lowerEndpoint n) (FiniteCounts.upperEndpoint
+    n) at ht
   rcases ht with ⟨hlu, hadj, _, _, _, hroot, hstrict⟩
   simp only [FiniteCounts.euler_eq_chi] at hroot hstrict
   unfold lowerEndpoint

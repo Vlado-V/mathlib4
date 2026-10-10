@@ -43,7 +43,8 @@ theorem sum_weight_sources {n : ℕ} (b : Fin n →₀ ℕ) (e : ℕ) :
   let f : Fin n → PowerSeries ℤ := fun i =>
     (((Polynomial.X + 1 : Polynomial ℤ) ^ b i : Polynomial ℤ) : PowerSeries ℤ)
   have hc (i : Fin n) (j : ℕ) : coeff j (f i) = ((b i).choose j : ℤ) := by
-    change PowerSeries.coeff j (((Polynomial.X + 1 : Polynomial ℤ) ^ b i : Polynomial ℤ) : PowerSeries ℤ) = _
+    change PowerSeries.coeff j (((Polynomial.X + 1 : Polynomial ℤ) ^ b i : Polynomial ℤ) :
+      PowerSeries ℤ) = _
     rw [Polynomial.coeff_coe, Polynomial.coeff_X_add_one_pow]
   have hp : ∏ i, f i =
       (((Polynomial.X + 1 : Polynomial ℤ) ^ b.degree : Polynomial ℤ) : PowerSeries ℤ) := by

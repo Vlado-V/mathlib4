@@ -68,7 +68,8 @@ theorem sparse_witness_common_parameter
       ((LinearMap.inl K
         ((Fin (Fintype.card (Label q J counts)) →
           Fin (finrank K (homogeneousSubmodule σ K R.val)) → Forms K n (d-R.val)) ×
-          (Fin (counts R.val) → Forms K n d)) (RowProducts (K := K) (J := J) (counts := counts) R.val)).comp
+          (Fin (counts R.val) → Forms K n d)) (RowProducts (K := K) (J := J) (counts := counts)
+            R.val)).comp
             (intermediateKoszul e v he Q)).range) :
     ∃ p : Space n d q J counts O,
       LinearIndependent K (fun i => intrinsicLayerMap hO R i p) ∧

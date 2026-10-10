@@ -71,8 +71,10 @@ theorem empty_row_core_extended_exact
   have hker : (addRow (polynomialIntermediateRow o e v he Q)
       (ProductRows.multiplication counts (layers p₀) J R.val)).ker=
       ((LinearMap.inl K
-        ((Fin (Fintype.card (Label q J counts)) → Fin (finrank K (homogeneousSubmodule σ K R.val)) → Forms K a (d-R.val)) ×
-          (Fin (counts R.val) → Forms K a d)) (RowProducts (K := K) (J := J) (counts := counts) R.val)).comp
+        ((Fin (Fintype.card (Label q J counts)) → Fin (finrank K (homogeneousSubmodule σ K R.val)) →
+          Forms K a (d-R.val)) ×
+          (Fin (counts R.val) → Forms K a d)) (RowProducts (K := K) (J := J) (counts := counts)
+            R.val)).comp
             (intermediateKoszul e v he Q)).range := by
     rw [intermediateKoszul_range_eq_constants]
     exact hc
@@ -89,7 +91,8 @@ theorem empty_row_core_extended_exact
       apply Subtype.ext
       simp only [ofPolynomialFamilies,layers,dif_pos j.property]
   have hext' : (row hO R (coreExtension z (ofPolynomialFamilies (Q ∘ f) (layers p₀) hE))).ker=
-      (rowConstants hO R (coreExtension z (ofPolynomialFamilies (Q ∘ f) (layers p₀) hE))).range := hext.2
+      (rowConstants hO R (coreExtension z (ofPolynomialFamilies (Q ∘ f) (layers p₀)
+        hE))).range := hext.2
   rw [hp] at hext'
   exact hext'
 

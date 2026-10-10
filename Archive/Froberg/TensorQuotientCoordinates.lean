@@ -77,6 +77,7 @@ def tensorQuotientEquiv (P : X →ₗ[K] Z) (hP : Function.Surjective P)
 @[simp] theorem tensorQuotientEquiv_tmul (P : X →ₗ[K] Z) (hP : Function.Surjective P)
     (Q : Submodule K Y) (E : Submodule K (X ⊗[K] Y)) (x : X) (y : Y) :
     tensorQuotientEquiv P hP Q E ((leftRelations P.ker ⊔ (rightRelations Q ⊔ E)).mkQ (x ⊗ₜ[K] y))=
-      (rightRelations Q ⊔ E.map (TensorProduct.map P (LinearMap.id : Y →ₗ[K] Y))).mkQ (P x ⊗ₜ[K] y) := rfl
+      (rightRelations Q ⊔ E.map (TensorProduct.map P (LinearMap.id : Y →ₗ[K] Y))).mkQ (P x ⊗ₜ[K]
+        y) := rfl
 
 end Froberg

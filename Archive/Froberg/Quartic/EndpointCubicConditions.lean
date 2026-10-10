@@ -31,7 +31,8 @@ def childCoordinates : (ParameterIndex m c q → K) →ₗ[K]
   (coordinates K (Fin q → Forms K m 2)).toLinearMap.comp coefficientChild
 
 /-- Every actual child tuple occurs in the full coefficient family. -/
-theorem childCoordinates_surjective : Function.Surjective (childCoordinates (K := K) (m := m) (c := c) (q := q)) := by
+theorem childCoordinates_surjective : Function.Surjective (childCoordinates (K := K) (m := m) (c :=
+  c) (q := q)) := by
   intro x
   refine ⟨encode 0 ((coordinates K (Fin q → Forms K m 2)).symm x) 0, ?_⟩
   change coordinates K (Fin q → Forms K m 2)
@@ -63,7 +64,8 @@ theorem generic_blocks_and_cubic [Infinite K]
   have hB0 : B ≠ 0 := by intro hz; simp [hz] at hb
   have hC0 : childPullback (c := c) C ≠ 0 := by
     intro hz
-    have he : eval (encode (0 : Fin c → MiddleCoordinates.Mixed K m) Q 0) (childPullback C) ≠ 0 := by
+    have he : eval (encode (0 : Fin c → MiddleCoordinates.Mixed K m) Q 0) (childPullback
+      C) ≠ 0 := by
       simpa only [eval_childPullback, coefficientChild_encode] using hQ
     simp [hz] at he
   obtain ⟨a₀, ha₀⟩ := nonempty_principal_intersection

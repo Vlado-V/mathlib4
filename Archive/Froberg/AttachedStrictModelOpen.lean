@@ -47,7 +47,8 @@ theorem principal_open_strict_model_from_attached [IsAlgClosed L]
         (finrank L (BilinearImage.image
           (quotientMultiply (d := d) e (fun i j => algebraMap K L (v i j)) he) U) : ℝ)) :
     ∃ D : MvPolynomial P K,eval p₀ D ≠ 0 ∧ ∀ p : P → K,eval p D ≠ 0 → StrictModel (g p) d G := by
-  have hcard : Fintype.card I=c := by simpa only [Fintype.card_fin] using (Fintype.card_congr r).symm
+  have hcard : Fintype.card I=c := by simpa only [Fintype.card_fin] using (Fintype.card_congr
+    r).symm
   have hsrc : finrank L ((Fin h → Forms L n s) ⧸
       relationSpace (d := 0) e (fun i j => algebraMap K L (v i j)) he)=RowCount h n s-c := by
     simpa only [hcard] using attached_source_dimension_count e _ he hn hgeom₀

@@ -73,7 +73,8 @@ def numerator (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
 
 @[simp] theorem eval_freeContribution (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (u : Fin r ↪ Fin a) (v : Fin r ↪ Fin n) (t : I → K) (y : Outside v → K) (i : Fin r) :
-    eval (Sum.elim t y) (freeContribution A u v i) = KernelCharts.offPivot (evaluated A t) u v y i := by
+    eval (Sum.elim t y) (freeContribution A u v i) = KernelCharts.offPivot (evaluated A
+      t) u v y i := by
   simp [freeContribution, KernelCharts.offPivot]
 
 @[simp] theorem eval_adjugate_product (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))

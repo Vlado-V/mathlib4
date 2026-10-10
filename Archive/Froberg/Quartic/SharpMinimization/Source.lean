@@ -74,7 +74,8 @@ theorem source_minimum_on_edge (m c i : ℕ) (hi : i ≤ ProfileCertificate.core
   let : Nonempty Edges := ⟨⟨e,he⟩⟩
   obtain ⟨emin,hmin⟩ := Finite.exists_min (fun e:Edges =>
     sourceSharp m c i (edgePoint (ProfileCertificate.freeW m c) s e 0)
-      (edgePoint (ProfileCertificate.freeW m c) s e 1) (edgePoint (ProfileCertificate.freeW m c) s e 2))
+      (edgePoint (ProfileCertificate.freeW m c) s e 1) (edgePoint (ProfileCertificate.freeW m c) s e
+        2))
   refine ⟨emin,emin.property,?_⟩
   intro x₁ x₂ x₃ hx hsum
   obtain ⟨e',he',hle⟩ := source_edge_reduction m c i hi x₁ x₂ x₃ hx

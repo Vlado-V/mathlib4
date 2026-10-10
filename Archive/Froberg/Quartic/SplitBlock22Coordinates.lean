@@ -68,7 +68,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The two orientations reconstruct exactly the same full polynomial. -/
 @[simp] theorem linearYEmbed_traceCoordinates (g : MiddleCoordinates.Mixed K m) :
     SplitBlock31.linearYEmbed (traceCoordinates g) = mixedEmbedding g := by
-  have hm : mixedEmbedding g ∈ LinearMap.range (SplitBlock31.linearYEmbed (K := K) (m := m) (d := 1)) := by
+  have hm : mixedEmbedding g ∈ LinearMap.range (SplitBlock31.linearYEmbed (K := K) (m := m) (d :=
+    1)) := by
     rw [SplitBlock31.range_linearYEmbed, ← SplitTensor.polynomialEmbedding_range]
     exact ⟨sumTensorLeft (fun i : Fin 3 => (⟨X i, isHomogeneous_X K i⟩ : Forms K 3 1)) g, rfl⟩
   obtain ⟨a, ha⟩ := hm
@@ -138,7 +139,8 @@ def childProjection : Forms K (3 + m) 2 →ₗ[K] Forms K m 2 :=
   (dropCore.toLinearMap.comp (Forms K (3 + m) 2).subtype).codRestrict _ (fun p => by
     change (dropCore p.val).IsHomogeneous 2
     have hh : ∀ i : Fin (3+m),
-        (Fin.addCases (fun _ : Fin 3 => (0 : Poly K m)) (fun j : Fin m => (X j : Poly K m)) i : Poly K m).IsHomogeneous 1 := by
+        (Fin.addCases (fun _ : Fin 3 => (0 : Poly K m)) (fun j : Fin m => (X j : Poly K m)) i : Poly
+          K m).IsHomogeneous 1 := by
       intro i
       refine Fin.addCases ?_ ?_ i
       · intro j

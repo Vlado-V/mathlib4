@@ -26,12 +26,14 @@ lemma profileSourceCapacity_pos {H : ℝ} (hH : 1 < H) {s : ℕ} (i : Option (Fi
 lemma finiteSourceProfile_pos {H : ℝ} {a z s : ℕ} (hH : 1 < H)
     (ha : 0 < a) (hz : 0 < z) (i : Option (Fin s)) : 0 < finiteSourceProfile H s a z i := by
   rw [finiteSourceProfile_eq_card]
-  exact mul_pos (profileSourceCapacity_pos hH i) (by exact_mod_cast sourceMonomialFiber_card_pos ha hz i)
+  exact mul_pos (profileSourceCapacity_pos hH i) (by exact_mod_cast sourceMonomialFiber_card_pos ha
+    hz i)
 
 lemma finiteTargetProfile_pos {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (hs : 0 < s)
     (j : Fin (2*s+1)) : 0 < finiteTargetProfile s a z j := by
   rw [finiteTargetProfile_eq_card]
-  exact mul_pos (profileTargetCapacity_pos hs j) (by exact_mod_cast targetMonomialFiber_card_pos ha hz j)
+  exact mul_pos (profileTargetCapacity_pos hs j) (by exact_mod_cast targetMonomialFiber_card_pos ha
+    hz j)
 
 lemma finiteSourceProfile_total_pos {H : ℝ} {a z s : ℕ} (hH : 1 < H)
     (ha : 0 < a) (hz : 0 < z) : 0 < ∑ i, finiteSourceProfile H s a z i :=
@@ -44,7 +46,8 @@ lemma finiteTargetProfile_total_pos {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (hs 
 lemma normalized_weight_bounds {I : Type*} [Fintype I] (w : I → ℝ)
     (hw : ∀ i, 0 < w i) (i : I) : 0 < w i / ∑ k, w k ∧ w i / ∑ k, w k ≤ 1 := by
   have hsum : 0 < ∑ k, w k := (hw i).trans_le (single_le_sum (fun k _ => (hw k).le) (mem_univ i))
-  exact ⟨div_pos (hw i) hsum, (div_le_one hsum).mpr (single_le_sum (fun k _ => (hw k).le) (mem_univ i))⟩
+  exact ⟨div_pos (hw i) hsum, (div_le_one hsum).mpr (single_le_sum (fun k _ => (hw k).le) (mem_univ
+    i))⟩
 
 lemma sourceProfile_sum_atoms (H : ℝ) (a z s : ℕ) :
     (∑ α : Σ i, SourceMonomialFiber a z s i, profileSourceCapacity H α.1) =

@@ -67,7 +67,8 @@ theorem exact_counts_prepared_independent_open {d k h lo u : ℕ}
   · rw [←preparedScalarCount_eq_card hd,finrank_forms K n d hnpos]
     simpa only [one_mul] using hn
   · simpa only [Rows,Module.finrank_pi_fintype,Fintype.card_fin,
-      finrank_forms K n (d-1) hnpos,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,Nat.cast_id] using hfn
+      finrank_forms K n (d-1)
+        hnpos,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,Nat.cast_id] using hfn
 
 end PreparedTarget
 end Froberg

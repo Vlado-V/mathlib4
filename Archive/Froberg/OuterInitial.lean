@@ -46,7 +46,8 @@ theorem orderedFiberEquiv_symm_single (c : ℕ)
   by_cases hij : j=i
   · subst j; simp
   · have heij : OrderedMonomials.enumerate n (s+c) j ≠
-        OrderedMonomials.enumerate n (s+c) i := (OrderedMonomials.enumerate n (s+c)).injective.ne hij
+        OrderedMonomials.enumerate n (s+c) i := (OrderedMonomials.enumerate n
+          (s+c)).injective.ne hij
     simp [Pi.single_eq_of_ne hij,Pi.single_eq_of_ne heij]
 
 /-- Actual multiplication in ordered monomial coefficient coordinates. -/

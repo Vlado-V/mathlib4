@@ -60,7 +60,8 @@ open Finset MonomialExpansion
   have hν : ν = fun β : Σ j, TargetMonomialFiber a z s j => profileTargetCapacity s β.1 / T := by
     funext β
     exact normalized_target_atom ha hz β.1
-  have hminor := monomial_minorization ha hz hs (lt_trans (by norm_num) hH) hA P q hP0 hq ε hε hPlower
+  have hminor := monomial_minorization ha hz hs (lt_trans (by norm_num)
+    hH) hA P q hP0 hq ε hε hPlower
   change ∀ α γ, monomialMixingCoefficient s a z H ε * sourceAtomMass H s a z α.1 * μ γ ≤
     reversibleWeights ν (jointConditional (monomialProfileJoint P) ν) α γ at hminor
   rw [hν] at hminor
@@ -75,7 +76,8 @@ open Finset MonomialExpansion
     (embeddedUniform_sum _) (embeddedUniform_nonneg _)
     (div_nonneg hε (profileAmbientCapacity_pos s).le) hκ
   · intro α β hpos
-    exact profileTargetCapacity_le_source α.1 β.1 (monomialProfileJoint_pos_allowed P hPzero α β hpos)
+    exact profileTargetCapacity_le_source α.1 β.1 (monomialProfileJoint_pos_allowed P hPzero α β
+      hpos)
   · intro α β hpos
     apply hb α β
     by_contra hnot
@@ -84,7 +86,8 @@ open Finset MonomialExpansion
   · intro α γ
     apply le_trans _ (hminor α γ)
     apply mul_le_mul_of_nonneg_right _ (embeddedUniform_nonneg _ γ)
-    exact mul_le_mul_of_nonneg_right hκupper (div_nonneg (profileSourceCapacity_pos hH α.1).le hA.le)
+    exact mul_le_mul_of_nonneg_right hκupper (div_nonneg (profileSourceCapacity_pos hH α.1).le
+      hA.le)
   · intro α
     have hh := monomial_capacity_decrease ha hz hs P p hP0 hPzero
       (fun i => (hp i).2) ε hε hPlower α

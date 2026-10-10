@@ -52,7 +52,8 @@ omit [DecidableEq X] in
     (pairedExponent S A).degree = S.card := by
   rw [Finsupp.degree_eq_sum, Fintype.sum_prod_type]
   have he (x : X) : (∑ b : Bool, pairedExponent S A (x,b)) = if x ∈ S then 1 else 0 := by
-    simpa only [Fintype.sum_bool, indexDegree, add_comm] using congrFun (indexDegree_pairedExponent S A) x
+    simpa only [Fintype.sum_bool, indexDegree, add_comm] using congrFun (indexDegree_pairedExponent
+      S A) x
   simp_rw [he]
   simp
 

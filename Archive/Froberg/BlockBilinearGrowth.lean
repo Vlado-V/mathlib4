@@ -67,7 +67,8 @@ theorem blockBilinear_image_finrank [∀ i,FiniteDimensional K (W i)]
   calc
     _ ≤ ∑ i,finrank K (initialPiece W
         (Quartic.BilinearImage.image (blockBilinear mu) L) i) := by
-      exact Finset.sum_le_sum (fun i _ => Submodule.finrank_mono (blockBilinear_initial_image mu L i))
+      exact Finset.sum_le_sum (fun i _ => Submodule.finrank_mono (blockBilinear_initial_image mu L
+        i))
     _ = _ := sum_initialPiece_finrank W _
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

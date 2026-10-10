@@ -36,11 +36,13 @@ theorem eventually_exists_strict_core_model {K : Type*} [Field K] [Infinite K]
       ∃ v : Labels k (a n) s → Fin h → K,
         (∀ U : Finset (Labels k (a n) s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val)) ∧
         MixedExterior.UniversalMixedPosition v ∧
-        (∀ c ≤ s+1, Function.Injective (AttachedMultiplication.multiplication (d := c) (coreExponent (z n)) v)) ∧
+        (∀ c ≤ s+1, Function.Injective (AttachedMultiplication.multiplication (d := c) (coreExponent
+          (z n)) v)) ∧
         (0 < finrank K (CoreSourceSpace (z := z n) v)) ∧
         ((finrank K (CoreSourceSpace (z := z n) v) : ℝ) ≤ g*(n : ℝ)^(s+1)) ∧
         (∀ L : Submodule K (CoreSourceSpace (z := z n) v),
-          ((finrank K (CoreTargetSpace (z := z n) v) : ℝ)/finrank K (CoreSourceSpace (z := z n) v))*finrank K L +
+          ((finrank K (CoreTargetSpace (z := z n) v) : ℝ)/finrank K (CoreSourceSpace (z := z n)
+            v))*finrank K L +
           g*(n : ℝ)^(s+1)*(min (finrank K L)
             (finrank K (CoreSourceSpace (z := z n) v)-finrank K L) : ℕ) ≤
           (finrank K (AttachedMultiplication.outerImage (d := s+1)

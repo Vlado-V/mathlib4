@@ -53,7 +53,8 @@ theorem quadratic_finite_product_density_gap {d : ℕ} (hd : 9 ≤ d) :
   have h := quadratic_product_capacity hd
   have hp := productCapacity_pos d 2
   have hbase : (253/250 : ℝ)*countGammaTwo d < (1249/1250 : ℝ)*productCapacity d 2 := by
-    have hh := (div_lt_iff₀ hp).mp (show (253/250 : ℝ)*countGammaTwo d/productCapacity d 2 < 1249/1250 by linarith)
+    have hh := (div_lt_iff₀ hp).mp (show (253/250 : ℝ)*countGammaTwo d/productCapacity d 2 <
+      1249/1250 by linarith)
     linarith
   exact hbase.trans (quadratic_diagonal_product_margin hd)
 

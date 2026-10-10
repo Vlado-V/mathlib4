@@ -28,7 +28,8 @@ theorem finite_subspace_projection_open (U : I → Submodule K V)
     (hU : ∀ i, finrank K (U i) ≤ finrank K W) :
     ∃ D : MvPolynomial (Fin (finrank K (V →ₗ[K] W))) K,
       (∃ x, eval x D ≠ 0) ∧ ∀ x, eval x D ≠ 0 → ∀ i,
-        Function.Injective (((Module.finBasis K (V →ₗ[K] W)).equivFun.symm x).comp (U i).subtype) := by
+        Function.Injective (((Module.finBasis K (V →ₗ[K] W)).equivFun.symm x).comp (U
+          i).subtype) := by
   classical
   let b := Module.finBasis K (V →ₗ[K] W)
   have hi (i : I) : ∃ L : V →ₗ[K] W, Function.Injective (L.comp (U i).subtype) := by

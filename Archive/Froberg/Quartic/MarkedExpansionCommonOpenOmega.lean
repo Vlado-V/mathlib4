@@ -54,13 +54,16 @@ theorem expansion_augmented (m : ℕ) (hm : 41 ≤ m) (hmhi : m ≤ 319)
 
 include L in
 theorem common_open [Infinite K] (ω : K) (m : ℕ) (hm : 41 ≤ m) (hmhi : m ≤ 319)
-    (hpositive : 0 < Counts.chi (m + 3) (upperEndpoint m + mixedCount m false + 4)) (hω : ω ≠ 0) (hω1 : ω ≠ -1) :
+    (hpositive : 0 < Counts.chi (m + 3) (upperEndpoint m + mixedCount m false + 4)) (hω : ω ≠
+      0) (hω1 : ω ≠ -1) :
     ∃ E : MarkedConvolutionExpansionOpen.Dimensions m false → ℕ,
       MarkedConvolutionExpansionOpen.Thresholds m false E ∧
-      ∃ D : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m false) (upperEndpoint m)) K,
+      ∃ D : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m false) (upperEndpoint
+        m)) K,
         (∃ p, eval p D ≠ 0) ∧ ∀ p, eval p D ≠ 0 →
           SimultaneousBlockConditionsOmega.BlockConditions ω p ∧
-          GenericF13.Conditions (AugmentedGeneric.coefficientMixed p) (AugmentedGeneric.coefficientChild p) ∧
+          GenericF13.Conditions (AugmentedGeneric.coefficientMixed
+            p) (AugmentedGeneric.coefficientChild p) ∧
           finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild p)) =
             (m+2).choose 3-m*upperEndpoint m ∧
           ∀ d : MarkedConvolutionExpansionOpen.Dimensions m false,
@@ -68,7 +71,8 @@ theorem common_open [Infinite K] (ω : K) (m : ℕ) (hm : 41 ≤ m) (hmhi : m �
               (d.val+mixedCount m false) (E d+mixedCount m false*(m+1).choose 2) := by
   classical
   obtain ⟨E,hE,A,⟨a,ha⟩,hA⟩ := expansion_augmented (K := K) (L := L) m hm hmhi hpositive
-  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRangeOmega.generic_endpoint_conditions (K := K) ω m (by omega) false hω hω1
+  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRangeOmega.generic_endpoint_conditions (K := K) ω m (by
+    omega) false hω hω1
   have hA0 : A ≠ 0 := by intro h; simp [h] at ha
   have hB0 : B ≠ 0 := by intro h; simp [h] at hb
   obtain ⟨p₀,hp₀⟩ := nonempty_principal_intersection

@@ -90,7 +90,8 @@ theorem principal_open_restored_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤
         eval ((Module.finBasis K _).equivFun
           (restoredScalarFiberCoordinates (restoredRestrictCounts hc p)).1) A ≠ 0 ∧
         ∀ a, eval ((Module.finBasis K _).equivFun a) A ≠ 0 →
-          eval ((Module.finBasis K _).equivFun (restoredCountScalarFiberLinear hc (a,p))) D ≠ 0 := by
+          eval ((Module.finBasis K _).equivFun (restoredCountScalarFiberLinear hc
+            (a,p))) D ≠ 0 := by
   letI : Module.Finite K (Space m d q J c' O) := finite_space hO
   intro D p hp
   apply principal_open_freeze_at (restoredCountScalarFiberLinear hc)

@@ -21,21 +21,26 @@ open UniformEndpoint ProfileCertificate
 variable {K L : Type*} [Field K] [Field L] [Algebra K L] [IsAlgClosed L]
 
 include L in
-theorem common_open [Infinite K] (ω : K) (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1) :
+theorem common_open [Infinite K] (ω : K) (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω
+  ≠ -1) :
     ∃ E : StrongExpansionOpen.Dimensions m upper → ℕ,
       StrongExpansionOpen.Thresholds m upper E ∧
-      ∃ D : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m)) K,
+      ∃ D : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint
+        m)) K,
         (∃ p, eval p D ≠ 0) ∧ ∀ p, eval p D ≠ 0 →
           SimultaneousBlockConditionsOmega.BlockConditions ω p ∧
-          GenericF13.Conditions (AugmentedGeneric.coefficientMixed p) (AugmentedGeneric.coefficientChild p) ∧
+          GenericF13.Conditions (AugmentedGeneric.coefficientMixed
+            p) (AugmentedGeneric.coefficientChild p) ∧
           finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild p)) =
             (m+2).choose 3-m*upperEndpoint m ∧
           ∀ d : StrongExpansionOpen.Dimensions m upper,
             RowExpansionOpen.Expands (AugmentedGeneric.coefficientMixed p)
               (d.val+mixedCount m upper) (E d+mixedCount m upper*(m+1).choose 2) := by
   classical
-  obtain ⟨E,hE,A,⟨a,ha⟩,hA⟩ := StrongExpansionCommonOpen.expansion_augmented (K := K) (L := L) m hm upper
-  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRangeOmega.generic_endpoint_conditions (K := K) ω m (by omega) upper hω hω1
+  obtain ⟨E,hE,A,⟨a,ha⟩,hA⟩ := StrongExpansionCommonOpen.expansion_augmented (K := K) (L :=
+    L) m hm upper
+  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRangeOmega.generic_endpoint_conditions (K := K) ω m (by
+    omega) upper hω hω1
   have hA0 : A ≠ 0 := by intro h; simp [h] at ha
   have hB0 : B ≠ 0 := by intro h; simp [h] at hb
   obtain ⟨p₀,hp₀⟩ := nonempty_principal_intersection

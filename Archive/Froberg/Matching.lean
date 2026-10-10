@@ -39,7 +39,8 @@ theorem exists_matching_of_degree_bounds (t : A → Finset B) (k : ℕ) (hk : 0 
       rw [heq]
       exact hl a
     · intro b _
-      exact (Finset.card_le_card (Finset.filter_subset_filter _ (Finset.subset_univ s))).trans (hr b)
+      exact (Finset.card_le_card (Finset.filter_subset_filter _ (Finset.subset_univ s))).trans (hr
+        b)
   exact Nat.le_of_mul_le_mul_right hcount hk
 
 /-- Every finite biregular bipartite graph with at least as many right vertices

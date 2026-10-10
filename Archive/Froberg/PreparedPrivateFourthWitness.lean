@@ -40,8 +40,10 @@ theorem exists_fourth_private_row_parameter {w v z d q b t : ℕ}
       finrank K (privateOutputMatrix bi bo (l i)).range)
     (ell : Fin 2 → Forms K (v+v) 1) (hell : LinearIndependent K ell) :
     let r : J := ⟨4,hRJ⟩
-    let hO : ∀ j∈J,constrainedOutputs T j≤homogeneousSubmodule (Fin w × Bool) K j := fun _ _ => inf_le_left
-    let P : Fin t → MvPolynomial ((Fin w × Bool) ⊕ Fin (v+v+z)) K := fun i => rename Sum.inl (l i).val*
+    let hO : ∀ j∈J,constrainedOutputs T j≤homogeneousSubmodule (Fin w ×
+      Bool) K j := fun _ _ => inf_le_left
+    let P : Fin t → MvPolynomial ((Fin w × Bool) ⊕ Fin (v+v+z)) K := fun i => rename Sum.inl (l
+      i).val*
       rename Sum.inr (monomial (privateExponent (v+v) (d-1) ι i) (1:K))
     ∃ p : Space (v+v+z) d q J counts (constrainedOutputs T),
       (privateAugmentedRow hO r p P).ker=(privateAugmentedConstants (b := t) hO r p).range := by
@@ -49,7 +51,8 @@ theorem exists_fourth_private_row_parameter {w v z d q b t : ℕ}
   obtain ⟨e,zv,he,Q,E,hproj,hER,hRdeg,hrest,hfull,hker⟩ :=
     exists_finite_fourth_projected_row h.hw h.hv bo
       (fun i => (privateOutputMatrix bi bo (l i)).range) hrelations counts J
-      (fun j hj => by have := h.low j hj; omega) h.even h.degree T h.low h.diagonal h.output_positive
+      (fun j hj => by have := h.low j hj;
+        omega) h.even h.degree T h.low h.diagonal h.output_positive
       h.enough_generators h.divisor_capacity h.incidence h.scalar_open
   let o := fun j => (bo j).val
   have ho : LinearIndependent K o := bo.linearIndependent.map'
@@ -69,12 +72,16 @@ theorem exists_fourth_private_row_parameter {w v z d q b t : ℕ}
       · exact (hrest j hjR i).2.2
   let p₀ := ofPolynomialFamilies (Q ∘ Fintype.equivFin (Label q J counts)) E hmem
   let p := coreExtension z p₀
-  have hp := sparse_core_extended_parameter_exact (z := z) (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
-    h.degree (⟨4,hRJ⟩ : J) hRd o ho (fun j => (bo j).property) e zv he Q E hmem hER hfull hker ell hell
+  have hp := sparse_core_extended_parameter_exact (z := z) (fun j _ => (inf_le_left :
+    constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
+    h.degree (⟨4,hRJ⟩ : J) hRd o ho (fun j => (bo
+      j).property) e zv he Q E hmem hER hfull hker ell hell
   refine ⟨p,?_⟩
-  apply private_augmented_exact (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) (⟨4,hRJ⟩ : J) p _ hp.2
+  apply private_augmented_exact (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+    homogeneousSubmodule (Fin w × Bool) K j)) (⟨4,hRJ⟩ : J) p _ hp.2
   exact private_core_row_separation hd (by omega : 2≤3) (by omega) hRJ
-    (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) h.degree bi bo l hl ι e zv hproj p₀ (by
+    (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K
+      j)) h.degree bi bo l hl ι e zv hproj p₀ (by
       intro i
       simpa only [p₀,layers_ofPolynomialFamilies _ _ _ hRJ] using hER i)
 

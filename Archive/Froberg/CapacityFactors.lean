@@ -25,7 +25,8 @@ theorem factorial_real_ne_zero (m : ℕ) : (m.factorial : ℝ) ≠ 0 := by
   exact_mod_cast Nat.factorial_ne_zero m
 
 theorem higher_scalar_factorization {d j : ℕ} (hj : 6 ≤ j) (hjd : j ≤ d) :
-    higherCountGamma d j / scalarCapacity d j = scalarLeftFactor j * scalarRightFactor d (d - j) := by
+    higherCountGamma d j / scalarCapacity d j = scalarLeftFactor j * scalarRightFactor d (d -
+      j) := by
   have h₁ : 2 * d - 2 * j + 4 = 2 * (d - j) + 4 := by omega
   have h₂ : 2 * d - j = d + (d - j) := by omega
   simp only [higherCountGamma, if_neg (by omega : j ≠ 4), scalarCapacity,

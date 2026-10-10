@@ -114,6 +114,7 @@ theorem paired_space_exists {K : Type} [Field K] [Infinite K] (w s : ℕ) :
       W ≤ MvPolynomial.weightedHomogeneousSubmodule K pairedWeight (s/2,s-s/2) ∧
       finrank K W = w.choose s ∧
       Function.Injective (subspaceSymmetricMultiplication W) := by
-  simpa only [Fintype.card_fin] using exists_space_independent_symmetric_products (X := Fin w) (K := K) s
+  simpa only [Fintype.card_fin] using exists_space_independent_symmetric_products (X := Fin w) (K :=
+    K) s
 
 end Froberg.PairedMonomials

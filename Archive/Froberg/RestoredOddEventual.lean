@@ -31,7 +31,8 @@ theorem eventually_restored_odd_injective_open (hd : 2 ≤ d) (he : d%2=0)
       ∃ D : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K,
         (∃ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0) ∧
         ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →
-          Function.Injective (restoredOddRowLinear (restoredFamilyLinear he hO hJ heven idx slot p)) := by
+          Function.Injective (restoredOddRowLinear (restoredFamilyLinear he hO hJ heven idx slot
+            p)) := by
   filter_upwards [eventually_critical_prefix_capacity hd r hr,eventually_gt_atTop (0 : ℕ),
     eventually_ge_atTop ((d-1+d).choose (d-1)*((d-1+d).choose (d-1)*d.choose (d-1)))]
     with m hcap hm hlarge

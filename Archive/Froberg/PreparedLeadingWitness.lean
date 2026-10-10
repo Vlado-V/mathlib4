@@ -36,7 +36,8 @@ theorem intrinsicLayer_independent_iff
     simpa only [Function.comp_def,Submodule.subtype_apply,heq] using hh
   · intro hi
     apply LinearIndependent.of_comp (FullBiform K σ m j.val (d-j.val)).subtype
-    have hh := hi.map' (biformImage (O j.val) (Forms K m (d-j.val))).subtype (Submodule.ker_subtype _)
+    have hh := hi.map' (biformImage (O j.val) (Forms K m (d-j.val))).subtype (Submodule.ker_subtype
+      _)
     simpa only [Function.comp_def,Submodule.subtype_apply,heq] using hh
 
 theorem leading_witnesses_of_intrinsic

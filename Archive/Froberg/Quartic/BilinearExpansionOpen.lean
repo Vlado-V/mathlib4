@@ -37,12 +37,14 @@ theorem empty_iff_expands [NeZero d] (E : Matrix (Fin a) (Fin c) K)
     (∀ q : Fin (ProjectiveCount a d) → L,
       (∀ x : BilinearContainingEquations.Index a b t c d e,
         aeval q (BilinearContainingEquations.equation E mu x).val = 0) → q = 0) ↔
-      ExpandsContaining (E.map (algebraMap K L)) (BilinearScalarExtension.extend (L := L) mu) d e := by
+      ExpandsContaining (E.map (algebraMap K L)) (BilinearScalarExtension.extend (L := L)
+        mu) d e := by
   classical
   constructor
   · intro hempty S hS hE
     by_contra hbound
-    have hbad : finrank L (BilinearImage.image (BilinearScalarExtension.extend (L := L) mu) S) < e :=
+    have hbad : finrank L (BilinearImage.image (BilinearScalarExtension.extend (L := L) mu)
+      S) < e :=
       Nat.lt_of_not_ge hbound
     obtain ⟨p,hp,hs,hcontains,hsub⟩ := cover_containing S hS (E.map (algebraMap K L)) hE
     let q : Fin (ProjectiveCount a d) → L := fun i => p ((rowIndex a d).symm i)

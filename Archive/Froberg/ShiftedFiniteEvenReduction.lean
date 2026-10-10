@@ -40,7 +40,8 @@ theorem finite_even_reduction_open_shift {w v z d q : ℕ} {J : Finset ℕ} {cou
         ∀ c : Label q J counts → MvPolynomial ((Fin w × Bool) ⊕ Fin (v+v+z)) K,
           (∀ i,(c i).IsHomogeneous d) →
           (∀ i α,(c i).coeff α≠0 →
-            Finsupp.weight (Sum.elim (fun _ : Fin w × Bool => 1) (fun _ : Fin (v+v+z) => 0)) α%2=0) →
+            Finsupp.weight (Sum.elim (fun _ : Fin w × Bool => 1) (fun _ : Fin (v+v+z) => 0))
+              α%2=0) →
           (∀ r,0<r → r≤2*d → weightedHomogeneousComponent
             (Sum.elim (fun _ : Fin w × Bool => 1) (fun _ : Fin (v+v+z) => 0)) r
             (∑ i,generator p i*c i)=0) →
@@ -53,7 +54,8 @@ theorem finite_even_reduction_open_shift {w v z d q : ℕ} {J : Finset ℕ} {cou
   classical
   let S := Space (v+v+z) d q J counts (constrainedOutputs T)
   let B := (Finset.range (2*d+1)).filter (fun R => d<R ∧ R%2=0)
-  have hB (R : ℕ) : R∈B ↔ d<R ∧ R≤2*d ∧ R%2=0 := by simp only [B,Finset.mem_filter,Finset.mem_range]; omega
+  have hB (R :
+    ℕ) : R∈B ↔ d<R ∧ R≤2*d ∧ R%2=0 := by simp only [B,Finset.mem_filter,Finset.mem_range]; omega
   obtain ⟨ell,hell⟩ := exists_two_core_linear_forms (K := K) (by omega : 2≤v+v)
   have hwit : ∀ R : J,∃ p : S,
       LinearIndependent K (fun i => intrinsicLayerMap (fun _ _ => inf_le_left) R i p) ∧
@@ -84,7 +86,8 @@ theorem finite_even_reduction_open_shift {w v z d q : ℕ} {J : Finset ℕ} {cou
   have hps : eval ((Module.finBasis K S).equivFun p) D₁≠0 ∧
       eval ((Module.finBasis K S).equivFun p) D₂≠0 := by
     simpa only [map_mul,mul_ne_zero_iff] using hp
-  exact even_positive_rows_reduce_to_scalar (O := constrainedOutputs T) (fun _ _ => inf_le_left) hdegree
+  exact even_positive_rows_reduce_to_scalar (O := constrainedOutputs T) (fun _ _ =>
+    inf_le_left) hdegree
     (fun j hj => lt_of_lt_of_le (by decide : 0<2) (hJ j hj)) heven hcover p
     (hgood₁ p hps.1) (fun R hRd hR2d hRe => hgood₂ p hps.2 R ((hB R).mpr ⟨hRd,hR2d,hRe⟩))
     c hc hceven hpositive

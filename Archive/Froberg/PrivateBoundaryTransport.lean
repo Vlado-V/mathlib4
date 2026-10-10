@@ -64,7 +64,8 @@ theorem private_boundary_polynomial
     (fun i => polynomialFormVector o s (v i))∈Submodule.span K (Set.range (koszulVector
       (fun i => rename Sum.inl (outputCombination o (w i))*
         rename Sum.inr (monomial (privateExponent a s ι i) (1:K))))) := by
-  have hv' : v∈Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι w))) := by
+  have hv' : v∈Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι
+    w))) := by
     rw [←hker]
     exact hv
   simpa only [privateGenerator_polynomial] using

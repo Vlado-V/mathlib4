@@ -29,7 +29,8 @@ theorem prepared_even_independent_of_full (hd : 0<d)
     (U : Fin b → Forms K h d) (F : OuterSpace K (Fin h) m d f)
     (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p,F))) :
     LinearIndependent K (preparedEvenBiform hO hJ heven p) := by
-  let emb : PreparedParameters.Label q J counts → Fin (Fintype.card (PreparedTarget.Label q f b J counts)) :=
+  let emb : PreparedParameters.Label q J counts → Fin (Fintype.card (PreparedTarget.Label q f b J
+    counts)) :=
     fun i => Fintype.equivFin _ (Sum.inl i)
   have hemb : Function.Injective emb := (Fintype.equivFin _).injective.comp Sum.inl_injective
   apply LinearIndependent.of_comp evenPolynomialToForms
@@ -54,10 +55,12 @@ theorem prepared_private_odd_split (hd : 0<d) (ho : d%2=1)
     (H : OddCyclesExact U P (p,F)) :
     OddSplitExact (fun i => evenRestorationBiform (evenGenerator hO hJ heven p (e i)))
       (fun i => oddRestorationBiform (privateOddFamily hd ho P U i)) := by
-  let eqv : PreparedParameters.Label q J counts ≃ Fin (q+Fintype.card (ProductRows.LayerLabel J counts)) :=
+  let eqv : PreparedParameters.Label q J counts ≃ Fin (q+Fintype.card (ProductRows.LayerLabel J
+    counts)) :=
     (Equiv.sumCongr (Equiv.refl (Fin q)) (Fintype.equivFin _)).trans finSumFinEquiv
   let Q := Fin.append (preparedBaseBiform hO hJ heven p) (preparedPositiveBiform hO hJ heven p)
-  have hQ (i : PreparedParameters.Label q J counts) : Q (eqv i)=preparedEvenBiform hO hJ heven p i := by
+  have hQ (i : PreparedParameters.Label q J counts) : Q (eqv
+    i)=preparedEvenBiform hO hJ heven p i := by
     cases i <;> simp [Q,eqv,preparedBaseBiform,preparedPositiveBiform]
   have hQi : LinearIndependent K Q := by
     convert hi.comp eqv.symm eqv.symm.injective using 1
@@ -126,10 +129,12 @@ theorem prepared_private_endpoint_independent (hd : 0<d) (ho : d%2=1)
     (hi : LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U P (p,F))) :
     LinearIndependent K (privateEndpointFamily hd ho hO hJ heven e p P U) := by
   let emb : Fin (r+b) → Fin (Fintype.card (PreparedTarget.Label q f b J counts)) :=
-    fun k => Fintype.equivFin _ (Sum.map e (Sum.inr : Fin b → Fin f ⊕ Fin b) (finSumFinEquiv.symm k))
+    fun k => Fintype.equivFin _ (Sum.map e (Sum.inr : Fin b → Fin f ⊕ Fin b) (finSumFinEquiv.symm
+      k))
   have hemb : Function.Injective emb :=
     (Fintype.equivFin _).injective.comp
-      ((e.injective.sumMap (Sum.inr_injective (α := Fin f) (β := Fin b))).comp finSumFinEquiv.symm.injective)
+      ((e.injective.sumMap (Sum.inr_injective (α := Fin f) (β := Fin b))).comp
+        finSumFinEquiv.symm.injective)
   convert hi.comp emb hemb using 1
   funext k
   obtain ⟨i,rfl⟩ := finSumFinEquiv.surjective k

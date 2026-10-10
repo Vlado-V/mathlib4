@@ -200,7 +200,8 @@ theorem map_formalMixed_subtype (L A : Submodule K V) :
   · apply Submodule.span_le.mpr
     rintro _ ⟨a, b, ha, hb, rfl⟩
     refine ⟨symProd (⟨a, ha.2⟩ : A) (⟨b, hb⟩ : A), ?_, ?_⟩
-    · exact symProd_mem_formalMixed (L.comap A.subtype) (show (⟨a, ha.2⟩ : A) ∈ L.comap A.subtype from ha.1) (⟨b, hb⟩ : A)
+    · exact symProd_mem_formalMixed (L.comap A.subtype) (show (⟨a, ha.2⟩ : A) ∈ L.comap A.subtype
+      from ha.1) (⟨b, hb⟩ : A)
     · exact symmetricMap_symProd A.subtype _ _
 
 /-- The exact formal-product intersection identity (3.4) of the manuscript. -/

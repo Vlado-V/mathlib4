@@ -83,7 +83,8 @@ theorem principal_open [Infinite K]
     intro hsquare
     have hsame : (withSquare (f a)).range=(quadraticMultiplication (pre a)).range := by
       rw [withSquare_range]
-      exact sup_eq_left.mpr (Submodule.span_le.mpr (by intro v hv; rcases hv with rfl; exact hsquare))
+      exact sup_eq_left.mpr (Submodule.span_le.mpr (by intro v hv; rcases hv with rfl; exact
+        hsquare))
     have hr := hCrank a ha.2
     rw [hCdim,hsame] at hr
     have hd0 := quartic_quotient_add_rank q₀

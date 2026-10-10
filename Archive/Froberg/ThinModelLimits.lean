@@ -32,7 +32,8 @@ theorem eventually_generic_thin_model_strata
           eval (fun ik => coordinates K _ (Q ik.1) ik.2) P ≠ 0) ∧
         ∀ Q : Fin (q n) → Forms K n (s+1),
           eval (fun ik => coordinates K _ (Q ik.1) ik.2) P ≠ 0 →
-          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiplication (g n) (s+1)) Q) ∧
+          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiplication (g n)
+            (s+1)) Q) ∧
           finrank K (ScalarQuotient (quotientMultiplication (g n) (s+1)) Q)=j n ∧
           HasClosedKernelSlices (scalarQuotientBilinear (quotientMultiplication (g n) (s+1)) Q)
             (BilinearCovectorStrata.thinSlices (j n) (C*(n : ℝ)^(s+1))) := by

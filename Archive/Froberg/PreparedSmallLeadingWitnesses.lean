@@ -36,7 +36,8 @@ theorem eventually_actual_middle_extended_leading_witnesses_late_output {d : ℕ
   classical
   filter_upwards [eventually_actual_middle_small_witnesses_shift_late_output (K := K) hd hd8,
     eventually_counted_fourth_row_capacity_shift_late_output (K := K) hd hd8,
-    tendsto_twice_nat.eventually (eventually_quadratic_capacity_shift_late (K := K) (d := d) (by omega))]
+    tendsto_twice_nat.eventually (eventually_quadratic_capacity_shift_late (K := K) (d := d) (by
+      omega))]
     with w hcore hfour hquad
   intro hdiv z extra e he
   have hecast : ∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*((2*w : ℕ) : ℝ)^2*(n : ℝ)^(d-2) := by
@@ -84,7 +85,8 @@ theorem eventually_actual_middle_all_scalar_leading_witnesses_late_output {d : �
       let A := Space m d (upperCount m d) (allEvenIndices d)
         (allEvenCount d (2*w) m (e m+extra)) (constrainedOutputs T)
       ∀ j : allEvenIndices d,∃ p : A,LinearIndependent K (p.2 j) := by
-  filter_upwards [eventually_actual_middle_extended_leading_witnesses_late_output (K := K) hd hd8] with w hw
+  filter_upwards [eventually_actual_middle_extended_leading_witnesses_late_output (K := K) hd
+    hd8] with w hw
   intro hdiv extra e he
   exact eventually_of_twice_add_shifts 0 _ (hw hdiv 0 extra e he) (hw hdiv 1 extra e he)
 

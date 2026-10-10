@@ -75,7 +75,8 @@ def dropQuadratic : H K (ι ⊕ τ) 2 →ₗ[K] H K τ 2 :=
   ((dropLeft (K := K)).toLinearMap.comp (H K (ι ⊕ τ) 2).subtype).codRestrict _
     (fun p => dropLeft_homogeneous p.val p.property)
 
-theorem dropQuadratic_surjective : Function.Surjective (dropQuadratic (K := K) (ι := ι) (τ := τ)) := by
+theorem dropQuadratic_surjective : Function.Surjective (dropQuadratic (K := K) (ι := ι) (τ :=
+  τ)) := by
   intro p
   refine ⟨⟨rename Sum.inr p.val, p.property.rename_isHomogeneous⟩, ?_⟩
   apply Subtype.ext

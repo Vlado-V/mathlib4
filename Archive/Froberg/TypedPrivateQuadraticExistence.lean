@@ -38,7 +38,8 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem fullBiformCoreExtension_injective :
-    Function.Injective (fullBiformCoreExtension (K := K) (σ := σ) (a := a) (R := R) (s := s) z) := by
+    Function.Injective (fullBiformCoreExtension (K := K) (σ := σ) (a := a) (R := R) (s := s)
+      z) := by
   intro p r he
   apply Subtype.ext
   exact rename_injective (Sum.map id (Fin.castAdd z))

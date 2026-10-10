@@ -41,14 +41,17 @@ theorem prepared_tensor_detector_annihilates {X : Type*} [AddCommGroup X] [Modul
   · have hc2 : coreCoefficientSpace K h m d 2 =
         polynomialTensorSpace (Forms K h 2) (Forms K m (d-2)) := by
       have hh : 2+(d-2)=d := by omega
-      simpa only [hh] using (coreCoefficientSpace_eq_polynomialTensorSpace (K := K) (h := h) (m := m) 2 (d-2))
+      simpa only [hh] using (coreCoefficientSpace_eq_polynomialTensorSpace (K := K) (h := h) (m :=
+        m) 2 (d-2))
     have hc1 : coreCoefficientSpace K h m d 1 =
         polynomialTensorSpace (Forms K h 1) (Forms K m (d-1)) := by
       have hh : 1+(d-1)=d := by omega
-      simpa only [hh] using (coreCoefficientSpace_eq_polynomialTensorSpace (K := K) (h := h) (m := m) 1 (d-1))
+      simpa only [hh] using (coreCoefficientSpace_eq_polynomialTensorSpace (K := K) (h := h) (m :=
+        m) 1 (d-1))
     have hc0 : coreCoefficientSpace K h m d 0 =
         polynomialTensorSpace (Forms K h 0) (Forms K m d) := by
-      simpa only [zero_add] using (coreCoefficientSpace_eq_polynomialTensorSpace (K := K) (h := h) (m := m) 0 d)
+      simpa only [zero_add] using (coreCoefficientSpace_eq_polynomialTensorSpace (K := K) (h := h)
+        (m := m) 0 d)
     unfold preparedProductDenominator
     rw [hc2,hc1,hc0]
     refine sup_le (sup_le ?_ hP) ?_

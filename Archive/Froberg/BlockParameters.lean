@@ -133,7 +133,8 @@ theorem block_parameters_eventually {d : ℕ} (hd : 3 ≤ d) :
     (by simpa using scaled_power_normalized_limit (1 : ℝ) 1)
     (outerColumnRate_bounds hd).2
   have hTwo : Tendsto (fun h : ℕ => (2 * (h : ℝ)) / (h : ℝ) ^ 2) atTop (𝓝 0) := by
-    have hp := polynomial_div_pow_nat_tendsto (C 2 * X : Polynomial ℝ) 2 (by compute_degree <;> norm_num)
+    have hp := polynomial_div_pow_nat_tendsto (C 2 * X : Polynomial ℝ) 2 (by compute_degree <;>
+      norm_num)
     simpa using hp
   have hcpos : 0 < outerColumnRate d ^ 2 / 2 := by
     have hh := (outerColumnRate_bounds hd).1

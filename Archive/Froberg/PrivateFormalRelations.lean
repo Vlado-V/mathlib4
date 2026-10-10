@@ -38,8 +38,10 @@ theorem coefficientBoundary_split_left (q : Fin (r+b) → V)
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inl i))=
       coefficientBoundary (fun j => q (finSumFinEquiv (Sum.inl j))) M i := by
   unfold coefficientBoundary
-  rw [←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C (finSumFinEquiv (Sum.inl i)) j • q j),
-    ←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C j (finSumFinEquiv (Sum.inl i)) • q j)]
+  rw [←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C (finSumFinEquiv (Sum.inl i)) j • q
+    j),
+    ←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C j (finSumFinEquiv (Sum.inl i)) • q
+      j)]
   simp [Fintype.sum_sum_type,splitDiagonalMatrix]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -48,8 +50,10 @@ theorem coefficientBoundary_split_right (q : Fin (r+b) → V)
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inr i))=
       coefficientBoundary (fun j => q (finSumFinEquiv (Sum.inr j))) C i := by
   unfold coefficientBoundary
-  rw [←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C (finSumFinEquiv (Sum.inr i)) j • q j),
-    ←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C j (finSumFinEquiv (Sum.inr i)) • q j)]
+  rw [←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C (finSumFinEquiv (Sum.inr i)) j • q
+    j),
+    ←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C j (finSumFinEquiv (Sum.inr i)) • q
+      j)]
   simp [Fintype.sum_sum_type,splitDiagonalMatrix]
 end Boundary
 
@@ -83,7 +87,8 @@ theorem privateSplitEndpoint_back
   biformSplitEndpoint_back _ _ i
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
+theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K := K) (blockWeight h
+  m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d)
     (hi : LinearIndependent K (privateSplitEndpoint g p))
     (D : Submodule K (Forms K (h+m) (2*d)))
@@ -91,14 +96,16 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
     (hodd : ∀ a : (endpointMultiplication (privateSplitEndpoint g p)).ker,
       (∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
         (1-biformSplitEndpointParity (q := r) (f := b) i)) →
-      a.val∈oppositeKoszulSpace (privateSplitEndpoint g p) (biformSplitEndpointParity (q := r) (f := b)))
+      a.val∈oppositeKoszulSpace (privateSplitEndpoint g p) (biformSplitEndpointParity (q := r) (f :=
+        b)))
     (degree : Fin r → ℕ) (Q : Submodule K (Forms K (h+m) d))
     (hQ : Q≤Submodule.span K (Set.range (privateSplitEndpoint g p)))
     (hlabel : ∀ i,degree i=0 → privateSplitEndpoint g p (finSumFinEquiv (Sum.inl i))∈Q)
     (hreduce : ∀ (c : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
       (v : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d),
       SplitRestoration.row (evenRestorationSpace (blockWeight h m) d).subtype
-        (oddRestorationSpace (blockWeight h m) d).subtype (positiveWeightProjection (blockWeight h m) d)
+        (oddRestorationSpace (blockWeight h m) d).subtype (positiveWeightProjection (blockWeight h
+          m) d)
         g p (c,v)=0 →
       ∃ (M : Fin r → Fin r → K) (C : Fin b → Fin b → K)
         (z : retainedScalarCoefficients (K := K) (blockWeight h m) d degree),
@@ -106,7 +113,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalMixed (Submodule.span K (Set.range (privateSplitEndpoint g p)))=
       (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
-        formalProducts Q (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
+        formalProducts Q (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin
+          (h+m))).range := by
   classical
   apply projected_formal_relations_of_even_reduction (coreParity h m)
     (biformSplitEndpointParity (q := r) (f := b)) (privateSplitEndpoint g p) hi
@@ -133,7 +141,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
         apply (mem_weightedParitySpace_iff _ _ _).mpr
         apply (parity_homogeneous_iff _ _ 1 (by decide)).mp
         convert hpar (Sum.inr i) using 1 <;> norm_num [biformSplitParity] <;> decide⟩
-  have hsum : rename finSumFinEquiv.symm (endpointMultiplication (privateSplitEndpoint g p) c.val).val=
+  have hsum : rename finSumFinEquiv.symm (endpointMultiplication (privateSplitEndpoint g p)
+    c.val).val=
       (∑ i,(g i).val*(cE i).val)+(∑ j,(p j).val*(cO j).val) := by
     rw [endpointMultiplication_val]
     simp only [map_sum,map_mul]
@@ -145,12 +154,14 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
     rwa [Submodule.ker_mkQ] at hh
   obtain ⟨s,hs⟩ := hD hcD
   have hscalar : (rename finSumFinEquiv.symm
-      (endpointMultiplication (privateSplitEndpoint g p) c.val).val).IsWeightedHomogeneous (blockWeight h m) 0 := by
+      (endpointMultiplication (privateSplitEndpoint g p)
+        c.val).val).IsWeightedHomogeneous (blockWeight h m) 0 := by
     rw [←hs]
     apply weighted_homogeneous_rename finSumFinEquiv.symm.toEmbedding
     simpa only [←coreWeight_eq_blockWeight,Equiv.coe_toEmbedding,renameForm,LinearMap.coe_mk,AddHom.coe_mk] using scalar_rename_core_weight_zero (h := h) s
   have hrow : SplitRestoration.row (evenRestorationSpace (blockWeight h m) d).subtype
-      (oddRestorationSpace (blockWeight h m) d).subtype (positiveWeightProjection (blockWeight h m) d)
+      (oddRestorationSpace (blockWeight h m) d).subtype (positiveWeightProjection (blockWeight h m)
+        d)
       g p (cE,cO)=0 := by
     change positiveWeightProjection (blockWeight h m) d (∑ i,(g i).val*(cE i).val)+
       positiveWeightProjection (blockWeight h m) d (∑ j,(p j).val*(cO j).val)=0
@@ -174,7 +185,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
     cases k with
     | inl i =>
       change c.val (finSumFinEquiv (Sum.inl i))-
-        coefficientBoundary (privateSplitEndpoint g p) (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inl i))=_
+        coefficientBoundary (privateSplitEndpoint g p) (splitDiagonalMatrix M C) (finSumFinEquiv
+          (Sum.inl i))=_
       rw [coefficientBoundary_split_left]
       apply Subtype.ext
       apply (renameEquiv K finSumFinEquiv.symm).injective
@@ -185,7 +197,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
         hcancel] using hh
     | inr i =>
       change c.val (finSumFinEquiv (Sum.inr i))-
-        coefficientBoundary (privateSplitEndpoint g p) (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inr i))=_
+        coefficientBoundary (privateSplitEndpoint g p) (splitDiagonalMatrix M C) (finSumFinEquiv
+          (Sum.inr i))=_
       rw [coefficientBoundary_split_right]
       apply Subtype.ext
       apply (renameEquiv K finSumFinEquiv.symm).injective

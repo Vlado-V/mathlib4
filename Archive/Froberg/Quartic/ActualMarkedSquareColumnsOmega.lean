@@ -134,8 +134,10 @@ theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
     rw [SplitBlock22.full_multiplication_commutes,hprod,map_add,map_smul,←square_eq_target]
   refine ⟨(a,0),(SplitBlock22.sourceEmbedding b,-t),?_,?_,?_⟩
   · simp only [MarkedRankTransfer.augmented_apply,ha,zero_smul,add_zero]
-  · change quadraticMultiplication (SplitBlock22.fullGenerators g h) (SplitBlock22.sourceEmbedding b) +
-      (-t) • (square ζ) = -quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a
+  · change quadraticMultiplication (SplitBlock22.fullGenerators g h) (SplitBlock22.sourceEmbedding
+    b) +
+      (-t) • (square ζ) = -quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection
+        ω))) a
     have hn : (-t) • (square ζ) = -(t • (square ζ)) := neg_smul t (square ζ)
     rw [hfull,ht,neg_neg,hn]
     abel

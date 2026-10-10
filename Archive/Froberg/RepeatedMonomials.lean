@@ -73,7 +73,8 @@ def repetitionEmbedding (n r : ℕ) :
     have hc := tsub_add_cancel_of_le
       (single_two_le c.val.val (Classical.choose c.property) (Classical.choose_spec c.property))
     rw [hi] at hb hr
-    exact hb.symm.trans ((congrArg (fun v => v + Finsupp.single (Classical.choose c.property) 2) hr).trans hc)
+    exact hb.symm.trans ((congrArg (fun v => v + Finsupp.single (Classical.choose c.property) 2)
+      hr).trans hc)
 
 lemma card_repeated_monomials (n r : ℕ) :
     Fintype.card {b : Degree n r // ∃ i, 2 ≤ b.val i} ≤

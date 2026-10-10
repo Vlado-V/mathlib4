@@ -57,7 +57,8 @@ theorem transfer (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
   have hl := parent_witness m hmlo hmhi false hchild
   have hh := parent_witness m hmlo hmhi true hchild
   simp only [parentCount,Bool.false_eq_true,ite_false,ite_true] at hl hh
-  apply EndpointReduction.adjacent_endpoints_imply_generic (lowerEndpoint (m+3)) (upperEndpoint (m+3))
+  apply EndpointReduction.adjacent_endpoints_imply_generic (lowerEndpoint (m+3)) (upperEndpoint
+    (m+3))
     (lower_upper_adjacent (m+3)).2 hl hh _ (upper_nonpositive (m+3)) hr
   unfold lowerEndpoint
   split_ifs with hz

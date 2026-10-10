@@ -55,7 +55,8 @@ theorem multiplication_single_cross_row_range
   rintro _ ⟨⟨r,c⟩,rfl⟩
   have hr := honly r c
   have hcross : r.val.val≠R-r.val.val := by simpa only [hr] using hj
-  have hq : ∀ p : Fin (e r.val.val) × Fin (e (R-r.val.val)),q r.val.val p.1*q (R-r.val.val) p.2∈P := by
+  have hq : ∀ p : Fin (e r.val.val) × Fin (e
+    (R-r.val.val)),q r.val.val p.1*q (R-r.val.val) p.2∈P := by
     rwa [hr]
   unfold products
   dsimp only

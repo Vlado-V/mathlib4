@@ -59,7 +59,8 @@ theorem exists_local_comparison_of_endpoint_slices
     (fun z hz => hD ((Submodule.Quotient.mk_eq_zero D).mp hz)) hodd T f hf hspan heven hsep
     (LinearEquiv.refl K (oddCoefficientSpace w q))
     (projectedOddTargetEquiv D w parity q hqparity hD hcoverage)
-    phi (oddQuotientProduct w q phi hphi) _ C hC hslices old hold hc hgeneric rename hinj hrel hdeleted
+    phi (oddQuotientProduct w q phi
+      hphi) _ C hC hslices old hold hc hgeneric rename hinj hrel hdeleted
   intro z v
   exact (projectedOddTargetEquiv_product D w parity q hqparity hD hcoverage phi hphi z v).symm
 

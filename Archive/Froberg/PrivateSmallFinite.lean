@@ -76,7 +76,8 @@ theorem private_small_reduction_open_of_core_witnesses {w v z d q t c b₂ H : �
     · subst r
       have hRd : 4<d := by have := hdegree 4 hr; have := heven 4 hr; omega
       have hrel : ∀ i,b₄*(d-4+1).choose (d-4)≤oddOutputDimension w 4-
-          finrank K (privateOutputMatrix (Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K 3))
+          finrank K (privateOutputMatrix (Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K
+            3))
             (Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K 4)) (l i)).range := by
         intro i
         apply hprojected.trans

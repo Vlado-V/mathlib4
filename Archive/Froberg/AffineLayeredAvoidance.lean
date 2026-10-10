@@ -85,7 +85,8 @@ theorem affine_layered_covectors_joint
   have hP₁' : ∃ y : SharedCovectorPolynomial.Input K b T q s,
       eval ((Module.finBasis K _).equivFun y) P₁≠0 := by
     obtain ⟨y,hy⟩ := hP₁
-    exact ⟨(Module.finBasis K _).equivFun.symm y,by simpa only [LinearEquiv.apply_symm_apply] using hy⟩
+    exact ⟨(Module.finBasis K _).equivFun.symm y,by simpa only [LinearEquiv.apply_symm_apply] using
+      hy⟩
   have hgood₁' : ∀ y : SharedCovectorPolynomial.Input K b T q s,
       eval ((Module.finBasis K _).equivFun y) P₁≠0 → Good (y,1) := by
     intro y hy

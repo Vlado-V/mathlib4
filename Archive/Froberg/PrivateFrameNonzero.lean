@@ -29,7 +29,8 @@ theorem private_kernel_on_frame_open_nonzero (hh : 2≤h)
           L.ker=D ∧
           (privatePolynomialMap (a := a) (s := s) ι
             (fun i => (L.comp (mulForm (e (w i)))).comp e.toLinearMap)).ker=
-            Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι w))) := by
+            Submodule.span K (Set.range (koszulVector (privateGenerator (a := a) (s := s) ι
+              w))) := by
   let e : (Fin h → K) ≃ₗ[K] Forms K h 1 := LinearEquiv.ofFinrankEq _ _ (by
     rw [finrank_forms K h 1 (by omega)]
     simp)

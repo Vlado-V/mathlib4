@@ -73,16 +73,20 @@ theorem prepared_restored_formal_relations (hd : d%2=0)
       a.val∈oppositeKoszulSpace (restoredEndpointFamily hd hO hJ heven idx slot p) (fun _ => 0))
     (hreduce : ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := Fin h) (n := m)) d,
       PolynomialRestoration.row (evenRestorationSpace outputWeight d).subtype
-        (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot p) c=0 →
+        (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot p)
+          c=0 →
       ∃ (M : Fin r → Fin r → K)
         (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
         c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p) M=z.val) :
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
-        formalMixed (Submodule.span K (Set.range (restoredEndpointFamily hd hO hJ heven idx slot p)))=
+        formalMixed (Submodule.span K (Set.range (restoredEndpointFamily hd hO hJ heven idx slot
+          p)))=
       (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalProducts ((Submodule.span K (Set.range (fun j : Fin q => p.1.1 (Sum.inl j)))).map
-          (renameForm (Fin.natAdd h))) (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
-  apply biform_restored_supported_relations (restoredFamilyLinear hd hO hJ heven idx slot p) hi D hD hodd
+          (renameForm (Fin.natAdd h))) (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin
+            (h+m))).range := by
+  apply biform_restored_supported_relations (restoredFamilyLinear hd hO hJ heven idx slot
+    p) hi D hD hodd
     (fun i => degree (idx i)) _ _ _ hreduce
   · rw [Submodule.map_span]
     apply Submodule.span_le.mpr

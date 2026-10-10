@@ -71,11 +71,14 @@ theorem capacity_transport_growth (d ell : I → ℝ) (c b : J → ℝ)
       rw [h₁, h₂]
       exact hshadow i j (hpos j i hi))
   have hdec (i : I) : η * p i ≤ ∑ j, ν j * D j i := by
-    simpa only [D, C, p, ← mul_assoc, jointConditional_joint P ν (fun j => (hν j).ne')] using hdecrease i
+    simpa only [D, C, p, ← mul_assoc, jointConditional_joint P ν (fun j => (hν
+      j).ne')] using hdecrease i
   have hg := strict_transport_gain ν C D p q u g η κ (fun j => (hν j).le) hC0 hC hp hp0 hq hq0
     hmarginal hu0 hu1 hη hκ hminor (fun j => (hr j).1) (fun j => (hr j).2) hdec
-  have hmean : weightedMean p u = (∑ i, ell i) / A := capacity_weighted_mean d ell A (fun i => (hd i).ne')
-  have htarget : (∑ j, ν j * g j) = (∑ j, b j) / T := capacity_weighted_mean c b T (fun j => (hc j).ne')
+  have hmean : weightedMean p u = (∑ i, ell i) / A := capacity_weighted_mean d ell A (fun i => (hd
+    i).ne')
+  have htarget : (∑ j, ν j * g j) = (∑ j, b j) / T := capacity_weighted_mean c b T (fun j => (hc
+    j).ne')
   have hmb := weightedMean_bounds p u hp hp0 hu0 hu1
   have hquad := quadratic_defect_ge_half_min (weightedMean p u) hmb.1 hmb.2
   have hcoef : 0 ≤ min η (κ/2) / 2 := by positivity

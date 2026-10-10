@@ -60,7 +60,8 @@ theorem exists_split_pair_embedding {n : ℕ} (S : Finset (Fin n))
   obtain ⟨l⟩ : Nonempty (Fin S.card ↪ S) :=
     Function.Embedding.nonempty_of_card_le (by simp)
   obtain ⟨r⟩ : Nonempty (Fin S.card ↪ (Sᶜ : Finset (Fin n))) :=
-    Function.Embedding.nonempty_of_card_le (by simpa only [Fintype.card_fin, Fintype.card_coe] using hS)
+    Function.Embedding.nonempty_of_card_le (by simpa only [Fintype.card_fin, Fintype.card_coe] using
+      hS)
   have hl (i) : (l i).val ∈ S := (l i).property
   have hr (i) : (r i).val ∉ S := mem_compl.mp (r i).property
   let f : Fin S.card × Bool → Fin n := fun i => if i.2 then (l i.1).val else (r i.1).val
@@ -107,7 +108,8 @@ theorem paired_scalar_space_exists {n : ℕ} (S : Finset (Fin n))
   have hCd : finrank K C = S.card.choose t := by
     rw [← hWd]
     exact (LinearEquiv.ofBijective (f.toLinearMap.submoduleMap W)
-      ⟨LinearMap.submoduleMap_injective hfh W, LinearMap.submoduleMap_surjective _ _⟩).finrank_eq.symm
+      ⟨LinearMap.submoduleMap_injective hfh W, LinearMap.submoduleMap_surjective _
+        _⟩).finrank_eq.symm
   refine ⟨C,hCh,hCd,subspaceSymmetricMultiplication_map_injective f hfh W hWi,?_⟩
   apply Submodule.mul_le.mpr
   intro a ha b hb

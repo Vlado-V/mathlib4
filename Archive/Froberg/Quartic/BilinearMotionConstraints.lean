@@ -41,7 +41,8 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
  theorem rank_eq (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) :
     (constraint mu ell H).rank = finrank K
-      ((Submodule.span K (Set.range H)).map (CoefficientConstraintRank.repeated (relationMap mu ell))) := by
+      ((Submodule.span K (Set.range H)).map (CoefficientConstraintRank.repeated (relationMap mu
+        ell))) := by
   rw [← Matrix.rank_transpose,Matrix.rank_eq_finrank_span_cols]
   let R := CoefficientConstraintRank.repeated (c := c) (relationMap mu ell)
   have he : (constraint mu ell H).transpose.col = fun j => flatten (R (H j)) := rfl
@@ -55,11 +56,13 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
 /-- The actual motion conditions lose at most c times the covector kernel dimension. -/
 theorem rank_bound (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) :
-    finrank K (Submodule.span K (Set.range H)) - c * finrank K (LinearMap.ker (relationMap mu ell)) ≤
+    finrank K (Submodule.span K (Set.range H)) - c * finrank K (LinearMap.ker (relationMap mu
+      ell)) ≤
       (constraint mu ell H).rank := by
   rw [rank_eq]
   let S := Submodule.span K (Set.range H)
-  have h := CoefficientConstraintRank.rank_bound (relationMap mu ell) S.subtype Subtype.val_injective
+  have h := CoefficientConstraintRank.rank_bound (relationMap mu
+    ell) S.subtype Subtype.val_injective
   rw [LinearMap.range_comp,Submodule.range_subtype] at h
   exact h
 
@@ -84,7 +87,8 @@ entire actual coefficient space. -/
 theorem kernel_iff (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) (H : N → Fin c → Fin a → K) (p : Fin c × Fin b → K) :
     constraint mu ell H *ᵥ p = 0 ↔
-      ∀ x ∈ Submodule.span K (Set.range H), covector ell (∑ i : Fin c, mu (fun f => p (i,f)) (x i)) = 0 := by
+      ∀ x ∈ Submodule.span K (Set.range H), covector ell (∑ i : Fin c, mu (fun f => p (i,f)) (x
+        i)) = 0 := by
   classical
   let L : (Fin c → Fin a → K) →ₗ[K] K :=
     ∑ i, (covector ell).comp ((mu (fun f => p (i,f))).comp (LinearMap.proj i))

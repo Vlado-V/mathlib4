@@ -72,7 +72,8 @@ theorem restoration_reduction_rename (e : σ ≃ τ) (w : σ → ℕ)
         c-coefficientBoundary g M=z.val) :
     ∀ c : Fin r → evenRestorationSpace (K := K) (w ∘ e.symm) d,
       PolynomialRestoration.row (evenRestorationSpace (w ∘ e.symm) d).subtype
-        (positiveWeightProjection (w ∘ e.symm) d) (fun i => evenRestorationRenameEquiv e w d (g i)) c=0 →
+        (positiveWeightProjection (w ∘ e.symm) d) (fun i => evenRestorationRenameEquiv e w d (g
+          i)) c=0 →
       ∃ (M : Fin r → Fin r → K)
         (z : retainedScalarCoefficients (K := K) (w ∘ e.symm) d degree),
         c-coefficientBoundary (fun i => evenRestorationRenameEquiv e w d (g i)) M=z.val := by

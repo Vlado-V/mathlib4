@@ -49,7 +49,8 @@ theorem odd_split_exact_iff_kernel
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin f → biformParitySpace K h m d 1) :
     OddSplitExact Q E ↔
-      (bilinearKoszulRow evenOddProduct Q E (0 : (Fin 0 → K) →ₗ[K] biformParitySpace K h m (2*d) 1)).ker=
+      (bilinearKoszulRow evenOddProduct Q E (0 : (Fin 0 → K) →ₗ[K] biformParitySpace K h m (2*d)
+        1)).ker=
         (bilinearKoszulConstants (W := Fin 0 → K) Q E).range := by
   classical
   constructor
@@ -77,7 +78,8 @@ theorem odd_split_exact_iff_kernel
         (0 : (Fin 0 → K) →ₗ[K] biformParitySpace K h m (2*d) 1)) C
   · intro hex u v hr
     have hw : ((u,v),(0 : Fin 0 → K))∈
-        (bilinearKoszulRow evenOddProduct Q E (0 : (Fin 0 → K) →ₗ[K] biformParitySpace K h m (2*d) 1)).ker := by
+        (bilinearKoszulRow evenOddProduct Q E (0 : (Fin 0 → K) →ₗ[K] biformParitySpace K h m (2*d)
+          1)).ker := by
       apply Subtype.ext
       simpa only [bilinearKoszulRow,LinearMap.coe_mk,AddHom.coe_mk,evenOddProduct,
         LinearMap.mk₂_apply,Submodule.coe_add,Submodule.coe_sum,LinearMap.zero_apply,
@@ -102,7 +104,8 @@ theorem odd_split_exact_principal_open {ι : Type*}
   obtain ⟨P,hP,hgood⟩ := complex_exact_principal_open
     (fun p => bilinearKoszulRow evenOddProduct (fun i => Q i p) (fun j => E j p) Z)
     (fun p => bilinearKoszulConstants (W := Fin 0 → K) (fun i => Q i p) (fun j => E j p))
-    (bilinearKoszulRow_polynomial evenOddProduct Q E (fun _ => Z) hQ hE (isPolynomialFamily_const Z))
+    (bilinearKoszulRow_polynomial evenOddProduct Q E (fun _ => Z) hQ hE (isPolynomialFamily_const
+      Z))
     (bilinearKoszulConstants_polynomial Q E hQ hE)
     (fun p => bilinearKoszulRow_constants evenOddProduct _ _ Z) p₀
     ((odd_split_exact_iff_kernel _ _).mp hex)

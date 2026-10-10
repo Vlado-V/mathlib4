@@ -97,7 +97,8 @@ theorem restored_certificate_formal_relations (hdp : 1≤d) (hd : d%2=0)
     (D : Submodule K (Forms K (h+m) (2*d)))
     (hD : D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range) :
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
-        formalMixed (Submodule.span K (Set.range (restoredEndpointFamily hd hO hJ heven idx slot p.1)))=
+        formalMixed (Submodule.span K (Set.range (restoredEndpointFamily hd hO hJ heven idx slot
+          p.1)))=
       (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalProducts ((Submodule.span K (Set.range (fun j : Fin q => p.1.1.1 (Sum.inl j)))).map
           (renameForm (Fin.natAdd h)))

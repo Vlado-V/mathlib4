@@ -68,7 +68,8 @@ theorem private_first_component_boundary
     (hc : ∀ i,(c i).IsHomogeneous d) (hv : ∀ i,(v i).IsHomogeneous d)
     (hpositive : weightedHomogeneousComponent (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) 2
       ((∑ i,generator p i*c i)+(∑ k,((P k).val+U k)*v k))=0) :
-    (fun k => weightedHomogeneousComponent (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) 1 (v k))∈
+    (fun k => weightedHomogeneousComponent (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) 1 (v
+      k))∈
       Submodule.span K (Set.range (koszulVector (fun k => (P k).val))) := by
   classical
   let w := Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)

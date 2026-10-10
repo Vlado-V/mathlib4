@@ -58,13 +58,15 @@ theorem private_boundary_row_principal_open [Module.Finite K (Space n d q J coun
   have hC : IsPolynomialFamily (fun a => (rowConstants hO R (e.symm a)).prodMap Z) := by
     apply isPolynomialFamily_linearMap
     intro C
-    exact (hconstants.linear_comp (LinearMap.applyₗ (R := K) C.1)).prod_mk (isPolynomialFamily_const (Z C.2))
+    exact (hconstants.linear_comp (LinearMap.applyₗ (R := K) C.1)).prod_mk (isPolynomialFamily_const
+      (Z C.2))
   have hcomp : ∀ a,(privateAugmentedRow hO R (e.symm a) P).comp
       ((rowConstants hO R (e.symm a)).prodMap Z)=0 := by
     intro a
     apply LinearMap.ext
     rintro ⟨C,z⟩
-    change row hO R (e.symm a) (rowConstants hO R (e.symm a) C)+privateRowMap (d := d) P R.val (Z z)=0
+    change row hO R (e.symm a) (rowConstants hO R (e.symm a) C)+privateRowMap (d := d) P R.val (Z
+      z)=0
     have hz : privateRowMap (d := d) P R.val (Z z)=0 := LinearMap.congr_fun hPZ z
     rw [hz,add_zero]
     exact LinearMap.congr_fun (bilinearKoszulRow_constants fullBiformScalarProduct _ _ _) C

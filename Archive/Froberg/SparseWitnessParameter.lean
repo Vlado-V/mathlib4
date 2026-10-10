@@ -37,7 +37,8 @@ theorem sparse_witness_parameter_exact
       ((LinearMap.inl K
         ((Fin (Fintype.card (Label q J counts)) →
           Fin (finrank K (homogeneousSubmodule σ K R.val)) → Forms K n (d-R.val)) ×
-          (Fin (counts R.val) → Forms K n d)) (RowProducts (K := K) (J := J) (counts := counts) R.val)).comp
+          (Fin (counts R.val) → Forms K n d)) (RowProducts (K := K) (J := J) (counts := counts)
+            R.val)).comp
             (intermediateKoszul e v he Q)).range) :
     let p := ofPolynomialFamilies (Q ∘ Fintype.equivFin (Label q J counts)) E hE
     LinearIndependent K (fun i => intrinsicLayerMap hO R i p) ∧

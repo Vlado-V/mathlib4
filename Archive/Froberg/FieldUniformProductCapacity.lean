@@ -19,7 +19,8 @@ open scoped Topology
 
 theorem eventually_field_uniform_allEven_product_capacities_shift {d : ℕ} (hd : 9≤d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,
-      ∀ (K : Type) [Field K] [Infinite K], ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],∀ r : ℕ,
+      ∀ (K : Type) [Field K] [Infinite K], ∀ (X : Type*) [AddCommGroup X] [Module K
+        X] [Module.Finite K X],∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*((2*v+z : ℕ) : ℝ)^(d-2) →
       finrank K X=deletedTargetCount d (2*w) →
       ∀ R : ℕ,ProductRowCapacity (K := K) (X := X) w v d R (allEvenIndices d)

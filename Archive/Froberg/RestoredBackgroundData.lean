@@ -29,8 +29,10 @@ theorem restored_background_independent (hdp : 1≤d) (hd : d%2=0)
     LinearIndependent K (backgroundEnumeratedForms
       (Fin.append (restoredBaseBiform hd hO hJ heven idx slot p.1)
         (restoredPositiveBiform hd hO hJ heven idx slot p.1))
-      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily) := by
-  let e := finSumFinEquiv.symm.trans ((restoredBackgroundIndex (f := f) idx).trans (Fintype.equivFin _))
+      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i)))
+        emptyOddFamily) := by
+  let e := finSumFinEquiv.symm.trans ((restoredBackgroundIndex (f := f) idx).trans (Fintype.equivFin
+    _))
   have he (i : Fin (r+f)) :
       backgroundEnumeratedForms
         (Fin.append (restoredBaseBiform hd hO hJ heven idx slot p.1)

@@ -35,7 +35,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def childMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     ChildCokernel h →ₗ[K] Cokernel g h :=
   (quadraticMultiplication h).range.liftQ
-    ((quadraticMultiplication (SplitBlock22.fullGenerators g h)).range.mkQ.comp SplitBlock31.childEmbed)
+    ((quadraticMultiplication (SplitBlock22.fullGenerators g h)).range.mkQ.comp
+      SplitBlock31.childEmbed)
     (by
       rintro _ ⟨a,rfl⟩
       apply (Submodule.Quotient.mk_eq_zero _).mpr
@@ -53,7 +54,8 @@ theorem fromComponents_surjective (g : Fin c → MiddleCoordinates.Mixed K m)
     (h22 : Function.Surjective (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))) :
     Function.Surjective (fromComponents g h) := by
   intro z
-  obtain ⟨p,rfl⟩ := (quadraticMultiplication (SplitBlock22.fullGenerators g h)).range.mkQ_surjective z
+  obtain ⟨p,rfl⟩ := (quadraticMultiplication (SplitBlock22.fullGenerators g
+    h)).range.mkQ_surjective z
   let I := (quadraticMultiplication (SplitBlock22.fullGenerators g h)).range
   have hgen : ∀ j : Fin 5, I.mkQ (slice 4 j p) ∈ (fromComponents g h).range := by
     intro j

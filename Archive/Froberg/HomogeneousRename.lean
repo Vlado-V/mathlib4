@@ -70,7 +70,8 @@ theorem exists_old_target_deletion (f : Fin m ↪ Fin n) (q : Fin r → Forms K 
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem renamed_old_homology_finrank (q : Fin r → Forms K m d) (hq : LinearIndependent K q) (f : Fin m ↪ Fin n)
+theorem renamed_old_homology_finrank (q : Fin r → Forms K m d) (hq : LinearIndependent K q) (f : Fin
+  m ↪ Fin n)
     (pi : Forms K n (2*d) →ₗ[K] Z)
     (hinj : Set.InjOn (pi.comp (renameForm f)) (endpointMultiplication q).range) :
     finrank K ((pi.comp formalPolynomialMultiplication).ker ⊓

@@ -56,7 +56,8 @@ theorem intrinsic_second_stage_with_parameters
     hA ((bu.coord i).comp (LinearMap.applyₗ (R := K) (M₂ := U) (bx j)))
   have hb (i : Fin (finrank K V)) (j : Fin (finrank K Y)) :
       ∃ p : MvPolynomial (Fin (q+N) ⊕ Fin (finrank K X)) K,∀ t,
-        eval t p=bv.repr (B (fun k => t (.inl k)) (bx.equivFun.symm (fun k => t (.inr k))) (bY j)) i :=
+        eval t p=bv.repr (B (fun k => t (.inl k)) (bx.equivFun.symm (fun k => t (.inr k))) (bY
+          j)) i :=
     hB ((bv.coord i).comp (LinearMap.applyₗ (R := K) (M₂ := V) (bY j)))
   choose MA hMA using ha
   choose MB hMB using hb

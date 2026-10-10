@@ -75,7 +75,8 @@ theorem positivePerturbedFamily_component_one (hd : 1<d)
     (i : ProductRows.LayerLabel J counts) :
     weightedHomogeneousComponent (blockWeight h m) 1 (positivePerturbedFamily p U i)=0 := by
   have hs : (scalar p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h m) 0 := scalar_weight p _
-  have he : (high p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h m) i.1.val := high_weight hO p _
+  have he : (high p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h
+    m) i.1.val := high_weight hO p _
   rw [positivePerturbedFamily,map_add,generator,map_add,
     weightedHomogeneousComponent_of_mem hs,if_neg (by decide),
     weightedHomogeneousComponent_of_mem he,if_neg (by have := hmin _ i.1.property;omega),

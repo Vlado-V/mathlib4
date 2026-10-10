@@ -65,7 +65,8 @@ theorem diagonalOutputCount_limit {d j : ℕ} (hd : 9 ≤ d) (hj : 2 ≤ j) :
     by_cases hj2 : j=2
     · subst j
       simpa using deletedTargetCount_limit (show 3 ≤ d by omega)
-    · simpa only [if_neg hj2] using deletedTargetCount_higher_limit (show 3 ≤ d by omega) (by omega : 2 < j)
+    · simpa only [if_neg hj2] using deletedTargetCount_higher_limit (show 3 ≤ d by omega) (by omega
+      : 2 < j)
   apply nat_sub_normalized_limit _ _ (by omega) _ _ (half_index_choose_limit j) hG
   have h := diagonalOutputDensity_pos hd hj
   exact sub_pos.mp h

@@ -201,7 +201,8 @@ theorem prepared_extra_background_span
     Submodule.span K (Set.range (backgroundPositiveForms
       (preparedPositiveBiform hO hJ heven (restrictCounts hc p))
       (fun j => preparedOddBiform hd ho U P F (Sum.inr j)))) ⊔
-      Submodule.span K {evenPolynomialToForms (preparedEvenBiform hO hJ heven p (Sum.inr extra))} := by
+      Submodule.span K {evenPolynomialToForms (preparedEvenBiform hO hJ heven p (Sum.inr
+        extra))} := by
   have hc' : ∀ j,(∃ i,countBackgroundIndex (u := u) hc i=j) ∨
       j=Sum.inl (Fintype.equivFin _ extra) := by
     intro j

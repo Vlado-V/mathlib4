@@ -27,7 +27,8 @@ lemma generator_expands_reindexed (r : Fin c ≃ I) (e : I → Fin n →₀ ℕ)
     (hb : ∀ U : Submodule K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he),
       finrank K U=ell → q ≤ finrank K (BilinearImage.image (quotientMultiply (d := d) e v he) U)) :
     Expands (generator e v he ∘ r) d (ell+c) (q+c*FormCount n d) := by
-  have hcard : Fintype.card I=c := by simpa only [Fintype.card_fin] using (Fintype.card_congr r).symm
+  have hcard : Fintype.card I=c := by simpa only [Fintype.card_fin] using (Fintype.card_congr
+    r).symm
   have hsrc : finrank K (relationSpace (d := 0) e v he)=c := by
     change finrank K (LinearMap.range (homogeneousMultiplication (d := 0) e v he))=c
     rw [LinearMap.finrank_range_of_inj (homogeneousMultiplication_injective e v he hi₀)]
@@ -37,7 +38,8 @@ lemma generator_expands_reindexed (r : Fin c ≃ I) (e : I → Fin n →₀ ℕ)
     rw [LinearMap.finrank_range_of_inj (homogeneousMultiplication_injective e v he hi)]
     have hf : finrank K (Forms K n d)=FormCount n d := by
       calc
-        _=finrank K (Fin (FormCount n d) → K) := HomogeneousCoefficientCoordinates.finiteEquiv.finrank_eq
+        _=finrank K (Fin (FormCount n d) →
+          K) := HomogeneousCoefficientCoordinates.finiteEquiv.finrank_eq
         _=FormCount n d := by simp
     simp [Module.finrank_pi_fintype,hf,hcard]
   have hrange : Set.range (generator e v he ∘ r)=Set.range (generator e v he) := by

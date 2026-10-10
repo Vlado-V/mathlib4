@@ -65,10 +65,12 @@ theorem exists_single_profile_even_polynomial_row
   have hQa : coordinates K _ Q=a := (coordinates K _).apply_symm_apply a
   have hQP : eval (coordinates K _ Q) D₀≠0 := hQa.symm ▸ haP
   have hQD : eval (coordinates K _ Q) D≠0 := hQa.symm ▸ haD
-  have hzero : ∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e (fun i => L (v i)) he) := by
+  have hzero : ∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e (fun i => L (v i))
+    he) := by
     intro c hc p p' hp
     apply hinj c hc
-    have hbase : homogeneousMultiplication (d := c) e v he p=homogeneousMultiplication e v he p' := by
+    have hbase : homogeneousMultiplication (d :=
+      c) e v he p=homogeneousMultiplication e v he p' := by
       apply vectorOutputMap_injective L hL
       simpa only [vectorOutputMap_homogeneousMultiplication] using hp
     exact congrArg (fun f j => (f j).val) hbase

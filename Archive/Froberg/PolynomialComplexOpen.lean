@@ -32,7 +32,8 @@ theorem complex_exact_principal_open
   obtain ⟨PB,hPB,hBrank⟩ := rank_polynomial_principal_open B hB p₀
   refine ⟨PA*PB,by simpa only [map_mul] using mul_ne_zero hPA hPB,?_⟩
   intro p hp
-  obtain ⟨ha,hb⟩ := mul_ne_zero_iff.mp (show eval p PA*eval p PB ≠ 0 by simpa only [map_mul] using hp)
+  obtain ⟨ha,hb⟩ := mul_ne_zero_iff.mp (show eval p PA*eval p PB ≠ 0 by simpa only [map_mul] using
+    hp)
   have hle : (B p).range ≤ (A p).ker := by
     rintro x ⟨u,rfl⟩
     exact LinearMap.congr_fun (hAB p) u

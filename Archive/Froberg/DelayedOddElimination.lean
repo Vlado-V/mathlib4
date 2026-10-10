@@ -185,7 +185,8 @@ theorem delayed_odd_cycles
       ((mem_weightedParitySpace_iff w 0 (v k)).mpr (hveven k))
       ((weightedParitySpace w 0).sum_mem fun i _ =>
         (weightedParitySpace w 0).smul_mem _ ((weightedParitySpace w 0).add_mem
-          (IsWeightedHomogeneous.mem_parity (ha i).2 rfl) (IsWeightedHomogeneous.mem_parity (hE i).2 (hj i))))
+          (IsWeightedHomogeneous.mem_parity (ha i).2 rfl) (IsWeightedHomogeneous.mem_parity (hE i).2
+            (hj i))))
   have hc'first (i : I) : weightedHomogeneousComponent w 1 (c' i)=0 := by
     simp only [c',map_sub,map_sum,map_smul,map_add,
       weightedHomogeneousComponent_of_mem (hO _).2,

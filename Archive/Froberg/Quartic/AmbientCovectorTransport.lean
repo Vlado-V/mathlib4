@@ -209,7 +209,8 @@ theorem transport_closed_section (m : ℕ) (upper : Bool)
   refine ⟨Z,hZ,?_⟩
   intro ell hker hE hQ hslice
   have hrel := annihilates_relations m upper ell hE
-  let ellQ := (relations K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)) 3).liftQ ell hrel
+  let ellQ := (relations K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper))
+    3).liftQ ell hrel
   let lam := dualCoordinates (PolynomialBilinearCoordinates.coordinates K (Tgt K m upper)) ellQ
   have hd : d ≤ finrank K (LinearMap.ker (relationMap (actualMu m upper ht) lam)) := by
     have hs := actual_kernel_shift m upper ht ell hrel

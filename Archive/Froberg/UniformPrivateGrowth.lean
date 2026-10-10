@@ -27,15 +27,18 @@ lemma uniform_private_outer_growth {K : Type*} [Field K]
     (hzr : Tendsto (fun n : ℕ => (z n : ℝ)/n) atTop (𝓝 (1-limitingCoreFraction (s+1))))
     (haz : ∀ n,a n+z n=n)
     (u : (n : ℕ) → Labels k (a n) s ⊕ Fin b → Fin h → K)
-    (hu : ∀ n (U : Finset (Labels k (a n) s ⊕ Fin b)),U.card ≤ h → LinearIndependent K (fun i : U => u n i.val))
+    (hu : ∀ n (U : Finset (Labels k (a n) s ⊕ Fin b)),U.card ≤ h → LinearIndependent K (fun i : U =>
+      u n i.val))
     (hm : ∀ n,MixedExterior.UniversalMixedPosition (u n)) :
     ∃ g : ℝ,0 < g ∧ ∀ᶠ n in atTop,∀ ι : Fin b ↪ Fin (z n),
       0 < finrank K (PrivateSourceSpace ι (u n)) ∧
       ∀ L : Submodule K (PrivateSourceSpace ι (u n)),
-        ((finrank K (PrivateTargetSpace ι (u n)) : ℝ)/finrank K (PrivateSourceSpace ι (u n)))*finrank K L+
+        ((finrank K (PrivateTargetSpace ι (u n)) : ℝ)/finrank K (PrivateSourceSpace ι (u
+          n)))*finrank K L+
         g*(n : ℝ)^(s+1)*min (finrank K L : ℝ)
           ((finrank K (PrivateSourceSpace ι (u n)) : ℝ)-finrank K L) ≤
-        (finrank K (outerImage (d := s+1) (attachedExponent ι) (u n) (attachedExponent_degree ι) L) : ℝ) := by
+        (finrank K (outerImage (d := s+1) (attachedExponent ι) (u n) (attachedExponent_degree ι) L)
+          : ℝ) := by
   let σ := limitingCoreFraction (s+1)
   have hσ := limitingCoreFraction_bounds (show 3 ≤ s+1 by omega)
   have hs0 : 0 < s := by omega
@@ -59,7 +62,8 @@ lemma uniform_private_outer_growth {K : Type*} [Field K]
   let α := (k : ℝ)*sourceProfileScale (profileAmbientCapacity s) σ s
   let τ := (k : ℝ)*targetProfileScale σ s
   let ρ := criticalRatio (s+1)/((s+1).factorial : ℝ)
-  have hα : 0 < α := mul_pos hkR (sourceProfileScale_pos (profileAmbientCapacity_gt_one hs0) hσ.1 hσ.2 hs0)
+  have hα : 0 < α := mul_pos hkR (sourceProfileScale_pos (profileAmbientCapacity_gt_one hs0) hσ.1
+    hσ.2 hs0)
   have hρ : 0 < ρ := div_pos (criticalRatio_bounds (by omega)).1 (by positivity)
   have hratio : targetProfileScale σ s/sourceProfileScale (profileAmbientCapacity s) σ s=ρ := by
     have h := limiting_profile_scale_ratio (show 3 ≤ s+1 by omega)

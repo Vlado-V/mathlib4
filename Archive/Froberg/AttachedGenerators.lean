@@ -58,7 +58,8 @@ lemma relationSpace_zero_eq_span (e : I → Fin n →₀ ℕ) (v : I → J → K
 
 lemma tupleMap_generator (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i,(e i).degree=s) :
-    BilinearImage.tupleMap (vectorMultiply (d := d)) (generator e v he)=homogeneousMultiplication e v he := by
+    BilinearImage.tupleMap (vectorMultiply (d := d)) (generator e v
+      he)=homogeneousMultiplication e v he := by
   apply LinearMap.ext
   intro a
   funext j

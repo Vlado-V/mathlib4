@@ -48,7 +48,8 @@ theorem upperTargetMap_surjective_of_lifts (q : Fin r → Forms K (h+m) d)
     exact hv
   obtain ⟨c,hc⟩ := hm
   refine ⟨c,?_⟩
-  change (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ (endpointMultiplication q c)=(lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ p
+  change (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ (endpointMultiplication q
+    c)=(lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ p
   have hz : (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ v=0 :=
     (Submodule.Quotient.mk_eq_zero _).mpr ((mem_lowTargetSubspace v).mpr hvlow)
   rw [hc,map_sub,hz,sub_zero]
@@ -62,12 +63,15 @@ theorem upperTargetMap_surjective_representative (q : Fin r → Forms K (h+m) d)
   refine ⟨p-endpointMultiplication q c,?_,?_⟩
   · have hm : endpointMultiplication q c∈(endpointMultiplication q).range := ⟨c,rfl⟩
     rw [range_endpointMultiplication] at hm
-    change (endpointMultiplication q c).val∈(Submodule.span K (Set.range (fun i => (q i).val)))*Forms K (h+m) d at hm
+    change (endpointMultiplication q c).val∈(Submodule.span K (Set.range (fun i => (q
+      i).val)))*Forms K (h+m) d at hm
     simpa only [Submodule.coe_sub,sub_sub_cancel] using hm
   · apply (mem_lowTargetSubspace _).mp
     apply (Submodule.Quotient.mk_eq_zero _).mp
-    change (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ (p-endpointMultiplication q c)=0
-    change (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ (endpointMultiplication q c)=(lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ p at hc
+    change (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ (p-endpointMultiplication q
+      c)=0
+    change (lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ (endpointMultiplication q
+      c)=(lowTargetSubspace (K := K) (h := h) (m := m) (d := d)).mkQ p at hc
     rw [map_sub,hc,sub_self]
 
 /-- A covector annihilating the actual product row is determined by its two

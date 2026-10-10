@@ -52,7 +52,8 @@ theorem closed_slices (hm : 320 ≤ m)
     (hslices : StrongActualSlices.HasAmbientSlices g
       (StrongActualSlices.markedCorrectionCount m upper (finrank K U)) h) :
     ∃ Z' : (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) →
-        Fin (ActualSlicedMotionAvoidance.sliceCount (c := mixedCount m upper) h U d.val) → Rows K m 3,
+        Fin (ActualSlicedMotionAvoidance.sliceCount (c := mixedCount m upper) h U
+          d.val) → Rows K m 3,
       ActualSlicedMotionAvoidance.ClosedSlices g h U Z' := by
   obtain ⟨Z,hZ⟩ := hslices
   let reindex (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) :

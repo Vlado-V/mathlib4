@@ -54,7 +54,8 @@ theorem eventually_uniform_counted_restored_frame_ready {d : ℕ} (hd : 3≤d) (
   obtain ⟨D,hD,hDgood⟩ := hfn K
   obtain ⟨basis,w,P,hw,hP,hPgood⟩ := hshared n 0 0 (Function.Embedding.refl _)
   obtain ⟨x,hxD,hxP⟩ := principal_opens_intersect hD hP
-  let frame := (Module.finBasis K (Fin (quadraticOutputDimension d h) → Forms K h 2)).equivFun.symm x
+  let frame := (Module.finBasis K (Fin (quadraticOutputDimension d h) → Forms K h
+    2)).equivFun.symm x
   have hDframe : eval ((Module.finBasis K _).equivFun frame) D≠0 := by
     simpa only [frame,LinearEquiv.apply_symm_apply] using hxD
   have hPframe : eval ((Module.finBasis K _).equivFun frame) P≠0 := by

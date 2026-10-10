@@ -38,7 +38,8 @@ theorem generic_tuple_principal_open (hn : 0 < n) (hr : r ≤ (n+d-1).choose d) 
   obtain ⟨a,haD,haE⟩ := principal_opens_intersect hD hE
   refine ⟨D*E,⟨a,by simpa only [map_mul] using mul_ne_zero haD haE⟩,?_⟩
   intro a ha
-  obtain ⟨haD,haE⟩ := mul_ne_zero_iff.mp (show eval a D*eval a E ≠ 0 by simpa only [map_mul] using ha)
+  obtain ⟨haD,haE⟩ := mul_ne_zero_iff.mp (show eval a D*eval a E ≠ 0 by simpa only [map_mul] using
+    ha)
   exact ⟨hi a haE,hc a haD,(genericHomology_eq_at_generic hn a (hi a haE) (hc a haD)).symm⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -68,7 +69,8 @@ theorem generic_flag_principal_open (hn : 0 < n) (hrs : r ≤ s)
   obtain ⟨a,haD,haE⟩ := principal_opens_intersect hD hE'
   refine ⟨D*E',⟨a,by simpa only [map_mul] using mul_ne_zero haD haE⟩,?_⟩
   intro a ha
-  obtain ⟨haD,haE⟩ := mul_ne_zero_iff.mp (show eval a D*eval a E' ≠ 0 by simpa only [map_mul] using ha)
+  obtain ⟨haD,haE⟩ := mul_ne_zero_iff.mp (show eval a D*eval a E' ≠ 0 by simpa only [map_mul] using
+    ha)
   obtain ⟨hi,hc,hh⟩ := hd a haD
   refine ⟨hi,hc,hh,?_⟩
   rw [← prefix_coefficientForms hrs a]

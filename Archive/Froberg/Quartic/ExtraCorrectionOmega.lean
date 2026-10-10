@@ -125,7 +125,8 @@ def coefficientImage (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h)) :=
   ((extraSpace ω h r z U).comap
-    (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection g)
+    (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection
+      g)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)

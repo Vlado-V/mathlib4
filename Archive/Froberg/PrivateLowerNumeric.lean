@@ -24,12 +24,15 @@ lemma private_lower_numeric (hh : h=k*(2*s+1).choose s)
     (hv : ∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (R G P : ℝ)
     (hbase : ∀ (ell : Degree (a+z) s → ℝ) (out : Degree (a+z) (2*s+1) → ℝ),
-      (∀ α,0 ≤ ell α ∧ ell α ≤ (k : ℝ)*(profileAmbientCapacity s-if (corePart α.val).degree=s then 1 else 0)) →
+      (∀ α,0 ≤ ell α ∧ ell α ≤ (k : ℝ)*(profileAmbientCapacity s-if (corePart α.val).degree=s then 1
+        else 0)) →
       (∀ β,0 ≤ out β) →
       (∀ α β,α.val ≤ β.val →
-        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤ out β) →
+        min ((k : ℝ)*(profileAmbientCapacity s-((corePart β.val).degree.choose s : ℝ))) (ell α) ≤
+          out β) →
       R*(∑ α,ell α)+G*min (∑ α,ell α)
-        ((k : ℝ)*(∑ i,finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α,ell α) ≤ ∑ β,out β)
+        ((k : ℝ)*(∑ i,finiteSourceProfile (profileAmbientCapacity s) s a z i)-∑ α,ell α) ≤ ∑ β,out
+          β)
     (hregular : P ≤ R+G-(h*(b*(a+z+s-1).choose s) : ℕ))
     (hprivate : P ≤ (privateGoodMultipliers a s ι).card)
     (ell : Degree (a+z) s → ℕ) (hell : ∀ α,ell α ≤ fiberCapacity ι v w α.val)
@@ -49,7 +52,8 @@ lemma private_lower_numeric (hh : h=k*(2*s+1).choose s)
     (by
       intro α
       refine ⟨Nat.cast_nonneg _,?_⟩
-      exact (Nat.cast_le.mpr ((hreg α).trans (hell α))).trans (source_capacity_le_core hh ι v w hv α))
+      exact (Nat.cast_le.mpr ((hreg α).trans (hell α))).trans (source_capacity_le_core hh ι v w hv
+        α))
     (fun _ => Nat.cast_nonneg _)
     (by
       intro α β hab
@@ -65,7 +69,8 @@ lemma private_lower_numeric (hh : h=k*(2*s+1).choose s)
   have hfinite := private_finite_shadow_bound hh hs hn ι v w hv ell hell
   have hfR := (Nat.cast_le (α := ℝ)).mpr hfinite
   have hsplit := ShadowDeletion.sum_regularPart p ell
-  have hsplitR : ((∑ α,reg α : ℕ) : ℝ)+(∑ i,ell (p i) : ℕ)=(∑ α,ell α : ℕ) := by exact_mod_cast hsplit
+  have hsplitR : ((∑ α,reg α : ℕ) : ℝ)+(∑ i,ell (p i) : ℕ)=(∑ α,ell α :
+    ℕ) := by exact_mod_cast hsplit
   have hregprod := mul_le_mul_of_nonneg_right hregular (Nat.cast_nonneg (∑ α,reg α))
   have hprivprod := mul_le_mul_of_nonneg_right hprivate (Nat.cast_nonneg (∑ i,ell (p i)))
   push_cast at hfR

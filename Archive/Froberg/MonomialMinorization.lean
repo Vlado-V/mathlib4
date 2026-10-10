@@ -47,7 +47,8 @@ theorem monomial_minorization {a z s : ℕ} {H : ℝ}
       monomialMixingCoefficient s a z H ε * sourceAtomMass H s a z α.1 *
           embeddedUniform (freeSourceEmbedding hs) γ ≤
         reversibleWeights
-          (fun β : Σ j, TargetMonomialFiber a z s j => q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ))
+          (fun β : Σ j, TargetMonomialFiber a z s j => q β.1 / (Fintype.card (TargetMonomialFiber a
+            z s β.1) : ℝ))
           (jointConditional (monomialProfileJoint P)
             (fun β => q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ))) α γ := by
   letI := degree_nonempty hz s
@@ -59,7 +60,8 @@ theorem monomial_minorization {a z s : ℕ} {H : ℝ}
   let M := H / (∑ i, finiteSourceProfile H s a z i)
   have hν (β : Σ j, TargetMonomialFiber a z s j) : 0 ≤ ν β := by
     exact div_nonneg (hq β.1).1.le (Nat.cast_nonneg _)
-  have hC (β : Σ j, TargetMonomialFiber a z s j) (α : Σ i, SourceMonomialFiber a z s i) : 0 ≤ C β α :=
+  have hC (β : Σ j, TargetMonomialFiber a z s j) (α : Σ i, SourceMonomialFiber a z s
+    i) : 0 ≤ C β α :=
     jointConditional_nonneg _ _ (monomialProfileJoint_nonneg P hP0) hν β α
   have hW (α γ : Σ i, SourceMonomialFiber a z s i) : 0 ≤ reversibleWeights ν C α γ := by
     exact sum_nonneg fun β _ => mul_nonneg (mul_nonneg (hν β) (hC β α)) (hC β γ)

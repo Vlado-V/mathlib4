@@ -34,7 +34,8 @@ theorem card_target_labels_le {k a s : ℕ} (z : ℕ) (β : Fin (a+z) →₀ ℕ
   let f : {i : Labels k a s // coreExponent z i ≤ β} →
       Fin k × MonomialExpansion.Divisor β s := fun i =>
     (i.val.1,⟨coreExponent z i.val,
-      Finset.mem_filter.mpr ⟨MonomialExpansion.mem_exponents.mpr (coreExponent_degree z i.val),i.property⟩⟩)
+      Finset.mem_filter.mpr ⟨MonomialExpansion.mem_exponents.mpr (coreExponent_degree z
+        i.val),i.property⟩⟩)
   have hf : Function.Injective f := by
     intro i j hij
     apply Subtype.ext

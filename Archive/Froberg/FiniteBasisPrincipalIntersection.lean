@@ -28,6 +28,7 @@ theorem finite_basis_principal_intersection
     intro hz
     exact hv (by rw [hz,map_zero])
   obtain ⟨x,hx⟩ := Quartic.nonempty_principal_intersection D hnz
-  exact ⟨(Module.finBasis K V).equivFun.symm x,by simpa only [LinearEquiv.apply_symm_apply] using hx⟩
+  exact ⟨(Module.finBasis K V).equivFun.symm x,by simpa only [LinearEquiv.apply_symm_apply] using
+    hx⟩
 
 end Froberg

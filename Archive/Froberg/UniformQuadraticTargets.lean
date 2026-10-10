@@ -59,7 +59,8 @@ theorem eventually_quadratic_row_four_of_endpoint_uniform {d : ℕ} (hd : 3 ≤ 
     ring
   have hcount := convolution_blocks_eventually_fit_density (j := 2) (a := d-2+1)
     (e := d-2) (by omega) (by omega) (by omega) (fun n => upperCount n 2)
-    (criticalRatio 2/((2 : ℕ).factorial : ℝ)) (countAlpha d) (upperCount_normalized_limit (by omega)) hgap
+    (criticalRatio 2/((2 : ℕ).factorial : ℝ)) (countAlpha d) (upperCount_normalized_limit (by
+      omega)) hgap
   filter_upwards [hcount,hD,eventually_gt_atTop (0 : ℕ),eventually_ge_atTop N₂] with h hc hD hh hN
   filter_upwards [hc,eventually_gt_atTop (0 : ℕ)] with m hm hm0
   intro K _ _
@@ -94,7 +95,8 @@ theorem eventually_quadratic_row_four_exact_of_endpoint_uniform {d : ℕ} (hd : 
       quadraticOutputDimension d h ≤ (h+1).choose 2 := by
     filter_upwards [upperCount_fits_quadraticOutputDimension hd] with h hh
     exact ⟨hh,Nat.sub_le _ _⟩
-  have he := eventually_quadratic_row_four_of_endpoint_uniform hd N₂ hquad (quadraticOutputDimension d) hD
+  have he := eventually_quadratic_row_four_of_endpoint_uniform hd N₂ hquad (quadraticOutputDimension
+    d) hD
   filter_upwards [he] with h hh
   filter_upwards [hh] with m hm
   intro K _ _ r hr

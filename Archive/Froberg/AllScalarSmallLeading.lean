@@ -88,7 +88,8 @@ theorem eventually_actual_cubic_leading_witnesses_all_scalars :
       let A := Space n 3 (upperCount n 3) (allEvenIndices 3)
         (allEvenCount 3 h n (e n+extra)) (fun j => Forms K h j⊓(T j).ker)
       ∀ R : allEvenIndices 3,∃ p : A,LinearIndependent K (p.2 R) := by
-  filter_upwards [eventually_actual_small_leading_all_scalars (K := K) (d := 3) (Or.inl rfl)] with h hh
+  filter_upwards [eventually_actual_small_leading_all_scalars (K := K) (d := 3) (Or.inl
+    rfl)] with h hh
   intro extra e he
   filter_upwards [hh extra e he] with n hn
   intro X _ _ _ T _ hO
@@ -105,7 +106,8 @@ theorem eventually_actual_quartic_leading_witnesses_all_scalars :
       let A := Space n 4 (upperCount n 4) (allEvenIndices 4)
         (allEvenCount 4 h n (e n+extra)) (fun j => Forms K h j⊓(T j).ker)
       ∀ R : allEvenIndices 4,∃ p : A,LinearIndependent K (p.2 R) := by
-  filter_upwards [eventually_actual_small_leading_all_scalars (K := K) (d := 4) (Or.inr rfl)] with h hh
+  filter_upwards [eventually_actual_small_leading_all_scalars (K := K) (d := 4) (Or.inr
+    rfl)] with h hh
   intro extra e he
   filter_upwards [hh extra e he] with n hn
   intro X _ _ _ T _ hO

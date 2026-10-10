@@ -79,6 +79,7 @@ def extend (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin t → K)) 
 @[simp] theorem extend_self
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin t → K)) :
     extend (L := K) mu = mu := by
-  simpa only [extend, Algebra.algebraMap_self, RingHom.id_apply] using fromCoefficients_coefficients mu
+  simpa only [extend, Algebra.algebraMap_self,
+    RingHom.id_apply] using fromCoefficients_coefficients mu
 
 end Quartic.BilinearScalarExtension

@@ -47,7 +47,8 @@ theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r<s) (ht : t<s)
       (∑ i,polynomialVector (fun k => (bo k).val) (fun k =>
         rename (Fin.castAdd z) (monomial (e i) (v i k)))*rename Sum.inr (p i).val)+
       rename (Sum.map id (Fin.castAdd z)) C+
-      (∑ i,(rename Sum.inl (w i).val*rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*u i)=0) :
+      (∑ i,(rename Sum.inl (w i).val*rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*u
+        i)=0) :
     u=0 := by
   have hx' (i : Fin q) : x i∈(polynomialFormVector (fun k => (bo k).val) t).range := by
     rw [polynomialFormVector_range_basis]

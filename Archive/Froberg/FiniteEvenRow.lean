@@ -33,7 +33,8 @@ theorem exists_finite_even_row
     (hdiag : ∀ p : ProductRows.Row J R,p.val.val=R-p.val.val →
       counts p.val.val≤(w.choose p.val.val-finrank K X)*(v.choose (d-p.val.val)/2))
     (hcross : ∀ p : ProductRows.Row J R,p.val.val≠R-p.val.val →
-      counts p.val.val≤((w+p.val.val-1).choose p.val.val-finrank K X)*(v+(d-p.val.val)-1).choose (d-p.val.val) ∧
+      counts p.val.val≤((w+p.val.val-1).choose p.val.val-finrank K X)*(v+(d-p.val.val)-1).choose
+        (d-p.val.val) ∧
       counts (R-p.val.val)≤((w+(R-p.val.val)-1).choose (R-p.val.val)-finrank K X)*
         (v+(d-(R-p.val.val))-1).choose (d-(R-p.val.val)))
     (hodd : 0<oddOutputDimension w R)
@@ -48,7 +49,8 @@ theorem exists_finite_even_row
       ∀ Q : Fin r → Forms K (v+v) d,eval (coordinates K _ Q) D≠0 →
         Function.Injective (ProjectedPrefix.multiplication
           (parityProfileRetained (balancedScalarHalf v) (d%2) (2*((d-R/2)/2))) Q s)) :
-    ∃ (o : Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K R)) → MvPolynomial (Fin w × Bool) K)
+    ∃ (o : Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K R)) → MvPolynomial (Fin w × Bool)
+      K)
       (e : Fin (counts R) → Fin (v+v) →₀ ℕ)
       (z : Fin (counts R) → Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K R)) → K),
       ∃ he : ∀ i,(e i).degree=s,
@@ -61,7 +63,8 @@ theorem exists_finite_even_row
         (q j i).IsWeightedHomogeneous (Sum.elim (fun _ => 1) (fun _ => 0)) j ∧
         biformOutputMap (T j) (q j i)=0) ∧
       Function.Injective (homogeneousMultiplication (d := 0) e z he) ∧
-      (addRow (polynomialIntermediateRow o e z he Q) (ProductRows.multiplication counts q J R)).ker =
+      (addRow (polynomialIntermediateRow o e z he Q) (ProductRows.multiplication counts q J
+        R)).ker =
         ((LinearMap.inl K
           ((Fin r → Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K R)) → Forms K (v+v) s) ×
             (Fin (counts R) → Forms K (v+v) d))

@@ -139,7 +139,8 @@ theorem exists_independent_pairProducts [IsDomain K] [Infinite K] :
       (fun k => (cert k).rows)
     · intro k
       have hm : (fun i j : Columns k =>
-          (specializedForm values (left j) * specializedForm values (right j)).coeff ((cert k).rows i)) =
+          (specializedForm values (left j) * specializedForm values (right j)).coeff ((cert k).rows
+            i)) =
           (MvPolynomial.eval values).mapMatrix (productMinor terms left right (cert k).rows) := by
         ext i j
         unfold specializedForm

@@ -110,7 +110,8 @@ theorem private_multiplier_eventually_above_critical {s : ℕ} (hs : 2≤ s) (b 
     ∀ᶠ n : ℕ in atTop,
       criticalRatio (s+1)/((s+1).factorial : ℝ) <
         (privateMultiplierLowerCount (a n) (z n) s b : ℝ)/(n : ℝ)^(s+1) := by
-  have hgap := div_lt_div_of_pos_right (criticalRatio_lt_privateColumnDensity (show 3≤ s+1 by omega))
+  have hgap := div_lt_div_of_pos_right (criticalRatio_lt_privateColumnDensity (show 3≤ s+1 by
+    omega))
     (show (0 : ℝ)<(s+1).factorial by exact_mod_cast Nat.factorial_pos (s+1))
   exact (private_multiplier_count_limit hs b a z hsplit ha).eventually (lt_mem_nhds hgap)
 

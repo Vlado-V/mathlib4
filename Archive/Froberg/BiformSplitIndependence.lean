@@ -58,7 +58,8 @@ theorem linearOddForm_component (hd : 1≤d) (g : Rows K h m (d-1)) (b : ℕ) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem linearOddForm_independent (hd : 1≤d) (g : Fin f → Rows K h m (d-1))
     (hg : LinearIndependent K g) : LinearIndependent K (fun i => (linearOddForm hd (g i)).val) := by
-  have h₁ := hg.map' (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d := d)).toLinearMap
+  have h₁ := hg.map' (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d :=
+    d)).toLinearMap
     (LinearMap.ker_eq_bot.mpr PreparedTarget.outerVectorEquiv.injective)
   exact h₁.map' (biformImage (Forms K h 1) (Forms K m (d-1))).subtype (Submodule.ker_subtype _)
 

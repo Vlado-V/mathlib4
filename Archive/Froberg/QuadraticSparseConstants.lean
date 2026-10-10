@@ -50,7 +50,8 @@ theorem quadratic_sparse_density_gap {d : ℕ} (hd : 3≤d) :
   have he : quadraticOutputDensity d *
       (countBeta d/(scalarCapacity d 2*(1-outerColumnRate d^2))) =
       countBeta d*((d-2).factorial : ℝ)*(scalarCapacityBinomial d 2 : ℝ) := by
-    rw [div_mul_eq_div_mul_one_div,div_eq_mul_inv (countBeta d),scalarCapacity_reciprocal (by omega : 2≤d)]
+    rw [div_mul_eq_div_mul_one_div,div_eq_mul_inv (countBeta d),scalarCapacity_reciprocal (by omega
+      : 2≤d)]
     norm_num [quadraticOutputDensity,Nat.factorial]
     field_simp
     <;> ring

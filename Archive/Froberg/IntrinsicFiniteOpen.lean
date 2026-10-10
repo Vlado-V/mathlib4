@@ -34,7 +34,8 @@ theorem intrinsic_principal_common_open (Good : C → V → Prop)
     exact hgood _ (by simpa only [LinearEquiv.apply_symm_apply] using hx)
   obtain ⟨D,⟨x,hx⟩,hgood⟩ := principal_property_common_open
     (fun c x => Good c ((Module.finBasis K V).equivFun.symm x)) hh
-  refine ⟨D,⟨(Module.finBasis K V).equivFun.symm x,by simpa only [LinearEquiv.apply_symm_apply] using hx⟩,?_⟩
+  refine ⟨D,⟨(Module.finBasis K V).equivFun.symm x,by simpa only [LinearEquiv.apply_symm_apply]
+    using hx⟩,?_⟩
   intro p hp c
   simpa only [LinearEquiv.symm_apply_apply] using hgood _ hp c
 

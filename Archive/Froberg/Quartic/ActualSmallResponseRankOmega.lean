@@ -73,7 +73,8 @@ theorem exists_maximal_response (hm : 28 ≤ m) (p : Parameters K m upper)
     (hp : ClosedConditions p) (U : Marked p)
     (hg : LinearIndependent K (G p)) (hh : LinearIndependent K (Q p))
     (hs : Function.Surjective (ActualCorrectionMotionOmega.middleMap (G p) (Q p)))
-    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G p))))
+    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G
+      p))))
     (hcubic : Function.Injective (CubicGeneric.cubicMap (Q p)))
     (h13 : Function.Injective (GeneralF13.f13Map (G p) (Q p)))
     (r₀ : ActualCorrectionMotionOmega.Pure K m)
@@ -111,7 +112,8 @@ theorem exists_response_rank_formula (hm : 28 ≤ m) (p : Parameters K m upper)
     (hp : ClosedConditions p) (U : Marked p)
     (hg : LinearIndependent K (G p)) (hh : LinearIndependent K (Q p))
     (hs : Function.Surjective (ActualCorrectionMotionOmega.middleMap (G p) (Q p)))
-    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G p))))
+    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G
+      p))))
     (hcubic : Function.Injective (CubicGeneric.cubicMap (Q p)))
     (h13 : Function.Injective (GeneralF13.f13Map (G p) (Q p)))
     (r₀ : ActualCorrectionMotionOmega.Pure K m)
@@ -147,7 +149,8 @@ theorem common_open (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
             (AugmentedGeneric.productMap (G p)) (Q p) r) ∧
           finrank K (LinearMap.range (response ω (G p) (Q p) r U s)) =
             min (finrank K (Source ω (G p) (Q p) r U)) (finrank K (J (G p) (Q p))) := by
-  obtain ⟨D,hD,hgood⟩ := SmallCovectorCommonOpenOmega.common_open (K := K) ω m hmlo hmhi upper hω hω1
+  obtain ⟨D,hD,hgood⟩ := SmallCovectorCommonOpenOmega.common_open (K :=
+    K) ω m hmlo hmhi upper hω hω1
   refine ⟨D,hD,?_⟩
   intro p hp
   obtain ⟨hblock,hf13,_,hclosed⟩ := hgood p hp
@@ -193,7 +196,8 @@ theorem common_open_with (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
             (AugmentedGeneric.productMap (G p)) (Q p) r) ∧
           finrank K (LinearMap.range (response ω (G p) (Q p) r U s)) =
             min (finrank K (Source ω (G p) (Q p) r U)) (finrank K (J (G p) (Q p))) := by
-  obtain ⟨D,hD,hgood⟩ := SmallCovectorCommonOpenOmega.common_open_with (K := K) ω m hmlo hmhi upper hω hω1 P hP
+  obtain ⟨D,hD,hgood⟩ := SmallCovectorCommonOpenOmega.common_open_with (K :=
+    K) ω m hmlo hmhi upper hω hω1 P hP
   refine ⟨D,hD,?_⟩
   intro p hp
   obtain ⟨hPp,hblock,hf13,_,hclosed⟩ := hgood p hp

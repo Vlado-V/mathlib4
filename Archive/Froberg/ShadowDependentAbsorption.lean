@@ -59,7 +59,8 @@ theorem uniform_shadow_surplus_dependent {ι : ℕ → Type*}
   have hnear' := near_shadow_gap_eventually A T₀ s ha hnear hA hT₀
   refine ⟨g, hg, ?_⟩
   filter_upwards [hfar, hnear', normalized_limit_eventually_pos A ha s hA,
-    hbudget, hshadow, hquadratic, eventually_gt_atTop (0 : ℕ)] with n hnfar hnnear hnA hnb hnS hnQ hn0
+    hbudget, hshadow, hquadratic, eventually_gt_atTop (0 :
+      ℕ)] with n hnfar hnnear hnA hnb hnS hnQ hn0
   intro ℓ hℓ hℓA
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn0
   have hK : 0 < δ * (n : ℝ) ^ s := mul_pos hδ (pow_pos hnR s)

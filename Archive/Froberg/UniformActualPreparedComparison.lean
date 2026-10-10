@@ -66,8 +66,10 @@ theorem eventually_uniform_actual_prepared_comparison {d k h lo : ℕ}
     obtain ⟨D,hD,hDgood⟩ := hlarge
     obtain ⟨p,hp,hbi,hbo,hbu,hthin,hgrowth,hmodel,hchild⟩ := hn
       (allEvenIndices d) (allEvenCount d h n (e n)) (allEvenCount d h n (e n+1)) O
-      hO hJ heven (allEvenCount_le_append hd h n (e n) 1) (by simp only [Nat.add_zero]; exact le_rfl)
-      (fun p => LinearIndependent K (zeroScalarEndpointFamily (by omega : 0<d) hO hJ pure.U p.1 p.2))
+      hO hJ heven (allEvenCount_le_append hd h n (e n) 1) (by simp only [Nat.add_zero]; exact
+        le_rfl)
+      (fun p => LinearIndependent K (zeroScalarEndpointFamily (by omega : 0<d) hO hJ pure.U p.1
+        p.2))
       A D hA (fun p hp => hAgood p hp) hD
     have hcert := hDgood p hp
     have hcard : upperCount n d+Fintype.card (ProductRows.LayerLabel (allEvenIndices d)

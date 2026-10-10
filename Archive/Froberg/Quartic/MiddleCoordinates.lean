@@ -269,7 +269,8 @@ theorem childMap_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem combined_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (p : MiddleGeneric.Parameters K a w c q) (b : MiddleGeneric.Domain K a w c q) :
-    targetRename e (MiddleGeneric.combined p b) = combined (parameterRename e p) (domainRename e b) := by
+    targetRename e (MiddleGeneric.combined p b) = combined (parameterRename e p) (domainRename e
+      b) := by
   change targetRename e (MiddleGeneric.multiplication p.1 b.1 + MiddleGeneric.childMap p.2 b.2) = _
   rw [map_add, multiplication_rename, childMap_rename]
   rfl

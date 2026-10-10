@@ -80,7 +80,8 @@ theorem even_prepared_restoration_principal_open (hd : d%2=0)
       ∀ p : S,eval (restoredCoordinates hO p) D≠0 →
         ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d,
           PolynomialRestoration.row (evenRestorationSpace outputWeight d).subtype
-            (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot p) c=0 →
+            (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot
+              p) c=0 →
           ∃ (M : Fin r → Fin r → K)
             (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
             c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p) M=z.val := by
@@ -103,7 +104,8 @@ theorem even_prepared_restoration_principal_open (hd : d%2=0)
       rw [hk,hi] at hh
       omega
     change ((evenGenerator hO hJ heven (coord.symm a).1 (idx i))+
-      PolynomialRestoration.pureShift (pureEvenEmbed hd) slot (coord.symm a).2 i).val.IsWeightedHomogeneous
+      PolynomialRestoration.pureShift (pureEvenEmbed hd) slot (coord.symm a).2
+        i).val.IsWeightedHomogeneous
         outputWeight 0
     rw [pureShift_eq_zero_away _ _ _ _ haway,add_zero]
     exact evenGenerator_scalar hO hJ heven hpos (coord.symm a).1 (idx i) hi
@@ -156,7 +158,8 @@ theorem exists_even_restored_basis_on_open (hd : d%2=0)
       LinearIndependent K p.2 ∧ Submodule.span K (Set.range p.2)=⊤ ∧
       ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d,
         PolynomialRestoration.row (evenRestorationSpace outputWeight d).subtype
-          (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot p) c=0 →
+          (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot
+            p) c=0 →
         ∃ (M : Fin r → Fin r → K)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
           c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p) M=z.val := by

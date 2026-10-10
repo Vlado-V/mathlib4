@@ -76,7 +76,8 @@ theorem small_scalar_source_capacity {d R : ℕ} (hd : 3 ≤ d) (hd8 : d ≤ 8)
   have hρ := (smallCritical_bounds (by omega : 2 ≤ d) hd8).2
   rcases hR with rfl | rfl | rfl
   all_goals interval_cases d <;>
-    norm_num [smallCriticalUpper, smallCriticalNumerator, Nat.choose_eq_factorial_div_factorial] at hρ ⊢ <;>
+    norm_num [smallCriticalUpper, smallCriticalNumerator,
+      Nat.choose_eq_factorial_div_factorial] at hρ ⊢ <;>
     first | omega | linarith
 
 /-- The special quadratic symmetric-product capacities in degrees three and four. -/

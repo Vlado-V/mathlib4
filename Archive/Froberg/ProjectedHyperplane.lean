@@ -44,7 +44,8 @@ def projectedHyperplaneReplacement (pi : Forms K n (2*d) →ₗ[K] Z)
   exact (projectedHomologyEquivFormal pi q hq).trans (LinearEquiv.ofEq _ _ hEq)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+  d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q)) :
     projectedRetainedHomology pi q hq W ≃ₗ[K]
       ((pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed W :
@@ -79,7 +80,8 @@ def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q :
       exact hrep
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem projectedRetainedHomology_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem projectedRetainedHomology_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+  d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q)) :
     finrank K (projectedRetainedHomology pi q hq W)=
       finrank K ((pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed W :

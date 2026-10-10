@@ -26,14 +26,16 @@ theorem field_uniform_private_outer_growth
     (haz : ∀ n,a n+z n=n) :
     ∃ g : ℝ,0 < g ∧ ∀ᶠ n in atTop,
       ∀ (K : Type) [Field K] (u : Labels k (a n) s ⊕ Fin b → Fin h → K),
-      (∀ U : Finset (Labels k (a n) s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u i.val)) →
+      (∀ U : Finset (Labels k (a n) s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
+        i.val)) →
       MixedExterior.UniversalMixedPosition u → ∀ ι : Fin b ↪ Fin (z n),
       0 < finrank K (PrivateSourceSpace ι u) ∧
       ∀ L : Submodule K (PrivateSourceSpace ι u),
         ((finrank K (PrivateTargetSpace ι u) : ℝ)/finrank K (PrivateSourceSpace ι u))*finrank K L+
         g*(n : ℝ)^(s+1)*min (finrank K L : ℝ)
           ((finrank K (PrivateSourceSpace ι u) : ℝ)-finrank K L) ≤
-        (finrank K (outerImage (d := s+1) (attachedExponent ι) u (attachedExponent_degree ι) L) : ℝ) := by
+        (finrank K (outerImage (d := s+1) (attachedExponent ι) u (attachedExponent_degree ι) L) :
+          ℝ) := by
   let σ := limitingCoreFraction (s+1)
   have hσ := limitingCoreFraction_bounds (show 3 ≤ s+1 by omega)
   have hs0 : 0 < s := by omega
@@ -55,7 +57,8 @@ theorem field_uniform_private_outer_growth
   let α := (k : ℝ)*sourceProfileScale (profileAmbientCapacity s) σ s
   let τ := (k : ℝ)*targetProfileScale σ s
   let ρ := criticalRatio (s+1)/((s+1).factorial : ℝ)
-  have hα : 0 < α := mul_pos hkR (sourceProfileScale_pos (profileAmbientCapacity_gt_one hs0) hσ.1 hσ.2 hs0)
+  have hα : 0 < α := mul_pos hkR (sourceProfileScale_pos (profileAmbientCapacity_gt_one hs0) hσ.1
+    hσ.2 hs0)
   have hρ : 0 < ρ := div_pos (criticalRatio_bounds (by omega)).1 (by positivity)
   have hratio : targetProfileScale σ s/sourceProfileScale (profileAmbientCapacity s) σ s=ρ := by
     have h := limiting_profile_scale_ratio (show 3 ≤ s+1 by omega)
@@ -66,7 +69,8 @@ theorem field_uniform_private_outer_growth
     exact hratio
   have hA : Tendsto (fun n : ℕ => A n/(n : ℝ)^s) atTop (𝓝 α) := by
     simpa only [A,mul_div_assoc] using
-      (sourceProfile_total_limit (profileAmbientCapacity_gt_one hs0) hσ.1 hσ.2 hs0 a z ha hz har hzr).const_mul (k : ℝ)
+      (sourceProfile_total_limit (profileAmbientCapacity_gt_one hs0) hσ.1 hσ.2 hs0 a z ha hz har
+        hzr).const_mul (k : ℝ)
   have hT₀ : Tendsto (fun n : ℕ => T₀ n/(n : ℝ)^(2*s+1)) atTop (𝓝 τ) := by
     simpa only [T₀,mul_div_assoc] using
       (targetProfile_total_limit hσ.1 hσ.2 hs0 a z ha hz har hzr).const_mul (k : ℝ)
@@ -144,7 +148,8 @@ theorem field_uniform_private_outer_growth
   have hpos : 0 < finrank K (PrivateSourceSpace ι u) := by
     have hposR : (0 : ℝ) < finrank K (PrivateSourceSpace ι u) := by rwa [hdimAr]
     exact_mod_cast hposR
-  have hratioBound : (finrank K (PrivateTargetSpace ι u) : ℝ)/finrank K (PrivateSourceSpace ι u)≤R' n := by
+  have hratioBound : (finrank K (PrivateTargetSpace ι u) : ℝ)/finrank K (PrivateSourceSpace ι
+    u)≤R' n := by
     rw [hdimAr]
     exact div_le_div_of_nonneg_right hdimTr hnA.le
   refine ⟨hpos,?_⟩

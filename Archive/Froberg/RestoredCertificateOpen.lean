@@ -51,8 +51,10 @@ theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
   obtain ⟨D',hD',hDgood⟩ := principal_open_linear_pullback π hπ D hD _ hodd
   let U := Fin (finrank K (Forms K h d)) → Forms K h d
   let πU : V →ₗ[K] U := (LinearMap.snd K (Space m d q J counts O) U).comp π
-  obtain ⟨P',hP',hPgood⟩ := finite_family_independence_open (K := K) (V := Forms K h d) (le_refl (finrank K (Forms K h d)))
-  obtain ⟨B,hB,hBgood⟩ := principal_open_linear_pullback πU (fun v => ⟨((0,v),0),rfl⟩) P' hP' _ hPgood
+  obtain ⟨P',hP',hPgood⟩ := finite_family_independence_open (K := K) (V := Forms K h d) (le_refl
+    (finrank K (Forms K h d)))
+  obtain ⟨B,hB,hBgood⟩ := principal_open_linear_pullback πU (fun v =>
+    ⟨((0,v),0),rfl⟩) P' hP' _ hPgood
   obtain ⟨I,hI,hIgood⟩ := hi
   obtain ⟨A,hA,hAgood⟩ := ho
   obtain ⟨T,hT,hTgood⟩ := hu
@@ -70,7 +72,8 @@ theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
   let E := R*D'*B*I*A*T
   refine ⟨E,⟨p,?_⟩,?_⟩
   · simpa [E,family,map_mul] using
-      mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero (hp 0) (hp 1)) (hp 2)) (hp 3)) (hp 4)) (hp 5)
+      mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero (hp 0) (hp 1)) (hp 2)) (hp 3))
+        (hp 4)) (hp 5)
   intro p hp
   have hall : eval ((Module.finBasis K _).equivFun p) R≠0 ∧
       eval ((Module.finBasis K _).equivFun p) D'≠0 ∧
@@ -94,8 +97,10 @@ def RestoredGenericCertificate (hdp : 1≤d) (hd : d%2=0)
   RestoredCertificate hdp hd hO hJ heven idx slot p ∧
     VectorExpansionOpen.StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d G ∧
     ChildFlagCondition
-      (VectorExpansionOpen.quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d)
-      (VectorExpansionOpen.outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) C
+      (VectorExpansionOpen.quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm
+        (p.2 i)) d)
+      (VectorExpansionOpen.outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2
+        i))) C
       (coefficientCoordinates (fun i => p.1.1.1 (Sum.inl i)))
 
 open Filter VectorExpansionOpen
@@ -116,7 +121,8 @@ theorem exact_counts_restored_certified_fiber {d k h lo : ℕ}
         (r : ℕ) (idx : Fin r ≃ Label (upperCount n d) J counts)
         (slot : Fin (finrank K (Forms K h d)) → Fin r),
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-      ∀ P D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts O))) K,
+      ∀ P D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts
+        O))) K,
         (∃ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
           eval ((Module.finBasis K _).equivFun p) P≠0) →
         (∀ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
@@ -126,19 +132,22 @@ theorem exact_counts_restored_certified_fiber {d k h lo : ℕ}
           eval ((Module.finBasis K _).equivFun p) D≠0) →
         ∃ (rest : RestoredScalarRest n d (upperCount n d) (f n) J counts O)
           (A : MvPolynomial (Fin (finrank K (PositiveScalars (K := K) n d J counts))) K),
-          (∃ a₀ : PositiveScalars (K := K) n d J counts,eval ((Module.finBasis K _).equivFun a₀) A≠0) ∧
+          (∃ a₀ : PositiveScalars (K := K) n d J counts,eval ((Module.finBasis K _).equivFun a₀)
+            A≠0) ∧
           ∀ a',eval ((Module.finBasis K _).equivFun a') A≠0 →
             let p := restoredScalarFiberCoordinates.symm (a',rest)
             eval ((Module.finBasis K _).equivFun p) D≠0 ∧
             RestoredGenericCertificate (by omega) hdeven hO hJ heven idx slot
               (G*(n : ℝ)^d) (C*(n : ℝ)^d) p := by
-  obtain ⟨G,C,hG,hC,hjoint⟩ := exact_counts_restored_joint (K := K) hd hk hh hhpos upper a f e ha hc hδ hreserve
+  obtain ⟨G,C,hG,hC,hjoint⟩ := exact_counts_restored_joint (K :=
+    K) hd hk hh hhpos upper a f e ha hc hδ hreserve
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts O hO hJ heven r idx slot
   letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
   intro P D hP hcert hD
-  obtain ⟨v,hv⟩ := finite_basis_principal_intersection (V := RestoredOuterSpace n d (upperCount n d) (f n) J counts O) ![P,D] (by
+  obtain ⟨v,hv⟩ := finite_basis_principal_intersection (V := RestoredOuterSpace n d (upperCount n d)
+    (f n) J counts O) ![P,D] (by
     intro i
     fin_cases i
     · exact hP

@@ -33,7 +33,8 @@ def privateGoodTargets (ι : Fin b ↪ Fin z) (i : Fin b) :
   (privateGoodMultipliers a s ι).map (privateTargetEmbedding ι i)
 
 @[simp] lemma privateGoodTargets_card (ι : Fin b ↪ Fin z) (i : Fin b) :
-    (privateGoodTargets (a := a) (s := s) ι i).card=(privateGoodMultipliers a s ι).card := card_map _
+    (privateGoodTargets (a := a) (s := s) ι i).card=(privateGoodMultipliers a s
+      ι).card := card_map _
 
 lemma privateGoodTargets_properties (hs : 0 < s) (ι : Fin b ↪ Fin z)
     (i : Fin b) {β : Degree (a+z) (2*s+1)} (hβ : β∈privateGoodTargets (a := a) (s := s) ι i) :
@@ -64,7 +65,8 @@ lemma privateGoodTargets_subset_bad (ι : Fin b ↪ Fin z) (i : Fin b) :
   exact mem_filter.mpr ⟨mem_univ _,i,le_add_right le_rfl⟩
 
 lemma privateGoodTargets_disjoint (hs : 0 < s) (ι : Fin b ↪ Fin z) :
-    Pairwise (fun i j => Disjoint (privateGoodTargets (a := a) (s := s) ι i) (privateGoodTargets (a := a) (s := s) ι j)) := by
+    Pairwise (fun i j => Disjoint (privateGoodTargets (a := a) (s := s) ι i) (privateGoodTargets (a
+      := a) (s := s) ι j)) := by
   intro i j hij
   apply disjoint_left.mpr
   intro β hβi hβj

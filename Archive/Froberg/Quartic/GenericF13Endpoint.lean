@@ -93,7 +93,8 @@ theorem exists_endpoint_witness [Infinite K] (m : ℕ) (hm : 41 ≤ m) (upper : 
 
 /-- Nonempty principal-open F₁₃ injectivity in the full actual mixed/child coefficient family. -/
 theorem generic_endpoint_conditions [Infinite K] (m : ℕ) (hm : 41 ≤ m) (upper : Bool) :
-    ∃ D : MvPolynomial (MiddleCoordinates.CoefficientIndex m (mixedCount m upper) (upperEndpoint m)) K,
+    ∃ D : MvPolynomial (MiddleCoordinates.CoefficientIndex m (mixedCount m upper) (upperEndpoint
+      m)) K,
       (∃ a, eval a D ≠ 0) ∧ ∀ a, eval a D ≠ 0 →
         GenericF13.Conditions (MiddleCoordinates.decode a).1 (MiddleCoordinates.decode a).2 := by
   obtain ⟨E,Q,hQ,hC,hF⟩ := exists_endpoint_witness (K := K) m hm upper

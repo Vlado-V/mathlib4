@@ -120,7 +120,8 @@ theorem principal_open_positive_scalar_fiber (hO : ∀ j∈J,O j≤Forms K h j) 
           (∃ a : PositiveScalars (K := K) m d J counts,
             eval ((Module.finBasis K _).equivFun a) E≠0) ∧
           ∀ a,eval ((Module.finBasis K _).equivFun a) E≠0 →
-            eval ((Module.finBasis K _).equivFun (fullScalarFiberCoordinates.symm (a,rest))) D≠0 := by
+            eval ((Module.finBasis K _).equivFun (fullScalarFiberCoordinates.symm
+              (a,rest))) D≠0 := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro D hD

@@ -56,7 +56,8 @@ theorem exists_fourth_row_parameter {w v d q b : ℕ} {J : Finset ℕ} {counts :
       (row (fun _ _ => inf_le_left) ⟨4,h4⟩ p).ker=
         (rowConstants (fun _ _ => inf_le_left) ⟨4,h4⟩ p).range := by
   obtain ⟨o,e,z,he,Q,E,ho,hdeg,hER,hRdeg,hrest,hzero,hker⟩ :=
-    exists_finite_fourth_row h.hw h.hv counts J (fun j hj => by have := h.low j hj; omega) h.even h.degree T
+    exists_finite_fourth_row h.hw h.hv counts J (fun j hj => by have := h.low j hj;
+      omega) h.even h.degree T
       h.low h.diagonal h.output_positive h.enough_generators h.divisor_capacity h.incidence h.scalar_open
   have hmem : ∀ j∈J,∀ i,E j i∈biformImage (constrainedOutputs T j) (Forms K (v+v) (d-j)) := by
     intro j hj i
@@ -64,12 +65,14 @@ theorem exists_fourth_row_parameter {w v d q b : ℕ} {J : Finset ℕ} {counts :
     · subst j
       rw [hER i,constrainedOutputs,h.new_unconstrained,LinearMap.ker_zero,inf_top_eq]
       rw [← polynomialFormVector_attachedCoordinates o e z he i]
-      exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun a => (attachedCoordinates e z he i a).property)
+      exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun a => (attachedCoordinates e z he i
+        a).property)
     · apply mem_biformImage_inf_kernel
       · apply mem_biformImage_of_homogeneous
         · simpa only [Nat.add_sub_of_le (h.degree j hj)] using (hrest j hjR i).1
         · exact (hrest j hjR i).2.1
       · exact (hrest j hjR i).2.2
-  exact sparse_witness_common_parameter (fun _ _ => inf_le_left) ⟨4,h4⟩ o ho hdeg e z he Q E hmem hER (hzero 0 (Nat.zero_le d)) hker
+  exact sparse_witness_common_parameter (fun _ _ =>
+    inf_le_left) ⟨4,h4⟩ o ho hdeg e z he Q E hmem hER (hzero 0 (Nat.zero_le d)) hker
 
 end Froberg.PreparedParameters

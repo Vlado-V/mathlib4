@@ -32,19 +32,26 @@ theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
     (hfour : ∃ b,FourthRowCapacity w v d q b (allEvenIndices d) counts T)
     (hcore : ∀ R : allEvenIndices d,
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
-        LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R i p) ∧
-        (row (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R p).ker=(rowConstants (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R p).range)
+        LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left :
+          constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R i p) ∧
+        (row (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool)
+          K j)) R p).ker=(rowConstants (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+          homogeneousSubmodule (Fin w × Bool) K j)) R p).range)
     (hproducts : ∀ R,d<R → R≤2*d → R%2=0 →
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
         Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) R))
     (ell : Fin 2 → Forms K (v+v) 1) (hell : LinearIndependent K ell) :
     (∀ R : allEvenIndices d,
       ∃ p : Space (v+v+z) d q (allEvenIndices d) counts (constrainedOutputs T),
-        LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R i p) ∧
-        (row (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R p).ker=(rowConstants (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R p).range) ∧
+        LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left :
+          constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R i p) ∧
+        (row (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool)
+          K j)) R p).ker=(rowConstants (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+          homogeneousSubmodule (Fin w × Bool) K j)) R p).range) ∧
     (∀ R,d<R → R≤2*d → R%2=0 →
       ∃ p : Space (v+v+z) d q (allEvenIndices d) counts (constrainedOutputs T),
-        Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) R)) := by
+        Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d)
+          R)) := by
   classical
   constructor
   · intro R
@@ -54,7 +61,8 @@ theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
       have hReq : R=(⟨2,h2⟩ : allEvenIndices d) := Subtype.ext hR2
       subst R
       obtain ⟨b,hb⟩ := hquad
-      exact exists_quadratic_extended_row_parameter (by omega) (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
+      exact exists_quadratic_extended_row_parameter (by omega) (fun j _ => (inf_le_left :
+        constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
         (fun _ hj => (mem_allEvenIndices.mp hj).1)
         (fun _ hj => (mem_allEvenIndices.mp hj).2.1) h2 hb ell hell
     by_cases hR4 : R.val=4
@@ -68,9 +76,11 @@ theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
     obtain ⟨p,hpLI,hp⟩ := hcore R
     refine ⟨coreExtension z p,linearIndependent_empty_type,?_⟩
     by_cases hlt : R.val<d
-    · exact empty_row_core_extended_exact (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
+    · exact empty_row_core_extended_exact (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+      homogeneousSubmodule (Fin w × Bool) K j))
         (fun _ hj => (mem_allEvenIndices.mp hj).2.1) R hlt hzero p hp ell hell
-    · exact empty_row_core_extended_exact_zero (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
+    · exact empty_row_core_extended_exact_zero (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+      homogeneousSubmodule (Fin w × Bool) K j))
         (fun _ hj => (mem_allEvenIndices.mp hj).2.1) R (by omega) hzero p hp ell hell
   · intro R hRd hR2d hRe
     obtain ⟨p,hp⟩ := hproducts R hRd hR2d hRe
@@ -88,8 +98,11 @@ theorem small_extended_reduction_open {w v z d q : ℕ} {counts : ℕ → ℕ}
     (hfour : ∃ b,FourthRowCapacity w v d q b (allEvenIndices d) counts T)
     (hcore : ∀ R : allEvenIndices d,
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
-        LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R i p) ∧
-        (row (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R p).ker=(rowConstants (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R p).range)
+        LinearIndependent K (fun i => intrinsicLayerMap (fun j _ => (inf_le_left :
+          constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j)) R i p) ∧
+        (row (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool)
+          K j)) R p).ker=(rowConstants (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+          homogeneousSubmodule (Fin w × Bool) K j)) R p).range)
     (hproducts : ∀ R,d<R → R≤2*d → R%2=0 →
       ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
         Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) R))
@@ -99,7 +112,8 @@ theorem small_extended_reduction_open {w v z d q : ℕ} {counts : ℕ → ℕ}
       (∃ p : A,eval ((Module.finBasis K A).equivFun p) D≠0) ∧
       ∀ p : A,eval ((Module.finBasis K A).equivFun p) D≠0 → EvenPositiveReduction p := by
   obtain ⟨hr,hp⟩ := small_extended_witnesses (z := z) hd T hz hquad hfour hcore hproducts ell hell
-  exact even_reduction_open_of_witnesses (fun j _ => (inf_le_left : constrainedOutputs T j ≤ homogeneousSubmodule (Fin w × Bool) K j))
+  exact even_reduction_open_of_witnesses (fun j _ => (inf_le_left : constrainedOutputs T j ≤
+    homogeneousSubmodule (Fin w × Bool) K j))
     (fun _ hj => (mem_allEvenIndices.mp hj).1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.2)

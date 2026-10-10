@@ -72,7 +72,8 @@ theorem generic_injective [Infinite K]
     change F i ∈ PolynomialSubspaceCovectorCharts.subspace (graphPolynomial j) p
     rw [hp]
     exact Submodule.subset_span ⟨i,rfl⟩
-  · change Fintype.card (ParameterIndex j)+q*(∑ i,(profile (Submodule.span K (Set.range F)) i).val) ≤ _
+  · change Fintype.card (ParameterIndex j)+q*(∑ i,(profile (Submodule.span K (Set.range F))
+    i).val) ≤ _
     rw [parameter_count]
     exact hbound F hF
 

@@ -45,7 +45,8 @@ theorem oddEndpointScalarAction_eq
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
     oddEndpointScalarAction Q F G=
       oddQuotientProduct ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
-        (backgroundEnumeratedForms Q F G) scalarEndpointEmbedding scalarEndpointEmbedding_parity := by
+        (backgroundEnumeratedForms Q F
+          G) scalarEndpointEmbedding scalarEndpointEmbedding_parity := by
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -72,7 +73,8 @@ theorem oddEndpointScalarAction_closed_slices
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0) (s : ℕ → ℕ)
     (hs : HasClosedKernelSlices
-      (targetPostcompose (oddBackgroundScalarProduct Q F G) (oddEvenRelativeMap Q F G E).range.mkQ) s) :
+      (targetPostcompose (oddBackgroundScalarProduct Q F G) (oddEvenRelativeMap Q F G E).range.mkQ)
+        s) :
     HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q E) F G) s := by
   apply HasClosedKernelSlices.equiv (LinearEquiv.refl K (Forms K m d))
     (oddBackgroundSourceEquiv (Fin.append Q E) F G) (oddEvenEndpointExtensionEquiv Q F G E)

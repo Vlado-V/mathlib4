@@ -97,10 +97,12 @@ theorem extended_polynomial_row_relation_constants_zero (hs : s=0) (hsd : s ≤ 
   let x₀ : Fin q → Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K a s :=
     fun i j => ⟨freeCoeff (0 : Fin z →₀ ℕ) (x i j).val,by
       change (freeCoeff (0 : Fin z →₀ ℕ) (x i j).val).IsHomogeneous s
-      simpa only [map_zero,Nat.sub_zero] using freeCoeff_homogeneous _ (x i j).property (0 : Fin z →₀ ℕ)⟩
+      simpa only [map_zero,Nat.sub_zero] using freeCoeff_homogeneous _ (x i j).property (0 : Fin z
+        →₀ ℕ)⟩
   let B₀ : Fin m → Forms K a d := fun k => ⟨freeCoeff (0 : Fin z →₀ ℕ) (B k).val,by
     change (freeCoeff (0 : Fin z →₀ ℕ) (B k).val).IsHomogeneous d
-    simpa only [map_zero,Nat.sub_zero] using freeCoeff_homogeneous _ (B k).property (0 : Fin z →₀ ℕ)⟩
+    simpa only [map_zero,Nat.sub_zero] using freeCoeff_homogeneous _ (B k).property (0 : Fin z →₀
+      ℕ)⟩
   have hcorepoly : (∑ i,rename Sum.inr (Q i).val*polynomialFormVector o s (x₀ i))+
       (∑ k,attachedPolynomialFamily o e v k*rename Sum.inr (B₀ k).val)+p=0 := by
     have hh : (fun j => (∑ i,(Q i).val*(x₀ i j).val)+

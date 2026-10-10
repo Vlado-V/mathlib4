@@ -34,7 +34,8 @@ theorem isPolynomialFamily_const (v : V) : IsPolynomialFamily (fun _ : ι → K 
   intro ell
   exact ⟨C (ell v), by simp⟩
 
-theorem isPolynomialFamily_linear [Fintype ι] [DecidableEq ι] (f : (ι → K) →ₗ[K] V) : IsPolynomialFamily f := by
+theorem isPolynomialFamily_linear [Fintype ι] [DecidableEq ι] (f : (ι → K) →ₗ[K]
+  V) : IsPolynomialFamily f := by
   intro ell
   exact ⟨polynomialOfLinear (ell.comp f), fun a => eval_polynomialOfLinear _ a⟩
 

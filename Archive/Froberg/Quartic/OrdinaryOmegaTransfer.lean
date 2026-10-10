@@ -35,7 +35,8 @@ theorem parent_count (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- At either actual parent endpoint the shared child data and exact deformation
 produce an independent quadratic family with the asserted quartic dimension. -/
-theorem small_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
+theorem small_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool) (hω : ω ≠
+  0) (hω1 : ω ≠ -1)
     (hchild : MarkedEndpoints K m) :
     QuarticWitness K (m+3) (parentCount m upper) := by
   obtain ⟨p,k,r,s,hblock,hf13,hchildSurj,_,_,hresponse⟩ :=
@@ -58,7 +59,8 @@ theorem large_parent_witness (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (hω : ω 
     (hchild : MarkedEndpoints K m) :
     QuarticWitness K (m+3) (parentCount m upper) := by
   classical
-  obtain ⟨g,r₀,E,hE,hg,hexp,D,hD,hgood⟩ := FixedBlockChildOpenOmega.exists_fixed_open (K := K) ω m hm upper hω hω1 hchild
+  obtain ⟨g,r₀,E,hE,hg,hexp,D,hD,hgood⟩ := FixedBlockChildOpenOmega.exists_fixed_open (K :=
+    K) ω m hm upper hω hω1 hchild
   obtain ⟨h,hhD,Z,hZ⟩ := ActualExpansionSlices.exists_ambient_slices_in_open m (by omega) upper
     g hg E hE hexp D hD
   obtain ⟨hblock,hf13,_,hflag⟩ := hgood (FixedBlockChildOpen.encodeChild h) hhD
@@ -66,7 +68,8 @@ theorem large_parent_witness (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (hω : ω 
   obtain ⟨hh,hchildSurj,k,hk⟩ := hflag
   let U := (childMarkedCoefficient h k).range
   have hdim : (finrank K U:ℤ)=Counts.delta m (upperEndpoint m) := hk
-  obtain ⟨Z',hclosed⟩ := ExpansionMotionBridgeOmega.closed_slices (by omega : 28 ≤ m) g h U hdim Z hZ
+  obtain ⟨Z',hclosed⟩ := ExpansionMotionBridgeOmega.closed_slices (by omega : 28 ≤
+    m) g h U hdim Z hZ
   have hmixedEncode := AugmentedGeneric.coefficientMixed_encode g h r₀
   have hchildEncode := AugmentedGeneric.coefficientChild_encode g h r₀
   have hmotionsEncode := AugmentedGeneric.coefficientMotions_encode g h r₀
@@ -75,7 +78,8 @@ theorem large_parent_witness (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (hω : ω 
   rw [hmixedEncode] at hs hr₀
   rw [hchildEncode] at hs hr₀
   rw [hmotionsEncode] at hr₀
-  have htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed g)) := by
+  have htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed
+    g)) := by
     rw [ActualTraceMotion.rowMixed_eq_transpose]
     simpa only [AugmentedGeneric.coefficientMixed_encode,
       SimultaneousBlockConditionsOmega.transposeMixed,

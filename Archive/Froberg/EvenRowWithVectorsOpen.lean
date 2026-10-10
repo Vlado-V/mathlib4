@@ -77,7 +77,8 @@ theorem exists_even_polynomial_row_in_open
       (homogeneousMultiplication (d := c) e (fun i => L (v i)) he) := by
     intro p p' hp
     apply hinj c hc
-    have hbase : homogeneousMultiplication (d := c) e v he p=homogeneousMultiplication e v he p' := by
+    have hbase : homogeneousMultiplication (d :=
+      c) e v he p=homogeneousMultiplication e v he p' := by
       apply vectorOutputMap_injective L hL
       simpa only [vectorOutputMap_homogeneousMultiplication] using hp
     exact congrArg (fun f j => (f j).val) hbase

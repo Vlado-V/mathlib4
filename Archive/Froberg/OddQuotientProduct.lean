@@ -57,7 +57,8 @@ theorem projectedQuotientProduct_mem_odd
     (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
     (f : Forms K n d) (hf : f.val.IsWeightedHomogeneous w 0)
     (a : oddCoefficientSpace w q) :
-    projectedQuotientProduct (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q f a.val∈oddTargetSpace w q := by
+    projectedQuotientProduct (LinearMap.id : Forms K n (2*d) →ₗ[K]
+      _) q f a.val∈oddTargetSpace w q := by
   obtain ⟨v,hv⟩ := a.property
   rw [← hv]
   refine ⟨mulForm f (parityForm w 1 v),?_⟩
@@ -74,7 +75,8 @@ def oddQuotientProduct
     (F : P →ₗ[K] Forms K n d) (hF : ∀ p,(F p).val.IsWeightedHomogeneous w 0) :
     P →ₗ[K] oddCoefficientSpace w q →ₗ[K] oddTargetSpace w q where
   toFun p := ((projectedQuotientProduct (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q (F p)).comp
-    (oddCoefficientSpace w q).subtype).codRestrict _ (projectedQuotientProduct_mem_odd w q (F p) (hF p))
+    (oddCoefficientSpace w q).subtype).codRestrict _ (projectedQuotientProduct_mem_odd w q (F p) (hF
+      p))
   map_add' p p' := by ext a; simp only [map_add,LinearMap.add_apply]; rfl
   map_smul' c p := by ext a; simp only [map_smul,LinearMap.smul_apply,RingHom.id_apply]; rfl
 

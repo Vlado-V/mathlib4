@@ -62,12 +62,14 @@ set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem restored_positive_biform_scalar_independent (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j) (hJlt : ∀ j∈J,0<counts j → j<d)
-    (idx : Fin r ≃ PreparedParameters.Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
+    (idx : Fin r ≃ PreparedParameters.Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin
+      r)
     (p : RestoredSpace m d q J counts O) (hp : ∀ j,LinearIndependent K (p.1.2 j)) :
     LinearIndependent K (fun i =>
       (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range.mkQ
         (evenPolynomialToForms (restoredPositiveBiform hd hO hJ heven idx slot p i))) := by
-  have hi := (restored_positive_endpoint_scalar_independent hd hO hJ heven hpos hJlt idx slot p hp).comp
+  have hi := (restored_positive_endpoint_scalar_independent hd hO hJ heven hpos hJlt idx slot p
+    hp).comp
     (Fintype.equivFin _).symm (Fintype.equivFin _).symm.injective
   convert hi using 1
   funext i

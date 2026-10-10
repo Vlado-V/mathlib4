@@ -38,7 +38,8 @@ theorem exists_common_mixed_vectors (h : ℕ) (r l : C → ℕ) (hr : ∀ c, r c
       exact congrArg (fun p : α × Fin h => p.2.val) he
   let mixed (c : C) : MvPolynomial (α × Fin (r c+l c)) K :=
     Matrix.det (fun I J => mixedRow
-      (paddedVectors (t c) (label c) (fun a j => (X (a,j) : MvPolynomial (α × Fin (r c+l c)) K)) I) J)
+      (paddedVectors (t c) (label c) (fun a j => (X (a,j) : MvPolynomial (α × Fin (r c+l c)) K)) I)
+        J)
   let Subsets := {S : Finset α // S.card ≤ h}
   have hrow (S : Subsets) : Nonempty (S.val ↪ Fin h) :=
     Function.Embedding.nonempty_of_card_le (by simpa using S.property)

@@ -88,7 +88,8 @@ theorem scalar_product_disjoint_deleted_bidegree (S : Finset (Fin n)) (j : ℕ)
 theorem retainedPrefixBilinear_rank (S : Finset (Fin n)) (j : ℕ)
     (a : Fin r → Forms K n e) :
     finrank K (retainedPrefixBilinear (d := d) S j a).range =
-      finrank K ((familySpace a * Forms K n d).map (retainMonomials (fun b => partialDegree S b ≠ j))) := by
+      finrank K ((familySpace a * Forms K n d).map (retainMonomials (fun b => partialDegree S b ≠
+        j))) := by
   let L : Poly K n →ₗ[K] Poly K n := retainMonomials (fun b => partialDegree S b ≠ j)
   have he : (Forms K n (d + e)).subtype.comp (prefixBilinear a) =
       (Forms K n (e + d)).subtype.comp (prefixMultiplication a d) := by

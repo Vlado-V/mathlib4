@@ -29,7 +29,8 @@ theorem private_rows_common_open [Module.Finite K (Space n d q J counts O)]
     (B : J → Type*) [∀ R,AddCommGroup (B R)] [∀ R,Module K (B R)]
     [∀ R,FiniteDimensional K (B R)]
     (Z : (R : J) → B R →ₗ[K] PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)
-    (hPZ : ∀ R : J,(privateRowMap (K := K) (σ := σ) (n := n) (d := d) (b := b) P R.val).comp (Z R)=0)
+    (hPZ : ∀ R : J,(privateRowMap (K := K) (σ := σ) (n := n) (d := d) (b := b) P R.val).comp (Z
+      R)=0)
     (hwitness : ∀ R : J,∃ p : Space n d q J counts O,
       (privateAugmentedRow hO R p P).ker=((rowConstants hO R p).prodMap (Z R)).range) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,

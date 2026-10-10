@@ -79,7 +79,8 @@ theorem intrinsic_kernel_profiles_avoid
   have hcomp (lam : Fin (finrank K W) → K)
       (p : Fin (finrank K P) → K) (v : Fin (finrank K V) → K) :
       covector lam (coordinateTensor mu p v)=
-        covector (bot lam) (coordinateTensor mu₀ p v)+covector (high lam) (coordinateTensor muH p v) := by
+        covector (bot lam) (coordinateTensor mu₀ p v)+covector (high lam) (coordinateTensor muH p
+          v) := by
     obtain ⟨ell,rfl⟩ := eW.surjective lam
     obtain ⟨p,rfl⟩ := (coordinates K P).surjective p
     obtain ⟨v,rfl⟩ := (coordinates K V).surjective v
@@ -109,10 +110,12 @@ theorem intrinsic_kernel_profiles_avoid
   have hpres (k₀ : Fin (finrank K V₀+1)) (t : Fin (finrank K W₀) → K)
       (hk : finrank K (relationMap (coordinateTensor nu) t).ker=k₀.val) :
       ∀ i,eval t (eqs k₀ i).val=0 := (heqs k₀ t).mpr hk.ge
-  let BC (i : Fin q) := (coordinates K W).toLinearMap.comp ((B i).comp (coordinates K V).symm.toLinearMap)
+  let BC (i : Fin q) := (coordinates K W).toLinearMap.comp ((B i).comp (coordinates K
+    V).symm.toLinearMap)
   obtain ⟨Z,D,hD,hgood⟩ := affine_kernel_profiles_avoid
     (coordinateTensor mu) (coordinateTensor nu) (coordinateTensor mu₀) (coordinateTensor muH)
-    bot high re hre hcomp (fun k₀ => s₀ k₀.val) nf degrees eqs cuts hempty' hpres hmonoC hgrowthC BC hcount
+    bot high re hre hcomp (fun k₀ => s₀
+      k₀.val) nf degrees eqs cuts hempty' hpres hmonoC hgrowthC BC hcount
   let eQ : (Fin q → P) ≃ₗ[K] (Fin q → Fin (finrank K P) → K) :=
     LinearEquiv.piCongrRight (fun _ => coordinates K P)
   obtain ⟨D',hD',hgood'⟩ := principal_open_linear_pullback eQ.toLinearMap eQ.surjective D hD _ hgood

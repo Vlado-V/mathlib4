@@ -27,16 +27,19 @@ open scoped Topology
     (haz : ∀ n,a n+z n=n) :
     ∃ g : ℝ,0 < g ∧ ∀ᶠ n in atTop,
       ∃ (ι : Fin b ↪ Fin (z n)) (u : Labels k (a n) s ⊕ Fin b → Fin h → K),
-      (∀ U : Finset (Labels k (a n) s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u i.val)) ∧
+      (∀ U : Finset (Labels k (a n) s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
+        i.val)) ∧
       MixedExterior.UniversalMixedPosition u ∧
       (∀ c ≤ s+1, Function.Injective (multiplication (d := c) (attachedExponent ι) u)) ∧
       0 < finrank L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))) ∧
       (finrank L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))) : ℝ) ≤ g*(n : ℝ)^(s+1) ∧
       ∀ V : Submodule L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))),
-        ((finrank L (PrivateTargetSpace ι (fun i j => algebraMap K L (u i j))) : ℝ)/finrank L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))))*finrank L V+
+        ((finrank L (PrivateTargetSpace ι (fun i j => algebraMap K L (u i j))) : ℝ)/finrank L
+          (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))))*finrank L V+
         g*(n : ℝ)^(s+1)*(min (finrank L V)
           (finrank L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j)))-finrank L V) : ℕ) ≤
-        (finrank L (outerImage (d := s+1) (attachedExponent ι) (fun i j => algebraMap K L (u i j)) (attachedExponent_degree ι) V) : ℝ) := by
+        (finrank L (outerImage (d := s+1) (attachedExponent ι) (fun i j => algebraMap K L (u i j))
+          (attachedExponent_degree ι) V) : ℝ) := by
   classical
   have hex (n : ℕ) := MixedExterior.exists_universal_mixed_vectors
     (K := K) (α := Labels k (a n) s ⊕ Fin b) h

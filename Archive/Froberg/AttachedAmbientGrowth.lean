@@ -63,7 +63,8 @@ lemma image_quotient_finrank_add (e : I → Fin n →₀ ℕ) (v : I → J → K
 lemma expansion_iff_ambient (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i,(e i).degree=s) (ell q : ℕ) :
     (∀ L : Submodule K ((J → Forms K n s) ⧸ relationSpace (d := 0) e v he),
-      finrank K L=ell → q ≤ finrank K (Quartic.BilinearImage.image (quotientMultiply (d := d) e v he) L)) ↔
+      finrank K L=ell → q ≤ finrank K (Quartic.BilinearImage.image (quotientMultiply (d := d) e v
+        he) L)) ↔
     (∀ S : Submodule K (J → Forms K n s),relationSpace (d := 0) e v he ≤ S →
       finrank K S=ell+finrank K (relationSpace (d := 0) e v he) →
       q+finrank K (relationSpace (d := d) e v he) ≤

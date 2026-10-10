@@ -80,9 +80,11 @@ theorem product_polynomial
     Module.Finite.of_basis (finiteVariableFormsBasis (σ ⊕ Fin n) d)
   have hh := ProductRows.product_row_polynomial counts
     (homogeneousSubmodule (σ ⊕ Fin n) K d).subtype
-    (fun j i a => homogeneousLayerMap (q := q) hO hJ j i ((Module.finBasis K (Space n d q J counts O)).equivFun.symm a)) J R
+    (fun j i a => homogeneousLayerMap (q := q) hO hJ j i ((Module.finBasis K (Space n d q J counts
+      O)).equivFun.symm a)) J R
     (fun j hj i => isPolynomialFamily_linear
-      ((homogeneousLayerMap (q := q) hO hJ j i).comp (Module.finBasis K (Space n d q J counts O)).equivFun.symm.toLinearMap))
+      ((homogeneousLayerMap (q := q) hO hJ j i).comp (Module.finBasis K (Space n d q J counts
+        O)).equivFun.symm.toLinearMap))
   exact hh
 
 end Froberg.PreparedParameters

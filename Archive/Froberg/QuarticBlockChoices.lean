@@ -68,7 +68,8 @@ theorem canonical_pair_injective (r : Fin 5) (a b c d : CanonicalLabel)
   · have hh := hi.symm.trans hj
     exact Sym2.eq_swap.trans (congrArg (fun p : CanonicalLabel × CanonicalLabel => s(p.1,p.2)) hh)
   · have hh := hi.symm.trans hj
-    exact Sym2.eq_swap.trans ((congrArg (fun p : CanonicalLabel × CanonicalLabel => s(p.1,p.2)) hh).trans Sym2.eq_swap)
+    exact Sym2.eq_swap.trans ((congrArg (fun p : CanonicalLabel × CanonicalLabel => s(p.1,p.2))
+      hh).trans Sym2.eq_swap)
 
 def localSubset (e : X ↪ Fin 8) (r : Fin 5) (l : Label X) : Finset X :=
   univ.filter (fun x => e x ∈ choiceSubset r (canonicalLabel e l))
@@ -112,7 +113,8 @@ theorem localChoice_pair_injective (e : X ↪ Fin 8) (I : Finset X) (r : Fin 5)
     (hcdI : support c ∩ support d = I) (hcdU : support c ∪ support d = univ)
     (hp : localChoice e r a + localChoice e r b = localChoice e r c + localChoice e r d) :
     s(a,b) = s(c,d) := by
-  have hcoordinates : choiceCoordinates r (canonicalLabel e a) + choiceCoordinates r (canonicalLabel e b) =
+  have hcoordinates : choiceCoordinates r (canonicalLabel e a) + choiceCoordinates r (canonicalLabel
+    e b) =
       choiceCoordinates r (canonicalLabel e c) + choiceCoordinates r (canonicalLabel e d) := by
     funext ⟨x,t⟩
     by_cases hx : x ∈ Set.range e

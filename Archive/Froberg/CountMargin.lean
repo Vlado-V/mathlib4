@@ -66,7 +66,8 @@ theorem count_bound_polynomial_capacities {d : ℕ} (hd : 3 ≤ d)
     rw [coeff_sub, coeff_C_mul, monomialCountPolynomial_top, outerCountBound_top hd P h α hP,
       hL, inverse_factorial_step (by omega : 0 < d)]
     have hp : 0 < (h : ℝ) * (d : ℝ) / (d.factorial : ℝ) * (1 - criticalRatio d) :=
-      mul_pos (div_pos (mul_pos (by exact_mod_cast hh) (by exact_mod_cast (show 0 < d by omega))) hf)
+      mul_pos (div_pos (mul_pos (by exact_mod_cast hh) (by exact_mod_cast (show 0 < d by omega)))
+        hf)
         (sub_pos.mpr hρ)
     convert hp using 1 <;> ring
   filter_upwards [eventually_polynomial_pos D d hDdeg hDcoeff,

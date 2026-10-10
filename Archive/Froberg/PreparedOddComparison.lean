@@ -52,12 +52,14 @@ theorem exists_critical_comparison_of_prepared_odd
     (hiBase : LinearIndependent K (zeroScalarEndpointFamily (by omega) hO hJ U p.1
       (restrictCounts hc p.2.1,p.2.2)))
     (hoddBase : OddCyclesExact U p.1 (restrictCounts hc p.2.1,p.2.2))
-    (hupperBase : Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega) hO hJ U p.1
+    (hupperBase : Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega) hO hJ U
+      p.1
       (restrictCounts hc p.2.1,p.2.2))))
     (C : ℝ) (hC : (f : ℝ)≤C)
     (hthin : PreparedEndpointThin (by omega) ho hO hJ heven U C (fullRestrictCounts hc p))
     (G : ℝ)
-    (hchild : ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p.2.2 i)) d)
+    (hchild : ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p.2.2 i))
+      d)
       (outerScalarDeficit (fun i => outerVectorEquiv.symm (p.2.2 i))) G
       (coefficientCoordinates (fun i => p.2.1.1 (Sum.inl i)))) :
     Nonempty (LocalComparisonData K (h+m) d

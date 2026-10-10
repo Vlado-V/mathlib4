@@ -33,7 +33,8 @@ theorem preparedEvenSlotCount_eq_card {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
   have hc := PreparedParameters.allEvenLabel_card hd 0 h m e
   simp only [PreparedParameters.Label,Fintype.card_sum,Fintype.card_fin,Nat.zero_add] at hc
   rw [hc]
-  simpa [preparedEvenSlotCount,ProductRows.LayerLabel,Finset.sum_attach] using (sum_targetLayerCount hd h m e).symm
+  simpa [preparedEvenSlotCount,ProductRows.LayerLabel,Finset.sum_attach] using (sum_targetLayerCount
+    hd h m e).symm
 
 theorem preparedEvenSlotCount_lower_order {d : ℕ} (hd : 3≤d) (h extra : ℕ)
     (e : ℕ → ℕ)

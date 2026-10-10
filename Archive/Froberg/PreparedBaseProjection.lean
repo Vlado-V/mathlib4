@@ -24,14 +24,18 @@ def preparedBaseProjection : FullPreparedParameters.FixedPureZeroScalarSpace m d
     (((LinearMap.fst K _ _).prod ((LinearMap.fst K _ _).comp (LinearMap.snd K _ _))).comp
       preparedJointCoordinates.toLinearMap)
 
-@[simp] theorem preparedBaseProjection_eval (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :
-    preparedBaseProjection p=(fun i => linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm (p.2.2 i)),
+@[simp] theorem preparedBaseProjection_eval (p : FullPreparedParameters.FixedPureZeroScalarSpace m d
+  q f u J counts O) :
+    preparedBaseProjection p=(fun i => linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm
+      (p.2.2 i)),
       fun i => p.2.1.1 (Sum.inl i)) := rfl
 
 theorem preparedBaseProjection_surjective :
-    Function.Surjective (preparedBaseProjection (m := m) (d := d) (q := q) (f := f) (u := u) (J := J) (counts := counts) (O := O)) := by
+    Function.Surjective (preparedBaseProjection (m := m) (d := d) (q := q) (f := f) (u := u) (J :=
+      J) (counts := counts) (O := O)) := by
   intro y
-  let x := (scalarVectorParametersEquiv (K := K) (h := h) (m := m) (d := d) (f := f) (q := q)).symm y
+  let x := (scalarVectorParametersEquiv (K := K) (h := h) (m := m) (d := d) (f := f) (q :=
+    q)).symm y
   let ec := preparedJointCoordinates (K := K) (h := h) (m := m) (d := d)
     (q := q) (f := f) (u := u) (J := J) (counts := counts) (O := O)
   refine ⟨ec.symm (x.1,x.2,0),?_⟩
@@ -47,8 +51,10 @@ theorem prepared_base_principal_pullback (hO : ∀ j∈J,O j≤Forms K h j)
     (hGood : ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 → Good p) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-    ∃ P : MvPolynomial (Fin (finrank K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O))) K,
-      (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval ((Module.finBasis K _).equivFun p) P≠0) ∧
+    ∃ P : MvPolynomial (Fin (finrank K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J
+      counts O))) K,
+      (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval
+        ((Module.finBasis K _).equivFun p) P≠0) ∧
       ∀ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval ((Module.finBasis K _).equivFun p) P≠0 → Good (preparedBaseProjection p) := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO

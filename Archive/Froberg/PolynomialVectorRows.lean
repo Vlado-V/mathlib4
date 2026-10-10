@@ -48,7 +48,8 @@ theorem polynomialIntermediateRow_eq_addRow (o : J → MvPolynomial σ K)
   apply LinearMap.ext
   intro p
   change polynomialFormVector o (s+d)
-    (BilinearScalarFamily.multiplication vectorMultiply Q p.1 + homogeneousMultiplication e v he p.2) = _
+    (BilinearScalarFamily.multiplication vectorMultiply Q p.1 + homogeneousMultiplication e v he
+      p.2) = _
   exact map_add _ _ _
 
 /-- Every scalar coefficient is in the literal scalar ideal piece. -/

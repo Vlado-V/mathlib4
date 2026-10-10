@@ -62,7 +62,8 @@ theorem exists_background_child_deletion
     have hv := congrFun (backgroundEnumeratedForms_reindex S F G)
       (Sum.inl (Fin.castAdd e i))
     exact congrArg Subtype.val (by
-      simpa only [Function.comp_apply,Sum.elim_inl,S,Fin.append_left,evenPolynomialToForms_scalar] using hv)
+      simpa only [Function.comp_apply,Sum.elim_inl,S,Fin.append_left,evenPolynomialToForms_scalar]
+        using hv)
   refine ⟨D,hdim,hsupport,hinj.mono (endpoint_prefix_range_le Q (Nat.sub_le q 1)),?_⟩
   exact upperTarget_even_coverage
     (indexedSplitParity (backgroundSplitIndex (q := q+e) (f := f) (u := u))) family

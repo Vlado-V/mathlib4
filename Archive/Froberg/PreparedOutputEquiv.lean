@@ -82,12 +82,14 @@ def outputRename (f : σ → τ) : Space n d q J counts O →ₗ[K]
   simp only [generator,outputRename_scalar,outputRename_high,map_add]
 
 theorem outputRename_surjective (f : σ → τ) :
-    Function.Surjective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O) f) := by
+    Function.Surjective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O :=
+      O) f) := by
   intro p
   have hp (j : J) (i : Fin (counts j.val)) :
       ∃ z : biformImage (O j.val) (Forms K n (d-j.val)),
         rename (Sum.map f id) z.val=(p.2 j i).val := by
-    have hh := (biformImage_output_rename_eq (n := n) (e := d-j.val) f (O j.val)).ge (p.2 j i).property
+    have hh := (biformImage_output_rename_eq (n := n) (e := d-j.val) f (O j.val)).ge (p.2 j
+      i).property
     obtain ⟨z,hz,he⟩ := hh
     exact ⟨⟨z,hz⟩,he⟩
   choose z hz using hp
@@ -97,10 +99,12 @@ theorem outputRename_surjective (f : σ → τ) :
   · funext j i; exact Subtype.ext (hz j i)
 
 theorem outputRename_injective (f : σ → τ) (hf : Function.Injective f) :
-    Function.Injective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O) f) := by
+    Function.Injective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O)
+      f) := by
   intro p r he
   apply Prod.ext
-  · exact congrArg (fun x : Space n d q J counts (fun j => (O j).map (rename f).toLinearMap) => x.1) he
+  · exact congrArg (fun x : Space n d q J counts (fun j => (O j).map (rename f).toLinearMap) =>
+    x.1) he
   · funext j i
     apply Subtype.ext
     apply rename_injective (Sum.map f id) (Function.Injective.sumMap hf (fun _ _ h => h))
@@ -109,7 +113,8 @@ theorem outputRename_injective (f : σ → τ) (hf : Function.Injective f) :
 
 def outputRenameEquiv (f : σ ≃ τ) : Space n d q J counts O ≃ₗ[K]
     Space n d q J counts (fun j => (O j).map (rename f).toLinearMap) :=
-  LinearEquiv.ofBijective (outputRename f) ⟨outputRename_injective f f.injective,outputRename_surjective f⟩
+  LinearEquiv.ofBijective (outputRename f) ⟨outputRename_injective f
+    f.injective,outputRename_surjective f⟩
 
 end PreparedParameters
 end Froberg

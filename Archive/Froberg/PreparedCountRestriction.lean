@@ -87,7 +87,8 @@ def fullRestrictCounts (hc : ∀ j∈J,c j≤c' j) :
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem fullRestrictCounts_surjective (hc : ∀ j∈J,c j≤c' j) :
-    Function.Surjective (fullRestrictCounts (m := m) (d := d) (q := q) (f := f) (u := u) (O := O) hc) := by
+    Function.Surjective (fullRestrictCounts (m := m) (d := d) (q := q) (f := f) (u := u) (O := O)
+      hc) := by
   intro p
   refine ⟨(p.1,(extendCounts hc p.2.1,p.2.2)),?_⟩
   change (p.1,(restrictCounts hc (extendCounts hc p.2.1),p.2.2))=p
@@ -105,7 +106,8 @@ def restoredRestrictCounts (hc : ∀ j∈J,c j≤c' j) :
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem restoredRestrictCounts_surjective (hc : ∀ j∈J,c j≤c' j) :
-    Function.Surjective (restoredRestrictCounts (m := m) (d := d) (q := q) (f := f) (O := O) hc) := by
+    Function.Surjective (restoredRestrictCounts (m := m) (d := d) (q := q) (f := f) (O := O)
+      hc) := by
   intro p
   refine ⟨((extendCounts hc p.1.1,p.1.2),p.2),?_⟩
   change ((restrictCounts hc (extendCounts hc p.1.1),p.1.2),p.2)=p

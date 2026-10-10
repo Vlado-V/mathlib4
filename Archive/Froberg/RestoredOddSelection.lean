@@ -37,7 +37,8 @@ theorem exists_even_restored_odd_basis_on_open (hd : d%2=0)
       Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot p)) ∧
       ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := Fin h) (n := m)) d,
         PolynomialRestoration.row (evenRestorationSpace outputWeight d).subtype
-          (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot p) c=0 →
+          (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot
+            p) c=0 →
         ∃ (M : Fin r → Fin r → K)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
           c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p) M=z.val := by

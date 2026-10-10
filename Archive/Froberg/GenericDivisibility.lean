@@ -44,7 +44,8 @@ theorem central_pair_coefficient_action (ζ : K) (hζ : ζ ≠ 0)
 
 theorem central_pair_target_matrix (ζ : K) (hn : ζ ^ n = 1) (hr : (ζ ^ d) ^ r = 1) :
     (universalTargetAction (d := d)).matrix (scalarSL n ζ hn, scalarSL r (ζ ^ d) hr) =
-      (C (ζ ^ (2 * d)) : MvPolynomial (CoefficientIndex n d r) K) • (1 : Matrix (Fin (finrank K (Forms K n (2 * d))))
+      (C (ζ ^ (2 * d)) : MvPolynomial (CoefficientIndex n d r) K) • (1 : Matrix (Fin (finrank K
+        (Forms K n (2 * d))))
         (Fin (finrank K (Forms K n (2 * d)))) (MvPolynomial (CoefficientIndex n d r) K)) := by
   classical
   have ht : endpointTargetCoordinates (scalarSL n ζ hn, scalarSL r (ζ ^ d) hr) =

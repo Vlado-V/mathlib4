@@ -20,7 +20,8 @@ variable {K : Type} [Field K] [Infinite K]
 
 theorem paired_output_finrank (w R : ℕ) :
     finrank K (homogeneousSubmodule (Fin w × Bool) K R)=(2*w+R-1).choose R := by
-  rw [Module.finrank_eq_card_basis (finiteVariableFormsBasis (Fin w × Bool) R),Sym.card_sym_eq_choose]
+  rw [Module.finrank_eq_card_basis (finiteVariableFormsBasis (Fin w × Bool)
+    R),Sym.card_sym_eq_choose]
   simp only [Fintype.card_prod,Fintype.card_fin,Fintype.card_bool]
   congr 2
   omega

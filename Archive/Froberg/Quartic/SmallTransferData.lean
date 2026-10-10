@@ -47,7 +47,8 @@ theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
     simp only [Q,baseProjection_encode,AugmentedGeneric.coefficientChild_encode]
   obtain ⟨A,⟨a,ha⟩,hA⟩ := SharedChildFlag.endpoint_principal_open (by omega : 1 ≤ m)
     (upperEndpoint m) rfl Q hpoly hsurj hchild
-  obtain ⟨B,⟨b,hb⟩,hB⟩ := ActualSmallResponseRank.common_open (K := K) m hmlo hmhi upper (by norm_num)
+  obtain ⟨B,⟨b,hb⟩,hB⟩ := ActualSmallResponseRank.common_open (K := K) m hmlo hmhi upper (by
+    norm_num)
   have hA0 : A≠0 := by intro h; simp [h] at ha
   have hB0 : B≠0 := by intro h; simp [h] at hb
   obtain ⟨p,hp⟩ := nonempty_principal_intersection (![A,B] : Fin 2 →

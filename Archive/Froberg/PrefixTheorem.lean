@@ -27,7 +27,8 @@ theorem exists_prefix_expected_hilbert (hn : 0 < n) (hed : e < d)
   by_cases hr : r * (n + e - 1).choose e ≤ (n + (d + e) - 1).choose (d + e)
   · obtain ⟨f, hf⟩ := exists_prefix_injective_of_large_variables (K := K) hn hed hlarge hr
     exact ⟨f, prefix_hilbert_of_injective hn f hf⟩
-  · obtain ⟨f, hf⟩ := exists_prefix_surjective_of_large_variables (K := K) (r := r) hn hed hlarge (by omega)
+  · obtain ⟨f, hf⟩ := exists_prefix_surjective_of_large_variables (K := K) (r :=
+    r) hn hed hlarge (by omega)
     refine ⟨f, ?_⟩
     rw [prefix_hilbert_of_surjective hn f hf]
     omega

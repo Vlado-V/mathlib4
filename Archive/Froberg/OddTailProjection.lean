@@ -24,7 +24,8 @@ theorem eventually_odd_tail_projection {e : ℕ} (he : 2≤e) (ho : Odd (1+e)) :
         (∀ L : Submodule K (Forms K h e),
           topComplementCount (1+e) h*finrank K L≤finrank K (Forms K h e)*
             finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P)) ∧
-        BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := 1+e) (e := 1)).flip P.ker=⊤ ∧
+        BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := 1+e) (e :=
+          1)).flip P.ker=⊤ ∧
         (h : ℝ)/(2*((1+e : ℕ) : ℝ))≤
           (topComplementCount (1+e) h : ℝ)/(topSourceCount (1+e) h : ℝ) := by
   filter_upwards [odd_top_projection_hypotheses (show 3≤1+e by omega) ho,

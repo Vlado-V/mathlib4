@@ -216,7 +216,8 @@ theorem range_formalCoefficientMap (q : Fin r → V) :
   · rintro _ ⟨a, rfl⟩
     rw [formalCoefficientMap_apply]
     exact Submodule.sum_mem _ (fun i _ =>
-      symProd_mem_formalMixed (Submodule.span K (Set.range q)) (Submodule.subset_span ⟨i, rfl⟩) (a i))
+      symProd_mem_formalMixed (Submodule.span K (Set.range q)) (Submodule.subset_span ⟨i, rfl⟩) (a
+        i))
   · apply Submodule.span_le.mpr
     rintro _ ⟨a, b, ha, rfl⟩
     obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun K).mp ha

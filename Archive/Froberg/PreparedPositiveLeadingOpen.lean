@@ -54,10 +54,12 @@ theorem positive_leading_principal_open
   classical
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O)).equivFun
+  let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J
+    counts O)).equivFun
   have hrow (j : J) : ∃ D : MvPolynomial (Fin (finrank K
       (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O))) K,
-      (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval (coord p) D≠0) ∧
+      (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval (coord p)
+        D≠0) ∧
       ∀ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
         eval (coord p) D≠0 → LinearIndependent K (p.2.1.2 j) := by
     obtain ⟨p,hp⟩ := hw j
@@ -76,7 +78,8 @@ theorem positive_leading_principal_open
       fullPrivateLinear,LinearMap.coe_mk,AddHom.coe_mk] using hP₀)
   let family : Option J → MvPolynomial (Fin (finrank K
       (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O))) K := Option.elim' P D
-  have hex (j : Option J) : ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
+  have hex (j : Option
+    J) : ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
       eval (coord p) (family j)≠0 := by
     cases j with
     | none => exact ⟨(P₀,(0,0)),hP⟩

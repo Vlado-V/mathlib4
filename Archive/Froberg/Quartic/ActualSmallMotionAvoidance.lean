@@ -49,7 +49,8 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
     (hp : ClosedConditions p) (U : Marked p)
     (hg : LinearIndependent K (G p)) (hh : LinearIndependent K (Q p))
     (hs : Function.Surjective (ActualCorrectionMotion.middleMap (G p) (Q p)))
-    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G p))))
+    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G
+      p))))
     (r₀ : ActualCorrectionMotion.Pure K m)
     (hr₀ : Function.Injective (AugmentedGeneric.quotientAugmented
       (AugmentedGeneric.productMap (G p)) (Q p) r₀)) :
@@ -61,10 +62,13 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
           (Fintype.card (Fin (mixedCount m upper) × Fin (FormCount m 2))) (RowCount m 3)
           (auxiliaryCount p U),
         Function.Injective (AugmentedGeneric.quotientAugmented
-          (AugmentedGeneric.productMap (G p)) (Q p) (ActualCorrectionMotion.pureCoordinates.symm x)) ∧
+          (AugmentedGeneric.productMap (G p)) (Q p) (ActualCorrectionMotion.pureCoordinates.symm
+            x)) ∧
         ∀ ell : Fin (RowCount m 3) → K,
-          (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (SmallCovectorMotion.mixed p j))=0) →
-          (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (SmallCovectorMotion.child p i) v)=0) →
+          (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (SmallCovectorMotion.mixed
+            p j))=0) →
+          (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (SmallCovectorMotion.child p
+            i) v)=0) →
           evaluated (ActualTraceMotion.covectorMatrix (G p)) ell *ᵥ x=0 →
           evaluated (ActualCorrectionMotion.finitePolynomialConstraint (G p) (Q p) U sectionMap)
             (Sum.elim ell x) *ᵥ y.1=0 →
@@ -81,7 +85,8 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
         (RowCount m 3) (auxiliaryCount p U))) → K =>
     Function.Injective (AugmentedGeneric.quotientAugmented (AugmentedGeneric.productMap (G p))
       (Q p) (ActualCorrectionMotion.pureCoordinates.symm (fun i => z (Sum.inl i))))
-  have hdim : (correctionCount p U : ℤ)=Counts.H m (upperEndpoint m) (mixedCount m upper)+3+finrank K U := by
+  have hdim : (correctionCount p U : ℤ)=Counts.H m (upperEndpoint m) (mixedCount m
+    upper)+3+finrank K U := by
     have hd := MovingMiddleCorrection.coefficientImage_finrank (G p) (Q p) r₀ hg hh hr₀ hs U
     apply Int.toNat_of_nonneg
     rw [← hd]
@@ -89,7 +94,8 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
   have hA : ∀ (s : K) ell,evaluated A (s • ell)=s • evaluated A ell := by
     intro s ell
     exact ActualTraceMotion.eval_covectorMatrix_smul (G p) ell s
-  have hB : ∀ (s : K) ell x,evaluated B' (Sum.elim (s • ell) x)=s • evaluated B' (Sum.elim ell x) := by
+  have hB : ∀ (s : K) ell x,evaluated B' (Sum.elim (s • ell) x)=s • evaluated B' (Sum.elim ell
+    x) := by
     intro s ell x
     apply AuxiliaryMotionMatrix.polynomialMatrix_scaling B
     intro s ell x
@@ -102,8 +108,10 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
     simpa only [ConvolutionClosedSlices.sliceCount,auxiliaryCount,sub_add_eq_sub_sub,
       Nat.add_assoc] using h
   have hr1 : ∀ d : Threshold m upper,∀ ell : Fin (RowCount m 3) → K,ell ≠ 0 →
-      (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (SmallCovectorMotion.mixed p j))=0) →
-      (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (SmallCovectorMotion.child p i) v)=0) →
+      (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (SmallCovectorMotion.mixed p
+        j))=0) →
+      (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (SmallCovectorMotion.child p i)
+        v)=0) →
       finrank K (LinearMap.ker (relationMap RowMultiplicationCoordinates.coordinate ell))=
         d.val+mixedCount m upper → ∀ z,Good z →
       2*m+2*mixedCount m upper-4*d.val ≤ (evaluated A ell).rank := by
@@ -115,20 +123,24 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
         LinearEquiv.symm_apply_apply] using hj
     · exact hker.le
   have hr2 : ∀ d : Threshold m upper,∀ ell : Fin (RowCount m 3) → K,ell ≠ 0 →
-      (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (SmallCovectorMotion.mixed p j))=0) →
-      (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (SmallCovectorMotion.child p i) v)=0) →
+      (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (SmallCovectorMotion.mixed p
+        j))=0) →
+      (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (SmallCovectorMotion.child p i)
+        v)=0) →
       finrank K (LinearMap.ker (relationMap RowMultiplicationCoordinates.coordinate ell))=
         d.val+mixedCount m upper → ∀ z,Good z →
       evaluated A ell *ᵥ (fun i => z (Sum.inl i))=0 →
       (correctionCount p U-mixedCount m upper*d.val)+auxiliaryCount p U ≤
         (evaluated B' (Sum.elim ell (fun i => z (Sum.inl i)))).rank := by
     intro d ell hell hE _ hker z hGood _
-    have hE' : Submodule.span K (Set.range (G p)) ≤ LinearMap.ker (ActualCorrectionMotion.sourceRelation ell) := by
+    have hE' : Submodule.span K (Set.range (G
+      p)) ≤ LinearMap.ker (ActualCorrectionMotion.sourceRelation ell) := by
       apply Submodule.span_le.mpr
       rintro _ ⟨j,rfl⟩
       change relationMap RowMultiplicationCoordinates.coordinate ell (rowFiniteEquiv (G p j))=0
       exact (AmbientCovectorTransport.mem_relationMap_ker_iff _ _ _).mpr (hE j)
-    have hraw := ActualCorrectionMotion.constraint_rank_bound_ambient (G p) (Q p) U sectionMap hsection
+    have hraw := ActualCorrectionMotion.constraint_rank_bound_ambient (G p) (Q
+      p) U sectionMap hsection
       (ActualCorrectionMotion.pureCoordinates.symm (fun i => z (Sum.inl i))) ell d.val hE'
       (by omega) hg hh hGood hs
     have hfinite := ActualCorrectionMotion.finitePolynomialConstraint_rank (G p) (Q p) U sectionMap
@@ -142,7 +154,8 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
       omega
     have haux := AuxiliaryMotionMatrix.polynomialMatrix_rank (e := auxiliaryCount p U) B
       (fun k => X (Sum.inl k)) (Sum.elim ell (fun i => z (Sum.inl i))) (by simpa using hell)
-    change _ ≤ (evaluated (AuxiliaryMotionMatrix.polynomialMatrix B (fun k => X (Sum.inl k))) _).rank
+    change _ ≤ (evaluated (AuxiliaryMotionMatrix.polynomialMatrix B (fun k => X (Sum.inl k)))
+      _).rank
     rw [haux]
     omega
   obtain ⟨P,⟨z₀,hz₀⟩,havoid⟩ := SmallCovectorMotion.principal_open_all_kernel_ranks hm p hp hg
@@ -188,7 +201,8 @@ theorem exists_actual_motions (hm : 28 ≤ m) (p : Parameters K m upper)
     (hp : ClosedConditions p) (U : Marked p)
     (hg : LinearIndependent K (G p)) (hh : LinearIndependent K (Q p))
     (hs : Function.Surjective (ActualCorrectionMotion.middleMap (G p) (Q p)))
-    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G p))))
+    (htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed (G
+      p))))
     (r₀ : ActualCorrectionMotion.Pure K m)
     (hr₀ : Function.Injective (AugmentedGeneric.quotientAugmented
       (AugmentedGeneric.productMap (G p)) (Q p) r₀)) :
@@ -219,7 +233,8 @@ theorem exists_actual_motions (hm : 28 ≤ m) (p : Parameters K m upper)
   · intro j f
     rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
-    simpa only [SmallCovectorMotion.mixed,LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm f)
+    simpa only [SmallCovectorMotion.mixed,LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm
+      f)
   · intro i v
     rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]

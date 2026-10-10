@@ -21,7 +21,8 @@ abbrev Source (g : Fin c → Rows K h n s) :=
   (Rows K h n s) ⧸ Submodule.span K (Set.range g)
 
 abbrev Target (g : Fin c → Rows K h n s) (d : ℕ) :=
-  (Rows K h n (s+d)) ⧸ BilinearImage.image (multiplication (d := d)) (Submodule.span K (Set.range g))
+  (Rows K h n (s+d)) ⧸ BilinearImage.image (multiplication (d := d)) (Submodule.span K (Set.range
+    g))
 
 def quotientMultiplication (g : Fin c → Rows K h n s) (d : ℕ) :
     Forms K n d →ₗ[K] Source g →ₗ[K] Target g d :=

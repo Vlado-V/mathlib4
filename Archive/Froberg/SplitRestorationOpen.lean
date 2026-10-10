@@ -61,7 +61,8 @@ theorem split_restoration_open
   have hB : IsPolynomialFamily B := by
     apply isPolynomialFamily_linearMap
     intro x
-    exact ((hg.linear_comp (boundaryInFamily x.1.1)).add (isPolynomialFamily_const (T x.1.2))).prod_mk
+    exact ((hg.linear_comp (boundaryInFamily x.1.1)).add (isPolynomialFamily_const (T
+      x.1.2))).prod_mk
       (hp.linear_comp (boundaryInFamily x.2))
   have hAB : ∀ a,(A a).comp (B a)=0 := by
     intro a

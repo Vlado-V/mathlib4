@@ -30,7 +30,8 @@ theorem eventually_field_uniform_single_profile_scalar_open {d e : ℕ} (hd : 0<
       ∃ P : MvPolynomial (Fin (finrank K (Fin (q n) → Forms K n d))) K,
         (∃ Q : Fin (q n) → Forms K n d,eval (coordinates K _ Q) P≠0) ∧
         ∀ Q : Fin (q n) → Forms K n d,eval (coordinates K _ Q) P≠0 →
-          Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q e) := by
+          Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q
+            e) := by
   obtain ⟨m₀,hm₀⟩ := exists_deleted_bidegree_growth_threshold d e hd
   obtain ⟨n₁,hn₁⟩ := eventually_atTop.mp hbudget
   refine ⟨max (2*m₀+1) n₁,?_⟩
@@ -59,7 +60,8 @@ theorem eventually_field_uniform_small_single_profile_scalar_open {d R : ℕ}
       ∃ P : MvPolynomial (Fin (finrank K (Fin (q n) → Forms K n d))) K,
         (∃ Q : Fin (q n) → Forms K n d,eval (coordinates K _ Q) P≠0) ∧
         ∀ Q : Fin (q n) → Forms K n d,eval (coordinates K _ Q) P≠0 →
-          Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q (d-R)) :=
+          Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q
+            (d-R)) :=
   eventually_field_uniform_single_profile_scalar_open (by omega) q
     (eventually_small_scalar_source_budget hd hd8 hR hRd q hq)
 

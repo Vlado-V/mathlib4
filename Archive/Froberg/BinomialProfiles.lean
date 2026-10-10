@@ -195,7 +195,8 @@ theorem profileJoint_pos {σ : ℝ} {s : ℕ}
 theorem profileJoint_zero {σ : ℝ} {s : ℕ} (i : Fin s) (j : Fin (2 * s + 1))
     (h : ¬((i : ℕ) ≤ j ∧ (j : ℕ) ≤ i + s + 1)) : profileJoint σ s i j = 0 := by
   unfold profileJoint
-  rw [show (∑ z : Fin (s + 2), if profileShift i z = j then profileBinomial σ (s + 1) z else 0) = 0 from ?_]
+  rw [show (∑ z : Fin (s + 2), if profileShift i z = j then profileBinomial σ (s + 1) z else 0) = 0
+    from ?_]
   · exact mul_zero _
   · apply sum_eq_zero
     intro z _

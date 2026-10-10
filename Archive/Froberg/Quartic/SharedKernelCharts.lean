@@ -64,7 +64,8 @@ def denominator (A : Matrix (Fin a) (Fin n) (MvPolynomial I K))
     (t : I → K) (y : Fin q × Outside v → K)
     (hdet : (KernelCharts.minor (evaluated A t) u v).det ≠ 0) :
     RationalImageAvoidance.rationalMap (numerator A u v) (denominator A u v) (Sum.elim t y) =
-      fun z : Fin q × Fin n => KernelCharts.reconstruct (evaluated A t) u v (fun j => y (z.1,j)) z.2 := by
+      fun z : Fin q × Fin n => KernelCharts.reconstruct (evaluated A t) u v (fun j => y
+        (z.1,j)) z.2 := by
   funext z
   rcases z with ⟨i,k⟩
   have he := congrFun (KernelPolynomialCharts.rationalMap_eq_reconstruct A u v t

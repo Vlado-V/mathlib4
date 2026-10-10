@@ -214,7 +214,8 @@ theorem initial_dimension_and_image_bound
       μ (Pi.single a u) (Pi.single j v) k = 0)
     (L : Submodule K ((i : Fin n) → E i)) :
     finrank K (initialSubspace E L) = finrank K L ∧
-      finrank K (multiplicationImage μ (initialSubspace E L)) ≤ finrank K (multiplicationImage μ L) :=
+      finrank K (multiplicationImage μ (initialSubspace E L)) ≤ finrank K (multiplicationImage μ
+        L) :=
   ⟨initialSubspace_finrank E L, multiplicationImage_initial_finrank_le μ shift hshift hgrade L⟩
 
 end Multiplication

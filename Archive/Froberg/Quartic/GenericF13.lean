@@ -104,7 +104,8 @@ theorem principal_open_of_witness (E : GeneralF13.Mixed K m c) (Q : Quadrics K m
     (hF : Function.Injective (GeneralF13.f13Map E Q)) :
     ∃ D : MvPolynomial (MiddleCoordinates.CoefficientIndex m c q) K,
       eval (MiddleCoordinates.decode.symm (E,Q)) D ≠ 0 ∧
-      ∀ a, eval a D ≠ 0 → Conditions (MiddleCoordinates.decode a).1 (MiddleCoordinates.decode a).2 := by
+      ∀ a, eval a D ≠ 0 → Conditions (MiddleCoordinates.decode a).1 (MiddleCoordinates.decode
+        a).2 := by
   classical
   let a₀ := MiddleCoordinates.decode.symm (E,Q)
   have hp : IsPolynomialFamily (fun a : MiddleCoordinates.CoefficientIndex m c q → K =>
@@ -120,7 +121,8 @@ theorem principal_open_of_witness (E : GeneralF13.Mixed K m c) (Q : Quadrics K m
   have hpc : IsPolynomialFamily (fun a : MiddleCoordinates.CoefficientIndex m c q → K =>
       CubicGeneric.bilinear.flip (coordinateChild a)) := by
     intro ell
-    exact ⟨polynomialOfLinear (ell.comp ((CubicGeneric.bilinear (K := K) (m := m) (q := q)).flip.comp
+    exact ⟨polynomialOfLinear (ell.comp ((CubicGeneric.bilinear (K := K) (m := m) (q :=
+      q)).flip.comp
       (coordinateChild (K := K) (m := m) (c := c) (q := q)))), fun a => eval_polynomialOfLinear _ a⟩
   obtain ⟨Dc,hDc,hc⟩ := injective_polynomial_principal_open
     (fun a => CubicGeneric.bilinear.flip (coordinateChild a)) hpc a₀ hc0

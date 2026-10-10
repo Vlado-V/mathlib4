@@ -37,7 +37,8 @@ theorem beta_cast (m q : ℕ) : (beta m q : ℝ) = betaR m q := by
   simp only [beta, Int.cast_sub, Int.cast_mul, Int.cast_natCast, b3_cast, betaR]
 
 theorem j_cast (m q c : ℕ) : (j m q c : ℝ) = jR m q c := by
-  simp only [j, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast, beta_cast, alpha_cast, jR]
+  simp only [j, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast, beta_cast, alpha_cast,
+    jR]
 
 theorem H_cast (m q c : ℕ) : (H m q c : ℝ) = HR m q c := by
   simp only [H, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast,
@@ -62,7 +63,8 @@ theorem endpoint_defect (n : ℕ) :
           simp [chi, b4]
         exact hz (le_antisymm (upper_nonpositive n) hnonneg)
       exact ⟨upperEndpoint n-1, by omega, before_upper_positive n _ (by omega)⟩
-  simpa only [delta, alpha] using endpoint_defect_bounds_or_root n (upperEndpoint n) hq (upper_nonpositive n) hb
+  simpa only [delta, alpha] using endpoint_defect_bounds_or_root n (upperEndpoint
+    n) hq (upper_nonpositive n) hb
 
 /-- Source column counts are in the valid convolution range, uniformly. -/
 theorem c_range (m : ℕ) (hm : 320 ≤ m) (upper : Bool) :
@@ -151,7 +153,8 @@ theorem target_count_identity (m : ℕ) (hm : 320 ≤ m) (upper : Bool) :
       (upperEndpoint m : ℝ)*(ProfileCertificate.totalA m (mixedCount m upper) : ℝ) +
         (j m (upperEndpoint m) (mixedCount m upper) : ℝ) := by
   rw [source_dimension_cast m hm upper, j_cast]
-  simp only [targetCount, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast, b2_cast, b3_cast]
+  simp only [targetCount, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast, b2_cast,
+    b3_cast]
   unfold jR betaR alphaR aR
   ring
 
@@ -180,10 +183,13 @@ theorem target_count_eq_free (m : ℕ) (hm : 320 ≤ m) (upper : Bool) :
     simp only [ProfileCertificate.coreB, FiniteCounts.quadratics_eq_b2, b2_cast, hp]
     ring
   have heq : (targetCount m (mixedCount m upper) : ℝ) =
-      (ProfileCertificate.coreB (mixedCount m upper) : ℝ)*(ProfileCertificate.freeW m (mixedCount m upper) : ℝ) +
-      (ProfileCertificate.coreA (mixedCount m upper) : ℝ)*(b2 (ProfileCertificate.freeW m (mixedCount m upper)) : ℝ) +
+      (ProfileCertificate.coreB (mixedCount m upper) : ℝ)*(ProfileCertificate.freeW m (mixedCount m
+        upper) : ℝ) +
+      (ProfileCertificate.coreA (mixedCount m upper) : ℝ)*(b2 (ProfileCertificate.freeW m
+        (mixedCount m upper)) : ℝ) +
       3*(b3 (ProfileCertificate.freeW m (mixedCount m upper)) : ℝ) := by
-    simp only [targetCount, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast, b2_cast, b3_cast]
+    simp only [targetCount, Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast, b2_cast,
+      b3_cast]
     rw [hA, hB, hw]
     ring
   exact_mod_cast heq

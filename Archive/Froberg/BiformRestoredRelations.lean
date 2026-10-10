@@ -43,7 +43,8 @@ theorem biform_restored_supported_relations
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalMixed (Submodule.span K (Set.range (biformRestorationForms g)))=
       (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
-        formalProducts Q (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
+        formalProducts Q (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin
+          (h+m))).range := by
   have hw : ∀ x,blockWeight h m x≤1 := by intro x;cases x <;> simp [blockWeight]
   have hr := restoration_reduction_rename finSumFinEquiv (blockWeight h m) hw g degree hreduce
   refine restored_projected_formal_relations (blockWeight h m ∘ finSumFinEquiv.symm)

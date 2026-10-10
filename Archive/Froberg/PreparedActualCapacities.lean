@@ -26,7 +26,8 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 theorem oddOutputDimension_eventually_positive {R : ℕ} (hR : 0<R) :
     ∀ᶠ w : ℕ in atTop,0<oddOutputDimension w R := by
   have hp : (0:ℝ)<2^(R-1)/(R.factorial : ℝ) := by positivity
-  filter_upwards [(oddOutputDimension_normalized_limit hR).eventually (eventually_gt_nhds hp)] with w hw
+  filter_upwards [(oddOutputDimension_normalized_limit hR).eventually (eventually_gt_nhds
+    hp)] with w hw
   apply Nat.pos_of_ne_zero
   intro hz
   simpa only [hz,Nat.cast_zero,zero_div,lt_self_iff_false] using hw
@@ -84,7 +85,8 @@ theorem eventually_actual_even_capacities {d : ℕ} (hd : 9≤d) :
       refine ⟨_,hv.with_labels rfl (allEvenLabel_card (by omega) _ _ _ _) ?_ (hpv R.val)
         (fun j hj => by have := (mem_allEvenIndices.mp hj).1;omega)⟩
       exact allEvenCount_active _ _ _ ha
-    · have hempty := eventually_empty_higher_capacity (K := K) (X := X) hd (allEvenIndices d) R hR4 hRd
+    · have hempty := eventually_empty_higher_capacity (K := K) (X := X) hd (allEvenIndices
+      d) R hR4 hRd
         T (hT _ hR4) (hpos R) (fun n => upperCount n d)
         (fun n => allEvenCount d (2*w) n (e n+extra))
         (fun n => allEvenCount_inactive _ _ _ ha) hcount

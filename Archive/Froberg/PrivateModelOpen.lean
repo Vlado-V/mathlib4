@@ -26,7 +26,8 @@ theorem private_open_of_geometric_growth (hk : 0 < k) (hs : 2 ≤ s)
     (hh : h=k*(2*s+1).choose s) (hn : 0 < a+z)
     (hc : 0 < Fintype.card (Labels k a s ⊕ Fin b))
     (ι : Fin b ↪ Fin z) (u : Labels k a s ⊕ Fin b → Fin h → K)
-    (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u i.val))
+    (hu : ∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
+      i.val))
     (G : ℝ)
     (hA : 0 < finrank L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))))
     (hGA : (finrank L (PrivateSourceSpace ι (fun i j => algebraMap K L (u i j))) : ℝ) ≤ G)
@@ -42,7 +43,8 @@ theorem private_open_of_geometric_growth (hk : 0 < k) (hs : 2 ≤ s)
         StrictModel (VectorParameters.generators p) (s+1) G := by
   classical
   let r := (Fintype.equivFin (Labels k a s ⊕ Fin b)).symm
-  let p₀ := VectorParameters.coordinates (generator (attachedExponent ι) u (attachedExponent_degree ι) ∘ r)
+  let p₀ := VectorParameters.coordinates (generator (attachedExponent ι) u (attachedExponent_degree
+    ι) ∘ r)
   have huL := MixedExterior.full_spark_map_coordinates (algebraMap K L) u hu
   have hsmall := private_small_fiber_bound hk hs hh
   have hi c (hc : c ≤ s+1) := attached_multiplication_injective hs ι hh.ge hsmall u hu c hc

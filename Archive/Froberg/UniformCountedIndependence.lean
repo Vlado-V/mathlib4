@@ -37,7 +37,8 @@ theorem uniform_exact_counts_all_even_independent_open {d k h lo u : ℕ}
       (exact_conditions_outer_limit hd upper a f e hc).add hfixed
   have hqcount := eventually_count_le_multiple_monomial
     (fun n => Fintype.card (PreparedParameters.Label (upperCount n d)
-      (PreparedParameters.allEvenIndices d) (PreparedParameters.allEvenCount d h n (e n+extraSlots)))) 1 d _ hS (by
+      (PreparedParameters.allEvenIndices d) (PreparedParameters.allEvenCount d h n (e
+        n+extraSlots)))) 1 d _ hS (by
       simpa only [Nat.cast_one,one_mul,one_div] using
         div_lt_div_of_pos_right hρ (show (0 : ℝ)<d.factorial by positivity))
   have hfcount := eventually_count_le_multiple_monomial (fun n => f n+u) h (d-1) _ hF (by
@@ -52,6 +53,7 @@ theorem uniform_exact_counts_all_even_independent_open {d k h lo u : ℕ}
   · rw [finrank_forms K n d hnpos]
     simpa only [one_mul] using hn
   · simpa only [Rows,Module.finrank_pi_fintype,Fintype.card_fin,
-      finrank_forms K n (d-1) hnpos,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,Nat.cast_id] using hfn
+      finrank_forms K n (d-1)
+        hnpos,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,Nat.cast_id] using hfn
 
 end Froberg.PreparedTarget

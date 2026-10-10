@@ -34,11 +34,15 @@ structure RestoredCertificate (hdp : 1≤d) (hd : d%2=0)
   independent : LinearIndependent K (restoredOuterEndpoint hdp hd hO hJ heven idx slot p)
   odd_exact : OddSplitExact (restoredBiformFamily hd hO hJ heven idx slot p.1)
     (fun j => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 j)))
-  upper_surjective : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot p))
-  background_odd_injective : Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot p.1))
-  positive_reduction : ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := Fin h) (n := m)) d,
+  upper_surjective : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven
+    idx slot p))
+  background_odd_injective : Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ
+    heven idx slot p.1))
+  positive_reduction : ∀ c : Fin r → evenRestorationSpace (K := K) (outputWeight (σ := Fin h) (n :=
+    m)) d,
     PolynomialRestoration.row (evenRestorationSpace outputWeight d).subtype
-      (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot p.1) c=0 →
+      (positiveWeightProjection outputWeight d) (restoredFamilyLinear hd hO hJ heven idx slot
+        p.1) c=0 →
       ∃ (M : Fin r → Fin r → K)
         (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
         c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p.1) M=z.val
@@ -60,7 +64,8 @@ theorem exists_restored_certificate_on_open (hdp : 1≤d) (hd : d%2=0)
     ∀ E : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,
       (∃ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) E≠0) →
       ∃ p : RestoredOuterSpace m d q f J counts O,
-        eval ((Module.finBasis K _).equivFun p) E≠0 ∧ RestoredCertificate hdp hd hO hJ heven idx slot p := by
+        eval ((Module.finBasis K _).equivFun
+          p) E≠0 ∧ RestoredCertificate hdp hd hO hJ heven idx slot p := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   intro E hE
   obtain ⟨I,hI,higood⟩ := hi
@@ -78,7 +83,8 @@ theorem exists_restored_certificate_on_open (hdp : 1≤d) (hd : d%2=0)
   obtain ⟨p,hp⟩ := finite_basis_principal_intersection family hex
   let C := I*A*B*E
   have hpC : eval ((Module.finBasis K _).equivFun p) C≠0 := by
-    simpa [C,family,map_mul] using mul_ne_zero (mul_ne_zero (mul_ne_zero (hp 0) (hp 1)) (hp 2)) (hp 3)
+    simpa [C,family,map_mul] using mul_ne_zero (mul_ne_zero (mul_ne_zero (hp 0) (hp 1)) (hp 2)) (hp
+      3)
   obtain ⟨P,hP,hPgood⟩ := principal_open_freeze_at (LinearMap.id (R := K)
     (M := RestoredOuterSpace m d q f J counts O)) p.1 p.2 C hpC
   obtain ⟨v,hv,hvi,hvs,hvo,hvr⟩ := exists_even_restored_odd_basis_on_open hd hO hJ heven hpos

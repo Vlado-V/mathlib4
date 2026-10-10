@@ -32,8 +32,10 @@ def mixedIndexEquiv : TraceGeneric.CoefficientIndex m c ≃
     (Fin c × Fin 3 × Sym (Fin m) 1) where
   toFun s := (s.1, (Sym.oneEquiv (α := Fin 3)).symm s.2.2, Sym.oneEquiv (α := Fin m) s.2.1)
   invFun s := (s.1, (Sym.oneEquiv (α := Fin m)).symm s.2.2, Sym.oneEquiv (α := Fin 3) s.2.1)
-  left_inv s := by rcases s with ⟨j, l, b⟩; simp only [Equiv.symm_apply_apply, Equiv.apply_symm_apply]
-  right_inv s := by rcases s with ⟨j, i, b⟩; simp only [Equiv.symm_apply_apply, Equiv.apply_symm_apply]
+  left_inv s := by rcases s with ⟨j, l, b⟩; simp only [Equiv.symm_apply_apply,
+    Equiv.apply_symm_apply]
+  right_inv s := by rcases s with ⟨j, i, b⟩; simp only [Equiv.symm_apply_apply,
+    Equiv.apply_symm_apply]
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Embed every trace coefficient into the full mixed/child/motion parameter space. -/

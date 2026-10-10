@@ -33,7 +33,8 @@ theorem intermediate_scalar_injective_of_budget
     ∃ P : MvPolynomial (Fin (finrank K (Fin q → Forms K n d))) K,
       (∃ Q : Fin q → Forms K n d, eval (coordinates K _ Q) P ≠ 0) ∧
       ∀ Q : Fin q → Forms K n d, eval (coordinates K _ Q) P ≠ 0 →
-        Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he) Q) := by
+        Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he)
+          Q) := by
   apply BilinearScalarFamily.generic_injective_of_shadow
   intro L
   let N := h*(n+s-1).choose s
@@ -42,19 +43,23 @@ theorem intermediate_scalar_injective_of_budget
   have hC : 0<C := Nat.mul_pos hh (Nat.choose_pos (by omega))
   have hdim : finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he) ≤ N := by
     have ht := (relationSpace (d := 0) e v he).finrank_quotient_le
-    simpa only [N,Nat.add_zero,Module.finrank_pi_fintype,finrank_forms K n s hn,Finset.sum_const,Finset.card_univ,Fintype.card_fin,smul_eq_mul] using ht
+    simpa only [N,Nat.add_zero,Module.finrank_pi_fintype,finrank_forms K n s
+      hn,Finset.sum_const,Finset.card_univ,Fintype.card_fin,smul_eq_mul] using ht
   have hshadow := general_outer_shadow (d := d) e v hn he hv hm B hB hsize L
   have hc := (Nat.mul_le_mul_right (finrank K L) hcount).trans hshadow
   have hplain : (q+N)*finrank K L ≤ finrank K (outerImage (d := d) e v he L) := by
     apply Nat.le_of_mul_le_mul_left (c := C)
     · change C*((q+N)*finrank K L) ≤ C*finrank K (outerImage (d := d) e v he L)
-      change C*(q+N+E)*finrank K L ≤ C*(finrank K (outerImage (d := d) e v he L)+E*finrank K L) at hc
+      change C*(q+N+E)*finrank K L ≤ C*(finrank K (outerImage (d := d) e v he L)+E*finrank K
+        L) at hc
       nlinarith
     · exact hC
   have hmin : min (finrank K L)
-      (finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)-finrank K L) ≤ finrank K L := min_le_left _ _
+      (finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)-finrank K
+        L) ≤ finrank K L := min_le_left _ _
   change q*finrank K L + finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)*
-    min (finrank K L) (finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)-finrank K L) ≤ _
+    min (finrank K L) (finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)-finrank K
+      L) ≤ _
   calc
     _ ≤ q*finrank K L + N*finrank K L := Nat.add_le_add_left (Nat.mul_le_mul hdim hmin) _
     _ = (q+N)*finrank K L := by ring

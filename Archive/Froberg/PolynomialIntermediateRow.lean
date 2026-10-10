@@ -26,7 +26,8 @@ def polynomialFormVector (o : J → MvPolynomial σ K) (s : ℕ) :
     (Forms K n s).subtype.comp (LinearMap.proj j)))
 
 @[simp] theorem polynomialFormVector_apply (o : J → MvPolynomial σ K)
-    (p : J → Forms K n s) : polynomialFormVector o s p=polynomialVector o (fun j => (p j).val) := rfl
+    (p : J → Forms K n s) : polynomialFormVector o s p=polynomialVector o (fun j => (p
+      j).val) := rfl
 
 theorem polynomialFormVector_injective (o : J → MvPolynomial σ K) (ho : LinearIndependent K o) :
     Function.Injective (polynomialFormVector (n := n) o s) := by

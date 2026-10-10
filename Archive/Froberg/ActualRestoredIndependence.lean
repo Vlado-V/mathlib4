@@ -27,7 +27,8 @@ theorem exact_counts_actual_restored_independent_open {d k h lo : ℕ}
     ∀ᶠ n : ℕ in atTop,∀ (O : ℕ → Submodule K (Poly K h))
       (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
       (slot : Fin (finrank K (Forms K h d)) →
-        Fin (Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e n+added))))),
+        Fin (Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e
+          n+added))))),
       HasRestoredIndependentOpen (m := n) (f := f n) (by omega) hdeven hO
         (fun j hj => (mem_allEvenIndices.mp hj).2.1)
         (fun j hj => (mem_allEvenIndices.mp hj).2.2) (Fintype.equivFin _).symm slot := by
@@ -35,7 +36,8 @@ theorem exact_counts_actual_restored_independent_open {d k h lo : ℕ}
   have hS := allEvenLabel_count_limit hd h added e (hc.mono fun n hn => hn.quadratic_upper)
   have hF := exact_conditions_outer_limit hd upper a f e hc
   have hqcount := eventually_count_le_multiple_monomial
-    (fun n => Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e n+added))))
+    (fun n => Fintype.card (Label (upperCount n d) (allEvenIndices d) (allEvenCount d h n (e
+      n+added))))
     1 d _ hS (by
       simpa only [Nat.cast_one,one_mul,one_div] using
         div_lt_div_of_pos_right hρ (show (0 : ℝ)<d.factorial by positivity))
@@ -52,6 +54,7 @@ theorem exact_counts_actual_restored_independent_open {d k h lo : ℕ}
     (Fintype.equivFin _).symm slot
   · simpa only [finrank_forms K n d hnpos,one_mul] using hn
   · simpa only [Rows,Module.finrank_pi_fintype,Fintype.card_fin,
-      finrank_forms K n (d-1) hnpos,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,Nat.cast_id] using hfn
+      finrank_forms K n (d-1)
+        hnpos,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,Nat.cast_id] using hfn
 
 end Froberg.PreparedParameters

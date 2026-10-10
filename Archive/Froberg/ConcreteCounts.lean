@@ -80,7 +80,8 @@ theorem exact_count_and_margin_parameters {d : ℕ} (hd : 3 ≤ d)
     (auxiliaryGeneratorCount d h) (fun n => adjacentCriticalCount upper n d)
     (fun n _ => adjacentCriticalCount_bounds upper n d)
     (auxiliaryGeneratorCount_lower_order hd h)
-  refine ⟨K, h, by omega, ⟨hK, hsize, hh, ?_, hl, outerColumnCount_strict_lower hd hh, hc, hs⟩, δ, hδ, ?_⟩
+  refine ⟨K, h, by omega, ⟨hK, hsize, hh, ?_, hl, outerColumnCount_strict_lower hd hh, hc, hs⟩, δ,
+    hδ, ?_⟩
   · exact ⟨_, rfl⟩
   · filter_upwards [hcounts false, hcounts true, hlow false, hlow true, hmargin]
       with n hn₀ hn₁ hl₀ hl₁ hmn

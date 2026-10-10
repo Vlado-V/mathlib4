@@ -56,7 +56,8 @@ theorem eventually_field_uniform_private_strict_open
   have hGA : (finrank (AlgebraicClosure K) (PrivateSourceSpace ι uL) : ℝ) ≤ G*(n : ℝ)^(s+1) := by
     have he := private_source_dimension_add hk hs hh hnp ι uL huL
     have hle : finrank (AlgebraicClosure K) (PrivateSourceSpace ι uL) ≤
-        finrank (AlgebraicClosure K) (CoreSourceSpace (z := z n) (fun i => uL (Sum.inl i))) := by omega
+        finrank (AlgebraicClosure K) (CoreSourceSpace (z := z n) (fun i => uL (Sum.inl
+          i))) := by omega
     have hd := hle.trans (core_source_dimension_le hnp (fun i => uL (Sum.inl i)))
     conv_rhs at hd => rw [haz]
     have hdR : (finrank (AlgebraicClosure K) (PrivateSourceSpace ι uL) : ℝ) ≤

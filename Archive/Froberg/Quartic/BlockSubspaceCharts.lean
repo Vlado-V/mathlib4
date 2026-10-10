@@ -369,7 +369,8 @@ theorem extension_finrank (j : Fin r ↪ Fin v) :
 /-- The full two-block chart has precisely the required number of scalar parameters. -/
 theorem parameters_finrank (j : Fin r ↪ Fin v) (k : Fin s ↪ Fin w) :
     finrank K (Parameters K j k)=r*(v-r)+s*(w-s)+s*(v-r) := by
-  change finrank K (SubspaceCharts.Parameters K j × SubspaceCharts.Parameters K k × Extension K j s)=_
+  change finrank K (SubspaceCharts.Parameters K j × SubspaceCharts.Parameters K k × Extension K j
+    s)=_
   rw [Module.finrank_prod,Module.finrank_prod,
     SubspaceCharts.parameters_finrank,SubspaceCharts.parameters_finrank,extension_finrank]
   omega

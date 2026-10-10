@@ -54,7 +54,8 @@ lemma monomialProfileJoint_uniform_lower {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
   have hc : (0 : ℝ) < Fintype.card (TargetMonomialFiber a z s β.1) := by
     exact_mod_cast targetMonomialFiber_card_pos ha hz β.1
   apply div_le_div_of_nonneg_left hε (mul_pos hc (by positivity))
-  exact mul_le_mul_of_nonneg_right (by exact_mod_cast targetMonomialFiber_card_le a z s β.1) (by positivity)
+  exact mul_le_mul_of_nonneg_right (by exact_mod_cast targetMonomialFiber_card_le a z s β.1) (by
+    positivity)
 
 lemma monomialProfileConditional_uniform_lower {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
     (P : Option (Fin s) → Fin (2 * s + 1) → ℝ) (q : Fin (2 * s + 1) → ℝ)
@@ -81,9 +82,11 @@ theorem monomialProfile_reversible_minorization {a z s : ℕ} (ha : 0 < a) (hz :
     (z : ℝ) * ε ^ 2 /
         (((a + z + (2 * s + 1) - 1).choose (2 * s + 1) : ℝ) * (2 ^ (2 * s + 1)) ^ 2) ≤
       reversibleWeights
-        (fun β : Σ j, TargetMonomialFiber a z s j => q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ))
+        (fun β : Σ j, TargetMonomialFiber a z s j => q β.1 / (Fintype.card (TargetMonomialFiber a z
+          s β.1) : ℝ))
         (jointConditional (monomialProfileJoint P)
-          (fun β => q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ))) α (freeSource hs γ) := by
+          (fun β => q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ))) α (freeSource hs
+            γ) := by
   have hν (β : Σ j, TargetMonomialFiber a z s j) :
       0 < q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ) := by
     apply div_pos (hq β.1).1
@@ -96,7 +99,8 @@ theorem monomialProfile_reversible_minorization {a z s : ℕ} (ha : 0 < a) (hz :
     (fun t => monomialProfileJoint_uniform_lower ha hz P ε hε hP α (commonTarget α γ t)
       (commonTarget_allowed_left α γ t) (commonTarget_divides_left α γ t))
     (fun t => monomialProfileConditional_uniform_lower ha hz P q hq ε hε hP (freeSource hs γ)
-      (commonTarget α γ t) (commonTarget_allowed_free hs α γ t) (commonTarget_divides_free hs α γ t))
+      (commonTarget α γ t) (commonTarget_allowed_free hs α γ t) (commonTarget_divides_free hs α γ
+        t))
   convert h using 1
   simp only [Fintype.card_fin]
   ring

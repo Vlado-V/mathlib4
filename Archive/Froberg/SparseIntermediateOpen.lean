@@ -36,7 +36,8 @@ theorem exists_sparse_intermediate_in_open
       ∃ P : MvPolynomial (Fin (finrank K (Fin q → Forms K n d))) K,
         (∃ Q : Fin q → Forms K n d,eval (coordinates K _ Q) P≠0) ∧
         ∀ Q : Fin q → Forms K n d,eval (coordinates K _ Q) P≠0 →
-          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he) Q) := by
+          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiply (d := d) e v he)
+            Q) := by
   classical
   obtain ⟨v,hvD,hv,hpos⟩ := MixedExterior.exists_universal_mixed_vectors_in_open h D hD
   have hinj (c : ℕ) (hc : c≤d) : Function.Injective

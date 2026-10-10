@@ -77,7 +77,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
         Function.Injective (AugmentedGeneric.quotientAugmented
           (AugmentedGeneric.productMap g) h (ActualCorrectionMotion.pureCoordinates.symm x)) ∧
         ∀ ell : Fin (RowCount m 3) → K,
-          (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g j)))=0) →
+          (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g
+            j)))=0) →
           (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (finiteEquiv (h i)) v)=0) →
           evaluated (ActualTraceMotion.covectorMatrix g) ell *ᵥ x=0 →
           evaluated (ActualCorrectionMotion.finitePolynomialConstraint g h U sectionMap)
@@ -103,7 +104,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
   have hA : ∀ (s : K) ell,evaluated A (s • ell)=s • evaluated A ell := by
     intro s ell
     exact ActualTraceMotion.eval_covectorMatrix_smul g ell s
-  have hB : ∀ (s : K) ell x,evaluated B' (Sum.elim (s • ell) x)=s • evaluated B' (Sum.elim ell x) := by
+  have hB : ∀ (s : K) ell x,evaluated B' (Sum.elim (s • ell) x)=s • evaluated B' (Sum.elim ell
+    x) := by
     intro s ell x
     apply AuxiliaryMotionMatrix.polynomialMatrix_scaling B
     intro s ell x
@@ -113,7 +115,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
         ((correctionCount (c := c) h U-c*d.val)+auxiliaryCount (c := c) h U) := by
     dsimp only [sliceCount]
     omega
-  have hr1 : ∀ d : AmbientSliceMotion.Threshold (RowCount m 1) c,∀ ell : Fin (RowCount m 3) → K,ell ≠ 0 →
+  have hr1 : ∀ d : AmbientSliceMotion.Threshold (RowCount m 1) c,∀ ell : Fin (RowCount m
+    3) → K,ell ≠ 0 →
       (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g j)))=0) →
       (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (finiteEquiv (h i)) v)=0) →
       finrank K (LinearMap.ker (relationMap RowMultiplicationCoordinates.coordinate ell))=
@@ -126,7 +129,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
       simpa only [RowMultiplicationCoordinates.coordinate_apply,
         LinearEquiv.symm_apply_apply] using hj
     · exact hker.le
-  have hr2 : ∀ d : AmbientSliceMotion.Threshold (RowCount m 1) c,∀ ell : Fin (RowCount m 3) → K,ell ≠ 0 →
+  have hr2 : ∀ d : AmbientSliceMotion.Threshold (RowCount m 1) c,∀ ell : Fin (RowCount m
+    3) → K,ell ≠ 0 →
       (∀ j f,covector ell (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g j)))=0) →
       (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (finiteEquiv (h i)) v)=0) →
       finrank K (LinearMap.ker (relationMap RowMultiplicationCoordinates.coordinate ell))=
@@ -135,7 +139,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
       (correctionCount (c := c) h U-c*d.val)+auxiliaryCount (c := c) h U ≤
         (evaluated B' (Sum.elim ell (fun i => z (Sum.inl i)))).rank := by
     intro d ell hell hE _ hker z hGood _
-    have hE' : Submodule.span K (Set.range g) ≤ LinearMap.ker (ActualCorrectionMotion.sourceRelation ell) := by
+    have hE' : Submodule.span K (Set.range g) ≤ LinearMap.ker (ActualCorrectionMotion.sourceRelation
+      ell) := by
       apply Submodule.span_le.mpr
       rintro _ ⟨j,rfl⟩
       change relationMap RowMultiplicationCoordinates.coordinate ell (rowFiniteEquiv (g j))=0
@@ -154,13 +159,15 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
       omega
     have haux := AuxiliaryMotionMatrix.polynomialMatrix_rank (e := auxiliaryCount (c := c) h U) B
       (fun k => X (Sum.inl k)) (Sum.elim ell (fun i => z (Sum.inl i))) (by simpa using hell)
-    change _ ≤ (evaluated (AuxiliaryMotionMatrix.polynomialMatrix B (fun k => X (Sum.inl k))) _).rank
+    change _ ≤ (evaluated (AuxiliaryMotionMatrix.polynomialMatrix B (fun k => X (Sum.inl k)))
+      _).rank
     rw [haux]
     omega
   have hgcoord : LinearIndependent K (fun j => rowFiniteEquiv (g j)) :=
     hg.map' rowFiniteEquiv.toLinearMap (LinearMap.ker_eq_bot.mpr rowFiniteEquiv.injective)
   obtain ⟨P,⟨z₀,hz₀⟩,havoid⟩ := AmbientSliceMotion.principal_open_all_kernel_ranks
-    RowMultiplicationCoordinates.coordinate (fun j => rowFiniteEquiv (g j)) (fun i => finiteEquiv (h i))
+    RowMultiplicationCoordinates.coordinate (fun j => rowFiniteEquiv (g j)) (fun i => finiteEquiv (h
+      i))
     hgcoord (fun d => sliceCount (c := c) h U d.val) (fun d j => rowFiniteEquiv (Z d j))
     hclosed A B' hA hB (fun d => 2*m+2*c-4*d.val)
     (fun d => correctionCount (c := c) h U-c*d.val+auxiliaryCount (c := c) h U)

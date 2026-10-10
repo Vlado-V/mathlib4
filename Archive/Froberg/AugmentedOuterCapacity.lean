@@ -67,7 +67,8 @@ theorem eventually_augmented_outer_capacity (hd : 3 ≤ d)
     ∀ᶠ n : ℕ in atTop,∀ (G : ℝ) (g : Fin (f n+b) → Rows K h n (d-1)),
       StrictModel g d G →
       (upperCount n d+extra n)*finrank K (Source g) ≤ finrank K (Target g d) := by
-  filter_upwards [outer_augmented_deficit_eventually_positive (b := b) hd f extra hδ hextra hreserve,
+  filter_upwards [outer_augmented_deficit_eventually_positive (b := b) hd f extra hδ hextra
+    hreserve,
     eventually_gt_atTop (0 : ℕ)] with n hn hnpos
   intro G g hg
   have hs : (finrank K (Source g) : ℝ)=outerSourceCount d h b f n := by

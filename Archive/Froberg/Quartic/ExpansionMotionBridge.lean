@@ -60,7 +60,8 @@ theorem closed_slices (hm : 28 ≤ m)
       (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (finiteEquiv (h i)) v)=0) →
       (∀ j,covector ell (rowFiniteEquiv (Z d j))=0) → ell=0) :
     ∃ Z' : (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) →
-        Fin (ActualSlicedMotionAvoidance.sliceCount (c := mixedCount m upper) h U d.val) → Rows K m 3,
+        Fin (ActualSlicedMotionAvoidance.sliceCount (c := mixedCount m upper) h U
+          d.val) → Rows K m 3,
       ActualSlicedMotionAvoidance.ClosedSlices g h U Z' := by
   let reindex (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) :
       ConvolutionExpansionOpen.Dimensions m upper :=

@@ -47,7 +47,8 @@ theorem eventually_intermediate_scalar_budget {d s h B : ℕ} (hs : s<d) (hB : B
       h*(s+d).choose s * (q n+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) ≤
         (h-B)*(n+s+d-1).choose d := by
   have hsmall := (monomial_count_normalized_small_tendsto hs).const_mul (h : ℝ)
-  have herr := (monomial_count_normalized_small_tendsto (show d-1<d by omega)).const_mul ((h*2^h : ℕ) : ℝ)
+  have herr := (monomial_count_normalized_small_tendsto (show d-1<d by omega)).const_mul ((h*2^h :
+    ℕ) : ℝ)
   have hl := ((hq.add hsmall).add herr).const_mul ((h*(s+d).choose s : ℕ) : ℝ)
   have hr := (monomial_count_offset_normalized_tendsto d s).const_mul ((h-B : ℕ) : ℝ)
   have hf : (0 : ℝ)<d.factorial := by exact_mod_cast Nat.factorial_pos d
@@ -65,7 +66,8 @@ theorem eventually_intermediate_scalar_budget {d s h B : ℕ} (hs : s<d) (hB : B
   have heq : ((h*(s+d).choose s : ℕ) : ℝ)*
       ((q n : ℝ)/(n : ℝ)^d + (h : ℝ)*(((n+s-1).choose s : ℝ)/(n : ℝ)^d) +
         ((h*2^h : ℕ) : ℝ)*(((n+(d-1)-1).choose (d-1) : ℝ)/(n : ℝ)^d)) =
-      ((h*(s+d).choose s * (q n+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) : ℕ) : ℝ)/(n : ℝ)^d := by
+      ((h*(s+d).choose s * (q n+h*(n+s-1).choose s+(h*2^h)*(n+(d-1)-1).choose (d-1)) : ℕ) : ℝ)/(n :
+        ℝ)^d := by
     push_cast
     ring
   rw [heq] at hn

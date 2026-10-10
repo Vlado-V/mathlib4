@@ -54,7 +54,8 @@ theorem biformImage_half_output_weight {w v j : ℕ} (b : Bool)
   rintro f ⟨g,hg,rfl⟩
   apply rename_weightedHomogeneous
     (⟨Sum.map (fun x : Fin w => (x,b)) (fun y : Fin v => (y,b)),
-      Sum.map_injective.mpr ⟨(fun _ _ h => congrArg Prod.fst h), (fun _ _ h => congrArg Prod.fst h)⟩⟩ :
+      Sum.map_injective.mpr ⟨(fun _ _ h => congrArg Prod.fst h), (fun _ _ h => congrArg Prod.fst
+        h)⟩⟩ :
       (Fin w ⊕ Fin v) ↪ ((Fin w × Bool) ⊕ (Fin v × Bool)))
     FourBlocks.outputWeight FourBlocks.outputWeight _ (biformImage_output_weight O C hO hg)
   rintro (x|y) <;> rfl
@@ -78,8 +79,10 @@ theorem exists_constrained_fourBlock_cross_pair
         (g i).IsWeightedHomogeneous FourBlocks.xHalfWeight 0 ∧
         (g i).IsWeightedHomogeneous FourBlocks.yHalfWeight 0 ∧ biformOutputMap T₂ (g i)=0) ∧
       LinearIndependent K (fun p : Fin a × Fin b => f p.1 * g p.2) ∧
-      (∀ i, (f i).IsWeightedHomogeneous (FourBlocks.outputWeight (A := Fin w × Bool) (B := Fin v × Bool)) j) ∧
-      (∀ i, (g i).IsWeightedHomogeneous (FourBlocks.outputWeight (A := Fin w × Bool) (B := Fin v × Bool)) l) := by
+      (∀ i, (f i).IsWeightedHomogeneous (FourBlocks.outputWeight (A := Fin w × Bool) (B := Fin v ×
+        Bool)) j) ∧
+      (∀ i, (g i).IsWeightedHomogeneous (FourBlocks.outputWeight (A := Fin w × Bool) (B := Fin v ×
+        Bool)) l) := by
   have ha' : a ≤ finrank K (halfConstrainedSpace w j true T₁) * finrank K (Forms K v s) := by
     rw [finrank_forms K v s hv]
     exact ha.trans (Nat.mul_le_mul_right _ (halfConstrainedSpace_dimension hw j true T₁))
@@ -105,13 +108,15 @@ theorem exists_constrained_fourBlock_cross_pair
     funext z
     cases z <;> rfl
   · intro i
-    apply biformImage_half_output_weight true (halfConstrainedSpace w j true T₁) (Forms K v s) inf_le_left
+    apply biformImage_half_output_weight true (halfConstrainedSpace w j true T₁) (Forms K v
+      s) inf_le_left
     convert hfm i using 1
     congr 3
     funext z
     cases z <;> rfl
   · intro i
-    apply biformImage_half_output_weight false (halfConstrainedSpace w l false T₂) (Forms K v t) inf_le_left
+    apply biformImage_half_output_weight false (halfConstrainedSpace w l false T₂) (Forms K v
+      t) inf_le_left
     convert hgm i using 1
     congr 3
     funext z

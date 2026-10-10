@@ -44,7 +44,8 @@ lemma image_transportBilinear (eF : F ≃ₗ[K] F') (eV : V ≃ₗ[K] V') (eW : 
     simpa only [transportBilinear_apply,LinearEquiv.symm_apply_apply] using
       Quartic.BilinearImage.product_mem (transportBilinear eF eV eW mu) L (eF f) x hx
 
-lemma surjective_of_transport [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W]
+lemma surjective_of_transport [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K
+  W]
     [FiniteDimensional K F'] [FiniteDimensional K V'] [FiniteDimensional K W'] {q : ℕ}
     (eF : F ≃ₗ[K] F') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F')

@@ -62,7 +62,8 @@ theorem splitPolynomialDetector_supported {X : Type*} [AddCommGroup X] [Module K
   induction v using TensorProduct.induction_on with
   | zero => simp
   | tmul a b =>
-    change splitPolynomialDetector T Q (coreComponent h m i (splitPolynomialEquiv (K := K) h m (a ⊗ₜ[K] b))) = _
+    change splitPolynomialDetector T Q (coreComponent h m i (splitPolynomialEquiv (K := K) h m (a
+      ⊗ₜ[K] b))) = _
     rw [coreComponent_split_tmul]
     simp only [splitPolynomialDetector,LinearMap.comp_apply,AlgEquiv.toLinearMap_apply,
       AlgEquiv.symm_apply_apply,TensorProduct.map_tmul]

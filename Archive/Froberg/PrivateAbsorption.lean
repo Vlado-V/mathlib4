@@ -53,8 +53,10 @@ theorem private_lower_common_margin (d : ℕ) (R G E D R' : ℕ → ℝ)
       R' n+g'*(n : ℝ)^d ≤ R n+G n-E n ∧ R' n+g'*(n : ℝ)^d ≤ D n := by
   let g' := min g (δ-ρ)/2
   have hpos : 0<g' := by dsimp [g']; exact div_pos (lt_min hg (sub_pos.mpr hδ)) (by norm_num)
-  have hleG : g'≤g/2 := by dsimp [g']; exact div_le_div_of_nonneg_right (min_le_left _ _) (by norm_num)
-  have hleD : g'≤(δ-ρ)/2 := by dsimp [g']; exact div_le_div_of_nonneg_right (min_le_right _ _) (by norm_num)
+  have hleG : g'≤g/2 := by dsimp [g']; exact div_le_div_of_nonneg_right (min_le_left _ _) (by
+    norm_num)
+  have hleD : g'≤(δ-ρ)/2 := by dsimp [g']; exact div_le_div_of_nonneg_right (min_le_right _ _) (by
+    norm_num)
   have hnew : Tendsto (fun n : ℕ => (R' n+g'*(n : ℝ)^d)/(n : ℝ)^d)
       atTop (𝓝 (ρ+g')) := by
     simpa only [add_div] using hR'.add (scaled_power_normalized_limit g' d)

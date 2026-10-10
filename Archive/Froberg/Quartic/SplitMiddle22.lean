@@ -67,15 +67,18 @@ def mulLinear (a : Linear K c w) : Linear K c w →ₗ[K] Quad K c w where
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The three actual Y-coefficients of `(x+z)tᵢ+(y+z)wᵢ`. -/
 def mixedGenerator (i : Fin c) : Fin 3 → Linear K c w :=
-  ![linearVariable (tvar i), linearVariable (wvar i), linearVariable (tvar i) + linearVariable (wvar i)]
+  ![linearVariable (tvar i), linearVariable (wvar i), linearVariable (tvar i) + linearVariable (wvar
+    i)]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Multiplication by one mixed generator, reduced modulo the four pure quadrics. -/
 def middleAt (i : Fin c) : (Fin 3 → Linear K c w) →ₗ[K] Target K c w :=
   (((mulLinear (linearVariable (tvar i))).comp (LinearMap.proj (0 : Fin 3))) -
-    ((mulLinear (linearVariable (tvar i) + linearVariable (wvar i))).comp (LinearMap.proj (2 : Fin 3)))).prod
+    ((mulLinear (linearVariable (tvar i) + linearVariable (wvar i))).comp (LinearMap.proj (2 : Fin
+      3)))).prod
   (((mulLinear (linearVariable (wvar i))).comp (LinearMap.proj (1 : Fin 3))) -
-    ((mulLinear (linearVariable (tvar i) + linearVariable (wvar i))).comp (LinearMap.proj (2 : Fin 3))))
+    ((mulLinear (linearVariable (tvar i) + linearVariable (wvar i))).comp (LinearMap.proj (2 : Fin
+      3))))
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The full actual middle multiplication for these explicit mixed generators. -/
@@ -204,7 +207,8 @@ theorem monomial_mem_filled (Q : Submodule K (Quad K c w))
     (a b : Vars c w) :
     u (monomial a b) ∈ filledSpace Q ∧ v (monomial a b) ∈ filledSpace Q := by
   rcases a with ⟨i, a⟩ | a <;> rcases b with ⟨j, b⟩ | b
-  · exact ⟨Submodule.mem_sup_left (u_active_mem i j a b), Submodule.mem_sup_left (v_active_mem i j a b)⟩
+  · exact ⟨Submodule.mem_sup_left (u_active_mem i j a b), Submodule.mem_sup_left (v_active_mem i j a
+    b)⟩
   · exact ⟨u_cross_mem Q hcross i a b, v_cross_mem Q hcross i a b⟩
   · rw [monomial_comm]
     exact ⟨u_cross_mem Q hcross j b a, v_cross_mem Q hcross j b a⟩
@@ -273,7 +277,8 @@ theorem quotientMiddleMap_surjective (Q : Submodule K (Quad K c w))
   obtain ⟨x, ⟨s, rfl⟩, y, hy, heq⟩ := Submodule.mem_sup.mp hm
   refine ⟨s, ?_⟩
   have hzero : (Q.mkQ.prodMap Q.mkQ) y = 0 := by
-    apply Prod.ext <;> exact (Submodule.Quotient.mk_eq_zero Q).mpr (by first | exact hy.1 | exact hy.2)
+    apply Prod.ext <;> exact (Submodule.Quotient.mk_eq_zero Q).mpr (by first | exact hy.1 | exact
+      hy.2)
   have h := congrArg (Q.mkQ.prodMap Q.mkQ) heq
   simpa only [map_add, hzero, add_zero, LinearMap.prodMap_apply,
     LinearMap.comp_apply, quotientMiddleMap] using h

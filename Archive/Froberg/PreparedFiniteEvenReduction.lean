@@ -51,7 +51,8 @@ theorem finite_even_reduction_open {w v d q : ℕ} {J : Finset ℕ} {counts : �
   classical
   let S := Space (v+v) d q J counts (constrainedOutputs T)
   let B := (Finset.range (2*d+1)).filter (fun R => d<R ∧ R%2=0)
-  have hB (R : ℕ) : R∈B ↔ d<R ∧ R≤2*d ∧ R%2=0 := by simp only [B,Finset.mem_filter,Finset.mem_range]; omega
+  have hB (R :
+    ℕ) : R∈B ↔ d<R ∧ R≤2*d ∧ R%2=0 := by simp only [B,Finset.mem_filter,Finset.mem_range]; omega
   obtain ⟨D₁,hD₁,hgood₁⟩ := rows_open_of_capacities T hJ hdegree h2 hquad hhigher
   obtain ⟨D₂,hD₂,hgood₂⟩ := products_common_open (n := v+v) (q := q) (O := constrainedOutputs T)
     (fun _ _ => inf_le_left) hdegree B (by
@@ -67,7 +68,8 @@ theorem finite_even_reduction_open {w v d q : ℕ} {J : Finset ℕ} {counts : �
   have hps : eval ((Module.finBasis K S).equivFun p) D₁≠0 ∧
       eval ((Module.finBasis K S).equivFun p) D₂≠0 := by
     simpa only [map_mul,mul_ne_zero_iff] using hp
-  exact even_positive_rows_reduce_to_scalar (O := constrainedOutputs T) (fun _ _ => inf_le_left) hdegree
+  exact even_positive_rows_reduce_to_scalar (O := constrainedOutputs T) (fun _ _ =>
+    inf_le_left) hdegree
     (fun j hj => lt_of_lt_of_le (by decide : 0<2) (hJ j hj)) heven hcover p
     (hgood₁ p hps.1) (fun R hRd hR2d hRe => hgood₂ p hps.2 R ((hB R).mpr ⟨hRd,hR2d,hRe⟩))
     c hc hceven hpositive

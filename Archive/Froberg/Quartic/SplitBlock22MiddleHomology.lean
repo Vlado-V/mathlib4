@@ -162,7 +162,8 @@ abbrev BlockHomology (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The middle quotient-map kernel modulo the actual pairwise mixed relations. -/
 abbrev MiddleHomology (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :=
-  KernelModulo (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h))) (mixedKoszulSpace g)
+  KernelModulo (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h))) (mixedKoszulSpace
+    g)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Canonical homology identification induced by the actual mixed coefficient projection. -/

@@ -99,7 +99,8 @@ lemma monomialProfileJoint_row {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
     (P : Option (Fin s) → Fin (2 * s + 1) → ℝ) (p : Option (Fin s) → ℝ)
     (hP : ∀ i, ∑ j, P i j = p i) (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
     (α : Σ i, SourceMonomialFiber a z s i) :
-    ∑ β, monomialProfileJoint P α β = p α.1 / (Fintype.card (SourceMonomialFiber a z s α.1) : ℝ) := by
+    ∑ β, monomialProfileJoint P α β = p α.1 / (Fintype.card (SourceMonomialFiber a z s α.1) :
+      ℝ) := by
   apply fiberTransport_row P localMonomialCoupling p hP
   intro i j hij α
   exact localMonomialCoupling_row ha hz i j (by by_contra h; exact hij (hPzero i j h)) α
@@ -108,7 +109,8 @@ lemma monomialProfileJoint_column {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
     (P : Option (Fin s) → Fin (2 * s + 1) → ℝ) (q : Fin (2 * s + 1) → ℝ)
     (hP : ∀ j, ∑ i, P i j = q j) (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
     (β : Σ j, TargetMonomialFiber a z s j) :
-    ∑ α, monomialProfileJoint P α β = q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ) := by
+    ∑ α, monomialProfileJoint P α β = q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) :
+      ℝ) := by
   apply fiberTransport_column P localMonomialCoupling q hP
   intro i j hij β
   exact localMonomialCoupling_column ha hz i j (by by_contra h; exact hij (hPzero i j h)) β

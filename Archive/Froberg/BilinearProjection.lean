@@ -41,10 +41,12 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem graphTupleMap_polynomial
     (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin N → K))
     (j : Fin ell ↪ Fin a) :
-    IsPolynomialFamily (fun p : GraphParameters j → K => BilinearImage.tupleMap mu (graphVector j p)) := by
+    IsPolynomialFamily (fun p : GraphParameters j → K => BilinearImage.tupleMap mu (graphVector j
+      p)) := by
   apply isPolynomialFamily_linearMap
   intro v
-  have h := IsPolynomialFamily.sum (fun i => (graphVector_coordinate_polynomial j i).linear_comp (mu (v i)))
+  have h := IsPolynomialFamily.sum (fun i => (graphVector_coordinate_polynomial j i).linear_comp (mu
+    (v i)))
   simpa only [BilinearImage.tupleMap_apply] using h
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

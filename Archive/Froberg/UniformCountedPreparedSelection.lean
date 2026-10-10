@@ -55,7 +55,8 @@ theorem eventually_uniform_counted_prepared_frame_ready {d : ℕ} (hd : 3≤d) (
   have he' : ∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2) := by
     simpa only [Nat.cast_mul,Nat.cast_ofNat] using he
   have hp := hprivate hdiv 1 e he' u
-  have hleading := eventually_uniform_positive_leading_principal_open (u := u) hhpos (by omega : 2≤d)
+  have hleading := eventually_uniform_positive_leading_principal_open (u := u) hhpos (by omega :
+    2≤d)
   filter_upwards [hf,hl,ho',hp,hleading] with n hfn hln hon hpn hleadn
   intro K _ _ U hU
   obtain ⟨D,hD,hDgood⟩ := hfn K
@@ -65,7 +66,8 @@ theorem eventually_uniform_counted_prepared_frame_ready {d : ℕ} (hd : 3≤d) (
   have hDE : ∃ x,eval x (D*E)≠0 := ⟨x,by simpa only [map_mul] using mul_ne_zero hxD hxE⟩
   obtain ⟨y,hyDE,hyP⟩ := principal_opens_intersect hDE hP
   have hy : eval y D≠0 ∧ eval y E≠0 := by simpa only [map_mul,mul_ne_zero_iff] using hyDE
-  let frame := (Module.finBasis K (Fin (quadraticOutputDimension d (2*w)) → Forms K (2*w) 2)).equivFun.symm y
+  let frame := (Module.finBasis K (Fin (quadraticOutputDimension d (2*w)) → Forms K (2*w)
+    2)).equivFun.symm y
   have hDframe : eval ((Module.finBasis K _).equivFun frame) D≠0 := by
     simpa only [frame,LinearEquiv.apply_symm_apply] using hy.1
   have hEframe : eval ((Module.finBasis K _).equivFun frame) E≠0 := by

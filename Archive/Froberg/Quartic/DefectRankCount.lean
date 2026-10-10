@@ -30,7 +30,8 @@ theorem split_rank_lower (g : Fin c → MiddleCoordinates.Mixed K m)
         (Submodule.span K (Set.range (fun i => (h i).val)))) : ℤ) ≤
       finrank K (quadraticMultiplication (SplitBlock22.fullGenerators g h)).range := by
   have hb := cokernel_finrank_le g h h22
-  have hs := (quadraticMultiplication (SplitBlock22.fullGenerators g h)).range.finrank_quotient_add_finrank
+  have hs := (quadraticMultiplication (SplitBlock22.fullGenerators g
+    h)).range.finrank_quotient_add_finrank
   have hchild := (quadraticMultiplication h).range.finrank_quotient_add_finrank
   have hc := quartic_quotient_add_rank h
   have hj := rawJ_finrank_eq_j g h hh hcubic h13

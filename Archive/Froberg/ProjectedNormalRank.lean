@@ -26,7 +26,8 @@ variable {n d r t a b T : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual homology coefficients followed by a specified coefficient projection. -/
-def projectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+def projectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K)) :
     ProjectedEndpointHomology pi q →ₗ[K] (Fin t → Fin a → K) :=
@@ -34,14 +35,16 @@ def projectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r �
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev ProjectedCoefficientQuotient (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+abbrev ProjectedCoefficientQuotient (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K)) :=
   ProjectedEndpointHomology pi q ⧸ (projectedMappedCoefficients pi q hq dual vmap).ker
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The faithful map from its genuine coefficient-kernel quotient. -/
-def faithfulProjectedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+def faithfulProjectedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K)) :
     ProjectedCoefficientQuotient pi q hq dual vmap →ₗ[K] (Fin t → Fin a → K) :=
@@ -49,7 +52,8 @@ def faithfulProjectedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r 
   c.ker.liftQ c le_rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem faithfulProjectedCoefficients_injective (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem faithfulProjectedCoefficients_injective (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K
+  n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K)) :
     Function.Injective (faithfulProjectedCoefficients pi q hq dual vmap) :=
@@ -58,7 +62,8 @@ theorem faithfulProjectedCoefficients_injective (pi : Forms K n (2*d) →ₗ[K] 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Literal product compatibility implies the exact coordinate factorization
 of the projected normal map through its faithful coefficients. -/
-theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r →
+  Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
     (eJ : ProjectedEndpointCokernel pi q ≃ₗ[K] (Fin T → K))
@@ -66,7 +71,8 @@ theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2*d) →ₗ
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (hmu : ∀ z v, mu z (vmap v) = eJ (projectedQuotientProduct pi q (phi z) v))
     (z : Fin t → Fin b → K) :
-    eJ.toLinearMap.comp (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z i)))) =
+    eJ.toLinearMap.comp (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z
+      i)))) =
       (CoefficientMotion.motion mu (faithfulProjectedCoefficients pi q hq dual vmap) z).comp
         (projectedMappedCoefficients pi q hq dual vmap).ker.mkQ := by
   rw [projectedNormalMap_canonical_coefficient_formula pi q hq dual]
@@ -80,7 +86,8 @@ theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2*d) →ₗ
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Source quotienting and target coordinates preserve the exact response rank. -/
-theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r →
+  Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
     (eJ : ProjectedEndpointCokernel pi q ≃ₗ[K] (Fin T → K))
@@ -88,8 +95,10 @@ theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2*d) →�
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (hmu : ∀ z v, mu z (vmap v) = eJ (projectedQuotientProduct pi q (phi z) v))
     (z : Fin t → Fin b → K) :
-    finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z i)))).range =
-      finrank K (CoefficientMotion.motion mu (faithfulProjectedCoefficients pi q hq dual vmap) z).range := by
+    finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z
+      i)))).range =
+      finrank K (CoefficientMotion.motion mu (faithfulProjectedCoefficients pi q hq dual vmap)
+        z).range := by
   have hf := projectedNormalMap_coordinate_factorization pi q hq dual vmap eJ phi mu hmu z
   have hr := congrArg (fun F => finrank K (LinearMap.range F)) hf
   rw [LinearMap.range_comp,eJ.finrank_map_eq,
@@ -98,7 +107,8 @@ theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2*d) →�
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- C.6 on the actual projected complex, with literal scalar-incidence budget. -/
-theorem exists_maximal_projected_normal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem exists_maximal_projected_normal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq
+  : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
     (eJ : ProjectedEndpointCokernel pi q ≃ₗ[K] (Fin T → K))
@@ -112,7 +122,8 @@ theorem exists_maximal_projected_normal (pi : Forms K n (2*d) →ₗ[K] Z) (q : 
         (CoefficientMotion.coefficientSliceCount
           (finrank K (ProjectedCoefficientQuotient pi q hq dual vmap)) t T k : ℕ)) :
     ∃ z : Fin t → Fin b → K,
-      finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z i)))).range =
+      finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z
+        i)))).range =
         min (finrank K (ProjectedCoefficientQuotient pi q hq dual vmap)) T := by
   obtain ⟨z,hz⟩ := CoefficientMotion.exists_maximal_motion_of_incidence_budget mu
     (faithfulProjectedCoefficients pi q hq dual vmap)
@@ -125,7 +136,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The C.4 closed-stratum interface for the actual projected normal map.
 This version consumes genuine empty projective sections and does not replace
 the multilayer C.4 estimate by a stronger global Grassmannian shadow. -/
-theorem exists_maximal_projected_normal_of_slices (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem exists_maximal_projected_normal_of_slices (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms
+  K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
     (eJ : ProjectedEndpointCokernel pi q ≃ₗ[K] (Fin T → K))
@@ -146,7 +158,8 @@ theorem exists_maximal_projected_normal_of_slices (pi : Forms K n (2*d) →ₗ[K
       (finrank K (ProjectedCoefficientQuotient pi q hq dual vmap)-t*k.val)+
         (T-finrank K (ProjectedCoefficientQuotient pi q hq dual vmap))) :
     ∃ z : Fin t → Fin b → K,
-      finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z i)))).range =
+      finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z
+        i)))).range =
         min (finrank K (ProjectedCoefficientQuotient pi q hq dual vmap)) T := by
   obtain ⟨z,hz⟩ := CoefficientMotion.exists_maximal_motion mu
     (faithfulProjectedCoefficients pi q hq dual vmap)

@@ -57,9 +57,11 @@ set_option maxRecDepth 1000000
 
 set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
 theorem all_rows_checked : ∀i : Nat, i < 35960 →
-    xorSum ((FiniteEndpointMetadata29Data.naturalRow i).map FiniteEndpointInverse29.binaryInverse) = 2^i := by
+    xorSum ((FiniteEndpointMetadata29Data.naturalRow i).map
+      FiniteEndpointInverse29.binaryInverse) = 2^i := by
   refine FiniteEndpointChunks.forall_lt_of_fin_chunks
-    (fun i => xorSum ((FiniteEndpointMetadata29Data.naturalRow i).map FiniteEndpointInverse29.binaryInverse)=2^i) 35960 64 (by decide) ?_
+    (fun i => xorSum ((FiniteEndpointMetadata29Data.naturalRow i).map
+      FiniteEndpointInverse29.binaryInverse)=2^i) 35960 64 (by decide) ?_
   intro k j h
   change Fin 562 at k
   fin_cases k

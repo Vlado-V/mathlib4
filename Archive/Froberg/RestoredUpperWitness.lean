@@ -30,9 +30,11 @@ theorem restoredOuterEndpoint_renamed (hdp : 1≤d) (hd : d%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O) (i : Fin r ⊕ Fin f) :
     (restoredOuterEndpoint hdp hd hO hJ heven idx slot p (finSumFinEquiv i)).val=
-      rename finSumFinEquiv (Sum.elim (fun j => (restoredFamilyLinear hd hO hJ heven idx slot p.1 j).val)
+      rename finSumFinEquiv (Sum.elim (fun j => (restoredFamilyLinear hd hO hJ heven idx slot p.1
+        j).val)
         (fun j => (p.2 j).val) i) := by
-  have hh := congrArg (rename finSumFinEquiv) (restoredOuterEndpoint_back hdp hd hO hJ heven idx slot p i)
+  have hh := congrArg (rename finSumFinEquiv) (restoredOuterEndpoint_back hdp hd hO hJ heven idx
+    slot p i)
   have hc (z : Poly K (h+m)) : rename finSumFinEquiv (rename finSumFinEquiv.symm z)=z :=
     (renameEquiv K finSumFinEquiv).right_inv z
   rw [hc] at hh
@@ -89,7 +91,8 @@ theorem restored_upper_point_contains (hd : 3≤d) (he : d%2=0)
     rw [restoredOuterEndpoint_renamed]
     simp only [Sum.elim_inl,PreparedTarget.renamedGenerator,PreparedTarget.generator_private]
     congr 1
-    have hslot : Function.Injective slot := idx.symm.injective.comp (quadraticTailSlot_injective hd q h m e _)
+    have hslot : Function.Injective slot := idx.symm.injective.comp (quadraticTailSlot_injective hd
+      q h m e _)
     change generator (extendQuadratic hd h m e _ p.1) (idx (slot i))+
       (PolynomialRestoration.pureShift (pureEvenEmbed he) slot U (slot i)).val=
       rename Sum.inr (p.2.2 i).val+(rename Sum.inl (U i).val+0)

@@ -119,7 +119,8 @@ def linearYProjection : Forms K (3 + m) 2 →ₗ[K] (Fin m → Forms K 3 1) :=
 /-- Project the full coefficient source onto its `(3,1)` component. -/
 def sourceProjection : (Fin (4 + (c + q)) → Forms K (3 + m) 2) →ₗ[K]
     SplitMiddle31.Source K m c :=
-  (LinearMap.pi (fun j => coreProjection.comp (LinearMap.proj (Fin.natAdd 4 (Fin.castAdd q j))))).prod
+  (LinearMap.pi (fun j => coreProjection.comp (LinearMap.proj (Fin.natAdd 4 (Fin.castAdd q
+    j))))).prod
     (LinearMap.pi (fun i => linearYProjection.comp (LinearMap.proj (Fin.castAdd (c + q) i))))
 
 @[simp] theorem sourceProjection_sourceEmbedding (a : SplitMiddle31.Source K m c) :

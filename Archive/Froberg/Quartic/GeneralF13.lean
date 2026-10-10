@@ -121,7 +121,8 @@ theorem targetProjection_kernel (Q : Quadrics K m q) :
 
 /-- The reduced map has exactly the projected mixed image. -/
 theorem f13Map_range (E : Mixed K m c) (Q : Quadrics K m q) :
-    LinearMap.range (f13Map E Q) = LinearMap.range ((targetProjection Q).comp (multiplication E)) := by
+    LinearMap.range (f13Map E Q) = LinearMap.range ((targetProjection Q).comp (multiplication
+      E)) := by
   have h : (f13Map E Q).comp (sourceProjection Q) =
       (targetProjection Q).comp (multiplication E) := LinearMap.ext (f13Map_sourceProjection E Q)
   rw [← h, LinearMap.range_comp_of_range_eq_top _
@@ -152,7 +153,8 @@ theorem projected_rank_add (F : U →ₗ[K] W) (G : V →ₗ[K] W) (P : W →ₗ
     rw [LinearMap.range_coprod, Submodule.map_sup, ← hker, hz, sup_bot_eq, LinearMap.range_comp]
   have hk : finrank K (LinearMap.ker (P.comp S.subtype)) = finrank K (LinearMap.range G) := by
     rw [LinearMap.ker_comp]
-    exact (Submodule.comapSubtypeEquivOfLe hle).finrank_eq.trans (congrArg (fun S : Submodule K W => finrank K S) hker)
+    exact (Submodule.comapSubtypeEquivOfLe hle).finrank_eq.trans (congrArg (fun S : Submodule K W =>
+      finrank K S) hker)
   have h := LinearMap.finrank_range_add_finrank_ker (P.comp S.subtype)
   rw [hr, hk] at h
   exact h
@@ -167,7 +169,8 @@ theorem combined_rank (E : Mixed K m c) (Q : Quadrics K m q) :
 
 /-- Independent child cubic products remain independent in all three output rows. -/
 theorem childMultiplication_injective (Q : Quadrics K m q)
-    (hQ : Function.Injective (CubicGeneric.cubicMap Q)) : Function.Injective (childMultiplication Q) := by
+    (hQ : Function.Injective (CubicGeneric.cubicMap Q)) : Function.Injective (childMultiplication
+      Q) := by
   intro v z hvz
   funext j r
   have h := hQ (congrFun hvz r)

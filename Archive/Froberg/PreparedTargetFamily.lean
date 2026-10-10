@@ -114,7 +114,8 @@ theorem generator_polynomial
     IsPolynomialFamily (fun a : Fin (finrank K (Space n d q f u J counts O)) → K =>
       generator U P ((Module.finBasis K _).equivFun.symm a)) := by
   exact (isPolynomialFamily_linear
-    (variableGenerator.comp (Module.finBasis K (Space n d q f u J counts O)).equivFun.symm.toLinearMap)).add
+    (variableGenerator.comp (Module.finBasis K (Space n d q f u J counts
+      O)).equivFun.symm.toLinearMap)).add
       (isPolynomialFamily_const (fixedGenerator U P))
 
 end Froberg.PreparedTarget

@@ -33,7 +33,8 @@ theorem ranks_le (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) (i : Fin (w+1)
 theorem ranks_sum (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) :
     (∑ i,ranks ht S i)=finrank K S := by
   simp only [ranks]
-  rw [FilteredImage.sum_initialPiece_finrank,(ConvolutionProfileCoordinates.coordinates ht).finrank_map_eq]
+  rw [FilteredImage.sum_initialPiece_finrank,(ConvolutionProfileCoordinates.coordinates
+    ht).finrank_map_eq]
 
 theorem ranks_as_blocks (ht : 2 ≤ t) (S : Submodule K (Piece K t w 1)) :
     ranks ht S=blockRanks (ranks ht S 0) (fun i => ranks ht S i.succ) := by
@@ -94,7 +95,8 @@ theorem profile_integral_cell_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ 
       (finrank K (ConvolutionProfileImage.quadraticImage S):ℤ) := by
   have hi : ranks ht S 0 ≤ coreA (mixedCount m upper) := by
     simpa only [coreA,Nat.add_sub_cancel,blockDimensions,Fin.cons_zero] using ranks_le ht S 0
-  have hr : ∀ i : Fin (freeW m (mixedCount m upper)),ranks ht S i.succ ≤ 3 := fun i => ranks_le ht S i.succ
+  have hr : ∀ i : Fin (freeW m (mixedCount m
+    upper)),ranks ht S i.succ ≤ 3 := fun i => ranks_le ht S i.succ
   have hn := levelCounts_ordered (fun i => ranks ht S i.succ)
   have hd : finrank K S=profileDim (ranks ht S 0)
       (levelCount (fun i => ranks ht S i.succ) 1)
@@ -106,7 +108,8 @@ theorem profile_integral_cell_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ 
     (ConvolutionFiniteImages.canonical_mixedCount_ge_four m hmlo (by omega) upper) ht S
   apply le_trans _ hp
   rw [hd]
-  simp only [mixedCount_eq_table m (by omega),upperEndpoint_eq_table m (by omega)] at hi hn hdlo hdhi ⊢
+  simp only [mixedCount_eq_table m (by omega),upperEndpoint_eq_table m (by
+    omega)] at hi hn hdlo hdhi ⊢
   apply profile_inequality m hmlo hmhi upper _ _ _ _ hi hn.2.2 hn.2.1 hn.1
   · rw [←hd]
     exact hdlo
@@ -127,7 +130,8 @@ theorem profile_parameter_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
   have hc := ConvolutionFiniteImages.canonical_mixedCount_ge_four m hmlo (by omega) upper
   have hi : ranks ht S 0 ≤ coreA (mixedCount m upper) := by
     simpa only [coreA,Nat.add_sub_cancel,blockDimensions,Fin.cons_zero] using ranks_le ht S 0
-  have hr : ∀ i : Fin (freeW m (mixedCount m upper)),ranks ht S i.succ ≤ 3 := fun i => ranks_le ht S i.succ
+  have hr : ∀ i : Fin (freeW m (mixedCount m
+    upper)),ranks ht S i.succ ≤ 3 := fun i => ranks_le ht S i.succ
   have hn := levelCounts_ordered (fun i => ranks ht S i.succ)
   have hd : finrank K S=profileDim (ranks ht S 0)
       (levelCount (fun i => ranks ht S i.succ) 1)
@@ -157,7 +161,8 @@ theorem profile_parameter_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
         (levelCount (fun i => ranks ht S i.succ) 1)
         (levelCount (fun i => ranks ht S i.succ) 2)
         (levelCount (fun i => ranks ht S i.succ) 3) ≤ totalA m (mixedCount m upper) := by omega
-    simp only [mixedCount_eq_table m (by omega),upperEndpoint_eq_table m (by omega)] at hi hn hdhi' ⊢
+    simp only [mixedCount_eq_table m (by omega),upperEndpoint_eq_table m (by
+      omega)] at hi hn hdhi' ⊢
     exact ProfileOuterFinite.profile_outer_bound m hmlo hmhi upper _ _ _ _ hi hn.2.2 hn.2.1 hn.1 hdlo' hdhi'
   have himage := profile_Phi_le_image m (mixedCount m upper) hc ht S
   have hchart := parameterCount_le_profile_Cell m (mixedCount m upper) ht S

@@ -68,7 +68,8 @@ theorem upperTarget_even_coverage
   have hprod : parityForm (coreParity h m) 0 (p-v)∈(endpointMultiplication q).range := by
     refine ⟨paritySource (coreParity h m) e 0 c,?_⟩
     rw [endpointMultiplication_paritySource _ _ _ hq,hc]
-  have hh := (D ⊔ (endpointMultiplication q).range).add_mem hzero ((show (endpointMultiplication q).range≤D ⊔ (endpointMultiplication q).range from le_sup_right) hprod)
+  have hh := (D ⊔ (endpointMultiplication q).range).add_mem hzero ((show (endpointMultiplication
+    q).range≤D ⊔ (endpointMultiplication q).range from le_sup_right) hprod)
   rw [map_sub] at hh
   have he : parityForm (coreParity h m) 0 v +
       (parityForm (coreParity h m) 0 p-parityForm (coreParity h m) 0 v)=
@@ -120,7 +121,8 @@ theorem supported_scalar_deletion_properties {s : ℕ}
         p∈D ⊔ (endpointMultiplication q).range := by
   refine ⟨fun p hp => scalar_range_odd_zero p (hD hp),?_⟩
   intro p hp
-  have hh : D.mkQ p∈((endpointMultiplication Q).range.map (renameForm (Fin.natAdd h))).map D.mkQ := by
+  have hh : D.mkQ p∈((endpointMultiplication Q).range.map (renameForm (Fin.natAdd
+    h))).map D.mkQ := by
     rw [←hfill]
     exact ⟨p,core_weight_zero_mem_scalar_range p hp,rfl⟩
   obtain ⟨b,hb,he⟩ := hh

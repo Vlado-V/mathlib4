@@ -23,7 +23,8 @@ theorem deficient_projection_implies_proper
     (f : V →ₗ[K] W) (hf : Function.Surjective f) (U : Submodule K V)
     (hfail : finrank K (U.map f) < min (finrank K U) (finrank K W)) :
     0 < finrank K U ∧ finrank K U < finrank K V := by
-  have hpos : 0 < finrank K U := lt_of_le_of_lt (Nat.zero_le _) (lt_of_lt_of_le hfail (min_le_left _ _))
+  have hpos : 0 < finrank K U := lt_of_le_of_lt (Nat.zero_le _) (lt_of_lt_of_le hfail (min_le_left _
+    _))
   refine ⟨hpos,?_⟩
   have hle := Submodule.finrank_le U
   by_contra hn

@@ -74,7 +74,8 @@ theorem exact_counts_restored_frame_quadratic_open {d k h lo : ℕ}
         (fun j hj => (mem_allEvenIndices.mp hj).2.1)
         (fun j hj => (mem_allEvenIndices.mp hj).2.2)
         (actualRestoredIndex K d h n (e n) extra) slot := by
-  filter_upwards [exact_counts_restored_formal_quadratic_open (K := K) hd he hh upper a f e extra hc]
+  filter_upwards [exact_counts_restored_formal_quadratic_open (K := K) hd he hh upper a f e extra
+    hc]
     with n hn
   intro frame slot c T hT o ho
   apply hn (targetLayerOutput frame)

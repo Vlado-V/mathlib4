@@ -84,7 +84,8 @@ theorem critical_child_flag_principal_open (hn : 0 < n) (d : ℕ) :
         finrank K (EndpointHomology (scalarFlagPrefix Q))=genericHomology K n d (upperCount n d-1) ∧
         Submodule.span K (Set.range Q)=Submodule.span K (Set.range (scalarFlagPrefix Q)) ⊔
           Submodule.span K {Q (lastScalarSlot (upperCount_pos hn d))} ∧
-        Q (lastScalarSlot (upperCount_pos hn d))∉Submodule.span K (Set.range (scalarFlagPrefix Q)) := by
+        Q (lastScalarSlot (upperCount_pos hn d))∉Submodule.span K (Set.range (scalarFlagPrefix
+          Q)) := by
   obtain ⟨D,hD,hgood⟩ := generic_flag_principal_open (K := K) hn
     (Nat.sub_le (upperCount n d) 1) (upperCount_le_monomial_count hn d)
   refine ⟨D,hD,?_⟩

@@ -94,7 +94,8 @@ theorem core_linear_free_mem (L : Submodule K (Piece K t 0 1))
 /-- The whole coordinate-variable core image embeds into each linear free layer. -/
 theorem coreLinearImage_mem (L : Submodule K (Piece K t 0 1))
     (D : Fin w → Submodule K (Piece K t 0 0)) (i : Fin w) :
-    coreLinearImage L ≤ (quadraticImage (splitSource L D)).comap (insertAt (oneExponentEquiv i)) := by
+    coreLinearImage L ≤ (quadraticImage (splitSource L D)).comap (insertAt (oneExponentEquiv
+      i)) := by
   apply iSup_le
   intro j
   rintro _ ⟨x, hx, rfl⟩

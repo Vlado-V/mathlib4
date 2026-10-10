@@ -74,8 +74,10 @@ def privateAugmentedRow (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 def privateAugmentedConstants (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) :=
-  (LinearMap.inl K (IntrinsicRowSource (K := K) (σ := σ) (n := n) (d := d) (q := q) (J := J) (counts := counts) R.val)
-    (PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)).comp (rowConstants hO R p)
+  (LinearMap.inl K (IntrinsicRowSource (K := K) (σ := σ) (n := n) (d := d) (q := q) (J := J) (counts
+    := counts) R.val)
+    (PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)).comp (rowConstants hO R
+      p)
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_augmented_exact
@@ -119,7 +121,8 @@ theorem private_row_principal_open [Module.Finite K (Space n d q J counts O)]
   have hC : IsPolynomialFamily (fun a => privateAugmentedConstants (b := b) hO R (e.symm a)) := by
     apply isPolynomialFamily_linearMap
     intro C
-    exact (hconstants.linear_comp (LinearMap.applyₗ (R := K) C)).prod_mk (isPolynomialFamily_const 0)
+    exact (hconstants.linear_comp (LinearMap.applyₗ (R := K) C)).prod_mk (isPolynomialFamily_const
+      0)
   have hcomp : ∀ a,(privateAugmentedRow hO R (e.symm a) P).comp
       (privateAugmentedConstants (b := b) hO R (e.symm a))=0 := by
     intro a

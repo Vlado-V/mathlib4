@@ -97,7 +97,8 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bilinearKoszulConstants_polynomial
     (Q : I → (ι → K) → V) (E : J → (ι → K) → U)
     (hQ : ∀ i,IsPolynomialFamily (Q i)) (hE : ∀ j,IsPolynomialFamily (E j)) :
-    IsPolynomialFamily (fun a => bilinearKoszulConstants (K := K) (W := W) (fun i => Q i a) (fun j => E j a)) := by
+    IsPolynomialFamily (fun a => bilinearKoszulConstants (K := K) (W := W) (fun i => Q i a) (fun j
+      => E j a)) := by
   classical
   apply isPolynomialFamily_linearMap
   intro C
@@ -107,10 +108,12 @@ theorem bilinearKoszulConstants_polynomial
     (IsPolynomialFamily.sum (fun i => (isPolynomialFamily_const (C i j)).smul (hQ i))).linear_comp
       (-LinearMap.id)
   have hL : IsPolynomialFamily (fun a i => ∑ j,C i j • E j a) := by
-    have hh := IsPolynomialFamily.sum (fun i => (hleft i).linear_comp (LinearMap.single K (fun _ : I => U) i))
+    have hh := IsPolynomialFamily.sum (fun i => (hleft i).linear_comp (LinearMap.single K (fun _ : I
+      => U) i))
     simpa only [LinearMap.single_apply,Finset.univ_sum_single] using hh
   have hR : IsPolynomialFamily (fun a j => -∑ i,C i j • Q i a) := by
-    have hh := IsPolynomialFamily.sum (fun j => (hright j).linear_comp (LinearMap.single K (fun _ : J => V) j))
+    have hh := IsPolynomialFamily.sum (fun j => (hright j).linear_comp (LinearMap.single K (fun _ :
+      J => V) j))
     simpa only [LinearMap.single_apply,Finset.univ_sum_single] using hh
   exact (hL.prod_mk hR).prod_mk (isPolynomialFamily_const (0 : W))
 

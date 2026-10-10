@@ -46,7 +46,8 @@ theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
             (quadraticMultiplication (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε))
             (square ζ)).range := by
   obtain ⟨D,hD,hgain⟩ := DeformationRank.rank_gain_of_realizations_principal_open
-    (MarkedRankTransfer.augmented (quadraticMultiplication (SplitBlock22.fullGenerators g h)) (square ζ))
+    (MarkedRankTransfer.augmented (quadraticMultiplication (SplitBlock22.fullGenerators g h))
+      (square ζ))
     (MarkedRankTransfer.perturbation (quadraticMultiplication
       (motionFamily p r (Pi.single k (markedDirection ω)))))
     (projectionRawJ g h)
@@ -78,7 +79,8 @@ theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K
             (quadraticMultiplication (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε))
             (square ζ)).range := by
   obtain ⟨D,hD,hRank⟩ := rank_principal_open ω g h p r k ζ U hmarked hs
-  obtain ⟨E,hE,he⟩ := DeformationIndependence.principal_open g h p r (Pi.single k (markedDirection ω)) hg hh
+  obtain ⟨E,hE,he⟩ := DeformationIndependence.principal_open g h p r (Pi.single k (markedDirection
+    ω)) hg hh
   refine ⟨D*E,by simpa only [map_mul] using mul_ne_zero hD hE,?_⟩
   intro ε hε hDE
   have hne : eval (fun _ => ε) D ≠ 0 ∧ eval (fun _ => ε) E ≠ 0 := by

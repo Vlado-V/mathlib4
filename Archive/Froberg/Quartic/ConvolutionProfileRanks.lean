@@ -67,7 +67,8 @@ theorem quadratic_rank_incident (ht : 2 ≤ t)
     min (Module.finrank K (D i)) 2 * (t - 1) ≤ Module.finrank K (quadraticLayer L D b) := by
   apply (outputImage_one_bound ht (D i)).trans
   apply Submodule.finrank_mono
-  exact le_sup_of_le_right (le_iSup (fun j : {j : Fin w // 0 < b.val j} => outputImage 1 (D j.val)) ⟨i, hi⟩)
+  exact le_sup_of_le_right (le_iSup (fun j : {j : Fin w // 0 < b.val j} => outputImage 1 (D j.val))
+    ⟨i, hi⟩)
 
 theorem quadratic_rank_meets_one (ht : 2 ≤ t)
     (L : Submodule K (Piece K t 0 1)) (D : Fin w → Submodule K (Piece K t 0 0))

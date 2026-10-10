@@ -60,7 +60,8 @@ theorem biformSplitEndpoint_back (Q : Fin q → biformParitySpace K h m d 0)
     (biformSplitFamily Q F (finSumFinEquiv.symm (finSumFinEquiv i))).val)=_
   rw [Equiv.symm_apply_apply]
   have hcancel (z : MvPolynomial (Fin h ⊕ Fin m) K) :
-      rename finSumFinEquiv.symm (rename finSumFinEquiv z)=z := (renameEquiv K finSumFinEquiv).left_inv z
+      rename finSumFinEquiv.symm (rename finSumFinEquiv z)=z := (renameEquiv K
+        finSumFinEquiv).left_inv z
   rw [hcancel]
   cases i <;> rfl
 
@@ -70,7 +71,8 @@ theorem odd_split_endpoint (Q : Fin q → biformParitySpace K h m d 0)
     (a : (endpointMultiplication (biformSplitEndpoint Q F)).ker)
     (ha : ∀ i,(a.val i).val.IsWeightedHomogeneous (coreParity h m)
       (1-biformSplitEndpointParity (q := q) (f := f) i)) :
-    a.val∈oppositeKoszulSpace (biformSplitEndpoint Q F) (biformSplitEndpointParity (q := q) (f := f)) := by
+    a.val∈oppositeKoszulSpace (biformSplitEndpoint Q F) (biformSplitEndpointParity (q := q) (f :=
+      f)) := by
   let idx : Fin q ⊕ Fin f ≃ Fin (q+f) := finSumFinEquiv
   have hpar (i : Fin q ⊕ Fin f) :
       (rename finSumFinEquiv.symm (a.val (idx i)).val).IsWeightedHomogeneous

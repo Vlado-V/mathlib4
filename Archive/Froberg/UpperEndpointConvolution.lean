@@ -51,7 +51,8 @@ theorem eventually_quadratic_row_four_of_endpoint {d : ℕ} (hd : 3 ≤ d)
     ring
   have hcount := convolution_blocks_eventually_fit_density (j := 2) (a := d-2+1)
     (e := d-2) (by omega) (by omega) (by omega) (fun n => upperCount n 2)
-    (criticalRatio 2/((2 : ℕ).factorial : ℝ)) (countAlpha d) (upperCount_normalized_limit (by omega)) hgap
+    (criticalRatio 2/((2 : ℕ).factorial : ℝ)) (countAlpha d) (upperCount_normalized_limit (by
+      omega)) hgap
   filter_upwards [hcount,hD,eventually_gt_atTop (0 : ℕ)] with h hc hD hh
   obtain ⟨Q,_,hQ⟩ := exists_prefix_surjective_at_upperCount hh (hquad h hh)
   filter_upwards [hc,eventually_gt_atTop (0 : ℕ)] with m hm hm0

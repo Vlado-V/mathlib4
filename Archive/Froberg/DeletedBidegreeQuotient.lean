@@ -74,7 +74,8 @@ theorem deleted_bidegree_quotient_lemma (d : ℕ) (hd : 2 ≤ d) :
   intro K _ n S hm hle hupper U hU j
   have h := hm₀ K n S hm hle hupper U hU j
   have hprod : U * Forms K n d ≤ Forms K n (2 * d - 2) := by
-    have h := (mul_le_mul_left hU (Forms K n d)).trans (MvPolynomial.homogeneousSubmodule_mul (d - 2) d)
+    have h := (mul_le_mul_left hU (Forms K n d)).trans (MvPolynomial.homogeneousSubmodule_mul (d -
+      2) d)
     simpa only [show d - 2 + d = 2 * d - 2 by omega] using h
   rwa [finrank_retained_eq_quotient_image S j (U * Forms K n d) hprod] at h
 

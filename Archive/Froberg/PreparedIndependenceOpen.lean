@@ -57,7 +57,8 @@ theorem prepared_independent_open (hd : 1<d)
   obtain ⟨P,hP,hgood⟩ := scalar_vector_independence_open hq hf
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback
     (preparedOddVectorParameters (K := K) (h := h) (m := m) (d := d) (q := q) (f := f)
-      (u := u) (J := J) (counts := counts) (O := O)) preparedOddVectorParameters_surjective P hP _ hgood
+      (u := u) (J := J) (counts := counts) (O :=
+        O)) preparedOddVectorParameters_surjective P hP _ hgood
   refine ⟨E,hE,?_⟩
   intro p hp U
   obtain ⟨hg,hq⟩ := hEgood p hp

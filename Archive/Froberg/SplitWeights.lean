@@ -170,7 +170,8 @@ theorem sum_weight_filtered_extensions {n : ℕ} (S : Finset (Fin n))
     have hd₂ : p.2.degree = v := (mem_finsuppAntidiag'.mp h₂).1
     have hf₁ := filter_add_of_block_support S p.1 p.2 hc₁ hc₂
     have hf₂ : (p.1 + p.2).filter (· ∈ Sᶜ) = p.2 := by
-      simpa only [compl_compl, add_comm] using filter_add_of_block_support Sᶜ p.2 p.1 hc₂ (by simpa using hc₁)
+      simpa only [compl_compl, add_comm] using filter_add_of_block_support Sᶜ p.2 p.1 hc₂ (by simpa
+        using hc₁)
     refine ⟨p.1 + p.2, mem_filter.mpr ⟨mem_exponents.mpr (by simp [hd₁, hd₂]), ?_⟩, ?_⟩
     · rw [← degree_filter S, hf₁, hd₁]
     · exact Prod.ext hf₁ hf₂

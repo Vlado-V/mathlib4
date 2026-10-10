@@ -23,7 +23,8 @@ theorem eventually_field_uniform_quadratic_capacity_shift_late {d : ℕ} (hd : 3
       Tendsto (fun n : ℕ => (Fintype.card (Label (q n) J (counts n)) : ℝ)/(n : ℝ)^d)
         atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))) →
       ∀ z extra : ℕ,∀ᶠ n : ℕ in atTop,
-        ∀ (K : Type) [Field K] [Infinite K], ∀ (σ : Type*) [Fintype σ],∀ (O : ℕ → Submodule K (MvPolynomial σ K)),
+        ∀ (K : Type) [Field K] [Infinite K], ∀ (σ : Type*) [Fintype σ],∀ (O : ℕ → Submodule K
+          (MvPolynomial σ K)),
         finrank K (O 2)=quadraticOutputDimension d h →
         counts n 2≤⌈countBeta d*(h : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊+extra →
         QuadraticRowCapacity n d (q n) (fullSparseBlockCount (countBeta d) 2 (d-2) h)
@@ -49,7 +50,8 @@ theorem eventually_field_uniform_quadratic_capacity_shift_late {d : ℕ} (hd : 3
       have hG := (countTauFour_pos hd).trans_le (countTauFour_le_gamma d)
       unfold countBeta
       positivity
-    simpa only [Nat.cast_zero] using mul_pos (mul_pos hp (pow_pos (show (0:ℝ)<(h:ℝ) from by exact_mod_cast hhpos) 2))
+    simpa only [Nat.cast_zero] using mul_pos (mul_pos hp (pow_pos (show (0:ℝ)<(h:ℝ) from by
+      exact_mod_cast hhpos) 2))
       (pow_pos (show (0:ℝ)<(n:ℝ) from by exact_mod_cast hn) (d-2)))).2
   have hr : r n*(n+(d-2)-1).choose (d-2)≤(n+(d+(d-2))-1).choose (d+(d-2)) := by
     have he : 2*d-2=d+(d-2) := by omega
@@ -69,7 +71,8 @@ theorem eventually_field_uniform_actual_quadratic_capacity_shift_late {d : ℕ} 
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
       ∀ᶠ v : ℕ in atTop,
-      ∀ (K : Type) [Field K] [Infinite K], ∀ (X : Type*) [AddCommGroup X] [Module K X] [Module.Finite K X],
+      ∀ (K : Type) [Field K] [Infinite K], ∀ (X : Type*) [AddCommGroup X] [Module K
+        X] [Module.Finite K X],
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,
       finrank K (constrainedOutputs T 2)=quadraticOutputDimension d (2*w) →
         QuadraticRowCapacity (v+v) d (upperCount (v+v+z) d)

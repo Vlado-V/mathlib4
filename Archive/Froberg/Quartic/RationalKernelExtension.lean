@@ -55,7 +55,8 @@ def numerator (F : J → MvPolynomial I K) (G : MvPolynomial I K)
     (hG : eval t G ≠ 0)
     (hdet : (KernelCharts.minor (evaluated (matrix F G A) t) u v).det ≠ 0) :
     rationalMap (numerator F G A u v) (denominator F G A u v) (Sum.elim t y) =
-      Sum.elim (rationalMap F G t) (KernelCharts.reconstruct (evaluated (matrix F G A) t) u v y) := by
+      Sum.elim (rationalMap F G t) (KernelCharts.reconstruct (evaluated (matrix F G A) t) u v
+        y) := by
   have hker := KernelPolynomialCharts.rationalMap_eq_reconstruct (matrix F G A) u v t y hdet
   funext j
   cases j with

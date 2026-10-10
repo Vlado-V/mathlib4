@@ -42,7 +42,8 @@ theorem critical_increment_below_capacity {d K h : ℕ} (hd : 3 ≤ d)
         (K : ℝ) / ((d - 1).factorial : ℝ) := by
   have hb := criticalRatio_bounds (d := d) (by omega)
   have hH : (0 : ℝ) < centralHalfBinomial d := by
-    exact_mod_cast (show 0 < centralHalfBinomial d by have := centralHalfBinomial_ge_two (d := d) (by omega); omega)
+    exact_mod_cast (show 0 < centralHalfBinomial d by have := centralHalfBinomial_ge_two (d := d)
+      (by omega); omega)
   have hf : (0 : ℝ) < (d - 1).factorial := by exact_mod_cast Nat.factorial_pos (d - 1)
   have hKr : (0 : ℝ) < K := by exact_mod_cast hK
   rw [hh]
@@ -87,7 +88,8 @@ theorem count_width_eventually {d : ℕ} (hd : 3 ≤ d) :
         (K : ℝ) / ((d - 2).factorial : ℝ) <
       countBeta d * ((K * centralHalfBinomial d : ℕ) : ℝ) ^ 2 := by
   have hH : (0 : ℝ) < centralHalfBinomial d := by
-    exact_mod_cast (show 0 < centralHalfBinomial d by have := centralHalfBinomial_ge_two (d := d) (by omega); omega)
+    exact_mod_cast (show 0 < centralHalfBinomial d by have := centralHalfBinomial_ge_two (d := d)
+      (by omega); omega)
   have hgap : 0 < (countBeta d - countAlpha d) * (centralHalfBinomial d : ℝ) ^ 2 :=
     mul_pos (sub_pos.mpr (countAlpha_lt_beta hd)) (sq_pos_of_pos hH)
   obtain ⟨N, hN⟩ := eventually_positive_quadratic

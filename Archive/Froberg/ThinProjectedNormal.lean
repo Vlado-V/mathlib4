@@ -24,7 +24,8 @@ variable {Z : Type*} [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable {n d r t a b T : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r →
+  Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
     (eJ : ProjectedEndpointCokernel pi q ≃ₗ[K] (Fin T → K))
@@ -43,7 +44,8 @@ theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →
       finrank K (LinearMap.ker (relationMap mu ell)) = k.val →
       ∀ i, MvPolynomial.eval ell (eqs k i).val = 0) :
     ∃ z : Fin t → Fin b → K,
-      finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z i)))).range =
+      finrank K (projectedNormalMap pi q (relativeGeneratorMotion q dual (fun i => phi (z
+        i)))).range =
         min (finrank K (ProjectedCoefficientQuotient pi q hq dual vmap)) T := by
   apply exists_maximal_projected_normal_of_slices pi q hq dual vmap eJ phi mu hmu
     count (fun k => BilinearCovectorStrata.thinSlices T C k.val) degrees eqs cuts hempty hcover
@@ -51,7 +53,8 @@ theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →
   exact thinSlices_le_coefficientSliceCount _ t T k.val C hC
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem exists_local_comparison_of_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem exists_local_comparison_of_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r →
+  Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
     (eJ : ProjectedEndpointCokernel D.mkQ q ≃ₗ[K] (Fin T → K))

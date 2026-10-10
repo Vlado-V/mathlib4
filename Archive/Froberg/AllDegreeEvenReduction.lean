@@ -48,7 +48,8 @@ theorem eventually_actual_all_degree_even_reduction {d : ℕ} (hd : 3≤d) :
     exact hw
   by_cases hd5 : 5≤d
   · apply eventually_even_reduction_from_paired hd
-    filter_upwards [eventually_actual_middle_all_scalar_reduction_open_late_output (K := K) hd5 (by omega)] with w hw
+    filter_upwards [eventually_actual_middle_all_scalar_reduction_open_late_output (K := K) hd5 (by
+      omega)] with w hw
     intro hdiv extra e he
     filter_upwards [hw hdiv extra e he] with n hn
     intro X _ _ _ T hX hO hT
@@ -86,7 +87,8 @@ theorem eventually_actual_all_degree_leading_witnesses {d : ℕ} (hd : 3≤d) :
     exact hw
   by_cases hd5 : 5≤d
   · apply eventually_leading_witnesses_from_paired hd
-    filter_upwards [eventually_actual_middle_all_scalar_leading_witnesses_late_output (K := K) hd5 (by omega)] with w hw
+    filter_upwards [eventually_actual_middle_all_scalar_leading_witnesses_late_output (K := K) hd5
+      (by omega)] with w hw
     intro hdiv extra e he
     filter_upwards [hw hdiv extra e he] with n hn
     intro X _ _ _ T hX hO hT

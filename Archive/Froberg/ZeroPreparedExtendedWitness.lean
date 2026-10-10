@@ -41,8 +41,10 @@ theorem sparse_core_extended_parameter_exact_zero
     (hker : (addRow (polynomialIntermediateRow o e v he Q)
       (ProductRows.multiplication counts E J R.val)).ker=
       ((LinearMap.inl K
-        ((Fin (Fintype.card (Label q J counts)) → Fin (finrank K (homogeneousSubmodule σ K R.val)) → Forms K a (d-R.val)) ×
-          (Fin (counts R.val) → Forms K a d)) (RowProducts (K := K) (J := J) (counts := counts) R.val)).comp
+        ((Fin (Fintype.card (Label q J counts)) → Fin (finrank K (homogeneousSubmodule σ K R.val)) →
+          Forms K a (d-R.val)) ×
+          (Fin (counts R.val) → Forms K a d)) (RowProducts (K := K) (J := J) (counts := counts)
+            R.val)).comp
             (intermediateKoszul e v he Q)).range)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     let p := coreExtension z (ofPolynomialFamilies (Q ∘ Fintype.equivFin (Label q J counts)) E hE)
@@ -52,7 +54,8 @@ theorem sparse_core_extended_parameter_exact_zero
   let f := Fintype.equivFin (Label q J counts)
   let p₀ := ofPolynomialFamilies (Q ∘ f) E hE
   let p := coreExtension z p₀
-  have hp₀ := sparse_witness_parameter_exact hO R o ho hdeg e v he Q E hE hER (hfull 0 (by omega)) hker
+  have hp₀ := sparse_witness_parameter_exact hO R o ho hdeg e v he Q E hE hER (hfull 0 (by
+    omega)) hker
   have hproducts : (ProductRows.multiplication counts E J R.val).range≤
       FullBiform K σ a R.val ((d-R.val)+d) := by
     have hh := ProductRows.multiplication_range_full_biform E (by omega : R.val≤2*d)
@@ -63,7 +66,8 @@ theorem sparse_core_extended_parameter_exact_zero
         simpa only [Nat.add_sub_of_le (hJ j hj)] using hh)
       (fun j hj i => biformImage_output_weight _ _ (hO j hj) (hE j hj i))
     convert hh using 1 <;> congr 2 <;> omega
-  have hext := extended_sparse_intrinsic_exact_zero (z := z) (by omega : d-R.val=0) (by omega : d-R.val≤d)
+  have hext := extended_sparse_intrinsic_exact_zero (z := z) (by omega : d-R.val=0) (by omega :
+    d-R.val≤d)
     o ho hdeg e v he Q (ProductRows.multiplication counts E J R.val) hproducts hfull hker ell hell
   let Q' : Fin (Fintype.card (Label q J counts)) → Forms K (a+z) d := fun i =>
     ⟨rename (Fin.castAdd z) (Q i).val,(Q i).property.rename_isHomogeneous⟩
@@ -71,7 +75,8 @@ theorem sparse_core_extended_parameter_exact_zero
     ⟨rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v i),
       biformImage_core_extension _ (by
         rw [←polynomialFormVector_attachedCoordinates o e v he i]
-        exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun j => (attachedCoordinates e v he i j).property))⟩
+        exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun j => (attachedCoordinates e v he i
+          j).property))⟩
   let P' := (rename (Sum.map id (Fin.castAdd z))).toLinearMap.comp
     (ProductRows.multiplication counts E J R.val)
   have hE' : (fun i => intrinsicLayerMap hO R i p)=E' := by
@@ -96,7 +101,8 @@ theorem sparse_core_extended_parameter_exact_zero
     change layers p R.val i=rename (Sum.map id (Fin.castAdd z)) (layers p₀ R.val i)
     exact congrFun (congrFun (coreExtension_layers (z := z) p₀) R.val) i
   · have hext' : (bilinearKoszulRow fullBiformScalarProduct Q' E' P').ker=
-        (bilinearKoszulConstants (K := K) (W := RowProducts (K := K) (J := J) (counts := counts) R.val) Q' E').range := hext
+        (bilinearKoszulConstants (K := K) (W := RowProducts (K := K) (J := J) (counts := counts)
+          R.val) Q' E').range := hext
     have hr := bilinearKoszulRow_exact_reindex f (Equiv.refl (Fin (counts R.val)))
       fullBiformScalarProduct Q' E' P' hext'
     unfold row rowConstants

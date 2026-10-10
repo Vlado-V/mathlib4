@@ -75,7 +75,8 @@ def checkEdge (m q c i : ℕ) (edge : Fin 6) : Bool :=
   let hi := edgeUpper m c i edge
   let xs := automaticIntervals s lo hi
   checkCover lo hi xs &&
-    xs.all fun z => decide (ChunkValid s (edgeScale edge) (edgePolynomial (parameters m c i) edge) z)
+    xs.all fun z => decide (ChunkValid s (edgeScale edge) (edgePolynomial (parameters m c i) edge)
+      z)
 
 /-- Both source incidence tests at every eligible integral dimension on one rational edge. -/
 def EdgeBounds (m q c i : ℕ) (edge : Fin 6) : Prop :=

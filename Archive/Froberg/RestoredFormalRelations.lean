@@ -96,7 +96,8 @@ theorem restored_projected_formal_relations
     · left
       apply Subtype.ext
       change (z.val i).val=0
-      exact congrArg (fun a : evenRestorationSpace (K := K) w d => a.val) (z.property.1 i (by omega))
+      exact congrArg (fun a : evenRestorationSpace (K := K) w d => a.val) (z.property.1 i (by
+        omega))
   · intro i
     exact hscalar (z' i) (z.property.2 i)
 

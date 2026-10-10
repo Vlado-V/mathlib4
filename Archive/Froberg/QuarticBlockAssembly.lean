@@ -62,7 +62,8 @@ theorem fiberCertificate_nonempty (k : Finset X × Finset X) :
       exact (card_le_card inter_subset_left).trans_eq (card_support (left p))
     have hU : k.2.card + k.1.card = 8 := by
       rw [← hu, ← hi]
-      simpa only [card_support] using card_union_add_card_inter (support (left p)) (support (right p))
+      simpa only [card_support] using card_union_add_card_inter (support (left p)) (support (right
+        p))
     obtain ⟨choice, hc, hinj⟩ := exists_global_fiber_choices k.1 k.2 hIU hI hU
     have hleft (q : Columns k) : support (left q) ⊆ k.2 := by
       rw [← congrArg Prod.snd (key_left_right q)]
@@ -141,7 +142,8 @@ theorem exists_independent_pairProducts [IsDomain K] [Infinite K] :
       (fun k => (cert k).rows)
     · intro k
       have hm : (fun i j : Columns k =>
-          (specializedForm values (left j) * specializedForm values (right j)).coeff ((cert k).rows i)) =
+          (specializedForm values (left j) * specializedForm values (right j)).coeff ((cert k).rows
+            i)) =
           (MvPolynomial.eval values).mapMatrix (productMinor terms left right (cert k).rows) := by
         ext i j
         unfold specializedForm

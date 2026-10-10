@@ -55,8 +55,10 @@ def intermediateRow (e : I → Fin n →₀ ℕ) (v : I → J → K)
     change BilinearScalarFamily.multiplication vectorMultiply Q (x.1+y.1) +
       homogeneousMultiplication e v he (x.2+y.2) = _
     rw [map_add,map_add]
-    change _ = (BilinearScalarFamily.multiplication vectorMultiply Q x.1 + homogeneousMultiplication e v he x.2) +
-      (BilinearScalarFamily.multiplication vectorMultiply Q y.1 + homogeneousMultiplication e v he y.2)
+    change _ = (BilinearScalarFamily.multiplication vectorMultiply Q x.1 + homogeneousMultiplication
+      e v he x.2) +
+      (BilinearScalarFamily.multiplication vectorMultiply Q y.1 + homogeneousMultiplication e v he
+        y.2)
     abel
   map_smul' c x := by
     change BilinearScalarFamily.multiplication vectorMultiply Q (c • x.1) +
@@ -116,7 +118,8 @@ theorem intermediateRow_ker_eq_koszul (e : I → Fin n →₀ ℕ) (v : I → J 
         (fun i => (relationSpace (d := 0) e v he).mkQ (x.1 i))=0 := by
       have hz := congrArg (relationSpace (d := d) e v he).mkQ hx
       change (relationSpace (d := d) e v he).mkQ
-        (BilinearScalarFamily.multiplication vectorMultiply Q x.1 + homogeneousMultiplication e v he x.2) = _ at hz
+        (BilinearScalarFamily.multiplication vectorMultiply Q x.1 + homogeneousMultiplication e v he
+          x.2) = _ at hz
       rw [map_add] at hz
       have he0 : (relationSpace (d := d) e v he).mkQ (homogeneousMultiplication e v he x.2)=0 :=
         (Submodule.Quotient.mk_eq_zero _).mpr ⟨x.2,rfl⟩
@@ -134,7 +137,8 @@ theorem intermediateRow_ker_eq_koszul (e : I → Fin n →₀ ℕ) (v : I → J 
       exact hc i
     · have hz := intermediateRow_koszul e v he Q c
       have hfirst : (intermediateKoszul e v he Q c).1=x.1 := funext hc
-      change BilinearScalarFamily.multiplication vectorMultiply Q (intermediateKoszul e v he Q c).1 +
+      change BilinearScalarFamily.multiplication vectorMultiply Q (intermediateKoszul e v he Q
+        c).1 +
         homogeneousMultiplication e v he (intermediateKoszul e v he Q c).2=0 at hz
       rw [hfirst] at hz
       change BilinearScalarFamily.multiplication vectorMultiply Q x.1 +

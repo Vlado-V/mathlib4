@@ -71,7 +71,8 @@ theorem exists_critical_comparison_of_restored_background
       (BilinearCovectorStrata.thinSlices (backgroundOddTargetDimension
         (Fin.append (fun i => scalarEvenBiform (h := h) (p.1.1.1 (Sum.inl i)))
           (restoredPositiveBiform hd hO hJ heven idx slot (restoredRestrictCounts hc p).1))
-        (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily) C))
+        (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily)
+          C))
     (hsep : ∀ D : Submodule K (Forms K (h+m) (2*d)),
       D≤(renameForm (K := K) (d := 2*d) (Fin.natAdd h : Fin m → Fin (h+m))).range →
       formalSquare (Submodule.span K (Set.range (fun i => oddPolynomialToForms
@@ -95,8 +96,10 @@ theorem exists_critical_comparison_of_restored_background
     intro k
     simpa only [slots,countIndexMap,Function.comp_apply,Equiv.apply_symm_apply,hdeg] using hslot k
   have hdata := restored_certificate_background hdp hd hO hJ heven idx slot hslot base hbase
-  change LinearIndependent K (backgroundEnumeratedForms (Fin.append (fun i => scalarEvenBiform (h := h) (Q i)) E) F emptyOddFamily) ∧
-    OddSplitExact (Fin.append (fun i => scalarEvenBiform (h := h) (Q i)) E) (Fin.append F emptyOddFamily) ∧
+  change LinearIndependent K (backgroundEnumeratedForms (Fin.append (fun i => scalarEvenBiform (h :=
+    h) (Q i)) E) F emptyOddFamily) ∧
+    OddSplitExact (Fin.append (fun i => scalarEvenBiform (h := h) (Q i)) E) (Fin.append F
+      emptyOddFamily) ∧
     Function.Surjective (upperTargetMap (backgroundEnumeratedForms
       (Fin.append (fun i => scalarEvenBiform (h := h) (Q i)) E) F emptyOddFamily)) at hdata
   have hQdata := childFlag_scalar_properties _ _ _ Q hchild

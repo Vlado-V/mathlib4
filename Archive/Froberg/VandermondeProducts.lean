@@ -40,7 +40,8 @@ the original univariate polynomial. -/
 theorem momentLinear_eval {a : ℕ} (t : K) (p : Polynomial K) (hp : p.natDegree < a) :
     MvPolynomial.aeval (fun i : Fin a => p.coeff i) (momentLinear a t) = p.eval t := by
   rw [Polynomial.eval_eq_sum_range' hp]
-  simp only [momentLinear, map_sum, map_mul, MvPolynomial.aeval_C, MvPolynomial.aeval_X, Algebra.algebraMap_self_apply]
+  simp only [momentLinear, map_sum, map_mul, MvPolynomial.aeval_C, MvPolynomial.aeval_X,
+    Algebra.algebraMap_self_apply]
   rw [Fin.sum_univ_eq_sum_range (fun i : ℕ => t ^ i * p.coeff i)]
   apply Finset.sum_congr rfl
   intro i hi

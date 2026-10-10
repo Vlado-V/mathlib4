@@ -66,7 +66,8 @@ theorem restoredScalarFiber_positive (hd : d%2=0)
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O) :
     restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (a,rest)).1=
       oddEvenAffineFamily
-        (restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (0,rest)).1) a := by
+        (restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+          (0,rest)).1) a := by
   funext i
   apply Subtype.ext
   change generator (scalarFiberCoordinates.symm (a,rest.1))
@@ -133,12 +134,15 @@ theorem restored_scalar_fiber_relative_injective (hdp : 1≤d) (hd : d%2=0)
     (hslot : ∀ k,0<degree (idx (slot k)))
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O)
     (H : OddSplitExact
-      (restoredBiformFamily hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (a,rest)).1)
+      (restoredBiformFamily hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+        (a,rest)).1)
       (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i)))) :
     Function.Injective (oddEvenRelativeMap (fun i => scalarEvenBiform (h := h) (rest.1.1 i))
-      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i))) emptyOddFamily
+      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i)))
+        emptyOddFamily
       (oddEvenAffineFamily
-        (restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (0,rest)).1) a)) := by
+        (restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+          (0,rest)).1) a)) := by
   have hex := restored_split_odd_exact hd hO hJ heven idx slot
     (restoredScalarFiberCoordinates.symm (a,rest)).1 _ H
   have hi := odd_split_relative_injective _ _ _ _ hex
@@ -170,7 +174,8 @@ theorem restored_background_value (hdp : 1≤d) (hd : d%2=0)
       (restoredPositiveBiform hd hO hJ heven idx slot p.1) (restoredEvenIndex idx i)).val=_
     exact congrArg Subtype.val (restored_split_value hd hO hJ heven idx slot p.1 i)
   | inr i =>
-    change sumBiformMap (linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm (p.2 i)))=(p.2 i).val
+    change sumBiformMap (linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm (p.2
+      i)))=(p.2 i).val
     rw [←PreparedTarget.outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -178,11 +183,13 @@ theorem restored_background_upper (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredOuterSpace m d q f J counts O)
-    (hu : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot p))) :
+    (hu : Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot
+      p))) :
     Function.Surjective (upperTargetMap (backgroundEnumeratedForms
       (Fin.append (restoredBaseBiform hd hO hJ heven idx slot p.1)
         (restoredPositiveBiform hd hO hJ heven idx slot p.1))
-      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily)) := by
+      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i)))
+        emptyOddFamily)) := by
   apply upperTargetMap_surjective_of_range _ _ _ hu
   ext x
   constructor
@@ -206,8 +213,10 @@ theorem restored_scalar_fiber_upper (hdp : 1≤d) (hd : d%2=0)
     Function.Surjective (upperTargetMap (backgroundEnumeratedForms
       (Fin.append (fun i => scalarEvenBiform (h := h) (rest.1.1 i))
         (oddEvenAffineFamily
-          (restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (0,rest)).1) a))
-      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i))) emptyOddFamily)) := by
+          (restoredPositiveBiform hd hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+            (0,rest)).1) a))
+      (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i)))
+        emptyOddFamily)) := by
   have hi := restored_background_upper hdp hd hO hJ heven idx slot _ hu
   rw [restoredBaseBiform_eq_scalar hd hO hJ heven idx slot hslot,restoredScalarFiber_positive] at hi
   exact hi

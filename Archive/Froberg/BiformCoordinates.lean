@@ -60,7 +60,8 @@ theorem polynomialFormVector_range_basis {n s : ℕ}
   classical
   apply le_antisymm
   · rintro f ⟨p,rfl⟩
-    exact polynomialFormVector_mem_biform _ O (Forms K n s) (fun i => (b i).property) p (fun i => (p i).property)
+    exact polynomialFormVector_mem_biform _ O (Forms K n s) (fun i => (b i).property) p (fun i => (p
+      i).property)
   · rintro f ⟨a,⟨z,rfl⟩,rfl⟩
     induction z using TensorProduct.inductionOn with
     | tmul x y =>

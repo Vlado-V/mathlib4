@@ -43,7 +43,8 @@ theorem reconstruction_coordinates (A : Matrix (Fin a) (Fin d) K) (J : RowChoice
     change A (Function.update J i k h) l = (Function.update (fun h l => A (J h) l) i (A k)) h l
     by_cases hh : h = i <;> simp [hh]
   change (A.submatrix (Function.update J i k) id).det = _
-  rw [hupdate,← Matrix.cramer_transpose_apply,Matrix.cramer_eq_adjugate_mulVec,← Matrix.adjugate_transpose]
+  rw [hupdate,← Matrix.cramer_transpose_apply,Matrix.cramer_eq_adjugate_mulVec,←
+    Matrix.adjugate_transpose]
   simp [Matrix.mulVec,Matrix.mul_apply,dotProduct,mul_comm]
 
 /-- Selected coordinate identities are linear and already suffice to
@@ -101,7 +102,8 @@ theorem reconstruction_injective {p : RowChoice a d → K} (hp : Valid p)
 theorem reconstruction_finrank_of_selected {p : RowChoice a d → K} (hp : Selected p)
     (J : RowChoice a d) (hJ : p J ≠ 0) :
     finrank K (LinearMap.range (reconstruction p J).mulVecLin) = d := by
-  rw [LinearMap.finrank_range_of_inj (reconstruction_injective_of_selected hp J hJ),Module.finrank_fin_fun]
+  rw [LinearMap.finrank_range_of_inj (reconstruction_injective_of_selected hp J
+    hJ),Module.finrank_fin_fun]
 
 /-- The reconstructed subspace has the prescribed dimension. -/
 theorem reconstruction_finrank {p : RowChoice a d → K} (hp : Valid p)

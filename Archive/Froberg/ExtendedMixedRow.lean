@@ -61,7 +61,8 @@ theorem extended_mixed_relation_core (hsd : s≤d)
     simpa only [map_add,map_sum,map_zero,freeCoeff_rename_mul,freeCoeff_rename_core] using h
   have hz (β : Fin z →₀ ℕ) (hβ : β≠0) :
       (∀ i j,freeCoeff β (x i j)=0) ∧ (∀ i,freeCoeff β (p i)=0) := by
-    have hbpos : 0<β.degree := Nat.pos_of_ne_zero (by intro h; exact hβ ((Finsupp.degree_eq_zero_iff β).mp h))
+    have hbpos : 0<β.degree := Nat.pos_of_ne_zero (by intro h; exact hβ ((Finsupp.degree_eq_zero_iff
+      β).mp h))
     have hrow (j : J) : (∑ i,Q i*freeCoeff β (x i j))+
         (∑ k,E k j*freeCoeff β (p k))=0 := by
       simpa only [if_neg hβ,add_zero] using hcoeff β j

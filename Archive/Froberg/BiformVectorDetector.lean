@@ -45,7 +45,8 @@ theorem biformVectorDetector_homogeneous
   rcases hp with ⟨_,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with
   | tmul a b =>
-    change (biformVectorDetector T (tensorEquivSum K σ (Fin n) K (a.val ⊗ₜ[K] b.val)) k).IsHomogeneous t
+    change (biformVectorDetector T (tensorEquivSum K σ (Fin n) K (a.val ⊗ₜ[K] b.val))
+      k).IsHomogeneous t
     rw [tensorEquivSum_tmul,biformVectorDetector_tmul]
     exact Submodule.smul_mem _ _ b.property
   | add a b ha hb =>

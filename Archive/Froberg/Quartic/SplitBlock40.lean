@@ -175,7 +175,8 @@ theorem sourceProjection_koszul_mem (g : SplitMiddle31.Mixed K m c) (Q : Fin q �
 
 /-- Exact incoming-boundary reflection for the pure source component. -/
 theorem sourceEmbedding_comap_koszul (g : SplitMiddle31.Mixed K m c) (Q : Fin q → Forms K m 2) :
-    (koszulSpace (generators g Q)).comap sourceEmbedding = koszulSpace (blockQuadrics (K := K)) := by
+    (koszulSpace (generators g Q)).comap sourceEmbedding = koszulSpace (blockQuadrics (K :=
+      K)) := by
   ext a
   constructor
   · intro ha
@@ -187,10 +188,12 @@ theorem sourceEmbedding_comap_koszul (g : SplitMiddle31.Mixed K m c) (Q : Fin q 
 def cycleEmbedding (g : SplitMiddle31.Mixed K m c) (Q : Fin q → Forms K m 2) :
     (quadraticMultiplication (blockQuadrics (K := K))).ker →ₗ[K]
       (quadraticMultiplication (generators g Q)).ker :=
-  (sourceEmbedding.comp (quadraticMultiplication (blockQuadrics (K := K))).ker.subtype).codRestrict _
+  (sourceEmbedding.comp (quadraticMultiplication (blockQuadrics (K :=
+    K))).ker.subtype).codRestrict _
     (fun a => by
       change quadraticMultiplication (generators g Q) (sourceEmbedding a.val) = 0
-      rw [multiplication_commutes, show quadraticMultiplication blockQuadrics a.val = 0 from a.property,
+      rw [multiplication_commutes, show quadraticMultiplication blockQuadrics a.val = 0 from
+        a.property,
         map_zero])
 
 def mapCycleQuotients {V W V' W' : Type*}

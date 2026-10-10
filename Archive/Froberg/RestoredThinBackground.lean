@@ -36,11 +36,13 @@ theorem restored_endpoint_thin_background (hdp : 1 ≤ d) (hd : d%2=0)
       (thinSlices (backgroundOddTargetDimension
         (Fin.append (fun i => scalarEvenBiform (h := h) (p.1.1.1 (Sum.inl i)))
           (restoredPositiveBiform hd hO hJ heven idx slot p.1))
-        (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily) C) := by
+        (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily)
+          C) := by
   change OddEndpointThin
     (Fin.append (restoredBaseBiform hd hO hJ heven idx slot p.1)
       (restoredPositiveBiform hd hO hJ heven idx slot p.1))
-    (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i))) emptyOddFamily C at hthin
+    (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2
+      i))) emptyOddFamily C at hthin
   rw [restoredBaseBiform_eq_scalar hd hO hJ heven idx slot hslot p.1] at hthin
   exact hthin
 

@@ -61,7 +61,8 @@ theorem eventually_layered_small_budget {d : ℕ} (hd : 0<d)
   have hleft : Tendsto (fun m : ℕ => ((2*(H m+A m+q m)+1 : ℕ) : ℝ)/(m : ℝ)^d)
       atTop (𝓝 0) := by
     simpa only [Nat.cast_add,Nat.cast_mul,Nat.cast_ofNat,Nat.cast_one,
-      add_div,mul_div_assoc,zero_add,add_zero,mul_zero] using (((hH.add hA).add hq).const_mul 2).add hconst
+      add_div,mul_div_assoc,zero_add,add_zero,mul_zero] using (((hH.add hA).add hq).const_mul
+        2).add hconst
   have hl := floor_normalized_limit (fun m : ℕ => delta*(m : ℝ)^d) hd delta
     (Eventually.of_forall fun m => mul_nonneg hdelta.le (pow_nonneg (Nat.cast_nonneg m) _))
     (scaled_power_normalized_limit delta d)

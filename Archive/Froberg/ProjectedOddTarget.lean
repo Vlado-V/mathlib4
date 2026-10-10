@@ -93,7 +93,8 @@ theorem projectedToOddTarget_bijective (D : Submodule K (Forms K n (2*d)))
       exact (Submodule.Quotient.mk_eq_zero _).mp hh
     change projectedTargetClass D q p=0
     apply (projectedTargetClass_zero_iff D q p).mpr
-    have hsum := (D ⊔ (endpointMultiplication q).range).add_mem (heven p) ((show (endpointMultiplication q).range≤D ⊔ (endpointMultiplication q).range from le_sup_right) hp)
+    have hsum := (D ⊔ (endpointMultiplication q).range).add_mem (heven p) ((show
+      (endpointMultiplication q).range≤D ⊔ (endpointMultiplication q).range from le_sup_right) hp)
     have hdec : parityForm w 0 p+parityForm w 1 p=p := by
       simpa only [zero_add] using parityForm_decomposition w 0 p
     rwa [hdec] at hsum

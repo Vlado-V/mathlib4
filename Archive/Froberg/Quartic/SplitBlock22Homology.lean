@@ -165,7 +165,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def cycleProjection (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) : (multiplication g h).ker →ₗ[K]
       (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h))).ker :=
-  ((LinearMap.fst K _ _).comp ((LinearMap.snd K _ _).comp (multiplication g h).ker.subtype)).codRestrict _
+  ((LinearMap.fst K _ _).comp ((LinearMap.snd K _ _).comp (multiplication g
+    h).ker.subtype)).codRestrict _
     (fun a => by
       apply (cycle_completion_iff h g a.val.2.1).mp
       refine ⟨a.val.1, a.val.2.2, ?_⟩
@@ -194,7 +195,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The projection kernel is precisely the incoming pure–child boundaries. -/
 theorem cycleProjection_ker (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
-    (cycleProjection g h).ker = kernelBoundary (W := Target K m) (multiplication g h) (crossSpace (c := c) h) := by
+    (cycleProjection g h).ker = kernelBoundary (W := Target K m) (multiplication g h) (crossSpace (c
+      := c) h) := by
   ext a
   change cycleProjection g h a = 0 ↔ a.val ∈ crossSpace h
   rw [← Subtype.val_inj]

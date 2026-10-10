@@ -69,7 +69,8 @@ theorem parent_witness (m : ℕ) (hm : 320 ≤ m)
   obtain ⟨Z,hclosed⟩ := StrongMarkedExpansionMotionBridgeOmega.closed_slices hm g h U (hslices w)
   have hs := hblock.1.2.2.1
   rw [AugmentedGeneric.coefficientMixed_encode,AugmentedGeneric.coefficientChild_encode] at hs
-  have htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed g)) := by
+  have htrace : Function.Injective (SplitMiddle31.mixedMultiplication (ActualTraceMotion.rowMixed
+    g)) := by
     rw [ActualTraceMotion.rowMixed_eq_transpose]
     simpa only [AugmentedGeneric.coefficientMixed_encode,
       SimultaneousBlockConditionsOmega.transposeMixed,

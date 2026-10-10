@@ -44,7 +44,8 @@ theorem surjective_dual_ker (pi : A →ₗ[K] W) (hpi : Function.Surjective pi) 
 
 theorem quotientSplit_reconstruct (e : A ≃ₗ[K] W₀ × H)
     (pi : A →ₗ[K] W) (hpi : Function.Surjective pi) (ell : W →ₗ[K] K) :
-    quotientSplitReconstruct e pi (quotientSplitBottom e pi ell,quotientSplitHigher e pi ell)=ell := by
+    quotientSplitReconstruct e pi (quotientSplitBottom e pi ell,quotientSplitHigher e pi
+      ell)=ell := by
   change pi.dualMap.leftInverse
     (splitTargetReconstruct e (splitTargetBottom e (pi.dualMap ell),
       splitTargetHigher e (pi.dualMap ell)))=ell

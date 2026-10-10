@@ -30,7 +30,8 @@ theorem prepared_background_independent (hd : 0<d) (ho : d%2=1)
       (Fin.append (preparedBaseBiform hO hJ heven p.1) (preparedPositiveBiform hO hJ heven p.1))
       (fun i => preparedOddBiform hd ho U P p.2 (Sum.inl i))
       (fun i => preparedOddBiform hd ho U P p.2 (Sum.inr i))) := by
-  let e : Fin (Fintype.card (BackgroundLabel (q+Fintype.card (ProductRows.LayerLabel J counts)) f u)) ≃
+  let e : Fin (Fintype.card (BackgroundLabel (q+Fintype.card (ProductRows.LayerLabel J counts)) f
+    u)) ≃
       Fin (Fintype.card (PreparedTarget.Label q f u J counts)) :=
     (Fintype.equivFin _).symm.trans (preparedBackgroundIndex.symm.trans (Fintype.equivFin _))
   convert hi.comp e e.injective using 1

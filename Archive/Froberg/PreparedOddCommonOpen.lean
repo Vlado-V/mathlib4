@@ -36,7 +36,8 @@ theorem exists_prepared_independent_odd_on_open (hd : 0<d)
       ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
         eval ((Module.finBasis K _).equivFun p) E≠0 ∧
         ∀ U : Fin u → Forms K h d,
-          LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1 p.2) ∧ OddCyclesExact U p.1 p.2 := by
+          LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1
+            p.2) ∧ OddCyclesExact U p.1 p.2 := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro E hE

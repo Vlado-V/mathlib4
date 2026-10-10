@@ -58,7 +58,8 @@ theorem criticalDiscriminant_leading_positive {d : ℕ} (hd : 2 ≤ d) :
     0 < (d.factorial : ℝ)⁻¹ ^ 2 - 2 * ((2 * d).factorial : ℝ)⁻¹ := by
   rw [factorial_discriminant_identity (by omega : 0 < d)]
   have hH : 1 < (centralHalfBinomial d : ℝ) := by
-    exact_mod_cast (show 1 < centralHalfBinomial d from lt_of_lt_of_le (by omega) (centralHalfBinomial_ge_two hd))
+    exact_mod_cast (show 1 < centralHalfBinomial d from lt_of_lt_of_le (by omega)
+      (centralHalfBinomial_ge_two hd))
   have hnorm : 0 < 1 - 1 / (centralHalfBinomial d : ℝ) := by
     have hdiv := (div_lt_one (by linarith : 0 < (centralHalfBinomial d : ℝ))).mpr hH
     linarith
@@ -131,7 +132,8 @@ theorem exists_critical_polynomial_with_residual {d : ℕ} (hd : 2 ≤ d) :
   refine ⟨criticalCenterPolynomial d - Q, hPdeg, hPlead.trans hdiff, ?_, ?_, ?_⟩
   · rwa [hPlead]
   · have heq : (fun n : ℕ => kappa n d - (criticalCenterPolynomial d - Q).eval (n : ℝ)) =
-        fun n : ℕ => -(Real.sqrt ((criticalDiscriminantPolynomial d).eval (n : ℝ)) - Q.eval (n : ℝ)) := by
+        fun n : ℕ => -(Real.sqrt ((criticalDiscriminantPolynomial d).eval (n : ℝ)) - Q.eval (n :
+          ℝ)) := by
       funext n
       simp only [kappa, criticalRoot, eval_sub, criticalCenterPolynomial,
         eval_add, eval_C, monomialCountPolynomial_eval, criticalDiscriminantPolynomial_eval]

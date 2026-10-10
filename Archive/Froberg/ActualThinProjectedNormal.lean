@@ -36,7 +36,8 @@ def actualProjectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fi
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d)
+theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms
+  K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V) :
     (projectedMappedCoefficients pi q hq dual
@@ -55,7 +56,8 @@ theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[
   exact congrFun hxy i
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem exists_local_comparison_of_actual_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r → Forms K n d)
+theorem exists_local_comparison_of_actual_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r
+  → Forms K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V)
     (eJ : ProjectedEndpointCokernel D.mkQ q ≃ₗ[K] W)

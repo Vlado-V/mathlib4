@@ -103,7 +103,8 @@ theorem rowPolynomial_eq_zero_of_functional {p : ℕ} (hp : 1 ≤ p) (d : ℕ)
   rw [he, rowPolynomial_coeff]
   by_cases hn : e 0 < p
   · have hc := congrArg (fun f : Module.Dual K (Fin p → K) => f (Pi.single ⟨e 0, hn⟩ 1)) h
-    simpa only [coefficientFunctional_single, LinearMap.zero_apply, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply] using hc
+    simpa only [coefficientFunctional_single, LinearMap.zero_apply, AddMonoidAlgebra.coeff_zero,
+      Finsupp.zero_apply] using hc
   · have hc := coeff_zero_of_degreeOf_lt H (oneExponent d (e 0)) (some 0) (by
       simp only [slotExponent_some]; omega)
     simpa using hc
@@ -143,7 +144,8 @@ theorem contractLinear_encode_zero (c : Fin 3 → K)
     simp [ordinary]
   have hr (d : Fin 3) : rowPolynomial d.val (encode (cokernelDualEquiv K t 0 φ).val) =
       ∑ v : Fin 1 → Fin t, monomial (ordinary v)
-        ((cokernelDualEquiv K t 0 φ).val (rowMonomial d (tupleExponent v) (tupleExponent_degree v))) := by
+        ((cokernelDualEquiv K t 0 φ).val (rowMonomial d (tupleExponent v) (tupleExponent_degree
+          v))) := by
     simp only [rowPolynomial, encode, ofCoefficients, map_sum, Fintype.sum_prod_type,
       Polynomial.finsetSum_coeff, optionEquivLeft_monomial, slotExponent_none, hs,
       Polynomial.coeff_monomial, Fin.val_inj]
@@ -209,7 +211,8 @@ theorem single_annihilator_finrank_le (ht : 2 ≤ t) {c : Fin 3 → K} (hc : c �
     have h0 := rowPolynomial_eq_zero_of_functional (by omega) 0 _ (dualFactor_bounds φ.val).2 hφ
     have he := annihilator_equation c φ.val φ.property
     rw [h0, mul_zero, zero_add] at he
-    exact eq_zero_of_rows _ (dualFactor_bounds φ.val).1 h0 ((mul_eq_zero.mp he).resolve_left hsecond)
+    exact eq_zero_of_rows _ (dualFactor_bounds φ.val).1 h0 ((mul_eq_zero.mp he).resolve_left
+      hsecond)
 
 /-- Every nonzero output vector has at least `t-1` independent linear products. -/
 theorem single_output_linear_finrank (ht : 2 ≤ t) {c : Fin 3 → K} (hc : c ≠ 0) :
@@ -268,10 +271,12 @@ theorem two_equations_zero {v : Fin 2 → (Fin 3 → K)} (hv : LinearIndependent
       secondMultiplier (v i) * rowPolynomial 1 H = 0) : H = 0 := by
   have hdet := outputDeterminant_ne_zero hv
   apply eq_zero_of_rows H hH
-  · apply (mul_eq_zero.mp (show outputDeterminant (v 0) (v 1) * rowPolynomial 0 H = 0 from ?_)).resolve_left hdet
+  · apply (mul_eq_zero.mp (show outputDeterminant (v 0) (v 1) * rowPolynomial 0 H = 0 from
+    ?_)).resolve_left hdet
     dsimp [outputDeterminant]
     linear_combination secondMultiplier (v 1) * h 0 - secondMultiplier (v 0) * h 1
-  · apply (mul_eq_zero.mp (show outputDeterminant (v 0) (v 1) * rowPolynomial 1 H = 0 from ?_)).resolve_left hdet
+  · apply (mul_eq_zero.mp (show outputDeterminant (v 0) (v 1) * rowPolynomial 1 H = 0 from
+    ?_)).resolve_left hdet
     dsimp [outputDeterminant]
     linear_combination firstMultiplier (v 0) * h 1 - firstMultiplier (v 1) * h 0
 

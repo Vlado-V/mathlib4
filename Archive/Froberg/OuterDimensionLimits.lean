@@ -28,7 +28,8 @@ def outerTargetCount (d h b : ℕ) (f : ℕ → ℕ) (n : ℕ) : ℝ :=
 
 lemma critical_outer_balance {d : ℕ} (hd : 2 ≤ d) (h : ℝ) :
     h/((2*d-1).factorial : ℝ)-(h*criticalRatio d/((d-1).factorial : ℝ))/(d.factorial : ℝ)=
-      (criticalRatio d/(d.factorial : ℝ))*(h/((d-1).factorial : ℝ)-h*criticalRatio d/((d-1).factorial : ℝ)) := by
+      (criticalRatio d/(d.factorial : ℝ))*(h/((d-1).factorial : ℝ)-h*criticalRatio
+        d/((d-1).factorial : ℝ)) := by
   have hH : (centralHalfBinomial d : ℝ) ≠ 0 := by
     have := centralHalfBinomial_ge_two hd
     exact_mod_cast (show centralHalfBinomial d ≠ 0 by omega)
@@ -39,7 +40,8 @@ lemma critical_outer_balance {d : ℕ} (hd : 2 ≤ d) (h : ℝ) :
     simpa only [show d-1+1=d by omega,show 2*(d-1)+1=2*d-1 by omega] using hh
   have hc := criticalRatio_identity hd
   have he : h/((2*d-1).factorial : ℝ)-(h*criticalRatio d/((d-1).factorial : ℝ))/(d.factorial : ℝ)-
-      (criticalRatio d/(d.factorial : ℝ))*(h/((d-1).factorial : ℝ)-h*criticalRatio d/((d-1).factorial : ℝ)) =
+      (criticalRatio d/(d.factorial : ℝ))*(h/((d-1).factorial : ℝ)-h*criticalRatio
+        d/((d-1).factorial : ℝ)) =
       h*(1-(centralHalfBinomial d : ℝ)*criticalRatio d*(2-criticalRatio d))/
         ((centralHalfBinomial d : ℝ)*((d-1).factorial : ℝ)*(d.factorial : ℝ)) := by
     rw [← hf]

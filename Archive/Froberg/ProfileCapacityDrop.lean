@@ -23,7 +23,8 @@ def capacityDropTarget {s : ℕ} (hs : 0 < s) : Option (Fin s) → Fin (2 * s + 
 
 lemma capacityDropTarget_allowed {s : ℕ} (hs : 0 < s) (i : Option (Fin s)) :
     profileAllowed i (capacityDropTarget hs i) := by
-  cases i <;> simp only [capacityDropTarget, profileAllowed, profileSourceIndex] <;> constructor <;> omega
+  cases i <;> simp only [capacityDropTarget, profileAllowed,
+    profileSourceIndex] <;> constructor <;> omega
 
 lemma profileTargetCapacity_le_source {s : ℕ} (i : Option (Fin s)) (j : Fin (2 * s + 1))
     (hij : profileAllowed i j) :
@@ -55,7 +56,8 @@ lemma capacityDropTarget_gap {s : ℕ} (hs : 0 < s) (i : Option (Fin s)) :
     1 ≤ profileSourceCapacity (profileAmbientCapacity s) i -
       profileTargetCapacity s (capacityDropTarget hs i) := by
   cases i with
-  | some i => simp [profileSourceCapacity, profileTargetCapacity, capacityDropTarget, profileAmbientCapacity]
+  | some i => simp [profileSourceCapacity, profileTargetCapacity, capacityDropTarget,
+    profileAmbientCapacity]
   | none =>
       simp only [profileSourceCapacity, profileTargetCapacity, capacityDropTarget,
         Nat.choose_succ_self_right, Nat.cast_add, Nat.cast_one, profileAmbientCapacity]
@@ -71,7 +73,8 @@ lemma profileCapacityDrop_nonneg {s : ℕ} (hs : 0 < s)
     (i : Option (Fin s)) (j : Fin (2 * s + 1)) (hij : profileAllowed i j) :
     0 ≤ profileCapacityDrop s i j := by
   exact div_nonneg
-    (le_min (profileTargetCapacity_pos hs j).le (sub_nonneg.mpr (profileTargetCapacity_le_source i j hij)))
+    (le_min (profileTargetCapacity_pos hs j).le (sub_nonneg.mpr (profileTargetCapacity_le_source i j
+      hij)))
     (profileTargetCapacity_pos hs j).le
 
 lemma profileCapacityDrop_target_lower {s : ℕ} (hs : 0 < s) (i : Option (Fin s)) :

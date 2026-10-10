@@ -85,8 +85,10 @@ theorem odd_cycles_endpoint (hd : 0<d)
     have hh := ha (idx i)
     simpa only [endpointSplitParity,Function.comp_apply,idx,Equiv.symm_apply_apply,
       coreParity_eq_blockParity,Equiv.coe_toEmbedding] using hh
-  have hc : ∀ i,(c i).IsHomogeneous d := fun i => (a.val (idx (Sum.inl i))).property.rename_isHomogeneous
-  have hv : ∀ j,(v j).IsHomogeneous d := fun j => (a.val (idx (Sum.inr j))).property.rename_isHomogeneous
+  have hc : ∀ i,(c i).IsHomogeneous d := fun i => (a.val (idx (Sum.inl
+    i))).property.rename_isHomogeneous
+  have hv : ∀ j,(v j).IsHomogeneous d := fun j => (a.val (idx (Sum.inr
+    j))).property.rename_isHomogeneous
   have hcp : ∀ i α,(c i).coeff α≠0 → Finsupp.weight (blockWeight h m) α%2=1 := by
     intro i
     apply (parity_homogeneous_iff (blockWeight h m) (c i) 1 (by decide)).mp

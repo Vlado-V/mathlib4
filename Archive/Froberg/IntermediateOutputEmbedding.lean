@@ -94,7 +94,8 @@ theorem intermediateRow_ker_output_embedding
         homogeneousMultiplication e (fun i => L (v i)) he b)=vectorOutputMap N 0 at ht
       rw [map_add,map_zero,vectorOutputMap_scalarFamily,
         vectorOutputMap_homogeneousMultiplication] at ht
-      change BilinearScalarFamily.multiplication vectorMultiply Q (fun i => vectorOutputMap N (a i)) +
+      change BilinearScalarFamily.multiplication vectorMultiply Q (fun i => vectorOutputMap N (a
+        i)) +
         homogeneousMultiplication e v he b=0
       simpa only [hNv] using ht
     have hc : (fun i => vectorOutputMap N (a i),b) ∈ (intermediateKoszul e v he Q).range := by

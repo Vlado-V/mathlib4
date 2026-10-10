@@ -54,7 +54,8 @@ theorem fiberwise_principal_meets_linear_joint_open
   have hfiber : ∀ x,eval x D≠0 → ∃ Q : MvPolynomial (Fin (finrank K V)) K,
       (∃ y,eval y Q≠0) ∧ ∀ y,eval y Q≠0 → Φ (eU.symm x) (eV.symm y) := by
     intro x hx
-    obtain ⟨Q,⟨v,hv⟩,hQ⟩ := hΦ (eU.symm x) (by simpa only [eU,eV,LinearEquiv.apply_symm_apply] using hx)
+    obtain ⟨Q,⟨v,hv⟩,hQ⟩ := hΦ (eU.symm x) (by simpa only [eU,eV,LinearEquiv.apply_symm_apply] using
+      hx)
     refine ⟨Q,⟨eV v,hv⟩,?_⟩
     intro y hy
     exact hQ _ (by simpa only [eU,eV,LinearEquiv.apply_symm_apply] using hy)

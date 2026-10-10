@@ -113,9 +113,11 @@ theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 320 ≤ m) (up
         (totalA m (mixedCount m upper)) (FormCount m 2) (finrank K (Target g))
         (upperEndpoint m) (slices m upper S)))) K,
       (∃ x : ExpansionClosedSlices.Input K (totalA m (mixedCount m upper)) (FormCount m 2)
-        (finrank K (Target g)) (upperEndpoint m) (slices m upper S),eval (coordinates K _ x) P ≠ 0) ∧
+        (finrank K (Target g)) (upperEndpoint m) (slices m upper S),eval (coordinates K _ x) P ≠
+          0) ∧
       ∀ x : ExpansionClosedSlices.Input K (totalA m (mixedCount m upper)) (FormCount m 2)
-          (finrank K (Target g)) (upperEndpoint m) (slices m upper S),eval (coordinates K _ x) P ≠ 0 →
+          (finrank K (Target g)) (upperEndpoint m) (slices m upper S),eval (coordinates K _
+            x) P ≠ 0 →
         ∀ d : StrongExpansionOpen.Dimensions m upper,∀ ell : Fin (finrank K (Target g)) → K,
           d.val ≤ finrank K (LinearMap.ker (relationMap (actualMu g eV eW) ell)) →
           ((∀ i v,covector ell (actualMu g eV eW (x.1 i) v)=0) ∧
@@ -149,11 +151,13 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 320 ≤ m) (u
     (hD : ∃ Q,eval Q D ≠ 0) :
     ∃ Q : Fin (upperEndpoint m) → Forms K m 2,
       eval (fun i => finiteEquiv (Q i.1) i.2) D ≠ 0 ∧
-      ∃ Z : (d : StrongExpansionOpen.Dimensions m upper) → Fin (slices m upper S d.val) → Rows K m 3,
+      ∃ Z : (d : StrongExpansionOpen.Dimensions m upper) → Fin (slices m upper S
+        d.val) → Rows K m 3,
         ∀ d : StrongExpansionOpen.Dimensions m upper,∀ lam : Fin (RowCount m 3) → K,
           d.val+mixedCount m upper ≤ finrank K (LinearMap.ker
             (relationMap RowMultiplicationCoordinates.coordinate lam)) →
-          (∀ j f,covector lam (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g j)))=0) →
+          (∀ j f,covector lam (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g
+            j)))=0) →
           (∀ i v,covector lam (RowMultiplicationCoordinates.coordinate (finiteEquiv (Q i)) v)=0) →
           (∀ j,covector lam (rowFiniteEquiv (Z d j))=0) → lam=0 := by
   classical
@@ -164,7 +168,8 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 320 ≤ m) (u
     exact (totalA_eq m _ hc.1 hc.2).symm
   let eV : Source g ≃ₗ[K] (Fin a → K) := LinearEquiv.ofFinrankEq _ _ (by simpa using ha)
   let eW := coordinates K (Target g)
-  let V := ExpansionClosedSlices.Input K a (FormCount m 2) (finrank K (Target g)) (upperEndpoint m) (slices m upper S)
+  let V := ExpansionClosedSlices.Input K a (FormCount m 2) (finrank K (Target g)) (upperEndpoint
+    m) (slices m upper S)
   obtain ⟨P,hP,hgood⟩ := principal_open_actual_slices m hm upper S g hg E hE hexp eV eW
   let childProjection : V →ₗ[K] (Fin (upperEndpoint m) × Fin (FormCount m 2) → K) :=
     { toFun := fun x i => x.1 i.1 i.2
@@ -188,7 +193,8 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 320 ≤ m) (u
   obtain ⟨z,hz⟩ := PolynomialImageAvoidance.exists_eval_ne_zero (mul_ne_zero hPn hDn)
   rw [map_mul,mul_ne_zero_iff] at hz
   let x : V := (coordinates K V).symm z
-  have hx : eval (coordinates K V x) P ≠ 0 := by simpa only [x,LinearEquiv.apply_symm_apply] using hz.1
+  have hx : eval (coordinates K V
+    x) P ≠ 0 := by simpa only [x,LinearEquiv.apply_symm_apply] using hz.1
   obtain ⟨Z,hZ⟩ := lift_closed_slices_coordinates g hg eV eW (slices m upper S) x (hgood x hx)
   refine ⟨fun i => finiteEquiv.symm (x.1 i),?_,Z,?_⟩
   · have hh : eval (childProjection x) D ≠ 0 := by

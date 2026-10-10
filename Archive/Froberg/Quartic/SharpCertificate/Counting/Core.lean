@@ -27,7 +27,8 @@ theorem configurationEdgeCount_eq_card (c : ℕ) :
 def configurationIntervalCount (m q c : ℕ) : ℕ :=
   ((List.range (coreA c + 1)).map fun i =>
     ((List.finRange 6).map fun edge =>
-      (automaticIntervals (scalars m q c) (edgeLower m c i edge) (edgeUpper m c i edge)).length).sum).sum
+      (automaticIntervals (scalars m q c) (edgeLower m c i edge) (edgeUpper m c i
+        edge)).length).sum).sum
 
 /-- Number of integer edge values, counting each core/edge index separately. -/
 def configurationValueCount (m c : ℕ) : ℕ :=

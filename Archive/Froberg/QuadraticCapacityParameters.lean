@@ -55,7 +55,8 @@ theorem eventually_quadratic_capacity {d : ℕ} (hd : 3≤d) :
       have hG := (countTauFour_pos hd).trans_le (countTauFour_le_gamma d)
       unfold countBeta
       positivity
-    simpa only [Nat.cast_zero] using mul_pos (mul_pos hp (pow_pos (show (0:ℝ)<(h:ℝ) from by exact_mod_cast hhpos) 2))
+    simpa only [Nat.cast_zero] using mul_pos (mul_pos hp (pow_pos (show (0:ℝ)<(h:ℝ) from by
+      exact_mod_cast hhpos) 2))
       (pow_pos (show (0:ℝ)<(n:ℝ) from by exact_mod_cast hn) (d-2)))).2
   have hr : r n*(n+(d-2)-1).choose (d-2)≤(n+(d+(d-2))-1).choose (d+(d-2)) := by
     have he : 2*d-2=d+(d-2) := by omega

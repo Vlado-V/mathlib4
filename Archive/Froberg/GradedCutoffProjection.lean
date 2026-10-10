@@ -32,9 +32,12 @@ theorem exists_projected_linear_growth_with_cutoff (hn : 0<n) (he : 0<e)
       (∀ L : Submodule K (Forms K n e),
         b*finrank K L≤finrank K (Forms K n e)*
           finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P)) ∧
-      BilinearImage.image (gradedMultiplication (K := K) (n := n) (d := 1+e) (e := 1)).flip P.ker=⊤ := by
+      BilinearImage.image (gradedMultiplication (K := K) (n := n) (d := 1+e) (e :=
+        1)).flip P.ker=⊤ := by
   obtain ⟨U,hU,hfill⟩ := exists_pure_cutoff_subspace (K := K) (d := 1+e) (r := u)
-    hn (by omega) (by simpa [Nat.choose_one_right,Nat.mul_assoc,Nat.add_comm,Nat.add_left_comm,Nat.add_assoc] using hlarge)
+    hn (by omega) (by simpa
+      [Nat.choose_one_right,Nat.mul_assoc,Nat.add_comm,Nat.add_left_comm,Nat.add_assoc] using
+      hlarge)
     (by simpa [Nat.add_comm,Nat.add_left_comm,Nat.add_assoc] using hcut) (by omega)
   apply exists_normalized_projection_with_cutoff
     (show 0<finrank K (Forms K n e) by

@@ -34,7 +34,8 @@ theorem projectiveTuple_polynomial (c : ChartType a₁ q₁ d₁) :
   calc
     _ = L (∑ i, ∑ j, tupleMap c p i j • Pi.single i (Pi.single j 1)) := by
       simp only [map_sum,map_smul,smul_eq_mul,tupleMap]
-    _ = L (tupleMap c p) := congrArg L (ProjectiveKernelIncidence.tuple_expansion (tupleMap c p)).symm
+    _ = L (tupleMap c p) := congrArg L (ProjectiveKernelIncidence.tuple_expansion (tupleMap c
+      p)).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev TwoTupleParameters (c₁ : ChartType a₁ q₁ d₁) (c₂ : ChartType a₂ q₂ d₂) :=

@@ -77,7 +77,8 @@ theorem eventually_exact_bounded_counts (K t lo : ℕ) (hK : 0 < K) (ht : 2 ≤ 
       ((emin n + K * (n + 1 + (t - 1) - 1).choose (t - 1) : ℕ) : ℝ) / (n : ℝ) ^ (t - 1))
       atTop (𝓝 (A + (K : ℝ) / ((t - 1).factorial : ℝ))) := by
     have hh := hminhi.add ((shifted_monomial_count_limit (t - 1)).const_mul (K : ℝ))
-    simpa only [Nat.cast_add, Nat.cast_mul, add_div, mul_div_assoc, div_eq_mul_inv, add_mul, mul_assoc] using hh
+    simpa only [Nat.cast_add, Nat.cast_mul, add_div, mul_div_assoc, div_eq_mul_inv, add_mul,
+      mul_assoc] using hh
   have hlo := eventually_lt_of_normalized_limits _ _ t 0 c hloLimit hR hc
   have hhi := eventually_lt_of_normalized_limits _ _ t _ _ hR hhiLimit hupper
   have hw := eventually_lt_of_normalized_limits _ _ (t - 1) _ B hwidthLimit

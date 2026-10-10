@@ -55,8 +55,10 @@ theorem filtered_even_odd_exact (hd : 3≤d)
     O (fun _ => 0) (fun i => (v i).val) ha hE hEzero hO
     (fun _ => ⟨isHomogeneous_zero _ _ _,(weightedHomogeneousSubmodule K _ _).zero_mem⟩)
     (Or.inr (fun _ => rfl)) (fun i => (c i).property.1) (fun i => (v i).property.1)
-    (fun i => (parity_homogeneous_iff (blockWeight h m) (c i).val 1 (by decide)).mp (c i).property.2)
-    (fun i => (parity_homogeneous_iff (blockWeight h m) (v i).val 0 (by decide)).mp (v i).property.2)
+    (fun i => (parity_homogeneous_iff (blockWeight h m) (c i).val 1 (by decide)).mp (c
+      i).property.2)
+    (fun i => (parity_homogeneous_iff (blockWeight h m) (v i).val 0 (by decide)).mp (v
+      i).property.2)
     (bottom_polynomial_constants_of_exact (by omega) Q g hfirst) hhigher
     (by simpa only [hsum,add_zero,O] using hcycle)
   exact ⟨B,by simpa only [add_zero,O] using hB,by simpa only [hsum] using hB'⟩

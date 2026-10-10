@@ -101,7 +101,8 @@ def tensorFormProduct (μ : B →ₗ[K] V →ₗ[K] W) :
       μ b v ⊗ₜ[K] gradedMultiplication q p := rfl
 
 @[simp] theorem gradedMultiplication_monomial (a : Exponent m e) (b : Exponent m d) :
-    gradedMultiplication (K := K) (monomialForm a) (monomialForm b) = monomialForm (addExponent a b) := by
+    gradedMultiplication (K := K) (monomialForm a) (monomialForm b) = monomialForm (addExponent a
+      b) := by
   apply Subtype.ext
   simp [gradedMultiplication,monomialForm,addExponent,monomial_mul_monomial]
 

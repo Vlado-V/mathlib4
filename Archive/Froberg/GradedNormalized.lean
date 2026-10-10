@@ -44,7 +44,8 @@ in every pair of degrees, without an asymptotic hypothesis. -/
 theorem graded_normalized_growth (hn : 0 < n) (L : Submodule K (Forms K n e)) :
     finrank K (Forms K n (d+e))*finrank K L ≤
       finrank K (Forms K n e)*
-        finrank K (BilinearImage.image (gradedMultiplication (K := K) (n := n) (d := d) (e := e)) L) := by
+        finrank K (BilinearImage.image (gradedMultiplication (K := K) (n := n) (d := d) (e := e))
+          L) := by
   have hL : L.map (Forms K n e).subtype ≤ Forms K n e := by
     rintro _ ⟨v,hv,rfl⟩
     exact v.property

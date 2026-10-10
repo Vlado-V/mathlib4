@@ -77,12 +77,14 @@ theorem prepared_private_formal_relations (hd : 0<d) (ho : d%2=1)
         c-coefficientBoundary (fun i => evenGenerator hO hJ heven p (e i)) M=z.val ∧
         v=coefficientBoundary (privateOddFamily hd ho P U) C) :
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
-        formalMixed (Submodule.span K (Set.range (privateEndpointFamily hd ho hO hJ heven e p P U)))=
+        formalMixed (Submodule.span K (Set.range (privateEndpointFamily hd ho hO hJ heven e p P
+          U)))=
       (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalProducts ((Submodule.span K (Set.range (fun j : Fin q => p.1 (Sum.inl j)))).map
           (renameForm (Fin.natAdd h)))
           (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
-  apply private_split_supported_relations (fun i => evenGenerator hO hJ heven p (e i)) (privateOddFamily hd ho P U)
+  apply private_split_supported_relations (fun i => evenGenerator hO hJ heven p (e
+    i)) (privateOddFamily hd ho P U)
     hi D hD hodd (fun i => degree (e i)) _ _ _ hreduce
   · rw [Submodule.map_span]
     apply Submodule.span_le.mpr

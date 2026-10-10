@@ -58,7 +58,8 @@ theorem uniform_exact_counts_restored_frame_quadratic_open {d k h lo : ℕ}
     (hd : 3≤d) (he : d%2=0) (hh : 0<h)
     (upper : Bool) (a f e : ℕ → ℕ) (extra : ℕ)
     (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper) :
-    ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ frame : Fin (quadraticOutputDimension d h) → Forms K h 2,
+    ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ frame : Fin (quadraticOutputDimension
+      d h) → Forms K h 2,
       ∀ slot : Fin (actualRestoredPureCount K d h) →
         Fin (actualRestoredSize K d h n (e n) extra),
       ∀ (c : ℕ) (T : Forms K h 2 →ₗ[K] (Fin c → K)),

@@ -29,17 +29,23 @@ theorem exact_counts_prepared_joint {d k h lo u : ℕ}
     ∃ G C : ℝ,0<G ∧ 0<C ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (J : Finset ℕ) (counts : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈J,O j≤Forms K h j),
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
+        (f n) u J counts O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
       ∀ D : MvPolynomial (Fin (finrank K
-        (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O))) K,
-        (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O,
+        (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts
+          O))) K,
+        (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts
+          O,
           eval ((Module.finBasis K _).equivFun p) D≠0) →
-        ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O,
+        ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f
+          n) u J counts O,
           eval ((Module.finBasis K _).equivFun p) D≠0 ∧
           StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i)) d (G*(n : ℝ)^d) ∧
-          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i)) d)
-            (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i))) (C*(n : ℝ)^d)
+          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm
+            (p.2.2 i)) d)
+            (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i))) (C*(n :
+              ℝ)^d)
             (coefficientCoordinates (fun i => p.2.1.1 (Sum.inl i))) := by
   obtain ⟨G,C,hG,hC,hjoint⟩ := exact_count_generic_flag_joint (K := K) (b := 0)
     hd hk hh hhpos upper a f e ha hc hδ hreserve
@@ -47,15 +53,19 @@ theorem exact_counts_prepared_joint {d k h lo u : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts O hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+    u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   letI : Module.Finite K (JointRest n d (upperCount n d) (f n) u J counts O) := finite_jointRest hO
   intro D hD
-  let L := preparedJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f n) (u := u) (counts := counts) hO
-  let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O)).equivFun
+  let L := preparedJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f n) (u :=
+    u) (counts := counts) hO
+  let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
+    d) (f n) u J counts O)).equivFun
   let P := substituteAffine (coord.toLinearMap.comp L) 0 D
   have heval (x) : eval x P=eval (coord (L x)) D := by
-    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from rfl,eval_substituteAffine,add_zero]
+    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from
+      rfl,eval_substituteAffine,add_zero]
     rfl
   have hP : ∃ x,eval x P≠0 := by
     obtain ⟨p,hp⟩ := hD
@@ -64,7 +74,8 @@ theorem exact_counts_prepared_joint {d k h lo u : ℕ}
   obtain ⟨pF,pQ,pR,hp,hmodel,hchild⟩ := hn _ P hP
   let p := L (Sum.elim pF (Sum.elim pQ pR))
   have hcoords := preparedJointFromCoordinates_eval hO pF pQ pR
-  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i))=VectorParameters.generators pF :=
+  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2
+    i))=VectorParameters.generators pF :=
     congrArg Prod.fst hcoords
   have hQ : (fun i => p.2.1.1 (Sum.inl i))=coefficientForms K n d (upperCount n d) pQ :=
     congrArg (fun x => x.2.1) hcoords

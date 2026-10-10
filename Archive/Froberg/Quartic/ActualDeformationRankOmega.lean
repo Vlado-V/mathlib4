@@ -36,7 +36,8 @@ theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m) (h : 
   apply LinearMap.ext
   intro a
   change (GeneralF13.combined g h).range.mkQ
-    (ActualSplitCokernel.projection13 (quadraticMultiplication (SplitBlock22.fullGenerators g h) a)) = 0
+    (ActualSplitCokernel.projection13 (quadraticMultiplication (SplitBlock22.fullGenerators g h)
+      a)) = 0
   rw [ActualSplitCokernel.projection13_multiplication]
   exact (Submodule.Quotient.mk_eq_zero _).mpr ⟨_,rfl⟩
 
@@ -51,7 +52,8 @@ theorem response_realized (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q
       quadraticMultiplication (SplitBlock22.fullGenerators g h) a = 0 ∧
       quadraticMultiplication (SplitBlock22.fullGenerators g h) b =
         -quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) a ∧
-      projectionRawJ g h (quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection ω))) b) =
+      projectionRawJ g h (quadraticMultiplication (motionFamily p r (Pi.single k (markedDirection
+        ω))) b) =
         ActualDeformationResponseOmega.response ω g h r U p ξ := by
   obtain ⟨a₃,h₃,_,hr₃⟩ := trace_class_realized g h p r (Pi.single k (markedDirection ω)) ξ.1
   obtain ⟨a,b,ha,hb,_,hr⟩ := correction_class_realized ω g h p r k U hmarked ξ.2
@@ -84,7 +86,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)
     (U : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
-    (hmarked : MarkedRepresentatives h k U) (hg : LinearIndependent K g) (hh : LinearIndependent K h) :
+    (hmarked : MarkedRepresentatives h k U) (hg : LinearIndependent K g) (hh : LinearIndependent K
+      h) :
     ∃ D : MvPolynomial (Fin 1) K, eval 0 D ≠ 0 ∧
       ∀ ε : K, ε ≠ 0 → eval (fun _ => ε) D ≠ 0 →
         LinearIndependent K (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε) ∧
@@ -93,7 +96,8 @@ theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K
             finrank K (quadraticMultiplication
               (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε)).range := by
   obtain ⟨D,hD,hRank⟩ := rank_principal_open ω g h p r k U hmarked
-  obtain ⟨E,hE,he⟩ := DeformationIndependence.principal_open g h p r (Pi.single k (markedDirection ω)) hg hh
+  obtain ⟨E,hE,he⟩ := DeformationIndependence.principal_open g h p r (Pi.single k (markedDirection
+    ω)) hg hh
   refine ⟨D*E,by simpa only [map_mul] using mul_ne_zero hD hE,?_⟩
   intro ε hε hDE
   have hne : eval (fun _ => ε) D ≠ 0 ∧ eval (fun _ => ε) E ≠ 0 := by
@@ -106,8 +110,10 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem exists_independent_rank_gain (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)
     (U : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
-    (hmarked : MarkedRepresentatives h k U) (hg : LinearIndependent K g) (hh : LinearIndependent K h) :
-    ∃ ε : K, ε ≠ 0 ∧ LinearIndependent K (deformedFamily g h p r (Pi.single k (markedDirection ω)) ε) ∧
+    (hmarked : MarkedRepresentatives h k U) (hg : LinearIndependent K g) (hh : LinearIndependent K
+      h) :
+    ∃ ε : K, ε ≠ 0 ∧ LinearIndependent K (deformedFamily g h p r (Pi.single k (markedDirection ω))
+      ε) ∧
       finrank K (quadraticMultiplication (SplitBlock22.fullGenerators g h)).range +
         finrank K (ActualDeformationResponseOmega.response ω g h r U p).range ≤
           finrank K (quadraticMultiplication

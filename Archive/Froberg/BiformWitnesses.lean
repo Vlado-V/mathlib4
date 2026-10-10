@@ -59,7 +59,8 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem biformImage_scalar_weight (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {t : ℕ}
     (hC : C ≤ homogeneousSubmodule τ K t) :
-    biformImage O C ≤ weightedHomogeneousSubmodule K (FourBlocks.scalarWeight (A := σ) (B := τ)) t := by
+    biformImage O C ≤ weightedHomogeneousSubmodule K (FourBlocks.scalarWeight (A := σ) (B :=
+      τ)) t := by
   rintro p ⟨a,⟨z,rfl⟩,rfl⟩
   induction z using TensorProduct.inductionOn with
   | tmul a b =>
@@ -81,7 +82,8 @@ set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem biformImage_output_weight (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {j : ℕ}
     (hO : O ≤ homogeneousSubmodule σ K j) :
-    biformImage O C ≤ weightedHomogeneousSubmodule K (FourBlocks.outputWeight (A := σ) (B := τ)) j :=
+    biformImage O C ≤ weightedHomogeneousSubmodule K (FourBlocks.outputWeight (A := σ) (B :=
+      τ)) j :=
   tensorImage_weighted (fun _ => 1) O C hO
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
@@ -109,7 +111,8 @@ theorem exists_fourBlock_cross_pair
   obtain ⟨f,hf,hfi⟩ := exists_independent_sum_biforms O₁ C₁ ha
   obtain ⟨g,hg,hgi⟩ := exists_independent_sum_biforms O₂ C₂ hb
   refine ⟨fun i => rename FourBlocks.leftVar (f i),
-    fun i => rename FourBlocks.rightVar (g i),?_,?_,FourBlocks.cross_products_independent f g hfi hgi,
+    fun i => rename FourBlocks.rightVar (g i),?_,?_,FourBlocks.cross_products_independent f g hfi
+      hgi,
       (fun i => ⟨f i,hf i,rfl⟩),(fun i => ⟨g i,hg i,rfl⟩)⟩
   · intro i
     exact ⟨(biformImage_homogeneous O₁ C₁ hO₁ hC₁ (hf i)).rename_isHomogeneous,
@@ -168,7 +171,8 @@ theorem exists_fourBlock_diagonal_pair (w v j t m : ℕ)
       LinearIndependent K (pairProducts f) ∧
       (∀ i, TensorProduct.map T (LinearMap.id : MvPolynomial (Fin v × Bool) K →ₗ[K] _)
         ((MvPolynomial.tensorEquivSum K (Fin w × Bool) (Fin v × Bool) K).symm (f i)) = 0) ∧
-      ∀ i, (f i).IsWeightedHomogeneous (FourBlocks.outputWeight (A := Fin w × Bool) (B := Fin v × Bool)) j := by
+      ∀ i, (f i).IsWeightedHomogeneous (FourBlocks.outputWeight (A := Fin w × Bool) (B := Fin v ×
+        Bool)) j := by
   classical
   obtain ⟨O,C,E,hOh,hOb,hOT,hCh,hCb,hE,hEd,hEi⟩ :=
     paired_diagonal_space_exists (K := K) w v j t m T hm

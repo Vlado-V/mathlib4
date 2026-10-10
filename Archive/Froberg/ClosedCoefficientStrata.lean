@@ -90,13 +90,16 @@ theorem incidence_budget_of_capped_shadow
   intro ell hell
   let L := LinearMap.ker (relationMap mu ell)
   have he : finrank K (BilinearImage.image mu L) < T :=
-    PolynomialSubspaceCovectorCharts.image_finrank_lt mu L ell hell (kernel_image_annihilated mu ell)
+    PolynomialSubspaceCovectorCharts.image_finrank_lt mu L ell hell (kernel_image_annihilated mu
+      ell)
   have hg := hgrowth L
   have hmin : (a+f)*finrank K L ≤ finrank K (BilinearImage.image mu L) := by omega
   have hk : finrank K L ≤ a := by simpa using L.finrank_le
-  have hprod : finrank K L*(a-finrank K L)+f*finrank K L ≤ finrank K (BilinearImage.image mu L) := by
+  have hprod : finrank K L*(a-finrank K L)+f*finrank K L ≤ finrank K (BilinearImage.image mu
+    L) := by
     calc
-      _ ≤ finrank K L*a+f*finrank K L := Nat.add_le_add_right (Nat.mul_le_mul_left _ (Nat.sub_le _ _)) _
+      _ ≤ finrank K L*a+f*finrank K L := Nat.add_le_add_right (Nat.mul_le_mul_left _ (Nat.sub_le _
+        _)) _
       _ = (a+f)*finrank K L := by ring
       _ ≤ _ := hmin
   have hs : T ≤ coefficientSliceCount (finrank K H) f T (finrank K L)+f*finrank K L := by

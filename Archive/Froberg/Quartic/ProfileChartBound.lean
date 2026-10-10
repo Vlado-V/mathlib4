@@ -212,7 +212,8 @@ theorem exists_chart_with_Cell_bound {K : Type*} [Field K] (m c i : ℕ)
     ∃ j : Selectors (blockDimensions (coreA c) (freeW m c)) (blockRanks i r),
       ∃ p : Parameters K j,chart j p=S ∧ (Fintype.card (ParameterIndex j):ℤ) ≤
         Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3) := by
-  have hle (l : Fin (freeW m c+1)) : blockRanks i r l ≤ blockDimensions (coreA c) (freeW m c) l := by
+  have hle (l : Fin (freeW m c+1)) : blockRanks i r l ≤ blockDimensions (coreA c) (freeW m
+    c) l := by
     have h := Submodule.finrank_le (FilteredImage.initialPiece
       (fun l => Fin (blockDimensions (coreA c) (freeW m c) l) → K) S l)
     simpa only [hprofile,Module.finrank_fintype_fun_eq_card,Fintype.card_fin] using h

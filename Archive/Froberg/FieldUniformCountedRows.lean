@@ -40,7 +40,8 @@ theorem uniform_exact_counts_scalar_vector_rows_open {d k h lo b : ℕ}
     simpa only [div_div,←pow_succ,show d-1+1=d by omega] using ht
   have hS : Tendsto (fun n : ℕ => ((upperCount n d+extra n : ℕ) : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ))) := by
-    simpa only [Nat.cast_add,add_div,add_zero] using (upperCount_normalized_limit (by omega : 2≤d)).add he
+    simpa only [Nat.cast_add,add_div,add_zero] using (upperCount_normalized_limit (by omega :
+      2≤d)).add he
   have hfixed : Tendsto (fun n : ℕ => (b : ℝ)/(n : ℝ)^(d-1)) atTop (𝓝 0) :=
     tendsto_const_nhds.div_atTop (nat_power_tendsto_atTop (d-1) (by omega))
   have hF : Tendsto (fun n : ℕ => ((f n+b : ℕ) : ℝ)/(n : ℝ)^(d-1)) atTop

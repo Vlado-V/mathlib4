@@ -47,7 +47,8 @@ theorem private_top_coefficient_separation
     apply mem_biformImage_of_homogeneous
     · simpa only [Nat.add_zero] using (show (u i).IsHomogeneous d from (hu i).1)
     · simpa only [Nat.add_sub_cancel] using
-        (show (u i).IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) (d+1-1) from (hu i).2)
+        (show (u i).IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) (d+1-1)
+          from (hu i).2)
   let C := ∑ i,∑ k,B i k • (high p i*high p k)
   have hcover (i : Label q J counts) (hi : 0<degree i) :
       ∃ a : ProductRows.LayerLabel J counts,Sum.inr a=i := by

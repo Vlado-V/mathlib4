@@ -31,7 +31,8 @@ def restoredOddRowLinear :
   toFun g :=
     { toFun c := ∑ i,(g i).val*(c i).val
       map_add' c c' := by simp only [Pi.add_apply,Submodule.coe_add,mul_add,Finset.sum_add_distrib]
-      map_smul' a c := by simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply] }
+      map_smul' a c := by simp only
+        [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply] }
   map_add' g g' := by
     apply LinearMap.ext
     intro c
@@ -56,7 +57,8 @@ theorem restoredFamily_scalar_point (hd : d%2=0)
     (restoredFamilyLinear hd hO hJ heven idx slot (scalarRestoredPoint (O := O) idx Q) i).val=
       rename Sum.inr (Q i).val := by
   change (evenGenerator hO hJ heven (scalarRestoredPoint (O := O) idx Q).1 (idx i)+
-    PolynomialRestoration.pureShift (pureEvenEmbed hd) slot (scalarRestoredPoint (O := O) idx Q).2 i).val=_
+    PolynomialRestoration.pureShift (pureEvenEmbed hd) slot (scalarRestoredPoint (O := O) idx Q).2
+      i).val=_
   have hp : (scalarRestoredPoint (O := O) idx Q).2=0 := rfl
   rw [hp,map_zero,Pi.zero_apply,add_zero]
   change generator (scalarRestoredPoint (O := O) idx Q).1 (idx i)=_
@@ -76,7 +78,8 @@ theorem restored_odd_injective_principal_open (hm : 0 < m) (hdp : 0 < d) (hd : d
     ∃ D : MvPolynomial (Fin (finrank K (RestoredSpace m d q J counts O))) K,
       (∃ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0) ∧
       ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →
-        Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot p)) := by
+        Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot
+          p)) := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨Q,hQ⟩ := exists_prefix_injective_of_large_variables (K := K) hm
     (by omega : d-1<d) hlarge hr
@@ -90,7 +93,8 @@ theorem restored_odd_injective_principal_open (hm : 0 < m) (hdp : 0 < d) (hd : d
     apply LinearMap.ker_eq_bot'.mpr
     intro c hc
     apply scalar_odd_relation_zero hm Q hQ c
-    change (∑ i,(restoredFamilyLinear hd hO hJ heven idx slot (scalarRestoredPoint (O := O) idx Q) i).val*(c i).val)=0 at hc
+    change (∑ i,(restoredFamilyLinear hd hO hJ heven idx slot (scalarRestoredPoint (O := O) idx Q)
+      i).val*(c i).val)=0 at hc
     simpa only [restoredFamily_scalar_point] using hc
   obtain ⟨D,hD,hgood⟩ := rank_polynomial_general_open (fun a => A (coord.symm a)) hpoly
     (coord (scalarRestoredPoint (O := O) idx Q))

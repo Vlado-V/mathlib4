@@ -53,7 +53,8 @@ theorem private_detector_frame_open {h b H : ℕ}
     intro i
     rcases i with i | p
     · change H+finrank K (mulForm (w i)).range≤_
-      rw [LinearMap.finrank_range_of_inj (mulForm_injective (w i) (fun hz => hw i (Subtype.ext hz))),
+      rw [LinearMap.finrank_range_of_inj (mulForm_injective (w i) (fun hz => hw i (Subtype.ext
+        hz))),
         finrank_forms K h 1 hh]
       simp only [Nat.add_sub_cancel,Nat.choose_one_right]
       omega

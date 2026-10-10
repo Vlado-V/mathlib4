@@ -49,7 +49,8 @@ theorem eventually_indexed_odd_tail_projection {d : ℕ} (hd : 3 ≤ d) (ho : Od
       ∃ (U : Fin (tailGeneratorCount d h) → Forms K h d)
         (R : Forms K h (1+(d-1)) →ₗ[K] (Fin (topComplementCount d h) → K)),
         LinearIndependent K U ∧ Function.Surjective R ∧
-        R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1 ≤ d) h).symm.toLinearMap ∧
+        R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1 ≤ d)
+          h).symm.toLinearMap ∧
         (∀ L : Submodule K (Forms K h (d-1)),
           topComplementCount d h*finrank K L ≤ finrank K (Forms K h (d-1))*
             finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := d-1)) L).map R)) ∧
@@ -68,7 +69,8 @@ theorem eventually_indexed_odd_tail_projection {d : ℕ} (hd : 3 ≤ d) (ho : Od
         (h : ℝ)/(2*(d : ℝ)) ≤ (topComplementCount d h : ℝ)/(topSourceCount d h : ℝ) := by
     have hx := eventually_odd_tail_projection (K := K) (show 2 ≤ d-1 by omega)
       (show Odd (1+(d-1)) by rwa [heq])
-    rw [show topComplementCount (1+(d-1))=topComplementCount d from congrArg topComplementCount heq] at hx
+    rw [show topComplementCount (1+(d-1))=topComplementCount d from congrArg topComplementCount
+      heq] at hx
     simpa only [heq] using hx
   filter_upwards [he] with h hh
   obtain ⟨R,hR,hker,hgrowth,hcut,hratio⟩ := hh

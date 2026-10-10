@@ -90,7 +90,8 @@ theorem principal_open_restored_scalar_fiber_at (hO : ∀ j∈J,O j≤Forms K h 
         eval ((Module.finBasis K _).equivFun (restoredScalarFiberCoordinates p).1) E≠0 ∧
         ∀ a,eval ((Module.finBasis K _).equivFun a) E≠0 →
           eval ((Module.finBasis K _).equivFun
-            (restoredScalarFiberCoordinates.symm (a,(restoredScalarFiberCoordinates p).2))) D≠0 := by
+            (restoredScalarFiberCoordinates.symm (a,(restoredScalarFiberCoordinates
+              p).2))) D≠0 := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   intro D p hp
   apply principal_open_freeze_at restoredScalarFiberCoordinates.symm.toLinearMap

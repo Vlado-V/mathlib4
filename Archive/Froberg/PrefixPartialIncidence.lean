@@ -134,7 +134,8 @@ theorem principal_open_avoids_nonzero_last_row [Infinite K]
   have hr : 0 < r := by
     by_contra h
     have hz : rowSpan R = ⊥ := Submodule.finrank_eq_zero.mp (by omega)
-    have hm : R.2 ∈ rowSpan R := (show K ∙ R.2 ≤ rowSpan R from le_sup_right) (Submodule.mem_span_singleton_self R.2)
+    have hm : R.2 ∈ rowSpan R := (show K ∙ R.2 ≤ rowSpan R from
+      le_sup_right) (Submodule.mem_span_singleton_self R.2)
     rw [hz] at hm
     exact hnz hm
   have hrN : r ≤ N := by simpa [r] using Submodule.finrank_le (rowSpan R)

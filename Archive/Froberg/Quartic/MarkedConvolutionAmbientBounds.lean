@@ -34,7 +34,8 @@ theorem exists_threshold (m : ℕ) (hm : 41 ≤ m) (hmhi : m ≤ 319)
       (d : ℝ) * ((upperEndpoint m : ℝ) + (totalA m (mixedCount m false) : ℝ) - d) ≤ e ∧
       (0 < d → d < totalA m (mixedCount m false) →
         SharpMinimization.ImageBoundsReal
-          (HullCertificate.markedScalars (HullCertificate.scalars m (upperEndpoint m) (mixedCount m false))) (e : ℝ) d) ∧
+          (HullCertificate.markedScalars (HullCertificate.scalars m (upperEndpoint m) (mixedCount m
+            false))) (e : ℝ) d) ∧
       (∀ S : Submodule K (Target K (coreP (mixedCount m false)+1)
           (freeW m (mixedCount m false)) 1),
         Submodule.span K (Set.range (GenericF13Endpoint.convolutionMixed K
@@ -62,7 +63,8 @@ theorem exists_threshold (m : ℕ) (hm : 41 ≤ m) (hmhi : m ≤ 319)
     exact Nat.find_min' hex ⟨S,hS,rfl⟩
   refine ⟨Nat.find hex,?_,?_,?_⟩
   · have h := ConvolutionScalarImages.outer_image_bound m hm false L
-    change (finrank K L : ℝ) * ((upperEndpoint m : ℝ) + (totalA m (mixedCount m false) : ℝ) - finrank K L) ≤ (finrank K (quadraticImage L) : ℝ) at h
+    change (finrank K L : ℝ) * ((upperEndpoint m : ℝ) + (totalA m (mixedCount m false) : ℝ) -
+      finrank K L) ≤ (finrank K (quadraticImage L) : ℝ) at h
     rw [hL,hE] at h
     exact h
   · intro hpos hlt

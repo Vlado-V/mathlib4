@@ -41,7 +41,8 @@ def homogeneousParityRenameEquiv (e : σ ≃ τ) (w : σ → M) (d : ℕ) (p : M
   toFun f := ⟨rename e f.val,⟨f.property.1.rename_isHomogeneous,by
     apply weighted_homogeneous_rename e.toEmbedding (w ∘ e.symm) f.val p
     change f.val.IsWeightedHomogeneous (fun x => w (e.symm (e x))) p
-    simpa only [Equiv.symm_apply_apply] using (show f.val.IsWeightedHomogeneous w p from f.property.2)⟩⟩
+    simpa only [Equiv.symm_apply_apply] using (show f.val.IsWeightedHomogeneous w p from
+      f.property.2)⟩⟩
   invFun f := ⟨rename e.symm f.val,⟨f.property.1.rename_isHomogeneous,by
     exact weighted_homogeneous_rename e.symm.toEmbedding w f.val p f.property.2⟩⟩
   left_inv f := by

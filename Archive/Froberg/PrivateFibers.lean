@@ -33,7 +33,8 @@ lemma relationFiber_regular (ι : Fin b ↪ Fin z)
     relationFiber (attachedExponent ι) (attachedVectors v w) β =
       relationFiber (coreExponent z) v β := by
   rw [relationFiber_attached]
-  have hz : Submodule.span K (Set.range (fun i : {i : Fin b // privateExponent a s ι i ≤ β} => w i.val)) = ⊥ := by
+  have hz : Submodule.span K (Set.range (fun i : {i : Fin b // privateExponent a s ι i ≤ β} => w
+    i.val)) = ⊥ := by
     apply le_antisymm _ bot_le
     apply Submodule.span_le.mpr
     rintro _ ⟨i,rfl⟩

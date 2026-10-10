@@ -152,7 +152,8 @@ theorem background_replaced_flag_span
       simp only [S',Function.update_self,map_add,map_smul,S,evenPolynomialToForms_scalar]
     · simp only [S',Function.update_of_ne hi,S,evenPolynomialToForms_scalar]
   have happ : (fun i => evenPolynomialToForms (Fin.append S' E i))=
-      Fin.append (fun i => evenPolynomialToForms (S' i)) (fun i => evenPolynomialToForms (E i)) := by
+      Fin.append (fun i => evenPolynomialToForms (S' i)) (fun i => evenPolynomialToForms (E
+        i)) := by
     funext i
     refine Fin.addCases ?_ ?_ i <;> intro j <;> simp only [Fin.append_left,Fin.append_right]
   change Submodule.span K (Set.range (backgroundEnumeratedForms (Fin.append S' E) F G))=_

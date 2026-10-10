@@ -32,7 +32,8 @@ theorem endpoint_recurrence_descends (f : K →+* L) {h start : ℕ}
     (hstep : ∀ n,start ≤ n → criticalDefect L (n+h) d ≤ criticalDefect L n d) :
     ∀ n,max start 1 ≤ n → criticalDefect K (n+h) d ≤ criticalDefect K n d := by
   intro n hn
-  rw [criticalDefect_baseChange f (by omega : 0 < n+h),criticalDefect_baseChange f (by omega : 0 < n)]
+  rw [criticalDefect_baseChange f (by omega : 0 < n+h),criticalDefect_baseChange f (by omega : 0 <
+    n)]
   exact hstep n (by omega)
 
 theorem eventual_endpoints_descend (f : K →+* L)

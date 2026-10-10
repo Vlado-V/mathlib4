@@ -60,7 +60,8 @@ theorem exists_finite_even_projected_row
     (hdiag : ∀ p : ProductRows.Row J R,p.val.val=R-p.val.val →
       counts p.val.val≤(w.choose p.val.val-finrank K X)*(v.choose (d-p.val.val)/2))
     (hcross : ∀ p : ProductRows.Row J R,p.val.val≠R-p.val.val →
-      counts p.val.val≤((w+p.val.val-1).choose p.val.val-finrank K X)*(v+(d-p.val.val)-1).choose (d-p.val.val) ∧
+      counts p.val.val≤((w+p.val.val-1).choose p.val.val-finrank K X)*(v+(d-p.val.val)-1).choose
+        (d-p.val.val) ∧
       counts (R-p.val.val)≤((w+(R-p.val.val)-1).choose (R-p.val.val)-finrank K X)*
         (v+(d-(R-p.val.val))-1).choose (d-(R-p.val.val)))
     (hodd : 0<oddOutputDimension w R)
@@ -109,7 +110,8 @@ theorem exists_finite_even_projected_row
       (fun a => Finsupp.weight pairedHalfWeight a%2=0) (outputCombination o (L z))=0 :=
     fun z => hOodd (hLO z)
   obtain ⟨p,hp,hpi⟩ := ProductRows.exists_balanced_product_row hw hv J counts heven hdegree T hdiag hcross
-  obtain ⟨e,v₀,he,hdiv,hrest⟩ := exists_exact_sparse_intermediate (K := K) (by omega) hodd hm hcap hcount
+  obtain ⟨e,v₀,he,hdiv,hrest⟩ := exists_exact_sparse_intermediate (K := K) (by
+    omega) hodd hm hcap hcount
   obtain ⟨z,Q,hproj,hEz,hzero,hfull,hker⟩ := exists_even_polynomial_row_with_relations
     (by omega) hodd pairedHalfWeight (balancedScalarHalf v) o ho (fun j => (bo j).property)
     L hL hLodd e he hdiv Relations hrelations hcap hcount counts p J heven hdegree

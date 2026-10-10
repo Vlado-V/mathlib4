@@ -44,8 +44,10 @@ def backgroundParityCoefficients :
         (fun i => (blockWeight h m i : ZMod 2)) (1-backgroundParity i)) where
   toFun a
     | Sum.inl i => by simpa [backgroundParity,biformParitySpace,homogeneousParitySpace] using a.1 i
-    | Sum.inr (Sum.inl i) => by simpa [backgroundParity,biformParitySpace,homogeneousParitySpace] using a.2.1 i
-    | Sum.inr (Sum.inr i) => by simpa [backgroundParity,biformParitySpace,homogeneousParitySpace] using a.2.2 i
+    | Sum.inr (Sum.inl
+      i) => by simpa [backgroundParity,biformParitySpace,homogeneousParitySpace] using a.2.1 i
+    | Sum.inr (Sum.inr
+      i) => by simpa [backgroundParity,biformParitySpace,homogeneousParitySpace] using a.2.2 i
   map_add' a b := by funext i;rcases i with i | (i | i) <;> rfl
   map_smul' c a := by funext i;rcases i with i | (i | i) <;> rfl
 
@@ -74,7 +76,8 @@ theorem backgroundParityEndpoint_comp (Q : Fin q → biformParitySpace K h m d 0
   apply LinearMap.ext
   intro a
   change parityPolynomialEndpoint _ _ _ _ (backgroundParityCoefficients a)=
-    evenScalarOddFamily Q a.1 + (privateEvenCoefficientMap F a.2.1 + privateEvenCoefficientMap G a.2.2)
+    evenScalarOddFamily Q a.1 + (privateEvenCoefficientMap F a.2.1 + privateEvenCoefficientMap G
+      a.2.2)
   apply Subtype.ext
   simp [parityPolynomialEndpoint_val,backgroundParityFamily,backgroundParityCoefficients,
     evenScalarOddFamily,evenScalarOddProduct,privateEvenCoefficientMap_val,
@@ -90,7 +93,8 @@ theorem fullOddRelations_eq_parityEndpoint_range (Q : Fin q → biformParitySpac
   have hr := congrArg LinearMap.range (backgroundParityEndpoint_comp Q F G)
   rw [LinearMap.range_comp,LinearMap.range_eq_top.mpr backgroundParityCoefficients_surjective,
     Submodule.map_top,LinearMap.range_coprod,LinearMap.range_coprod] at hr
-  exact (show _ = _ from (by simpa [fullOddRelations,oddBackgroundRelations,sup_assoc] using hr)).symm
+  exact (show _ = _ from (by simpa [fullOddRelations,oddBackgroundRelations,sup_assoc] using
+    hr)).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def backgroundEnumeratedForms (Q : Fin q → biformParitySpace K h m d 0)

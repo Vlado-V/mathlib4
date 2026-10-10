@@ -75,7 +75,8 @@ lemma target_capacity_real_lower {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (β : Degree (a+z) (2*s+1)) :
     (k : ℝ)*(profileAmbientCapacity s - ((corePart β.val).degree.choose s : ℝ)) ≤
-      (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) : ℝ) := by
+      (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) :
+        ℝ) := by
   rw [← coarse_capacity_real hh β]
   apply Nat.cast_le.mpr
   apply AttachedMultiplication.core_quotientFiber_capacity
@@ -86,7 +87,8 @@ lemma target_total_capacity_error {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
     (v : Labels k a s → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val)) :
     (∑ β : Degree (a+z) (2*s+1),
-      (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) : ℝ)) ≤
+      (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) :
+        ℝ)) ≤
     (∑ β : Degree (a+z) (2*s+1),
       (k : ℝ)*(profileAmbientCapacity s - ((corePart β.val).degree.choose s : ℝ))) +
     (h : ℝ)*(a+z)*((a+z+((2*s+1)-2)-1).choose ((2*s+1)-2) : ℝ) := by
@@ -94,7 +96,8 @@ lemma target_total_capacity_error {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s)
     (by rw [degree_val,← hh])
   have ht := AttachedMultiplication.coarse_target_error v hi
   have htR : (∑ β : Degree (a+z) (2*s+1),
-      (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) : ℝ)) ≤
+      (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber (coreExponent z) v β.val) :
+        ℝ)) ≤
     (∑ β : Degree (a+z) (2*s+1), ((h-k*(corePart β.val).degree.choose s : ℕ) : ℝ)) +
     (h : ℝ)*(a+z)*((a+z+((2*s+1)-2)-1).choose ((2*s+1)-2) : ℝ) := by exact_mod_cast ht
   simpa only [coarse_capacity_real hh] using htR

@@ -68,7 +68,8 @@ theorem floor_fraction_monomial_limit (τ : ℝ) (hτ : 0 < τ) (k : ℕ) :
       (tendsto_natCast_atTop_atTop (R := ℝ))
     have hone : Tendsto (fun n : ℕ => (1 : ℝ) / n) atTop (𝓝 0) :=
       tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
-    simpa only [Nat.cast_add, Nat.cast_one, add_div, add_zero, Function.comp_apply] using hf.add hone
+    simpa only [Nat.cast_add, Nat.cast_one, add_div, add_zero,
+      Function.comp_apply] using hf.add hone
 
 theorem eventually_core_bound (R : ℕ → ℕ) (K s : ℕ) (τ c : ℝ) (hτ : 0 < τ)
     (hR : Tendsto (fun n => (R n : ℝ) / (n : ℝ) ^ s) atTop (𝓝 c))

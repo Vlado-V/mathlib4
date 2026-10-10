@@ -78,7 +78,8 @@ theorem eventually_sparse_odd_layer_budget {d R : ℕ} (hd : 2≤d) (hR : 0<R) (
     simpa only [scalarCapacityBinomial,heq] using hw.2.1
   refine ⟨hw.1,hc,fun q hq => ?_⟩
   have hg : ((sparseBlockCount γ R (d-R) w*(d-R+d).choose (d-R) : ℕ) : ℝ)+
-      (oddOutputDimension w R : ℝ)*((d-R+d).choose (d-R) : ℝ)*criticalRatio d < oddOutputDimension w R := by
+      (oddOutputDimension w R : ℝ)*((d-R+d).choose (d-R) :
+        ℝ)*criticalRatio d < oddOutputDimension w R := by
     simpa only [Nat.cast_mul,heq,scalarCapacityBinomial] using hw.2.2
   have hb := eventually_intermediate_scalar_budget (by omega : d-R<d) hc q hq hg
   filter_upwards [sparseBlockCount_eventually_covers γ hγ R w (by omega : 0<d-R),hb]

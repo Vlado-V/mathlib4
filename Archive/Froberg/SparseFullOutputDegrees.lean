@@ -60,13 +60,15 @@ theorem exists_sparse_full_output_row_all_degrees {n R s d b m r : ℕ}
     exact mul_mem_biformImage O (Forms K n s) (hLO (v i)) (isHomogeneous_monomial _ (he i))
   · intro p p' hp
     apply hinj 0 (Nat.zero_le d)
-    have hbase : homogeneousMultiplication (d := 0) e v he p=homogeneousMultiplication e v he p' := by
+    have hbase : homogeneousMultiplication (d :=
+      0) e v he p=homogeneousMultiplication e v he p' := by
       apply vectorOutputMap_injective L hL
       simpa only [vectorOutputMap_homogeneousMultiplication] using hp
     exact congrArg (fun f j => (f j).val) hbase
   · intro c hc p p' hp
     apply hinj c hc
-    have hbase : homogeneousMultiplication (d := c) e v he p=homogeneousMultiplication e v he p' := by
+    have hbase : homogeneousMultiplication (d :=
+      c) e v he p=homogeneousMultiplication e v he p' := by
       apply vectorOutputMap_injective L hL
       simpa only [vectorOutputMap_homogeneousMultiplication] using hp
     exact congrArg (fun f j => (f j).val) hbase

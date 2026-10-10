@@ -87,7 +87,8 @@ theorem private_finite_reduction_open {w v z d q t c b₂ H : ℕ}
       have hR : 2≤R := by have := hJ (R+1) hr; omega
       have hRd : R+1<d := by have := hdegree (R+1) hr; have := heven (R+1) hr; omega
       have hrel : ∀ i,b (R+1)*(d-(R+1)+1).choose (d-(R+1))≤oddOutputDimension w (R+1)-
-          finrank K (privateOutputMatrix (Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K R))
+          finrank K (privateOutputMatrix (Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K
+            R))
             (Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K (R+1))) (l i)).range := by
         intro i
         apply (hprojected ⟨R+1,hr⟩ hne).trans

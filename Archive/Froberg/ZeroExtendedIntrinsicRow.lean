@@ -44,7 +44,8 @@ theorem extended_sparse_intrinsic_exact_zero (hs : s=0) (hsd : s ≤ d)
       ⟨rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v i),
         biformImage_core_extension _ (by
           rw [←polynomialFormVector_attachedCoordinates o e v he i]
-          exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun j => (attachedCoordinates e v he i j).property))⟩
+          exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun j => (attachedCoordinates e v he i
+            j).property))⟩
     let P' := (rename (Sum.map id (Fin.castAdd z))).toLinearMap.comp P
     (bilinearKoszulRow fullBiformScalarProduct Q' E' P').ker=
       (bilinearKoszulConstants (K := K) (W := W) Q' E').range := by
@@ -55,7 +56,8 @@ theorem extended_sparse_intrinsic_exact_zero (hs : s=0) (hsd : s ≤ d)
     ⟨rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v i),
       biformImage_core_extension _ (by
         rw [←polynomialFormVector_attachedCoordinates o e v he i]
-        exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun j => (attachedCoordinates e v he i j).property))⟩
+        exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun j => (attachedCoordinates e v he i
+          j).property))⟩
   let P' := (rename (Sum.map id (Fin.castAdd z))).toLinearMap.comp P
   change (bilinearKoszulRow fullBiformScalarProduct Q' E' P').ker=
     (bilinearKoszulConstants (K := K) (W := W) Q' E').range

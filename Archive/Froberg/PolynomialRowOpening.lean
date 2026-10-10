@@ -132,7 +132,8 @@ theorem attachedCoordinates_independent (e : I → Fin n →₀ ℕ)
   rw [Fintype.linearIndependent_iff]
   intro g hg i
   let c : I → Forms K n 0 := fun a => ⟨MvPolynomial.C (g a),isHomogeneous_C _ _⟩
-  have hmul : homogeneousMultiplication (d := 0) e v he c=∑ a,g a • attachedCoordinates e v he a := by
+  have hmul : homogeneousMultiplication (d :=
+    0) e v he c=∑ a,g a • attachedCoordinates e v he a := by
     funext j
     apply Subtype.ext
     simp only [homogeneousMultiplication_val,multiplication_apply,Finset.sum_apply,

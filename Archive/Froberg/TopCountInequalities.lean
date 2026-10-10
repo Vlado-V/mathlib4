@@ -96,7 +96,8 @@ theorem odd_top_projection_eventually {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :
       (topComplementCount d h : ℝ) / topSourceCount d h := by
   by_cases hd3 : d = 3
   · subst d
-    simpa only [Nat.cast_ofNat, show (2 : ℝ) * 3 = 6 by norm_num] using cubic_top_projection_eventually
+    simpa only [Nat.cast_ofNat, show (2 : ℝ) * 3 = 6 by
+      norm_num] using cubic_top_projection_eventually
   · exact odd_top_projection_eventually_large (by omega) ho
 
 /-- Both numerical inputs hold for the actual rounded pure-family count. -/

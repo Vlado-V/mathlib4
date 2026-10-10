@@ -117,7 +117,8 @@ theorem affineKernelChart_polynomial
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def chartCovector (res : ((Fin T₀ → K) × (Fin H → K)) →ₗ[K] (Fin T → K))
-    (j : Fin k ↪ Fin a) (p : Fin (T₀+graphParameterCount j) → K) (x : (Fin H → K) × K) : Fin T → K :=
+    (j : Fin k ↪ Fin a) (p : Fin (T₀+graphParameterCount j) → K) (x : (Fin H → K) ×
+      K) : Fin T → K :=
   res (x.2 • chartBottom j p,x.1)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.

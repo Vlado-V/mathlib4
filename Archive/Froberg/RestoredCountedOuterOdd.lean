@@ -44,7 +44,8 @@ theorem restored_outer_odd_open_of_rows {h m d q r f : ℕ} {J : Finset ℕ} {co
       FirstVectorRowExact p.2 p.1 ∧ HigherOddRows p.2 p.1) :
     HasRestoredOuterOddOpen (m := m) (f := f) (by omega) hdeven hO hJ heven idx slot := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
-  obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O) idx)
+  obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O)
+    idx)
     (restoredOuterVectorParameters_surjective idx) P hP _ hgood
   refine ⟨E,hE,?_⟩
   intro p hp

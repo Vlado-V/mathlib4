@@ -34,7 +34,8 @@ theorem strict_scalar_joint_selection
       ∃ E : MvPolynomial (Fin (finrank K (Fin q → Forms K n d))) K,
         (∃ Q : Fin q → Forms K n d,eval ((Module.finBasis K _).equivFun Q) E≠0) ∧
         ∀ Q,eval ((Module.finBasis K _).equivFun Q) E≠0 →
-          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiplication g d) Q) := by
+          Function.Injective (BilinearScalarFamily.multiplication (quotientMultiplication g d)
+            Q) := by
     intro g hg
     exact (hmodel g hg).1.generic_scalar_injective (hmodel g hg).2
   obtain ⟨g,Q,hg,hQ,hjoint⟩ := fiberwise_principal_meets_linear_joint_open D hD _ hfiber P hP

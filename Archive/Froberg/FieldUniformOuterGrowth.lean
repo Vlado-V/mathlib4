@@ -79,7 +79,8 @@ theorem field_uniform_core_outer_growth
       (∀ U : Finset (Labels k (a n) s), U.card ≤ h → LinearIndependent K (fun i : U => v i.val)) →
       MixedExterior.UniversalMixedPosition v →
       ∀ L : Submodule K (CoreSourceSpace (z := z n) v),
-      ((finrank K (CoreTargetSpace (z := z n) v) : ℝ)/finrank K (CoreSourceSpace (z := z n) v))*finrank K L +
+      ((finrank K (CoreTargetSpace (z := z n) v) : ℝ)/finrank K (CoreSourceSpace (z := z n)
+        v))*finrank K L +
       g*(n : ℝ)^(s+1)*min (finrank K L : ℝ)
         ((finrank K (CoreSourceSpace (z := z n) v) : ℝ)-finrank K L) ≤
       (finrank K (AttachedMultiplication.outerImage (d := s+1)

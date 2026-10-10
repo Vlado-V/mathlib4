@@ -44,7 +44,8 @@ theorem scalarFiber_positive (hO : ∀ j∈J,O j≤Forms K h j)
     (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :
     preparedPositiveBiform hO hJ heven (scalarFiberCoordinates.symm (a,rest))=
-      oddEvenAffineFamily (preparedHighBiform hO hJ heven (scalarFiberCoordinates.symm (0,rest))) a := by
+      oddEvenAffineFamily (preparedHighBiform hO hJ heven (scalarFiberCoordinates.symm
+        (0,rest))) a := by
   rw [preparedPositiveBiform_eq_affine,scalarFiber_high]
   congr 1
   funext i

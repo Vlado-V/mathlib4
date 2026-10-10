@@ -40,7 +40,8 @@ theorem weightedVariance_le_supported_upper_gap (p u : I → ℝ)
         by_cases hz : p i = 0
         · simp [hz]
         · have hh := mul_le_mul_of_nonneg_left
-            (mul_le_mul_of_nonneg_right (hb i (lt_of_le_of_ne (hp0 i) (Ne.symm hz))) (hu0 i)) (hp0 i)
+            (mul_le_mul_of_nonneg_right (hb i (lt_of_le_of_ne (hp0 i) (Ne.symm hz))) (hu0 i)) (hp0
+              i)
           nlinarith
       _ = b * weightedMean p u := by rw [← mul_sum]; rfl
   rw [weightedVariance_expanded p u hp]
@@ -81,7 +82,8 @@ theorem strict_transport_gain (ν : J → ℝ) (C D : J → I → ℝ)
         apply sum_le_sum
         intro j _
         exact mul_le_mul_of_nonneg_left
-          (weightedVariance_le_supported_upper_gap (C j) u (hC j) (hC0 j) hu0 hu1 (g j) (hmax j)) (hν j)
+          (weightedVariance_le_supported_upper_gap (C j) u (hC j) (hC0 j) hu0 hu1 (g j) (hmax
+            j)) (hν j)
       _ = _ := by simp only [mul_sub, sum_sub_distrib, hmean]
   have hintrinsic : η * (∑ i, p i * u i * (1 - u i)) ≤
       (∑ j, ν j * g j) - weightedMean p u := by

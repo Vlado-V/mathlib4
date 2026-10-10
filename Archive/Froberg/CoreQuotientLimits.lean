@@ -26,14 +26,16 @@ lemma actual_core_dimension_limits {K : Type*} [Field K]
     (hzr : Tendsto (fun n : ℕ => (z n : ℝ)/n) atTop (𝓝 (1-σ)))
     (haz : ∀ n,a n+z n=n)
     (v : (n : ℕ) → Labels k (a n) s → Fin h → K)
-    (hv : ∀ n (U : Finset (Labels k (a n) s)),U.card≤h → LinearIndependent K (fun i : U => v n i.val)) :
+    (hv : ∀ n (U : Finset (Labels k (a n) s)),U.card≤h → LinearIndependent K (fun i : U => v n
+      i.val)) :
     Tendsto (fun n : ℕ => (finrank K (CoreSourceSpace (z := z n) (v n)) : ℝ)/(n : ℝ)^s)
       atTop (𝓝 ((k : ℝ)*sourceProfileScale (profileAmbientCapacity s) σ s)) ∧
     Tendsto (fun n : ℕ => (finrank K (CoreTargetSpace (z := z n) (v n)) : ℝ)/(n : ℝ)^(2*s+1))
       atTop (𝓝 ((k : ℝ)*targetProfileScale σ s)) := by
   have hH := profileAmbientCapacity_gt_one hs
   have hsource := (sourceProfile_total_limit hH hσ hσ1 hs a z ha hz har hzr).const_mul (k : ℝ)
-  have hsource' : Tendsto (fun n : ℕ => (finrank K (CoreSourceSpace (z := z n) (v n)) : ℝ)/(n : ℝ)^s)
+  have hsource' : Tendsto (fun n : ℕ => (finrank K (CoreSourceSpace (z := z n) (v n)) : ℝ)/(n :
+    ℝ)^s)
       atTop (𝓝 ((k : ℝ)*sourceProfileScale (profileAmbientCapacity s) σ s)) := by
     apply hsource.congr'
     exact Eventually.of_forall fun n => by

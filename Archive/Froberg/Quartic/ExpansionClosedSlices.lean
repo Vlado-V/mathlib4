@@ -135,8 +135,10 @@ theorem strict_count_of_scalar
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (k h c : ℕ) (hqa : q*a ≤ T) (hfull : BilinearImage.image mu ⊤=⊤)
     (hscalar : ∀ S : Submodule K (Fin a → K),0 < finrank K S → finrank K S < a →
-      UniformScalar.covectorR ((T-q*a:ℕ):ℝ) (finrank K (BilinearImage.image mu S)) q a (finrank K S) < 0 ∨
-      UniformScalar.covectorR ((T-q*a:ℕ):ℝ) (finrank K (BilinearImage.image mu S)) q a (finrank K S) -
+      UniformScalar.covectorR ((T-q*a:ℕ):ℝ) (finrank K (BilinearImage.image mu S)) q a (finrank K S)
+        < 0 ∨
+      UniformScalar.covectorR ((T-q*a:ℕ):ℝ) (finrank K (BilinearImage.image mu S)) q a (finrank K S)
+        -
         UniformScalar.codimensionR k h c (finrank K S) ≤ max (((T-q*a:ℕ):ℝ)-((k+h:ℕ):ℝ)) 0-1)
     (ell : Fin T → K) (hell : ell ≠ 0) :
     let u := finrank K (LinearMap.ker (relationMap mu ell))
@@ -207,7 +209,8 @@ theorem principal_open_all_thresholds
   classical
   choose P hP hgood using fun d : Fin (a+1) => principal_open_closed_threshold mu slices hmono d.val hcount
   let pi (d : Fin (a+1)) := (coordinates K _).toLinearMap.comp
-    ((projection (K := K) (b := b) (T := T) (q := q) slices d).comp (coordinates K _).symm.toLinearMap)
+    ((projection (K := K) (b := b) (T := T) (q := q) slices d).comp (coordinates K
+      _).symm.toLinearMap)
   let pulled (d : Fin (a+1)) := MiddleCoordinates.substituteLinear (pi d) (P d)
   have hpull (d : Fin (a+1)) : pulled d ≠ 0 := by
     obtain ⟨x,hx⟩ := hP d
@@ -219,7 +222,8 @@ theorem principal_open_all_thresholds
     exact hev (by rw [hzero,map_zero])
   have hp : (∏ d,pulled d) ≠ 0 := Finset.prod_ne_zero_iff.mpr (fun d _ => hpull d)
   obtain ⟨z,hz⟩ := PolynomialImageAvoidance.exists_eval_ne_zero hp
-  refine ⟨∏ d,pulled d,⟨(coordinates K _).symm z,by simpa only [LinearEquiv.apply_symm_apply] using hz⟩,?_⟩
+  refine ⟨∏ d,pulled d,⟨(coordinates K _).symm z,by simpa only [LinearEquiv.apply_symm_apply] using
+    hz⟩,?_⟩
   intro x hx d ell hd hann
   have hpd : eval (coordinates K _ x) (pulled d) ≠ 0 := by
     rw [map_prod] at hx

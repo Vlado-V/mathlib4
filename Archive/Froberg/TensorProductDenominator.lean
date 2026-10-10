@@ -47,7 +47,8 @@ theorem splitPolynomialDetector_product {X : Type*} [AddCommGroup X] [Module K X
     (T : Poly K h →ₗ[K] X) (Q : Submodule K (Poly K m))
     (a c : Poly K h) (b e : Poly K m) :
     splitPolynomialDetector T Q
-      (splitPolynomialEquiv (K := K) h m (a ⊗ₜ[K] b) * splitPolynomialEquiv (K := K) h m (c ⊗ₜ[K] e)) =
+      (splitPolynomialEquiv (K := K) h m (a ⊗ₜ[K] b) * splitPolynomialEquiv (K := K) h m (c ⊗ₜ[K]
+        e)) =
       T (a*c) ⊗ₜ[K] Q.mkQ (b*e) := by
   rw [← map_mul]
   rw [Algebra.TensorProduct.tmul_mul_tmul]

@@ -77,9 +77,11 @@ theorem outputFactor_ne_zero {c : Fin 3 → K} (hc : c ≠ 0) : outputFactor c �
   have h2 := congrArg (fun F : Poly K 2 => F.coeff 0) h
   have he01 : (Finsupp.single (0 : Fin 2) 1 + Finsupp.single 1 1 : Fin 2 →₀ ℕ) ≠ 0 := by
     intro he; have := congrArg (fun e => e 0) he; simp at this
-  have he01a : (Finsupp.single (0 : Fin 2) 1 + Finsupp.single 1 1 : Fin 2 →₀ ℕ) ≠ Finsupp.single 0 1 := by
+  have he01a : (Finsupp.single (0 : Fin 2) 1 + Finsupp.single 1 1 : Fin 2 →₀
+    ℕ) ≠ Finsupp.single 0 1 := by
     intro he; have := congrArg (fun e => e 1) he; simp at this
-  have he01b : (Finsupp.single (0 : Fin 2) 1 + Finsupp.single 1 1 : Fin 2 →₀ ℕ) ≠ Finsupp.single 1 1 := by
+  have he01b : (Finsupp.single (0 : Fin 2) 1 + Finsupp.single 1 1 : Fin 2 →₀
+    ℕ) ≠ Finsupp.single 1 1 := by
     intro he; have := congrArg (fun e => e 0) he; simp at this
   have hs10 : (Finsupp.single (1 : Fin 2) 1 : Fin 2 →₀ ℕ) ≠ Finsupp.single 0 1 := by
     intro he; have := congrArg (fun e => e 0) he; simp at this
@@ -162,7 +164,8 @@ theorem outputQuadratic_surjective {c : Fin 3 → K} (hc : c ≠ 0) :
     omega
   rw [inverseFactor_spec, ← rename_erase_of_degree_none_zero (inverseFactor ψ) hnone,
     contractOutput_factor] at hcon
-  have he : erase (inverseFactor ψ) = 0 := (mul_eq_zero.mp hcon).resolve_left (outputFactor_ne_zero hc)
+  have he : erase (inverseFactor ψ) = 0 := (mul_eq_zero.mp hcon).resolve_left (outputFactor_ne_zero
+    hc)
   have hz : inverseFactor ψ = 0 := by
     rw [← rename_erase_of_degree_none_zero (inverseFactor ψ) hnone, he, map_zero]
   have hzero : inverseFactor (0 : annihilator K t 1) = 0 :=
@@ -182,7 +185,8 @@ def outputCoefficients (e : DegreeZero K t) : Fin 3 → K :=
 theorem degreeZero_reconstruct (a : Forms K t 0) : a.val = C (a.val.coeff 0) :=
   totalDegree_eq_zero_iff_eq_C.mp ((totalDegree_zero_iff_isHomogeneous (Fin t)).mpr a.property)
 
-theorem outputCoefficients_injective : Function.Injective (outputCoefficients (K := K) (t := t)) := by
+theorem outputCoefficients_injective : Function.Injective (outputCoefficients (K := K) (t :=
+  t)) := by
   intro e f h
   funext d
   apply Subtype.ext

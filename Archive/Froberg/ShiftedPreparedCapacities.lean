@@ -113,7 +113,8 @@ theorem eventually_actual_even_capacities_shift {d : ℕ} (hd : 9≤d) :
       have hRlt := (activeEvenIndices_bounds (by omega : 3≤d) ha).2.1
       have hcover := tendsto_twice_nat.eventually
         (sparseBlockCount_eventually_covers_shift_add ((101/100 : ℝ)*higherCountGamma d R.val)
-          (mul_nonneg (by norm_num) (higherCountGamma_pos d R.val).le) R.val w z 0 (by omega : 0<d-R.val))
+          (mul_nonneg (by norm_num) (higherCountGamma_pos d R.val).le) R.val w z 0 (by omega :
+            0<d-R.val))
       obtain ⟨n₀,hn₀⟩ := eventually_generic_profile_scalar_separation (K := K) hd
         (show d-R.val+4≤d by omega) r hcount
       filter_upwards [hbudget,hcover,hp,eventually_ge_atTop n₀] with v hb hc hprod hv

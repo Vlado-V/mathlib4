@@ -54,7 +54,8 @@ theorem capacity_row_gain (C d u : I → ℝ) (c g : ℝ)
       · simp [hi]
       · have hCi : 0 < C i := lt_of_le_of_ne (hC0 i) (Ne.symm hi)
         exact mul_le_mul_of_nonneg_left
-          (normalized_capacity_gain c (d i) (u i) g hc (hcd i hCi) (hu i) (hu1 i) (hg i hCi)) (hC0 i)
+          (normalized_capacity_gain c (d i) (u i) g hc (hcd i hCi) (hu i) (hu1 i) (hg i hCi)) (hC0
+            i)
     have hh := sum_le_sum (fun i (_ : i ∈ (univ : Finset I)) => hp i)
     simp only [mul_add, sum_add_distrib, ← sum_mul, hC, one_mul] at hh
     convert hh using 1

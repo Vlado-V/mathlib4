@@ -57,7 +57,8 @@ theorem eventually_quadratic_finite_product_capacity {d : ℕ} (hd : 9 ≤ d) :
   filter_upwards [he] with h hh
   filter_upwards [hh] with m hm
   intro r hr
-  have hγ : 0 < countGammaTwo d := lt_of_lt_of_le (countTauFour_pos (by omega)) (countTauFour_le_gamma d)
+  have hγ : 0 < countGammaTwo d := lt_of_lt_of_le (countTauFour_pos (by
+    omega)) (countTauFour_le_gamma d)
   have hcoeff : countBeta d ≤ (253/250 : ℝ)*countGammaTwo d := by unfold countBeta; nlinarith
   have hscaled := mul_le_mul_of_nonneg_right
     (mul_le_mul_of_nonneg_right hcoeff (pow_nonneg (Nat.cast_nonneg h) 2))
@@ -84,7 +85,8 @@ theorem eventually_higher_finite_product_capacity {d j : ℕ} (hd : 9 ≤ d)
     (mul_le_mul_of_nonneg_right hcoeff (pow_nonneg (Nat.cast_nonneg h) j))
     (pow_nonneg (Nat.cast_nonneg m) (d-j))
   have hrdiag : higherGeneratorCount d h m j ≤ diagonalProductCount d j h m :=
-    (Nat.ceil_mono hscaled).trans (by simpa only [intermediateDensity,if_neg (show j≠2 by omega)] using hm)
+    (Nat.ceil_mono hscaled).trans (by simpa only [intermediateDensity,if_neg (show j≠2 by omega)]
+      using hm)
   exact ⟨hrdiag,hrdiag.trans (diagonalProductCount_le_cross (by omega) hb.2.1)⟩
 
 end Froberg

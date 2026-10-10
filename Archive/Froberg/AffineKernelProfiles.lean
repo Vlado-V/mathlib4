@@ -70,7 +70,8 @@ theorem affine_kernel_profiles_joint :
       finrank K (relationMap mu ell).ker=c.val.1.val →
       M*(c.val.1.val-c.val.2.val)≤finrank K (BilinearImage.image muH (relationMap mu ell).ker) →
       KernelCovectorExcluded mu B y ell
-  have hc (c : C) : ∃ D : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K b T q s))) K,
+  have hc (c : C) : ∃ D : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K b T q
+    s))) K,
       (∃ y : SharedCovectorPolynomial.Input K b T q s,eval ((Module.finBasis K _).equivFun y) D≠0) ∧
       ∀ y,eval ((Module.finBasis K _).equivFun y) D≠0 → Good c y :=
     affine_kernel_stratum_joint_cuts mu mu₀ muH bottom higher res hres hcompat
@@ -84,7 +85,8 @@ theorem affine_kernel_profiles_joint :
       Finset.card_univ,smul_eq_mul,mul_one] using (Submodule.finrank_le (relationMap mu ell).ker)
   have hk₀ : finrank K (relationMap nu (bottom ell)).ker≤a₀ := by
     simpa only [Module.finrank_pi,Module.finrank_self,Fintype.card_fin,Finset.sum_const,
-      Finset.card_univ,smul_eq_mul,mul_one] using (Submodule.finrank_le (relationMap nu (bottom ell)).ker)
+      Finset.card_univ,smul_eq_mul,mul_one] using (Submodule.finrank_le (relationMap nu (bottom
+        ell)).ker)
   let k : Fin (a+1) := ⟨finrank K (relationMap mu ell).ker,by omega⟩
   let k₀ : Fin (a₀+1) := ⟨finrank K (relationMap nu (bottom ell)).ker,by omega⟩
   let c : C := ⟨(k,k₀),ht,hmono ell hb⟩

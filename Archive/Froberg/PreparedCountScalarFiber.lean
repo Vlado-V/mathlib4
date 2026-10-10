@@ -144,7 +144,8 @@ theorem fullCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :
     fullRestrictCounts hc (fullCountScalarFiberLinear hc (a,p))=
-      fullScalarFiberCoordinates.symm (a,(fullScalarFiberCoordinates (fullRestrictCounts hc p)).2) := by
+      fullScalarFiberCoordinates.symm (a,(fullScalarFiberCoordinates (fullRestrictCounts hc
+        p)).2) := by
   apply Prod.ext
   · rfl
   apply Prod.ext
@@ -154,7 +155,8 @@ theorem fullCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem fullCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :
-    fullCountScalarFiberLinear hc ((fullScalarFiberCoordinates (fullRestrictCounts hc p)).1,p)=p := by
+    fullCountScalarFiberLinear hc ((fullScalarFiberCoordinates (fullRestrictCounts hc
+      p)).1,p)=p := by
   apply Prod.ext
   · rfl
   apply Prod.ext

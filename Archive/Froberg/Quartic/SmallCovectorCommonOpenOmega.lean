@@ -30,11 +30,13 @@ theorem common_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40
         SimultaneousBlockConditionsOmega.BlockConditions ω (baseProjection p) ∧
         GenericF13.Conditions (AugmentedGeneric.coefficientMixed (baseProjection p))
           (AugmentedGeneric.coefficientChild (baseProjection p)) ∧
-        finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild (baseProjection p))) =
+        finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild (baseProjection
+          p))) =
           (m+2).choose 3-m*upperEndpoint m ∧ ClosedConditions p := by
   classical
   obtain ⟨A,⟨a,ha⟩,hA⟩ := convolution_open (K := K) m hmlo hmhi upper
-  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRangeOmega.generic_endpoint_conditions (K := K) ω m hmlo upper hω hω1
+  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRangeOmega.generic_endpoint_conditions (K :=
+    K) ω m hmlo upper hω hω1
   let B' : MvPolynomial (ParameterIndex m upper m (mixedCount m upper) (upperEndpoint m)) K :=
     rename Sum.inl B
   have hA0 : A ≠ 0 := by intro h; simp [h] at ha
@@ -66,7 +68,8 @@ theorem common_open_with [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m �
         SimultaneousBlockConditionsOmega.BlockConditions ω (baseProjection p) ∧
         GenericF13.Conditions (AugmentedGeneric.coefficientMixed (baseProjection p))
           (AugmentedGeneric.coefficientChild (baseProjection p)) ∧
-        finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild (baseProjection p))) =
+        finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild (baseProjection
+          p))) =
           (m+2).choose 3-m*upperEndpoint m ∧ ClosedConditions p := by
   classical
   obtain ⟨A,⟨a,ha⟩,hA⟩ := common_open ω m hmlo hmhi upper hω hω1

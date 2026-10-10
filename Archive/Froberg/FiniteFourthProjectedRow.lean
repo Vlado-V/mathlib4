@@ -62,7 +62,8 @@ theorem exists_finite_fourth_projected_row
         (q j i).IsWeightedHomogeneous (Sum.elim (fun _ => 1) (fun _ => 0)) j ∧
         biformOutputMap (T j) (q j i)=0) ∧
       (∀ c≤d,Function.Injective (homogeneousMultiplication (d := c) e z he)) ∧
-      (addRow (polynomialIntermediateRow (fun j => (bo j).val) e z he Q) (ProductRows.multiplication counts q J 4)).ker =
+      (addRow (polynomialIntermediateRow (fun j => (bo j).val) e z he Q) (ProductRows.multiplication
+        counts q J 4)).ker =
         ((LinearMap.inl K
           ((Fin r → Fin H → Forms K (v+v) s) ×
             (Fin (counts 4) → Forms K (v+v) d))
@@ -112,9 +113,11 @@ theorem exists_finite_fourth_projected_row
       (weightedHomogeneousSubmodule K
         (Sum.elim (fun _ : Fin w × Bool => 0) (ProductRows.halfWeight (balancedScalarHalf v)))
         (2*((d-2)/2))) hPair (LinearMap.mem_range_self _ a)
-  obtain ⟨e,z₀,he,hdiv,hrest⟩ := exists_exact_sparse_intermediate (K := K) (by omega) hodd hm hcap hcount
+  obtain ⟨e,z₀,he,hdiv,hrest⟩ := exists_exact_sparse_intermediate (K := K) (by
+    omega) hodd hm hcap hcount
   obtain ⟨z,Q,hproj,hEz,hzero,hker⟩ := exists_single_profile_even_row_with_relations (by omega) hodd
-    pairedHalfWeight (balancedScalarHalf v) o ho hodeg L hL hLodd e he hdiv Relations hrelations hcap hcount
+    pairedHalfWeight (balancedScalarHalf
+      v) o ho hodeg L hL hLodd e he hdiv Relations hrelations hcap hcount
     (ProductRows.multiplication counts p J 4) hpi hPX hPY hscalarOpen
   let q := Function.update p 4 (attachedPolynomialFamily o e (fun i => L (z i)))
   refine ⟨e,(fun i => L (z i)),he,Q,q,hproj,?_,?_,?_,hzero,?_⟩

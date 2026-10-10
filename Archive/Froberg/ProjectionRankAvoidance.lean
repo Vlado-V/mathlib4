@@ -32,7 +32,8 @@ theorem projection_family_rank_open
       (∃ x, eval x D ≠ 0) ∧
       ∀ x, eval x D ≠ 0 → ∀ p,
         w ≤ finrank K (A p).range →
-        finrank K (((Module.finBasis K (V →ₗ[K] (Fin b → K))).equivFun.symm x).comp (A p)).range ≠ t := by
+        finrank K (((Module.finBasis K (V →ₗ[K] (Fin b → K))).equivFun.symm x).comp (A
+          p)).range ≠ t := by
   classical
   let J := Fin t ↪ Fin b
   let B := Module.finBasis K (V →ₗ[K] (Fin b → K))

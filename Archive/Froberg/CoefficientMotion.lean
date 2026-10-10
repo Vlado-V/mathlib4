@@ -38,7 +38,8 @@ def columns : Fin (finrank K H) → Fin f → Fin a → K :=
 
 theorem columns_span_finrank (hE : Function.Injective E) :
     finrank K (Submodule.span K (Set.range (columns E))) = finrank K H := by
-  have hi : LinearIndependent K (columns E) := (Module.finBasis K H).linearIndependent.map' E (LinearMap.ker_eq_bot.mpr hE)
+  have hi : LinearIndependent K (columns E) := (Module.finBasis K
+    H).linearIndependent.map' E (LinearMap.ker_eq_bot.mpr hE)
   simpa using finrank_span_eq_card hi
 
 /-- Matrix of all equations lambda(d_z x)=0 on basis vectors of H. -/

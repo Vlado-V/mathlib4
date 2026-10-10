@@ -80,7 +80,8 @@ theorem eventually_uniform_counted_restored_frames {d : ℕ} (hd : 3≤d) (heven
       (Submodule.injective_subtype _)
     rw [graded_flip_image_polynomial,Submodule.map_top,Submodule.range_subtype,
       Submodule.map_top,Submodule.range_subtype,forms_mul_forms]
-  have hwb := (hfw (finrank K (Forms K h d)) (upperCount n d) U hU).restored_upper_open hd heven frame U
+  have hwb := (hfw (finrank K (Forms K h d)) (upperCount n d) U
+    hU).restored_upper_open hd heven frame U
     (actualRestoredIndex K d h n (e n) 0)
   have hwl := hwb.extend_counts (by omega : 1≤d) heven
     (fun j (_ : j∈allEvenIndices d) => targetLayerOutput_homogeneous frame j)
@@ -91,6 +92,7 @@ theorem eventually_uniform_counted_restored_frames {d : ℕ} (hd : 3≤d) (heven
     (actualRestoredBaseSlot hd)
   refine ⟨?_,?_⟩
   · exact hnbase frame hfi (actualRestoredBaseSlot hd) (actualRestoredBaseSlot_positive hd) hwb
-  · exact hnlarge frame hfi (actualRestoredEnlargedSlot hd) (actualRestoredEnlargedSlot_positive hd) hwl
+  · exact hnlarge frame hfi (actualRestoredEnlargedSlot hd) (actualRestoredEnlargedSlot_positive
+    hd) hwl
 
 end Froberg.PreparedParameters

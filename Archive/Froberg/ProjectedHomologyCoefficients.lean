@@ -30,7 +30,8 @@ def projectedCycleToFormal (pi : Forms K n (2*d) →ₗ[K] Z)
   (formalCoefficientMap q).comp (projectedEndpointMultiplication pi q).ker.subtype
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem projectedCycleToFormal_kernel (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
+theorem projectedCycleToFormal_kernel (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q) :
     (projectedCycleToFormal pi q).ker =
       kernelBoundary (projectedEndpointMultiplication pi q) (koszulSpace q) := by
   change (formalCoefficientMap q).ker.comap (projectedEndpointMultiplication pi q).ker.subtype = _
@@ -40,7 +41,8 @@ theorem projectedCycleToFormal_kernel (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fi
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The projected analogue of the formal representative map, constructed by
 an actual quotient lift rather than an assumed identification. -/
-def projectedFormalRepresentative (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
+def projectedFormalRepresentative (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q) :
     ProjectedEndpointHomology pi q →ₗ[K] SymmetricSquare K (Forms K n d) :=
   (projectedCycleToFormal pi q).range.subtype.comp
     (kernelModuloEquivRange (Z := SymmetricSquare K (Forms K n d))
@@ -48,23 +50,27 @@ def projectedFormalRepresentative (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r 
       (projectedCycleToFormal pi q) (projectedCycleToFormal_kernel pi q hq)).toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem projectedFormalRepresentative_mk (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+@[simp] theorem projectedFormalRepresentative_mk (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K
+  n d) (hq : LinearIndependent K q)
     (a : (projectedEndpointMultiplication pi q).ker) :
     projectedFormalRepresentative pi q hq
       (kernelClass (projectedEndpointMultiplication pi q) (koszulSpace q) a) =
       formalCoefficientMap q a.val := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-theorem projectedFormalRepresentative_mem (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem projectedFormalRepresentative_mem (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+  d) (hq : LinearIndependent K q)
     (x : ProjectedEndpointHomology pi q) :
     projectedFormalRepresentative pi q hq x ∈
-      (pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed (Submodule.span K (Set.range q)) := by
+      (pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed (Submodule.span K (Set.range
+        q)) := by
   obtain ⟨a,rfl⟩ := kernelClass_surjective (projectedEndpointMultiplication pi q) (koszulSpace q) x
   rw [projectedFormalRepresentative_mk]
   constructor
   · change pi (formalPolynomialMultiplication (formalCoefficientMap q a.val)) = 0
     have hf := LinearMap.congr_fun (formalPolynomialMultiplication_comp q) a.val
-    change formalPolynomialMultiplication (formalCoefficientMap q a.val) = endpointMultiplication q a.val at hf
+    change formalPolynomialMultiplication (formalCoefficientMap q
+      a.val) = endpointMultiplication q a.val at hf
     rw [hf]
     exact a.property
   · rw [← range_formalCoefficientMap q]
@@ -72,7 +78,8 @@ theorem projectedFormalRepresentative_mem (pi : Forms K n (2*d) →ₗ[K] Z) (q 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The projected representative loses exactly the constant Koszul boundary. -/
-theorem projectedFormalRepresentative_injective (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
+theorem projectedFormalRepresentative_injective (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K
+  n d) (hq : LinearIndependent K q) :
     Function.Injective (projectedFormalRepresentative pi q hq) := by
   intro x y hxy
   let e := kernelModuloEquivRange (Z := SymmetricSquare K (Forms K n d))
@@ -84,9 +91,11 @@ theorem projectedFormalRepresentative_injective (pi : Forms K n (2*d) →ₗ[K] 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every projected formal relation comes from an actual projected cycle. -/
-theorem projectedFormalRepresentative_range (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
+theorem projectedFormalRepresentative_range (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+  d) (hq : LinearIndependent K q) :
     (projectedFormalRepresentative pi q hq).range =
-      (pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed (Submodule.span K (Set.range q)) := by
+      (pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed (Submodule.span K (Set.range
+        q)) := by
   ext x
   constructor
   · rintro ⟨x,rfl⟩
@@ -103,27 +112,32 @@ theorem projectedFormalRepresentative_range (pi : Forms K n (2*d) →ₗ[K] Z) (
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual projected homology is exactly the projected formal-product kernel. -/
-def projectedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
+def projectedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q) :
     ProjectedEndpointHomology pi q ≃ₗ[K]
       ((pi.comp formalPolynomialMultiplication).ker ⊓
-        formalMixed (Submodule.span K (Set.range q)) : Submodule K (SymmetricSquare K (Forms K n d))) :=
+        formalMixed (Submodule.span K (Set.range q)) : Submodule K (SymmetricSquare K (Forms K n
+          d))) :=
   (LinearEquiv.ofInjective (projectedFormalRepresentative pi q hq)
     (projectedFormalRepresentative_injective pi q hq)).trans
       (LinearEquiv.ofEq _ _ (projectedFormalRepresentative_range pi q hq))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def projectedRetainedHomology (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+def projectedRetainedHomology (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q)
     (W : Submodule K (Forms K n d)) : Submodule K (ProjectedEndpointHomology pi q) :=
   (formalMixed W).comap (projectedFormalRepresentative pi q hq)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def projectedHomologyCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+def projectedHomologyCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq :
+  LinearIndependent K q)
     (G : Submodule K (Forms K n d)) (dual : Fin t → Forms K n d →ₗ[K] K) :
     ProjectedEndpointHomology pi q →ₗ[K] (Fin t → Forms K n d ⧸ G) :=
   (relationCoefficientMap G dual).comp (projectedFormalRepresentative pi q hq)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-@[simp] theorem projectedHomologyCoefficients_mk (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+@[simp] theorem projectedHomologyCoefficients_mk (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K
+  n d) (hq : LinearIndependent K q)
     (G : Submodule K (Forms K n d)) (hqG : ∀ j, q j ∈ G)
     (dual : Fin t → Forms K n d →ₗ[K] K) (a : (projectedEndpointMultiplication pi q).ker) :
     projectedHomologyCoefficients pi q hq G dual
@@ -134,7 +148,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- C.2 separation for the projected target proves the exact retained kernel. -/
-theorem projectedHomologyCoefficients_kernel (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem projectedHomologyCoefficients_kernel (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
+  d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (f : Fin t → Forms K n d)
     (hspan : Submodule.span K (Set.range q) = W ⊔ Submodule.span K (Set.range f))
     (dual : Fin t → Forms K n d →ₗ[K] K)
@@ -161,7 +176,8 @@ theorem projectedHomologyCoefficients_kernel (pi : Forms K n (2*d) →ₗ[K] Z) 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The projected faithful coefficient map retains its defining formula. -/
-theorem exists_injective_projected_coefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem exists_injective_projected_coefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K
+  n d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (f : Fin t → Forms K n d)
     (hspan : Submodule.span K (Set.range q) = W ⊔ Submodule.span K (Set.range f))
     (dual : Fin t → Forms K n d →ₗ[K] K)

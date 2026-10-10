@@ -109,7 +109,8 @@ theorem privatePolynomialMap_kernel_finrank_le (hs : 0 < s)
       A p.val.1 x + A p.val.2 y=0 → ∃ t : K,
         x=t • w p.val.2 ∧ y=(-t) • w p.val.1) :
     finrank K (privatePolynomialMap (a := a) (s := s) ι A).ker ≤ b.choose 2 := by
-  have hi := privateAlternatingCoefficients_injective_on_kernel (a := a) hs ι A hA w dual hdual hpair
+  have hi := privateAlternatingCoefficients_injective_on_kernel (a :=
+    a) hs ι A hA w dual hdual hpair
   have hd := LinearMap.finrank_le_finrank_of_injective hi
   simpa [Module.finrank_pi_fintype,card_generatorPair] using hd
 

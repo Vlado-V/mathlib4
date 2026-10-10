@@ -26,7 +26,8 @@ theorem zeroScalarEndpointFamily_eq_full (hd : 0<d)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f) :
     zeroScalarEndpointFamily hd hO hJ U P p=
       enumerateForms (FullPreparedParameters.forms hd hO hJ
-        (FullPreparedParameters.pureBase U+FullPreparedParameters.variablePrivateZeroScalar (P,p))) := by
+        (FullPreparedParameters.pureBase U+FullPreparedParameters.variablePrivateZeroScalar
+          (P,p))) := by
   rw [FullPreparedParameters.pureBase_add_variablePrivateZeroScalar]
   rfl
 
@@ -57,15 +58,18 @@ theorem zeroScalarEndpointFamily_parity (hd : 0<d) (hdodd : d%2=1)
   let idx := Fintype.equivFin (Label q f u J counts)
   obtain ⟨i,rfl⟩ := idx.surjective k
   let G := Sum.elim (PreparedParameters.generator p.1) (oddGenerator U P p.2)
-  have hg : (G i).IsWeightedHomogeneous (fun x => (blockWeight h m x : ZMod 2)) (splitParity i) := by
+  have hg : (G i).IsWeightedHomogeneous (fun x => (blockWeight h m x : ZMod 2)) (splitParity
+    i) := by
     cases i with
     | inl i =>
       apply (parity_homogeneous_iff (blockWeight h m) (G (Sum.inl i)) 0 (by decide)).mpr
-      exact (mem_weightedParitySpace_iff _ _ _).mp (PreparedParameters.generator_even hO heven p.1 i)
+      exact (mem_weightedParitySpace_iff _ _ _).mp (PreparedParameters.generator_even hO heven p.1
+        i)
     | inr j =>
       apply (parity_homogeneous_iff (blockWeight h m) (G (Sum.inr j)) 1 (by decide)).mpr
       exact (mem_weightedParitySpace_iff _ _ _).mp (oddGenerator_parity hdodd U P p.2 j)
-  have hrename : rename finSumFinEquiv (G i)=(zeroScalarEndpointFamily hd hO hJ U P p (idx i)).val := by
+  have hrename : rename finSumFinEquiv (G i)=(zeroScalarEndpointFamily hd hO hJ U P p (idx
+    i)).val := by
     have hh := congrArg (rename finSumFinEquiv) (zeroScalarEndpointFamily_back hd hO hJ U P p i)
     have hcancel (z : Poly K (h+m)) : rename finSumFinEquiv (rename finSumFinEquiv.symm z)=z :=
       (renameEquiv K finSumFinEquiv).right_inv z

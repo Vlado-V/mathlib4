@@ -44,7 +44,8 @@ def quotientMap (mu : F →ₗ[K] V →ₗ[K] W) (E : Submodule K V) :
     apply LinearMap.ext
     intro x
     obtain ⟨v,rfl⟩ := E.mkQ_surjective x
-    change (BilinearImage.image mu E).mkQ (mu (s • f) v) = s • (BilinearImage.image mu E).mkQ (mu f v)
+    change (BilinearImage.image mu E).mkQ (mu (s • f) v) = s • (BilinearImage.image mu E).mkQ (mu f
+      v)
     simp
 
 @[simp] theorem quotientMap_mk (mu : F →ₗ[K] V →ₗ[K] W) (E : Submodule K V) (f : F) (v : V) :

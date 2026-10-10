@@ -128,7 +128,8 @@ theorem exists_surjective_of_growth [Infinite K]
     have hk : 0 < k := by
       by_contra h
       have hz : rowSpan R = ⊥ := Submodule.finrank_eq_zero.mp (by omega)
-      have hm : R.2 ∈ rowSpan R := (show K ∙ R.2 ≤ rowSpan R from le_sup_right) (Submodule.mem_span_singleton_self R.2)
+      have hm : R.2 ∈ rowSpan R := (show K ∙ R.2 ≤ rowSpan R from
+        le_sup_right) (Submodule.mem_span_singleton_self R.2)
       rw [hz] at hm
       exact hnz hm
     have hrM : finrank K (C R).range ≤ M := by
@@ -193,7 +194,8 @@ theorem exists_prefix_surjective_at_partial_count (hn : 0 < n) (hed : e < d)
     (prefixBilinear (K := K) (n := n) (d := d) (e := e) (r := q + 1)) hN hS hM (by
       intro a
       dsimp only
-      have hg := homogeneous_subspace_growth hn hed hlarge (familySpace a) (familySpace_homogeneous a)
+      have hg := homogeneous_subspace_growth hn hed hlarge (familySpace a) (familySpace_homogeneous
+        a)
       rw [finrank_familySpace] at hg
       have h₁ := prefix_incidence_rank_add_hilbert (d := d) hn a
       have h₂ := prefix_hilbert_add_product_rank (d := d) hn a
@@ -230,7 +232,8 @@ theorem exists_prefix_surjective_of_large_variables (hn : 0 < n) (hed : e < d)
   let M := (n + (d + e) - 1).choose (d + e)
   have hN : 0 < N := monomial_count_pos hn e
   by_cases heq : M = r * N
-  · obtain ⟨f, hf⟩ := exists_prefix_injective_of_large_variables (K := K) (r := r) hn hed hlarge (by change r * N ≤ M; omega)
+  · obtain ⟨f, hf⟩ := exists_prefix_injective_of_large_variables (K := K) (r := r) hn hed hlarge (by
+    change r * N ≤ M; omega)
     refine ⟨f, (LinearMap.injective_iff_surjective_of_finrank_eq_finrank ?_).mp hf⟩
     simp only [Module.finrank_pi_fintype, finrank_forms K n (d + e) hn,
       finrank_forms K n e hn, Finset.sum_const,

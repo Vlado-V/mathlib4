@@ -44,7 +44,8 @@ theorem private_complete_positive_reduction
     (hexact : ∀ r,0<r → r≤2*d → r%2=0 →
       CoefficientRowExact (coefficientComponentSpace w d) a E j r)
     (hseparate : ∀ r,3≤r → r≤2*d → r%2=0 →
-      PrivateRowSeparation (coefficientComponentSpace w d) (coefficientComponentSpace w d) a E P j r) :
+      PrivateRowSeparation (coefficientComponentSpace w d) (coefficientComponentSpace w d) a E P j
+        r) :
     ∃ (C : Fin b → Fin b → K) (M : I → I → K) (z : I → MvPolynomial σ K),
       v=matrixBoundary (fun k => P k+U k) C ∧
       c-matrixBoundary (fun i => a i+E i) M=z ∧

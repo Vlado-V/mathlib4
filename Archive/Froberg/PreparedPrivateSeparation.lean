@@ -63,10 +63,12 @@ theorem private_core_row_separation
       (∑ i : Fin (Fintype.card (Label q J counts)),
         rename Sum.inr (rename (Fin.castAdd z) (p₀.1 (f.symm i)).val)*
           (x.1.1 (f.symm i)).val)=
-      ∑ i : Label q J counts,rename Sum.inr (rename (Fin.castAdd z) (p₀.1 i).val)*(x.1.1 i).val := by
+      ∑ i : Label q J counts,rename Sum.inr (rename (Fin.castAdd z) (p₀.1 i).val)*(x.1.1
+        i).val := by
     exact Fintype.sum_equiv f.symm _ _ (fun i => rfl)
   have hnew : ∀ i,(intrinsicLayerMap hO ⟨R+1,hRJ⟩ i (coreExtension z p₀)).val=
-      rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily (fun j => (bo j).val) e v i) := by
+      rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily (fun j => (bo j).val) e v
+        i) := by
     intro i
     change layers (coreExtension z p₀) (R+1) i=_
     rw [coreExtension_layers]

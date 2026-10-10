@@ -84,7 +84,8 @@ theorem cubic_quotient_dimension (g : Fin c → Rows K m 1)
     (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2)) :
     finrank K ((Rows K m 3) ⧸ BilinearImage.image multiplication (Submodule.span K (Set.range g))) =
       3*(m+2).choose 3-c*(m+1).choose 2 := by
-  have h := (BilinearImage.image multiplication (Submodule.span K (Set.range g))).finrank_quotient_add_finrank
+  have h := (BilinearImage.image multiplication (Submodule.span K (Set.range
+    g))).finrank_quotient_add_finrank
   rw [relation_finrank_of_zero_expansion g hg e₀ hzero] at h
   have hd : finrank K (Rows K m 3) = 3*(m+2).choose 3 := by
     simp [Rows,Module.finrank_pi_fintype,finrank_forms]
@@ -151,10 +152,12 @@ include L in
 theorem common_open [Infinite K] (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (h2 : (2 : K) ≠ 0) :
     ∃ E : ConvolutionExpansionOpen.Dimensions m upper → ℕ,
       ConvolutionExpansionOpen.Thresholds m upper E ∧
-      ∃ D : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m)) K,
+      ∃ D : MvPolynomial (AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint
+        m)) K,
         (∃ p, eval p D ≠ 0) ∧ ∀ p, eval p D ≠ 0 →
           SimultaneousBlockConditions.BlockConditions p ∧
-          GenericF13.Conditions (AugmentedGeneric.coefficientMixed p) (AugmentedGeneric.coefficientChild p) ∧
+          GenericF13.Conditions (AugmentedGeneric.coefficientMixed
+            p) (AugmentedGeneric.coefficientChild p) ∧
           finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild p)) =
             (m+2).choose 3-m*upperEndpoint m ∧
           ∀ d : ConvolutionExpansionOpen.Dimensions m upper,
@@ -162,7 +165,8 @@ theorem common_open [Infinite K] (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (h2 : 
               (d.val+mixedCount m upper) (E d+mixedCount m upper*(m+1).choose 2) := by
   classical
   obtain ⟨E,hE,A,⟨a,ha⟩,hA⟩ := expansion_augmented (K := K) (L := L) m hm upper
-  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRange.generic_endpoint_conditions (K := K) m (by omega) upper h2
+  obtain ⟨B,⟨b,hb⟩,hB⟩ := EndpointF13AllRange.generic_endpoint_conditions (K := K) m (by
+    omega) upper h2
   have hA0 : A ≠ 0 := by intro h; simp [h] at ha
   have hB0 : B ≠ 0 := by intro h; simp [h] at hb
   obtain ⟨p₀,hp₀⟩ := nonempty_principal_intersection

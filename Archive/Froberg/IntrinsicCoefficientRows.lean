@@ -29,7 +29,8 @@ set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem intrinsic_row_relation_constants
     (Q : I → Forms K n d) (E : J → FullBiform K σ n R s)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
-    (hker : (bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d := d)) Q E P).ker=
+    (hker : (bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d :=
+      d)) Q E P).ker=
       (bilinearKoszulConstants (K := K) (W := W) Q E).range)
     (u : I → MvPolynomial (σ ⊕ Fin n) K) (hu : ∀ i,u i∈FullBiform K σ n R s)
     (b : J → Forms K n d) (p : MvPolynomial (σ ⊕ Fin n) K) (hp : p∈P.range)
@@ -41,7 +42,8 @@ theorem intrinsic_row_relation_constants
   obtain ⟨z,rfl⟩ := hp
   let x : ((I → FullBiform K σ n R s) × (J → Forms K n d)) × W :=
     ((fun i => ⟨u i,hu i⟩,b),z)
-  have hx : x∈(bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d := d)) Q E P).ker := by
+  have hx : x∈(bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d :=
+    d)) Q E P).ker := by
     apply LinearMap.mem_ker.mpr
     simpa only [bilinearKoszulRow,LinearMap.coe_mk,AddHom.coe_mk,x,
       fullBiformScalarProduct_apply,mul_comm] using hrel
@@ -49,11 +51,13 @@ theorem intrinsic_row_relation_constants
   obtain ⟨C,hC⟩ := hx
   refine ⟨C,?_,?_,?_⟩
   · intro i
-    have hi := congrArg (fun y : ((I → FullBiform K σ n R s) × (J → Forms K n d)) × W => (y.1.1 i).val) hC
+    have hi := congrArg (fun y : ((I → FullBiform K σ n R s) × (J → Forms K n d)) × W => (y.1.1
+      i).val) hC
     change (∑ j,C i j • E j).val=u i at hi
     simpa only [Submodule.coe_sum,Submodule.coe_smul] using hi.symm
   · intro j
-    have hj := congrArg (fun y : ((I → FullBiform K σ n R s) × (J → Forms K n d)) × W => (y.1.2 j).val) hC
+    have hj := congrArg (fun y : ((I → FullBiform K σ n R s) × (J → Forms K n d)) × W => (y.1.2
+      j).val) hC
     change (-∑ i,C i j • Q i).val=(b j).val at hj
     simpa only [Submodule.coe_neg,Submodule.coe_sum,Submodule.coe_smul] using hj.symm
   · have hz := congrArg (fun y : ((I → FullBiform K σ n R s) × (J → Forms K n d)) × W => y.2) hC
@@ -69,7 +73,8 @@ theorem intrinsic_polynomial_coefficient_row_exact
     (Erow : {i : I // j i=R} → FullBiform K σ n R s)
     (hE : ∀ i : {i : I // j i=R},E i.val=(Erow i).val)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
-    (hker : (bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d := d)) Q Erow P).ker=
+    (hker : (bilinearKoszulRow (fullBiformScalarProduct (σ := σ) (n := n) (R := R) (s := s) (d :=
+      d)) Q Erow P).ker=
       (bilinearKoszulConstants (K := K) (W := W) Q Erow).range)
     (hpairs : LinearIndependent K
       (fun p : {p : Sym2 I // positiveDegreePair j R p} => pairProducts E p.val))

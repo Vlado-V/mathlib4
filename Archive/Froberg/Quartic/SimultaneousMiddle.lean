@@ -26,12 +26,14 @@ variable {K : Type*} [Field K] {m c q : ℕ}
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 /-- Forget the four pure-motion coefficient blocks. -/
-def baseCoefficients (a : ParameterIndex m c q → K) : MiddleCoordinates.CoefficientIndex m c q → K :=
+def baseCoefficients (a : ParameterIndex m c q →
+  K) : MiddleCoordinates.CoefficientIndex m c q → K :=
   fun i => a (Sum.inl i)
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 /-- Extend a middle coefficient point with zero pure motions. -/
-def zeroMotionExtension (a : MiddleCoordinates.CoefficientIndex m c q → K) : ParameterIndex m c q → K :=
+def zeroMotionExtension (a : MiddleCoordinates.CoefficientIndex m c q →
+  K) : ParameterIndex m c q → K :=
   Sum.elim a (fun _ => 0)
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.

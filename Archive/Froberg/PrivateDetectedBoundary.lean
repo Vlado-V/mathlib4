@@ -85,7 +85,8 @@ theorem private_first_row_boundary
     have hp : (∑ i,(rename Sum.inl (outputCombination o (w i))*
         rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*u i)=
         ∑ i,(rename Sum.inl (outputCombination o (w i))*
-        rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*polynomialFormVector o s (v i) := by
+        rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*polynomialFormVector o s (v
+          i) := by
       simp only [hv]
     rw [hp,map_add,map_add,hC,add_zero,map_zero,biformVectorDetector_private T o
       (fun i => outputCombination o (w i)) ι A hA] at hr

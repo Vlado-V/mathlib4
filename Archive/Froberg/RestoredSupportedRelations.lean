@@ -39,7 +39,8 @@ theorem restored_supported_formal_relations
     (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
         formalMixed (Submodule.span K (Set.range (restorationForms (coreWeight h m) g)))=
       (D.mkQ.comp formalPolynomialMultiplication).ker ⊓
-        formalProducts Q (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
+        formalProducts Q (renameForm (K := K) (d := d) (Fin.natAdd h : Fin m → Fin
+          (h+m))).range := by
   exact restored_projected_formal_relations (coreWeight h m) g hi D.mkQ
     (supported_deletion_odd_zero D hD) (supported_deletion_positive_zero D hD)
     hodd degree Q _ hQ hlabel core_weight_zero_mem_scalar_range hreduce

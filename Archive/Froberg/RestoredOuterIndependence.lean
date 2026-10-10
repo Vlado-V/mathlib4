@@ -37,12 +37,14 @@ theorem restored_outer_independent (hdp : 1≤d) (hd : d%2=0)
     (hscalar : LinearIndependent K (fun i => p.1.1.1 (idx i)))
     (hlinear : LinearIndependent K (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) :
     LinearIndependent K (restoredOuterEndpoint hdp hd hO hJ heven idx slot p) := by
-  have hs : LinearIndependent K (fun i => rename (Sum.inr : Fin m → Fin h ⊕ Fin m) (p.1.1.1 (idx i)).val) := by
+  have hs : LinearIndependent K (fun i => rename (Sum.inr : Fin m → Fin h ⊕ Fin m) (p.1.1.1 (idx
+    i)).val) := by
     apply (hscalar.map' (Forms K m d).subtype (Submodule.ker_subtype _)).map'
       (rename Sum.inr).toLinearMap
     exact LinearMap.ker_eq_bot.mpr (rename_injective _ Sum.inr_injective)
   apply biformSplitEndpoint_independent
-  · simpa only [restoredBiformFamily_scalar_component (by omega) hd hO hJ heven hpos idx slot] using hs
+  · simpa only [restoredBiformFamily_scalar_component (by omega) hd hO hJ heven hpos idx
+    slot] using hs
   · simpa only [linearOddForm_component,ite_true] using linearOddForm_independent hdp _ hlinear
   · intro i
     rw [linearOddForm_component,if_neg (by decide)]
@@ -66,7 +68,8 @@ theorem restored_outer_independent_open (hdp : 1≤d) (hd : d%2=0)
     HasRestoredIndependentOpen (m := m) (f := f) hdp hd hO hJ heven idx slot := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨P,hP,hgood⟩ := scalar_vector_independence_open hq hf
-  obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O) idx)
+  obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O)
+    idx)
     (restoredOuterVectorParameters_surjective idx) P hP _ hgood
   refine ⟨E,hE,?_⟩
   intro p hp

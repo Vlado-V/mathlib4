@@ -188,7 +188,8 @@ theorem endpoint_normal_rank_gain_principal_open [Infinite K] (q p : Fin r → F
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem endpointMultiplication_motion (q p : Fin r → Forms K n d) (ε : K) :
-    endpointMultiplication (q + ε • p) = endpointMultiplication q + ε • endpointMultiplication p := by
+    endpointMultiplication (q + ε •
+      p) = endpointMultiplication q + ε • endpointMultiplication p := by
   apply LinearMap.ext
   intro a
   apply Subtype.ext
@@ -202,7 +203,8 @@ theorem independent_motion_principal_open [Infinite K] (q p : Fin r → Forms K 
   let family : Fin r → (Fin 1 → K) → Forms K n d := fun i a => q i + a 0 • p i
   have hpoly : ∀ i, IsPolynomialFamily (family i) := fun i =>
     (isPolynomialFamily_const (q i)).add
-      ((isPolynomialFamily_linear (LinearMap.proj (0 : Fin 1))).smul (isPolynomialFamily_const (p i)))
+      ((isPolynomialFamily_linear (LinearMap.proj (0 : Fin 1))).smul (isPolynomialFamily_const (p
+        i)))
   obtain ⟨D, hD, hprop⟩ := independent_polynomial_principal_open family hpoly 0
     (by simpa [family] using hq)
   exact ⟨D, hD, fun ε hε => hprop (fun _ => ε) hε⟩

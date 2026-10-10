@@ -26,7 +26,8 @@ variable {K F V W : Type*} [Field K] [Infinite K]
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An actual quotient of the prescribed dimension satisfies normalized
 image growth on every source subspace at once. -/
-abbrev ProjectionParameter (K : Type*) [Field K] (W : Type*) [AddCommGroup W] [Module K W] (b : ℕ) :=
+abbrev ProjectionParameter (K : Type*) [Field K] (W : Type*) [AddCommGroup W] [Module K W] (b :
+  ℕ) :=
   Fin (finrank K ((Fin (finrank K W) → K) →ₗ[K] (Fin b → K)))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -71,7 +72,8 @@ theorem normalized_projection_principal_open {u b : ℕ}
       (∃ x,eval x D≠0) ∧ ∀ x,eval x D≠0 →
       Function.Surjective (coordinateProjection x) ∧ finrank K (coordinateProjection x).ker=u ∧
       ∀ L : Submodule K V,
-        b*finrank K L ≤ finrank K V*finrank K ((BilinearImage.image mu L).map (coordinateProjection x)) := by
+        b*finrank K L ≤ finrank K V*finrank K ((BilinearImage.image mu L).map (coordinateProjection
+          x)) := by
   let eF := coordinates K F
   let eV := coordinates K V
   let eW := coordinates K W

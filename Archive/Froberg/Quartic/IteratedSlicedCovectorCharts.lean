@@ -40,7 +40,8 @@ theorem principal_open_excludes_profile_of_int_bound
         eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0 →
         ∀ ell : Fin T → K,ell ≠ 0 →
         (∀ i,finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
-          ((LinearMap.ker (relationMap mu ell)).comap (IteratedCovectorCharts.coordinates K b).toLinearMap) i)=r i) →
+          ((LinearMap.ker (relationMap mu ell)).comap (IteratedCovectorCharts.coordinates K
+            b).toLinearMap) i)=r i) →
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ¬((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 j)=0)) := by
   classical
@@ -60,7 +61,8 @@ theorem principal_open_excludes_Cell_profile
     (mu : (Fin B → K) →ₗ[K]
       (Fin (∑ k,blockDimensions (coreA c) (freeW m c) k) → K) →ₗ[K] (Fin T → K))
     (hcount : Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3)+
-      (T:ℤ)-(e:ℤ)-1 < (q*(totalA m c-profileDim i (levelCount r 1) (levelCount r 2) (levelCount r 3))+s:ℕ)) :
+      (T:ℤ)-(e:ℤ)-1 < (q*(totalA m c-profileDim i (levelCount r 1) (levelCount r 2) (levelCount r
+        3))+s:ℕ)) :
     ∃ P : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K B T q s))) K,
       (∃ x : SharedCovectorPolynomial.Input K B T q s,
         eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0) ∧
@@ -70,7 +72,8 @@ theorem principal_open_excludes_Cell_profile
         (∀ k,finrank K (FilteredImage.initialPiece
           (fun k => Fin (blockDimensions (coreA c) (freeW m c) k) → K)
           ((LinearMap.ker (relationMap mu ell)).comap
-            (IteratedCovectorCharts.coordinates K (blockDimensions (coreA c) (freeW m c))).toLinearMap) k)=blockRanks i r k) →
+            (IteratedCovectorCharts.coordinates K (blockDimensions (coreA c) (freeW m
+              c))).toLinearMap) k)=blockRanks i r k) →
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ¬((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 j)=0)) := by
   apply principal_open_excludes_profile_of_int_bound mu

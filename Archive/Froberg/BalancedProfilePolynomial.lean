@@ -102,7 +102,8 @@ theorem eventually_balanced_profile_sum_bound (d : ℕ) (U : Finset ℕ)
     norm_num only [Nat.cast_one, one_mul] at h₁ h₂
     rw [h₁,h₂]
   simp_rw [hBm] at hm
-  change 0 < 4 * (∑ u ∈ U, ((m+a+u-1).choose u : ℝ) * ((m+b+(d-u)-1).choose (d-u) : ℝ)) - (affineCountPolynomial d 2 c).eval (m : ℝ) at hm
+  change 0 < 4 * (∑ u ∈ U, ((m+a+u-1).choose u : ℝ) * ((m+b+(d-u)-1).choose (d-u) :
+    ℝ)) - (affineCountPolynomial d 2 c).eval (m : ℝ) at hm
   rw [hAm] at hm
   have hh : ((2*m+c+d-1).choose d : ℝ) ≤
       4 * ∑ u ∈ U, ((m+a+u-1).choose u : ℝ) * ((m+b+(d-u)-1).choose (d-u) : ℝ) := by linarith

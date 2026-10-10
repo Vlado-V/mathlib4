@@ -37,8 +37,10 @@ theorem exact_counts_restored_joint {d k h lo : ℕ}
         ∃ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
           eval ((Module.finBasis K _).equivFun p) D≠0 ∧
           StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d (G*(n : ℝ)^d) ∧
-          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d)
-            (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) (C*(n : ℝ)^d)
+          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm
+            (p.2 i)) d)
+            (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) (C*(n :
+              ℝ)^d)
             (coefficientCoordinates (fun i => p.1.1.1 (Sum.inl i))) := by
   obtain ⟨G,C,hG,hC,hjoint⟩ := exact_count_generic_flag_joint (K := K) (b := 0)
     hd hk hh hhpos upper a f e ha hc hδ hreserve
@@ -49,11 +51,14 @@ theorem exact_counts_restored_joint {d k h lo : ℕ}
   letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
   letI : Module.Finite K (RestoredJointRest n d J counts O) := finite_restoredJointRest hO
   intro D hD
-  let L := restoredJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f n) (counts := counts) hO
-  let coord := (Module.finBasis K (RestoredOuterSpace n d (upperCount n d) (f n) J counts O)).equivFun
+  let L := restoredJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f n) (counts
+    := counts) hO
+  let coord := (Module.finBasis K (RestoredOuterSpace n d (upperCount n d) (f n) J counts
+    O)).equivFun
   let P := substituteAffine (coord.toLinearMap.comp L) 0 D
   have heval (x) : eval x P=eval (coord (L x)) D := by
-    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from rfl,eval_substituteAffine,add_zero]
+    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from
+      rfl,eval_substituteAffine,add_zero]
     rfl
   have hP : ∃ x,eval x P≠0 := by
     obtain ⟨p,hp⟩ := hD
@@ -62,7 +67,8 @@ theorem exact_counts_restored_joint {d k h lo : ℕ}
   obtain ⟨pF,pQ,pR,hp,hmodel,hchild⟩ := hn _ P hP
   let p := L (Sum.elim pF (Sum.elim pQ pR))
   have hcoords := restoredJointFromCoordinates_eval hO pF pQ pR
-  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))=VectorParameters.generators pF :=
+  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2
+    i))=VectorParameters.generators pF :=
     congrArg Prod.fst hcoords
   have hQ : (fun i => p.1.1.1 (Sum.inl i))=coefficientForms K n d (upperCount n d) pQ :=
     congrArg (fun x => x.2.1) hcoords
@@ -86,7 +92,8 @@ theorem restored_joint_positive_scalar_fiber_at {h m d q f : ℕ}
       (p : RestoredOuterSpace m d q f J counts O),
       eval ((Module.finBasis K _).equivFun p) D≠0 →
       StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d G →
-      ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d)
+      ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2
+        i)) d)
         (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) C
         (coefficientCoordinates (fun i => p.1.1.1 (Sum.inl i))) →
       ∃ E : MvPolynomial (Fin (finrank K (PositiveScalars (K := K) m d J counts))) K,
@@ -95,7 +102,8 @@ theorem restored_joint_positive_scalar_fiber_at {h m d q f : ℕ}
           let p' := restoredScalarFiberCoordinates.symm (a,(restoredScalarFiberCoordinates p).2)
           eval ((Module.finBasis K _).equivFun p') D≠0 ∧
           StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p'.2 i)) d G ∧
-          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p'.2 i)) d)
+          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm
+            (p'.2 i)) d)
             (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p'.2 i))) C
             (coefficientCoordinates (fun i => p'.1.1.1 (Sum.inl i))) := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO

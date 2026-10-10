@@ -24,10 +24,13 @@ variable {K : Type} [Field K] [Infinite K]
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem endpoint_defects [IsAlgClosed K] (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (h2 : (2 : K) ≠ 0) :
-    (genericHomology K (m+3) 2 (parentCount m upper) : ℤ) ≤ max (genericHomology K m 2 (upperEndpoint m-1) : ℤ)
+    (genericHomology K (m+3) 2 (parentCount m upper) : ℤ) ≤ max (genericHomology K m 2
+      (upperEndpoint m-1) : ℤ)
         ((genericCokernel K m 2 (upperEndpoint m) : ℤ)-Counts.chi (m+3) (parentCount m upper)) ∧
-    (genericCokernel K (m+3) 2 (parentCount m upper) : ℤ) ≤ max (genericCokernel K m 2 (upperEndpoint m) : ℤ)
-        ((genericHomology K m 2 (upperEndpoint m-1) : ℤ)+Counts.chi (m+3) (parentCount m upper)) := by
+    (genericCokernel K (m+3) 2 (parentCount m upper) : ℤ) ≤ max (genericCokernel K m 2
+      (upperEndpoint m) : ℤ)
+        ((genericHomology K m 2 (upperEndpoint m-1) : ℤ)+Counts.chi (m+3) (parentCount m
+          upper)) := by
   have hw := QuadraticNonTwoTransfer.parent_defect_witness (K := K) m hm upper h2
   rw [SmallTransfer.parent_count m (by omega) upper,Nat.add_comm 3 m] at hw
   obtain ⟨f,hf,hH,hC⟩ := hw

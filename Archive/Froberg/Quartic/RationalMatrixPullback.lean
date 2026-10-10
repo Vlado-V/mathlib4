@@ -64,7 +64,8 @@ theorem Data.rank_eq {F : J → MvPolynomial I K} {G : MvPolynomial I K}
     (p : I → K) (hp : eval p G ≠ 0) :
     (evaluated D.matrix p).rank = (evaluated B (rationalMap F G p)).rank := by
   rw [D.eval_matrix p hp]
-  exact Matrix.rank_smul_of_mem_nonZeroDivisors _ (mem_nonZeroDivisors_of_ne_zero (pow_ne_zero _ hp))
+  exact Matrix.rank_smul_of_mem_nonZeroDivisors _ (mem_nonZeroDivisors_of_ne_zero (pow_ne_zero _
+    hp))
 
 /-- Clearing the denominator also preserves all actual kernel vectors. -/
 theorem Data.ker_eq {F : J → MvPolynomial I K} {G : MvPolynomial I K}

@@ -93,7 +93,8 @@ private def piSubmoduleEquiv {A : Type*} {V : A → Type*}
 theorem sum_shadow_finrank_le_image
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val)) :
     (∑ b, finrank K (fiberShadow (d := d) e v C b)) ≤
-      finrank K (Quartic.BilinearImage.image (fiberMultiply (d := d) e v he) (Submodule.pi Set.univ C)) := by
+      finrank K (Quartic.BilinearImage.image (fiberMultiply (d := d) e v he) (Submodule.pi Set.univ
+        C)) := by
   letI : ∀ b : Exponent n (s+d), Module.Free K (fiberShadow e v C b) := fun _ => inferInstance
   have hh := Submodule.finrank_mono (pi_shadow_le_image (d := d) e v he C)
   rw [(piSubmoduleEquiv (fiberShadow (d := d) e v C)).finrank_eq,

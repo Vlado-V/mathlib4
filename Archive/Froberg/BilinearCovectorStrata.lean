@@ -139,7 +139,8 @@ theorem generic_surjective_of_budgets [Infinite K]
   have hle : finrank K (LinearMap.ker (relationMap mu ell)) ≤ a := by
     simpa using (LinearMap.ker (relationMap mu ell)).finrank_le
   let r : Fin (a+1) := ⟨finrank K (LinearMap.ker (relationMap mu ell)),by omega⟩
-  have hQr : eval Q (P r) ≠ 0 := (Finset.prod_ne_zero_iff.mp (by simpa only [map_prod] using hQ)) r (Finset.mem_univ r)
+  have hQr : eval Q (P r) ≠ 0 := (Finset.prod_ne_zero_iff.mp (by simpa only [map_prod] using
+    hQ)) r (Finset.mem_univ r)
   exact hgood r Q hQr ell hell rfl
 
 end Froberg.BilinearCovectorStrata

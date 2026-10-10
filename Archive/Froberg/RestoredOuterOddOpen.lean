@@ -39,12 +39,14 @@ def restoredOuterVectorParameters (idx : Fin r ≃ Label q J counts) :
     · funext i
       change PreparedTarget.outerVectorEquiv.symm (a • p.2 i)=
         a • PreparedTarget.outerVectorEquiv.symm (p.2 i)
-      exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d := d)).symm a (p.2 i)
+      exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d :=
+        d)).symm a (p.2 i)
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredOuterVectorParameters_surjective (idx : Fin r ≃ Label q J counts) :
-    Function.Surjective (restoredOuterVectorParameters (m := m) (d := d) (f := f) (O := O) idx) := by
+    Function.Surjective (restoredOuterVectorParameters (m := m) (d := d) (f := f) (O := O)
+      idx) := by
   rintro ⟨g,Q⟩
   refine ⟨(((fun i => Q (idx.symm i),0),0),fun i => PreparedTarget.outerVectorEquiv (g i)),?_⟩
   apply Prod.ext
@@ -70,10 +72,12 @@ theorem restored_outer_odd_open (hh : 0<h) (hm : 0 < m) (hd : 3≤d) (hdeven : d
       (∃ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) P≠0) ∧
       ∀ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) P≠0 →
         OddSplitExact (restoredBiformFamily hdeven hO hJ heven idx slot p.1)
-          (fun j => linearOddForm (by omega : 1≤d) (PreparedTarget.outerVectorEquiv.symm (p.2 j))) := by
+          (fun j => linearOddForm (by omega : 1≤d) (PreparedTarget.outerVectorEquiv.symm (p.2
+            j))) := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨P,hP,hgood⟩ := scalar_vector_rows_open hh hm (by omega) D hD hmodel hscalar hupper
-  obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O) idx)
+  obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O)
+    idx)
     (restoredOuterVectorParameters_surjective idx) P hP _ hgood
   refine ⟨E,hE,?_⟩
   intro p hp

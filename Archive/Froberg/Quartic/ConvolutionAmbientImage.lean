@@ -59,7 +59,8 @@ theorem column_mem (k : Fin (t+2)) : convolutionMixed K t w k ∈ relations K t 
   · simp [h, Ne.symm h, Pi.single_apply]
 
 /-- The degree-one relation space has no additional generators. -/
-theorem relations_one_eq_span : relations K t w 1 = Submodule.span K (Set.range (convolutionMixed K t w)) := by
+theorem relations_one_eq_span : relations K t w 1 = Submodule.span K (Set.range (convolutionMixed K
+  t w)) := by
   classical
   apply le_antisymm
   · intro v hv
@@ -70,7 +71,8 @@ theorem relations_one_eq_span : relations K t w 1 = Submodule.span K (Set.range 
       apply Subtype.ext
       simp only [Finset.sum_apply, Pi.smul_apply, AddSubmonoidClass.coe_finsetSum,
         SetLike.val_smul, smul_eq_C_mul, presentation_apply_val]
-      change (∑ i : Fin t, X (Fin.castAdd w i) * (u (ConvolutionPresentation.columnIndex r i)).val) =
+      change (∑ i : Fin t, X (Fin.castAdd w i) * (u (ConvolutionPresentation.columnIndex r
+        i)).val) =
         ∑ k : Fin (t+2), C ((u k).val.coeff 0) * (convolutionMixed K t w k r).val
       simp only [convolutionMixed, AddSubmonoidClass.coe_finsetSum, apply_ite,
         ZeroMemClass.coe_zero, Finset.mul_sum, mul_ite, mul_zero]
@@ -91,7 +93,8 @@ theorem relations_one_eq_span : relations K t w 1 = Submodule.span K (Set.range 
 /-- The degree-three presentation is precisely all quadratic multiples of
 the actual degree-one presentation space. -/
 theorem relations_three_eq_image :
-    relations K t w 3 = BilinearImage.image (multiplication (K := K) (t := t) (w := w)) (relations K t w 1) := by
+    relations K t w 3 = BilinearImage.image (multiplication (K := K) (t := t) (w := w)) (relations K
+      t w 1) := by
   classical
   apply le_antisymm
   · intro v hv
@@ -105,7 +108,8 @@ theorem relations_three_eq_image :
       simp only [GeneralF13.multiplication_val,Finset.sum_apply,AddSubmonoidClass.coe_finsetSum]
       apply Finset.sum_congr rfl
       intro k _
-      change (convolutionMixed K t w k r).val * (u k).val = (u k).val * (convolutionMixed K t w k r).val
+      change (convolutionMixed K t w k r).val * (u k).val = (u k).val * (convolutionMixed K t w k
+        r).val
       ring
     rw [he]
     apply Submodule.sum_mem
@@ -128,7 +132,8 @@ theorem relations_three_eq_image :
 /-- Actual quotient multiplication has exactly the projected ambient image. -/
 theorem image_eq_map (L : Submodule K (Piece K t w 1)) :
     ConvolutionProfileImage.quadraticImage L =
-      (BilinearImage.image multiplication (L.comap (relations K t w 1).mkQ)).map (relations K t w 3).mkQ := by
+      (BilinearImage.image multiplication (L.comap (relations K t w 1).mkQ)).map (relations K t w
+        3).mkQ := by
   exact QuotientBilinearImage.image_eq_map multiplication (relations K t w 1) (relations K t w 3)
     ConvolutionInitialImage.pieceBilinear (fun _ _ => rfl) L
 

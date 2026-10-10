@@ -92,8 +92,10 @@ theorem augmented_quotient (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4
       quotientAugmented ω F h r (b, Q.mkQ a, ξ) := by
   let Q := Submodule.span K (Set.range h)
   have ht := pureTrace_map Q.mkQ r ξ
-  have ht₁ : Q.mkQ (pureTrace r ξ).1 = (pureTrace (fun i => Q.mkQ (r i)) ξ).1 := congrArg Prod.fst ht
-  have ht₂ : Q.mkQ (pureTrace r ξ).2 = (pureTrace (fun i => Q.mkQ (r i)) ξ).2 := congrArg Prod.snd ht
+  have ht₁ : Q.mkQ (pureTrace r ξ).1 = (pureTrace (fun i => Q.mkQ (r i))
+    ξ).1 := congrArg Prod.fst ht
+  have ht₂ : Q.mkQ (pureTrace r ξ).2 = (pureTrace (fun i => Q.mkQ (r i))
+    ξ).2 := congrArg Prod.snd ht
   simp only [quotientAugmented, augmented_apply]
   apply Prod.ext
   · change Q.mkQ ((F b).1 + ω • a + (pureTrace r ξ).1) =
@@ -114,7 +116,8 @@ theorem childSum_mem (h : Fin q → A) (t : Fin q → K) :
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem lifted_injective_of_quotient (F : S →ₗ[K] A × A)
     (h : Fin q → A) (r : Fin 4 → A) (hh : LinearIndependent K h)
-    (hq : Function.Injective (quotientAugmented ω F h r)) : Function.Injective (lifted ω F h r) := by
+    (hq : Function.Injective (quotientAugmented ω F h r)) : Function.Injective (lifted ω F h
+      r) := by
   let Q := Submodule.span K (Set.range h)
   apply LinearMap.ker_eq_bot.mp
   apply le_antisymm _ bot_le
@@ -145,7 +148,8 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Injectivity on the fixed polynomial spaces descends to the moving actual quotient. -/
 theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
     (h : Fin q → A) (r : Fin 4 → A)
-    (hl : Function.Injective (lifted ω F h r)) : Function.Injective (quotientAugmented ω F h r) := by
+    (hl : Function.Injective (lifted ω F h r)) : Function.Injective (quotientAugmented ω F h
+      r) := by
   let Q := Submodule.span K (Set.range h)
   apply LinearMap.ker_eq_bot.mp
   apply le_antisymm _ bot_le
@@ -158,7 +162,8 @@ theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
     rw [augmented_quotient, hz]
   have hv₁ : v.1 ∈ Q := (Submodule.Quotient.mk_eq_zero Q).mp (congrArg Prod.fst hv)
   have hv₂ : v.2 ∈ Q := (Submodule.Quotient.mk_eq_zero Q).mp (congrArg Prod.snd hv)
-  obtain ⟨t, ht⟩ := (Submodule.mem_span_range_iff_exists_fun K).mp (Q.neg_mem (Q.add_mem hv₁ (Q.smul_mem ω hv₂)))
+  obtain ⟨t, ht⟩ := (Submodule.mem_span_range_iff_exists_fun K).mp (Q.neg_mem (Q.add_mem hv₁
+    (Q.smul_mem ω hv₂)))
   have hshift : augmented ω F r (b, a + v.2, ξ) = v + (ω • v.2, -v.2) := by
     apply Prod.ext <;> simp only [augmented_apply, Prod.fst_add, Prod.snd_add, v]
     all_goals try simp only [smul_add]
@@ -210,7 +215,8 @@ def liftedFamily (a : ParameterIndex m c q → K) :
   lifted ω (productMap (coefficientMixed a)) (coefficientChild a) (coefficientMotions a)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily ω (K := K) (m := m) (c := c) (q := q)) := by
+theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily ω (K := K) (m := m) (c := c) (q
+  := q)) := by
   classical
   apply lifted_polynomial ω
   · apply productMap_polynomial
@@ -231,7 +237,8 @@ theorem exists_injective_parameter (hc : c ≤ m)
   obtain ⟨hg, Q, hQ, _, r, _, hr, _⟩ := AugmentedMiddleOmega.augmented_witness ω hω hω1 hc hbudget
   obtain ⟨h, hh, hspan⟩ := MiddleGeneric.family_of_submodule Q hQ
   let r₀ : Fin 4 → Forms K m 2 := fun i => Classical.choose (Q.mkQ_surjective (r i))
-  have hr₀ : (fun i => Q.mkQ (r₀ i)) = r := funext (fun i => Classical.choose_spec (Q.mkQ_surjective (r i)))
+  have hr₀ : (fun i => Q.mkQ (r₀ i)) = r := funext (fun i => Classical.choose_spec (Q.mkQ_surjective
+    (r i)))
   have hquot : Function.Injective (quotientAugmented ω (productMap (mixedFamily hc)) h r₀) := by
     apply (quotientAugmented_span_eq ω _ h r₀ Q hspan).mpr
     rw [productMap_specialization, hr₀]
@@ -240,7 +247,8 @@ theorem exists_injective_parameter (hc : c ≤ m)
   refine ⟨encode (mixedFamily hc) h r₀, ?_, ?_, ?_⟩
   · simpa only [coefficientMixed_encode] using hg
   · simpa only [coefficientChild_encode] using hh
-  · simpa only [liftedFamily, coefficientMixed_encode, coefficientChild_encode, coefficientMotions_encode] using
+  · simpa only [liftedFamily, coefficientMixed_encode, coefficientChild_encode,
+    coefficientMotions_encode] using
       lifted_injective_of_quotient ω (productMap (mixedFamily hc)) h r₀ hh hquot
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
@@ -249,7 +257,8 @@ def GenericAugmented (K : Type*) [Field K] (ω : K) (m c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (ParameterIndex m c q) K, (∃ a₀, eval a₀ D ≠ 0) ∧
     ∀ a, eval a D ≠ 0 → LinearIndependent K (coefficientMixed a) ∧
       LinearIndependent K (coefficientChild a) ∧ Function.Injective
-        (quotientAugmented ω (productMap (coefficientMixed a)) (coefficientChild a) (coefficientMotions a))
+        (quotientAugmented ω (productMap (coefficientMixed a)) (coefficientChild a)
+          (coefficientMotions a))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The source parameterized augmented numerical budget supplies a nonempty determinant open,
@@ -268,7 +277,8 @@ theorem genericAugmented_of_budget (hc : c ≤ m)
   obtain ⟨Dl, hDl, hpl⟩ := injective_polynomial_principal_open
     (liftedFamily ω (K := K) (m := m) (c := c) (q := q))
     (liftedFamily_polynomial ω (K := K) (m := m) (c := c) (q := q)) a₀ hi
-  refine ⟨Dg * Dh * Dl, ⟨a₀, by simpa only [map_mul] using mul_ne_zero (mul_ne_zero hDg hDh) hDl⟩, ?_⟩
+  refine ⟨Dg * Dh * Dl, ⟨a₀, by simpa only [map_mul] using mul_ne_zero (mul_ne_zero hDg hDh) hDl⟩,
+    ?_⟩
   intro a ha
   simp only [map_mul, mul_ne_zero_iff] at ha
   exact ⟨hpg a ha.1.1, hph a ha.1.2, quotient_injective_of_lifted ω _ _ _ (hpl a ha.2)⟩

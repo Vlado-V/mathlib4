@@ -73,7 +73,8 @@ theorem card_nonfull_targets_le
     (fun _ _ _ _ hh => Subtype.ext hh)
   have hT : (T.image Subtype.val).card = T.card := card_image_of_injOn
     (fun _ _ _ _ hh => Subtype.ext hh)
-  have hh := Froberg.card_bad_targets_le_square_mul (s := s) (B.image Subtype.val) (T.image Subtype.val)
+  have hh := Froberg.card_bad_targets_le_square_mul (s := s) (B.image Subtype.val) (T.image
+    Subtype.val)
     (by
       intro b hb
       obtain ⟨b,hb',rfl⟩ := mem_image.mp hb
@@ -108,7 +109,8 @@ theorem fiber_image_codimension_le (he : ∀ i, (e i).degree = s)
       exact (Nat.sub_le _ _).trans (by simpa using (relationFiber e v b.val).finrank_quotient_le)
     · rw [if_neg hb]
       have hfull : fiberShadow e v C b = ⊤ := by simpa [T] using hb
-      have heq := congrArg (fun S : Submodule K ((Fin h → K) ⧸ relationFiber e v b.val) => finrank K S) hfull
+      have heq := congrArg (fun S : Submodule K ((Fin h → K) ⧸ relationFiber e v b.val) => finrank K
+        S) hfull
       rw [finrank_top] at heq
       change _ - finrank K (fiberShadow e v C b) ≤ 0
       omega
@@ -145,7 +147,8 @@ theorem outer_image_codimension_le (he : ∀ i, (e i).degree = s)
   have ht : (∑ b : Exponent n (s+(s+1)),
       finrank K ((Fin h → K) ⧸ relationFiber e v b.val)) =
       finrank K ((Fin h → Forms K n (s+(s+1))) ⧸ relationSpace (d := s+1) e v he) := by
-    simpa only [Module.finrank_pi_fintype] using (quotientFiberEquiv (d := s+1) e v he).finrank_eq.symm
+    simpa only [Module.finrank_pi_fintype] using (quotientFiberEquiv (d := s+1) e v
+      he).finrank_eq.symm
   rw [ht,sum_source_fiber_finrank e v he,hCdim] at hb
   exact (Nat.sub_le_sub_left hCimage _).trans hb
 

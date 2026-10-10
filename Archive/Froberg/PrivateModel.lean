@@ -26,9 +26,11 @@ lemma private_small_fiber_bound {k s h : ℕ} (hk : 0 < k) (hs : 2 ≤ s)
 lemma exists_generic_private_vectors {K : Type*} [Field K] [Infinite K]
     (k a s b h : ℕ) :
     ∃ u : Labels k a s ⊕ Fin b → Fin h → K,
-      (∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u i.val)) ∧
+      (∀ U : Finset (Labels k a s ⊕ Fin b),U.card ≤ h → LinearIndependent K (fun i : U => u
+        i.val)) ∧
       MixedExterior.UniversalMixedPosition u ∧
-      (∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => u (Sum.inl i.val))) ∧
+      (∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => u (Sum.inl
+        i.val))) ∧
       MixedExterior.UniversalMixedPosition (fun i => u (Sum.inl i)) := by
   classical
   obtain ⟨u,hu,hm⟩ := MixedExterior.exists_universal_mixed_vectors

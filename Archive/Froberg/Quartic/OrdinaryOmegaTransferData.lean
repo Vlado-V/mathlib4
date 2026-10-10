@@ -25,7 +25,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The one marked space is realized by actual child cycles and has exactly
 δ dimensions. Both child and response conditions hold at the same actual
 parameter, as required to apply the exact deformation columns. -/
-theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
+theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠
+  -1)
     (hchild : MarkedEndpoints K m) :
     ∃ p : Parameters K m upper,∃ k : Fin (upperEndpoint m),
       ∃ r : Fin 4 → Forms K m 2,∃ s : Fin (mixedCount m upper) → Forms K m 2,
@@ -48,7 +49,8 @@ theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
     simp only [Q,baseProjection_encode,AugmentedGeneric.coefficientChild_encode]
   obtain ⟨A,⟨a,ha⟩,hA⟩ := MarkedEndpointFlag.principal_open (by omega : 1 ≤ m)
     (upperEndpoint m) rfl Q hpoly hsurj hchild
-  obtain ⟨B,⟨b,hb⟩,hB⟩ := ActualSmallResponseRankOmega.common_open (K := K) ω m hmlo hmhi upper hω hω1
+  obtain ⟨B,⟨b,hb⟩,hB⟩ := ActualSmallResponseRankOmega.common_open (K :=
+    K) ω m hmlo hmhi upper hω hω1
   have hA0 : A≠0 := by intro h; simp [h] at ha
   have hB0 : B≠0 := by intro h; simp [h] at hb
   obtain ⟨p,hp⟩ := nonempty_principal_intersection (![A,B] : Fin 2 →

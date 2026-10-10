@@ -42,7 +42,8 @@ namespace PreparedParameters
 
 theorem eventually_uniform_positive_leading_principal_open {h d u : ℕ}
     (hh : 0<h) (hd : 2≤d) :
-    ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ (q f : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
+    ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ (q f : ℕ) (J : Finset ℕ) (counts : ℕ →
+      ℕ)
       (O : ℕ → Submodule K (Poly K h)) (hO : ∀ j∈J,O j≤Forms K h j),
       (∀ j : J,∃ p : Space n d q J counts O,LinearIndependent K (p.2 j)) →
       HasLeadingPrivateOpen (n := n) (d := d) (q := q) (f := f) (u := u) (counts := counts) hO := by

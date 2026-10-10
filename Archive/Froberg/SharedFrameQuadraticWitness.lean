@@ -24,7 +24,8 @@ variable {K : Type} [Field K] [Infinite K] {h a z d r f u c : ℕ}
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem quadraticPolynomialDetector_supported
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
-    (quadraticPolynomialDetector L).comp (homogeneousComponent 2)=quadraticPolynomialDetector L := by
+    (quadraticPolynomialDetector L).comp (homogeneousComponent
+      2)=quadraticPolynomialDetector L := by
   apply LinearMap.ext
   intro p
   change L ⟨homogeneousComponent 2 (homogeneousComponent 2 p),_⟩=
@@ -53,7 +54,8 @@ theorem exists_shared_frame_quadratic_witness {I : Type*} [Fintype I] [Decidable
         (biformVectorDetector (quadraticPolynomialDetector L))
         (fun i => renameForm (Fin.castAdd z) (Q i))
         (privatePowerBiform (a := a) (d := d) (fun i => e (w i)) ι)).ker=
-      (quadraticNuisanceBoundary (privatePowerBiform (a := a) (d := d) (fun i => e (w i)) ι)).range ∧
+      (quadraticNuisanceBoundary (privatePowerBiform (a := a) (d := d) (fun i => e (w i))
+        ι)).range ∧
       ∀ x v,quadraticNuisanceRow (t := d-2) (FullBiform K (Fin h) (a+z) 1 (d-1)).subtype
         (biformVectorDetector (quadraticPolynomialDetector L))
         (fun i => renameForm (Fin.castAdd z) (Q i))

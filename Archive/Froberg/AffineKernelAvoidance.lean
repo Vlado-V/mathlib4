@@ -58,7 +58,8 @@ theorem affine_kernel_stratum_joint
       Submodule.span K (Set.range (graphFromFin c.2 u))=(relationMap mu ell).ker →
       r≤finrank K (BilinearImage.image muH (relationMap mu ell).ker) →
       KernelCovectorExcluded mu B y ell
-  have hchart (c : C) : ∃ D : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K b T q s))) K,
+  have hchart (c : C) : ∃ D : MvPolynomial (Fin (finrank K (SharedCovectorPolynomial.Input K b T q
+    s))) K,
       (∃ y : SharedCovectorPolynomial.Input K b T q s,eval ((Module.finBasis K _).equivFun y) D≠0) ∧
       ∀ y,eval ((Module.finBasis K _).equivFun y) D≠0 → Good c y := by
     apply affine_kernel_normalized_joint mu mu₀ muH bottom higher res hres hcompat

@@ -62,7 +62,8 @@ theorem homology_coefficient_kernel (q : Fin r → Forms K n d) (hq : LinearInde
 
 /-- Separation gives an injection of the new part of actual endpoint homology
 into the array of new-generator coefficients modulo all degree-`d` relations. -/
-theorem exists_injective_homology_coefficients (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem exists_injective_homology_coefficients (q : Fin r → Forms K n d) (hq : LinearIndependent K
+  q)
     (W : Submodule K (Forms K n d)) (f : Fin t → Forms K n d)
     (hspan : Submodule.span K (Set.range q) = W ⊔ Submodule.span K (Set.range f))
     (hf : LinearIndependent K (fun i => W.mkQ (f i)))

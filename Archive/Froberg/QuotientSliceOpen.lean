@@ -60,7 +60,8 @@ theorem quotient_slices_principal_open (mu : F →ₗ[K] V →ₗ[K] W)
       simpa only [cuts,aeval_eq_eval,ClosedCovectorEquations.eval_linearForm] using hc i)
     have hz := (dualCoordinates_eq_zero_iff (coordinates K W) ell).mpr he
     simpa only [ell,dualCoordinates_comp_covector] using hz
-  obtain ⟨P,hP,hgood⟩ := presentation_slices_principal_open (coordinateTensor mu) Ac hAc s cuts p₀ hempty
+  obtain ⟨P,hP,hgood⟩ := presentation_slices_principal_open (coordinateTensor
+    mu) Ac hAc s cuts p₀ hempty
   refine ⟨P,hP,?_⟩
   intro p hp
   apply (quotient_slices_iff_lifted mu _ s).mpr

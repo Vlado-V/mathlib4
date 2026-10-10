@@ -29,7 +29,8 @@ theorem correctionCount_eq (hm : 320 ≤ m)
       ActualMarkedSlicedMotionAvoidanceOmega.correctionCount (c := mixedCount m upper) h U := by
   have hH := (UniformScalar.structural_dimension_signs m hm upper).2.1
   have hleft := StrongActualSlices.markedCorrectionCount_cast m hm upper (finrank K U+1)
-  have hright : (ActualMarkedSlicedMotionAvoidanceOmega.correctionCount (c := mixedCount m upper) h U : ℤ) =
+  have hright : (ActualMarkedSlicedMotionAvoidanceOmega.correctionCount (c := mixedCount m upper) h
+    U : ℤ) =
       Counts.H m (upperEndpoint m) (mixedCount m upper)+4+finrank K U :=
     Int.toNat_of_nonneg (by omega)
   push_cast at hleft
@@ -54,7 +55,8 @@ theorem closed_slices (hm : 320 ≤ m)
     (hslices : StrongActualSlices.HasAmbientSlices g
       (StrongActualSlices.markedCorrectionCount m upper (finrank K U+1)) h) :
     ∃ Z' : (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) →
-        Fin (ActualMarkedSlicedMotionAvoidanceOmega.sliceCount (c := mixedCount m upper) h U d.val) → Rows K m 3,
+        Fin (ActualMarkedSlicedMotionAvoidanceOmega.sliceCount (c := mixedCount m upper) h U
+          d.val) → Rows K m 3,
       ActualMarkedSlicedMotionAvoidanceOmega.ClosedSlices g h U Z' := by
   obtain ⟨Z,hZ⟩ := hslices
   let reindex (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper)) :
@@ -62,7 +64,8 @@ theorem closed_slices (hm : 320 ≤ m)
     Fin.cast (congrArg (fun n => n+1)
       (ExpansionMotionBridge.threshold_count_eq (K := K) (upper := upper) (by omega)).symm) d
   let Z' (d : AmbientSliceMotion.Threshold (RowCount m 1) (mixedCount m upper))
-      (j : Fin (ActualMarkedSlicedMotionAvoidanceOmega.sliceCount (c := mixedCount m upper) h U d.val)) :=
+      (j : Fin (ActualMarkedSlicedMotionAvoidanceOmega.sliceCount (c := mixedCount m upper) h U
+        d.val)) :=
     Z (reindex d) (Fin.cast (budget_eq hm h U d.val).symm j)
   refine ⟨Z',?_⟩
   intro d ell hker hE hQ hslice

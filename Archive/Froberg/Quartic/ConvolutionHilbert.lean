@@ -84,7 +84,8 @@ theorem quadratic_euler_count (t : ℕ) :
 theorem cokernel_degreeTwo_euler :
     Module.finrank K (Cokernel K t 1) = t.choose 2 +
       Module.finrank K (LinearMap.ker (presentation (K := K) (t := t) (j := 1))) := by
-  have hq := (LinearMap.range (presentation (K := K) (t := t) (j := 1))).finrank_quotient_add_finrank
+  have hq := (LinearMap.range (presentation (K := K) (t := t) (j :=
+    1))).finrank_quotient_add_finrank
   have hk := (presentation (K := K) (t := t) (j := 1)).finrank_range_add_finrank_ker
   have hsource : Module.finrank K (Source K t 1) = (t + 2) * t := by
     simp [Source, Module.finrank_pi_fintype, Quartic.finrank_forms]
@@ -119,7 +120,8 @@ def quadraticFactorEquiv (ht : 2 ≤ t) :
   have hd : Module.finrank K (annihilator K t 1) =
       Module.finrank K (symmetricSpace K (t - 1)) := by
     rw [annihilator_finrank, cokernel_degreeTwo_finrank ht, convolution_factor_finrank t ht]
-  refine LinearEquiv.ofBijective (quadraticFactorMap (K := K) ht) ⟨quadraticFactorMap_injective ht, ?_⟩
+  refine LinearEquiv.ofBijective (quadraticFactorMap (K := K) ht) ⟨quadraticFactorMap_injective ht,
+    ?_⟩
   apply LinearMap.range_eq_top.mp
   apply Submodule.eq_top_of_finrank_eq
   exact (LinearMap.finrank_range_of_inj (quadraticFactorMap_injective ht)).trans hd

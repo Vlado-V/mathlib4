@@ -36,7 +36,8 @@ omit [FiniteDimensional K V] in
     repeated L x i = L (x i) := rfl
 
 /-- The repeated kernel is exactly the product of the original kernels. -/
-def kernelEquiv (L : V →ₗ[K] W) : LinearMap.ker (repeated (c := c) L) ≃ₗ[K] (Fin c → LinearMap.ker L) where
+def kernelEquiv (L : V →ₗ[K] W) : LinearMap.ker (repeated (c := c) L) ≃ₗ[K] (Fin c → LinearMap.ker
+  L) where
   toFun x i := ⟨x.val i,congrFun x.property i⟩
   invFun x := ⟨fun i => (x i).val, by ext i; exact (x i).property⟩
   left_inv _ := rfl
@@ -88,8 +89,10 @@ theorem rank_bound (L : V →ₗ[K] W) (ι : T →ₗ[K] (Fin c → V)) (hι : F
   omega
 
 /-- Additive form avoids truncated subtraction in subsequent integer counts. -/
-theorem dimension_le_rank_add (L : V →ₗ[K] W) (ι : T →ₗ[K] (Fin c → V)) (hι : Function.Injective ι) :
-    finrank K T ≤ finrank K (LinearMap.range ((repeated L).comp ι)) + c * finrank K (LinearMap.ker L) := by
+theorem dimension_le_rank_add (L : V →ₗ[K] W) (ι : T →ₗ[K] (Fin c → V)) (hι : Function.Injective
+  ι) :
+    finrank K T ≤ finrank K (LinearMap.range ((repeated L).comp ι)) + c * finrank K (LinearMap.ker
+      L) := by
   have hk := kernel_bound L ι hι
   have hn := ((repeated L).comp ι).finrank_range_add_finrank_ker
   omega

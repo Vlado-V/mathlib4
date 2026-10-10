@@ -109,7 +109,8 @@ private theorem eventually_before_endpoint_positive_at_kappa_one
   have hBdeg : B.natDegree = j := by
     rw [natDegree_mul' (by
       rw [hP'lead, monomialCountPolynomial_leadingCoeff]
-      exact mul_ne_zero hPpositive.ne' (inv_ne_zero (by exact_mod_cast Nat.factorial_ne_zero (j - d)))),
+      exact mul_ne_zero hPpositive.ne' (inv_ne_zero (by exact_mod_cast Nat.factorial_ne_zero (j -
+        d)))),
       hP'deg, monomialCountPolynomial_natDegree]
     omega
   have hBlead : B.leadingCoeff = P.leadingCoeff * ((j - d).factorial : ℝ)⁻¹ := by

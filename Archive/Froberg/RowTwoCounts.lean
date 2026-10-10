@@ -34,8 +34,10 @@ theorem rowTwoQuotientDimension_limit :
     have h := hid.sub rowTwoLinearDimension_limit
     norm_num only [show (1 : ℝ)-1/4=3/4 by norm_num] at h
     apply h.congr'
-    exact Eventually.of_forall fun h => by simp only [rowTwoLinearDimension,Nat.cast_sub (Nat.div_le_self h 4),sub_div]
-  have ha := private_nat_tendsto_atTop_of_positive_ratio (fun h : ℕ => h-h/4) (by norm_num : (0 : ℝ)<3/4) hrat
+    exact Eventually.of_forall fun h => by simp only [rowTwoLinearDimension,Nat.cast_sub
+      (Nat.div_le_self h 4),sub_div]
+  have ha := private_nat_tendsto_atTop_of_positive_ratio (fun h : ℕ => h-h/4) (by norm_num : (0 :
+    ℝ)<3/4) hrat
   have h := scaled_index_monomial_limit (fun h : ℕ => h-h/4) (3/4) 2 ha hrat
   norm_num [rowTwoQuotientDimension,show ∀ h : ℕ, h-h/4+2-1=h-h/4+1 by omega,Nat.factorial] at h ⊢
   exact h
@@ -62,7 +64,8 @@ theorem rowTwo_outer_density_gap {d : ℕ} (hd : 3 ≤ d) :
   have hρ := (criticalRatio_bounds (show 2 ≤ d by omega)).1
   have hprod := (criticalRatio_bounds (show 2 ≤ d by omega)).2.2.1
   have hmul := mul_le_mul_of_nonneg_right hHreal hρ.le
-  have hC : (0 : ℝ)<(2*d-2).choose (d-1) := by exact_mod_cast Nat.choose_pos (show d-1≤2*d-2 by omega)
+  have hC : (0 : ℝ)<(2*d-2).choose (d-1) := by exact_mod_cast Nat.choose_pos (show d-1≤2*d-2 by
+    omega)
   apply (div_lt_iff₀ hC).mpr
   nlinarith
 
@@ -73,7 +76,8 @@ theorem rowTwo_outer_block_margin {d : ℕ} (hd : 3 ≤ d) :
       (convolutionBlockCount (rowTwoLinearDimension h) d (d-1) : ℝ)/((d-1).factorial : ℝ) <
         (h : ℝ)*criticalRatio d/((d-1).factorial : ℝ) := by
   have hl := convolutionBlockCount_normalized_limit (e := d-1) (by omega : 0 < 1)
-    (by omega : 0 < d) rowTwoLinearDimension (1/4) (by simpa only [pow_one] using rowTwoLinearDimension_limit)
+    (by omega : 0 < d) rowTwoLinearDimension (1/4) (by simpa only [pow_one] using
+      rowTwoLinearDimension_limit)
   have hgap : (1/4 : ℝ)/((d+(d-1)-1).choose (d-1) : ℝ) < criticalRatio d := by
     simpa only [show d+(d-1)-1=2*d-2 by omega] using rowTwo_outer_density_gap hd
   filter_upwards [hl.eventually (gt_mem_nhds hgap),eventually_gt_atTop (0 : ℕ)] with h hh hh0

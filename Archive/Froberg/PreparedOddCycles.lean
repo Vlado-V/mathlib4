@@ -90,7 +90,8 @@ theorem zero_scalar_odd_cycles_exact (hd : 3≤d) (hdodd : d%2=1)
     | inr a =>
       have hh := biformImage_homogeneous _ _ (hO _ a.1.property) le_rfl (p.1.2 a.1 a.2).property
       change (p.1.2 a.1 a.2).val.IsHomogeneous (a.1.val+(d-a.1.val)) at hh
-      simpa only [PreparedParameters.high,Sum.elim_inr,Nat.add_sub_of_le (hJ _ a.1.property)] using hh
+      simpa only [PreparedParameters.high,Sum.elim_inr,Nat.add_sub_of_le (hJ _
+        a.1.property)] using hh
   · intro i hi
     cases i with
     | inl i => rfl

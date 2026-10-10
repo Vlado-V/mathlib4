@@ -93,7 +93,8 @@ theorem exists_deleted_row_threshold {d : ℕ} (hd : 0 < d) (e : ℕ) :
       m₀ ≤ S.card → S.card ≤ Sᶜ.card → Sᶜ.card ≤ S.card + 1 →
       ∀ (a : Fin n →₀ ℕ), a.degree = e → ∀ j : ℕ,
         2 * (n + e + d - 1).choose d ≤
-          5 * (∑ b ∈ (exponents n (e + d)).filter (fun b => partialDegree S b ≠ j), weight b a) := by
+          5 * (∑ b ∈ (exponents n (e + d)).filter (fun b => partialDegree S b ≠ j), weight b
+            a) := by
   obtain ⟨m₁, hm₁⟩ := eventually_atTop.mp (eventually_balanced_count_bounds hd e)
   refine ⟨max 1 m₁, ?_⟩
   intro n S hm hle hupper a ha j

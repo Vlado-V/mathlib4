@@ -79,12 +79,14 @@ theorem same_coordinates_injective : Function.Injective
 
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem adjacent_coordinates_injective : Function.Injective
-    (fun i : Bool × Bool => choiceCoordinates (adjacentLeft i) + choiceCoordinates (adjacentRight i)) := by
+    (fun i : Bool × Bool => choiceCoordinates (adjacentLeft i) + choiceCoordinates (adjacentRight
+      i)) := by
   decide +kernel
 
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem disjoint_coordinates_injective : Function.Injective
-    (fun i : Fin 3 × Bool × Bool => choiceCoordinates (disjointLeft i) + choiceCoordinates (disjointRight i)) := by
+    (fun i : Fin 3 × Bool × Bool => choiceCoordinates (disjointLeft i) + choiceCoordinates
+      (disjointRight i)) := by
   decide +kernel
 
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.
@@ -109,7 +111,8 @@ theorem adjacent_choices_injective : Function.Injective
 
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem disjoint_choices_injective : Function.Injective
-    (fun i : Fin 3 × Bool × Bool => canonicalChoice (disjointLeft i) + canonicalChoice (disjointRight i)) :=
+    (fun i : Fin 3 × Bool × Bool => canonicalChoice (disjointLeft i) + canonicalChoice
+      (disjointRight i)) :=
   choices_injective_of_coordinates disjointLeft disjointRight disjoint_coordinates_injective
 
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.

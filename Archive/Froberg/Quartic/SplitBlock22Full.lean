@@ -100,11 +100,13 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
       change middleProjection (sourceEmbedding a (Fin.natAdd 4 (Fin.castAdd q j))) = a.2.1 j
       simp
     · funext k
-      change SplitBlock31.coreProjection (sourceEmbedding a (Fin.natAdd 4 (Fin.natAdd c k))) = a.2.2 k
+      change SplitBlock31.coreProjection (sourceEmbedding a (Fin.natAdd 4 (Fin.natAdd c
+        k))) = a.2.2 k
       simp
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-theorem sourceEmbedding_injective : Function.Injective (sourceEmbedding (K := K) (m := m) (c := c) (q := q)) :=
+theorem sourceEmbedding_injective : Function.Injective (sourceEmbedding (K := K) (m := m) (c := c)
+  (q := q)) :=
   Function.LeftInverse.injective sourceProjection_sourceEmbedding
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -132,7 +134,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The embedded block has exactly its own multiplication kernel. -/
 theorem sourceEmbedding_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Source K m c q) :
-    quadraticMultiplication (fullGenerators g h) (sourceEmbedding a) = 0 ↔ multiplication g h a = 0 := by
+    quadraticMultiplication (fullGenerators g h) (sourceEmbedding
+      a) = 0 ↔ multiplication g h a = 0 := by
   rw [full_multiplication_commutes]
   exact map_eq_zero_iff _ targetEmbedding_injective
 

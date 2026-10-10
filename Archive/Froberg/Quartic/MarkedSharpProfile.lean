@@ -34,12 +34,16 @@ theorem finite_sharp_profile_bounds (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 12
   obtain ⟨e,he,hle⟩ := source_edge_reduction m (mixedCount m false) i hi n₁ n₂ n₃ hn
   rw [hsum] at he hle
   rw [sourceSharp_edge_cast] at hle
-  have hlo : (i:ℤ)+(SharpCertificate.edgeLeft e:ℤ)*(ProfileCertificate.freeW m (mixedCount m false):ℤ) ≤ d := by
-    have hr : (i:ℝ)+(SharpCertificate.edgeLeft e:ℝ)*(ProfileCertificate.freeW m (mixedCount m false):ℝ) ≤ (d:ℝ) := by
+  have hlo : (i:ℤ)+(SharpCertificate.edgeLeft e:ℤ)*(ProfileCertificate.freeW m (mixedCount m
+    false):ℤ) ≤ d := by
+    have hr : (i:ℝ)+(SharpCertificate.edgeLeft e:ℝ)*(ProfileCertificate.freeW m (mixedCount m
+      false):ℝ) ≤ (d:ℝ) := by
       linarith [he.1]
     exact_mod_cast hr
-  have hhi : d ≤ (i:ℤ)+(SharpCertificate.edgeRight e:ℤ)*(ProfileCertificate.freeW m (mixedCount m false):ℤ) := by
-    have hr : (d:ℝ) ≤ (i:ℝ)+(SharpCertificate.edgeRight e:ℝ)*(ProfileCertificate.freeW m (mixedCount m false):ℝ) := by
+  have hhi : d ≤ (i:ℤ)+(SharpCertificate.edgeRight e:ℤ)*(ProfileCertificate.freeW m (mixedCount m
+    false):ℤ) := by
+    have hr : (d:ℝ) ≤ (i:ℝ)+(SharpCertificate.edgeRight e:ℝ)*(ProfileCertificate.freeW m (mixedCount
+      m false):ℝ) := by
       linarith [he.2]
     exact_mod_cast hr
   have h := MarkedSharpCertificate.sharp_edge_inequalities m hmlo hmhi hm88 i hi e d ⟨hdlo,hdhi,hlo,hhi⟩

@@ -36,7 +36,8 @@ theorem private_coefficient_row_property
       (u : Fin b → MvPolynomial (σ ⊕ Fin n) K),
       (∀ i,x i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d R.val) →
       (∀ i,f i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d 0) →
-      (∀ i,u i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d (R.val-1)) →
+      (∀ i,u i∈coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d
+        (R.val-1)) →
       (∀ i k,¬(0<degree i ∧ 0<degree k ∧ degree i+degree k=R.val) → B i k=0) →
       (∑ i,scalar p i*x i)+(∑ i,if degree i=R.val then high p i*f i else 0)+
         (∑ i,∑ k,B i k • (high p i*high p k))+(∑ i,P i*u i)=0 → H u := by
@@ -49,7 +50,8 @@ theorem private_coefficient_row_property
     · exact (hx i).2
   have hu' (i) : u i∈FullBiform K σ n (R.val-1) (d-(R.val-1)) := by
     apply mem_biformImage_of_homogeneous
-    · simpa only [Nat.add_sub_of_le (by omega : R.val-1≤d)] using (show (u i).IsHomogeneous d from (hu i).1)
+    · simpa only [Nat.add_sub_of_le (by omega : R.val-1≤d)] using (show (u i).IsHomogeneous d from
+      (hu i).1)
     · exact (hu i).2
   choose f' hf' using fun i => homogeneous_output_zero_exists (hf i).1 (hf i).2
   let C := ∑ i,∑ k,B i k • (high p i*high p k)

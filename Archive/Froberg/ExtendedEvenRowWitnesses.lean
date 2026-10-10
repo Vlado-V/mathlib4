@@ -42,7 +42,8 @@ theorem exists_higher_extended_row_parameter {w v z d q b : ℕ}
   let bo := Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K R.val)
   obtain ⟨e,zv,he,Q,E,hproj,hER,hRdeg,hrest,hfull,hker⟩ :=
     exists_finite_even_projected_row h.hw h.hv bo
-      (fun _ : Fin 0 => (⊥ : Submodule K (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K R.val)) → K)))
+      (fun _ : Fin 0 => (⊥ : Submodule K (Fin (finrank K (homogeneousSubmodule (Fin w × Bool) K
+        R.val)) → K)))
       (fun i => Fin.elim0 i) counts J
       h.positive h.even h.degree T h.diagonal h.cross h.output_positive
       h.enough_generators h.divisor_capacity h.incidence h.scalar_open

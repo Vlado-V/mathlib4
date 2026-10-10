@@ -59,7 +59,8 @@ theorem private_reduction_open_of_witnesses
     (P : Fin b → FullBiform K σ n 1 (d-1))
     (hfirst : ∃ p : Space n d q J counts O,
       (privateAugmentedRow hO ⟨2,hcover 2 (by omega) (by omega) rfl⟩ p (fun i => (P i).val)).ker=
-        ((rowConstants hO ⟨2,hcover 2 (by omega) (by omega) rfl⟩ p).prodMap (intrinsicPrivateBoundary P)).range)
+        ((rowConstants hO ⟨2,hcover 2 (by omega) (by omega) rfl⟩ p).prodMap
+          (intrinsicPrivateBoundary P)).range)
     (hlater : ∀ R : J,R.val≠2 → ∃ p : Space n d q J counts O,
       (privateAugmentedRow hO R p (fun i => (P i).val)).ker=
         (privateAugmentedConstants (b := b) hO R p).range)

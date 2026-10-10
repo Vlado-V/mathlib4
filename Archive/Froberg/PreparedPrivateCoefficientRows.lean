@@ -43,7 +43,8 @@ theorem private_coefficient_row_of_separated
     · exact (hx i).2
   have hu' (i) : u i∈FullBiform K σ n (R.val-1) (d-(R.val-1)) := by
     apply mem_biformImage_of_homogeneous
-    · simpa only [Nat.add_sub_of_le (by omega : R.val-1≤d)] using (show (u i).IsHomogeneous d from (hu i).1)
+    · simpa only [Nat.add_sub_of_le (by omega : R.val-1≤d)] using (show (u i).IsHomogeneous d from
+      (hu i).1)
     · exact (hu i).2
   choose f' hf' using fun i => homogeneous_output_zero_exists (hf i).1 (hf i).2
   let C := ∑ i,∑ k,B i k • (high p i*high p k)

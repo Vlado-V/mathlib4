@@ -93,7 +93,8 @@ theorem principal_open_of_witness [IsAlgClosed K]
             (finiteEquiv (AugmentedGeneric.coefficientChild (baseProjection p) i)) v)=0) →
           (∀ j,covector ell (rowFiniteEquiv (coefficientSlices p d j))=0) → ell=0 := by
     intro d
-    apply AmbientCovectorSpreading.principal_open_closed_of_witness (K := K) (I := ParameterIndex M upper m c q) coordinate
+    apply AmbientCovectorSpreading.principal_open_closed_of_witness (K := K) (I := ParameterIndex M
+      upper m c q) coordinate
       (fun p j => rowFiniteEquiv (AugmentedGeneric.coefficientMixed (baseProjection p) j))
       (fun p i => finiteEquiv (AugmentedGeneric.coefficientChild (baseProjection p) i))
       (fun p j => rowFiniteEquiv (coefficientSlices p d j))
@@ -178,7 +179,8 @@ theorem common_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40
         SimultaneousBlockConditions.BlockConditions (baseProjection p) ∧
         GenericF13.Conditions (AugmentedGeneric.coefficientMixed (baseProjection p))
           (AugmentedGeneric.coefficientChild (baseProjection p)) ∧
-        finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild (baseProjection p))) =
+        finrank K (CubicGeneric.CubicQuotient (AugmentedGeneric.coefficientChild (baseProjection
+          p))) =
           (m+2).choose 3-m*upperEndpoint m ∧ ClosedConditions p := by
   classical
   obtain ⟨A,⟨a,ha⟩,hA⟩ := convolution_open (K := K) m hmlo hmhi upper

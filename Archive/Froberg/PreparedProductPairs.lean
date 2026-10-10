@@ -68,7 +68,8 @@ theorem prepared_pair_independence {J : Finset ℕ} {counts : ℕ → ℕ}
   have h := (linearIndependent_degree_pairs counts R q hq).comp e.symm e.symm.injective
   convert h using 1
   funext p
-  change pairProducts E p.val=pairProducts (fun a : LayerLabel J counts => q a.1.val a.2) (e.symm p).val
+  change pairProducts E p.val=pairProducts (fun a : LayerLabel J counts => q a.1.val a.2) (e.symm
+    p).val
   have he := congrArg Subtype.val (e.apply_symm_apply p)
   change Sym2.map ι (e.symm p).val=p.val at he
   rw [← he]

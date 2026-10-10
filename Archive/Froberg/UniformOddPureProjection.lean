@@ -25,7 +25,8 @@ theorem eventually_odd_tail_projection_uniform {e : ℕ} (he : 2≤e) (ho : Odd 
         (∀ L : Submodule K (Forms K h e),
           topComplementCount (1+e) h*finrank K L≤finrank K (Forms K h e)*
             finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P)) ∧
-        BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := 1+e) (e := 1)).flip P.ker=⊤ ∧
+        BilinearImage.image (gradedMultiplication (K := K) (n := h) (d := 1+e) (e :=
+          1)).flip P.ker=⊤ ∧
         (h : ℝ)/(2*((1+e : ℕ) : ℝ))≤
           (topComplementCount (1+e) h : ℝ)/(topSourceCount (1+e) h : ℝ) := by
   filter_upwards [odd_top_projection_hypotheses (show 3≤1+e by omega) ho,
@@ -53,7 +54,8 @@ theorem eventually_indexed_odd_tail_projection_uniform {d : ℕ} (hd : 3 ≤ d) 
       ∃ (U : Fin (tailGeneratorCount d h) → Forms K h d)
         (R : Forms K h (1+(d-1)) →ₗ[K] (Fin (topComplementCount d h) → K)),
         LinearIndependent K U ∧ Function.Surjective R ∧
-        R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1 ≤ d) h).symm.toLinearMap ∧
+        R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1 ≤ d)
+          h).symm.toLinearMap ∧
         (∀ L : Submodule K (Forms K h (d-1)),
           topComplementCount d h*finrank K L ≤ finrank K (Forms K h (d-1))*
             finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := d-1)) L).map R)) ∧
@@ -72,7 +74,8 @@ theorem eventually_indexed_odd_tail_projection_uniform {d : ℕ} (hd : 3 ≤ d) 
         (h : ℝ)/(2*(d : ℝ)) ≤ (topComplementCount d h : ℝ)/(topSourceCount d h : ℝ) := by
     have hx := eventually_odd_tail_projection_uniform (show 2 ≤ d-1 by omega)
       (show Odd (1+(d-1)) by rwa [heq])
-    rw [show topComplementCount (1+(d-1))=topComplementCount d from congrArg topComplementCount heq] at hx
+    rw [show topComplementCount (1+(d-1))=topComplementCount d from congrArg topComplementCount
+      heq] at hx
     simpa only [heq] using hx
   filter_upwards [he] with h hh
   intro K _ _
@@ -93,7 +96,8 @@ theorem eventually_indexed_odd_tail_projection_uniform {d : ℕ} (hd : 3 ≤ d) 
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem eventually_odd_pure_projection_data_uniform {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :
-    ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], Nonempty (OddPureProjectionData K d h (by omega)) := by
+    ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], Nonempty (OddPureProjectionData K d h
+      (by omega)) := by
   filter_upwards [eventually_indexed_odd_tail_projection_uniform hd ho,
     eventually_gt_atTop (0 : ℕ)] with h hh hhpos
   intro K _ _

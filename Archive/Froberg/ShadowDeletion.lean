@@ -23,7 +23,8 @@ def shadow (rel : I → J → Prop) [DecidableRel rel] (l : I → ℕ) (c : J �
 lemma min_le_shadow (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (i : I) (j : J) (hij : rel i j) :
     min (l i) (c j) ≤ shadow rel l c j := by
-  simpa only [shadow,ite_eq_left hij] using (le_sup (f := fun i => if rel i j then min (l i) (c j) else 0) (mem_univ i))
+  simpa only [shadow,ite_eq_left hij] using (le_sup (f := fun i => if rel i j then min (l i) (c j)
+    else 0) (mem_univ i))
 
 lemma shadow_le (rel : I → J → Prop) [DecidableRel rel]
     (l : I → ℕ) (c : J → ℕ) (j : J) : shadow rel l c j ≤ c j := by
@@ -78,7 +79,8 @@ lemma discarded_shadow_le (rel : I → J → Prop) [DecidableRel rel]
     exact (mem_filter.mp hi).1
   have hi : ∑ j ∈ B, (if j ∈ E then H else 0) = E.card*H := by
     rw [← sum_filter]
-    have he : B.filter (fun j => j ∈ E) = E := by ext j; simp only [mem_filter]; exact ⟨fun h => h.2,fun h => ⟨hEB h,h⟩⟩
+    have he : B.filter (fun j => j ∈ E) = E := by ext j; simp only [mem_filter]; exact ⟨fun h =>
+      h.2,fun h => ⟨hEB h,h⟩⟩
     rw [he]
     simp
   rw [hi] at hsum

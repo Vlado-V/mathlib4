@@ -83,7 +83,8 @@ theorem source_finrank (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (hs : Function.Surjective (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))) :
     (finrank K (Source ω g h r z markedU) : ℤ)=
       (2*m+2*c:ℕ)+Counts.H m q c+4+finrank K markedU := by
-  change (finrank K (SplitMiddle31.Homology (rowMixed g) × ExtraCorrectionOmega.Correction ω g h r z markedU):ℤ)=_
+  change (finrank K (SplitMiddle31.Homology (rowMixed g) × ExtraCorrectionOmega.Correction ω g h r z
+    markedU):ℤ)=_
   rw [Module.finrank_prod,SplitMiddle31.homology_finrank,
     ExtraCorrectionOmega.correction_finrank ω g h r z ha hs markedU,
     ← (SplitBlock22.homologyEquiv g h hh).finrank_eq]

@@ -136,7 +136,8 @@ def splitSourceEquiv (L : Submodule K (Piece K t 0 1))
       exact congrArg Prod.fst (degreeOneEquiv.apply_symm_apply (x.1.val,fun i => (x.2 i).val))
     · funext i
       apply Subtype.ext
-      exact congrArg (fun z => z.2 i) (degreeOneEquiv.apply_symm_apply (x.1.val,fun i => (x.2 i).val))
+      exact congrArg (fun z => z.2 i) (degreeOneEquiv.apply_symm_apply (x.1.val,fun i => (x.2
+        i).val))
   map_add' x y := by
     apply Prod.ext
     · apply Subtype.ext

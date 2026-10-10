@@ -79,7 +79,8 @@ theorem parent_endpoint_tight (m : ℕ) (upper : Bool) :
   have hq := upper_endpoint_tight (m + 3) (by omega)
   have hadj := lower_upper_adjacent (m + 3)
   have hlo : (lowerEndpoint (m + 3) : ℝ) ≤ (upperEndpoint (m + 3) : ℝ) := by exact_mod_cast hadj.1
-  have hhi : (upperEndpoint (m + 3) : ℝ) ≤ (lowerEndpoint (m + 3) : ℝ) + 1 := by exact_mod_cast hadj.2
+  have hhi : (upperEndpoint (m + 3) : ℝ) ≤ (lowerEndpoint (m + 3) :
+    ℝ) + 1 := by exact_mod_cast hadj.2
   cases upper <;> simp only [parentCount, Bool.false_eq_true, ite_false, ite_true] <;>
     constructor <;> linarith
 

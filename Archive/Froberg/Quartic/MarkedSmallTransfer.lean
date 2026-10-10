@@ -64,11 +64,13 @@ theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
   have hA0 : A ≠ 0 := by intro hz; simp [hz] at ha
   have hB0 : B ≠ 0 := by intro hz; simp [hz] at hb
   obtain ⟨ab,hab⟩ := PolynomialImageAvoidance.exists_eval_ne_zero (mul_ne_zero hA0 hB0)
-  let extra := fun a : AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m) → K =>
+  let extra := fun a : AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint
+    m) → K =>
     ExtraCorrectionOmega.squareClass (AugmentedGeneric.coefficientChild a) ζ
   have hExtra : ∀ a, eval a (A*B) ≠ 0 → Function.Injective
       (ExtraCorrectionOmega.augmented ω (AugmentedGeneric.coefficientMixed a)
-        (AugmentedGeneric.coefficientChild a) (AugmentedGeneric.coefficientMotions a) (extra a)) := by
+        (AugmentedGeneric.coefficientChild a) (AugmentedGeneric.coefficientMotions a) (extra
+          a)) := by
     intro a ha
     rw [map_mul,mul_ne_zero_iff] at ha
     change Function.Injective (ExtraCorrectionOmega.augmented ω _ _ _

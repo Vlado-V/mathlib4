@@ -81,7 +81,8 @@ theorem principal_open_family (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
         (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)))
         (d.val+mixedCount m upper) (e+mixedCount m upper*(m+1).choose 2) := by
     intro d
-    obtain ⟨e,ho,hs,hb⟩ := StrongConvolutionBounds.exists_threshold (K := L) m hm upper d.val (by omega)
+    obtain ⟨e,ho,hs,hb⟩ := StrongConvolutionBounds.exists_threshold (K := L) m hm upper d.val (by
+      omega)
     exact ⟨e,ho,hs,hb⟩
   choose E houter hscalar hbound using hthreshold
   have hopen : ∀ d : Dimensions m upper, ∃ D : MvPolynomial I K,

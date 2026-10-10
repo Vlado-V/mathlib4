@@ -49,7 +49,8 @@ def graphPolynomial (j : Selectors b r) (h : Fin (∑ i,r i)) (k : Fin (∑ i,b 
 
 theorem evaluated_graphVector (j : Selectors b r) (p : Parameters K j) (h : Fin (∑ i,r i)) :
     PolynomialSubspaceCovectorCharts.vector (graphPolynomial j) p h=
-      coordinates K b (lift j p (basisVector ((indexEquiv r).symm h).1 ((indexEquiv r).symm h).2)) := by
+      coordinates K b (lift j p (basisVector ((indexEquiv r).symm h).1 ((indexEquiv r).symm
+        h).2)) := by
   funext k
   exact eval_liftPolynomial _ _ _ _ _
 
@@ -74,7 +75,8 @@ theorem subspace_graphPolynomial (j : Selectors b r) (p : Parameters K j) :
       (chart j p).map (coordinates K b).toLinearMap := by
   have hfun : PolynomialSubspaceCovectorCharts.vector (graphPolynomial j) p=
       ((coordinates K b).toLinearMap.comp (lift j p)) ∘
-        (fun h : Fin (∑ i,r i) => basisVector ((indexEquiv r).symm h).1 ((indexEquiv r).symm h).2) :=
+        (fun h : Fin (∑ i,r i) => basisVector ((indexEquiv r).symm h).1 ((indexEquiv r).symm
+          h).2) :=
     funext (evaluated_graphVector j p)
   rw [PolynomialSubspaceCovectorCharts.subspace,hfun,Set.range_comp,← Submodule.map_span,
     enumerated_basis_span,Submodule.map_top,LinearMap.range_comp]
@@ -85,7 +87,8 @@ theorem covered_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
     (hprofile : ∀ i,finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
       (S.comap (coordinates K b).toLinearMap) i)=r i) :
     PolynomialSubspaceCovectorCharts.Covered (fun j : Selectors b r => graphPolynomial j) S := by
-  obtain ⟨j,p,hp⟩ := IteratedBlockCharts.exists_chart (S.comap (coordinates K b).toLinearMap) hprofile
+  obtain ⟨j,p,hp⟩ := IteratedBlockCharts.exists_chart (S.comap (coordinates K
+    b).toLinearMap) hprofile
   refine ⟨j,p,?_⟩
   rw [subspace_graphPolynomial,hp]
   exact Submodule.map_comap_eq_of_surjective (coordinates K b).surjective S
@@ -93,7 +96,8 @@ theorem covered_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
 theorem finrank_of_profile (S : Submodule K (Fin (∑ i,b i) → K))
     (hprofile : ∀ i,finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
       (S.comap (coordinates K b).toLinearMap) i)=r i) : finrank K S=∑ i,r i := by
-  obtain ⟨j,p,hp⟩ := IteratedBlockCharts.exists_chart (S.comap (coordinates K b).toLinearMap) hprofile
+  obtain ⟨j,p,hp⟩ := IteratedBlockCharts.exists_chart (S.comap (coordinates K
+    b).toLinearMap) hprofile
   have hmap : (chart j p).map (coordinates K b).toLinearMap=S := by
     rw [hp]
     exact Submodule.map_comap_eq_of_surjective (coordinates K b).surjective S
@@ -148,7 +152,8 @@ theorem sum_blockDimensions (m c : ℕ) :
 
 theorem sum_blockRanks {w : ℕ} (i : ℕ) (r : Fin w → ℕ) (hr : ∀ k,r k ≤ 3) :
     (∑ k,blockRanks i r k)=profileDim i (levelCount r 1) (levelCount r 2) (levelCount r 3) := by
-  simp only [blockRanks,Fin.sum_univ_succ,Fin.cons_zero,Fin.cons_succ,rank_sum_nat_eq_layers r hr,profileDim]
+  simp only [blockRanks,Fin.sum_univ_succ,Fin.cons_zero,Fin.cons_succ,rank_sum_nat_eq_layers r
+    hr,profileDim]
   omega
 
 /-- The manuscript's compressed Cell count now excludes the actual covered
@@ -158,14 +163,16 @@ theorem principal_open_excludes_Cell_profile [Infinite K] {B T e q : ℕ}
     (mu : (Fin B → K) →ₗ[K]
       (Fin (∑ k,blockDimensions (coreA c) (freeW m c) k) → K) →ₗ[K] (Fin T → K))
     (hcount : Cell m c i (levelCount r 1) (levelCount r 2) (levelCount r 3)+
-      (T:ℤ)-(e:ℤ)-1 < (q*(totalA m c-profileDim i (levelCount r 1) (levelCount r 2) (levelCount r 3)):ℕ)) :
+      (T:ℤ)-(e:ℤ)-1 < (q*(totalA m c-profileDim i (levelCount r 1) (levelCount r 2) (levelCount r
+        3)):ℕ)) :
     ∃ P : MvPolynomial (Fin q × Fin B) K,
       (∃ Q : Fin q × Fin B → K,eval Q P ≠ 0) ∧
       ∀ Q,eval Q P ≠ 0 → ∀ ell : Fin T → K,ell ≠ 0 →
         (∀ k,finrank K (FilteredImage.initialPiece
           (fun k => Fin (blockDimensions (coreA c) (freeW m c) k) → K)
           ((LinearMap.ker (relationMap mu ell)).comap
-            (coordinates K (blockDimensions (coreA c) (freeW m c))).toLinearMap) k)=blockRanks i r k) →
+            (coordinates K (blockDimensions (coreA c) (freeW m c))).toLinearMap) k)=blockRanks i r
+              k) →
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ∃ j : Fin q,∃ v : Fin (∑ k,blockDimensions (coreA c) (freeW m c) k) → K,
           covector ell (mu (fun k => Q (j,k)) v) ≠ 0 := by

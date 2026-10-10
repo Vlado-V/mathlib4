@@ -30,7 +30,8 @@ theorem eventually_uniform_restored_counted_quadratic_separation
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))))
     (hf : Tendsto (fun n : ℕ => (f n : ℝ)/(n : ℝ)^(d-1))
       atTop (𝓝 ((h : ℝ)*criticalRatio d/((d-1).factorial : ℝ)))) :
-    ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ q c : ℕ, ∀ (J : Finset ℕ) (counts : ℕ → ℕ)
+    ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], ∀ q c : ℕ, ∀ (J : Finset ℕ) (counts : ℕ
+      → ℕ)
       (O : ℕ → Submodule K (Poly K h)) (hO : ∀ j∈J,O j≤Forms K h j)
       (idx : Fin (r n) ≃ Label q J counts)
       (I : Type) [Fintype I] [DecidableEq I],

@@ -26,7 +26,8 @@ variable {K : Type*} [Field K] {a b T d : ℕ}
 
 abbrev GraphParameters (j : Fin d ↪ Fin a) := Outside j × Fin d
 
-def graphCoefficients (j : Fin d ↪ Fin a) (p : GraphParameters j → K) : SubspaceCharts.Parameters K j :=
+def graphCoefficients (j : Fin d ↪ Fin a) (p : GraphParameters j →
+  K) : SubspaceCharts.Parameters K j :=
   fun k i => p (k,i)
 
 def graphVector (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (i : Fin d) : Fin a → K :=
@@ -74,10 +75,12 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
  theorem eval_constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (l : Fin (d*b)) (k : Fin T) :
     evaluated (constraint mu j) p l k =
-      mu (Pi.single (finProdFinEquiv.symm l).2 1) (graphVector j p (finProdFinEquiv.symm l).1) k := by
+      mu (Pi.single (finProdFinEquiv.symm l).2 1) (graphVector j p (finProdFinEquiv.symm
+        l).1) k := by
   classical
   change eval p (constraint mu j l k) = _
-  conv_rhs => rw [← (Pi.basisFun K (Fin a)).sum_equivFun (graphVector j p (finProdFinEquiv.symm l).1)]
+  conv_rhs => rw [← (Pi.basisFun K (Fin a)).sum_equivFun (graphVector j p (finProdFinEquiv.symm
+    l).1)]
   simp [constraint, Pi.basisFun_apply, Pi.basisFun_equivFun, map_sum, map_smul,
     Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
 
@@ -90,7 +93,8 @@ theorem constraint_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (F
   rw [← Matrix.rank_transpose, Matrix.rank_eq_finrank_span_cols, ← graphVector_span j p,
     BilinearImage.image_span_basis (Pi.basisFun K (Fin b))]
   have hset : Set.range (evaluated (constraint mu j) p).transpose.col =
-      Set.range (fun z : Fin d × Fin b => mu ((Pi.basisFun K (Fin b)) z.2) (graphVector j p z.1)) := by
+      Set.range (fun z : Fin d × Fin b => mu ((Pi.basisFun K (Fin b)) z.2) (graphVector j p
+        z.1)) := by
     ext x
     constructor
     · rintro ⟨l,rfl⟩
@@ -101,7 +105,8 @@ theorem constraint_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (F
     · rintro ⟨⟨i,h⟩,rfl⟩
       refine ⟨finProdFinEquiv (i,h), ?_⟩
       funext k
-      simpa only [Equiv.symm_apply_apply, Pi.basisFun_apply, Matrix.col_apply, Matrix.transpose_apply] using
+      simpa only [Equiv.symm_apply_apply, Pi.basisFun_apply, Matrix.col_apply,
+        Matrix.transpose_apply] using
         eval_constraint mu j p (finProdFinEquiv (i,h)) k
   rw [hset]
 
@@ -115,14 +120,16 @@ def covector (ell : Fin T → K) : (Fin T → K) →ₗ[K] K :=
  theorem constraint_mulVec (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (ell : Fin T → K) (l : Fin (d*b)) :
     (evaluated (constraint mu j) p *ᵥ ell) l = covector ell
-      (mu (Pi.single (finProdFinEquiv.symm l).2 1) (graphVector j p (finProdFinEquiv.symm l).1)) := by
+      (mu (Pi.single (finProdFinEquiv.symm l).2 1) (graphVector j p (finProdFinEquiv.symm
+        l).1)) := by
   simp only [Matrix.mulVec, dotProduct, eval_constraint, covector_apply, mul_comm]
 
 /-- The matrix kernel is exactly the actual product-image annihilator. -/
 theorem constraint_kernel_iff (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (j : Fin d ↪ Fin a) (p : GraphParameters j → K) (ell : Fin T → K) :
     evaluated (constraint mu j) p *ᵥ ell = 0 ↔
-      BilinearImage.image mu (chartSubspace j (graphCoefficients j p)) ≤ LinearMap.ker (covector ell) := by
+      BilinearImage.image mu (chartSubspace j (graphCoefficients j p)) ≤ LinearMap.ker (covector
+        ell) := by
   classical
   rw [← graphVector_span j p, BilinearImage.image_span_basis (Pi.basisFun K (Fin b))]
   constructor

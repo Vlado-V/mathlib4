@@ -37,7 +37,8 @@ structure HigherRowCapacity (w v d q b : ℕ) (J : Finset ℕ) (counts : ℕ →
   diagonal : ∀ p : ProductRows.Row J R.val,p.val.val=R.val-p.val.val →
     counts p.val.val≤(w.choose p.val.val-finrank K X)*(v.choose (d-p.val.val)/2)
   cross : ∀ p : ProductRows.Row J R.val,p.val.val≠R.val-p.val.val →
-    counts p.val.val≤((w+p.val.val-1).choose p.val.val-finrank K X)*(v+(d-p.val.val)-1).choose (d-p.val.val) ∧
+    counts p.val.val≤((w+p.val.val-1).choose p.val.val-finrank K
+      X)*(v+(d-p.val.val)-1).choose (d-p.val.val) ∧
     counts (R.val-p.val.val)≤((w+(R.val-p.val.val)-1).choose (R.val-p.val.val)-finrank K X)*
       (v+(d-(R.val-p.val.val))-1).choose (d-(R.val-p.val.val))
   output_positive : 0<oddOutputDimension w R.val
@@ -73,12 +74,14 @@ theorem exists_higher_row_parameter {w v d q b : ℕ} {J : Finset ℕ} {counts :
     · subst j
       rw [hER i,constrainedOutputs,h.new_unconstrained,LinearMap.ker_zero,inf_top_eq]
       rw [← polynomialFormVector_attachedCoordinates o e z he i]
-      exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun a => (attachedCoordinates e z he i a).property)
+      exact polynomialFormVector_mem_biform o _ _ hdeg _ (fun a => (attachedCoordinates e z he i
+        a).property)
     · apply mem_biformImage_inf_kernel
       · apply mem_biformImage_of_homogeneous
         · simpa only [Nat.add_sub_of_le (h.degree j hj)] using (hrest j hjR i).1
         · exact (hrest j hjR i).2.1
       · exact (hrest j hjR i).2.2
-  exact sparse_witness_common_parameter (fun _ _ => inf_le_left) R o ho hdeg e z he Q E hmem hER hzero hker
+  exact sparse_witness_common_parameter (fun _ _ =>
+    inf_le_left) R o ho hdeg e z he Q E hmem hER hzero hker
 
 end Froberg.PreparedParameters

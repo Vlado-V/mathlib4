@@ -51,7 +51,8 @@ theorem rounded_convolution_blocks_margin {j a e : ℕ} (hj : 0 < j) (ha : 0 < a
   have hq := ceil_normalized_limit (fun n : ℕ => τ*(n : ℝ)^j) hj τ
     (Eventually.of_forall fun n => mul_nonneg hτ.le (pow_nonneg (Nat.cast_nonneg n) _))
     (scaled_power_normalized_limit τ j)
-  have hblock := (convolutionBlockCount_normalized_limit (e := e) hj ha _ τ hq).div_const (e.factorial : ℝ)
+  have hblock := (convolutionBlockCount_normalized_limit (e := e) hj ha _ τ
+    hq).div_const (e.factorial : ℝ)
   have hgap' : (τ/((a+e-1).choose e : ℝ))/(e.factorial : ℝ) < α := by
     simpa only [div_div] using hgap
   filter_upwards [hblock.eventually (gt_mem_nhds hgap'),eventually_gt_atTop (0 : ℕ)] with n hn hn0

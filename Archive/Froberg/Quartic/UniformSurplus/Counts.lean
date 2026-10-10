@@ -67,13 +67,16 @@ theorem source_total (m c : ℕ) :
 
 theorem target_total (m : ℕ) (hm : 320 ≤ m) (upper : Bool) :
     totalReal (ProfileCertificate.coreA (mixedCount m upper))
-      (ProfileCertificate.coreB (mixedCount m upper)) (ProfileCertificate.freeW m (mixedCount m upper))=
+      (ProfileCertificate.coreB (mixedCount m upper)) (ProfileCertificate.freeW m (mixedCount m
+        upper))=
       (UniformScalar.targetCount m (mixedCount m upper):ℝ) := by
   have h := UniformScalar.target_count_eq_free m hm upper
   dsimp only at h
   have hr : (UniformScalar.targetCount m (mixedCount m upper):ℝ)=
-      (ProfileCertificate.coreB (mixedCount m upper):ℝ)*(ProfileCertificate.freeW m (mixedCount m upper):ℝ)+
-      (ProfileCertificate.coreA (mixedCount m upper):ℝ)*(b2 (ProfileCertificate.freeW m (mixedCount m upper)):ℝ)+
+      (ProfileCertificate.coreB (mixedCount m upper):ℝ)*(ProfileCertificate.freeW m (mixedCount m
+        upper):ℝ)+
+      (ProfileCertificate.coreA (mixedCount m upper):ℝ)*(b2 (ProfileCertificate.freeW m (mixedCount
+        m upper)):ℝ)+
       3*(b3 (ProfileCertificate.freeW m (mixedCount m upper)):ℝ) := by exact_mod_cast h
   rw [UniformScalar.b2_cast,UniformScalar.b3_cast] at hr
   exact hr.symm
@@ -106,7 +109,8 @@ theorem source_uniform_surplus (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     linarith
   have h := sharp_real_surplus (m:ℝ) ((mixedCount m upper:ℝ)-2)
     (ProfileCertificate.coreA (mixedCount m upper)) (ProfileCertificate.coreB (mixedCount m upper))
-    (ProfileCertificate.freeW m (mixedCount m upper)) (SharpCertificate.coreShadow (mixedCount m upper) i)
+    (ProfileCertificate.freeW m (mixedCount m upper)) (SharpCertificate.coreShadow (mixedCount m
+      upper) i)
     i n₁ n₂ n₃ (by exact_mod_cast (show 64 ≤ m by omega)) htlo hthi
     hcounts.1 hcounts.2.1 hcounts.2.2 (by positivity) (by exact_mod_cast hi) hn
     (core_shadow_linear (mixedCount m upper) i hc.1 hi)

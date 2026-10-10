@@ -40,7 +40,8 @@ theorem even_reduction_open_of_witnesses
   classical
   let S := Space n d q J counts O
   let B := (Finset.range (2*d+1)).filter (fun R => d<R ∧ R%2=0)
-  have hB (R : ℕ) : R∈B ↔ d<R ∧ R≤2*d ∧ R%2=0 := by simp only [B,Finset.mem_filter,Finset.mem_range]; omega
+  have hB (R :
+    ℕ) : R∈B ↔ d<R ∧ R≤2*d ∧ R%2=0 := by simp only [B,Finset.mem_filter,Finset.mem_range]; omega
   obtain ⟨D₁,hD₁,hgood₁⟩ := rows_common_open hO hdegree hrows
   obtain ⟨D₂,hD₂,hgood₂⟩ := products_common_open (n := n) (q := q) (O := O)
     hO hdegree B (by

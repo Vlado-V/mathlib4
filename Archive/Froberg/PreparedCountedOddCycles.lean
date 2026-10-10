@@ -54,7 +54,8 @@ theorem exact_counts_prepared_odd_cycles_open {d k h lo u : ℕ}
     simp only [extra,qS,preparedScalarCount,add_zero]
     omega
   have hcard (n : ℕ) : qS n=Fintype.card (PreparedParameters.Label (upperCount n d)
-      (activeEvenIndices d) (targetLayerCount d h n (e n))) := preparedScalarCount_eq_card hd h n (e n)
+      (activeEvenIndices d) (targetLayerCount d h n (e n))) := preparedScalarCount_eq_card hd h n (e
+        n)
   have hS : Tendsto (fun n : ℕ => (qS n : ℝ)/(n : ℝ)^d) atTop
       (𝓝 (criticalRatio d/(d.factorial : ℝ))) := by
     simpa only [Nat.add_zero] using preparedScalarCount_normalized_limit hd h 0 e he

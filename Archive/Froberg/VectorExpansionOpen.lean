@@ -40,7 +40,8 @@ def Expands (g : Fin c → Rows K h m s) (t d e : ℕ) : Prop :=
 
 /-- The coordinate assertion is exactly the assertion on actual row polynomials. -/
 theorem expands_iff_coordinate (g : Fin c → Rows K h m s) :
-    Expands g t d e ↔ BilinearExpansionOpen.ExpandsContaining (columnMatrix g) (coordinate (d := t)) d e := by
+    Expands g t d e ↔ BilinearExpansionOpen.ExpandsContaining (columnMatrix g) (coordinate (d :=
+      t)) d e := by
   constructor
   · intro h T hT hE
     let S := T.map rowFiniteEquiv.symm.toLinearMap
@@ -77,7 +78,8 @@ theorem principal_open [NeZero d] [IsAlgClosed L]
     exact (hg j).linear_comp ((LinearMap.proj i).comp rowFiniteEquiv.toLinearMap)
   have hw : BilinearExpansionOpen.ExpandsContaining
       ((columnMatrix (g p₀)).map (algebraMap K L))
-      (BilinearScalarExtension.extend (L := L) (coordinate (d := t) (K := K) (h := h) (m := m) (s := s))) d e := by
+      (BilinearScalarExtension.extend (L := L) (coordinate (d := t) (K := K) (h := h) (m := m) (s :=
+        s))) d e := by
     rw [columnMatrix_map,extend_coordinate]
     exact (expands_iff_coordinate _).mp hwitness
   obtain ⟨D,hD,hgood⟩ := BilinearExpansionOpen.principal_open_containing_base

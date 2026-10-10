@@ -27,7 +27,8 @@ theorem odd_split_exact_restrict_right
   classical
   intro c v hr
   have hrel : (∑ i,(Q i).val*(c i).val)+
-      (∑ j,(Fin.append F G j).val*(Fin.append (fun _ : Fin f => (0 : biformParitySpace K h m d 0)) v j).val)=0 := by
+      (∑ j,(Fin.append F G j).val*(Fin.append (fun _ : Fin f => (0 : biformParitySpace K h m d 0)) v
+        j).val)=0 := by
     rw [Fin.sum_univ_add]
     simpa only [Fin.append_left,Fin.append_right,Submodule.coe_zero,mul_zero,Finset.sum_const_zero,zero_add] using hr
   obtain ⟨B,hB,hB'⟩ := H c (Fin.append (fun _ : Fin f => 0) v) hrel

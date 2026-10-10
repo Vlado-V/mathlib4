@@ -67,7 +67,8 @@ theorem single_profile_even_row_kernel
     (hPX : (biformOutputEndomorphism (retainMonomials (fun α => Finsupp.weight w α%2=0))).comp P=P)
     (hPY : ∀ p,(P p).IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j)
-    (hscalar : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q s)) :
+    (hscalar : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q
+      s)) :
     (addRow (polynomialIntermediateRow o e (fun i => L (v i)) he Q) P).ker=
       ((LinearMap.inl K ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d)) V).comp
         (intermediateKoszul e (fun i => L (v i)) he Q)).range := by

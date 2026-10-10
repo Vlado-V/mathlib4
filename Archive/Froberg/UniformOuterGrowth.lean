@@ -36,10 +36,12 @@ theorem uniform_core_outer_growth {K : Type*} [Field K]
     (hzr : Tendsto (fun n : ℕ => (z n : ℝ)/n) atTop (𝓝 (1-σ)))
     (haz : ∀ n, a n+z n=n)
     (v : (n : ℕ) → Labels k (a n) s → Fin h → K)
-    (hv : ∀ n (U : Finset (Labels k (a n) s)), U.card ≤ h → LinearIndependent K (fun i : U => v n i.val))
+    (hv : ∀ n (U : Finset (Labels k (a n) s)), U.card ≤ h → LinearIndependent K (fun i : U => v n
+      i.val))
     (hm : ∀ n, MixedExterior.UniversalMixedPosition (v n)) :
     ∃ g : ℝ, 0 < g ∧ ∀ᶠ n in atTop, ∀ L : Submodule K (CoreSourceSpace (z := z n) (v n)),
-      ((finrank K (CoreTargetSpace (z := z n) (v n)) : ℝ)/finrank K (CoreSourceSpace (z := z n) (v n)))*finrank K L +
+      ((finrank K (CoreTargetSpace (z := z n) (v n)) : ℝ)/finrank K (CoreSourceSpace (z := z n) (v
+        n)))*finrank K L +
       g*(n : ℝ)^(s+1)*min (finrank K L : ℝ)
         ((finrank K (CoreSourceSpace (z := z n) (v n)) : ℝ)-finrank K L) ≤
       (finrank K (AttachedMultiplication.outerImage (d := s+1)
@@ -56,7 +58,8 @@ theorem uniform_core_outer_growth {K : Type*} [Field K]
   let imageSize := fun n (L : Submodule K (CoreSourceSpace (z := z n) (v n))) =>
     (finrank K (AttachedMultiplication.outerImage (d := s+1)
       (coreExponent (z n)) (v n) (coreExponent_degree (z n)) L) : ℝ)
-  have hAeq (n : ℕ) : A n = (k : ℝ)*∑ i, finiteSourceProfile (profileAmbientCapacity s) s (a n) (z n) i :=
+  have hAeq (n : ℕ) : A n = (k : ℝ)*∑ i, finiteSourceProfile (profileAmbientCapacity s) s (a n) (z
+    n) i :=
     outer_source_dimension_profile hh (v n) (hv n)
   have hAlim : Tendsto (fun n => A n/(n : ℝ)^s) atTop
       (𝓝 ((k : ℝ)*sourceProfileScale (profileAmbientCapacity s) σ s)) := by

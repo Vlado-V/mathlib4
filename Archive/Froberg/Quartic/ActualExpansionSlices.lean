@@ -59,7 +59,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Target (g : Fin c → Rows K m 1) := (Rows K m 3) ⧸ Relations g
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-def quotientMul (g : Fin c → Rows K m 1) := QuotientBilinearImage.quotientMap multiplication (MixedSpace g)
+def quotientMul (g : Fin c → Rows K m
+  1) := QuotientBilinearImage.quotientMap multiplication (MixedSpace g)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_image_top (g : Fin c → Rows K m 1) : BilinearImage.image (quotientMul g) ⊤=⊤ := by
@@ -189,7 +190,8 @@ theorem actual_scalar_bounds (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
       UniformScalar.covectorR ((T-upperEndpoint m*a:ℕ):ℝ) e (upperEndpoint m) a (finrank K S) -
         UniformScalar.codimensionR (2*m+2*mixedCount m upper) (correctionCount m upper)
           (mixedCount m upper) (finrank K S) ≤
-        max (((T-upperEndpoint m*a:ℕ):ℝ)-((2*m+2*mixedCount m upper+correctionCount m upper:ℕ):ℝ)) 0-1 := by
+        max (((T-upperEndpoint m*a:ℕ):ℝ)-((2*m+2*mixedCount m upper+correctionCount m
+          upper:ℕ):ℝ)) 0-1 := by
   let d : ConvolutionExpansionOpen.Dimensions m upper := ⟨finrank K S,by omega⟩
   have hz := hexp 0
   simp only [Fin.val_zero,zero_add] at hz
@@ -197,7 +199,8 @@ theorem actual_scalar_bounds (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
     rw [actual_image_finrank]
     apply ExpansionCommonOpen.quotient_expansion g hg (E 0) hz (hexp d)
     exact eV.symm.finrank_map_eq S
-  have hb := ((hE d).2 hlo hhi).mono (E' := (finrank K (BilinearImage.image (actualMu g eV eW) S):ℝ)) (by exact_mod_cast himage)
+  have hb := ((hE d).2 hlo hhi).mono (E' := (finrank K (BilinearImage.image (actualMu g eV eW)
+    S):ℝ)) (by exact_mod_cast himage)
   have hcounts := HullCertificate.scalars_original_counts m (upperEndpoint m) (mixedCount m upper)
   have hsur := (surplus_cast m hm upper g hg (E 0) hz).2
   have hsurR : ((finrank K (Target g)-upperEndpoint m*totalA m (mixedCount m upper):ℕ):ℝ)=
@@ -346,7 +349,8 @@ theorem lift_closed_slices_coordinates {a T q : ℕ} (g : Fin c → Rows K m 1)
         (∀ j,covector lam (x.2 d j)=0)) → lam=0) :
     ∃ Z : (d : Fin (a+1)) → Fin (s d.val) → Rows K m 3,
       ∀ d : Fin (a+1),∀ lam : Fin (RowCount m 3) → K,
-        d.val+c ≤ finrank K (LinearMap.ker (relationMap RowMultiplicationCoordinates.coordinate lam)) →
+        d.val+c ≤ finrank K (LinearMap.ker (relationMap RowMultiplicationCoordinates.coordinate
+          lam)) →
         (∀ j f,covector lam (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g j)))=0) →
         (∀ i v,covector lam (RowMultiplicationCoordinates.coordinate (x.1 i) v)=0) →
         (∀ j,covector lam (rowFiniteEquiv (Z d j))=0) → lam=0 := by
@@ -354,7 +358,8 @@ theorem lift_closed_slices_coordinates {a T q : ℕ} (g : Fin c → Rows K m 1)
   refine ⟨Z,?_⟩
   intro d lam hd hE hQ hslice
   let ell := (covector lam).comp rowFiniteEquiv.toLinearMap
-  have hcoord : ∀ (f : Forms K m 2) (v : Rows K m 1),RowMultiplicationCoordinates.coordinate (finiteEquiv f) (rowFiniteEquiv v)=
+  have hcoord : ∀ (f : Forms K m 2) (v : Rows K m
+    1),RowMultiplicationCoordinates.coordinate (finiteEquiv f) (rowFiniteEquiv v)=
       rowFiniteEquiv (multiplication f v) := by
     intro f v
     simp only [RowMultiplicationCoordinates.coordinate_apply,LinearEquiv.symm_apply_apply]
@@ -390,11 +395,13 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
     (hD : ∃ Q,eval Q D ≠ 0) :
     ∃ Q : Fin (upperEndpoint m) → Forms K m 2,
       eval (fun i => finiteEquiv (Q i.1) i.2) D ≠ 0 ∧
-      ∃ Z : (d : ConvolutionExpansionOpen.Dimensions m upper) → Fin (slices m upper d.val) → Rows K m 3,
+      ∃ Z : (d : ConvolutionExpansionOpen.Dimensions m upper) → Fin (slices m upper
+        d.val) → Rows K m 3,
         ∀ d : ConvolutionExpansionOpen.Dimensions m upper,∀ lam : Fin (RowCount m 3) → K,
           d.val+mixedCount m upper ≤ finrank K (LinearMap.ker
             (relationMap RowMultiplicationCoordinates.coordinate lam)) →
-          (∀ j f,covector lam (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g j)))=0) →
+          (∀ j f,covector lam (RowMultiplicationCoordinates.coordinate f (rowFiniteEquiv (g
+            j)))=0) →
           (∀ i v,covector lam (RowMultiplicationCoordinates.coordinate (finiteEquiv (Q i)) v)=0) →
           (∀ j,covector lam (rowFiniteEquiv (Z d j))=0) → lam=0 := by
   classical
@@ -405,7 +412,8 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
     exact (totalA_eq m _ hc.1 hc.2).symm
   let eV : Source g ≃ₗ[K] (Fin a → K) := LinearEquiv.ofFinrankEq _ _ (by simpa using ha)
   let eW := coordinates K (Target g)
-  let V := ExpansionClosedSlices.Input K a (FormCount m 2) (finrank K (Target g)) (upperEndpoint m) (slices m upper)
+  let V := ExpansionClosedSlices.Input K a (FormCount m 2) (finrank K (Target g)) (upperEndpoint
+    m) (slices m upper)
   obtain ⟨P,hP,hgood⟩ := principal_open_actual_slices m hm upper g hg E hE hexp eV eW
   let childProjection : V →ₗ[K] (Fin (upperEndpoint m) × Fin (FormCount m 2) → K) :=
     { toFun := fun x i => x.1 i.1 i.2
@@ -429,7 +437,8 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
   obtain ⟨z,hz⟩ := PolynomialImageAvoidance.exists_eval_ne_zero (mul_ne_zero hPn hDn)
   rw [map_mul,mul_ne_zero_iff] at hz
   let x : V := (coordinates K V).symm z
-  have hx : eval (coordinates K V x) P ≠ 0 := by simpa only [x,LinearEquiv.apply_symm_apply] using hz.1
+  have hx : eval (coordinates K V
+    x) P ≠ 0 := by simpa only [x,LinearEquiv.apply_symm_apply] using hz.1
   obtain ⟨Z,hZ⟩ := lift_closed_slices_coordinates g hg eV eW (slices m upper) x (hgood x hx)
   refine ⟨fun i => finiteEquiv.symm (x.1 i),?_,Z,?_⟩
   · have hh : eval (childProjection x) D ≠ 0 := by

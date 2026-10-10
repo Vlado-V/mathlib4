@@ -91,7 +91,8 @@ theorem universalMultiplication_image_invariant (g : CoefficientGroup K n r)
     (C : K →+* MvPolynomial (CoefficientIndex n d r) K)
   have hc := congrArg (fun M => M.map φ) (universalMultiplicationMatrix_covariance (d := d) g)
   simp only [Matrix.map_mul] at hc
-  have he : ((universalMultiplicationMatrix K n d r).map ((universalTargetAction (d := d)).coeff g)).map φ =
+  have he : ((universalMultiplicationMatrix K n d r).map ((universalTargetAction (d := d)).coeff
+    g)).map φ =
       ((universalMultiplicationMatrix K n d r).map φ).map E := by
     apply Matrix.ext
     intro i j

@@ -70,7 +70,8 @@ theorem thin_generic_flag_principal_open (mu : Forms K n d →ₗ[K] V →ₗ[K]
   obtain ⟨a,haD,haE⟩ := principal_opens_intersect hD hE
   refine ⟨D*E,⟨a,by simpa only [map_mul] using mul_ne_zero haD haE⟩,?_⟩
   intro a ha
-  obtain ⟨haD,haE⟩ := mul_ne_zero_iff.mp (show eval a D*eval a E ≠ 0 by simpa only [map_mul] using ha)
+  obtain ⟨haD,haE⟩ := mul_ne_zero_iff.mp (show eval a D*eval a E ≠ 0 by simpa only [map_mul] using
+    ha)
   have hflag := he a haE
   exact ⟨hflag.1,hflag.2.1,hflag.2.2.2,hd a haD⟩
 

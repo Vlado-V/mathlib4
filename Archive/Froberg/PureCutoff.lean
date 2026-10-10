@@ -32,7 +32,8 @@ theorem exists_independent_prefix_surjective (hn : 0<n) (hd : 1<d)
   have ha₀ : coefficientForms K n d r a₀=q := coefficientCoordinates.symm_apply_apply q
   obtain ⟨D,hD,hgood⟩ := surjective_polynomial_principal_open
     (coefficientPrefixMultiplication (K := K) (n := n) (d := d) (r := r) 1)
-    (isPolynomialFamily_linear _) a₀ (by change Function.Surjective (prefixMultiplication _ 1); rwa [ha₀])
+    (isPolynomialFamily_linear _) a₀ (by change Function.Surjective (prefixMultiplication _ 1); rwa
+      [ha₀])
   obtain ⟨E,hE,hind⟩ := coefficient_independence_principal_open (K := K) hn hrdim
   obtain ⟨a,haD,haE⟩ := principal_opens_intersect ⟨a₀,hD⟩ hE
   exact ⟨coefficientForms K n d r a,hind a haE,hgood a haD⟩

@@ -32,7 +32,8 @@ theorem finite_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
     (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (FiniteCounts.mixedCount m false):ℚ))
     (d:ℤ) (hdlo:1 ≤ d) (hdhi:d<(totalA m (FiniteCounts.mixedCount m false):ℤ))
     (hd:(i:ℚ)+n₁+n₂+n₃=(d:ℚ)) :
-    ImageBounds (markedScalars (scalars m (FiniteCounts.upperEndpoint m) (FiniteCounts.mixedCount m false)))
+    ImageBounds (markedScalars (scalars m (FiniteCounts.upperEndpoint m) (FiniteCounts.mixedCount m
+      false)))
       (sharpProfile (parameters m (FiniteCounts.mixedCount m false) i) n₁ n₂ n₃) d := by
   have hc:4 ≤ FiniteCounts.mixedCount m false :=
     (FiniteCounts.structural_binomial_counts m (by omega) hmhi false).1
@@ -48,7 +49,8 @@ theorem actual_endpoint_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
     (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (UniformEndpoint.mixedCount m false):ℚ))
     (d:ℤ) (hdlo:1 ≤ d) (hdhi:d<(totalA m (UniformEndpoint.mixedCount m false):ℤ))
     (hd:(i:ℚ)+n₁+n₂+n₃=(d:ℚ)) :
-    ImageBounds (markedScalars (scalars m (UniformEndpoint.upperEndpoint m) (UniformEndpoint.mixedCount m false)))
+    ImageBounds (markedScalars (scalars m (UniformEndpoint.upperEndpoint m)
+      (UniformEndpoint.mixedCount m false)))
       (sharpProfile (parameters m (UniformEndpoint.mixedCount m false) i) n₁ n₂ n₃) d := by
   simp only [UniformEndpoint.mixedCount_eq_table m (by omega),
     UniformEndpoint.upperEndpoint_eq_table m (by omega)] at hi hn hdhi ⊢
@@ -61,7 +63,8 @@ theorem source_scalar_inequalities (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
     (hdlo:0<profileDim i n₁ n₂ n₃)
     (hdhi:profileDim i n₁ n₂ n₃<totalA m (UniformEndpoint.mixedCount m false)) :
     SharpMinimization.ImageBoundsReal
-      (markedScalars (scalars m (UniformEndpoint.upperEndpoint m) (UniformEndpoint.mixedCount m false)))
+      (markedScalars (scalars m (UniformEndpoint.upperEndpoint m) (UniformEndpoint.mixedCount m
+        false)))
       (UniformSurplus.sourceSharp m (UniformEndpoint.mixedCount m false) i n₁ n₂ n₃)
       (profileDim i n₁ n₂ n₃) := by
   have h:=actual_endpoint_profile_bounds m hmlo hmhi i hi n₁ n₂ n₃

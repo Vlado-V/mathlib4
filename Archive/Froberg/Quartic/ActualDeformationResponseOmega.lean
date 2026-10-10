@@ -192,7 +192,8 @@ theorem source_finrank (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
     (hg : LinearIndependent K g) (hh : LinearIndependent K h)
-    (ha : Function.Injective (AugmentedGenericOmega.quotientAugmented ω (AugmentedGeneric.productMap g) h r))
+    (ha : Function.Injective (AugmentedGenericOmega.quotientAugmented ω (AugmentedGeneric.productMap
+      g) h r))
     (hs : Function.Surjective (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))) :
     (finrank K (Source ω g h r markedU) : ℤ)=
       (2*m+2*c:ℕ)+Counts.H m q c+3+finrank K markedU := by
