@@ -20,13 +20,13 @@ fibers.  This is the exact normalization step in the monomial transport. -/
 noncomputable section
 namespace Froberg
 open Finset
-variable {I J : Type*} [Fintype I] [Fintype J]
-variable {S : I → Type*} {T : J → Type*} [∀ i, Fintype (S i)] [∀ j, Fintype (T j)]
+variable {I J : Type*} {S : I → Type*} {T : J → Type*}
 
 def fiberTransport (P : I → J → ℝ) (Q : ∀ i j, S i → T j → ℝ)
     (a : Σ i, S i) (b : Σ j, T j) : ℝ := P a.1 b.1 * Q a.1 b.1 a.2 b.2
 
-theorem fiberTransport_row (P : I → J → ℝ) (Q : ∀ i j, S i → T j → ℝ)
+theorem fiberTransport_row [Fintype J] [∀ i, Fintype (S i)] [∀ j, Fintype (T j)]
+    (P : I → J → ℝ) (Q : ∀ i j, S i → T j → ℝ)
     (p : I → ℝ) (hP : ∀ i, ∑ j, P i j = p i)
     (hQ : ∀ i j, P i j ≠ 0 → ∀ a, ∑ b, Q i j a b = 1 / (Fintype.card (S i) : ℝ))
     (a : Σ i, S i) :
@@ -41,7 +41,8 @@ theorem fiberTransport_row (P : I → J → ℝ) (Q : ∀ i j, S i → T j → �
       ring
   simp only [he, ← sum_div, hP]
 
-theorem fiberTransport_column (P : I → J → ℝ) (Q : ∀ i j, S i → T j → ℝ)
+theorem fiberTransport_column [Fintype I] [∀ i, Fintype (S i)] [∀ j, Fintype (T j)]
+    (P : I → J → ℝ) (Q : ∀ i j, S i → T j → ℝ)
     (q : J → ℝ) (hP : ∀ j, ∑ i, P i j = q j)
     (hQ : ∀ i j, P i j ≠ 0 → ∀ b, ∑ a, Q i j a b = 1 / (Fintype.card (T j) : ℝ))
     (b : Σ j, T j) :

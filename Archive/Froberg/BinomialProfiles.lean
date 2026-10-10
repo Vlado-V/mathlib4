@@ -80,7 +80,7 @@ theorem profilePolynomial_truncated (σ : ℝ) (s : ℕ) :
 theorem profileBinomial_partial_sum (σ : ℝ) (s : ℕ) :
     ∑ i : Fin s, profileBinomial σ s i = 1 - σ ^ s := by
   have hh := congrArg (fun P : Polynomial ℝ => P.eval 1) (profilePolynomial_truncated σ s)
-  simpa only [eval_finset_sum, eval_monomial, one_pow, mul_one, eval_sub,
+  simpa only [eval_finsetSum, eval_monomial, one_pow, mul_one, eval_sub,
     profilePolynomial_eval_one] using hh
 
 def profileConditional (σ : ℝ) (s : ℕ) (i : Fin s) : ℝ :=
@@ -126,7 +126,7 @@ theorem profileJoint_row (σ : ℝ) (s : ℕ) (i : Fin s) :
     ∑ j, profileJoint σ s i j = profileConditional σ s i := by
   simp only [profileJoint, ← mul_sum]
   rw [sum_comm]
-  simp only [sum_ite_eq, mem_univ, if_true]
+  simp only [sum_ite_eq, mem_univ, ite_true]
   rw [show s + 2 = (s + 1) + 1 by omega, profileBinomial_sum, mul_one]
 
 theorem profileMark_sum (σ : ℝ) (s : ℕ) :
@@ -135,16 +135,16 @@ theorem profileMark_sum (σ : ℝ) (s : ℕ) :
       (if z = (⟨s, by omega⟩ : Fin (s + 2)) then σ ^ s * (1 - σ) else 0) +
       (if z = (⟨s + 1, by omega⟩ : Fin (s + 2)) then σ ^ (s + 1) else 0) := by
     unfold profileMark
-    simp only [Fin.ext_iff, Fin.val_mk]
+    simp only [Fin.ext_iff]
     split_ifs <;> first | omega | ring
-  simp only [hid, sum_add_distrib, sum_ite_eq', mem_univ, if_true, pow_succ]
+  simp only [hid, sum_add_distrib, sum_ite_eq', mem_univ, ite_true, pow_succ]
   ring
 
 theorem profileMarkedJoint_row (σ : ℝ) (s : ℕ) (i : Fin s) :
     ∑ j, profileMarkedJoint σ s i j = σ ^ s * profileConditional σ s i := by
   simp only [profileMarkedJoint, ← mul_sum]
   rw [sum_comm]
-  simp only [sum_ite_eq, mem_univ, if_true]
+  simp only [sum_ite_eq, mem_univ, ite_true]
   rw [profileMark_sum, mul_comm]
 
 theorem profileMark_nonneg {σ : ℝ} (hσ : 0 ≤ σ) (hσ1 : σ ≤ 1)
@@ -194,7 +194,7 @@ theorem profileJoint_pos {σ : ℝ} {s : ℕ}
     split_ifs
     · exact profileBinomial_nonneg hσ.le hσ1.le _ _
     · rfl
-  · exact ⟨z, mem_univ z, by rw [if_pos hz]; exact profileBinomial_pos hσ hσ1 (by omega)⟩
+  · exact ⟨z, mem_univ z, by rw [ite_eq_left hz]; exact profileBinomial_pos hσ hσ1 (by omega)⟩
 
 theorem profileJoint_zero {σ : ℝ} {s : ℕ} (i : Fin s) (j : Fin (2 * s + 1))
     (h : ¬((i : ℕ) ≤ j ∧ (j : ℕ) ≤ i + s + 1)) : profileJoint σ s i j = 0 := by
@@ -204,7 +204,7 @@ theorem profileJoint_zero {σ : ℝ} {s : ℕ} (i : Fin s) (j : Fin (2 * s + 1))
   · exact mul_zero _
   · apply sum_eq_zero
     intro z _
-    rw [if_neg]
+    rw [ite_eq_right]
     intro hz
     have := congrArg Fin.val hz
     dsimp only [profileShift] at this
@@ -221,12 +221,12 @@ theorem profileMarkedJoint_pos_of_shift {σ : ℝ} {s : ℕ}
     · exact profileMark_nonneg hσ.le hσ1.le _ _
     · rfl
   · refine ⟨z, mem_univ z, ?_⟩
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     unfold profileMark
     rcases hz with hz | hz
-    · rw [if_pos hz]
+    · rw [ite_eq_left hz]
       exact mul_pos (pow_pos hσ _) (by linarith)
-    · rw [if_neg (by omega), if_pos hz]
+    · rw [ite_eq_right (by omega), ite_eq_left hz]
       exact pow_pos hσ _
 
 theorem profileMarkedJoint_positive_column {σ : ℝ} {s : ℕ}
@@ -257,7 +257,7 @@ theorem profileMarkedJoint_zero_column {σ : ℝ} {s : ℕ}
     · have hval := congrArg Fin.val hz
       dsimp only [profileShift] at hval
       unfold profileMark
-      rw [if_neg (by omega), if_neg (by omega)]
+      rw [ite_eq_right (by omega), ite_eq_right (by omega)]
     · rfl
 
 end Froberg

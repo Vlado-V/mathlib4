@@ -42,6 +42,7 @@ def tupleBilinear (mu : F →ₗ[K] V →ₗ[K] W) :
 def multiplication (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F) :
     (Fin q → V) →ₗ[K] W := (tupleBilinear mu).flip Q
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 @[simp] theorem multiplication_apply (mu : F →ₗ[K] V →ₗ[K] W)
     (Q : Fin q → F) (x : Fin q → V) : multiplication mu Q x = ∑ i, mu (Q i) (x i) :=
   Quartic.BilinearImage.tupleMap_apply mu x Q
@@ -94,6 +95,7 @@ theorem generic_injective_of_strict_shadow [Infinite K]
   have hh := (add_le_add h1 h2).trans hr
   exact_mod_cast hh
 
+omit [FiniteDimensional K F] in
 /-- Every injective scalar-family map has the expected actual quotient dimension. -/
 theorem quotient_finrank (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
     (hQ : Function.Injective (multiplication mu Q)) :

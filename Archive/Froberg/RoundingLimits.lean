@@ -62,7 +62,7 @@ theorem auxiliary_counts_lower_order {ι : Type*} (s : Finset ι) {k : ℕ} (hk 
   simpa only [Nat.cast_add, Nat.cast_sum, add_div, Finset.sum_div,
     Finset.sum_const_zero, add_zero] using hh
 
-theorem natural_budget_limit (r q g : ℕ → ℕ) {k : ℕ} (hk : 0 < k) (c : ℝ) (hc : 0 < c)
+theorem natural_budget_limit (r q g : ℕ → ℕ) {k : ℕ} (_hk : 0 < k) (c : ℝ) (hc : 0 < c)
     (hrq : Tendsto (fun n => ((r n : ℝ) - (q n : ℝ)) / (n : ℝ) ^ k) atTop (𝓝 c))
     (hg : Tendsto (fun n => (g n : ℝ) / (n : ℝ) ^ k) atTop (𝓝 0)) :
     (∀ᶠ n : ℕ in atTop, q n + g n ≤ r n) ∧

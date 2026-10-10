@@ -67,7 +67,7 @@ theorem eventually_balanced_profile_sum_bound (d : ℕ) (U : Finset ℕ)
   have htop : P.coeff d = 4 * (∑ u ∈ U, (d.choose u : ℝ)) / d.factorial -
       (d.factorial : ℝ)⁻¹ * 2^d := by
     dsimp only [P]
-    rw [coeff_sub,coeff_C_mul,finset_sum_coeff,hAc]
+    rw [coeff_sub,coeff_C_mul,finsetSum_coeff,hAc]
     have hs : (∑ u ∈ U, (B u).coeff d) = ∑ u ∈ U, (d.choose u : ℝ) / d.factorial :=
       sum_congr rfl (fun u hu => hBc u hu)
     rw [hs, ← sum_div]
@@ -92,7 +92,7 @@ theorem eventually_balanced_profile_sum_bound (d : ℕ) (U : Finset ℕ)
     (show Filter.map (fun m : ℕ => (m : ℝ)) atTop ≤ atTop from tendsto_natCast_atTop_atTop)
   filter_upwards [hevent] with m hm
   change 0 < P.eval (m : ℝ) at hm
-  simp only [P,eval_sub,eval_mul,eval_C,eval_finset_sum] at hm
+  simp only [P,eval_sub,eval_mul,eval_C,eval_finsetSum] at hm
   have hAm := affineCountPolynomial_eval d 2 c m
   norm_num only [Nat.cast_ofNat] at hAm
   have hBm (u : ℕ) : (B u).eval (m : ℝ) =
