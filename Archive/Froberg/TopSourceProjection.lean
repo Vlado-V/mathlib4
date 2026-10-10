@@ -53,6 +53,7 @@ def topSourceQuotientEquiv (hdp : 1 ≤ d)
       (hR.comp (topGrowthDegree hdp h).symm.surjective))
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem topSourceQuotientEquiv_mk (hdp : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (U : Fin u → Forms K h d)

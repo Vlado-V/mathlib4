@@ -78,6 +78,7 @@ theorem targetLayerFamily_higher_surjective (hd : 3 ≤ d) (frame : Fin H → Fo
     simp only [targetLayerCount,ite_eq_right ha]
   simpa only [targetLayerFamily,dite_eq_right ha,id_eq,eq_mpr_eq_cast] using hcast _ hN
 
+omit [Infinite K] in
 theorem targetLayerOutput_homogeneous (frame : Fin H → Forms K h 2) (a : ℕ) :
     targetLayerOutput frame a≤Forms K h a := by
   unfold targetLayerOutput

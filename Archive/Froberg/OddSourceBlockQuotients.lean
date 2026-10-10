@@ -39,6 +39,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
   omega
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherCoordinateRelation_eq_bot (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
@@ -83,6 +84,7 @@ omit [Infinite K] in
     sumBiformMap_rightScalar]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherRelationMap_mixed_top (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

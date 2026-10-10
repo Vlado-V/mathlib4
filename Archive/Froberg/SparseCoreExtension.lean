@@ -61,6 +61,7 @@ theorem sparse_endpoint_coordinate_constants
   rw [zero_form_eq_C,mul_comm,MvPolynomial.C_mul']
 
  set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem extended_sparse_relation_core (hs : 1 ≤ s) (hsd : s ≤ d)
     (o : Fin h → MvPolynomial σ K)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)

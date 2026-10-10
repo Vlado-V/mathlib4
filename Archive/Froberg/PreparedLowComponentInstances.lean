@@ -115,6 +115,7 @@ def preparedPrivateLinearSpace (P : OuterSpace K (Fin h) m d u) :
   Submodule.span K (Set.range (fun i => rename finSumFinEquiv (P i).val))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem renamed_prepared_low_components
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hmin : ∀ j ∈ J, 2 ≤ j)
     (p : PreparedParameters.Space m d q J counts O) (i : PreparedParameters.Label q J counts) :
@@ -164,6 +165,7 @@ theorem renamed_prepared_low_components
   exact ⟨hsmem,trivial,hh.2.2⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem renamed_private_low_components (hd : 3 ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (i : Fin u) :

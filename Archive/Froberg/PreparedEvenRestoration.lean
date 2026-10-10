@@ -31,6 +31,7 @@ theorem scalar_weight (p : Space n d q J counts O) (i : Label q J counts) :
     (fun _ => 0) outputWeight (fun _ => rfl) (weightedHomogeneous_zero_weight (p.1 i).val)
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem generator_even (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (heven : ∀ j ∈ J, j % 2 = 0) (p : Space n d q J counts O) (i : Label q J counts) :
     generator p i∈weightedParitySpace outputWeight 0 := by
@@ -47,6 +48,8 @@ def evenGenerator (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d :=
   ⟨generator p i,generator_homogeneous hO hJ p i,generator_even hO heven p i⟩
 
+omit [Fintype σ] in
+omit [Fintype σ] in
 theorem evenGenerator_scalar (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (p : Space n d q J counts O) (i : Label q J counts) (hi : degree i = 0) :
@@ -56,6 +59,8 @@ theorem evenGenerator_scalar (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ 
       add_zero] using scalar_weight p (Sum.inl i)
   | inr a => have := hpos _ a.1.property; change a.1.val=0 at hi; omega
 
+omit [Fintype σ] in
+omit [Fintype σ] in
 theorem evenGenerator_reduction (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p)
@@ -109,9 +114,10 @@ def pureEvenEmbed (hd : d % 2 = 0) : homogeneousSubmodule σ K d →ₗ[K]
   map_add' u v := Subtype.ext (map_add (rename Sum.inl) u.val v.val)
   map_smul' a u := Subtype.ext (map_smul (rename Sum.inl) a u.val)
 
+omit [Fintype σ] in
 /-- Actual restoration: for any positive generator slots, a basis of pure
 output forms can be restored while retaining the literal scalar reduction. -/
-theorem restore_even_prepared_basis (hd : d % 2 = 0)
+theorem restore_even_prepared_basis [Finite σ] (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p)
@@ -128,6 +134,7 @@ theorem restore_even_prepared_basis (hd : d % 2 = 0)
         ∃ (M : Fin r → Fin r → K)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (e i))),
           c-coefficientBoundary g M=z.val := by
+  let := Fintype.ofFinite σ
   classical
   let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)

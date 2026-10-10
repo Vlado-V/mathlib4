@@ -39,6 +39,7 @@ theorem evenScalarOddFamily_append_apply
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenScalarOddFamily_append_range
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin e → biformParitySpace K h m d 0) :
@@ -88,6 +89,7 @@ omit [Infinite K] in
   simp only [oddEvenRelativeMap,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenRelativeMap_add
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -99,6 +101,7 @@ theorem oddEvenRelativeMap_add
   simp only [oddEvenRelativeMap_apply,map_add,LinearMap.add_apply,Finset.sum_add_distrib]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenRelativeMap_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

@@ -62,6 +62,7 @@ def evenBackgroundTargetEquiv (hdp : 1 ≤ d)
   Submodule.quotEquivOfEq _ _ (fullOddRelations_empty _ _).symm
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenBackgroundEquiv_scalar (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : EvenBackgroundSource hdp F) :

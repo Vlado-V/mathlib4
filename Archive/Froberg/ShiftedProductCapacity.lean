@@ -67,6 +67,7 @@ open Module
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+omit [Infinite K] [Module.Finite K X] in
 theorem eventually_product_row_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ z extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*((2*v+z : ℕ) : ℝ)^(d-2) →

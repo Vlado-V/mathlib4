@@ -21,6 +21,7 @@ open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d r : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem biformRestorationForms_back
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d) (i : Fin r) :
     rename finSumFinEquiv.symm (biformRestorationForms g i).val=(g i).val := by

@@ -53,6 +53,7 @@ def evenRelativeFamily (hdp : 1 ≤ d)
   ∑ i,(evenBackgroundProduct hdp Q F (E i)).comp (LinearMap.proj i)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem evenRelativeFamily_apply (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) (a : Fin e → EvenBackgroundSource hdp F) :

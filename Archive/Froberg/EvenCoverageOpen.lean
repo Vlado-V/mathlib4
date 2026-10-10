@@ -87,6 +87,7 @@ theorem evenCoverageMap_polynomial {I : Type*}
     (isPolynomialFamily_const (parityForm w 1 x.2))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_coverage_principal_open {I : Type*}
     (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (e : Fin r → ZMod 2) (q : (I → K) → Fin r → Forms K n d)

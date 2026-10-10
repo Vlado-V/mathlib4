@@ -71,6 +71,7 @@ theorem restoredCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
   · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : RestoredOuterSpace m d q f J c' O) :
     restoredCountScalarFiberLinear hc
@@ -95,6 +96,7 @@ theorem principal_open_restored_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤
           eval ((Module.finBasis K _).equivFun (restoredCountScalarFiberLinear hc
             (a,p))) D ≠ 0 := by
   let : Module.Finite K (Space m d q J c' O) := finite_space hO
+  dsimp only
   intro D p hp
   apply principal_open_freeze_at (restoredCountScalarFiberLinear hc)
     (restoredScalarFiberCoordinates (restoredRestrictCounts hc p)).1 p D

@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredC2Projection_familySpace
     (idx : Fin r ≃ Label q J counts) (p : RestoredOuterSpace m d q f J counts O) :
     familySpace ((restoredC2Projection idx p).1)=PreparedTarget.preparedScalarSpace p.1.1 := by

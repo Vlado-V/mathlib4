@@ -98,6 +98,7 @@ theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h + m) k)
   simpa only [rename_id,AlgHom.id_apply] using hh
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalar_range_odd_zero {k : ℕ}
     (p : Forms K (h + m) k)
     (hp : p ∈ (renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h + m))).range) :

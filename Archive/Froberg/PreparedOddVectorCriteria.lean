@@ -31,6 +31,7 @@ def outerVectorEquiv : Rows K h m (d-1) ≃ₗ[K]
   linearOutputTensorEquiv.trans sumBiformEquiv
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem outerVectorEquiv_val (g : Rows K h m (d - 1)) :
     (outerVectorEquiv g).val=sumBiformMap (linearOutputTensorEquiv g) := rfl
 

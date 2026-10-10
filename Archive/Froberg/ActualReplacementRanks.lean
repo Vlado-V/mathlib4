@@ -41,6 +41,7 @@ theorem backgroundEnumeratedForms_pencil
   · simp only [backgroundParityFamily,Pi.zero_apply,Submodule.coe_zero,map_zero,smul_zero,add_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem background_pencil_polynomial
     (Q D : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

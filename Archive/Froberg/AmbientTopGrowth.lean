@@ -53,6 +53,7 @@ omit [Infinite K] in
     TensorProduct.congr_tmul,TensorProduct.map_tmul,LinearMap.id_apply,topGrowthDegree]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem topGrowthTensorMap_relations (hdp : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

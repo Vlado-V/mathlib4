@@ -23,7 +23,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 omit [Infinite K] [Fintype σ] in
-theorem exists_single_layer_product_parameter (j : ℕ)
+theorem exists_single_layer_product_parameter [Finite σ] (j : ℕ)
     (hz : ∀ k ∈ J, k ≠ j → counts k = 0)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hf : ∀ i, f i ∈ biformImage (O j) (Forms K n (d - j)))

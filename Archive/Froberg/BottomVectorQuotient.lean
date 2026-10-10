@@ -33,6 +33,7 @@ def bottomVectorSourceEquiv (g : Fin f → Rows K h m (d - 1)) :
     rfl)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem bottomVectorSourceEquiv_mk (g : Fin f → Rows K h m (d - 1))
     (v : Rows K h m (d - 1)) :
     bottomVectorSourceEquiv g ((Submodule.span K (Set.range g)).mkQ v)=

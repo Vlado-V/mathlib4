@@ -28,6 +28,7 @@ def bottomOutputTargetEquiv (hd : 1 ≤ d) :
   linearOutputTensorEquiv.trans (biformDegreeTransport rfl (by omega))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem sumBiformMap_bottomOutputTarget (hd : 1 ≤ d)
     (v : Rows K h m ((d - 1) + d)) :
     sumBiformMap (bottomOutputTargetEquiv hd v)=sumBiformMap (linearOutputTensorEquiv v) :=
@@ -47,6 +48,7 @@ theorem sumBiformMap_scalarBiform (p : Forms K m d) :
   simp
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem sumBiformMap_bottomLinearCoefficient (hd : 1 ≤ d)
     (p : Forms K m d) :
     sumBiformMap (bottomLinearCoefficientEquiv (h := h) hd p)=rename Sum.inr p.val := by

@@ -53,10 +53,10 @@ theorem exact_counts_prepared_joint {d k h lo u : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts O hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (JointRest n d (upperCount n d) (f n) u J counts O) := finite_jointRest hO
+  let : Module.Finite K (JointRest n d (upperCount n d) (f n) u J counts O) := finite_jointRest hO
   intro D hD
   let L := preparedJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f n) (u :=
     u) (counts := counts) hO

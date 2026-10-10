@@ -27,6 +27,7 @@ theorem odd_biform_quotient_finrank_le_count (hh : 0 < h) (hm : 0 < m)
   apply S.finrank_quotient_le.trans
   exact le_of_eq (finrank_odd_biform_space hh hm)
 
+omit [Infinite K] in
 theorem odd_background_source_finrank_le_count (hh : 0 < h) (hm : 0 < m)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -36,6 +37,7 @@ theorem odd_background_source_finrank_le_count (hh : 0 < h) (hm : 0 < m)
   rw [←(oddBackgroundSourceEquiv Q F G).finrank_eq]
   exact odd_biform_quotient_finrank_le_count hh hm _
 
+omit [Infinite K] in
 theorem odd_biform_quotient_shift_lower_order {d : ℕ} (hd : 0 < d) (hh : 0 < h) (z : ℕ)
     (S : (m : ℕ) → Submodule K (biformParitySpace K h (m + z) d 1)) :
     Tendsto (fun m : ℕ => (finrank K (biformParitySpace K h (m+z) d 1 ⧸ S m) : ℝ)/(m : ℝ)^d)

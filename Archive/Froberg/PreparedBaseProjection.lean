@@ -26,12 +26,14 @@ def preparedBaseProjection :
     (((LinearMap.fst K _ _).prod ((LinearMap.fst K _ _).comp (LinearMap.snd K _ _))).comp
       preparedJointCoordinates.toLinearMap)
 
+omit [Infinite K] in
 @[simp] theorem preparedBaseProjection_eval (p : FullPreparedParameters.FixedPureZeroScalarSpace m d
   q f u J counts O) :
     preparedBaseProjection p=(fun i => linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm
       (p.2.2 i)),
       fun i => p.2.1.1 (Sum.inl i)) := rfl
 
+omit [Infinite K] in
 theorem preparedBaseProjection_surjective :
     Function.Surjective (preparedBaseProjection (m := m) (d := d) (q := q) (f := f) (u := u) (J :=
       J) (counts := counts) (O := O)) := by
@@ -59,7 +61,7 @@ theorem prepared_base_principal_pullback (hO : ∀ j ∈ J, O j ≤ Forms K h j)
         ((Module.finBasis K _).equivFun p) P≠0) ∧
       ∀ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
         eval ((Module.finBasis K _).equivFun p) P≠0 → Good (preparedBaseProjection p) := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   exact principal_open_linear_pullback preparedBaseProjection preparedBaseProjection_surjective D
     hD Good hGood

@@ -40,7 +40,7 @@ theorem restored_leading_principal_open
         eval ((Module.finBasis K _).equivFun p) D≠0 →
         ∀ j,LinearIndependent K (p.1.1.2 j) := by
   classical
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   let coord := (Module.finBasis K (RestoredOuterSpace m d q f J counts O)).equivFun
   have hrow (j : J) :
       ∃ D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K,

@@ -32,6 +32,7 @@ theorem quotient_finrank_eq_annihilator {V : Type} [AddCommGroup V] [Module K V]
   omega
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_ambient_quotient_dimension (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :

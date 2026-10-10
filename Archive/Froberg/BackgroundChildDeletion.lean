@@ -74,6 +74,7 @@ variable {V W : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem childFlag_scalar_properties
     (mu : Forms K m d →ₗ[K] V →ₗ[K] W) (j : ℕ) (C : ℝ)
     (Q : Fin q → Forms K m d)

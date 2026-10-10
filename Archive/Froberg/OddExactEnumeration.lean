@@ -93,6 +93,7 @@ theorem backgroundEnumeratedForms_back
   exact (renameEquiv K finSumFinEquiv).left_inv _
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundSplitIndex_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

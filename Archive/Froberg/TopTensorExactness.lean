@@ -47,6 +47,7 @@ theorem projectedTopFamily_eq (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     LinearMap.comp_apply,LinearMap.compr₂ₛₗ_apply,map_sum]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem top_tensor_separation (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) (Q : Fin qS → Forms K m (1 + e))
     (hinj : Function.Injective (twoFamilyMultiplication (K := K)

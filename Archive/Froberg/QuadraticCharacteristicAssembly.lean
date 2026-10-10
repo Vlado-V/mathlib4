@@ -23,7 +23,7 @@ theorem quadraticRecurrence_of_characteristicTwo
   refine ⟨3,320,by omega,?_⟩
   intro K _ _ n hn
   by_cases htwo : (2 : K)=0
-  · letI : CharP K 2 := (CharP.charP_iff_prime_eq_zero Nat.prime_two).mpr htwo
+  · let : CharP K 2 := (CharP.charP_iff_prime_eq_zero Nat.prime_two).mpr htwo
     let L := AlgebraicClosure K
     have hz : criticalDefect L (n+3) 2=0 :=
       QuadraticGenericBridge.criticalDefect_zero (by omega : 0 < n+3)

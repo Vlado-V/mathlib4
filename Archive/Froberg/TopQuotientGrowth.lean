@@ -23,6 +23,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS t : ℕ}
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :
     projectedTopMap P p=projectedTensorFamily (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m

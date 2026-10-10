@@ -52,6 +52,7 @@ theorem oddBackgroundEndpointEquiv_mk (Q : Fin q → biformParitySpace K h m d 0
   rw [parityForm_same _ 1 p.val p.property]
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackground_bottom_detects (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (hupper : Function.Surjective (upperTargetMap (backgroundEnumeratedForms Q F G)))

@@ -92,6 +92,7 @@ def sumBiformEquiv : (Forms K h j ⊗[K] Forms K m e) ≃ₗ[K]
     (LinearEquiv.ofEq _ _ sumBiform_range)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem sumBiformEquiv_val (u : Forms K h j ⊗[K] Forms K m e) :
     (sumBiformEquiv u).val=sumBiform u := rfl
 
@@ -110,6 +111,7 @@ omit [Infinite K] in
     AlgEquiv.toLinearMap_apply,tensorEquivSum_tmul]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem sumBiform_framed (frame : Fin H → Forms K h j)
     (c : Fin r → Fin H → Forms K m e) (i : Fin r) :
     sumBiform (framedBiformFamily frame c i)=

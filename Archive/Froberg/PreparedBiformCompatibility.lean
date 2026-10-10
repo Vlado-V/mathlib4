@@ -36,6 +36,7 @@ theorem preparedOddBiform_outer (hd : 0 < d) (hdodd : d % 2 = 1)
   change (F i).val+0=sumBiformMap (linearOutputTensorEquiv (outerVectorEquiv.symm (F i)))
   rw [add_zero,←outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
+omit [Infinite K] in
 theorem preparedOddBiform_private (hd : 0 < d) (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (i : Fin u) :

@@ -98,10 +98,10 @@ theorem exact_counts_prepared_c4_selection {d k h lo u b : ℕ}
   refine ⟨G,C,ξ,hG,hC,hξ,?_⟩
   filter_upwards [hselect,hbudget,eventually_gt_atTop (0 : ℕ)] with n hn hbgt hnpos
   intro J counts counts' O hO hJ heven hcounts hcard
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD

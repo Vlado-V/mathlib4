@@ -129,7 +129,8 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
               map_sum,freeCoeff_rename_mul,AttachedMultiplication.multiplication_apply,u]
           change (freeCoeff β (H k+P k+res k)).coeff α=(freeCoeff β 0).coeff α at hh
           rw [map_add,map_add,hE] at hh
-          simp only [AddMonoidAlgebra.coeff_add,AttachedMultiplication.coefficient_formula,
+          simp only [AddMonoidAlgebra.coeff_add,Finsupp.add_apply,
+            AttachedMultiplication.coefficient_formula,
             freeCoeff_coeff,map_zero,AddMonoidAlgebra.coeff_zero,
             Finsupp.zero_apply,hzero,add_zero] at hh
           simpa only [sparseOutputCoefficient,Finset.sum_apply,Pi.smul_apply,smul_eq_mul,
@@ -160,7 +161,8 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
   · obtain ⟨j,hj⟩ := hd
     have hh := congrArg (fun f : Fin c → Poly K (a+z) => (f k).coeff δ) hrel
     change (H k+P k+res k).coeff δ=(0 : Poly K (a+z)).coeff δ at hh
-    simpa only [AddMonoidAlgebra.coeff_add,hH k δ j hj,hres k δ j hj,zero_add,add_zero,
+    simpa only [AddMonoidAlgebra.coeff_add,Finsupp.add_apply,hH k δ j hj,hres k δ j hj,
+      zero_add,add_zero,
       P,Pi.zero_apply,AddMonoidAlgebra.coeff_zero,Finsupp.zero_apply] using hh
   · rw [privatePolynomialMapAt_coefficient]
     simp only [privateCoefficient,Finset.sum_apply]

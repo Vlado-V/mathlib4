@@ -36,6 +36,7 @@ def RestoredEndpointThin (hdp : 1 ≤ d) (hd : d % 2 = 0)
       (backgroundEnumeratedForms Q F emptyOddFamily))) C)
 
 set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem linearOddForm_family_eq_embedding (hdp : 1 ≤ d)
     (g : Fin f → Rows K h m (d - 1)) :
     (fun i => linearOddForm hdp (g i))=

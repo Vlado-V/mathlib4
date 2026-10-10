@@ -48,6 +48,7 @@ def oddAmbientCoordinates
   exact (oddAmbientGraphQuotientEquiv hd Q F hQ hF G).trans e
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddAmbientCoordinates_mk
     (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
     (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G) =

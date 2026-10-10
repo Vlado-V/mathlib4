@@ -26,6 +26,7 @@ variable {h m d f r r' : ℕ} {J : Finset ℕ} {c c' : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] [IsAlgClosed K] in
 private theorem positive_empty_span (E : Fin r → biformParitySpace K h m d 0) :
     Submodule.span K (Set.range (backgroundPositiveForms E (emptyOddFamily (K := K))))=
       Submodule.span K (Set.range (fun i => evenPolynomialToForms (E i))) := by

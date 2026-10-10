@@ -101,6 +101,7 @@ def zeroLabels (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
     (hz : ∀ j ∈ J', j ∉ J → c' j = 0) : Label q f u J c ≃ Label q f u J' c' :=
   Equiv.sumCongr (PreparedParameters.zeroLabelEquiv hJ hc hz) (Equiv.refl _)
 
+omit [Infinite K] in
 @[simp] theorem zeroLayers_generator (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
     (hz : ∀ j ∈ J', j ∉ J → c' j = 0) (p : Space m d q f u J c O)
     (U : Fin u → Forms K h d) (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)

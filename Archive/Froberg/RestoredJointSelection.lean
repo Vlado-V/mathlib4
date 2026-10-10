@@ -48,8 +48,8 @@ theorem exact_counts_restored_joint {d k h lo : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts O hO
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
-  letI : Module.Finite K (RestoredJointRest n d J counts O) := finite_restoredJointRest hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (RestoredJointRest n d J counts O) := finite_restoredJointRest hO
   intro D hD
   let L := restoredJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f n) (counts
     := counts) hO
@@ -82,6 +82,7 @@ theorem exact_counts_restored_joint {d k h lo : ℕ}
     exact hchild
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Once the generic child flag and outer model have been chosen in a full
 open, every point of a nonempty positive-scalar fiber keeps both choices. -/
 theorem restored_joint_positive_scalar_fiber_at {h m d q f : ℕ}
@@ -106,7 +107,7 @@ theorem restored_joint_positive_scalar_fiber_at {h m d q f : ℕ}
             (p'.2 i)) d)
             (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p'.2 i))) C
             (coefficientCoordinates (fun i => p'.1.1.1 (Sum.inl i))) := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   intro D p hp hmodel hchild
   obtain ⟨E,hE,hgood⟩ := principal_open_restored_scalar_fiber_at hO D p hp
   exact ⟨E,hE,fun a ha => ⟨hgood a ha,hmodel,hchild⟩⟩

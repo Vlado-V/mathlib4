@@ -29,6 +29,7 @@ def renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial τ K →ₗ[
   (p.1,fun j i => ⟨rename (Sum.map e id) (p.2 j i).val,
     biform_output_rename_mem e (T j.val) (p.2 j i).property⟩)
 
+omit [Infinite K] in
 theorem layers_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial τ K →ₗ[K] X)
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j ⊓
       ((T j).comp (rename e).toLinearMap).ker)) :

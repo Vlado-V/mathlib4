@@ -66,7 +66,7 @@ theorem exists_restored_certificate_on_open (hdp : 1 ≤ d) (hd : d % 2 = 0)
       ∃ p : RestoredOuterSpace m d q f J counts O,
         eval ((Module.finBasis K _).equivFun
           p) E≠0 ∧ RestoredCertificate hdp hd hO hJ heven idx slot p := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   intro E hE
   obtain ⟨I,hI,higood⟩ := hi
   obtain ⟨A,hA,hagood⟩ := ho

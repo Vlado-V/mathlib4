@@ -45,6 +45,7 @@ theorem product_capacities_individual {w v d : ℕ} {J : Finset ℕ} {counts : �
     have hh := ((h (2+j)).cross p (by dsimp [p];omega)).2
     simpa only [p,Nat.add_sub_cancel_left] using hh
 
+omit [Infinite K] [Module.Finite K X] in
 theorem allEven_product_capacities {d w v h n e : ℕ} (hd : 9 ≤ d)
     (hcap : ∀ R, ProductRowCapacity (K := K) (X := X) w v d R (activeEvenIndices d)
       (targetLayerCount d h n e)) :

@@ -51,6 +51,7 @@ theorem evenPolynomialToForms_parity (a : biformParitySpace K h m d 0) :
     (fun i => (blockWeight h m i : ZMod 2)) 0 a).property
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackgroundQuotientProduct_compatible
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

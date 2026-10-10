@@ -27,6 +27,7 @@ def OddEndpointThin
       ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
       (backgroundEnumeratedForms Q F G))) C)
 
+omit [Infinite K] in
 theorem OddEndpointThin.congr
     {Q Q' : Fin q → biformParitySpace K h m d 0}
     {F F' : Fin f → biformParitySpace K h m d 1}

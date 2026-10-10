@@ -45,7 +45,7 @@ theorem prepared_count_joint_scalar_fiber_at {h m d q f u : ℕ}
           ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p'.2.2 i)) d)
             (outerScalarDeficit (fun i => outerVectorEquiv.symm (p'.2.2 i))) C
             (coefficientCoordinates (fun i => p'.2.1.1 (Sum.inl i))) := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro D p hp hmodel hchild
   obtain ⟨P₀,hP₀,hgood⟩ := principal_open_full_count_scalar_fiber_at hc hO D p hp
@@ -105,10 +105,10 @@ theorem exact_counts_prepared_restricted_certified_fiber {d k h lo u : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD

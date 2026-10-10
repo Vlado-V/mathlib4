@@ -68,9 +68,10 @@ def restoredJointCoordinates : RestoredOuterSpace m d q f J counts O ≃ₗ[K]
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem finite_restoredJointRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (RestoredJointRest m d J counts O) := by
-  letI : Module.Finite K (Space m d 0 J counts O) := finite_space hO
+  let : Module.Finite K (Space m d 0 J counts O) := finite_space hO
   let pr : RestoredOuterSpace m d 0 0 J counts O →ₗ[K] RestoredJointRest m d J counts O :=
     (LinearMap.snd K _ _).comp ((LinearMap.snd K _ _).comp restoredJointCoordinates.toLinearMap)
   apply Module.Finite.of_surjective pr
@@ -104,7 +105,7 @@ theorem restoredJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j
     restoredJointCoordinates (restoredJointFromCoordinates hO (Sum.elim pF (Sum.elim pQ pR)))=
       (VectorParameters.generators pF,coefficientForms K m d q pQ,
         (Module.finBasis K (RestoredJointRest m d J counts O)).equivFun.symm pR) := by
-  letI : Module.Finite K (RestoredJointRest m d J counts O) := finite_restoredJointRest hO
+  let : Module.Finite K (RestoredJointRest m d J counts O) := finite_restoredJointRest hO
   change restoredJointCoordinates (restoredJointCoordinates.symm _)=_
   rw [LinearEquiv.apply_symm_apply]
   rfl
@@ -113,7 +114,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredJointFromCoordinates_surjective (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Function.Surjective (restoredJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (counts := counts) hO) := by
-  letI : Module.Finite K (RestoredJointRest m d J counts O) := finite_restoredJointRest hO
+  let : Module.Finite K (RestoredJointRest m d J counts O) := finite_restoredJointRest hO
   intro p
   let x := restoredJointCoordinates p
   refine ⟨Sum.elim (VectorParameters.coordinates x.1)

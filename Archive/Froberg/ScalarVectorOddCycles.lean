@@ -31,10 +31,12 @@ def linearOddForm (hd : 1 ≤ d) (g : Rows K h m (d - 1)) : biformParitySpace K 
   oddBiformEmbedding hd (by decide) (linearOutputTensorEquiv g)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem scalarEvenForm_val (p : Forms K m d) :
     (scalarEvenForm (h := h) p).val=rename Sum.inr p.val := sumBiformMap_scalarBiform p
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem linearOddForm_val (hd : 1 ≤ d) (g : Rows K h m (d - 1)) :
     (linearOddForm hd g).val=sumBiformMap (linearOutputTensorEquiv g) := rfl
 

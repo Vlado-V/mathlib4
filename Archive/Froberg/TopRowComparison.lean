@@ -105,6 +105,7 @@ theorem sumBiformMap_tensorProduct {a b c e : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem topRow_linear_action (hd : 1 ≤ d)
     (p : Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : Forms K h (d - 1) ⊗[K] Forms K m (d - d + 1)) :
@@ -117,6 +118,7 @@ theorem topRow_linear_action (hd : 1 ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem topRow_scalar_action
     (p : Forms K m d) (v : Forms K h d ⊗[K] Forms K m (d - d)) :
     topRowTarget (oddRowScalarAction le_rfl (scalarBiformEquiv (h := h) p) v)=

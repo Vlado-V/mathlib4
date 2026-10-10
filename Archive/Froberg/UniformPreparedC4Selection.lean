@@ -46,10 +46,10 @@ theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
             (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i))) C
             (coefficientCoordinates (fun i => p.2.1.1 (Sum.inl i))) := by
   intro J counts O hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
     counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (JointRest n d (upperCount n d) f u J counts O) := finite_jointRest hO
+  let : Module.Finite K (JointRest n d (upperCount n d) f u J counts O) := finite_jointRest hO
   intro D hD
   let L := preparedJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f) (u :=
     u) (counts := counts) hO
@@ -130,17 +130,21 @@ theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite
     (hgrowth : HasBaseC4GrowthOpen (m := n) (f := f) (q := upperCount n d)
       hd R (scalarReserveCount d n)) : PreparedGrowthFiberAt K hd n f u R G C := by
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
     counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
     counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgrowth⟩ := prepared_base_growth_open (u := u) (counts := counts) hd hO R hgrowth
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection
     (V := FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O)
-    ![A,B] (by intro i; fin_cases i; exact hA; exact hB)
+    ![A,B] (by
+      intro i
+      fin_cases i
+      · exact hA
+      · exact hB)
   have hAB : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
     d) f u J counts O,
       eval ((Module.finBasis K _).equivFun v) (A*B) ≠ 0 :=
@@ -158,7 +162,11 @@ theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite
     (fullRestrictCounts_surjective hcounts) (A*B) hAB GoodPlus hABgood
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection
     (V := FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O)
-    ![E,D] (by intro i; fin_cases i; exact hE; exact hD)
+    ![E,D] (by
+      intro i
+      fin_cases i
+      · exact hE
+      · exact hD)
   have hED : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
     d) f u J counts' O,
       eval ((Module.finBasis K _).equivFun v) (E*D) ≠ 0 :=
@@ -255,10 +263,10 @@ theorem field_uniform_prepared_c4_selection {d k h lo u b : ℕ}
   have hn := prepared_growth_fiber_of_strict_thin_open (u := u) (by omega : 1≤d)
     hnpos R (houterN K) (hgrowthN K R hP)
   intro J counts counts' O hO hJ heven hcounts hcard
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD

@@ -40,6 +40,7 @@ def linearCutEquiv : (Fin h → K) ≃ₗ[K] Forms K h 1 :=
   LinearEquiv.ofBijective linearCutMap ⟨linearCutMap_injective,linearCutMap_surjective⟩
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem linearCutEquiv_single (i : Fin h) :
     (linearCutEquiv (Pi.single i (1 : K))).val=X i := by
   classical
@@ -53,6 +54,7 @@ def linearOutputTensorEquiv : Rows K h m s ≃ₗ[K] (Forms K h 1 ⊗[K] Forms K
       (TensorProduct.congr linearCutEquiv (LinearEquiv.refl K (Forms K m s))))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem linearOutputTensorEquiv_single (i : Fin h) (p : Forms K m s) :
     linearOutputTensorEquiv (Pi.single i p)=linearCutEquiv (Pi.single i (1 : K)) ⊗ₜ[K] p := by
   simp only [linearOutputTensorEquiv,LinearEquiv.trans_apply,

@@ -67,8 +67,8 @@ theorem HasRestoredUpperOpen.extend_counts
     HasRestoredUpperOpen (m := m) (f := f) hdp hd hO hJ heven idx'
       (countIndexMap hc idx idx' ∘ slot) := by
   classical
-  letI : Module.Finite K (Space m d q J c O) := finite_space hO
-  letI : Module.Finite K (Space m d q J c' O) := finite_space hO
+  let : Module.Finite K (Space m d q J c O) := finite_space hO
+  let : Module.Finite K (Space m d q J c' O) := finite_space hO
   obtain ⟨D,⟨p,hp⟩,hgood⟩ := hu
   obtain ⟨p',hp'⟩ := restoredRestrictCounts_surjective hc p
   have hsurj : Function.Surjective (upperTargetMap

@@ -39,6 +39,7 @@ def evenHigherProjection (r : MixedHigherIndex d hd3) :
     (fun i => scalarBiformEquiv (h := h) (Q i)) F
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenHigherProjection_scalar (p : Forms K m d)
     (v : EvenBackgroundSource hdp F) (r : MixedHigherIndex d hd3) :
     evenHigherProjection hd3 Q F r (μ p v)=

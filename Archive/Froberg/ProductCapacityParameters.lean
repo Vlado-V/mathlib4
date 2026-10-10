@@ -41,6 +41,7 @@ lemma tendsto_twice_nat : Tendsto (fun n : ℕ => 2*n) atTop atTop := by
   filter_upwards [eventually_ge_atTop N] with n hn
   omega
 
+omit [Infinite K] [Module.Finite K X] in
 theorem eventually_product_row_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,∀ extra : ℕ,∀ᶠ v : ℕ in atTop,∀ r : ℕ,
       (r : ℝ)<countBeta d*(2*(w : ℝ))^2*(2*(v : ℝ))^(d-2) →

@@ -29,6 +29,7 @@ variable {K : Type*} [Field K] [Infinite K] {m c q : ℕ}
 
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The retained cokernel projection kills every actual split multiplication column. -/
 theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     (projectionRawJ g h).comp (quadraticMultiplication (SplitBlock22.fullGenerators g h)) = 0 := by
@@ -41,6 +42,7 @@ theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m) (h : 
   exact (Submodule.Quotient.mk_eq_zero _).mpr ⟨_,rfl⟩
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Multiplying a trace column by the parameter puts both response summands at order two. -/
 theorem response_realized (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)

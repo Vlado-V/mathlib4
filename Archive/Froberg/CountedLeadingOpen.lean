@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 
 namespace PreparedTarget
 
+omit [Infinite K] in
 theorem private_tuple_independent_of_dimension {h n d u : ℕ}
     (hu : u ≤ finrank K (Rows K h n (d - 1))) :
     ∃ P₀ : OuterSpace K (Fin h) n d u, LinearIndependent K P₀ := by

@@ -35,6 +35,7 @@ theorem backgroundEnumeratedForms_even
   rw [Equiv.symm_apply_apply]
   rfl
 
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_update
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

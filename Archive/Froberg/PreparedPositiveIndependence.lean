@@ -27,6 +27,7 @@ def positivePerturbedFamily (p : Space m d q J counts O)
   generator p (Sum.inr i)+U i
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem positivePerturbedFamily_component
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hpos : ∀ j ∈ J, 0 < j) (hJ : ∀ j ∈ J, 0 < counts j → j < d)
     (p : Space m d q J counts O)
@@ -68,6 +69,7 @@ theorem positivePerturbedFamily_scalar_independent
       (Submodule.ker_subtype (biformImage (O j.val) (Forms K m (d-j.val))))
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem positivePerturbedFamily_component_one (hd : 1 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hmin : ∀ j ∈ J, 2 ≤ j)
     (p : Space m d q J counts O)

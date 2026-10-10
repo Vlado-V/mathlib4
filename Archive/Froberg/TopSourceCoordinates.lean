@@ -50,6 +50,7 @@ theorem oddMixedSourceBlockCoordinates_higher (hd : Odd d) (hd3 : 3 ≤ d)
           (oddBiformCoordinatesEquiv v r.val) := rfl
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherPureEquiv_top_component (hdp : 1 ≤ d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hdp}) (hr : 2 * r.val.val + 1 = d)
     (v : biformParitySpace K h m d 1) :

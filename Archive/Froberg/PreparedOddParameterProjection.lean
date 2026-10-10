@@ -41,6 +41,7 @@ def preparedOddVectorParameters :
         simp only [Sum.elim_inl,Sum.elim_inr,Pi.smul_apply,map_smul]
     · rfl
 
+omit [Infinite K] in
 theorem preparedOddVectorParameters_surjective : Function.Surjective
     (preparedOddVectorParameters (K := K) (h := h) (m := m) (d := d) (q := q) (f := f)
       (u := u) (J := J) (counts := counts) (O := O)) := by

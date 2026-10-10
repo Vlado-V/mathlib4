@@ -49,7 +49,7 @@ theorem HasUpperWitness.restored_upper_open (hd : 3 ≤ d) (he : d % 2 = 0)
       (fun j hj => (mem_allEvenIndices.mp hj).2.2) idx
       (fun k => idx.symm (quadraticTailSlot hd q h m e _ k)) := by
   let hO := fun j (_ : j∈allEvenIndices d) => targetLayerOutput_homogeneous frame j
-  letI : Module.Finite K (PreparedParameters.Space m d q (allEvenIndices d)
+  let : Module.Finite K (PreparedParameters.Space m d q (allEvenIndices d)
       (allEvenCount d h m (e+finrank K (Forms K h d))) (targetLayerOutput frame)) :=
     PreparedParameters.finite_space hO
   obtain ⟨p,hp,hlift⟩ := hw

@@ -44,6 +44,7 @@ def HigherOddRows (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
         (∑ j,sumBiformMap (linearOutputTensorEquiv (g j))*v j)=0 → u=0 ∧ v=0
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_scalar_layer_polynomial_row {b : ℕ} (hb : 1 ≤ b) (hbd : b ≤ d)
     (p : OddScalarParameters K h m d f q)
     (hp : OddScalarLayerProperty t hb hbd (oddScalarBiformParameters p))

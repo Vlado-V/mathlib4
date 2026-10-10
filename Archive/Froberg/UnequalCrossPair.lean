@@ -96,6 +96,7 @@ open Module MvPolynomial UnequalBlocks
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Unequal output blocks and balanced scalar blocks give the full tensor
 cross capacity, with a single scalar profile for every product. -/
 theorem exists_unequal_constrained_cross_pair

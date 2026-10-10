@@ -41,7 +41,7 @@ theorem HasUpperWitness.all_even_variable_private_open (hd : 3 ≤ d)
           Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d)
             (fun j _ => targetLayerOutput_homogeneous frame j)
             (fun j hj => (mem_allEvenIndices.mp hj).2.1) U p.1 p.2)) := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u
     (allEvenIndices d) (allEvenCount d h m r) (targetLayerOutput frame)) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace
       (fun j _ => targetLayerOutput_homogeneous frame j)

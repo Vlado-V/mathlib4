@@ -101,7 +101,7 @@ theorem uniform_exact_counts_restored_outer_odd_open {d k h lo : ℕ}
     (hextra : Tendsto (fun n : ℕ => (extra n : ℝ)/(n : ℝ)^(d-1)) atTop (𝓝 0)) :
     ∀ᶠ n : ℕ in atTop,∀ (K : Type) [Field K] [Infinite K],∀ (q : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
       (O : ℕ → Submodule K (Poly K h))
-      (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
+      (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (_hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
       (idx : Fin (upperCount n d+extra n) ≃ Label q J counts)
       (slot : Fin (finrank K (Forms K h d)) → Fin (upperCount n d+extra n)),
       HasRestoredOuterOddOpen (m := n) (f := f n) (by omega) hdeven hO hJ heven idx slot := by

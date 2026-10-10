@@ -31,6 +31,7 @@ def restoredC2Point (idx : Fin r ≃ Label q J counts)
     (p : QuadraticParameters K h m d r f) : RestoredOuterSpace m d q f J counts O :=
   (((fun i => p.1 (idx.symm i),0),0),p.2)
 
+omit [Infinite K] in
 @[simp] theorem restoredC2Projection_point (idx : Fin r ≃ Label q J counts)
     (p : QuadraticParameters K h m d r f) :
     restoredC2Projection (O := O) idx (restoredC2Point idx p)=p := by
@@ -56,7 +57,7 @@ theorem restored_c2_principal_pullback
         eval ((Module.finBasis K _).equivFun p) P≠0) ∧
       ∀ p : RestoredOuterSpace m d q f J counts O,
         eval ((Module.finBasis K _).equivFun p) P≠0 → Good (restoredC2Projection idx p) := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   exact principal_open_linear_pullback (restoredC2Projection idx)
     (restoredC2Projection_surjective idx) D hD Good hGood
 

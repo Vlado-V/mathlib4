@@ -33,6 +33,8 @@ def restoredAppendedFamily (hd : 3 ≤ d) (he : d % 2 = 0)
   PolynomialRestoration.pureShift (pureEvenEmbed he)
     (fun k => idx.symm (quadraticTailSlot hd q h n e _ k)) u
 
+omit [Fintype σ] in
+omit [Fintype σ] in
 theorem restoredAppendedFamily_at_slot (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
@@ -52,6 +54,8 @@ theorem restoredAppendedFamily_at_slot (hd : 3 ≤ d) (he : d % 2 = 0)
   simp only [Equiv.apply_symm_apply,Submodule.coe_add,evenGenerator,pureEvenEmbed]
   rfl
 
+omit [Fintype σ] in
+omit [Fintype σ] in
 theorem restoredAppendedFamily_away (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
@@ -68,9 +72,10 @@ theorem restoredAppendedFamily_away (hd : 3 ≤ d) (he : d % 2 = 0)
   simp only [restoredAppendedFamily,Pi.add_apply,pureShift_eq_zero_away _ _ _ _ haway,
     add_zero,evenGenerator]
 
+omit [Fintype σ] in
 /-- The pure basis and complete positive-row reduction hold simultaneously
 for a literal prepared family with the appended quadratic generators. -/
-theorem exists_restored_appended_basis (hd : 3 ≤ d) (he : d % 2 = 0)
+theorem exists_restored_appended_basis [Finite σ] (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q (allEvenIndices d)
       (allEvenCount d h n (e + finrank K (homogeneousSubmodule σ K d))) O)
@@ -85,6 +90,7 @@ theorem exists_restored_appended_basis (hd : 3 ≤ d) (he : d % 2 = 0)
         ∃ (M : Fin r → Fin r → K)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
           c-coefficientBoundary (restoredAppendedFamily hd he hO p idx u) M=z.val := by
+  let := Fintype.ofFinite σ
   let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   obtain ⟨u,hu,hreduce⟩ := restore_even_prepared_basis he hO

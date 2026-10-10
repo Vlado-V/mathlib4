@@ -35,6 +35,7 @@ def constrainedBiformCoordinates (O : Submodule K (Poly K h)) (hO : O ≤ Forms 
   sumBiformEquiv.symm.toLinearMap.comp
     (Submodule.inclusion (biformImage_mono hO le_rfl))
 
+omit [Infinite K] in
 @[simp] theorem sum_constrainedBiformCoordinates (O : Submodule K (Poly K h))
     (hO : O ≤ Forms K h j) (v : biformImage O (Forms K m e)) :
     sumBiform (constrainedBiformCoordinates O hO v)=v.val := by

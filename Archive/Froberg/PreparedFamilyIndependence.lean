@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_generator_component_zero
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hpos : ∀ j ∈ J, 0 < j)
     (p : PreparedParameters.Space m d q J counts O) (i : PreparedParameters.Label q J counts) :

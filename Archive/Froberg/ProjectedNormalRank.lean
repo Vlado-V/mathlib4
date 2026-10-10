@@ -88,6 +88,7 @@ theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2 * d) →�
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual x i)).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [IsAlgClosed K] in
 /-- Source quotienting and target coordinates preserve the exact response rank. -/
 theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r →
   Forms K n d) (hq : LinearIndependent K q)

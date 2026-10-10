@@ -60,6 +60,7 @@ namespace VectorExpansionOpen
 open Module Quartic VectorMultiplicationCoordinates
 variable {K : Type*} [Field K] [Infinite K] {d h b : ℕ}
 
+omit [Infinite K] in
 theorem eventually_augmented_outer_capacity (hd : 3 ≤ d)
     (f extra : ℕ → ℕ) {δ : ℝ} (hδ : 0 < δ)
     (hextra : Tendsto (fun n : ℕ => (extra n : ℝ)/(n : ℝ)^(d-1)) atTop (𝓝 0))

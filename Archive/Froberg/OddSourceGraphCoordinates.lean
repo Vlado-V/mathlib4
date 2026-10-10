@@ -145,6 +145,7 @@ def oddSourceCoordinates (hd : 1 ≤ d)
     (graphQuotientCoordinates (oddBottomRelationMap hd F G) (oddHigherRelationMap hd F G) B hB)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddSourceCoordinates_mk (hd : 1 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (G : Fin u → biformParitySpace K h m d 1)

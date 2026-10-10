@@ -66,6 +66,7 @@ theorem fullBiform_scalar_injective (Q : Fin r → Forms K m d)
   exact c.symm.injective (congrFun hz i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalar_odd_relation_zero (hm : 0 < m) (Q : Fin r → Forms K m d)
     (hQ : Function.Injective (prefixMultiplication Q (d - 1)))
     (v : Fin r → biformParitySpace K h m d 1)

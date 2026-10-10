@@ -62,6 +62,7 @@ theorem oddEvenScalar_slices_iff
     exact (oddEvenScalar_compatible Q F G E p v).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenRelativeMap_smul
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

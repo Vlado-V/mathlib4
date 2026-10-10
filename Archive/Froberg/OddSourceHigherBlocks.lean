@@ -60,6 +60,7 @@ theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3 ≤ d)
     map_sum,map_smul,mixedPureOddGenerator_other hd hr1 hr,smul_zero,Finset.sum_const_zero]
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :

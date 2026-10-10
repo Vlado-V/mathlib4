@@ -31,6 +31,7 @@ def oddEvenAffineRelations
   (oddEvenRelativeMap Q F G (oddEvenAffineFamily E a)).range
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenRelativeMap_single
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -59,6 +60,7 @@ theorem oddEvenAffineRelations_generator_mem
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenAffineRelations_finrank
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

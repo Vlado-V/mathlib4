@@ -21,6 +21,7 @@ open Module MvPolynomial VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformSplitEndpoint_independent
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -48,6 +49,7 @@ theorem biformSplitEndpoint_independent
   exact hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem linearOddForm_component (hd : 1 ≤ d) (g : Rows K h m (d - 1)) (b : ℕ) :
     weightedHomogeneousComponent (blockWeight h m) b (linearOddForm hd g).val=
       if b=1 then (linearOddForm hd g).val else 0 := by
@@ -56,6 +58,7 @@ theorem linearOddForm_component (hd : 1 ≤ d) (g : Rows K h m (d - 1)) (b : ℕ
   exact weightedHomogeneousComponent_of_mem hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem linearOddForm_independent (hd : 1 ≤ d) (g : Fin f → Rows K h m (d - 1))
     (hg : LinearIndependent K g) : LinearIndependent K (fun i => (linearOddForm hd (g i)).val) := by
   have h₁ := hg.map' (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d :=

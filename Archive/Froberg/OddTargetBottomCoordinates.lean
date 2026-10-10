@@ -21,6 +21,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddTargetBaseMap_weighted_higher_zero (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

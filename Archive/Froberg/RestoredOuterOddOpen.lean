@@ -44,6 +44,7 @@ def restoredOuterVectorParameters (idx : Fin r ≃ Label q J counts) :
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredOuterVectorParameters_surjective (idx : Fin r ≃ Label q J counts) :
     Function.Surjective (restoredOuterVectorParameters (m := m) (d := d) (f := f) (O := O)
       idx) := by

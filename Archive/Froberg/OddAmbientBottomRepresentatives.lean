@@ -29,6 +29,7 @@ variable (hd : 1 ≤ d)
   (hF : ∀ i, (F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_odd_target_bottom_representative
     (x : OddTargetRowQuotient Q F (oddTargetBottomIndex hd)) :
     ∃ p : biformParitySpace K h m (2*d) 1,

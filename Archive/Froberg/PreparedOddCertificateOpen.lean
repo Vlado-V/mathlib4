@@ -44,7 +44,7 @@ theorem exists_prepared_independent_odd_certificate_open (hd : 0 < d)
           ∀ U : Fin u → Forms K h d,
             LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1 p.2) ∧
             OddCyclesExact U p.1 p.2 := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro D hD
   obtain ⟨I,hI,higood⟩ := hi

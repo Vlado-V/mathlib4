@@ -33,6 +33,7 @@ theorem enumerateForms_range
     refine ⟨Fintype.equivFin _ i,?_⟩
     simp only [enumerateForms,LinearMap.coe_mk,AddHom.coe_mk,Equiv.symm_apply_apply]
 
+omit [Infinite K] in
 theorem enumerate_forms_productSpace (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d)

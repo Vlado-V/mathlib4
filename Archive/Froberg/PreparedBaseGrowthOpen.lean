@@ -35,7 +35,7 @@ theorem prepared_base_growth_open (hd : 1 ≤ d)
         eval ((Module.finBasis K _).equivFun p) D≠0) ∧
       ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 →
         BaseC4GrowthProperty hd R t (preparedBaseProjection p) := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   obtain ⟨D,hD,hgood⟩ := hgrowth
   exact prepared_base_principal_pullback hO D hD (BaseC4GrowthProperty hd R t) hgood
@@ -52,7 +52,7 @@ theorem restored_base_ordinary_growth_open
         ∀ (j : ℕ) (hj : 3 ≤ j) (hjd : j ≤ d),
           OddScalarLayerProperty t (by omega) hjd
             (oddScalarBiformParameters (restoredBaseProjection p)) := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨D,hD,hgood⟩ := odd_scalar_forms_open hgrowth
   exact restored_base_principal_pullback hO D hD _ hgood
 

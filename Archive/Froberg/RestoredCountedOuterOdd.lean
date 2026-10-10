@@ -44,7 +44,7 @@ theorem restored_outer_odd_open_of_rows {h m d q r f : ℕ} {J : Finset ℕ} {co
     (hgood : ∀ p : ScalarVectorParameters K h m d f r,eval ((Module.finBasis K _).equivFun p) P≠0 →
       FirstVectorRowExact p.2 p.1 ∧ HigherOddRows p.2 p.1) :
     HasRestoredOuterOddOpen (m := m) (f := f) (by omega) hdeven hO hJ heven idx slot := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O)
     idx)
     (restoredOuterVectorParameters_surjective idx) P hP _ hgood
@@ -67,7 +67,7 @@ theorem exact_counts_restored_outer_odd_open {d k h lo : ℕ}
     (hextra : Tendsto (fun n : ℕ => (extra n : ℝ)/(n : ℝ)^(d-1)) atTop (𝓝 0)) :
     ∀ᶠ n : ℕ in atTop,∀ (q : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
       (O : ℕ → Submodule K (Poly K h))
-      (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
+      (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (_hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
       (idx : Fin (upperCount n d+extra n) ≃ Label q J counts)
       (slot : Fin (finrank K (Forms K h d)) → Fin (upperCount n d+extra n)),
       HasRestoredOuterOddOpen (m := n) (f := f n) (by omega) hdeven hO hJ heven idx slot := by

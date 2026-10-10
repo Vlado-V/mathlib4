@@ -83,10 +83,10 @@ theorem exact_counts_prepared_restricted_growth_fiber {d k h lo u b : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hselect,hgrowth] with n hn hgrowth
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
     u J counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD

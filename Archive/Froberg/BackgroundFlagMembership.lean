@@ -21,6 +21,7 @@ section General
 variable {U V I : Type*} [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
 variable {q : ℕ}
 
+omit [Infinite K] in
 theorem updated_scalar_mem_replaced_background (j : U →ₗ[K] V)
     (Q : Fin q → U) (hq : 0 < q) (b : I → V) (M : V) (c : K) (i : Fin q) :
     Function.update (fun i => j (Q i)) (lastScalarSlot hq)

@@ -40,7 +40,7 @@ theorem restored_certificate_principal_open (hdp : 1 ≤ d) (hd : d % 2 = 0)
       (∃ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) E≠0) ∧
       ∀ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) E≠0 →
         RestoredCertificate hdp hd hO hJ heven idx slot p := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   let S := RestoredSpace m d q J counts O
   let V := RestoredOuterSpace m d q f J counts O
   let out := PreparedTarget.OuterSpace K (Fin h) m d f
@@ -146,7 +146,7 @@ theorem exact_counts_restored_certified_fiber {d k h lo : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hjoint] with n hn
   intro J counts O hO hJ heven r idx slot
-  letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
+  let : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
   intro P D hP hcert hD
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection (V := RestoredOuterSpace n d (upperCount n d)
     (f n) J counts O) ![P,D] (by

@@ -22,7 +22,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
-abbrev JointRest (m d q f u : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
+abbrev JointRest (m d _q _f u : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   PreparedTarget.OuterSpace K (Fin h) m d u ×
     (PositiveScalars (K := K) m d J counts ×
@@ -69,9 +69,10 @@ def preparedJointCoordinates :
     · rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem finite_jointRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (JointRest m d q f u J counts O) := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   let pr : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
       JointRest m d q f u J counts O :=
@@ -107,7 +108,7 @@ theorem preparedJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j
     preparedJointCoordinates (preparedJointFromCoordinates hO (Sum.elim pF (Sum.elim pQ pR)))=
       (VectorParameters.generators pF,coefficientForms K m d q pQ,
         (Module.finBasis K (JointRest m d q f u J counts O)).equivFun.symm pR) := by
-  letI : Module.Finite K (JointRest m d q f u J counts O) := finite_jointRest hO
+  let : Module.Finite K (JointRest m d q f u J counts O) := finite_jointRest hO
   change preparedJointCoordinates (preparedJointCoordinates.symm _)=_
   rw [LinearEquiv.apply_symm_apply]
   rfl
@@ -116,7 +117,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem preparedJointFromCoordinates_surjective (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Function.Surjective (preparedJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (u := u) (counts := counts) hO) := by
-  letI : Module.Finite K (JointRest m d q f u J counts O) := finite_jointRest hO
+  let : Module.Finite K (JointRest m d q f u J counts O) := finite_jointRest hO
   intro p
   let x := preparedJointCoordinates p
   refine ⟨Sum.elim (VectorParameters.coordinates x.1)

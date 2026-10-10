@@ -63,6 +63,7 @@ theorem zeroScalarEndpointFamily_back (hd : 0 < d)
     add_comm]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_cycles_endpoint (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

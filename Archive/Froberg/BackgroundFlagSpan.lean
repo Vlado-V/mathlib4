@@ -51,6 +51,7 @@ theorem backgroundEnumeratedForms_reindex
   rcases i with i | (i | i) <;> rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_span
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -64,6 +65,7 @@ theorem backgroundEnumeratedForms_span
     Set.Sum.elim_range,Set.Sum.elim_range,Submodule.span_union,Submodule.span_union]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem background_even_mem_of
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -89,6 +91,7 @@ def backgroundPositiveForms
   Sum.elim (fun i => evenPolynomialToForms (E i)) (fun i => oddPolynomialToForms (G i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenPolynomialToForms_scalar (a : Forms K m d) :
     evenPolynomialToForms (scalarEvenBiform (h := h) a)=renameForm (Fin.natAdd h) a := by
   apply Subtype.ext

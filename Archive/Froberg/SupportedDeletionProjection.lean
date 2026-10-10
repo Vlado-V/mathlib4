@@ -18,6 +18,7 @@ namespace Froberg
 open MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d : ℕ}
 
+omit [Infinite K] in
 theorem supported_deletion_positive_zero
     (D : Submodule K (Forms K (h + m) (2 * d)))
     (hD : D ≤ (renameForm (K := K) (d := 2 * d) (Fin.natAdd h : Fin m → Fin (h + m))).range)

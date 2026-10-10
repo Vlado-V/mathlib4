@@ -26,6 +26,7 @@ def scalarEndpointEmbedding : Forms K m d →ₗ[K] Forms K (h+m) d :=
   evenPolynomialToForms.comp scalarEvenBiform
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarEndpointEmbedding_parity (p : Forms K m d) :
     (scalarEndpointEmbedding (h := h) p).val.IsWeightedHomogeneous
       ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm) 0 :=

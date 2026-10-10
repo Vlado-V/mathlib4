@@ -33,6 +33,7 @@ omit [Infinite K] in
   rw [renamedGenerator,generator_prepared]
   rfl
 
+omit [Infinite K] in
 @[simp] theorem renamedGenerator_outer (U : Fin u → Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
     (p : Space m d q f u J counts O) (i : Fin f) :
@@ -55,6 +56,7 @@ theorem renamedGenerator_private (U : Fin u → Forms K h d)
   simp only [constantOneForm,map_one,mul_one]
   rfl
 
+omit [Infinite K] in
 theorem lower_biform_components {e s : ℕ} (hed : e < d)
     (P : MvPolynomial (Fin h ⊕ Fin m) K)
     (hP : P ∈ biformImage (Forms K h e) (Forms K m s))
@@ -67,6 +69,7 @@ theorem lower_biform_components {e s : ℕ} (hed : e < d)
   rw [←hg,rename_sumBiform]
   exact (ambientBiform_weighted g).weightedHomogeneousComponent_ne k (by omega)
 
+omit [Infinite K] in
 theorem private_components (hd : 0 < d) (U : Fin u → Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
     (hP : ∀ i k, d ≤ k → coreComponent h m k (rename finSumFinEquiv (P i)) = 0)
