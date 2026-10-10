@@ -15,7 +15,7 @@ subspace argument after such a projection. This includes deleting a bidegree. -/
 noncomputable section
 namespace Froberg
 open Module MvPolynomial
-open scoped MonomialOrder Classical
+open scoped MonomialOrder
 
 variable {K σ : Type*} [Field K]
 
@@ -29,6 +29,7 @@ def retainMonomials (P : (σ →₀ ℕ) → Prop) :
   exact (AddMonoidAlgebra.coeffLinearEquiv K).symm.toLinearMap.comp
     (F.comp (AddMonoidAlgebra.coeffLinearEquiv K).toLinearMap)
 
+open Classical in
 theorem coeff_retainMonomials (P : (σ →₀ ℕ) → Prop)
     (f : MvPolynomial σ K) (a : σ →₀ ℕ) :
     (retainMonomials P f).coeff a = if P a then f.coeff a else 0 := by
@@ -38,6 +39,7 @@ theorem coeff_retainMonomials (P : (σ →₀ ℕ) → Prop)
 theorem retainMonomials_ne_zero (m : MonomialOrder σ) (P : (σ →₀ ℕ) → Prop)
     (f : MvPolynomial σ K) (hf : f ≠ 0) (hP : P (m.degree f)) :
     retainMonomials P f ≠ 0 := by
+  classical
   intro h
   have hc := congrArg (fun p : MvPolynomial σ K => p.coeff (m.degree f)) h
   rw [coeff_retainMonomials, ite_eq_left hP] at hc

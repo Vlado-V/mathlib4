@@ -129,9 +129,9 @@ theorem filter_add_of_block_support {n : ℕ} (S : Finset (Fin n))
   ext i
   by_cases hi : i ∈ S
   · have hc : c₂ i = 0 := Finsupp.notMem_support_iff.mp (fun h => (mem_compl.mp (h₂ h)) hi)
-    simp [Finsupp.filter_apply, hi, hc]
+    simp [hi, hc]
   · have hc : c₁ i = 0 := Finsupp.notMem_support_iff.mp (fun h => hi (h₁ h))
-    simp [Finsupp.filter_apply, hi, hc]
+    simp [hi, hc]
 
 theorem filter_add_compl {n : ℕ} (S : Finset (Fin n)) (c : Fin n →₀ ℕ) :
     c.filter (· ∈ S) + c.filter (· ∈ Sᶜ) = c := by

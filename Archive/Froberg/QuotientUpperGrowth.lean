@@ -25,15 +25,14 @@ lemma quotient_growth_identity {A T r t l G : ℝ} (hA : A ≠ 0) (hAr : A + r �
     ((T+t)/(A+r))*(l+r)+G*(A-l)-t =
       (T/A)*l+(G-(t-((T+t)/(A+r))*r)/A)*(A-l) := by
   field_simp
-  <;> ring
+  ring
 
 namespace SurjectiveImage
 variable {K F V V' W W' : Type*} [Field K]
   [AddCommGroup F] [Module K F] [AddCommGroup V] [Module K V]
   [AddCommGroup V'] [Module K V'] [AddCommGroup W] [Module K W]
   [AddCommGroup W'] [Module K W']
-  [FiniteDimensional K V] [FiniteDimensional K V']
-  [FiniteDimensional K W] [FiniteDimensional K W']
+  [FiniteDimensional K V] [FiniteDimensional K W]
 
 lemma quotient_upper_growth
     (mu : F →ₗ[K] V →ₗ[K] W) (nu : F →ₗ[K] V' →ₗ[K] W')

@@ -61,10 +61,12 @@ omit [DecidableEq ι] in
   ext k
   simp [deletePivot, hz]
 
+omit [DecidableEq ι] in
 /-- The eliminated vector vanishes exactly when the row is a scalar multiple
 of the distinguished normalized row. -/
 theorem deletePivot_eq_zero_iff (z : ι → K) (j : ι) (hz : z j = 1) (x : ι → K) :
     deletePivot z j x = 0 ↔ x = (x j) • z := by
+  classical
   constructor
   · intro hx
     ext k
@@ -94,10 +96,13 @@ def pivotKernelEquiv (z : ι → K) (j : ι) (hz : z j = 1)
 
 variable [Fintype ι]
 
+omit [DecidableEq ι] [Fintype ι] in
 /-- Exact rank drop after eliminating a normalized nonzero row. -/
-theorem finrank_deletePivot (z : ι → K) (j : ι) (hz : z j = 1)
+theorem finrank_deletePivot [Finite ι] (z : ι → K) (j : ι) (hz : z j = 1)
     (S : Submodule K (ι → K)) (hzS : z ∈ S) :
     finrank K (S.map (deletePivot z j)) + 1 = finrank K S := by
+  classical
+  let := Fintype.ofFinite ι
   have hk : finrank K ((deletePivot z j).domRestrict S).ker = 1 :=
     (pivotKernelEquiv z j hz S hzS).finrank_eq.trans (finrank_self K)
   have h := ((deletePivot z j).domRestrict S).finrank_range_add_finrank_ker
@@ -113,9 +118,10 @@ theorem map_rowSpan {q : ℕ} (F : Fin q → ι → K) (z : ι → K) (j : ι) (
   rw [Submodule.map_sup, Submodule.map_span, Submodule.map_span]
   simp [← Set.range_comp, Function.comp_def, deletePivot_self z j hz]
 
+omit [DecidableEq ι] [Fintype ι] in
 /-- Rank of the ordinary rows modulo a nonzero last row is one less than the
 full tuple rank, with no genericity condition. -/
-theorem finrank_eliminated_rows {q : ℕ} (F : Fin q → ι → K)
+theorem finrank_eliminated_rows [Finite ι] {q : ℕ} (F : Fin q → ι → K)
     (z : ι → K) (j : ι) (hz : z j = 1) :
     finrank K (Submodule.span K (Set.range (fun i => deletePivot z j (F i)))) + 1 =
       finrank K (Submodule.span K (Set.range F) ⊔ K ∙ z : Submodule K (ι → K)) := by
@@ -125,13 +131,14 @@ theorem finrank_eliminated_rows {q : ℕ} (F : Fin q → ι → K)
   rw [map_rowSpan F z j hz] at h
   exact h
 
-omit [Fintype ι] in
+omit [DecidableEq ι] [Fintype ι] in
 /-- A nonzero row with prescribed support can be normalized at one of its
 permitted coordinates. This accounts for one fewer projective parameter. -/
 theorem exists_normalized_supported_row (T : Finset ι) (z : ι → K) (hz : z ≠ 0)
     (hsupport : ∀ j, j ∉ T → z j = 0) :
     ∃ j ∈ T, ∃ c : K, c ≠ 0 ∧ ∃ z' : ι → K,
       z' j = 1 ∧ (∀ k, k ∉ T → z' k = 0) ∧ z = c • z' := by
+  classical
   obtain ⟨j, hj⟩ : ∃ j, z j ≠ 0 := by
     by_contra! h
     exact hz (funext h)
