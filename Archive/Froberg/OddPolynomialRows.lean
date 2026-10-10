@@ -22,6 +22,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K]
 variable {h n d b qS qO : ℕ}
 
+omit [Infinite K] in
 /-- Injectivity of the intrinsic two-biform map eliminates every genuine
 polynomial coefficient pair in this output degree. -/
 theorem higher_odd_polynomial_row (hb : 1 ≤ b) (hbd : b ≤ d)
@@ -73,6 +74,7 @@ theorem higher_odd_polynomial_row (hb : 1 ≤ b) (hbd : b ≤ d)
     rw [← hV i,hi,map_zero]
     rfl
 
+omit [Infinite K] in
 /-- The final scalar-free row has the same literal polynomial consequence. -/
 theorem upper_odd_polynomial_row (_hd : 1 ≤ d)
     (p : Fin qO → Forms K h 1 ⊗[K] Forms K n (d - 1))

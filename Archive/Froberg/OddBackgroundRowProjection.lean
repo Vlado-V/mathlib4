@@ -68,6 +68,7 @@ def oddBackgroundRowProjection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddBackgroundRowProjection_mk (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
@@ -90,6 +91,7 @@ def oddBackgroundRowScalar (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackgroundRowScalar_projection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
@@ -115,6 +117,7 @@ theorem oddBackgroundRowScalar_projection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackgroundRowScalar_growth (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) (t : ℕ)

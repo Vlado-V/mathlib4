@@ -20,6 +20,7 @@ open Module MvPolynomial TensorProduct Finset
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} {d h m : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_homogeneous_biform_decomposition (hd : Odd d)
     (f : MvPolynomial (Fin h ⊕ Fin m) K) (hf : f.IsHomogeneous d)
     (heven : ∀ a, f.coeff a ≠ 0 →

@@ -119,7 +119,7 @@ theorem deletedTargetCount_limit {d : ℕ} (hd : 3 ≤ d) :
   · funext h
     simp only [deletedTargetCount, Nat.cast_choose_two, Nat.cast_add, Nat.cast_one]
     ring
-  · ring
+  · ring_nf
 
 theorem block_parameters_eventually {d : ℕ} (hd : 3 ≤ d) :
     ∀ᶠ h : ℕ in atTop,

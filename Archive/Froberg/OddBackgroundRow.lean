@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d b q f : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformTensorComponent_scalar_product (hb : b ≤ d)
     (Q : Forms K h 0 ⊗[K] Forms K m d) (a : biformParitySpace K h m d 1) :
     biformTensorComponent (by omega : b ≤ 2*d)
@@ -41,6 +42,7 @@ theorem biformTensorComponent_scalar_product (hb : b ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformTensorComponent_linear_product (hb : 1 ≤ b) (hbd : b ≤ d)
     (F : Forms K h 1 ⊗[K] Forms K m (d - 1)) (a : biformParitySpace K h m d 0) :
     biformTensorComponent (by omega : b ≤ 2*d)
@@ -75,6 +77,7 @@ def oddLinearCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddLinearCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
     (ho : b % 2 = 1) : Function.Surjective
       (oddLinearCoefficientProjection (K := K) (h := h) (m := m) hb hbd) :=
@@ -95,6 +98,7 @@ def oddRowCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddRowCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
     (ho : b % 2 = 1) : Function.Surjective
       (oddRowCoefficientProjection (K := K) (h := h) (m := m) (q := q) (f := f) hb hbd) := by
@@ -126,6 +130,7 @@ def oddTensorRowMap (hb : 1 ≤ b) (hbd : b ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackground_row_commutes (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
@@ -147,6 +152,7 @@ theorem oddBackground_row_commutes (hb : 1 ≤ b) (hbd : b ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackground_tensor_row_range (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :

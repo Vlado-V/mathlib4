@@ -48,6 +48,7 @@ theorem tensorScalarParityProduct_private_mem
   · simp
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem tensorScalarParityProduct_relations
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -93,6 +94,7 @@ def oddAmbientScalarProduct
     rw [map_smul,LinearMap.smul_apply,map_smul]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddAmbientScalarProduct_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -119,6 +121,7 @@ def oddAmbientToFull
     simpa only [Submodule.comap_id] using ambientOddRelations_le_full Q F G)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddAmbientToFull_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -127,6 +130,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
       (fullOddRelations Q F G).mkQ v := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddAmbientToFull_surjective
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -136,6 +140,7 @@ theorem oddAmbientToFull_surjective
   exact ⟨(ambientOddRelations Q F G).mkQ v,rfl⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddAmbientScalarProduct_toFull
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

@@ -37,6 +37,7 @@ omit [Infinite K] in
   simp [oddCoefficientAssembly]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddCoefficientAssembly_component (v : OddBiformCoordinates K h m d)
     (r : Fin ((d + 1) / 2)) :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val+1) (oddCoefficientAssembly v).val=
@@ -58,6 +59,7 @@ theorem oddCoefficientAssembly_component (v : OddBiformCoordinates K h m d)
   · simp
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddCoefficientAssembly_injective :
     Function.Injective (oddCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v z he
@@ -68,6 +70,7 @@ theorem oddCoefficientAssembly_injective :
   simpa only [oddCoefficientAssembly_component] using hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddCoefficientAssembly_surjective :
     Function.Surjective (oddCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v
@@ -95,11 +98,13 @@ def oddBiformCoordinatesEquiv :
     ⟨oddCoefficientAssembly_injective,oddCoefficientAssembly_surjective⟩).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddBiformCoordinatesEquiv_symm_val (v : OddBiformCoordinates K h m d) :
     (oddBiformCoordinatesEquiv.symm v).val=∑ r,sumBiformMap (v r) :=
   oddCoefficientAssembly_val v
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 1)
     (r : Fin ((d + 1) / 2)) :
     sumBiformMap (oddBiformCoordinatesEquiv v r)=
@@ -112,6 +117,7 @@ theorem oddBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 1)
   exact hc.symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem finrank_odd_biform_space (hh : 0 < h) (hm : 0 < m) :
     finrank K (biformParitySpace K h m d 1)=
       ∑ r : Fin ((d+1)/2),

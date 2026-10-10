@@ -91,6 +91,7 @@ theorem odd_background_component_preserves
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The coordinate singleton is precisely the actual weighted component. -/
 theorem oddBiformCoordinates_component_single
     (v : biformParitySpace K h m d 1) (r : Fin ((d + 1) / 2)) :
@@ -115,6 +116,7 @@ def oddBackgroundBlockRelations
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackgroundBlockRelations_single
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

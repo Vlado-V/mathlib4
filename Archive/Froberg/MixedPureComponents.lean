@@ -30,6 +30,7 @@ theorem linearOutput_weighted (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
   biformImage_output_weight (Forms K h 1) (Forms K m (d-1)) le_rfl
     (sumBiformMap_range.le ⟨P,rfl⟩)
 
+omit [Infinite K] in
 theorem mixedPureOddGenerator_top (hd : Odd d) (hd1 : 1 < d) (U : Forms K h d)
     (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     weightedHomogeneousComponent (blockWeight h m) d (mixedPureOddGenerator hd U P).val=
@@ -37,6 +38,7 @@ theorem mixedPureOddGenerator_top (hd : Odd d) (hd1 : 1 < d) (U : Forms K h d)
   rw [mixedPureOddGenerator_val,map_add,(pureOutput_weighted U).weightedHomogeneousComponent_same,
     (linearOutput_weighted P).weightedHomogeneousComponent_ne d (by omega),add_zero]
 
+omit [Infinite K] in
 theorem mixedPureOddGenerator_bottom (hd : Odd d) (hd1 : 1 < d) (U : Forms K h d)
     (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     weightedHomogeneousComponent (blockWeight h m) 1 (mixedPureOddGenerator hd U P).val=
@@ -45,6 +47,7 @@ theorem mixedPureOddGenerator_bottom (hd : Odd d) (hd1 : 1 < d) (U : Forms K h d
     (pureOutput_weighted U).weightedHomogeneousComponent_ne 1 (by omega),
     (linearOutput_weighted P).weightedHomogeneousComponent_same,zero_add]
 
+omit [Infinite K] in
 theorem mixedPureOddGenerator_other (hd : Odd d) (ht1 : t ≠ 1) (htd : t ≠ d)
     (U : Forms K h d) (P : Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     weightedHomogeneousComponent (blockWeight h m) t (mixedPureOddGenerator hd U P).val=0 := by

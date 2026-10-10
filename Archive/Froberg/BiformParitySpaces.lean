@@ -107,6 +107,7 @@ def evenCoefficientAssembly :
   (evenBiformEmbedding (t := 0) (Nat.zero_le d) (by omega)).coprod positiveEvenAssembly
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenCoefficientAssembly_surjective (hd : Odd d) :
     Function.Surjective (evenCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v

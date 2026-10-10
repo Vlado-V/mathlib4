@@ -48,6 +48,7 @@ theorem products_full_biform [Finite σ]
       (by have := p.val.isLt;omega) _ _
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem multiplication_range_full_biform [Finite σ]
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hR : R ≤ 2 * d)
@@ -70,6 +71,7 @@ variable {a z d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem coreExtension_layers (p : Space a d q J counts O) :
     layers (coreExtension z p)=fun j i => rename (Sum.map id (Fin.castAdd z)) (layers p j i) := by
   classical
@@ -80,6 +82,7 @@ theorem coreExtension_layers (p : Space a d q J counts O) :
   · simp only [layers,dite_eq_right hj,map_zero]
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem coreExtension_products (p : Space a d q J counts O) (R : ℕ) :
     ProductRows.multiplication counts (layers (coreExtension z p)) J R=
       (rename (Sum.map id (Fin.castAdd z))).toLinearMap.comp

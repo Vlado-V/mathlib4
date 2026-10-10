@@ -20,6 +20,7 @@ variable {σ : Type*} [Fintype σ] {m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] in
 theorem forms_polynomial_affine_parameters {V : Type*}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     (p₀ : Space m d q f u J counts O) (L : V →ₗ[K] Space m d q f u J counts O)
@@ -30,6 +31,7 @@ theorem forms_polynomial_affine_parameters {V : Type*}
     (isPolynomialFamily_const (forms hd hO hJ p₀)).add
       (forms_polynomial_linear_parameters L hd hO hJ)
 
+omit [Infinite K] in
 theorem enumerated_forms_polynomial_affine_parameters {V : Type*} {h : ℕ}
     [AddCommGroup V] [Module K V] [Module.Finite K V]
     {O : ℕ → Submodule K (Poly K h)}
@@ -76,6 +78,7 @@ omit [Infinite K] [Fintype σ] in
   simp [pureBase,variablePrivateZeroScalar]
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem finite_fixedPureSpace [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (FixedPureSpace m d q f u J counts O) := by
   let : Fintype σ := Fintype.ofFinite σ
@@ -85,6 +88,7 @@ theorem finite_fixedPureSpace [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneous
   exact congrArg (fun x : Space m d q f u J counts O => x.2) he
 
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem finite_fixedPureZeroScalarSpace [Finite σ]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) := by

@@ -84,7 +84,7 @@ theorem paired_monomial_capacity_limit {s : ℕ} (hs : 0 < s) :
   convert hh using 1
   norm_num only [Nat.cast_ofNat]
   rw [div_pow, one_pow, pow_succ]
-  ring
+  ring_nf
 
 /-- Strict leading-coefficient surplus gives the exact rounded capacity. -/
 theorem eventually_paired_capacity {s L : ℕ} (hs : 0 < s) (f : ℕ → ℕ) (c : ℝ)

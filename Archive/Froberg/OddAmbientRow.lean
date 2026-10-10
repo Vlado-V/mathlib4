@@ -26,6 +26,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d b q f u : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformTensorComponent_private_product_zero {j : ℕ}
     (hb : b ≤ 2 * d) (hbj : b ≠ j)
     (g : biformParitySpace K h m d 1)
@@ -45,6 +46,7 @@ theorem biformTensorComponent_private_product_zero {j : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformTensorComponent_privateScalar_zero
     (hd : Odd d) (hb : b ≤ 2 * d) (hb1 : b ≠ 1) (hbd : b ≠ d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
@@ -99,6 +101,7 @@ def oddAmbientRowProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d) (ho : b % 
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddAmbientRowProjection_mk
     (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
@@ -111,6 +114,7 @@ set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during t
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddAmbientRowProjection_scalar
     (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)

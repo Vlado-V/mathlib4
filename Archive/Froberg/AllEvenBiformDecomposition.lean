@@ -37,6 +37,7 @@ omit [Infinite K] in
   simp [allEvenCoefficientAssembly]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem allEvenCoefficientAssembly_component (v : EvenBiformCoordinates K h m d)
     (r : Fin (d / 2 + 1)) :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val) (allEvenCoefficientAssembly v).val=
@@ -58,6 +59,7 @@ theorem allEvenCoefficientAssembly_component (v : EvenBiformCoordinates K h m d)
   · simp
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem allEvenCoefficientAssembly_injective :
     Function.Injective (allEvenCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v z he
@@ -68,6 +70,7 @@ theorem allEvenCoefficientAssembly_injective :
   simpa only [allEvenCoefficientAssembly_component] using hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem allEvenCoefficientAssembly_surjective :
     Function.Surjective (allEvenCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v
@@ -95,11 +98,13 @@ def evenBiformCoordinatesEquiv :
     ⟨allEvenCoefficientAssembly_injective,allEvenCoefficientAssembly_surjective⟩).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem evenBiformCoordinatesEquiv_symm_val (v : EvenBiformCoordinates K h m d) :
     (evenBiformCoordinatesEquiv.symm v).val=∑ r,sumBiformMap (v r) :=
   allEvenCoefficientAssembly_val v
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 0)
     (r : Fin (d / 2 + 1)) :
     sumBiformMap (evenBiformCoordinatesEquiv v r)=
@@ -113,6 +118,7 @@ theorem evenBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 0)
   exact hc.symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem finrank_even_biform_space (hh : 0 < h) (hm : 0 < m) :
     finrank K (biformParitySpace K h m d 0)=
       ∑ r : Fin (d/2+1),

@@ -53,6 +53,7 @@ def fullOddRelations (Q : Fin q → biformParitySpace K h m d 0)
   oddBackgroundRelations Q F ⊔ (privateEvenCoefficientMap G).range
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem fullOddRelations_eq_ambient_add_higher (hd : Odd d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -60,6 +61,7 @@ theorem fullOddRelations_eq_ambient_add_higher (hd : Odd d)
   simp only [fullOddRelations,ambientOddRelations,privateEvenCoefficientMap_range hd,sup_assoc]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_ambient_covector_dimension (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -88,6 +90,7 @@ omit [Infinite K] in
   simp [mixedPureOddGenerator,sumBiformMap_tmul]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem mixedPureHigherRelations_val (hd : Odd d) (U : Fin u → Forms K h d)
     (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (v : Fin u → HigherEvenCoefficients K h m d) :

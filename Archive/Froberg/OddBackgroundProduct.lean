@@ -62,6 +62,7 @@ def oddBackgroundCoefficientRelations
   Submodule.span K (Set.range F) ⊔ Submodule.span K (Set.range G)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackgroundProduct_relations
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -106,6 +107,7 @@ def oddBackgroundQuotientProduct
     rw [map_smul,LinearMap.smul_apply,map_smul]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddBackgroundQuotientProduct_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

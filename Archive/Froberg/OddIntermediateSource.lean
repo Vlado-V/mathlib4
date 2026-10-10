@@ -21,6 +21,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d b q f u : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformTensorComponent_weight_ne {j : ℕ} (hb : b ≤ d)
     (v : biformParitySpace K h m d 1)
     (hv : v.val.IsWeightedHomogeneous (blockWeight h m) j) (hj : b ≠ j) :
@@ -51,6 +52,7 @@ def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d)
       exact mixedPureOddGenerator_other hd (by omega) (by omega) (U i) (P i))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddIntermediateSourceProjection_mk (hd : Odd d) (hb : 3 ≤ b) (hbd : b < d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
@@ -59,6 +61,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
       ((oddBackgroundCoefficientRelations _ _).mkQ v)=biformTensorComponent (by omega) v := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddIntermediateSourceProjection_scalar (hd : Odd d)
     (hb : 3 ≤ b) (hbd : b < d) (ho : b % 2 = 1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)

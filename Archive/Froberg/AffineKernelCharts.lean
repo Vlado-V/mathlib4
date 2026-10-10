@@ -148,6 +148,7 @@ theorem chartCovector_polynomial
     (hx.linear_comp (LinearMap.fst K _ _))).linear_comp res
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem affineKernelChart_rank
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (muH : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin H → K))

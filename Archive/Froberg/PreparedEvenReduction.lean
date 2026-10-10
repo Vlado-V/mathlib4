@@ -32,6 +32,7 @@ theorem high_weight (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
   | inl i => exact (weightedHomogeneousSubmodule K _ _).zero_mem
   | inr a => exact biformImage_output_weight _ _ (hO _ a.1.property) (p.2 a.1 a.2).property
 
+omit [Infinite K] in
 /-- All positive even polynomial components of a relation can be removed by
 literal constant Koszul boundaries in the same prepared family. -/
 theorem even_positive_rows_reduce_to_scalar

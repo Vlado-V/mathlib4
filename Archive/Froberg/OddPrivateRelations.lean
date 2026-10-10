@@ -59,6 +59,7 @@ def privateHigherRelations (g : Fin u → biformParitySpace K h m d 1) :
   (privateEvenCoefficientMap g).comp (LinearMap.piMap (fun _ => positiveEvenAssembly))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem privateHigherRelations_val (g : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → HigherEvenCoefficients K h m d) :
     (privateHigherRelations g v).val=∑ i,∑ r,(g i).val*sumBiformMap (v i r) := by
@@ -72,6 +73,7 @@ def privateCoefficientAssembly :
     (LinearMap.piMap (fun _ => positiveEvenAssembly))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateCoefficientAssembly_surjective (hd : Odd d) :
     Function.Surjective (privateCoefficientAssembly (K := K) (h := h) (m := m) (d := d) (u :=
       u)) := by
@@ -82,6 +84,7 @@ theorem privateCoefficientAssembly_surjective (hd : Odd d) :
   exact hz i
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateEvenCoefficientMap_range (hd : Odd d)
     (g : Fin u → biformParitySpace K h m d 1) :
     (privateEvenCoefficientMap g).range=
@@ -97,6 +100,7 @@ theorem privateEvenCoefficientMap_range (hd : Odd d)
     LinearMap.range_eq_top.mpr (privateCoefficientAssembly_surjective hd),Submodule.map_top]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_private_relation_loss (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
     (g : Fin u → biformParitySpace K h m d 1)
     (base : Submodule K (biformParitySpace K h m (2 * d) 1)) :

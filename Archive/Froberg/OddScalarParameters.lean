@@ -53,6 +53,7 @@ attribute [local irreducible] OddScalarLayerProperty
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_scalar_forms_open (hopen : HasOddScalarLayersOpen K h n d qO qS t) :
     ∃ D : MvPolynomial (Fin (finrank K (OddScalarParameters K h n d qO qS))) K,
       (∃ p : OddScalarParameters K h n d qO qS,
