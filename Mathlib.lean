@@ -1,5 +1,8 @@
 module  -- shake: keep-all --deprecated_module: ignore
 
+public import Mathlib.RingTheory.MvPolynomial.HomogeneousBasis
+public import Mathlib.RingTheory.MvPolynomial.HomogeneousIdeal
+public import Mathlib.RingTheory.MvPolynomial.LinearFamily
 public import Std
 public import Batteries
 public import Mathlib.Algebra.AddConstMap.Basic
