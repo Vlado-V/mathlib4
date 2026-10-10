@@ -6,7 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.Data.Nat.Bitwise
-public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Field.ZMod
 public import Mathlib.LinearAlgebra.Matrix.Rank
 public import Mathlib.Tactic.NormNum
 
