@@ -136,6 +136,7 @@ theorem preparedPositiveBiform_restrictCounts
   rfl
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedBackground_restrictCounts
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -155,6 +156,7 @@ theorem preparedBackground_restrictCounts
   | inr i => rfl
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_extra_positive_independent
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -190,6 +192,7 @@ theorem prepared_extra_positive_independent
     exact (congrFun (preparedBackground_restrictCounts hd ho hO hJ heven hc p U P F) i).symm
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_extra_background_span
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)

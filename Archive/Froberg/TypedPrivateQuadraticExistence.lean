@@ -71,6 +71,7 @@ theorem biformVectorDetector_scalar_rename
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 /-- The extended outer product row is literally the renamed core row. -/
 theorem detectedSymmetricProductRow_core_extension
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))

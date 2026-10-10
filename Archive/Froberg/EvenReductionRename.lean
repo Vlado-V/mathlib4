@@ -118,6 +118,7 @@ theorem even_positive_reduction_output_rename [Finite σ] [Finite τ]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 omit [Fintype σ] [Fintype τ] in
+omit [Infinite K] in
 theorem even_positive_reduction_open_output_rename [Finite σ] [Finite τ]
     [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
@@ -164,6 +165,7 @@ theorem evenReductionOpen_congr_outputs
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 omit [Fintype σ] [Fintype τ] in
+omit [Infinite K] in
 theorem even_positive_reduction_open_constraint_rename [Finite σ] [Finite τ]
     {X : Type*} [AddCommGroup X] [Module K X]
     (T : ℕ → MvPolynomial τ K →ₗ[K] X) (e : σ ≃ τ)

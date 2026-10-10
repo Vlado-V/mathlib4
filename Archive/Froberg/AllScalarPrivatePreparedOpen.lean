@@ -50,6 +50,7 @@ def PrivatePreparedFrameOpen {d : ℕ} (hd : 0 < d) (hodd : d % 2 = 1)
             (fun _ hj => (mem_allEvenIndices.mp hj).2.2) label U p
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem counted_private_prepared_all_scalars {d w : ℕ}
     (hd : 0 < d) (hodd : d % 2 = 1)
     (hw : CountedPrivatePreparedAt (K := K) hd hodd w)

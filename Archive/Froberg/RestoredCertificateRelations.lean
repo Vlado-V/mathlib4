@@ -91,6 +91,7 @@ theorem RestoredCertificate.background_independent (hdp : 1 ≤ d) (hd : d % 2 =
   simpa only [Function.comp_def,restoredOuterEndpoint_castAdd] using hi
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_certificate_formal_relations (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (hpos : ∀ j ∈ J, 0 < j)

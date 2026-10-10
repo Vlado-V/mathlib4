@@ -27,6 +27,7 @@ variable {σ : Type*}
 variable {a z d b q h c : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Every actual biform coefficient has basis coordinates, and the selected
 output detector becomes the coordinate private-power map. -/
 theorem typed_private_quadratic_coordinates
@@ -56,6 +57,7 @@ theorem typed_private_quadratic_coordinates
     (fun i => outputCombination (fun k => (bo k).val) (w i)) ι A hA v
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Scalar/private nuisance coefficients cannot absorb a core product that
 is already separated from the core scalar row. The private part vanishes
 separately as well. -/

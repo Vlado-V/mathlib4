@@ -67,6 +67,7 @@ theorem oddHigherPureEquiv_top_component (hdp : 1 ≤ d)
     biformTensorComponent_spec,hr]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddMixedSourceBlockCoordinates_top_projection (hd : Odd d) (hd3 : 3 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

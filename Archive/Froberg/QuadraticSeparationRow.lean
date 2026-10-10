@@ -78,6 +78,7 @@ theorem quadraticNuisanceRow_boundary
   rw [map_zero,zero_add,PolynomialRestoration.row_boundary]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quadratic_nuisance_separation_open
     (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] (Fin c → Poly K n))

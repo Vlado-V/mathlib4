@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_scalar_fiber_relative_injective
     (hd : 0 < d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -40,6 +41,7 @@ theorem prepared_scalar_fiber_relative_injective
   exact hi
 
 set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_scalar_fiber_upper
     (hd : 0 < d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)

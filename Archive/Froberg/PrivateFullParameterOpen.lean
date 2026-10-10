@@ -42,6 +42,7 @@ def privateOddLinear (hd : 0 < d) :
   LinearMap.pi (fun i => (privateOddEmbed hd).comp (LinearMap.proj i))
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_full_parameter_principal_open
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

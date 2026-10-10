@@ -90,6 +90,7 @@ theorem privateSplitEndpoint_back
   biformSplitEndpoint_back _ _ i
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K := K) (blockWeight h
   m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d)

@@ -79,6 +79,7 @@ omit [Infinite K] in
   rw [hb,rename_renamedPrivateColumn]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem renamed_private_detector_column (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) (w : Fin h → K) (j : Fin h) :
@@ -103,6 +104,7 @@ theorem privatePowerBiform_output_rename {d : ℕ}
   rfl
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- A detector supplied by the finite-variable frame open feeds the prepared
 private-row theorem on any equivalent variable type. -/
 theorem private_detector_coordinate_pullback (f : σ ≃ Fin h)

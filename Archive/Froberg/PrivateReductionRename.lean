@@ -150,6 +150,7 @@ theorem private_positive_reduction_output_rename [Finite σ] [Finite τ]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 omit [Fintype σ] [Fintype τ] in
+omit [Infinite K] in
 theorem private_positive_reduction_open_output_rename [Finite σ] [Finite τ]
     [Module.Finite K (Space n d q J counts O)]
     (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

@@ -70,6 +70,7 @@ theorem quadraticPolynomialDetector_frame
   rw [hL]
   exact Submodule.subset_span ⟨i,rfl⟩
 
+omit [Infinite K] in
 theorem quadraticPolynomialDetector_biform_frame {n s : ℕ}
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))

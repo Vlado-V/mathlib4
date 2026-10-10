@@ -25,6 +25,7 @@ variable {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 omit [FiniteDimensional K W] [Fintype σ] in
+omit [Infinite K] in
 theorem extended_sparse_intrinsic_exact_zero [Finite σ] (hs : s = 0) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)

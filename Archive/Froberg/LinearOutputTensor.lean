@@ -81,6 +81,7 @@ theorem sumBiformMap_linearOutput (v : Rows K h m s) :
   simp only [sumBiformMap_tmul,linearCutEquiv_single]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem linearOutput_scalar_product (p : Forms K m d) (v : Rows K h m s) :
     sumBiformMap (linearOutputTensorEquiv (multiplication p v))=
       rename Sum.inr p.val*sumBiformMap (linearOutputTensorEquiv v) := by

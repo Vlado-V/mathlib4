@@ -52,6 +52,7 @@ theorem oddEndpointScalarAction_eq
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenEndpointScalar_compatible
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -70,6 +71,7 @@ theorem oddEvenEndpointScalar_compatible
     ((oddBackgroundCoefficientRelations F G).mkQ a)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEndpointScalarAction_closed_slices
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

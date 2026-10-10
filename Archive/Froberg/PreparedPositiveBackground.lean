@@ -59,6 +59,7 @@ theorem prepared_positive_background_scalar_independent (hd : 1 < d) (hdodd : d 
     exact (zeroScalarEndpointFamily_back (by omega) hO hJ U P p (Sum.inr (Sum.inr i))).symm
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_positive_biform_scalar_independent (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (hpos : ∀ j ∈ J, 0 < j) (hJlt : ∀ j ∈ J, 0 < counts j → j < d)

@@ -39,6 +39,7 @@ theorem mem_scalarCoefficientRow_range
     hx k
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem polynomialTensorSpace_product_scalar_range
     (T : Poly K h →ₗ[K] (Fin c → K)) (Q : Fin q → Forms K m d)
     (A C : Submodule K (Poly K h)) (B D : Submodule K (Poly K m))

@@ -33,6 +33,7 @@ local notation "j" => finrank K W-e*finrank K V
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 omit [IsAlgClosed K] in
+omit [Infinite K] in
 theorem evenEndpointScalarAction_target_finrank
     (E : Fin e → biformParitySpace K h m d 0)
     (hi : Function.Injective (oddEvenRelativeMap Q₀ F₁ emptyOddFamily E)) :

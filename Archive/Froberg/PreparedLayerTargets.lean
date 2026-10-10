@@ -42,6 +42,7 @@ theorem renamedPreparedGenerator_layer (p : PreparedParameters.Space m d q J cou
   rw [map_add,rename_rename,←rename_sumBiform,preparedLayerTensor_sum]
   rfl
 
+omit [Infinite K] in
 theorem prepared_layer_components (p : PreparedParameters.Space m d q J counts O)
     (a : J) (ha : 0 < a.val) (hO : O a.val ≤ Forms K h a.val) (i : Fin (counts a.val)) :
     coreComponent h m a.val (renamedPreparedGenerator p (Sum.inr ⟨a,i⟩))=
@@ -57,6 +58,7 @@ theorem span_products_subfamily {α β : Type*} (p : β → Poly K (h + m)) (f :
       (Submodule.span K (Set.range p))*Forms K (h+m) d :=
   mul_le_mul' (Submodule.span_mono (Set.range_comp_subset_range _ _)) le_rfl
 
+omit [Infinite K] in
 theorem prepared_layer_target_lift (p : PreparedParameters.Space m d q J counts O)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (a : J) (ha : 0 < a.val) (hab : a.val ≤ b) (hbd : b ≤ d + a.val)

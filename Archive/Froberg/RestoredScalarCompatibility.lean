@@ -133,6 +133,7 @@ theorem restored_split_odd_exact (hd : d % 2 = 0)
     by simpa only [Equiv.symm_symm,hS] using hB'⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_scalar_fiber_relative_injective (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -185,6 +186,7 @@ theorem restored_background_value (hdp : 1 ≤ d) (hd : d % 2 = 0)
     rw [←PreparedTarget.outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_background_upper (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -209,6 +211,7 @@ theorem restored_background_upper (hdp : 1 ≤ d) (hd : d % 2 = 0)
     exact ⟨finSumFinEquiv j,(restored_background_value hdp hd hO hJ heven idx slot p j).symm⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_scalar_fiber_upper (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

@@ -89,6 +89,7 @@ theorem quadratic_separated_principal_open
   exact congrArg Prod.snd (hinj hzero)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_quadratic_separation_open
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (idx : Fin r ≃ Label q J counts)
     (T : Poly K h →ₗ[K] (Fin c → K))

@@ -67,6 +67,7 @@ theorem exists_odd_ambient_bottom_representative
     hp,hpx]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_ambient_projection_kills_bottom {Z : Type} [AddCommGroup Z] [Module K Z]
     (proj : (biformParitySpace K h m (2 * d) 1 ⧸ ambientOddRelations Q F G) →ₗ[K] Z)
     (hproj : ∀ p : biformParitySpace K h m (2*d) 1,

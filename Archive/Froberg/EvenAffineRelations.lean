@@ -52,6 +52,7 @@ theorem evenAffineRelations_generator_mem (E : Fin e → biformParitySpace K h m
   · simp
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenAffineRelations_finrank (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d)
     (hi : Function.Injective (oddEvenRelativeMap Q₀ F₁ emptyOddFamily (oddEvenAffineFamily E a))) :
@@ -61,6 +62,7 @@ theorem evenAffineRelations_finrank (E : Fin e → biformParitySpace K h m d 0)
     (evenRelativeFamily_injective hdp Q F _ hi)).symm
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_affine_bottom_detects (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d)
     (hupper : Function.Surjective (upperTargetMap

@@ -43,6 +43,7 @@ def ambientTopMap : biformParitySpace K h m (2*d) 1 →ₗ[K] RawOddTopTensor K 
   topRowTarget.toLinearMap.comp (biformTensorComponent (by omega : d≤2*d))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientTopMap_background (hdp : 1 ≤ d) (hd : Odd d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (oddBackgroundRelations (fun i => scalarEvenBiform (h := h) (Q i))
@@ -75,6 +76,7 @@ theorem ambientTopMap_private_mem (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
   exact ⟨fun i => (scalarBiformEquiv (h := h)).symm (v i),sumTensorLeft_apply _ _⟩
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientTopMap_relations (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1)) :

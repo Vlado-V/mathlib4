@@ -51,6 +51,7 @@ theorem biformVectorDetector_private
   rw [←smul_mul_assoc,smul_monomial,smul_eq_mul,mul_one]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- A literal polynomial row has a constant private Koszul boundary whenever
 its nonprivate quadratic-output term is killed by the selected detector. -/
 theorem private_first_row_boundary

@@ -51,6 +51,7 @@ omit [Infinite K] in
   rw [hl,hr,biformVectorDetector_tmul]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem preparedQuadraticDetector_mul_rename
     (T : Poly K h →ₗ[K] (Fin c → K)) (a : Poly K h) (b : Poly K m) (k : Fin c) :
     preparedQuadraticDetector T (rename (Fin.castAdd m) a * rename (Fin.natAdd h) b) k=
@@ -58,6 +59,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
   simpa only [splitPolynomialEquiv_tmul] using preparedQuadraticDetector_tmul T a b k
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedQuadraticDetector_supported
     (T : Poly K h →ₗ[K] (Fin c → K))
     (hT : T.comp (homogeneousComponent 2) = T) :
@@ -90,6 +92,7 @@ theorem quadratic_output_one_zero (T : Poly K h →ₗ[K] (Fin c → K))
   simpa using he.symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Every polynomial supported only in the scalar variables is invisible. -/
 theorem preparedQuadraticDetector_scalar
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -104,6 +107,7 @@ theorem preparedQuadraticDetector_scalar
   simp
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- A killed output subspace remains killed with arbitrary scalar coefficients. -/
 theorem polynomialTensorSpace_le_preparedQuadraticDetector_ker
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -121,6 +125,7 @@ theorem polynomialTensorSpace_le_preparedQuadraticDetector_ker
   | add a b ha hb => simp only [map_add,ha,hb,add_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Products are killed whenever their output-factor product is killed. -/
 theorem polynomialTensorSpace_product_le_preparedQuadraticDetector_ker
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -146,6 +151,7 @@ theorem polynomialTensorSpace_product_le_preparedQuadraticDetector_ker
   | add x y hx hy => simp only [map_add,add_mul,hx,hy,add_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The constrained quadratic term stays invisible after multiplying by any
 scalar-only coefficient of the required total degree. -/
 theorem preparedQuadraticDetector_quadratic_product

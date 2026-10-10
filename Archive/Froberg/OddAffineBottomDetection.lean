@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 variable {W₀ H : Type} [AddCommGroup W₀] [Module K W₀] [AddCommGroup H] [Module K H]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_affine_bottom_detects
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

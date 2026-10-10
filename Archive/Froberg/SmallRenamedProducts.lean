@@ -24,6 +24,7 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem exists_small_cross_profile_parameter_equiv {a b v : ℕ}
     (e : Fin (a + b) ≃ σ) (ha : 0 < a) (hb : 0 < b) (hv : 0 < v)
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4 = 0)

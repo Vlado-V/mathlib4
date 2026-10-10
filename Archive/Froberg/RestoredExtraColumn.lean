@@ -147,6 +147,7 @@ theorem restoredPositiveBiform_restrictCounts (hd : d % 2 = 0)
     countLabelMap,countLayerMap,Equiv.apply_symm_apply,Equiv.symm_apply_apply,Sum.elim_inr] using hh
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The retained restored positive family and the distinguished extra
 column span exactly the enlarged restored positive family. -/
 theorem restoredPositiveBiform_extra_span (hd : d % 2 = 0)
@@ -177,6 +178,7 @@ theorem restoredPositiveBiform_extra_span (hd : d % 2 = 0)
     (restoredPositiveBiform_restrictCounts hd hO hJ heven hc idx idx' slot p i)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The same separation with an unchanged odd background appended. -/
 theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
@@ -199,6 +201,7 @@ theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d % 2 = 0)
   ac_rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Joint quotient independence after separating one enlarged positive label.
 The quotient is arbitrary; in the application it is the pure-scalar quotient. -/
 theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d % 2 = 0)
@@ -243,6 +246,7 @@ theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d % 2 
     | inr j => rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The even-only specialization derives quotient independence directly
 from the enlarged parameter's independent prepared rows. -/
 theorem restoredPositiveBiform_extra_scalar_independent (hd : d % 2 = 0)

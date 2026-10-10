@@ -68,6 +68,7 @@ theorem quadraticScalarRow_injective
     Finsupp.zero_apply,Pi.zero_apply,Submodule.coe_zero] using hh
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_core_product_separation
     (hs : 2 ≤ s) (ht : t < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
@@ -105,6 +106,7 @@ theorem private_core_product_separation
     freeCoeff_rename_mul,freeCoeff_rename_core,ite_true,map_zero,x₀] using hh
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_scalar_row_exact
     {U : Type*} [AddCommGroup U] [Module K U]
     (hs : 2 ≤ s) (ht : t < s) (ι : Fin b ↪ Fin z)

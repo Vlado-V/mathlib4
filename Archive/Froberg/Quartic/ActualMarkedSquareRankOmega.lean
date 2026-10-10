@@ -64,6 +64,7 @@ theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
   exact he
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)

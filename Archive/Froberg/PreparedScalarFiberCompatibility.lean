@@ -42,6 +42,7 @@ theorem scalarFiber_high (hO : ∀ j ∈ J, O j ≤ Forms K h j)
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarFiber_positive (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :

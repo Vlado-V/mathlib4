@@ -56,6 +56,7 @@ def PrivateSplitReduction (hd : 0 < d) (ho : d % 2 = 1)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem private_split_reduction_principal_open [Finite σ]
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

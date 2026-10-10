@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {w h H c : ℕ}
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quadratic_detector_homogeneous_kernel
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -69,6 +70,7 @@ theorem pairedFrameConstraint_ge_four (f : (Fin w × Bool) ≃ Fin h)
     pairedFrameConstraint f L j=0 := pairedFrameConstraint_ne_two f L (by omega)
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_space (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))

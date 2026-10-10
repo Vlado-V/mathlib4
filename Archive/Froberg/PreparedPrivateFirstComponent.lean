@@ -56,6 +56,7 @@ theorem private_first_coefficient_boundary
   simpa only [Pi.zero_apply,zero_smul,Finset.sum_const_zero,add_zero] using hrel
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_first_component_boundary
     (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (hmin : ∀ j ∈ J, 2 ≤ j) (h2 : 2 ∈ J)

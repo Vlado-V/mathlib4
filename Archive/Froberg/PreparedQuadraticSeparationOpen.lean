@@ -57,6 +57,7 @@ def PreparedQuadraticRowSeparated
     detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype T p.2.2 z=0 → z=0
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_quadratic_separation_principal_open
     (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (idx : Fin r ≃ PreparedParameters.Label q J counts)

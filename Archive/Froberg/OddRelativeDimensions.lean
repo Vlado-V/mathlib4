@@ -67,6 +67,7 @@ theorem odd_even_relative_dimension
   exact hq
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_ambient_relative_dimension (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

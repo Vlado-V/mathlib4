@@ -37,6 +37,7 @@ theorem oddLinearBiform_weighted (hdp : 1 ≤ d)
   linearOutput_weighted v
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_mixed_ambient_correction (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (Q : Fin q → Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

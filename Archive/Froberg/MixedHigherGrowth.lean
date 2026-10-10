@@ -34,6 +34,7 @@ theorem bilinear_growth_injective_postcompose
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem mixedHigherAction_growth (hd : Odd d) (hd3 : 3 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

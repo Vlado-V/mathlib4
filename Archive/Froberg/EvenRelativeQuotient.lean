@@ -53,6 +53,7 @@ def evenRelativeQuotientEquiv (hdp : 1 ≤ d)
     (evenRelativeFamily_range hdp Q F E)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenRelativeQuotient_compatible (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) (p : Forms K m d)

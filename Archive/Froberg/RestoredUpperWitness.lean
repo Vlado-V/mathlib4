@@ -51,6 +51,7 @@ def restoredUpperPoint (hd : 3 ≤ d)
   ((extendQuadratic hd h m e _ p.1,U),p.2.1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_upper_point_contains (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ Forms K h j)
     (idx : Fin r ≃ Label q (allEvenIndices d)
@@ -104,6 +105,7 @@ theorem restored_upper_point_contains (hd : 3 ≤ d) (he : d % 2 = 0)
     rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_upper_point_surjective (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ allEvenIndices d, O j ≤ Forms K h j)
     (idx : Fin r ≃ Label q (allEvenIndices d)

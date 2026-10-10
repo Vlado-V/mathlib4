@@ -53,6 +53,7 @@ theorem outputTensorVectorEquiv_biform_quotient
     simpa only [map_add,Pi.add_apply] using congrFun (congrArg₂ HAdd.hAdd ha hb) k
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem detected_biform_coordinate_quotient_independent
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (Q : Submodule K (Poly K n)) (p : I → MvPolynomial (σ ⊕ Fin n) K)
@@ -65,6 +66,7 @@ theorem detected_biform_coordinate_quotient_independent
     outputTensorVectorEquiv_biform_quotient] using hi
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem detected_biform_vector_relation_coefficients [Fintype I]
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (Q : Submodule K (Poly K n)) (p : I → MvPolynomial (σ ⊕ Fin n) K)

@@ -23,6 +23,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottom_polynomial_constants (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d)) g))

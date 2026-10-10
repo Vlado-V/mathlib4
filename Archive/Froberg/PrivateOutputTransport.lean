@@ -126,6 +126,7 @@ theorem private_polynomial_row_image_zero {m r : ℕ}
   exact hrel
 
 /-! Below the private endpoint, the separated private image has zero kernel. -/
+omit [Infinite K] in
 theorem private_polynomial_row_lower_zero {m r : ℕ}
     (hs : 2 ≤ s) (hr : r < s)
     (o : Fin c → MvPolynomial σ K) (ho : LinearIndependent K o)

@@ -20,6 +20,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottom_polynomial_constants_of_exact (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hex : FirstVectorRowExact Q g)

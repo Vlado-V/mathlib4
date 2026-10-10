@@ -56,6 +56,7 @@ omit [Infinite K] in
     sumBiformMap_scalarBiform]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottom_vector_linear_action (hd : 1 ≤ d) (g : Rows K h m (d - 1)) (a : Forms K m d) :
     oddRowLinearAction (b := 1) (by decide) hd (linearOutputTensorEquiv g)
       (bottomLinearCoefficientEquiv hd a)=bottomOutputTargetEquiv hd (multiplication a g) := by
@@ -64,6 +65,7 @@ theorem bottom_vector_linear_action (hd : 1 ≤ d) (g : Rows K h m (d - 1)) (a :
     sumBiformMap_bottomOutputTarget,linearOutput_scalar_product,mul_comm]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem bottom_vector_scalar_action (hd : 1 ≤ d) (p : Forms K m d) (v : Rows K h m (d - 1)) :
     oddRowScalarAction (b := 1) hd (scalarBiformEquiv (h := h) p)
       (linearOutputTensorEquiv v)=bottomOutputTargetEquiv hd (multiplication p v) := by

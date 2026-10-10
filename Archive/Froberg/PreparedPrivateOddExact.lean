@@ -89,6 +89,7 @@ theorem prepared_private_odd_split (hd : 0 < d) (ho : d % 2 = 1)
   exact hnew
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_private_endpoint_odd (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)
@@ -105,6 +106,7 @@ theorem prepared_private_endpoint_odd (hd : 0 < d) (ho : d % 2 = 1)
     (prepared_even_independent_of_full hd hO hJ heven p P U F hi) H) a ha
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateEndpointFamily_full_value (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)
@@ -123,6 +125,7 @@ theorem privateEndpointFamily_full_value (hd : 0 < d) (ho : d % 2 = 1)
   cases i <;> rfl
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_private_endpoint_independent (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)

@@ -116,6 +116,7 @@ def backgroundOddTargetDimension
     (backgroundEnumeratedForms Q F G))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_endpoint_dimension_eq_of_split_exact
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

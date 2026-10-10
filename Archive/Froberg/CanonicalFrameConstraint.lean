@@ -38,6 +38,7 @@ def canonicalFrameConstraint (frame : Fin H → Forms K h 2) (j : ℕ) :
     Poly K h →ₗ[K] (Fin (frameQuotientDimension frame) → K) :=
   if j=2 then quadraticPolynomialDetector (canonicalFrameDetector frame) else 0
 
+omit [Infinite K] in
 theorem canonicalFrameConstraint_outputs (frame : Fin H → Forms K h 2) (j : ℕ) :
     Forms K h j ⊓ (canonicalFrameConstraint frame j).ker=targetLayerOutput frame j := by
   by_cases hj : j=2

@@ -25,6 +25,7 @@ open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenScalar_compatible
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -39,6 +40,7 @@ theorem oddEvenScalar_compatible
   exact oddEvenTargetExtensionEquiv_mk Q F G E (evenOddBiformProduct (scalarEvenBiform p) a)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEvenScalar_slices_iff
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

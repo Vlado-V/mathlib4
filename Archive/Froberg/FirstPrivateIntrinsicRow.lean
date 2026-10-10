@@ -24,6 +24,7 @@ variable {a z d b q m h c : ℕ}
 
  set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 theorem first_private_intrinsic_row (hd : 3 ≤ d)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
