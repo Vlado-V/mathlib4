@@ -1,8 +1,5 @@
 module  -- shake: keep-all --deprecated_module: ignore
 
-public import Mathlib.RingTheory.MvPolynomial.HomogeneousBasis
-public import Mathlib.RingTheory.MvPolynomial.HomogeneousIdeal
-public import Mathlib.RingTheory.MvPolynomial.LinearFamily
 public import Std
 public import Batteries
 public import Mathlib.Algebra.AddConstMap.Basic
@@ -7091,8 +7088,11 @@ public import Mathlib.RingTheory.MvPolynomial.Expand
 public import Mathlib.RingTheory.MvPolynomial.FreeCommRing
 public import Mathlib.RingTheory.MvPolynomial.Groebner
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
+public import Mathlib.RingTheory.MvPolynomial.HomogeneousBasis
+public import Mathlib.RingTheory.MvPolynomial.HomogeneousIdeal
 public import Mathlib.RingTheory.MvPolynomial.Ideal
 public import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+public import Mathlib.RingTheory.MvPolynomial.LinearFamily
 public import Mathlib.RingTheory.MvPolynomial.Localization
 public import Mathlib.RingTheory.MvPolynomial.MonomialOrder
 public import Mathlib.RingTheory.MvPolynomial.MonomialOrder.DegLex
