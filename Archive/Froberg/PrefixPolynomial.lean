@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.BinomialPolynomial
+public import Mathlib.Topology.Algebra.Polynomial
 public import Mathlib.Analysis.Polynomial.Basic
 public import Mathlib.Analysis.Calculus.Deriv.Polynomial
 public import Mathlib.Analysis.Calculus.Deriv.MeanValue

@@ -23,11 +23,12 @@ variable {K σ ι : Type*} [Field K]
 
 /-- Distinct leading exponents make a finite family of nonzero polynomials
 linearly independent. The proof inspects the largest active exponent. -/
-theorem linearIndependent_of_distinct_leading [Fintype ι]
+theorem linearIndependent_of_distinct_leading [Finite ι]
     (m : MonomialOrder σ) (f : ι → MvPolynomial σ K)
     (hf : ∀ i, f i ≠ 0) (hinj : Function.Injective (fun i => m.degree (f i))) :
     LinearIndependent K f := by
   classical
+  let := Fintype.ofFinite ι
   apply Fintype.linearIndependent_iff.mpr
   intro c hc
   by_contra hzero

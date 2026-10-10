@@ -5,6 +5,8 @@ Authors: Vlado Vojdanovski
 -/
 module
 
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 public import Mathlib.Combinatorics.Pigeonhole
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring
@@ -20,7 +22,6 @@ open Finset
 
 /-- Counting a weighted cut, including one missing unit at each mixed target. -/
 theorem weighted_cut_bound {S T : Type*} [Fintype S] [Fintype T]
-    [DecidableEq S] [DecidableEq T]
     (w : T → S → ℕ) (A : Finset S) (B M : Finset T) (C L : ℕ)
     (hrow : ∀ t, ∑ s, w t s = C)
     (hcol : ∀ s, ∑ t, w t s = L)
@@ -80,11 +81,12 @@ theorem strengthened_weighted_expansion (N T k B M C L b u : ℕ)
   nlinarith
 
 /-- The finite bounded-fiber inequality in the form used for mixed monomials. -/
-theorem card_le_mul_of_fiber_bound {S T : Type*} [DecidableEq S] [DecidableEq T]
+theorem card_le_mul_of_fiber_bound {S T : Type*} [DecidableEq T]
     (A : Finset S) (B : Finset T) (f : S → T) (b : ℕ)
     (hf : ∀ a ∈ A, f a ∈ B)
     (hbound : ∀ t ∈ B, (A.filter (fun a => f a = t)).card ≤ b) :
     A.card ≤ b * B.card := by
+  classical
   by_contra h
   have hh : B.card * b < A.card := by rw [Nat.mul_comm]; omega
   obtain ⟨t, ht, hlarge⟩ := exists_lt_card_fiber_of_mul_lt_card_of_maps_to hf hh
