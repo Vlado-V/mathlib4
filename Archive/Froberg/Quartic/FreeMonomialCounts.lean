@@ -75,7 +75,7 @@ theorem exactExponent_card (w k : ℕ) :
   simp
 
 /-- Membership of the monomial multiset agrees with positivity of its exponent. -/
-theorem exponent_pos_iff (s : Sym (Fin w) k) (i : Fin w) :
+theorem exponent_pos_iff {w k : ℕ} (s : Sym (Fin w) k) (i : Fin w) :
     0 < (Quartic.exponentEquiv w k s).val i ↔ i ∈ s := by
   change 0 < (s : Multiset (Fin w)).count i ↔ _
   exact Multiset.count_pos
