@@ -71,7 +71,7 @@ theorem dimension_bound (F : Filter V) [F.NeBot] (hF : AvoidsHyperplanes (K := K
       intro h
       exact hxy (by rw [h]; rfl)
     obtain ⟨v₀, hv₀, hv⟩ := (hrank.and (hF _ hfunctional)).exists
-    have hvx : H u v₀ x ≠ 0 := by rwa [hsym] 
+    have hvx : H u v₀ x ≠ 0 := by rwa [hsym]
     have hvnonzero : H u v₀ ≠ 0 := by
       intro h
       exact hvx (by rw [h]; rfl)

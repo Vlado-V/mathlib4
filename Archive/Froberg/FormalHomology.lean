@@ -377,14 +377,14 @@ theorem endpointHomology_comp_le {r' : ℕ} (htwo : (2 : K) ≠ 0)
 remain available for compatibility with the original development. -/
 
 /-- Exactly the constant Koszul boundaries map to zero. -/
-theorem ker_cycleToFormal_anyChar 
+theorem ker_cycleToFormal_anyChar
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
     LinearMap.ker (cycleToFormal q) = incomingInKernel q := by
   rw [cycleToFormal, LinearMap.ker_comp, ker_formalCoefficientMap_anyChar q hq]
   rfl
 
 /-- The actual endpoint Koszul homology is naturally the formal-product relation space. -/
-def endpointHomologyEquivFormal_anyChar 
+def endpointHomologyEquivFormal_anyChar
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
     EndpointHomology q ≃ₗ[K]
       (LinearMap.ker (formalPolynomialMultiplication (K := K) (n := n) (d := d)) ⊓
@@ -400,7 +400,7 @@ def endpointHomologyEquivFormal_anyChar
   exact e.trans (LinearEquiv.ofEq _ _ (range_cycleToFormal q))
 
 /-- In particular the two actual homology constructions have identical dimensions. -/
-theorem finrank_endpointHomology_eq_formal_anyChar 
+theorem finrank_endpointHomology_eq_formal_anyChar
     (q : Fin r → Forms K n d) (hq : LinearIndependent K q) :
     finrank K (EndpointHomology q) =
       finrank K (LinearMap.ker (formalPolynomialMultiplication (K := K) (n := n) (d := d)) ⊓
@@ -409,7 +409,7 @@ theorem finrank_endpointHomology_eq_formal_anyChar
   (endpointHomologyEquivFormal_anyChar q hq).finrank_eq
 
 /-- Actual first homology injects under inclusion of independent generator spaces. -/
-def endpointHomologyInclusion_anyChar {r' : ℕ} 
+def endpointHomologyInclusion_anyChar {r' : ℕ}
     (q : Fin r → Forms K n d) (q' : Fin r' → Forms K n d)
     (hq : LinearIndependent K q) (hq' : LinearIndependent K q')
     (hspan : Submodule.span K (Set.range q) ≤ Submodule.span K (Set.range q')) :
@@ -418,7 +418,7 @@ def endpointHomologyInclusion_anyChar {r' : ℕ}
     ((Submodule.inclusion (inf_le_inf le_rfl (formalMixed_mono hspan))).comp
       (endpointHomologyEquivFormal_anyChar q hq).toLinearMap)
 
-theorem endpointHomologyInclusion_injective_anyChar {r' : ℕ} 
+theorem endpointHomologyInclusion_injective_anyChar {r' : ℕ}
     (q : Fin r → Forms K n d) (q' : Fin r' → Forms K n d)
     (hq : LinearIndependent K q) (hq' : LinearIndependent K q')
     (hspan : Submodule.span K (Set.range q) ≤ Submodule.span K (Set.range q')) :
@@ -428,7 +428,7 @@ theorem endpointHomologyInclusion_injective_anyChar {r' : ℕ}
       (endpointHomologyEquivFormal_anyChar q hq).injective)
 
 /-- Dimension monotonicity for the genuine endpoint homology of independent tuples. -/
-theorem endpointHomology_mono_anyChar {r' : ℕ} 
+theorem endpointHomology_mono_anyChar {r' : ℕ}
     (q : Fin r → Forms K n d) (q' : Fin r' → Forms K n d)
     (hq : LinearIndependent K q) (hq' : LinearIndependent K q')
     (hspan : Submodule.span K (Set.range q) ≤ Submodule.span K (Set.range q')) :
@@ -437,7 +437,7 @@ theorem endpointHomology_mono_anyChar {r' : ℕ}
     (endpointHomologyInclusion_injective_anyChar q q' hq hq' hspan)
 
 /-- Selecting any subtuple, including a prefix, cannot increase endpoint homology. -/
-theorem endpointHomology_comp_le_anyChar {r' : ℕ} 
+theorem endpointHomology_comp_le_anyChar {r' : ℕ}
     (q : Fin r' → Forms K n d) (hq : LinearIndependent K q) (ι : Fin r ↪ Fin r') :
     finrank K (EndpointHomology (q ∘ ι)) ≤ finrank K (EndpointHomology q) := by
   apply endpointHomology_mono_anyChar (q ∘ ι) q (hq.comp ι ι.injective) hq

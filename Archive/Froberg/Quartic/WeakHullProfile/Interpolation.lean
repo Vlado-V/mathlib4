@@ -14,15 +14,15 @@ public import Archive.Froberg.Quartic.HullCertificate.Rational
 namespace Quartic.WeakHullProfile
 open HullCertificate ProfileCertificate Counts
 
-def weighted (f : Fin 4 → ℚ) (y₁ y₂ y₃ : ℚ) : ℚ  := 
+def weighted (f : Fin 4 → ℚ) (y₁ y₂ y₃ : ℚ) : ℚ  :=
   (1-y₁)*f 0+(y₁-y₂)*f 1+(y₂-y₃)*f 2+y₃*f 3
 
-def Ordered (y₁ y₂ y₃ : ℚ) : Prop  := 
+def Ordered (y₁ y₂ y₃ : ℚ) : Prop  :=
   0  ≤  y₃ ∧ y₃  ≤  y₂ ∧ y₂  ≤  y₁ ∧ y₁  ≤  1
 
 def endpoint (cell : Fin 4) (side : Fin 2) : ℚ  :=  (knot (cell.val+side.val):ℚ)/6
 
-def weights (s y₁ y₂ y₃ : ℚ) : Fin 8 → ℚ  := 
+def weights (s y₁ y₂ y₃ : ℚ) : Fin 8 → ℚ  :=
   ![(1-s)*(1-y₁),s*(1-y₁),(1-s)*(y₁-y₂),s*(y₁-y₂),
     (1-s)*(y₂-y₃),s*(y₂-y₃),(1-s)*y₃,s*y₃]
 

@@ -32,11 +32,11 @@ lemma source_capacity_le_core (hh : h=k*(2*s+1).choose s)
     (ι : Fin b ↪ Fin z) (v : Labels k a s → Fin h → K) (w : Fin b → Fin h → K)
     (hv : ∀ U : Finset (Labels k a s),U.card ≤ h → LinearIndependent K (fun i : U => v i.val))
     (α : Degree (a+z) s) :
-    (fiberCapacity ι v w α.val : ℝ)  ≤ 
+    (fiberCapacity ι v w α.val : ℝ)  ≤
       (k : ℝ)*(profileAmbientCapacity s-if (corePart α.val).degree=s then 1 else 0) := by
   rw [← source_capacity_real hh v hv α]
   apply Nat.cast_le.mpr
-  have hle : relationFiber (coreExponent z) v α.val  ≤ 
+  have hle : relationFiber (coreExponent z) v α.val  ≤
       relationFiber (attachedExponent ι) (attachedVectors v w) α.val := by
     rw [relationFiber_attached]
     exact le_sup_left
@@ -65,7 +65,7 @@ lemma private_finite_shadow_bound (hh : h=k*(2*s+1).choose s)
     let reg := ShadowDeletion.regularPart p ell
     let rel := fun (α : Degree (a+z) s) (β : Degree (a+z) (2*s+1)) => α.val ≤ β.val
     (∑ β,ShadowDeletion.shadow rel reg (fun β => h-k*(corePart β.val).degree.choose s) β)+
-      (privateGoodMultipliers a s ι).card*(∑ i,ell (p i))  ≤ 
+      (privateGoodMultipliers a s ι).card*(∑ i,ell (p i))  ≤
     (∑ β,ShadowDeletion.shadow rel ell (fun β => fiberCapacity ι v w β.val) β)+
       h*(b*(a+z+s-1).choose s)*(∑ α,reg α) := by
   classical

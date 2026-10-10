@@ -404,4 +404,3 @@ theorem correction_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
   exact correction_response_realized g h p r k markedU hmarked z
 
 end Quartic.ActualDeformationColumns
-

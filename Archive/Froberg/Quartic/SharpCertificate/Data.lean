@@ -18,4 +18,3 @@ public import Archive.Froberg.Quartic.SharpCertificate.Data.Chunk007
 The independent chunks retain the original public declaration names. -/
 
 @[expose] public section
-

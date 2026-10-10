@@ -25,13 +25,13 @@ lemma private_upper_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose 
       ((finrank K (CoreTargetSpace (z := z) (fun i => u (Sum.inl i))) : ℝ)/
         finrank K (CoreSourceSpace (z := z) (fun i => u (Sum.inl i))))*finrank K S+
       G*min (finrank K S : ℝ)
-        ((finrank K (CoreSourceSpace (z := z) (fun i => u (Sum.inl i))) : ℝ)-finrank K S)  ≤ 
+        ((finrank K (CoreSourceSpace (z := z) (fun i => u (Sum.inl i))) : ℝ)-finrank K S)  ≤
       (finrank K (outerImage (d := s+1) (coreExponent z) (fun i => u (Sum.inl i)) (coreExponent_degree z) S) : ℝ))
     (L : Submodule K (PrivateSourceSpace ι u))
     (hL : (finrank K (PrivateSourceSpace ι u) : ℝ)/2 ≤ finrank K L) :
     ((finrank K (PrivateTargetSpace ι u) : ℝ)/finrank K (PrivateSourceSpace ι u))*finrank K L+
       (G-((b : ℝ)*((a+z+(s+1)-1).choose (s+1) : ℝ))/finrank K (PrivateSourceSpace ι u))*
-        ((finrank K (PrivateSourceSpace ι u) : ℝ)-finrank K L)  ≤ 
+        ((finrank K (PrivateSourceSpace ι u) : ℝ)-finrank K L)  ≤
       (finrank K (outerImage (d := s+1) (attachedExponent ι) u (attachedExponent_degree ι) L) : ℝ) := by
   have hbnd := SurjectiveImage.quotient_upper_growth
     (quotientMultiply (d := s+1) (coreExponent z) (fun i => u (Sum.inl i)) (coreExponent_degree z))
@@ -48,7 +48,7 @@ lemma private_upper_growth (hk : 0 < k) (hs : 2 ≤ s) (hh : h=k*(2*s+1).choose 
   have hgain :
       ((b : ℝ)*((a+z+(s+1)-1).choose (s+1) : ℝ)-
         ((finrank K (CoreTargetSpace (z := z) (fun i => u (Sum.inl i))) : ℝ)/
-        finrank K (CoreSourceSpace (z := z) (fun i => u (Sum.inl i))))*(finrank K (LinearMap.ker (quotientFactor (c := 0) ι u)) : ℝ))/finrank K (PrivateSourceSpace ι u)  ≤ 
+        finrank K (CoreSourceSpace (z := z) (fun i => u (Sum.inl i))))*(finrank K (LinearMap.ker (quotientFactor (c := 0) ι u)) : ℝ))/finrank K (PrivateSourceSpace ι u)  ≤
       ((b : ℝ)*((a+z+(s+1)-1).choose (s+1) : ℝ))/finrank K (PrivateSourceSpace ι u) :=
     div_le_div_of_nonneg_right (by linarith) hpos.le
   have hcod : 0 ≤ (finrank K (PrivateSourceSpace ι u) : ℝ)-finrank K L := by

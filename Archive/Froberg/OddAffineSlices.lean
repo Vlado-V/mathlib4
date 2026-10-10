@@ -47,7 +47,7 @@ theorem actual_odd_affine_slices (hh : 0  <  h) (hm : 0  <  m) (hd : Odd d)
     (hmono : ∀ ell : W →ₗ[K] K,quotientSplitBottom ec π ell ≠ 0 →
       finrank K (relation nu (quotientSplitBottom ec π ell)).ker ≤ finrank K (relation μ ell).ker)
     (hgrowth : ∀ ell : W →ₗ[K] K,quotientSplitBottom ec π ell ≠ 0 →
-      M*(finrank K (relation μ ell).ker-finrank K (relation nu (quotientSplitBottom ec π ell)).ker) ≤ 
+      M*(finrank K (relation μ ell).ker-finrank K (relation nu (quotientSplitBottom ec π ell)).ker) ≤
         finrank K (BilinearImage.image (splitTargetHigherAction ec μA) (relation μ ell).ker))
     (P₀ : MvPolynomial (Fin (finrank K (Fin e → Forms K m d))) K)
     (hP₀ : ∃ a : Fin e → Forms K m d,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)

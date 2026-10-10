@@ -26,7 +26,7 @@ open Quartic.WeakHullProfile
 open HullCertificate ProfileCertificate SharpCertificate
 
 /-- The finite weak-hull certificates apply to every ordered sharp profile. -/
-theorem finite_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) 
+theorem finite_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
     (i:ℕ) (hi:i ≤ coreA (FiniteCounts.mixedCount m false))
     (n₁ n₂ n₃:ℚ)
     (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (FiniteCounts.mixedCount m false):ℚ))
@@ -42,7 +42,7 @@ theorem finite_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
   exact hinc.mono ((hline.supports_hull hpoint).trans himage)
 
 /-- Canonical endpoint version, independent of the finite-table presentation. -/
-theorem actual_endpoint_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) 
+theorem actual_endpoint_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
     (i:ℕ) (hi:i ≤ coreA (UniformEndpoint.mixedCount m false))
     (n₁ n₂ n₃:ℚ)
     (hn:0 ≤ n₃ ∧ n₃ ≤ n₂ ∧ n₂ ≤ n₁ ∧ n₁ ≤ (freeW m (UniformEndpoint.mixedCount m false):ℚ))
@@ -55,7 +55,7 @@ theorem actual_endpoint_profile_bounds (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
   exact finite_profile_bounds m hmlo hmhi i hi n₁ n₂ n₃ hn d hdlo hdhi hd
 
 /-- Both original scalar tests for every nontrivial integral actual profile. -/
-theorem source_scalar_inequalities (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) 
+theorem source_scalar_inequalities (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319)
     (i n₁ n₂ n₃:ℕ) (hi:i ≤ coreA (UniformEndpoint.mixedCount m false))
     (hn₁:n₁ ≤ freeW m (UniformEndpoint.mixedCount m false)) (hn₂:n₂ ≤ n₁) (hn₃:n₃ ≤ n₂)
     (hdlo:0<profileDim i n₁ n₂ n₃)

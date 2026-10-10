@@ -178,4 +178,3 @@ theorem common_open [Infinite K] (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (h2 : 
     exact ⟨hb,hf,hc,hA p hp.1⟩
 
 end Quartic.ExpansionCommonOpen
-

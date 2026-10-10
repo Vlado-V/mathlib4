@@ -14,4 +14,3 @@ ordinary lower and upper endpoints, a same-family surviving square at the lower
 endpoint, and the generic quartic conclusion for every admissible generator count. -/
 
 @[expose] public section
-
