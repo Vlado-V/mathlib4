@@ -6,7 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.Algebra.MvPolynomial.CommRing
-public import Mathlib.Tactic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Push
 
 /-!
 # Recovering polynomial scalar factors from polynomial families

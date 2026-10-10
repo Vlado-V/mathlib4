@@ -8,7 +8,8 @@ module
 public import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
 public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.LinearAlgebra.Basis.VectorSpace
-public import Mathlib.Tactic
+public import Mathlib.Algebra.Module.Projective
+public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 
 /-! Exact rank of the linear equations C P A=0 on a varying projection P.
 This supplies the Schubert codimension calculation used in C.3. -/

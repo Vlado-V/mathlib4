@@ -6,7 +6,9 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.Data.Nat.Choose.Sum
-public import Mathlib.Tactic
+public import Mathlib.Tactic.IntervalCases
+public import Mathlib.Tactic.NormNum.NatFactorial
+public import Mathlib.Tactic.SplitIfs
 
 /-! Exact finite binomial mass retained in the scalar separation of B.4. -/
 

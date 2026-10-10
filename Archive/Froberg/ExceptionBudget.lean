@@ -7,7 +7,7 @@ module
 
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 public import Mathlib.Data.Finset.Card
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Linarith
 
 /-! Summing the uniform exceptional projection losses over all source fibers. -/
 

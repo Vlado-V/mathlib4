@@ -6,7 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.Combinatorics.Pigeonhole
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
 
 /-! Weighted bipartite expansion, with the extra contribution of mixed targets.
 The weights retain multiplicities of divisors of nonsquarefree monomials. -/

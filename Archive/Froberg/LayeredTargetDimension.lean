@@ -8,7 +8,7 @@ module
 public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.LinearAlgebra.Dimension.Constructions
-public import Mathlib.Tactic
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-! The actual relative odd injection and the ambient relation loss give
 the target dimension term in the layered covector budget. -/

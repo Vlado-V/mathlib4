@@ -7,7 +7,7 @@ module
 
 public import Mathlib.Data.Finset.Max
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
-public import Mathlib.Tactic
+public import Mathlib.Data.Finset.Powerset
 
 /-! A bounded disjoint exceptional family has a bounded hitting set. -/
 

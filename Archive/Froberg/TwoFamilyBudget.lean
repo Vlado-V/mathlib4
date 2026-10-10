@@ -5,7 +5,10 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib.Tactic
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
 
 /-! The normalized two-family dimension ratio gives the full coefficient
 incidence budget, including both Grassmannian overheads. -/

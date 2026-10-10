@@ -10,7 +10,7 @@ public import Mathlib.Combinatorics.Enumerative.DoubleCounting
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 public import Mathlib.Algebra.MvPolynomial.Eval
 public import Mathlib.Algebra.MvPolynomial.Variables
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Linarith
 
 /-! Finite matching and polynomial minor tools for the independent-product construction. -/
 

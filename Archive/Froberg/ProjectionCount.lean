@@ -5,7 +5,8 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib.Tactic
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.Linarith
 
 /-! The explicit strict Schubert inequality in the projected-top argument. -/
 

@@ -7,7 +7,7 @@ module
 
 public import Archive.Froberg.Quartic.SubspaceCharts
 public import Mathlib.Algebra.MvPolynomial.Eval
-public import Mathlib.Tactic
+public import Mathlib.Tactic.ByContra
 
 /-!
 # Polynomial charts for tuples up to a common nonzero scalar

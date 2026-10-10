@@ -7,7 +7,7 @@ module
 
 public import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
 public import Mathlib.Algebra.MvPolynomial.Funext
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Choose
 
 /-!
 # Avoiding polynomial images of smaller parameter dimension

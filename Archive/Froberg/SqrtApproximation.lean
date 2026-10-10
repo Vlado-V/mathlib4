@@ -7,7 +7,10 @@ module
 
 public import Mathlib.Analysis.Polynomial.Basic
 public import Mathlib.Analysis.Real.Sqrt
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Conv
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
 
 /-! Polynomial approximation to a square root at positive infinity. -/
 

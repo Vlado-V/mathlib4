@@ -7,7 +7,6 @@ module
 
 public import Mathlib.LinearAlgebra.Pi
 public import Mathlib.Algebra.BigOperators.Pi
-public import Mathlib.Tactic
 
 /-! Covectors on a quotient by triangular polynomial relations are determined
 by their bottom component. This is the elimination step used after the

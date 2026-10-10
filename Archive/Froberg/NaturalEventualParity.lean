@@ -6,7 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.Order.Filter.AtTopBot.Finite
-public import Mathlib.Tactic
+public import Mathlib.Algebra.Ring.Nat
+public import Mathlib.Order.Filter.Finite
 
 /-! Adjacent shifted parity classes cover all sufficiently large natural
 numbers. This allows balanced core constructions to be assembled globally. -/

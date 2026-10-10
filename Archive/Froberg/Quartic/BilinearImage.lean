@@ -8,7 +8,6 @@ module
 public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 public import Mathlib.LinearAlgebra.BilinearMap
 public import Mathlib.LinearAlgebra.Pi
-public import Mathlib.Tactic
 
 /-!
 # Actual images of subspaces under bilinear multiplication

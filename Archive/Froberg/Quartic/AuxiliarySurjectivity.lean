@@ -9,7 +9,6 @@ public import Mathlib.LinearAlgebra.Dual.Lemmas
 public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 public import Mathlib.LinearAlgebra.Prod
 public import Mathlib.LinearAlgebra.Pi
-public import Mathlib.Tactic
 
 /-!
 # Maximal rank by adjoining auxiliary target vectors

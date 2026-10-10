@@ -7,7 +7,6 @@ module
 
 public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.LinearAlgebra.Dimension.Finrank
-public import Mathlib.Tactic
 
 /-! Exact row kernels after adjoining a separated formal-product block. -/
 

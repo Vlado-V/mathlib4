@@ -8,7 +8,7 @@ module
 public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 public import Mathlib.LinearAlgebra.Dual.Lemmas
-public import Mathlib.Tactic
+public import Mathlib.Tactic.LinearCombination
 
 /-! Coupled low/top covectors in odd degree. An injective top relation map
 makes every bottom covector extend, and its extensions form precisely an

@@ -7,7 +7,7 @@ module
 
 public import Mathlib.LinearAlgebra.ExteriorPower.Basis
 public import Mathlib.LinearAlgebra.Matrix.ToLin
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Ring
 
 /-!
 # Polynomial matrices for exterior-power actions

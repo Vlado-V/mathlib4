@@ -6,7 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.NumberTheory.Real.Irrational
-public import Mathlib.Tactic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
 
 /-! Irrationality of the leading coefficient of the critical generator count. -/
 

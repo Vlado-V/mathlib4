@@ -8,7 +8,7 @@ module
 public import Archive.Froberg.SymmetricFunctor
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.LinearAlgebra.Quotient.Basic
-public import Mathlib.Tactic
+public import Mathlib.Tactic.FinCases
 
 /-! Formal symmetric products and the kernel of passage to a quotient. -/
 

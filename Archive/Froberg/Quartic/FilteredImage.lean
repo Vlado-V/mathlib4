@@ -8,7 +8,8 @@ module
 public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.LinearAlgebra.Pi
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Choose
+public import Mathlib.Tactic.SimpRw
 
 /-!
 # Finite filtered subspaces and their initial multiplication images

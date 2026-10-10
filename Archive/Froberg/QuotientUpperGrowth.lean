@@ -6,7 +6,11 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.SurjectiveImage
-public import Mathlib.Tactic
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
 
 /-! Passing an expansion estimate to a quotient, for subspaces in the
 upper half of the quotient source dimension. -/

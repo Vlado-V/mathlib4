@@ -5,7 +5,7 @@ Authors: Vlado Vojdanovski
 -/
 module
 
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Linarith
 
 /-! The exact natural-number budget for the common scalar incidence step.
 All higher target dimensions and all graph coordinates are retained. -/

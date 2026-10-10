@@ -9,7 +9,8 @@ public import Archive.Froberg.Quartic.SubspaceCharts
 public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 public import Mathlib.LinearAlgebra.Prod
 public import Mathlib.Algebra.MvPolynomial.Eval
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.Ring
 
 /-!
 # Explicit two-block charts for subspaces

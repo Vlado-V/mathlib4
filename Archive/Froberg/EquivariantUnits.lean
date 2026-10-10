@@ -9,7 +9,6 @@ public import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
 public import Mathlib.Algebra.Polynomial.Roots
 public import Mathlib.Algebra.Polynomial.FieldDivision
 public import Mathlib.Algebra.MvPolynomial.Polynomial
-public import Mathlib.Tactic
 
 /-!
 # Polynomial units and special-linear transvections

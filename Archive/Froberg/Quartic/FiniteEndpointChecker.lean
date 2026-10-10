@@ -8,7 +8,7 @@ module
 public import Mathlib.Data.Nat.Bitwise
 public import Mathlib.Data.ZMod.Basic
 public import Mathlib.LinearAlgebra.Matrix.Rank
-public import Mathlib.Tactic
+public import Mathlib.Tactic.NormNum
 
 /-!
 A kernel-checkable packed binary inverse certificate primitive. This module

@@ -6,7 +6,6 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.LinearAlgebra.Matrix.ToLin
-public import Mathlib.Tactic
 
 /-!
 # Kernels and images of covariant polynomial matrices

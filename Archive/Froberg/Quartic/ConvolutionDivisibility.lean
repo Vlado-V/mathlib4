@@ -8,7 +8,6 @@ module
 public import Mathlib.Algebra.Polynomial.Roots
 public import Mathlib.Algebra.MvPolynomial.CommRing
 public import Mathlib.Algebra.MvPolynomial.NoZeroDivisors
-public import Mathlib.Tactic
 
 /-!
 # Diagonal vanishing in the dehomogenized convolution slots

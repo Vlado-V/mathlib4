@@ -6,7 +6,9 @@ Authors: Vlado Vojdanovski
 module
 
 public import Mathlib.RingTheory.Polynomial.Pochhammer
-public import Mathlib.Tactic
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
 
 /-! Polynomial interpolation of homogeneous monomial counts and factorial
 identities for the critical-root leading coefficient. -/

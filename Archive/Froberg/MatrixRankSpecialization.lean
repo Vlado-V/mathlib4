@@ -9,7 +9,9 @@ public import Mathlib.LinearAlgebra.Matrix.Rank
 public import Mathlib.Algebra.MvPolynomial.Funext
 public import Mathlib.RingTheory.Localization.Integer
 public import Mathlib.RingTheory.Localization.FractionRing
-public import Mathlib.Tactic
+public import Mathlib.Tactic.ByContra
+public import Mathlib.Tactic.Choose
+public import Mathlib.Tactic.Ring
 
 /-!
 # Matrix ranks over polynomial fraction fields and at specializations

@@ -11,7 +11,8 @@ public import Mathlib.RingTheory.Polynomial.GaussLemma
 public import Mathlib.RingTheory.Polynomial.UniqueFactorization
 public import Mathlib.RingTheory.Localization.Integer
 public import Mathlib.Data.Matrix.Mul
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Choose
+public import Mathlib.Tactic.Ring
 
 /-!
 # Primitive vectors and proportionality over a fraction field

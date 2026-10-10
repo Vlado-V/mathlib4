@@ -7,7 +7,11 @@ module
 
 public import Mathlib.Data.Nat.Choose.Basic
 public import Mathlib.Order.Interval.Set.Monotone
-public import Mathlib.Tactic
+public import Mathlib.Order.SuccPred.Nat
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.Ring
 
 /-!
 # Integer dimension counts for quartic multiplication

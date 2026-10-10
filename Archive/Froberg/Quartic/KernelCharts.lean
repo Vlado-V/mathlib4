@@ -10,7 +10,7 @@ public import Mathlib.LinearAlgebra.Matrix.Adjugate
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.LinearAlgebra.Matrix.Rank
 public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-public import Mathlib.Tactic
+public import Mathlib.Tactic.Convert
 
 /-!
 # Kernel coordinates from actual pivot minors

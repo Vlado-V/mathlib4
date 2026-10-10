@@ -7,7 +7,7 @@ module
 
 public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 public import Mathlib.LinearAlgebra.Pi
-public import Mathlib.Tactic
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-! The higher projection of a subspace has dimension equal to its total
 dimension minus its intersection with the bottom coordinate space. -/

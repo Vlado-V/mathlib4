@@ -13,7 +13,7 @@ public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.RingTheory.MvPolynomial.Basic
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 public import Mathlib.RingTheory.MvPolynomial.HomogeneousBasis
-public import Mathlib.Tactic
+public import Mathlib.LinearAlgebra.Dimension.DivisionRing
 
 /-!
 # Actual polynomial spaces and endpoint quotients
