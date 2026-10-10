@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.StrictTransportGain
+public import Mathlib.Tactic.FieldSimp
 
 /-! Converting actual fiber-image bounds into the hypotheses of the strict
 transport inequality. -/

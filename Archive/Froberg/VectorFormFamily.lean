@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Prefix
 public import Mathlib.LinearAlgebra.TensorProduct.Basic
+public import Mathlib.LinearAlgebra.TensorProduct.RightExactness
 
 /-! Actual multiplication of finitely many vector-valued forms. -/
 

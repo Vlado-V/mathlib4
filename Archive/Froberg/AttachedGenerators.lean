@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.AttachedAmbientGrowth
 public import Archive.Froberg.VectorMultiplicationCoordinates
+public import Mathlib.LinearAlgebra.Dimension.OrzechProperty
 
 /-! Actual homogeneous generators of an attached presentation. -/
 

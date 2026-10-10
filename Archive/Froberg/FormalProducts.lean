@@ -9,6 +9,7 @@ public import Archive.Froberg.SymmetricFunctor
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.LinearAlgebra.Quotient.Basic
 public import Mathlib.Tactic.FinCases
+public import Mathlib.Algebra.Module.Projective
 
 /-! Formal symmetric products and the kernel of passage to a quotient. -/
 

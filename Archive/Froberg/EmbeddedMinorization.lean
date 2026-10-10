@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.TransportVariance
+public import Mathlib.Tactic.FieldSimp
 
 /-! A uniform distribution on an embedded family of source states, and
 conversion of a common-target lower bound to a mixing minorization. -/

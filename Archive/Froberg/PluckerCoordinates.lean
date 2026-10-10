@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.ExteriorMatrix
 public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+public import Mathlib.LinearAlgebra.Determinant
 
 /-!
 # Plücker coordinates of an actual invariant subspace
