@@ -55,7 +55,7 @@ theorem odd_row_factorial_gap {d b h : ℕ} (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd :
     apply (eq_div_iff hden.ne').mpr
     simpa only [mul_comm] using he
   rw [hsolve]
-  convert hscaled using 1 <;> field_simp [factorial_real_ne_zero,hden.ne'] <;> ring
+  convert hscaled using 1 <;> field_simp [factorial_real_ne_zero,hden.ne']; ring
 
 /-- The finite two-family budget includes the dimensions of the source spaces
 in addition to the prescribed scalar and outer-column family sizes. -/
@@ -121,11 +121,11 @@ theorem odd_endpoint_factorial_gap {d h : ℕ} (hd : 3 ≤ d) (hh : 0 < h) :
       ((h+(d+1)-1).choose (d+1) : ℝ)*((d : ℝ)+1)/((h : ℝ)+d) := by
     apply (eq_div_iff hden.ne').mpr
     simp only [Nat.add_sub_cancel,Nat.cast_add,Nat.cast_one] at he
-    convert he using 1 <;> ring
+    convert he using 1; ring
   apply (mul_lt_mul_iff_left₀ (show (0 : ℝ)<(d-1).factorial by positivity)).mp
   have hs := mul_lt_mul_of_pos_right hg hp
   rw [hsolve]
-  convert hs using 1 <;> field_simp [factorial_real_ne_zero,hden.ne'] <;> ring
+  convert hs using 1 <;> field_simp [factorial_real_ne_zero,hden.ne']
 
 theorem eventually_upper_odd_row_budget {d h : ℕ} (hd : 3 ≤ d) (hh : 0 < h)
     (qO : ℕ → ℕ)

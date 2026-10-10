@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+omit [Infinite K] [Fintype σ] in
 theorem QuadraticRowCapacity.with_labels {n d q q' b : ℕ}
     {J J' : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (MvPolynomial σ K)}
     (h : QuadraticRowCapacity n d q b J c O)
@@ -37,6 +38,7 @@ theorem QuadraticRowCapacity.with_labels {n d q q' b : ℕ}
   · rw [hcard]
     exact h.scalar_open
 
+omit [Infinite K] [Module.Finite K X] in
 theorem HigherRowCapacity.with_labels {w v d q q' b : ℕ}
     {J J' : Finset ℕ} {c c' : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X} {R : J} {R' : J'}

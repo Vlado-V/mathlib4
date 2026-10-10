@@ -56,10 +56,12 @@ def generator : Space m d q f u J counts O →ₗ[K]
     rcases i with i | (i | i) <;>
       simp [PreparedTarget.fixedGenerator,smul_add]
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem generator_apply (p : Space m d q f u J counts O)
     (i : PreparedTarget.Label q f u J counts) :
     generator p i=PreparedTarget.generator p.1 (fun i => (p.2.1 i).val) p.2.2 i := rfl
 
+omit [Infinite K] [Fintype σ] in
 theorem private_homogeneous (hd : 0 < d)
     (P : PreparedTarget.OuterSpace K σ m d u) (i : Fin u) :
     (P i).val.IsHomogeneous d := by
@@ -68,11 +70,13 @@ theorem private_homogeneous (hd : 0 < d)
   change (P i).val∈homogeneousSubmodule (σ ⊕ Fin m) K d
   simpa only [show 1+(d-1)=d by omega] using hp
 
-theorem generator_homogeneous (hd : 0 < d)
+omit [Fintype σ] in
+theorem generator_homogeneous [Finite σ] (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) (i : PreparedTarget.Label q f u J counts) :
-    (generator p i).IsHomogeneous d :=
-  PreparedTarget.generator_homogeneous hd hO hJ p.1 (fun i => (p.2.1 i).val)
+    (generator p i).IsHomogeneous d := by
+  let : Fintype σ := Fintype.ofFinite σ
+  exact PreparedTarget.generator_homogeneous hd hO hJ p.1 (fun i => (p.2.1 i).val)
     (private_homogeneous hd p.2.1) p.2.2 i
 
 def forms (hd : 0 < d)
@@ -100,15 +104,17 @@ theorem forms_eq_fixed (hd : 0 < d)
     forms hd hO hJ p=PreparedTarget.forms hd hO hJ p.1 (fun i => (p.2.1 i).val)
       (private_homogeneous hd p.2.1) p.2.2 := rfl
 
-theorem finite_space (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
+omit [Fintype σ] in
+theorem finite_space [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space m d q f u J counts O) := by
-  letI : Module.Finite K (PreparedTarget.Space m d q f u J counts O) :=
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Module.Finite K (PreparedTarget.Space m d q f u J counts O) :=
     PreparedTarget.finite_space hO
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis _ _)
-  letI : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin m) K (1+(d-1))) :=
+  let : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin m) K (1+(d-1))) :=
     Module.Finite.of_basis (finiteVariableFormsBasis _ _)
-  letI : Module.Finite K (biformImage (homogeneousSubmodule σ K 1) (Forms K m (d-1))) :=
+  let : Module.Finite K (biformImage (homogeneousSubmodule σ K 1) (Forms K m (d-1))) :=
     Submodule.finiteDimensional_of_le (biformImage_homogeneous _ _ le_rfl le_rfl)
   unfold Space PreparedTarget.OuterSpace
   infer_instance
@@ -119,6 +125,7 @@ def zeroPrivateScalar : ZeroScalarSpace m d q f u J counts O →ₗ[K]
   map_add' p p' := by simp
   map_smul' a p := by simp
 
+omit [Infinite K] [Fintype σ] in
 theorem zeroPrivateScalar_injective : Function.Injective
     (zeroPrivateScalar (K := K) (m := m) (d := d) (q := q) (f := f) (u := u)
       (J := J) (counts := counts) (O := O)) := by
@@ -131,9 +138,10 @@ theorem zeroPrivateScalar_injective : Function.Injective
   · exact congrArg (fun x : Space m d q f u J counts O => x.2.2.1) he
   · exact congrArg (fun x : Space m d q f u J counts O => x.2.2.2.1) he
 
-theorem finite_zeroScalarSpace (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
+omit [Fintype σ] in
+theorem finite_zeroScalarSpace [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (ZeroScalarSpace m d q f u J counts O) := by
-  letI : Module.Finite K (Space m d q f u J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   exact Module.Finite.of_injective zeroPrivateScalar zeroPrivateScalar_injective
 
 theorem forms_polynomial_linear_parameters {V : Type*}

@@ -84,6 +84,7 @@ theorem projected_general_vectors_open (F : V →ₗ[K] W) :
   exact hgood ⟨S,hS⟩ x (Finset.prod_ne_zero_iff.mp hx ⟨S,hS⟩ (Finset.mem_univ _))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K W] in
 /-- Finitely many projection requirements use one and the same vector tuple. -/
 theorem finite_projected_general_vectors_open {I : Type*} [Finite I]
     (F : I → V →ₗ[K] W) :

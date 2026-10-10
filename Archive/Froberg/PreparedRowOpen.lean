@@ -37,6 +37,7 @@ def rowConstants (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
   bilinearKoszulConstants (K := K) (W := RowProducts (K := K) (J := J) (counts := counts) R.val)
     (fun i => scalarMap i p) (fun i => intrinsicLayerMap hO R i p)
 
+omit [Infinite K] in
 /-- One actual witness gives a nonempty determinant open in the common family. -/
 theorem row_principal_open [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

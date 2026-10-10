@@ -28,6 +28,7 @@ def deficientTargets
     finrank K ((C a).map (fiberProjection e v hab)) <
       min (finrank K (C a)) (finrank K ((Fin h → K) ⧸ relationFiber e v b.val)))
 
+omit [DecidableEq I] in
 theorem card_deficientTargets_le (hn : 0 < n) (he : ∀ i, (e i).degree = s)
     (hv : ∀ S : Finset I, S.card ≤ h → LinearIndependent K (fun i : S => v i.val))
     (hm : MixedExterior.UniversalMixedPosition v)
@@ -98,6 +99,7 @@ theorem idealShadow_le (C : (a : Exponent n s) → Submodule K
   · exact (min_le_right _ _).trans (by simpa using (relationFiber e v b.val).finrank_quotient_le)
   · exact Nat.zero_le _
 
+omit [Fintype I] [DecidableEq I] in
 /-- Away from the union of the proper source-fiber exceptions, the actual
 shadow dominates the ideal one. -/
 theorem idealShadow_le_actual_of_no_exceptions

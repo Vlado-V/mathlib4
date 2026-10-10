@@ -62,7 +62,7 @@ theorem exists_quadratic_row_parameter {n d q b : ℕ} {J : Finset ℕ} {counts 
       exact hmem i
     · rw [show E j i=0 by simp [E,heq]]
       exact Submodule.zero_mem _
-  letI : IsEmpty (ProductRows.Row J 2) := ProductRows.first_even_row_empty hJ
+  let : IsEmpty (ProductRows.Row J 2) := ProductRows.first_even_row_empty hJ
   have hfull := addRow_exact_of_subsingleton (polynomialIntermediateRow o e z he Q)
     (ProductRows.multiplication counts E J 2) (intermediateKoszul e z he Q) hker
   exact sparse_witness_common_parameter hO ⟨2,h2⟩ o ho hdeg e z he Q E hEmem hER hzero hfull

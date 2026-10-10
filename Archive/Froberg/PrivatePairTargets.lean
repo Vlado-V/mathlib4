@@ -32,7 +32,7 @@ theorem private_pair_le (ι : Fin b ↪ Fin z) {i j : Fin b} (hij : i ≠ j)
   · by_cases hkj : k = Fin.natAdd a (ι j)
     · subst k
       simpa [privateExponent,Finsupp.single_apply,hne,Ne.symm hne] using hj (Fin.natAdd a (ι j))
-    · simp [privateExponent,Finsupp.single_apply,hki,hkj,Ne.symm hki,Ne.symm hkj]
+    · simp [privateExponent,hki,hkj]
 
 /-- In degree twice the private exponent, an overlap determines the entire
 monomial; no other factor can occur. -/
@@ -45,7 +45,7 @@ theorem private_pair_target (ι : Fin b ↪ Fin z) {i j : Fin b} (hij : i ≠ j)
   omega
 
 /-- Below twice the private exponent, there cannot be two distinct columns. -/
-theorem privateDivisors_card_le_one (hs : 0 < s) (ι : Fin b ↪ Fin z)
+theorem privateDivisors_card_le_one (_hs : 0 < s) (ι : Fin b ↪ Fin z)
     (β : Fin (a + z) →₀ ℕ) (hβ : β.degree < 2 * s) :
     (privateDivisors (s := s) ι β).card ≤ 1 := by
   have hb := privateDivisors_degree_bound (s := s) ι β

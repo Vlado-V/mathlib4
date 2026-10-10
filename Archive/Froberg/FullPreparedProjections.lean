@@ -28,6 +28,7 @@ def preparedProjection : FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+omit [Infinite K] [Fintype σ] in
 theorem preparedProjection_surjective : Function.Surjective
     (preparedProjection (K := K) (m := m) (d := d) (q := q) (f := f)
       (u := u) (J := J) (counts := counts) (O := O)) := by
@@ -43,6 +44,7 @@ def backgroundProjection : FixedPureZeroScalarSpace m d q f u J counts O →ₗ[
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+omit [Infinite K] [Fintype σ] in
 theorem backgroundProjection_surjective : Function.Surjective
     (backgroundProjection (K := K) (m := m) (d := d) (q := q) (f := f)
       (u := u) (J := J) (counts := counts) (O := O)) := by
@@ -55,6 +57,7 @@ def outerPrivateProjection : FixedPureZeroScalarSpace m d q f u J counts O →�
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+omit [Infinite K] [Fintype σ] in
 theorem outerPrivateProjection_surjective : Function.Surjective
     (outerPrivateProjection (K := K) (m := m) (d := d) (q := q) (f := f)
       (u := u) (J := J) (counts := counts) (O := O)) := by

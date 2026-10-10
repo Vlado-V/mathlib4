@@ -41,7 +41,7 @@ theorem eventually_tail_cutoff_count {d : ℕ} (hd : 0 < d) :
     rw [inv_eq_one_div]
     exact div_lt_div_of_pos_right (by norm_num) hp
   · apply eventually_next_degree_count_of_limit _ ((d.factorial : ℝ)⁻¹)
-    · simpa only [tailGeneratorCount,if_neg ho] using monomial_count_normalized_tendsto d
+    · simpa only [tailGeneratorCount,ite_eq_right ho] using monomial_count_normalized_tendsto d
     · rw [factorial_add_one_real]
       have hdR : (0 : ℝ)<d := by exact_mod_cast hd
       have hp : (0 : ℝ)<d.factorial := by exact_mod_cast Nat.factorial_pos d

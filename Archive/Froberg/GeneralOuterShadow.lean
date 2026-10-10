@@ -19,7 +19,7 @@ quotients, for arbitrary source and multiplier degrees. -/
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module Finset Quartic.HomogeneousCoefficientCoordinates
-variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s d h : ℕ}
+variable {K I : Type*} [Field K] [Fintype I] {n s d h : ℕ}
 variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
 
 def generalDeficientTargets
@@ -58,7 +58,6 @@ theorem card_generalDeficientTargets_le (hn : 0 < n) (he : ∀ i, (e i).degree =
     obtain ⟨hab,hfail⟩ := (mem_filter.mp hc).2
     exact hfail
 
-omit [DecidableEq I] in
 /-- Weighted incidence on the actual quotient fibers gives the intermediate
 shadow, with an explicit O(n^(d-1)) error per source dimension. -/
 theorem general_fiber_shadow (hn : 0 < n) (he : ∀ i, (e i).degree = s)
@@ -101,7 +100,6 @@ theorem general_fiber_shadow (hn : 0 < n) (he : ∀ i, (e i).degree = s)
   have hm := Nat.mul_le_mul_left (MonomialExpansion.weight b.val a.val) hfrac
   simpa only [mul_assoc,mul_comm,mul_left_comm] using hm
 
-omit [DecidableEq I] in
 /-- The full B.11 estimate for every actual source subspace. In divided form
 its main term is (h-B)/h times the usual normalized monomial growth. -/
 theorem general_outer_shadow (hn : 0 < n) (he : ∀ i, (e i).degree = s)

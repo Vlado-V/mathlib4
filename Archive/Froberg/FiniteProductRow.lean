@@ -73,11 +73,11 @@ theorem exists_constrained_product_row {w v d R : ℕ} (hw : 0 < w) (hv : 0 < v)
         · simpa [assignedScalarDegree,htwo] using (hf i).2.2
       obtain ⟨q,hq,hqf⟩ := exists_diagonal_assignment e r.val.val P hzero f hp
       refine ⟨q,hq,?_⟩
-      let c : Columns e r ≃ Sym2 (Fin (e r.val.val)) := Equiv.cast (if_pos h)
+      let c : Columns e r ≃ Sym2 (Fin (e r.val.val)) := Equiv.cast (ite_eq_left h)
       have hh := hi.comp c c.injective
       convert hh using 1
       funext p
-      simp only [products,dif_pos h,hqf,Function.comp_apply]
+      simp only [products,dite_eq_left h,hqf,Function.comp_apply]
       rfl
     · obtain ⟨f,g,hf,hg,hi,hfo,hgo⟩ := exists_constrained_fourBlock_cross_pair hw hv
         (T r.val.val) (T (R-r.val.val)) (hcross r h).1 (hcross r h).2
@@ -99,11 +99,11 @@ theorem exists_constrained_product_row {w v d R : ℕ} (hw : 0 < w) (hv : 0 < v)
             show ¬2*(R-r.val.val)=R by omega] using (hg i).2.2.1
       obtain ⟨q,hq,hqf,hqg⟩ := exists_cross_assignment e h P hzero f g hpf hpg
       refine ⟨q,hq,?_⟩
-      let c : Columns e r ≃ Fin (e r.val.val) × Fin (e (R-r.val.val)) := Equiv.cast (if_neg h)
+      let c : Columns e r ≃ Fin (e r.val.val) × Fin (e (R-r.val.val)) := Equiv.cast (ite_eq_right h)
       have hh := hi.comp c c.injective
       convert hh using 1
       funext p
-      simp only [products,dif_neg h,hqf,hqg,Function.comp_apply]
+      simp only [products,dite_eq_right h,hqf,hqg,Function.comp_apply]
       rfl
 
 end Froberg.ProductRows

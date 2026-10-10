@@ -24,9 +24,10 @@ variable {σ : Type*} [Fintype σ]
 variable {n s d R h H m r : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Fintype σ] in
 /-- Combine the two independent detections and the free-output extension in
 the actual ambient polynomial ring. -/
-theorem even_polynomial_row_kernel
+theorem even_polynomial_row_kernel [Finite σ]
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
     (hdegree : ∀ j, (o j).IsHomogeneous R)
@@ -54,6 +55,7 @@ theorem even_polynomial_row_kernel
         ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d))
         ((Σ j : ProductRows.Row J R, ProductRows.Columns counts j) →₀ K)).comp
         (intermediateKoszul e (fun i => L (v i)) he Q)).range := by
+  let : Fintype σ := Fintype.ofFinite σ
   have hfree := vector_scalar_injective_of_projected (J := Fin H)
     (parityProfileRetained Yhalf (d%2) (2*((d-R/2)/2))) Q hscalar
   have hkernel := intermediateRow_ker_output_embedding L hL e v he Q hE hQ hfree

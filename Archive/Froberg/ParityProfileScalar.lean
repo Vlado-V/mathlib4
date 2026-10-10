@@ -90,7 +90,7 @@ theorem eventually_generic_profile_scalar_separation
   obtain ⟨n₁,hn₁⟩ := eventually_atTop.mp (eventually_profile_scalar_incidence_budget he r hr)
   refine ⟨max (2*m₀+1) n₁,?_⟩
   intro n hn S hle hupper p hp j
-  have hcard : S.card+Sᶜ.card=n := by simpa using Finset.card_add_card_compl S
+  have hcard : S.card+Sᶜ.card=n := by simp
   have hm : m₀≤S.card := by omega
   have hnpos : 0<n := by omega
   obtain ⟨Q,hQ,hgood⟩ := ProjectedPrefix.generic_injective_of_growth

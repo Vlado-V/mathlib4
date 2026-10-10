@@ -34,7 +34,7 @@ theorem top_factorial_gap {d h a b : ℕ} (hd : 3 ≤ d) (ha : 0 < a) (hb : 0 < 
         b*(d.factorial : ℝ)*scalarReserveDensity d := by
     rw [factorial_pred_real (show 0<d by omega)]
     field_simp [factorial_real_ne_zero]
-    <;> ring
+    ring
   rw [←div_eq_mul_inv]
   apply (lt_div_iff₀ hfR).mpr
   rw [hid]

@@ -18,8 +18,9 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
-variable {σ : Type*} [Fintype σ] {n R d s r H : ℕ}
+variable {σ : Type*} [Finite σ] {n R d s r H : ℕ}
 
+omit [Infinite K] in
 /-- Actual scalar and product rows have no kernel when their images are
 disjoint and both individual maps are injective. -/
 theorem addRow_injective_of_disjoint
@@ -56,6 +57,8 @@ theorem scalar_product_row_injective
       (parityProfileRetained Yhalf (d%2) (2*((d-R/2)/2))) Q s)) :
     Function.Injective (addRow (polynomialScalarRow (s := s) o Q)
       (ProductRows.multiplication counts E J R)) := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   apply addRow_injective_of_disjoint _ _
   · exact (polynomialFormVector_injective o ho).comp
       (vector_scalar_injective_of_projected _ Q hQ)

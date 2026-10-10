@@ -48,8 +48,7 @@ def variableGenerator : Space n d q f u J counts O →ₗ[K]
     funext i
     rcases i with i | (i | i)
     · rcases i with i | ⟨j,i⟩ <;>
-        simp [PreparedParameters.generator,PreparedParameters.scalar,PreparedParameters.high,
-          add_add_add_comm]
+        simp [PreparedParameters.generator,PreparedParameters.scalar,PreparedParameters.high]
     · simp
     · simp
 
@@ -63,29 +62,34 @@ def generator (U : Fin u → homogeneousSubmodule σ K d)
     Label q f u J counts → MvPolynomial (σ ⊕ Fin n) K :=
   variableGenerator p+fixedGenerator U P
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem generator_prepared (U : Fin u → homogeneousSubmodule σ K d)
     (P : Fin u → MvPolynomial (σ ⊕ Fin n) K) (p : Space n d q f u J counts O)
     (i : PreparedParameters.Label q J counts) :
     generator U P p (Sum.inl i)=PreparedParameters.generator p.1 i := by
   simp [generator,variableGenerator,fixedGenerator]
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem generator_outer (U : Fin u → homogeneousSubmodule σ K d)
     (P : Fin u → MvPolynomial (σ ⊕ Fin n) K) (p : Space n d q f u J counts O) (i : Fin f) :
     generator U P p (Sum.inr (Sum.inl i))=(p.2.1 i).val := by
   simp [generator,variableGenerator,fixedGenerator]
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem generator_private (U : Fin u → homogeneousSubmodule σ K d)
     (P : Fin u → MvPolynomial (σ ⊕ Fin n) K) (p : Space n d q f u J counts O) (i : Fin u) :
     generator U P p (Sum.inr (Sum.inr i))=
       rename Sum.inr (p.2.2 i).val+(rename Sum.inl (U i).val+P i) := by
   rfl
 
-theorem generator_homogeneous (hd : 0 < d)
+omit [Fintype σ] [Infinite K] in
+theorem generator_homogeneous [Finite σ] (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → homogeneousSubmodule σ K d)
     (P : Fin u → MvPolynomial (σ ⊕ Fin n) K) (hP : ∀ i, (P i).IsHomogeneous d)
     (p : Space n d q f u J counts O) (i : Label q f u J counts) :
     (generator U P p i).IsHomogeneous d := by
+  let := Fintype.ofFinite σ
   rcases i with i | (i | i)
   · rw [generator_prepared]
     exact PreparedParameters.generator_homogeneous hO hJ p.1 i
@@ -98,17 +102,20 @@ theorem generator_homogeneous (hd : 0 < d)
     exact (p.2.2 i).property.rename_isHomogeneous.add
       ((U i).property.rename_isHomogeneous.add (hP i))
 
-theorem finite_space (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
+omit [Fintype σ] [Infinite K] in
+theorem finite_space [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space n d q f u J counts O) := by
-  letI : Module.Finite K (PreparedParameters.Space n d q J counts O) :=
+  let := Fintype.ofFinite σ
+  let : Module.Finite K (PreparedParameters.Space n d q J counts O) :=
     PreparedParameters.finite_space hO
-  letI : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K (1+(d-1))) :=
+  let : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K (1+(d-1))) :=
     Module.Finite.of_basis (finiteVariableFormsBasis _ _)
-  letI : Module.Finite K (biformImage (homogeneousSubmodule σ K 1) (Forms K n (d-1))) :=
+  let : Module.Finite K (biformImage (homogeneousSubmodule σ K 1) (Forms K n (d-1))) :=
     Submodule.finiteDimensional_of_le (biformImage_homogeneous _ _ le_rfl le_rfl)
   unfold Space OuterSpace
   infer_instance
 
+omit [Infinite K] [Fintype σ] in
 theorem generator_polynomial
     [Module.Finite K (Space n d q f u J counts O)]
     (U : Fin u → homogeneousSubmodule σ K d)

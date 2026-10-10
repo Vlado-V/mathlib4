@@ -18,10 +18,11 @@ noncomputable section
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K]
-variable {σ : Type*} [Fintype σ] {n d q : ℕ}
+variable {σ : Type*} [Finite σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] in
 /-- A product witness gives a principal open in the full common parameter
 space, including the scalar coordinates. -/
 theorem product_principal_open [Module.Finite K (Space n d q J counts O)]
@@ -32,8 +33,9 @@ theorem product_principal_open [Module.Finite K (Space n d q J counts O)]
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧
       ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 →
         Function.Injective (ProductRows.multiplication counts (layers p) J R) := by
+  let : Fintype σ := Fintype.ofFinite σ
   let e := (Module.finBasis K (Space n d q J counts O)).equivFun
-  letI : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K d) :=
+  let : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis (σ ⊕ Fin n) d)
   have hsame (p : Space n d q J counts O) :
       (fun j i => (homogeneousLayerMap (q := q) hO hJ j i p).val)=layers p := by

@@ -105,7 +105,6 @@ theorem monomialMixingCoefficient_limit {H σ : ℝ} {s : ℕ}
       _ = (n : ℝ) * (n : ℝ)^s * (n : ℝ)^s := by rw [pow_add, pow_add, pow_one]
   rw [hp]
   field_simp
-  <;> ring
 
 theorem monomialMixingCoefficient_eventually_pos {H σ : ℝ} {s : ℕ}
     (hH : 1 < H) (hσ : 0 < σ) (hσ1 : σ < 1) (hs : 0 < s)

@@ -144,6 +144,7 @@ theorem card_deficient_fiber_projections_general (hn : 0 < n)
       rw [relationFiber_eq_blockSpan e v a,relationFiber_eq_blockSpan e v b] at hh
       exact hh
 
+omit [DecidableEq I] in
 /-- Uniform exceptional projections for any actual source-quotient subspace,
 with arbitrary positive or zero multiplier degree d. -/
 theorem card_deficient_quotient_projections_general (hn : 0 < n)

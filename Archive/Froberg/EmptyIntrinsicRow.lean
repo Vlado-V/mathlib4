@@ -18,11 +18,12 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication MonomialExpansion
 variable {K : Type} [Field K] [Infinite K]
-variable {σ J : Type*} [Fintype σ] [Fintype J] [IsEmpty J]
+variable {σ J : Type*} [Finite σ] [Fintype J] [IsEmpty J]
 variable {n R s d r j : ℕ}
 variable {V : Type*} [AddCommGroup V] [Module K V] [Module.Finite K V]
 
 set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
+omit [Module.Finite K V] in
 theorem intrinsic_empty_single_profile_exact
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
     (hP : Function.Injective P)
@@ -34,7 +35,8 @@ theorem intrinsic_empty_single_profile_exact
     (bilinearKoszulRow fullBiformScalarProduct Q E P).ker=
       (bilinearKoszulConstants (K := K) (W := V) Q E).range := by
   classical
-  letI : Module.Finite K (homogeneousSubmodule σ K R) :=
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Module.Finite K (homogeneousSubmodule σ K R) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ R)
   let b := Module.finBasis K (homogeneousSubmodule σ K R)
   let o := fun i => (b i).val

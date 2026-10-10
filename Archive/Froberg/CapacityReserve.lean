@@ -55,7 +55,8 @@ theorem small_odd_top_shadow_margin {d : ℕ} (hd : d = 3 ∨ d = 5 ∨ d = 7) :
       (d.factorial : ℝ) * scalarReserveDensity d < 1 := by
   have hρ := (smallCritical_bounds (d := d) (by omega) (by omega)).2
   rcases hd with rfl | rfl | rfl
-  all_goals norm_num [scalarReserveDensity, smallCriticalUpper, smallCriticalNumerator] at hρ ⊢ <;>
+  all_goals
+    norm_num [scalarReserveDensity, smallCriticalUpper, smallCriticalNumerator] at hρ ⊢
     linarith
 
 end Froberg

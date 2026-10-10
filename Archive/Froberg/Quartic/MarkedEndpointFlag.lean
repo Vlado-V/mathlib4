@@ -60,7 +60,7 @@ theorem principal_open (hn : 1 ≤ n) (q : ℕ) (hq : q = upperEndpoint n)
       simp only [Counts.delta,hz,neg_zero,hrange,Int.natCast_zero]
     · have hlower : lowerEndpoint n=r := by
         unfold lowerEndpoint
-        rw [←hq,if_neg hz]
+        rw [←hq,ite_eq_right hz]
         omega
       have hmarked := hchild.2 (by rw [hlower]; exact hlo)
       rw [hlower] at hmarked

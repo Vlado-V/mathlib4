@@ -37,6 +37,7 @@ theorem twoFamily_append_coprod_injective
   exact scalar_append_coprod_injective (BilinearScalarFamily.multiplication mu₁ F) mu₂ Q A h
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K P₁] [FiniteDimensional K V₁] in
 /-- The auxiliary forms are witnesses for a uniform shadow estimate and do
 not change the old generator count or its actual quotient. -/
 theorem twoFamily_augmented_quotient_growth

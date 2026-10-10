@@ -31,7 +31,7 @@ theorem gamma_four_scalar_ratio {d : ℕ} (hd : 4 ≤ d) :
   have hd0 : (d : ℝ) ≠ 0 := by exact_mod_cast (show d ≠ 0 by omega)
   norm_num [higherCountGamma, scalarCapacity]
   rw [ht, factorial_pred_real (by omega : 0 < d)]
-  field_simp [hfd, hft, hd0] <;> ring
+  field_simp [hfd, hft, hd0]; ring
 
 theorem gamma_four_scalar_bound {d : ℕ} (hd : 4 ≤ d) :
     higherCountGamma d 4 / scalarCapacity d 4 < (2 / 5 : ℝ) := by
@@ -63,7 +63,7 @@ theorem gamma_six_scalar_ratio {d : ℕ} (hd : 6 ≤ d) :
   norm_num [higherCountGamma, scalarCapacity]
   rw [show d - 6 + 4 = d - 2 by omega, show 2 * d - 12 + 4 = 2 * d - 8 by omega,
     ht, factorial_two_pred_real (by omega : 2 ≤ d)]
-  field_simp [hfd, hft, hd0, hd1] <;> ring
+  field_simp [hfd, hft, hd0, hd1]; ring
 
 theorem gamma_six_scalar_bound {d : ℕ} (hd : 6 ≤ d) :
     higherCountGamma d 6 / scalarCapacity d 6 < (1 / 7 : ℝ) := by

@@ -27,6 +27,7 @@ instance (w j : ℕ) (b : Bool) (T : MvPolynomial (Fin w × Bool) K →ₗ[K] X)
     Module.Finite K (halfConstrainedSpace w j b T) :=
   Submodule.finiteDimensional_of_le inf_le_left
 
+omit [Infinite K] in
 theorem halfConstrainedSpace_dimension [Module.Finite K X] {w : ℕ} (hw : 0 < w)
     (j : ℕ) (b : Bool) (T : MvPolynomial (Fin w × Bool) K →ₗ[K] X) :
     (w+j-1).choose j - finrank K X ≤ finrank K (halfConstrainedSpace w j b T) := by
@@ -34,6 +35,7 @@ theorem halfConstrainedSpace_dimension [Module.Finite K X] {w : ℕ} (hw : 0 < w
     (T.comp (rename (fun x : Fin w => (x,b))).toLinearMap)
   rwa [finrank_forms K w j hw] at h
 
+omit [Infinite K] in
 theorem halfConstrainedSpace_output_kernel {w v j : ℕ} (b : Bool)
     (T : MvPolynomial (Fin w × Bool) K →ₗ[K] X)
     (C : Submodule K (Poly K v)) :
@@ -45,6 +47,7 @@ theorem halfConstrainedSpace_output_kernel {w v j : ℕ} (b : Bool)
   rintro f ⟨g,hg,rfl⟩
   exact hg.2
 
+omit [Infinite K] in
 theorem biformImage_half_output_weight {w v j : ℕ} (b : Bool)
     (O : Submodule K (Poly K w)) (C : Submodule K (Poly K v)) (hO : O ≤ Forms K w j) :
     (biformImage O C).map
@@ -60,6 +63,7 @@ theorem biformImage_half_output_weight {w v j : ℕ} (b : Bool)
     FourBlocks.outputWeight FourBlocks.outputWeight _ (biformImage_output_weight O C hO hg)
   rintro (x|y) <;> rfl
 
+omit [Infinite K] in
 /-- Arbitrary finite output constraints cost at most their target dimension
 in each half-space; all cross products remain independent. -/
 theorem exists_constrained_fourBlock_cross_pair
@@ -96,28 +100,28 @@ theorem exists_constrained_fourBlock_cross_pair
   · intro i
     refine ⟨(hf i).1,(hf i).2.1,(hf i).2.2,?_⟩
     apply halfConstrainedSpace_output_kernel true T₁ (Forms K v s)
-    convert hfm i using 1
+    focus convert hfm i using 1
     congr 3
     funext z
     cases z <;> rfl
   · intro i
     refine ⟨(hg i).1,(hg i).2.1,(hg i).2.2,?_⟩
     apply halfConstrainedSpace_output_kernel false T₂ (Forms K v t)
-    convert hgm i using 1
+    focus convert hgm i using 1
     congr 3
     funext z
     cases z <;> rfl
   · intro i
     apply biformImage_half_output_weight true (halfConstrainedSpace w j true T₁) (Forms K v
       s) inf_le_left
-    convert hfm i using 1
+    focus convert hfm i using 1
     congr 3
     funext z
     cases z <;> rfl
   · intro i
     apply biformImage_half_output_weight false (halfConstrainedSpace w l false T₂) (Forms K v
       t) inf_le_left
-    convert hgm i using 1
+    focus convert hgm i using 1
     congr 3
     funext z
     cases z <;> rfl

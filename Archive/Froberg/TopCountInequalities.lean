@@ -83,7 +83,7 @@ theorem cubic_top_projection_eventually :
     monomial_count_two_real h
   have hN := monomial_count_three_real h
   have hU : (tailGeneratorCount 3 h : ℝ) < 2 * (h : ℝ) ^ 3 / ((4 : ℕ).factorial : ℝ) + 1 := by
-    simpa only [tailGeneratorCount, if_pos (by decide : Odd 3)] using
+    simpa only [tailGeneratorCount, ite_eq_left (by decide : Odd 3)] using
       Nat.ceil_lt_add_one (show 0 ≤ 2 * (h : ℝ) ^ 3 / ((4 : ℕ).factorial : ℝ) by positivity)
   apply (le_div_iff₀ ha).mpr
   rw [topComplementCount, Nat.cast_sub hbudget, hA]

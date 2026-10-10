@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {a b T T₀ H k : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem affineKernelChart_zero
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))

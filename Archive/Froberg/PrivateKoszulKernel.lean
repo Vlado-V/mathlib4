@@ -62,7 +62,7 @@ lemma privateGenerator_linearIndependent (hs : 0 < s) (ι : Fin b ↪ Fin z)
     simp_rw [hc]
     simp
   rw [hcoeff,map_smul,hdual,smul_eq_mul,mul_one] at hh
-  simp only [Pi.zero_apply,Submodule.coe_zero,MvPolynomial.coeff_zero,Finsupp.zero_apply] at hh
+  simp only [Pi.zero_apply,Submodule.coe_zero,AddMonoidAlgebra.coeff_zero,Finsupp.zero_apply] at hh
   change t i=dual i 0 at hh
   simpa only [map_zero] using hh
 
@@ -74,7 +74,7 @@ lemma private_product_expansion (ι : Fin b ↪ Fin z)
       (privateGenerator (a := a) (s := s) ι w j l).val) =
       monomial (privateExponent a s ι i+privateExponent a s ι j) (A i (w j) k) := by
   change (∑ l, monomial _ _ * monomial _ _) = _
-  simp_rw [monomial_mul]
+  simp_rw [monomial_mul_monomial]
   rw [← map_sum]
   congr 1
   rw [pi_linear_expansion]
@@ -93,7 +93,7 @@ lemma privatePolynomialMap_single (ι : Fin b ↪ Fin z)
   rw [Finset.sum_eq_single i]
   · simp
   · intro j _ hji
-    simp [Pi.single_apply,hji]
+    simp [hji]
   · simp
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

@@ -47,7 +47,8 @@ theorem eventually_product_capacity_majorant {d j : ℕ} (hd : 9 ≤ d)
       simpa [intermediateDensity] using quadratic_finite_product_density_gap hd
     · have hj4 : 4 ≤ j := by obtain ⟨k,hk⟩ := hb.2.2; omega
       have hactive : j ∈ activeHigherIndices d := Finset.mem_filter.mpr ⟨hj,hj4⟩
-      simpa only [intermediateDensity,if_neg hj2] using higher_finite_product_density_gap hd hactive
+      simpa only [intermediateDensity,ite_eq_right hj2] using
+        higher_finite_product_density_gap hd hactive
 
 theorem eventually_quadratic_finite_product_capacity {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop, ∀ r : ℕ,
@@ -85,8 +86,9 @@ theorem eventually_higher_finite_product_capacity {d j : ℕ} (hd : 9 ≤ d)
     (mul_le_mul_of_nonneg_right hcoeff (pow_nonneg (Nat.cast_nonneg h) j))
     (pow_nonneg (Nat.cast_nonneg m) (d-j))
   have hrdiag : higherGeneratorCount d h m j ≤ diagonalProductCount d j h m :=
-    (Nat.ceil_mono hscaled).trans (by simpa only [intermediateDensity,if_neg (show j≠2 by omega)]
-      using hm)
+    (Nat.ceil_mono hscaled).trans (by
+      simpa only [intermediateDensity,ite_eq_right (show j≠2 by omega)]
+        using hm)
   exact ⟨hrdiag,hrdiag.trans (diagonalProductCount_le_cross (by omega) hb.2.1)⟩
 
 end Froberg

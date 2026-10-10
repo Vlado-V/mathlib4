@@ -19,8 +19,9 @@ namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 
+omit [Infinite K] in
 theorem QuadraticRowCapacity.with_output_dimension
-    {σ τ : Type*} [Fintype σ] [Fintype τ] {n d q b : ℕ}
+    {σ τ : Type*} {n d q b : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
     {O' : ℕ → Submodule K (MvPolynomial τ K)}
@@ -37,6 +38,7 @@ theorem QuadraticRowCapacity.with_output_dimension
 variable {X Y : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
   [AddCommGroup Y] [Module K Y] [Module.Finite K Y]
 
+omit [Infinite K] [Module.Finite K X] [Module.Finite K Y] in
 theorem HigherRowCapacity.with_target_dimension
     {w v d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ} {R : J}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}
@@ -58,6 +60,7 @@ theorem HigherRowCapacity.with_target_dimension
   incidence := h.incidence
   scalar_open := h.scalar_open
 
+omit [Infinite K] [Module.Finite K X] [Module.Finite K Y] in
 theorem ProductRowCapacity.with_target_dimension
     {w v d R : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     (h : ProductRowCapacity (K := K) (X := X) w v d R J counts)

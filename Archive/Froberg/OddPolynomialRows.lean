@@ -74,7 +74,7 @@ theorem higher_odd_polynomial_row (hb : 1 ≤ b) (hbd : b ≤ d)
     rfl
 
 /-- The final scalar-free row has the same literal polynomial consequence. -/
-theorem upper_odd_polynomial_row (hd : 1 ≤ d)
+theorem upper_odd_polynomial_row (_hd : 1 ≤ d)
     (p : Fin qO → Forms K h 1 ⊗[K] Forms K n (d - 1))
     (hp : Function.Injective (BilinearScalarFamily.multiplication (K := K)
       (F := Forms K h 1 ⊗[K] Forms K n (d - 1))

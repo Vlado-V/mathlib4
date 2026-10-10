@@ -59,8 +59,7 @@ theorem convolutionFamily_surjective {a e m : ℕ} (ha : 0 < a) (hm : 0 < m)
   let B := momentProductsBasis (show 0 < m+a-1 by omega) t ht
   have hconv (x : Forms K (m+a-1) e ⊗[K] Forms K m (a-1)) :
       symmetricConvolutionMap a e m x ∈ R := by
-    induction x using TensorProduct.induction_on with
-    | zero => simpa only [map_zero] using Submodule.zero_mem R
+    induction x using TensorProduct.inductionOn with
     | tmul f g =>
       let L : Forms K (m+a-1) e →ₗ[K] BiformAlgebra K a m :=
         (symmetricConvolutionMap a e m).comp

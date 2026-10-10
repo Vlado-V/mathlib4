@@ -15,15 +15,17 @@ homogeneous forms, with an explicit finite enumeration of its labels. -/
 noncomputable section
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial Quartic
-variable {K : Type} [Field K] [Infinite K]
+variable {K : Type} [Field K]
 variable {σ : Type*} [Fintype σ] {m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
-theorem variableGenerator_homogeneous (hd : 0 < d)
+omit [Fintype σ] in
+theorem variableGenerator_homogeneous [Finite σ] (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) (hJ : ∀ j ∈ J, j ≤ d)
     (p : Space m d q f u J counts O) (i : Label q f u J counts) :
     (variableGenerator p i).IsHomogeneous d := by
+  let : Fintype σ := Fintype.ofFinite σ
   rcases i with i | (i | i)
   · exact PreparedParameters.generator_homogeneous hO hJ p.1 i
   · change (p.2.1 i).val∈homogeneousSubmodule (σ ⊕ Fin m) K d

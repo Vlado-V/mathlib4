@@ -45,7 +45,7 @@ theorem odd_row_augmented_factorial_gap {d b h : ℕ} (hd : 3 ≤ d) (hb : 3 ≤
     apply (eq_div_iff hden.ne').mpr
     simpa only [mul_comm] using he
   rw [hsolve]
-  convert hscaled using 1 <;> field_simp [factorial_real_ne_zero,hden.ne'] <;> ring
+  convert hscaled using 1 <;> field_simp [factorial_real_ne_zero,hden.ne']; ring
 
 theorem eventually_augmented_higher_odd_row_budget {d b h : ℕ}
     (hd : 3 ≤ d) (hb : 3 ≤ b) (hbd : b ≤ d) (hh : 0 < h)
@@ -74,6 +74,6 @@ theorem eventually_augmented_higher_odd_row_budget {d b h : ℕ}
     Nat.floor_le_ceil _
   dsimp only [Q] at hn
   apply le_trans ?_ hn
-  gcongr <;> exact hfc
+  gcongr
 
 end Froberg

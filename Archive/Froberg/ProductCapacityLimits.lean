@@ -48,13 +48,13 @@ theorem diagonalOutputDensity_pos {d j : ℕ} (hd : 9 ≤ d) (hj : 2 ≤ j) :
   unfold diagonalOutputDensity
   by_cases hj2 : j=2
   · subst j
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     have hp := (outerColumnRate_bounds (show 3 ≤ d by omega)).1
     have hl := outerColumnRate_small hd
     have hs : outerColumnRate d^2 < (1/75 : ℝ)^2 := (sq_lt_sq₀ hp.le (by norm_num)).mpr hl
     norm_num [Nat.factorial] at hs ⊢
     linarith
-  · rw [if_neg hj2,sub_zero]
+  · rw [ite_eq_right hj2,sub_zero]
     positivity
 
 theorem diagonalOutputCount_limit {d j : ℕ} (hd : 9 ≤ d) (hj : 2 ≤ j) :
@@ -65,7 +65,8 @@ theorem diagonalOutputCount_limit {d j : ℕ} (hd : 9 ≤ d) (hj : 2 ≤ j) :
     by_cases hj2 : j=2
     · subst j
       simpa using deletedTargetCount_limit (show 3 ≤ d by omega)
-    · simpa only [if_neg hj2] using deletedTargetCount_higher_limit (show 3 ≤ d by omega) (by omega
+    · simpa only [ite_eq_right hj2] using
+        deletedTargetCount_higher_limit (show 3 ≤ d by omega) (by omega
       : 2 < j)
   apply nat_sub_normalized_limit _ _ (by omega) _ _ (half_index_choose_limit j) hG
   have h := diagonalOutputDensity_pos hd hj

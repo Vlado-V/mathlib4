@@ -41,6 +41,7 @@ def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p < 2) (ht : t % 2 = p)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem biformParityComponent_val (e : ZMod 2) (t p : ℕ) (hp : p < 2) (ht : t % 2 = p)
     (v : biformParitySpace K h m d e) :
     (biformParityComponent e t p hp ht v).val=

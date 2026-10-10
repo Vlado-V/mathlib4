@@ -16,7 +16,7 @@ family. This is the bridge from finite row constructions to common opens. -/
 noncomputable section
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication
-variable {K : Type} [Field K] [Infinite K]
+variable {K : Type} [Field K]
 variable {σ I J W : Type*} [Fintype I] [Fintype J]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {n s d q : ℕ}
@@ -36,10 +36,12 @@ def attachedCoordinates (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree = s) (i : I) : J → Forms K n s :=
   fun j => ⟨monomial (e i) (v i j),isHomogeneous_monomial _ (he i)⟩
 
+omit [Fintype I] in
 @[simp] theorem polynomialFormVector_attachedCoordinates (o : J → MvPolynomial σ K)
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s) (i : I) :
     polynomialFormVector o s (attachedCoordinates e v he i)=attachedPolynomialFamily o e v i := rfl
 
+omit [FiniteDimensional K W] in
 /-- The unrestricted coefficient row specializes to the actual sparse row. -/
 theorem bilinearKoszulRow_attached (o : J → MvPolynomial σ K)
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s)
@@ -61,6 +63,7 @@ theorem bilinearKoszulRow_attached (o : J → MvPolynomial σ K)
   intro i hi
   rw [coordinateScalarProduct_apply,polynomialFormVector_attachedCoordinates,mul_comm]
 
+omit [Fintype J] [FiniteDimensional K W] in
 /-- Degree-zero homogeneous coefficients are precisely the field constants
 in the mandatory relation map. -/
 theorem intermediateKoszul_eq_constants (e : I → Fin n →₀ ℕ)
@@ -95,6 +98,7 @@ theorem intermediateKoszul_eq_constants (e : I → Fin n →₀ ℕ)
       simp
   · rfl
 
+omit [Fintype J] [FiniteDimensional K W] in
 theorem intermediateKoszul_range_eq_constants (e : I → Fin n →₀ ℕ)
     (v : I → J → K) (he : ∀ i, (e i).degree = s) (Q : Fin q → Forms K n d) :
     ((LinearMap.inl K ((Fin q → J → Forms K n s) × (I → Forms K n d)) W).comp
@@ -111,6 +115,7 @@ theorem intermediateKoszul_range_eq_constants (e : I → Fin n →₀ ℕ)
     funext i a
     simp [c]
 
+omit [FiniteDimensional K W] in
 /-- The finite sparse exactness witness is already an exact unrestricted
 coefficient row, ready for the common-parameter openness theorem. -/
 theorem sparse_witness_unrestricted_exact (o : J → MvPolynomial σ K)
@@ -123,6 +128,7 @@ theorem sparse_witness_unrestricted_exact (o : J → MvPolynomial σ K)
       (bilinearKoszulConstants (W := W) Q (attachedCoordinates e v he)).range := by
   rw [bilinearKoszulRow_attached,hker,intermediateKoszul_range_eq_constants]
 
+omit [Fintype J] in
 /-- The degree-zero sparse injection supplies independence of the unrestricted
 new-layer coefficient vectors, hence the mandatory-kernel dimension. -/
 theorem attachedCoordinates_independent (e : I → Fin n →₀ ℕ)

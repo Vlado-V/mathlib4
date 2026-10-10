@@ -41,6 +41,7 @@ def privateEvenCoefficientMap (g : Fin u → biformParitySpace K h m d 1) :
   ∑ i,(oddPrivateProduct (g i)).comp (LinearMap.proj i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem privateEvenCoefficientMap_val (g : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → biformParitySpace K h m d 0) :
     (privateEvenCoefficientMap g v).val=∑ i,(g i).val*(v i).val := by

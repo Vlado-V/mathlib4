@@ -17,6 +17,7 @@ open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {n d : ℕ}
 
+omit [Infinite K] [Fintype σ] in
 /-- Every zero-output biform is the rename of a homogeneous scalar form. -/
 theorem biform_zero_output_exists {f : MvPolynomial (σ ⊕ Fin n) K}
     (hf : f ∈ biformImage (homogeneousSubmodule σ K 0) (Forms K n d)) :
@@ -38,12 +39,14 @@ theorem biform_zero_output_exists {f : MvPolynomial (σ ⊕ Fin n) K}
     refine ⟨b+b',?_⟩
     simpa only [Submodule.coe_add,map_add] using congrArg₂ HAdd.hAdd hb hb'
 
+omit [Fintype σ] [Infinite K] in
 /-- A total degree-d polynomial with output weight zero has unique scalar
 coordinates; existence is enough for row elimination. -/
-theorem homogeneous_output_zero_exists {f : MvPolynomial (σ ⊕ Fin n) K}
+theorem homogeneous_output_zero_exists [Finite σ] {f : MvPolynomial (σ ⊕ Fin n) K}
     (hf : f.IsHomogeneous d)
     (hzero : f.IsWeightedHomogeneous (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) 0) :
     ∃ b : Forms K n d,rename Sum.inr b.val=f := by
+  let := Fintype.ofFinite σ
   apply biform_zero_output_exists
   apply mem_biformImage_of_homogeneous (R := 0)
   · simpa only [zero_add] using hf

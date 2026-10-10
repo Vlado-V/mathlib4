@@ -8,6 +8,8 @@ module
 public import Archive.Froberg.BiformDimensions
 public import Archive.Froberg.TwoFamilyAugmentedOpen
 public import Archive.Froberg.OddRowAugmentedBudget
+public import Mathlib.RingTheory.Finiteness.Prod
+public import Mathlib.RingTheory.TensorProduct.Finite
 
 /-! The non-top odd target quotients have uniform scalar growth on a
 nonempty open of the original scalar/linear generator parameters. -/

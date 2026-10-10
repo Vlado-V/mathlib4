@@ -29,7 +29,7 @@ theorem tauFour_product_ratio {d : ℕ} (hd : 2 ≤ d) :
   have hc : ((2 * d - 4).choose (d - 2) : ℝ) ≠ 0 := by
     exact_mod_cast (Nat.choose_pos (show d - 2 ≤ 2 * d - 4 by omega)).ne'
   norm_num [countTauFour, productCapacity]
-  field_simp [factorial_real_ne_zero, hc] <;> ring
+  field_simp [factorial_real_ne_zero, hc]
 
 theorem fourth_product_ratio {d : ℕ} (hd : 4 ≤ d) :
     scalarCapacity d 4 / productCapacity d 4 =
@@ -38,7 +38,7 @@ theorem fourth_product_ratio {d : ℕ} (hd : 4 ≤ d) :
   rw [choose_real_factorial (show d - 4 ≤ 2 * d - 4 by omega),
     show 2 * d - 4 - (d - 4) = d by omega]
   norm_num [scalarCapacity, productCapacity]
-  field_simp [factorial_real_ne_zero] <;> ring
+  field_simp [factorial_real_ne_zero]
 
 theorem higher_product_ratio {d j : ℕ} (hj : 6 ≤ j) (hjd : j ≤ d) :
     higherCountGamma d j / productCapacity d j =
@@ -48,8 +48,8 @@ theorem higher_product_ratio {d j : ℕ} (hj : 6 ≤ j) (hjd : j ≤ d) :
     choose_real_factorial (show d - j ≤ 2 * (d - j) + 4 by omega)]
   rw [show 2 * j - 4 - j = j - 4 by omega,
     show 2 * (d - j) + 4 - (d - j) = d - j + 4 by omega]
-  simp only [higherCountGamma, if_neg (by omega : j ≠ 4), productCapacity]
+  simp only [higherCountGamma, ite_eq_right (by omega : j ≠ 4), productCapacity]
   rw [show 2 * d - 2 * j + 4 = 2 * (d - j) + 4 by omega]
-  field_simp [factorial_real_ne_zero] <;> ring
+  field_simp [factorial_real_ne_zero]
 
 end Froberg

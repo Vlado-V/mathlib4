@@ -20,6 +20,7 @@ variable {K : Type*} [Field K] [Infinite K]
 variable {h m s e y H r q : ℕ}
 attribute [local instance] tensorGroup
 
+omit [Infinite K] in
 theorem row_two_framed_base_open
     (W : Submodule K (Forms K h 2)) (hW : finrank K W = H)
     (o : Fin r → Forms K h 1) (f : Fin r → Forms K m s)

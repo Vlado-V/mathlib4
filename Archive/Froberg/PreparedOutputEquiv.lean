@@ -63,12 +63,14 @@ def outputRename (f : σ → τ) : Space n d q J counts O →ₗ[K]
     · funext j i; apply Subtype.ext
       exact map_smul (rename (Sum.map f id)).toLinearMap c _
 
+omit [Fintype σ] [Fintype τ] in
 @[simp] theorem outputRename_scalar (f : σ → τ) (p : Space n d q J counts O)
     (i : Label q J counts) :
     scalar (outputRename f p) i=rename (Sum.map f id) (scalar p i) := by
   simp only [scalar,outputRename,LinearMap.coe_mk,AddHom.coe_mk,rename_rename]
   rfl
 
+omit [Fintype σ] [Fintype τ] in
 @[simp] theorem outputRename_high (f : σ → τ) (p : Space n d q J counts O)
     (i : Label q J counts) :
     high (outputRename f p) i=rename (Sum.map f id) (high p i) := by
@@ -76,11 +78,17 @@ def outputRename (f : σ → τ) : Space n d q J counts O →ₗ[K]
   | inl i => simp only [high_scalar_label,map_zero]
   | inr i => rfl
 
-@[simp] theorem outputRename_generator (f : σ → τ) (p : Space n d q J counts O)
+omit [Fintype σ] [Fintype τ] in
+@[simp] theorem outputRename_generator [Finite σ] [Finite τ]
+    (f : σ → τ) (p : Space n d q J counts O)
     (i : Label q J counts) :
     generator (outputRename f p) i=rename (Sum.map f id) (generator p i) := by
+  classical
+  let := Fintype.ofFinite σ
+  let := Fintype.ofFinite τ
   simp only [generator,outputRename_scalar,outputRename_high,map_add]
 
+omit [Fintype σ] [Fintype τ] in
 theorem outputRename_surjective (f : σ → τ) :
     Function.Surjective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O :=
       O) f) := by
@@ -98,6 +106,7 @@ theorem outputRename_surjective (f : σ → τ) :
   · rfl
   · funext j i; exact Subtype.ext (hz j i)
 
+omit [Fintype σ] [Fintype τ] in
 theorem outputRename_injective (f : σ → τ) (hf : Function.Injective f) :
     Function.Injective (outputRename (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O)
       f) := by

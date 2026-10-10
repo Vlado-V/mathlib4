@@ -22,7 +22,7 @@ variable {K : Type*} [Field K] {n r : ℕ}
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem chi_eq (n r : ℕ) : Quartic.Counts.chi n r = euler n 2 r := by
   simp only [Quartic.Counts.chi,Quartic.Counts.b4,Quartic.Counts.b2,euler]
-  congr 2 <;> omega
+  congr 2
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem cokernel_eq (Q : Submodule K (Poly K n)) :

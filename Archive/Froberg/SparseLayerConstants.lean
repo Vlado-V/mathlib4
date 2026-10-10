@@ -41,7 +41,6 @@ theorem sparse_odd_density_gap {d R : ℕ} (hR : 0 < R) (hRd : R ≤ d)
       γ*2^R*((d-R).factorial : ℝ)*(scalarCapacityBinomial d R : ℝ) := by
     rw [div_eq_mul_inv (2*γ),scalarCapacity_reciprocal hRd,hp]
     field_simp [factorial_real_ne_zero]
-    <;> ring
   have hh := mul_lt_mul_of_pos_left hgap hδ
   rw [mul_add,he,mul_one] at hh
   simpa only [mul_assoc] using hh

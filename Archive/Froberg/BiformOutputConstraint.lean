@@ -24,12 +24,14 @@ def biformOutputMap (T : MvPolynomial σ K →ₗ[K] X) :
   (TensorProduct.map T LinearMap.id).comp
     (MvPolynomial.tensorEquivSum K σ τ K).symm.toLinearMap
 
+omit [Infinite K] in
 @[simp] theorem biformOutputMap_tmul (T : MvPolynomial σ K →ₗ[K] X)
     (a : MvPolynomial σ K) (b : MvPolynomial τ K) :
     biformOutputMap T (rename Sum.inl a * rename Sum.inr b) = T a ⊗ₜ[K] b := by
   rw [← tensorEquivSum_tmul]
   simp [biformOutputMap]
 
+omit [Infinite K] in
 /-- Every polynomial in a tensor image satisfies every imposed output
 constraint on its first factor. -/
 theorem biformImage_le_output_kernel (T : MvPolynomial σ K →ₗ[K] X)
@@ -42,6 +44,7 @@ theorem biformImage_le_output_kernel (T : MvPolynomial σ K →ₗ[K] X)
     rw [tensorEquivSum_tmul,biformOutputMap_tmul,hO a.property,zero_tmul]
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
+omit [Infinite K] in
 theorem mul_mem_biformImage (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {a : MvPolynomial σ K} {b : MvPolynomial τ K}
     (ha : a ∈ O) (hb : b ∈ C) :
@@ -49,6 +52,7 @@ theorem mul_mem_biformImage (O : Submodule K (MvPolynomial σ K))
   refine ⟨a ⊗ₜ[K] b,?_,tensorEquivSum_tmul a b⟩
   exact ⟨(⟨a,ha⟩ : O) ⊗ₜ[K] (⟨b,hb⟩ : C),rfl⟩
 
+omit [Infinite K] in
 /-- Independent renamings in the two blocks preserve the tensor-image
 membership used to impose quadratic output constraints. -/
 theorem biformImage_rename (f : σ → σ') (g : τ → τ')

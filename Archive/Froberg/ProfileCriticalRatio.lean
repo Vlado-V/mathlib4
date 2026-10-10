@@ -33,7 +33,6 @@ lemma profile_scale_ratio (σ : ℝ) (s : ℕ) :
     ((profileAmbientCapacity s-σ^s)/(s.factorial : ℝ)) = _
   rw [← profile_capacity_factorials s]
   field_simp
-  <;> ring
 
 lemma critical_profile_scale_ratio {σ ρ : ℝ} {s : ℕ}
     (hHρ : profileAmbientCapacity s * ρ * (2 - ρ) = 1)
@@ -50,7 +49,7 @@ lemma critical_profile_scale_ratio {σ ρ : ℝ} {s : ℕ}
 lemma profileAmbientCapacity_eq_central (s : ℕ) :
     profileAmbientCapacity s = (centralHalfBinomial (s+1) : ℝ) := by
   unfold profileAmbientCapacity centralHalfBinomial
-  congr 2 <;> omega
+  congr 2
 
 lemma limiting_profile_scale_ratio {d : ℕ} (hd : 3 ≤ d) :
     targetProfileScale (limitingCoreFraction d) (d-1) /

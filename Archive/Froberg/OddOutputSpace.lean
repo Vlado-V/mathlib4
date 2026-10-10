@@ -16,7 +16,7 @@ public import Archive.Froberg.NormalizedLimits
 noncomputable section
 namespace Froberg
 open Module MvPolynomial Finset
-variable {K : Type} [Field K] [Infinite K]
+variable {K : Type} [Field K]
 
 def halfVariableEquiv (A : Type*) : (A ⊕ A) ≃ A × Bool where
   toFun := Sum.elim (fun x => (x,true)) (fun x => (x,false))

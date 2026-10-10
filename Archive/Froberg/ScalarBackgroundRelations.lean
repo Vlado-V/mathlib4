@@ -22,11 +22,13 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q u : ℕ}
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 private theorem scalarOddProduct_val (a : biformParitySpace K h m d 0)
     (b : biformParitySpace K h m d 1) :
     (evenScalarOddProduct a b).val=a.val*b.val := rfl
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 private theorem oddScalarProduct_val (a : biformParitySpace K h m d 1)
     (b : biformParitySpace K h m d 0) :
     (oddPrivateProduct a b).val=a.val*b.val := rfl
@@ -80,6 +82,7 @@ theorem privateScalarRelations_mem_scalar_background
   exact Submodule.sum_mem _ (fun i _ => scalar_span_private_product_mem Q (G i) (v i) (hv i))
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarBiform_span_iff (Q : Fin q → Forms K m d)
     (v : Forms K h 0 ⊗[K] Forms K m d) :
     v∈Submodule.span K (Set.range (fun i => scalarBiformEquiv (h := h) (Q i))) ↔

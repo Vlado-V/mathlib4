@@ -26,8 +26,9 @@ variable {I : Type*} [Fintype I]
 variable {V : Type*} [AddCommGroup V] [Module K V]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Fintype σ] [Fintype I] in
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
-theorem exists_single_profile_even_row_with_relations
+theorem exists_single_profile_even_row_with_relations [Finite σ] [Finite I]
     (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
@@ -63,6 +64,9 @@ theorem exists_single_profile_even_row_with_relations
             ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d))
             V).comp
             (intermediateKoszul e (fun i => L (v i)) he Q)).range := by
+  classical
+  let := Fintype.ofFinite σ
+  let := Fintype.ofFinite I
   obtain ⟨Dextra,hDextra,hrelationsGood⟩ := sparse_embedded_relations_open (d := 1)
     L hL Relations e he hdiv hrelations
   obtain ⟨v,hvextra,hv,hpos,hinj,D₀,hD₀,hPQ⟩ :=

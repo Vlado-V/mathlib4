@@ -94,7 +94,7 @@ theorem exists_finite_fourth_row
       have hx := (hp 2 x).2.2.2.1
       have hy := (hp 2 y).2.2.2.1
       simpa only [ProductRows.assignedScalarDegree,show ¬2*2<4 by omega,
-        show 2*2=4 by omega,if_false,if_true,pairProducts_mk,two_mul] using hx.mul hy
+        show 2*2=4 by omega,ite_false,ite_true,pairProducts_mk,two_mul] using hx.mul hy
   have hPY : ∀ a,(ProductRows.multiplication counts p J 4 a).IsWeightedHomogeneous
       (Sum.elim (fun _ : Fin w × Bool => 0) (ProductRows.halfWeight (balancedScalarHalf v)))
       (2*((d-2)/2)) := by

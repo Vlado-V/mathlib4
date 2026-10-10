@@ -22,6 +22,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] [Fintype σ] in
 /-- Positive even labels carry no hidden scalar component. -/
 theorem high_weight (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (p : Space n d q J counts O) (i : Label q J counts) :

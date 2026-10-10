@@ -45,6 +45,7 @@ theorem biformImage_product_le
 
 variable {n D j r : ℕ}
 
+omit [Infinite K] in
 theorem deletedBidegreeSpace_half_weight (S : Finset (Fin n)) :
     deletedBidegreeSpace K S D j≤weightedHomogeneousSubmodule K (ProductRows.halfWeight S) j := by
   intro f hf a ha

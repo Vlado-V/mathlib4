@@ -41,7 +41,6 @@ theorem eventually_top_incidence_budget {d a b : ℕ} (hd : 3 ≤ d)
       (((qF m : ℝ)+a*m)*(a*m)+((qS m : ℝ)+b)*b)/(m : ℝ)^d := by
     rw [hpow]
     field_simp
-    <;> ring
   rw [he,←mul_div_assoc] at hm
   have hnat := (div_lt_div_iff_of_pos_right (pow_pos (show (0 : ℝ)<m by exact_mod_cast hmpos)
     d)).mp hm

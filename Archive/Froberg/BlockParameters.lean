@@ -116,8 +116,7 @@ theorem deletedTargetCount_limit {d : ℕ} (hd : 3 ≤ d) :
     tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
   have hp := ((hL.add hone).mul hL).div_const 2
   convert hp using 1
-  · congr 1
-    funext h
+  · funext h
     simp only [deletedTargetCount, Nat.cast_choose_two, Nat.cast_add, Nat.cast_one]
     ring
   · ring

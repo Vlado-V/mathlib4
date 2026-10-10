@@ -23,6 +23,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+omit [Module.Finite K X] in
 theorem eventually_empty_higher_capacity {w d : ℕ} (hd : 9 ≤ d)
     (J : Finset ℕ) (R : J) (hR : 4 ≤ R.val) (hRd : R.val ≤ d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X) (hTR : T R.val = 0)

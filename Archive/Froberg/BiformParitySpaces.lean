@@ -32,7 +32,7 @@ def biformParitySpace (K : Type) [Field K] (h m d : ℕ) (p : ZMod 2) :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 instance biformParitySpace_finite (p : ZMod 2) : Module.Finite K (biformParitySpace K h m d p) := by
-  letI : Module.Finite K (homogeneousSubmodule (Fin h ⊕ Fin m) K d) :=
+  let : Module.Finite K (homogeneousSubmodule (Fin h ⊕ Fin m) K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis _ _)
   exact Submodule.finiteDimensional_of_le (show biformParitySpace K h m d p≤
     homogeneousSubmodule _ K d from inf_le_left)

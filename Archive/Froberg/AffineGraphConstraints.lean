@@ -57,6 +57,7 @@ def tupleProductConstraintLinear
       RingHom.id_apply]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem tupleProductConstraint_rank
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → K) :
@@ -104,7 +105,7 @@ theorem affineGraphConstraint_rank
   exact affineHomogenization_rank _ _
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-omit [Fintype I] in
+omit [Fintype I] [Infinite K] in
 theorem affineGraphConstraint_polynomial
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))

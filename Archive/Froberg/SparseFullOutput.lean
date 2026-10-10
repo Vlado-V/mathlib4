@@ -17,7 +17,7 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication Quartic.PolynomialBilinearCoordinates
 variable {K : Type} [Field K] [Infinite K]
-variable {σ : Type*} [Fintype σ]
+variable {σ : Type*} [Finite σ]
 
 /-- Sparse quotient exactness extends to every output direction and is
 compatible with an arbitrary nonempty scalar-injectivity open. -/
@@ -43,6 +43,7 @@ theorem exists_sparse_full_output_row {n R s d b m r : ℕ}
         (∀ i,(attachedPolynomialFamily o e v i).IsHomogeneous (R+s)) ∧
         Function.Injective (homogeneousMultiplication (d := 0) e v he) ∧
         (polynomialIntermediateRow o e v he Q).ker=(intermediateKoszul e v he Q).range := by
+  let : Fintype σ := Fintype.ofFinite σ
   obtain ⟨o,L,ho,hdeg,hL,hLO⟩ := homogeneous_output_coordinate_embedding O hO
   obtain ⟨e,v,he,hdiv,hv,hpos,hinj,P,hP,hPQ⟩ :=
     exists_exact_sparse_intermediate (K := K) hn hOpos hm hcap hcount

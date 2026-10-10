@@ -24,7 +24,8 @@ theorem quadratic_product_density_bound {d : ℕ} (hd : 9 ≤ d) :
     exact_mod_cast Nat.choose_pos (show d - 2 ≤ 2 * d - 4 by omega)
   have hcentral : (d - 2).centralBinom = (2 * d - 4).choose (d - 2) := by
     simp only [Nat.centralBinom]
-    congr 1 <;> omega
+    congr 1
+    omega
   have hl : (4 : ℝ) ^ (d - 2) ≤
       (2 * ((d - 2 : ℕ) : ℝ) + 1) * ((2 * d - 4).choose (d - 2) : ℝ) := by
     exact_mod_cast (hcentral ▸ Nat.four_pow_le_two_mul_add_one_mul_centralBinom (d - 2))
@@ -36,7 +37,8 @@ theorem quadratic_product_density_bound {d : ℕ} (hd : 9 ≤ d) :
     Nat.cast_sub (by omega : 2 ≤ d), Nat.cast_ofNat] at h
   have h' : (2 : ℝ) ^ (d + 1) / ((2 * d - 4).choose (d - 2) : ℝ) ≤
       64 * (2 * (d : ℝ) - 3) / (2 : ℝ) ^ d := by
-    convert h using 1 <;> ring
+    convert h using 1
+    ring
   have hρ : criticalRatio 2 < 1 := (quadratic_critical_ratio_lt).trans (by norm_num)
   have hp : 0 < (2 : ℝ) ^ (d + 1) / ((2 * d - 4).choose (d - 2) : ℝ) := div_pos (by positivity) hC
   have hlt := mul_lt_mul_of_pos_right hρ hp
@@ -88,7 +90,7 @@ theorem higher_product_capacity {d j : ℕ} (hd : 9 ≤ d) (hj : j ∈ activeHig
     have ht : 4 ≤ d - j := by
       have he := (Finset.mem_filter.mp hj).1
       unfold activeEvenIndices at he
-      rw [if_neg (by omega : ¬d ≤ 8)] at he
+      rw [ite_eq_right (by omega : ¬d ≤ 8)] at he
       simp only [Finset.mem_filter, Finset.mem_range] at he
       omega
     have h := (higher_product_density_bound hj6 ht hbase.2.1.le).trans

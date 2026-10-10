@@ -86,7 +86,7 @@ theorem small_quadratic_symmetric_special {d : ℕ} (hd : d = 3 ∨ d = 4) :
   have hβ := countBeta_le_smallBetaBound (d := d) (by omega) (by omega)
   rcases hd with rfl | rfl
   all_goals norm_num [smallBetaBound, smallCriticalUpper, smallCriticalNumerator,
-    Nat.choose_eq_factorial_div_factorial] at hβ ⊢ <;> linarith
+    Nat.choose_eq_factorial_div_factorial] at hβ ⊢; linarith
 
 /-- The quadratic symmetric-product capacity in degrees five through eight. -/
 theorem small_quadratic_symmetric_capacity {d : ℕ} (hd : 5 ≤ d) (hd8 : d ≤ 8) :

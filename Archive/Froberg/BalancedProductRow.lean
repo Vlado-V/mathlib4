@@ -19,6 +19,7 @@ open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X]
 
+omit [Infinite K] in
 /-- Changing only scalar coordinates commutes with every output detector. -/
 theorem biformOutputMap_rename_scalar {σ τ υ : Type*}
     (T : MvPolynomial σ K →ₗ[K] X) (f : τ → υ)

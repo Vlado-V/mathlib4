@@ -41,7 +41,6 @@ lemma scale_shadow_inequality {I J : Type*} [Fintype I] [Fintype J]
   calc
     _ = K * ((T/A)*((∑ i, l i)/K)+g*(T/A)*(min (∑ i, l i) (K*A-∑ i, l i)/K)) := by
       field_simp
-      <;> ring
     _ ≤ K * ((∑ j, b j)/K) := mul_le_mul_of_nonneg_left hh hK.le
     _ = _ := by field_simp
 

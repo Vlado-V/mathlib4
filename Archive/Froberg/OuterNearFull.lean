@@ -15,9 +15,10 @@ public import Archive.Froberg.BadTargetCount
 noncomputable section
 namespace Froberg.AttachedMultiplication
 open Module Finset Quartic.HomogeneousCoefficientCoordinates
-variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s h : ℕ}
+variable {K I : Type*} [Field K] [Fintype I] {n s h : ℕ}
 variable (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
 
+omit [Fintype I] in
 /-- One full source fiber fills every divisible target fiber. -/
 theorem fiberShadow_eq_top_of_full {d : ℕ}
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val))
@@ -31,6 +32,7 @@ theorem fiberShadow_eq_top_of_full {d : ℕ}
   rw [ha,Submodule.map_top,LinearMap.range_eq_top.mpr hsurj] at hh
   exact hh
 
+omit [Fintype I] in
 /-- Counting non-full source fibers costs at most the source codimension. -/
 theorem card_nonfull_sources_le
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val)) :
@@ -61,6 +63,7 @@ theorem card_nonfull_sources_le
   change B.card ≤ _
   omega
 
+omit [Fintype I] in
 /-- Every non-full target has all its degree-s divisors among the non-full sources. -/
 theorem card_nonfull_targets_le
     (C : (a : Exponent n s) → Submodule K ((Fin h → K) ⧸ relationFiber e v a.val)) :
@@ -105,9 +108,9 @@ theorem fiber_image_codimension_le (he : ∀ i, (e i).degree = s)
   have hd : ∀ b, defect b ≤ if b ∈ T then h else 0 := by
     intro b
     by_cases hb : b ∈ T
-    · rw [if_pos hb]
+    · rw [ite_eq_left hb]
       exact (Nat.sub_le _ _).trans (by simpa using (relationFiber e v b.val).finrank_quotient_le)
-    · rw [if_neg hb]
+    · rw [ite_eq_right hb]
       have hfull : fiberShadow e v C b = ⊤ := by simpa [T] using hb
       have heq := congrArg (fun S : Submodule K ((Fin h → K) ⧸ relationFiber e v b.val) => finrank K
         S) hfull

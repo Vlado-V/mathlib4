@@ -30,7 +30,7 @@ theorem row_two_coprod_surjective
       (fun i => homogeneousInclusion A hA (o i)) f).coprod
         (vectorFormFamilyToDegree he O g)) := by
   let U := endpointProducts K h 1 A
-  letI : AddCommGroup ((Forms K h 2 ⧸ U) ⊗[K] Forms K m (s+s)) :=
+  let : AddCommGroup ((Forms K h 2 ⧸ U) ⊗[K] Forms K m (s+s)) :=
     Module.addCommMonoidToAddCommGroup K
   let π := TensorProduct.map U.mkQ (LinearMap.id : Forms K m (s+s) →ₗ[K] _)
   apply coprod_surjective_of_quotient _ _ π

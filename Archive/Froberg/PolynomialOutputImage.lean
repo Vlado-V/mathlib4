@@ -14,9 +14,10 @@ public import Archive.Froberg.HomogeneousOutputCoordinates
 noncomputable section
 namespace Froberg
 open Module MvPolynomial
-variable {K : Type} [Field K] [Infinite K]
+variable {K : Type} [Field K]
 variable {σ I J : Type*} [Fintype I] [Fintype J] {n s d : ℕ}
 
+omit [Fintype I] in
 theorem attachedPolynomialFamily_factor
     (o : J → MvPolynomial σ K) (e : I → Fin n →₀ ℕ) (v : I → J → K) (i : I) :
     attachedPolynomialFamily o e v i =

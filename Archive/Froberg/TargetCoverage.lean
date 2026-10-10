@@ -50,7 +50,7 @@ theorem higher_layers_cover_targets {d b : ℕ} (hd : 3 ≤ d) (hb : 5 ≤ b)
       rcases hcut with hcut | ⟨k, hk⟩ <;> omega
     refine ⟨j, ?_, hjb, hbj, ?_⟩
     · unfold activeHigherIndices activeEvenIndices
-      rw [if_neg (by omega : ¬d ≤ 8)]
+      rw [ite_eq_right (by omega : ¬d ≤ 8)]
       simp only [Finset.mem_filter, Finset.mem_range]
       exact ⟨⟨by omega, ⟨b / 4 + 1, by dsimp [j]; omega⟩, by omega⟩, by omega⟩
     · exact higher_target_cost_margin hj6 (by omega) hstart hbj (by omega)

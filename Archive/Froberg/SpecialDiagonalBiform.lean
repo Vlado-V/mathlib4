@@ -34,9 +34,9 @@ theorem exists_diagonal_sum_biforms
     ∃ f : Fin m → MvPolynomial (σ ⊕ τ) K,
       (∀ i,f i∈biformImage O C) ∧ LinearIndependent K (pairProducts f) := by
   obtain ⟨E,hE,hEd,hEi⟩ := separated_coefficient_space_exists O C hO hC hm
-  letI : Module.Finite K E := Submodule.finiteDimensional_of_le hE
+  let : Module.Finite K E := Submodule.finiteDimensional_of_le hE
   subst m
-  letI : AddCommGroup E := Module.addCommMonoidToAddCommGroup K
+  let : AddCommGroup E := Module.addCommMonoidToAddCommGroup K
   let b := Module.finBasis K E
   let e := MvPolynomial.tensorEquivSum K σ τ K
   let f := fun i : Fin (finrank K E) => e (b i).val
@@ -62,12 +62,13 @@ theorem exists_constrained_diagonal_biforms
     ∃ f : Fin m → MvPolynomial (σ ⊕ τ) K,
       (∀ i,f i∈biformImage (O⊓T.ker) C) ∧ LinearIndependent K (pairProducts f) := by
   let O' := O⊓T.ker
-  letI : Module.Finite K O' := Submodule.finiteDimensional_of_le (show O'≤O from inf_le_left)
+  let : Module.Finite K O' := Submodule.finiteDimensional_of_le (show O'≤O from inf_le_left)
   apply exists_diagonal_sum_biforms O' C
     (subspaceSymmetricMultiplication_injective_mono inf_le_left hO) hC
   exact hm.trans (Nat.mul_le_mul_right _ (finrank_intersection_kernel_lower_bound O T))
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The full span of the scalar variables has independent unordered products. -/
 theorem linear_scalar_space_exists (n : ℕ) :
     ∃ C : Submodule K (MvPolynomial (Fin n) K),
@@ -94,8 +95,8 @@ theorem quadratic_linear_diagonal_exists
       LinearIndependent K (pairProducts f) := by
   obtain ⟨O,hOh,hOd,hOi⟩ := QuadraticBlocks.quadratic_space_exists (K := K) hh
   obtain ⟨C,hCh,hCd,hCi⟩ := linear_scalar_space_exists (K := K) n
-  letI : Module.Finite K O := Submodule.finiteDimensional_of_le hOh
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hCh
+  let : Module.Finite K O := Submodule.finiteDimensional_of_le hOh
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hCh
   obtain ⟨f,hf,hfi⟩ := exists_constrained_diagonal_biforms O C hOi hCi T
     (by simpa only [hOd,hCd] using hm)
   refine ⟨f,?_,hfi⟩

@@ -18,6 +18,7 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+omit [Infinite K] in
 theorem odd_split_exact_restrict_right
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -50,6 +51,7 @@ theorem odd_split_exact_restrict_right
   · intro j
     simpa only [Fin.append_right] using hB' (Fin.natAdd f j)
 
+omit [Infinite K] in
 theorem odd_split_exact_reindex {q' u' : ℕ}
     (Q : Fin q → biformParitySpace K h m d 0)
     (G : Fin u → biformParitySpace K h m d 1)

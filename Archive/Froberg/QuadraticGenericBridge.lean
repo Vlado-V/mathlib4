@@ -35,6 +35,7 @@ theorem endpoint_of_witness (hn : 0 < n) (hw : Quartic.QuarticWitness K n r) :
     simpa only [Quartic.expectedDimension,expectedEndpoint,euler,
       show n+2*2-1=n+3 by omega,show n+2-1=n+1 by omega] using hdim
 
+omit [Infinite K] in
 theorem endpoint_of_generic (hn : 0 < n) (hg : Quartic.GenericQuartic K n r) :
     GenericEndpoint K n 2 r :=
   endpoint_of_witness hn (Quartic.generic_implies_witness K n r hg)

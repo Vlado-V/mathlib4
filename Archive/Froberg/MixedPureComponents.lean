@@ -18,6 +18,7 @@ open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d t : ℕ}
 
+omit [Infinite K] in
 theorem pureOutput_weighted (U : Forms K h d) :
     (rename (Sum.inl : Fin h → Fin h ⊕ Fin m) U.val).IsWeightedHomogeneous (blockWeight h m) d := by
   apply weighted_homogeneous_rename ⟨Sum.inl,Sum.inl_injective⟩ (blockWeight h m) U.val d

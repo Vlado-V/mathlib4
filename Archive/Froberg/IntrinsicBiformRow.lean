@@ -18,18 +18,20 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
-variable {σ I W : Type*} [Fintype σ] [Fintype I]
+variable {σ I W : Type*} [Finite σ] [Fintype I]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {n R s d q : ℕ}
 
-local instance fullOutputFinite : Module.Finite K (homogeneousSubmodule σ K R) :=
-  Module.Finite.of_basis (finiteVariableFormsBasis σ R)
+local instance fullOutputFinite : Module.Finite K (homogeneousSubmodule σ K R) := by
+  let := Fintype.ofFinite σ
+  exact Module.Finite.of_basis (finiteVariableFormsBasis σ R)
 
 abbrev FullBiform (K : Type) [Field K] (σ : Type*) (n R s : ℕ) :=
   biformImage (homogeneousSubmodule σ K R) (Forms K n s)
 
 instance fullBiformFinite : Module.Finite K (FullBiform K σ n R s) := by
-  letI : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K (R+s)) :=
+  let := Fintype.ofFinite σ
+  let : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K (R+s)) :=
     Module.Finite.of_basis (finiteVariableFormsBasis (σ ⊕ Fin n) (R+s))
   exact Submodule.finiteDimensional_of_le (biformImage_homogeneous _ _ le_rfl le_rfl)
 
@@ -50,6 +52,7 @@ def fullBiformCoordinates
       obtain ⟨u,hu⟩ := hf
       exact ⟨u,Subtype.ext hu⟩⟩
 
+omit [Infinite K] in
 @[simp] theorem fullBiformCoordinates_val
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
@@ -63,10 +66,12 @@ def fullBiformScalarProduct :
     ((rename Sum.inr).toLinearMap.comp (Forms K n d).subtype)
     (FullBiform K σ n R s).subtype
 
+omit [Infinite K] [Finite σ] in
 @[simp] theorem fullBiformScalarProduct_apply
     (f : Forms K n d) (u : FullBiform K σ n R s) :
     fullBiformScalarProduct f u=rename Sum.inr f.val*u.val := rfl
 
+omit [Infinite K] [FiniteDimensional K W] in
 /-- The actual intrinsic row has exactly the expected constant relations. -/
 theorem sparse_witness_intrinsic_exact
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)

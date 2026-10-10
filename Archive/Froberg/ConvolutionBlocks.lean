@@ -60,8 +60,7 @@ theorem convolution_blocks_surjective [Infinite K] {a e m k : ℕ}
     rw [← hv, map_sum, TensorProduct.sum_tmul]
     exact Submodule.sum_mem R fun i hi => hsingle i (v i) g
   have hall (z : W ⊗[K] Forms K m (e+(a-1))) : z ∈ R := by
-    induction z using TensorProduct.induction_on with
-    | zero => exact Submodule.zero_mem R
+    induction z using TensorProduct.inductionOn with
     | tmul w g =>
       obtain ⟨v, rfl⟩ := hP w
       exact hwhole v g

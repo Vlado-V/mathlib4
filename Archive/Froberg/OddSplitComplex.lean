@@ -45,6 +45,7 @@ def OddSplitExact (Q : Fin q → biformParitySpace K h m d 0)
       (∀ j,(v j).val = -∑ i,C i j • (Q i).val)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_split_exact_iff_kernel
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin f → biformParitySpace K h m d 1) :

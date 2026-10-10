@@ -113,7 +113,7 @@ theorem single_family_generic_of_natural_growth
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The last odd row has only linear-output generators and constant scalar
 coefficients, so its open follows from the one-family natural budget. -/
-theorem upper_odd_biform_open (hh : 0 < h) (hn : 0 < n) (hd : 1 ≤ d)
+theorem upper_odd_biform_open (hh : 0 < h) (hn : 0 < n) (_hd : 1 ≤ d)
     (hcount : (qO + (h + d - 1).choose d) * (h + d - 1).choose d ≤
       (h + (d + 1) - 1).choose (d + 1) * (n + (d - 1) - 1).choose (d - 1)) :
     ∃ D : MvPolynomial (Fin (finrank K

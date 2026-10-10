@@ -44,7 +44,7 @@ theorem eventually_row_two_exact {d : ℕ} (hd : 3 ≤ d) :
   intro F hF
   obtain ⟨A,hA,hAdim,hQdim⟩ := exists_linear_space_with_quadratic_quotient (K := K) hh
     (Nat.div_le_self h 4)
-  letI : Module.Finite K A := Submodule.finiteDimensional_of_le hA
+  let : Module.Finite K A := Submodule.finiteDimensional_of_le hA
   have hFcount : ∀ᶠ m : ℕ in atTop,
       convolutionBlockCount (rowTwoLinearDimension h) d (d-1)*
         (m+d+(d-1)-2).choose (d-1) ≤ F m := by

@@ -27,6 +27,7 @@ theorem sum_source_fiber_finrank :
   simpa only [Nat.add_zero, Module.finrank_pi_fintype] using (quotientFiberEquiv (d := 0) e v
     he).finrank_eq.symm
 
+omit [DecidableEq I] in
 /-- All geometric steps of the outer-module growth proof. The sole remaining
 input is an explicitly finite numerical ideal-shadow lower bound. -/
 theorem uniform_outer_growth_of_ideal_bound (hn : 0 < n)
@@ -47,6 +48,7 @@ theorem uniform_outer_growth_of_ideal_bound (hn : 0 < n)
           (finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he) -
             finrank K L) : ℕ) ≤
         finrank K (outerImage (d := s+1) e v he L) := by
+  classical
   intro L
   obtain ⟨C,hCdim,hCimage⟩ := exists_initial_monomial_fibers (d := s+1) e v he L
   have hb := hbound C

@@ -20,7 +20,7 @@ open Quartic.UniformEndpoint
 
 private theorem chi_eq (n r : ℕ) : Quartic.Counts.chi n r = euler n 2 r := by
   simp only [Quartic.Counts.chi,Quartic.Counts.b4,Quartic.Counts.b2,euler]
-  congr 2 <;> omega
+  congr 2
 
 theorem upperEndpoint_eq {n : ℕ} (hn : 0 < n) : upperEndpoint n=upperCount n 2 := by
   apply le_antisymm
@@ -30,7 +30,7 @@ theorem upperEndpoint_eq {n : ℕ} (hn : 0 < n) : upperEndpoint n=upperCount n 2
   · apply (euler_nonpos_iff_upperCount_le hn 2 _ ?_).mp
     · rw [←chi_eq]
       exact upper_nonpositive n
-    · convert upper_le_quadratics n using 1 <;> congr 1 <;> omega
+    · convert upper_le_quadratics n using 1; congr 1
 
 theorem lowerEndpoint_eq {n : ℕ} (hn : 0 < n) : lowerEndpoint n=lowerCount n 2 := by
   have hu := upperEndpoint_eq hn
@@ -40,7 +40,7 @@ theorem lowerEndpoint_eq {n : ℕ} (hn : 0 < n) : lowerEndpoint n=lowerCount n 2
   split_ifs with hz
   · have he : 0≤euler n 2 (upperEndpoint n) := by rw [←chi_eq,hz]
     have hb : upperEndpoint n≤(n+2-1).choose 2 := by
-      convert upper_le_quadratics n using 1 <;> congr 1 <;> omega
+      convert upper_le_quadratics n using 1; congr 1
     have hl := (euler_nonneg_iff_le_lowerCount hn 2 _ hb).mp he
     omega
   · have hne : lowerCount n 2≠upperCount n 2 := by

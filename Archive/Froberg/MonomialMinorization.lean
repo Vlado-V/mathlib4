@@ -51,7 +51,7 @@ theorem monomial_minorization {a z s : ℕ} {H : ℝ}
             z s β.1) : ℝ))
           (jointConditional (monomialProfileJoint P)
             (fun β => q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ))) α γ := by
-  letI := degree_nonempty hz s
+  let := degree_nonempty hz s
   let ν := fun β : Σ j, TargetMonomialFiber a z s j =>
     q β.1 / (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ)
   let C := jointConditional (monomialProfileJoint P) ν
@@ -74,7 +74,6 @@ theorem monomial_minorization {a z s : ℕ} {H : ℝ}
     dsimp [B, M, monomialMixingCoefficient]
     rw [card_degree]
     field_simp
-    <;> ring
   rwa [he] at hh
 
 end Froberg

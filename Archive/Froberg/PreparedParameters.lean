@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.ProductRowPairs
 public import Archive.Froberg.BiformCoordinates
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! One common coefficient space for all scalar and positive even rows.
 The output spaces carry actual polynomial restrictions, including D in degree two. -/
@@ -52,16 +53,19 @@ def layers {J : Finset ℕ} {counts : ℕ → ℕ}
     (j : ℕ) (i : Fin (counts j)) : MvPolynomial (σ ⊕ Fin n) K :=
   if hj : j∈J then (p.2 ⟨j,hj⟩ i).val else 0
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem high_scalar_label {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)} (p : Space n d q J counts O) (i : Fin q) :
     high p (Sum.inl i)=0 := rfl
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem layers_active {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)} (p : Space n d q J counts O)
     (a : ProductRows.LayerLabel J counts) :
     layers p a.1.val a.2=high p (Sum.inr a) := by
-  simp only [layers,dif_pos a.1.property,high,Sum.elim_inr]
+  simp only [layers,dite_eq_left a.1.property,high,Sum.elim_inr]
 
+omit [Infinite K] [Fintype σ] in
 /-- Every entry of the common family is a genuine total degree-d form. -/
 theorem generator_homogeneous {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
@@ -78,17 +82,19 @@ theorem generator_homogeneous {J : Finset ℕ} {counts : ℕ → ℕ}
       change (p.2 a.1 a.2).val∈homogeneousSubmodule (σ ⊕ Fin n) K d
       simpa only [Nat.add_sub_of_le (hJ _ a.1.property)] using h
 
+omit [Infinite K] [Fintype σ] in
 /-- The whole common parameter space is finite-dimensional. -/
-theorem finite_space {J : Finset ℕ} {counts : ℕ → ℕ}
+theorem finite_space [Finite σ] {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (Space n d q J counts O) := by
-  letI (j : J) : Module.Finite K (O j.val) := by
-    letI : Module.Finite K (homogeneousSubmodule σ K j.val) :=
+  let := Fintype.ofFinite σ
+  let (j : J) : Module.Finite K (O j.val) := by
+    let : Module.Finite K (homogeneousSubmodule σ K j.val) :=
       Module.Finite.of_basis (finiteVariableFormsBasis σ j.val)
     exact Submodule.finiteDimensional_of_le (hO _ j.property)
-  letI (j : J) : Module.Finite K (biformImage (O j.val) (Forms K n (d-j.val))) := by
-    letI : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K (j.val+(d-j.val))) :=
+  let (j : J) : Module.Finite K (biformImage (O j.val) (Forms K n (d-j.val))) := by
+    let : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K (j.val+(d-j.val))) :=
       Module.Finite.of_basis (finiteVariableFormsBasis (σ ⊕ Fin n) (j.val+(d-j.val)))
     exact Submodule.finiteDimensional_of_le
       (biformImage_homogeneous _ _ (hO _ j.property) le_rfl)

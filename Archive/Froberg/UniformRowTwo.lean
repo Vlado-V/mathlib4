@@ -29,7 +29,7 @@ theorem row_two_exact_of_counts {d h m rF rE : ℕ} (hd : 3 ≤ d)
     RowTwoTargetWitness K (d-1) h m rF rE := by
   obtain ⟨A,hA,hAdim,hQdim⟩ := exists_linear_space_with_quadratic_quotient (K := K) hh
     (Nat.div_le_self h 4)
-  letI : Module.Finite K A := Submodule.finiteDimensional_of_le hA
+  let : Module.Finite K A := Submodule.finiteDimensional_of_le hA
   have hDlo : finrank K (EndpointQuotient K h 1 A) ≤ quadraticOutputDimension d h := by
     rw [hQdim]
     exact hD

@@ -23,8 +23,9 @@ variable {n s d R h H m r b j : ℕ}
 variable {V : Type*} [AddCommGroup V] [Module K V]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Fintype σ] in
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
-theorem exists_single_profile_even_polynomial_row
+theorem exists_single_profile_even_polynomial_row [Finite σ]
     (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
@@ -57,6 +58,7 @@ theorem exists_single_profile_even_polynomial_row
             ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d))
             V).comp
             (intermediateKoszul e (fun i => L (v i)) he Q)).range := by
+  let := Fintype.ofFinite σ
   obtain ⟨e,v,he,hdiv,hv,hpos,hinj,D₀,hD₀,hPQ⟩ :=
     exists_exact_sparse_intermediate (K := K) hn hh hm hcap hcount
   obtain ⟨D,hD,hDQ⟩ := hscalarOpen

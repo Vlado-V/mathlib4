@@ -52,6 +52,7 @@ def backgroundParityCoefficients :
   map_smul' c a := by funext i;rcases i with i | (i | i) <;> rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundParityCoefficients_surjective :
     Function.Surjective (backgroundParityCoefficients (K := K) (h := h) (m := m)
       (d := d) (q := q) (f := f) (u := u)) := by

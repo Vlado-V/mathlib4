@@ -37,12 +37,12 @@ theorem tauFour_scalar_ratio {d : ℕ} (hd : 3 ≤ d) :
     Nat.cast_sub (by omega : 2 ≤ 2 * d), Nat.cast_mul, Nat.cast_ofNat] at ht
   norm_num [countTauFour, scalarCapacity]
   rw [hc', ht, factorial_two_pred_real (by omega : 2 ≤ d)]
-  field_simp [hf, hF, hd0, hd1] <;> ring
+  field_simp [hf, hF, hd0, hd1]; ring
 
 theorem quadratic_scalar_density_bound {d : ℕ} (hd : 9 ≤ d) :
     countGammaTwo d / scalarCapacity d 2 < (92 / 125 : ℝ) := by
   have he : countGammaTwo d = countTauFour d := by
-    simp only [countGammaTwo, if_neg (by omega : ¬d ≤ 8)]
+    simp only [countGammaTwo, ite_eq_right (by omega : ¬d ≤ 8)]
   rw [he, tauFour_scalar_ratio (by omega)]
   have hρ := (criticalRatio_bounds (d := 2) (by omega)).1
   have hu := quadratic_critical_ratio_lt

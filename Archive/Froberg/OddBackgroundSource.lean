@@ -18,7 +18,7 @@ noncomputable section
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
-variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
+variable {K : Type} [Field K] {h m d q f u : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def backgroundOddFamily (F : Fin f → biformParitySpace K h m d 1)

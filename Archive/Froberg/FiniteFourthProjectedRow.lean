@@ -28,7 +28,7 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 common scalar open. Every remaining hypothesis is an explicit finite capacity
 or the retained-scalar open already established asymptotically. -/
 theorem exists_finite_fourth_projected_row
-    {w v d s b r H : ℕ} {I : Type*} [Fintype I] (hw : 0 < w) (hv : 0 < v)
+    {w v d s b r H : ℕ} {I : Type*} [Finite I] (hw : 0 < w) (hv : 0 < v)
     (bo : Basis (Fin H) K (homogeneousSubmodule (Fin w × Bool) K 4))
     (Relations : I → Submodule K (Fin H → K))
     (hrelations : ∀ i, b * (s + 1).choose s ≤ oddOutputDimension w 4 - finrank K (Relations i))
@@ -71,10 +71,11 @@ theorem exists_finite_fourth_projected_row
           ((Σ p : ProductRows.Row J 4,ProductRows.Columns counts p) →₀ K)).comp
             (intermediateKoszul e z he Q)).range := by
   classical
+  let := Fintype.ofFinite I
   obtain ⟨O,hO,hOD,hOodd⟩ := exists_odd_output_space (K := K) w 4
-  letI : FiniteDimensional K (homogeneousSubmodule (Fin w × Bool) K 4) :=
+  let : FiniteDimensional K (homogeneousSubmodule (Fin w × Bool) K 4) :=
     Module.Finite.of_basis bo
-  letI : FiniteDimensional K O := Submodule.finiteDimensional_of_le hO
+  let : FiniteDimensional K O := Submodule.finiteDimensional_of_le hO
   have hcoords := homogeneous_output_embedding_basis bo O hO
   rw [hOD] at hcoords
   obtain ⟨L,hL,hLO⟩ := hcoords
@@ -104,7 +105,7 @@ theorem exists_finite_fourth_projected_row
       have hx := (hp 2 x).2.2.2.1
       have hy := (hp 2 y).2.2.2.1
       simpa only [ProductRows.assignedScalarDegree,show ¬2*2<4 by omega,
-        show 2*2=4 by omega,if_false,if_true,pairProducts_mk,two_mul] using hx.mul hy
+        show 2*2=4 by omega,ite_false,ite_true,pairProducts_mk,two_mul] using hx.mul hy
   have hPY : ∀ a,(ProductRows.multiplication counts p J 4 a).IsWeightedHomogeneous
       (Sum.elim (fun _ : Fin w × Bool => 0) (ProductRows.halfWeight (balancedScalarHalf v)))
       (2*((d-2)/2)) := by

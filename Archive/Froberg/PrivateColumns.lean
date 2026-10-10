@@ -110,7 +110,7 @@ lemma privateDivisors_card_le_two (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
   rw [hβ] at h
   nlinarith
 
-lemma private_source_eq (hs : 0 < s) (ι : Fin b ↪ Fin z) (i : Fin b)
+lemma private_source_eq (_hs : 0 < s) (ι : Fin b ↪ Fin z) (i : Fin b)
     (α : Fin (a + z) →₀ ℕ) (hα : α.degree = s) :
     privateExponent a s ι i ≤ α ↔ α=privateExponent a s ι i := by
   constructor

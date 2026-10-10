@@ -30,6 +30,7 @@ theorem scalar_family_append (mu : P →ₗ[K] V →ₗ[K] W)
       BilinearScalarFamily.multiplication mu Q x+BilinearScalarFamily.multiplication mu R y := by
   simp [BilinearScalarFamily.multiplication_apply,Fin.sum_univ_add]
 
+omit [FiniteDimensional K P] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem scalar_append_coprod_injective (f : A →ₗ[K] W)
     (mu : P →ₗ[K] V →ₗ[K] W) (Q : Fin q → P) (R : Fin r → P)
     (h : Function.Injective (f.coprod (BilinearScalarFamily.multiplication mu (Fin.append Q R)))) :

@@ -49,7 +49,7 @@ theorem monomial_shadow_growth {a z s : ℕ}
   let ν := fun β : Σ j, TargetMonomialFiber a z s j => q β.1 /
     (Fintype.card (TargetMonomialFiber a z s β.1) : ℝ)
   let μ := embeddedUniform (freeSourceEmbedding (a := a) (z := z) hs)
-  letI := degree_nonempty hz s
+  let := degree_nonempty hz s
   have hH : 1 < H := profileAmbientCapacity_gt_one hs
   have hA : 0 < A := finiteSourceProfile_total_pos hH ha hz
   have hT : 0 < T := finiteTargetProfile_total_pos ha hz hs

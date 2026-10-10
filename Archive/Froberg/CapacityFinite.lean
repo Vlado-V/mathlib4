@@ -20,7 +20,7 @@ private theorem finite_higher_indices {d j : ℕ} (hd : 9 ≤ d) (hd' : d ≤ 12
   have h4 := (Finset.mem_filter.mp hj).2
   have he := (activeEvenIndices_bounds (by omega : 3 ≤ d) hj').2.2
   unfold activeEvenIndices at hj'
-  rw [if_neg (by omega : ¬d ≤ 8)] at hj'
+  rw [ite_eq_right (by omega : ¬d ≤ 8)] at hj'
   simp only [Finset.mem_filter, Finset.mem_range] at hj'
   obtain ⟨k, hk⟩ := he
   omega

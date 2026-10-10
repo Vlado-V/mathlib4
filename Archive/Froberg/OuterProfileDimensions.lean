@@ -18,12 +18,13 @@ noncomputable section
 namespace Froberg
 open Module Finset MonomialExpansion OuterInjection
 
-lemma attached_quotient_dimension_sum {K I : Type*} [Field K] [Fintype I] [DecidableEq I]
+lemma attached_quotient_dimension_sum {K I : Type*} [Field K] [Fintype I]
     {n s d h : ℕ} (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s) :
     (finrank K ((Fin h → Forms K n (s+d)) ⧸ AttachedMultiplication.relationSpace (d := d) e v he) :
       ℝ) =
       ∑ β : Degree n (s+d), (finrank K ((Fin h → K) ⧸ AttachedMultiplication.relationFiber e v
         β.val) : ℝ) := by
+  classical
   have hh := (AttachedMultiplication.quotientFiberEquiv (d := d) e v he).finrank_eq
   rw [Module.finrank_pi_fintype] at hh
   have hr : (finrank K ((Fin h → Forms K n (s+d)) ⧸ AttachedMultiplication.relationSpace (d := d) e

@@ -80,10 +80,10 @@ theorem privatePolynomialMapAt_injective (ht : t < s) (ι : Fin b ↪ Fin z)
         A i (privateSourceCoefficient v i α) := by
       unfold privateCoefficient
       rw [Finset.sum_eq_single i]
-      · rw [if_pos (show privateExponent a s ι i≤β from le_add_right le_rfl)]
+      · rw [ite_eq_left (show privateExponent a s ι i≤β from le_add_right le_rfl)]
         simp only [β,add_tsub_cancel_left]
       · intro k _ hki
-        exact if_neg (hunique k hki)
+        exact ite_eq_right (hunique k hki)
       · intro hi
         exact False.elim (hi (Finset.mem_univ i))
     have hzero : privateCoefficient (s := s) ι A (privateSourceCoefficient v) β=0 := by

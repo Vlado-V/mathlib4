@@ -31,8 +31,7 @@ theorem output_tmul_mem_biform_range (O : V →ₗ[K] Forms K h j)
     refine ⟨fun i => g ⊗ₜ[K] c i,?_⟩
     rw [biformFamilyMap_scalarCoefficients,hc]
     rfl
-  induction z using TensorProduct.induction_on with
-  | zero => simpa only [map_zero,zero_tmul] using Submodule.zero_mem R
+  induction z using TensorProduct.inductionOn with
   | tmul v g => exact hs v g
   | add z z' hz hz' => simpa only [map_add,add_tmul] using Submodule.add_mem R hz hz'
 
@@ -64,8 +63,7 @@ theorem output_image_tensor_le_range (O : V →ₗ[K] Forms K h j)
       (LinearMap.id : Forms K m (e+y) →ₗ[K] _)).range ≤
       (biformFamilyMap (x := x) (y := y) (fun i => O (o i)) f).range := by
   rintro _ ⟨z,rfl⟩
-  induction z using TensorProduct.induction_on with
-  | zero => simpa only [map_zero] using Submodule.zero_mem _
+  induction z using TensorProduct.inductionOn with
   | tmul u w =>
     obtain ⟨v,hv⟩ := u.property
     simpa only [TensorProduct.map_tmul,Submodule.subtype_apply,LinearMap.id_apply,hv] using
@@ -86,7 +84,7 @@ theorem coprod_surjective_of_quotient (F : E →ₗ[K] T) (G : Z →ₗ[K] T) (�
     change π (t-G z)=0
     rw [map_sub,show π (G z)=π t from hz,sub_self]
   obtain ⟨e,he⟩ := hker hk
-  exact ⟨(e,z),by simpa only [LinearMap.coprod_apply,he,sub_add_cancel]⟩
+  exact ⟨(e,z),by simp only [LinearMap.coprod_apply,he,sub_add_cancel]⟩
 end Coproduct
 
 end Froberg

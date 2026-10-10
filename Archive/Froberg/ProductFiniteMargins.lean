@@ -29,7 +29,7 @@ theorem higher_diagonal_product_identity {d j : ℕ} (hj : 2 < j) (hjd : j ≤ d
     diagonalOutputDensity d j/(2^(d-j+1)*((d-j).factorial : ℝ)) =
       productCapacity d j := by
   unfold diagonalOutputDensity
-  rw [if_neg (by omega),sub_zero,half_output_product_identity hjd]
+  rw [ite_eq_right (by omega),sub_zero,half_output_product_identity hjd]
 
 theorem quadratic_diagonal_product_margin {d : ℕ} (hd : 9 ≤ d) :
     (1249/1250 : ℝ)*productCapacity d 2 <

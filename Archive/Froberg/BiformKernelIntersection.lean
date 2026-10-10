@@ -19,6 +19,7 @@ open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ X : Type*} [AddCommGroup X] [Module K X]
 
+omit [Infinite K] in
 /-- A biform killed by an output detector has every output coefficient in
 that detector's kernel. -/
 theorem mem_biformImage_inf_kernel
@@ -62,6 +63,7 @@ theorem mem_biformImage_inf_kernel
   | tmul x y => rfl
   | add x y hx hy => simp only [map_add,hx,hy]
 
+omit [Infinite K] in
 /-- Exact constrained-output membership is the intersection of the biform
 space with the detector kernel. -/
 theorem biformImage_inf_kernel

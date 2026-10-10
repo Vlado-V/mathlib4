@@ -26,6 +26,7 @@ variable {σ I J W : Type*} [Fintype σ] [Fintype I] [Fintype J]
 variable {n d R s : ℕ}
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] [FiniteDimensional K W] in
 theorem intrinsic_row_relation_constants
     (Q : I → Forms K n d) (E : J → FullBiform K σ n R s)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
@@ -65,9 +66,10 @@ theorem intrinsic_row_relation_constants
     rw [←hz,map_zero]
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] [FiniteDimensional K W] in
 /-- Exactness of the full intrinsic row is exactly the coefficient-row rule
 needed by the increasing-degree induction. -/
-theorem intrinsic_polynomial_coefficient_row_exact
+theorem intrinsic_polynomial_coefficient_row_exact [Finite σ]
     (hRs : R + s = d) (j : I → ℕ) (Q : I → Forms K n d)
     (E : I → MvPolynomial (σ ⊕ Fin n) K)
     (Erow : {i : I // j i=R} → FullBiform K σ n R s)
@@ -82,6 +84,7 @@ theorem intrinsic_polynomial_coefficient_row_exact
     CoefficientRowExact
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
       (fun i => rename Sum.inr (Q i).val) E j R := by
+  let : Fintype σ := Fintype.ofFinite σ
   classical
   apply coefficientRowExact_of_independent_products _ _ _ _ _ hpairs
   intro u b p hu hb hp hrel
@@ -102,25 +105,25 @@ theorem intrinsic_polynomial_coefficient_row_exact
       have hji : j i≠R := fun h => hi ⟨⟨i,h⟩,rfl⟩
       simp only [hji,ite_false]
     · intro a
-      rw [←hE a,hf a.val,if_pos a.property]
+      rw [←hE a,hf a.val,ite_eq_left a.property]
   obtain ⟨C,hCu,hCb,hpzero⟩ := intrinsic_row_relation_constants Q Erow P hker u hu'
     (fun a => f a.val) p hp' (by rw [hsum]; exact hrel)
   let C' : I → I → K := fun i k => if h : j k=R then C i ⟨k,h⟩ else 0
   refine ⟨C',?_,?_,?_,hpzero⟩
   · intro i k hk
-    simp only [C',dif_neg hk]
+    simp only [C',dite_eq_right hk]
   · intro i
     rw [hCu i]
     unfold matrixCombination
     apply Fintype.sum_of_injective Subtype.val Subtype.val_injective
     · intro k hk
       have hjk : j k≠R := fun h => hk ⟨⟨k,h⟩,rfl⟩
-      simp only [C',dif_neg hjk,zero_smul]
+      simp only [C',dite_eq_right hjk,zero_smul]
     · intro a
-      simp only [C',dif_pos a.property]
+      simp only [C',dite_eq_left a.property]
       rw [hE a]
   · intro k hk
     rw [←hf k,hCb ⟨k,hk⟩]
-    simp only [map_neg,map_sum,map_smul,C',dif_pos hk]
+    simp only [map_neg,map_sum,map_smul,C',dite_eq_left hk]
 
 end Froberg

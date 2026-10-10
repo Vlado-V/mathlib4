@@ -23,14 +23,14 @@ theorem profileJoint_polynomial (σ : ℝ) (s : ℕ) (i : Fin s) (j : Fin (2 * s
   congr 1
   rw [coeff_X_pow_mul']
   by_cases hlo : (i : ℕ) ≤ j
-  · rw [if_pos hlo, profilePolynomial_coeff]
+  · rw [ite_eq_left hlo, profilePolynomial_coeff]
     by_cases hhi : (j : ℕ) - i ≤ s + 1
     · let z : Fin (s + 2) := ⟨j - i, by omega⟩
       have hz : profileShift i z = j := by apply Fin.ext; dsimp [profileShift, z]; omega
       rw [sum_eq_single z]
-      · rw [if_pos hz]
+      · rw [ite_eq_left hz]
       · intro x _ hx
-        rw [if_neg]
+        rw [ite_eq_right]
         intro heq
         exact hx (profileShift_injective i (heq.trans hz.symm))
       · intro hx
@@ -38,15 +38,15 @@ theorem profileJoint_polynomial (σ : ℝ) (s : ℕ) (i : Fin s) (j : Fin (2 * s
     · rw [profileBinomial_above σ (by omega : s + 1 < (j : ℕ) - i)]
       apply sum_eq_zero
       intro z _
-      rw [if_neg]
+      rw [ite_eq_right]
       intro hz
       have := congrArg Fin.val hz
       dsimp only [profileShift] at this
       omega
-  · rw [if_neg hlo]
+  · rw [ite_eq_right hlo]
     apply sum_eq_zero
     intro z _
-    rw [if_neg]
+    rw [ite_eq_right]
     intro hz
     have := congrArg Fin.val hz
     dsimp only [profileShift] at this
@@ -105,13 +105,13 @@ theorem profileTargetMass_capacity (σ : ℝ) (s : ℕ) (j : Fin (2 * s + 1)) :
     exact_mod_cast (Nat.ne_of_gt (Nat.choose_pos (by omega : s ≤ 2 * s + 1)))
   rw [profileTargetMass_formula]
   by_cases hsj : s ≤ (j : ℕ)
-  · rw [if_pos hsj]
+  · rw [ite_eq_left hsj]
     have hw := weighted_choose_subtract (σ := σ) s j hsj (by omega)
     by_cases hσ : 1 - σ ^ s = 0
     · simp [hσ]
     · field_simp
       nlinarith [hw]
-  · rw [if_neg hsj, Nat.choose_eq_zero_of_lt (by omega : (j : ℕ) < s)]
+  · rw [ite_eq_right hsj, Nat.choose_eq_zero_of_lt (by omega : (j : ℕ) < s)]
     simp only [Nat.cast_zero, sub_zero]
     field_simp
 

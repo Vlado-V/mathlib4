@@ -31,8 +31,7 @@ theorem vectorFormFamily_surjective_extend {m e t : ℕ} (j : ι → κ)
   refine ⟨O, F, hO, hscalar, ?_⟩
   intro z
   change z ∈ (vectorFormFamilyMap (t := t) O F).range
-  induction z using TensorProduct.induction_on with
-  | zero => exact Submodule.zero_mem _
+  induction z using TensorProduct.inductionOn with
   | tmul w g => exact vectorFormFamily_range_transfer LinearMap.id o f O F j hO hscalar hF w g
   | add x y hx hy => exact Submodule.add_mem _ hx hy
 

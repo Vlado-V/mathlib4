@@ -16,6 +16,7 @@ namespace Froberg.AttachedMultiplication
 open Module Finset Quartic.HomogeneousCoefficientCoordinates
 variable {K I : Type*} [Field K] [Fintype I] [DecidableEq I] {n s h : ℕ}
 
+omit [DecidableEq I] in
 lemma lower_half_growth_of_ideal_bound
     (e : I → Fin n →₀ ℕ) (v : I → Fin h → K) (he : ∀ i, (e i).degree = s)
     (hn : 0 < n)
@@ -31,6 +32,7 @@ lemma lower_half_growth_of_ideal_bound
     (hL : 2*finrank K L≤finrank K ((Fin h → Forms K n s) ⧸ relationSpace (d := 0) e v he)) :
     R*(finrank K L : ℝ)+(G-(h*((h*2^h)*(n+s-1).choose s) : ℕ))*(finrank K L : ℝ)≤
       (finrank K (outerImage (d := s+1) e v he L) : ℝ) := by
+  classical
   obtain ⟨C,hCdim,hCimage⟩ := exists_initial_monomial_fibers (d := s+1) e v he L
   have hb := hbound C (by rwa [hCdim])
   have hl := idealShadow_sum_le_actual_image_add_loss e v hn he hv hm hsize C

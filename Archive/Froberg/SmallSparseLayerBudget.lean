@@ -24,7 +24,7 @@ theorem higher_sparse_scalar_margin_all {d R : ℕ} (hd : 3 ≤ d)
       (scalarCapacityBinomial d R : ℝ)*criticalRatio d<1 := by
   by_cases hd8 : d≤8
   · have hR4 : R=4 := by
-      simp only [activeHigherIndices,activeEvenIndices,if_pos hd8,Finset.mem_filter,
+      simp only [activeHigherIndices,activeEvenIndices,ite_eq_left hd8,Finset.mem_filter,
         Finset.mem_insert,Finset.mem_singleton] at hR
       omega
     subst R

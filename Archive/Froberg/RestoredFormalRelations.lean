@@ -63,13 +63,13 @@ theorem restored_projected_formal_relations
       intro a ha
       apply hodd a
       intro i
-      convert ha i using 1 <;> norm_num) Q A hQ
+      convert ha i using 1; norm_num) Q A hQ
   intro c hc
   let c' : Fin r → evenRestorationSpace (K := K) w d := fun i =>
     ⟨(c.val i).val,(c.val i).property,by
       apply (mem_weightedParitySpace_iff w 0 (c.val i).val).mpr
       apply (parity_homogeneous_iff w (c.val i).val 0 (by omega)).mp
-      convert hc i using 1 <;> norm_num⟩
+      convert hc i using 1; norm_num⟩
   have hc' : PolynomialRestoration.row (evenRestorationSpace w d).subtype
       (positiveWeightProjection w d) g c'=0 := by
     have hh := hpositive (endpointMultiplication (restorationForms w g) c.val) c.property

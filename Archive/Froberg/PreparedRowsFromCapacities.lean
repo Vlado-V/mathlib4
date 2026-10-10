@@ -37,7 +37,7 @@ theorem rows_open_of_capacities {w v d q : ℕ} {J : Finset ℕ} {counts : ℕ �
       ∀ p : S,eval ((Module.finBasis K S).equivFun p) D≠0 →
         ∀ R : J,(row (fun _ _ => inf_le_left) R p).ker=
           (rowConstants (fun _ _ => inf_le_left) R p).range := by
-  letI : Module.Finite K (Space (v+v) d q J counts (constrainedOutputs T)) :=
+  let : Module.Finite K (Space (v+v) d q J counts (constrainedOutputs T)) :=
     finite_space (fun _ _ => inf_le_left)
   apply rows_common_open (O := constrainedOutputs T) (fun _ _ => inf_le_left) hdegree
   intro R

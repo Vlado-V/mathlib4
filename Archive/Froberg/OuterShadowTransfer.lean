@@ -109,7 +109,7 @@ theorem actual_outer_growth_of_exponent_shadow {K : Type*} [Field K]
   have hactual := AttachedMultiplication.uniform_outer_growth_of_ideal_bound
     (coreExponent z) v (coreExponent_degree z) hn hv hm hsize R
     (g-(h : ℝ)*((h*2^h)*(a+z+s-1).choose s)) (fun C => by
-      convert hbound C using 1 <;> ring)
+      convert hbound C using 1; ring)
   intro L
   have hL := hactual L
   have hle := Submodule.finrank_le L

@@ -46,7 +46,7 @@ lemma critical_outer_balance {d : ℕ} (hd : 2 ≤ d) (h : ℝ) :
         ((centralHalfBinomial d : ℝ)*((d-1).factorial : ℝ)*(d.factorial : ℝ)) := by
     rw [← hf]
     field_simp
-    <;> ring
+    ring
   rw [hc,sub_self,mul_zero,zero_div] at he
   linarith
 

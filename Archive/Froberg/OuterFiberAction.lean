@@ -65,6 +65,7 @@ abbrev addExponent (a : Exponent n s) (b : Exponent n d) : Exponent n (s+d) :=
 def monomialForm (b : Exponent n d) : Forms K n d :=
   ⟨monomial b.val 1,isHomogeneous_monomial 1 b.property⟩
 
+omit [DecidableEq I] in
 /-- In a single source fiber, multiplying by one monomial has precisely one
 nonzero target fiber, where it is the canonical quotient projection. -/
 theorem fiberMultiply_monomial_single (e : I → Fin n →₀ ℕ) (v : I → Fin h → K)
@@ -72,6 +73,7 @@ theorem fiberMultiply_monomial_single (e : I → Fin n →₀ ℕ) (v : I → Fi
     (u : (Fin h → K) ⧸ relationFiber e v a.val) :
     fiberMultiply e v he (monomialForm b) (Pi.single a u) =
       Pi.single (addExponent a b) (fiberProjection e v (le_add_right le_rfl) u) := by
+  classical
   obtain ⟨u,rfl⟩ := (relationFiber e v a.val).mkQ_surjective u
   change quotientFiberEquiv e v he
     (quotientMultiply e v he (monomialForm b)

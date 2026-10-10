@@ -20,12 +20,14 @@ variable {σ : Type*} [Fintype σ]
 variable {n R s d r : ℕ}
 variable {J : Type*} [Fintype J]
 
+omit [Infinite K] in
 theorem zero_form_eq_C (f : Forms K n 0) : f.val=C (f.val.coeff 0) := by
   simpa only [homogeneousComponent_zero] using (homogeneousComponent_eq_self f.property).symm
 
+omit [Fintype σ] [Infinite K] in
 /-- A kernel equality yields literal constant coefficients for every scalar
 and new-layer term, and kills the complete product summand. -/
-theorem polynomial_row_relation_constants
+theorem polynomial_row_relation_constants [Finite σ]
     {W : Type*} [AddCommGroup W] [Module K W]
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
@@ -45,6 +47,8 @@ theorem polynomial_row_relation_constants
     ∃ C : Fin r → J → K,
       (∀ i,U i=∑ a,C i a • attachedPolynomialFamily o e v a) ∧
       (∀ a,(B a).val = -∑ i,C i a • (Q i).val) ∧ p=0 := by
+  classical
+  let := Fintype.ofFinite σ
   have hcoords (i : Fin r) : ∃ u : Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K n s,
       polynomialFormVector o s u=U i := by
     change U i∈(polynomialFormVector (n := n) o s).range

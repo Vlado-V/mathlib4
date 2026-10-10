@@ -150,6 +150,7 @@ theorem rank_gain_of_realizations {T : Type*} [AddCommGroup T] [Module K T]
   exact ⟨ε,he,(Nat.add_le_add_left (Submodule.finrank_mono hsub) _).trans hr⟩
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The same concrete response rank gain holds on a principal open of nonzero parameters. -/
 theorem rank_gain_of_realizations_principal_open {T : Type*} [AddCommGroup T] [Module K T]
     (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J) (N : T →ₗ[K] J)

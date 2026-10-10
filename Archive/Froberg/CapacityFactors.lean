@@ -29,9 +29,9 @@ theorem higher_scalar_factorization {d j : ℕ} (hj : 6 ≤ j) (hjd : j ≤ d) :
       j) := by
   have h₁ : 2 * d - 2 * j + 4 = 2 * (d - j) + 4 := by omega
   have h₂ : 2 * d - j = d + (d - j) := by omega
-  simp only [higherCountGamma, if_neg (by omega : j ≠ 4), scalarCapacity,
+  simp only [higherCountGamma, ite_eq_right (by omega : j ≠ 4), scalarCapacity,
     scalarLeftFactor, scalarRightFactor, h₁, h₂]
-  field_simp [factorial_real_ne_zero] <;> ring
+  field_simp [factorial_real_ne_zero]
 
 theorem scalarLeftFactor_pos {j : ℕ} : 0 < scalarLeftFactor j := by
   unfold scalarLeftFactor
@@ -63,7 +63,7 @@ theorem scalarLeftFactor_step {j : ℕ} (hj : 6 ≤ j) :
   unfold scalarLeftFactor
   rw [show j + 1 - 4 = j - 3 by omega,
     show 2 * (j + 1) - 4 = 2 * j - 2 by omega, h₁, h₂, h₃]
-  field_simp [factorial_real_ne_zero, hj2, hj3] <;> ring
+  field_simp [factorial_real_ne_zero, hj2, hj3]; ring
 
 theorem factorial_add_one_real (n : ℕ) :
     ((n + 1).factorial : ℝ) = ((n : ℝ) + 1) * (n.factorial : ℝ) := by
@@ -90,6 +90,6 @@ theorem scalarRightFactor_step (d t : ℕ) :
   push_cast
   have ht5 : (t : ℝ) + 5 ≠ 0 := by positivity
   have hdt : (d : ℝ) + (t : ℝ) + 1 ≠ 0 := by positivity
-  field_simp [factorial_real_ne_zero, ht5, hdt] <;> ring
+  field_simp [factorial_real_ne_zero, ht5, hdt]; ring
 
 end Froberg

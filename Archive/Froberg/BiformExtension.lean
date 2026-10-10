@@ -26,7 +26,7 @@ variable {h m j e x y : ℕ}
   rw [biformFamilyMap_apply,Finset.sum_eq_single i]
   · simp
   · intro k _ hki
-    simp [Pi.single_apply,hki]
+    simp [hki]
   · simp
 
 theorem biformFamilyMap_surjective_of_entries

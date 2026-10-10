@@ -32,10 +32,7 @@ theorem biformFamilyMap_polynomial
   have ht (i : ι) (z : Forms K h x ⊗[K] Forms K m y) :
       IsPolynomialFamily (fun a => TensorProduct.map
         (gradedMultiplication (o a i)) (gradedMultiplication (f a i)) z) := by
-    induction z using TensorProduct.induction_on with
-    | zero =>
-      simpa only [map_zero] using isPolynomialFamily_const (ι := P) (K := K)
-        (0 : Forms K h (j+x) ⊗[K] Forms K m (e+y))
+    induction z using TensorProduct.inductionOn with
     | tmul u v =>
       have hu := (ho i).linear_comp (gradedMultiplication.flip u)
       have hv := (hf i).linear_comp (gradedMultiplication.flip v)

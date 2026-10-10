@@ -49,7 +49,7 @@ theorem quadratic_row_two_cost_ratio {d : ℕ} (hd : 3 ≤ d) :
     show 2 * d - 2 - (d - 2) = d by omega,
     show 2 * d - 4 - (d - 2) = d - 2 by omega, h₁, h₂]
   field_simp [factorial_real_ne_zero, hρ, show (d : ℝ) - 1 ≠ 0 by linarith,
-    show 2 * (d : ℝ) - 2 ≠ 0 by linarith, show 2 * (d : ℝ) - 3 ≠ 0 by linarith] <;> ring
+    show 2 * (d : ℝ) - 2 ≠ 0 by linarith, show 2 * (d : ℝ) - 3 ≠ 0 by linarith]
 
 /-- The row-three convolution cost relative to the quadratic endpoint cost. -/
 theorem quadratic_row_three_cost_ratio {d : ℕ} (hd : 3 ≤ d) :
@@ -67,7 +67,8 @@ theorem quadratic_row_three_cost_ratio {d : ℕ} (hd : 3 ≤ d) :
     choose_real_factorial (show d - 2 ≤ 2 * d - 4 by omega),
     show 2 * d - 3 - (d - 2) = d - 1 by omega,
     show 2 * d - 4 - (d - 2) = d - 2 by omega, h₁, h₂]
-  field_simp [factorial_real_ne_zero, hρ, show 2 * (d : ℝ) - 3 ≠ 0 by linarith] <;> ring
+  field_simp [factorial_real_ne_zero, hρ, show 2 * (d : ℝ) - 3 ≠ 0 by linarith]
+  ring
 
 theorem quadratic_row_two_lt_tau {d : ℕ} (hd : 7 ≤ d) :
     quadraticRowTwoCost d < countTauFour d := by
@@ -100,18 +101,18 @@ theorem quadratic_row_three_lt_tau {d : ℕ} (hd : 7 ≤ d) :
   exact (div_lt_one (countTauFour_pos (by omega))).mp hrat
 
 /-- Every quadratic target cost is bounded by the actual chosen density. -/
-theorem quadratic_target_costs_le_gamma {d : ℕ} (hd : 3 ≤ d) :
+theorem quadratic_target_costs_le_gamma {d : ℕ} (_hd : 3 ≤ d) :
     quadraticRowTwoCost d ≤ countGammaTwo d ∧
       quadraticRowThreeCost d ≤ countGammaTwo d ∧ countTauFour d ≤ countGammaTwo d := by
   refine ⟨?_, ?_, countTauFour_le_gamma d⟩
   · by_cases hd8 : d ≤ 8
     · unfold countGammaTwo
-      rw [if_pos hd8]
+      rw [ite_eq_left hd8]
       exact le_max_left _ _
     · exact (quadratic_row_two_lt_tau (by omega)).le.trans (countTauFour_le_gamma d)
   · by_cases hd8 : d ≤ 8
     · unfold countGammaTwo
-      rw [if_pos hd8]
+      rw [ite_eq_left hd8]
       exact (le_max_left _ _).trans (le_max_right _ _)
     · exact (quadratic_row_three_lt_tau (by omega)).le.trans (countTauFour_le_gamma d)
 

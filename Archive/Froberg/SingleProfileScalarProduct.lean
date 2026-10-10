@@ -20,7 +20,8 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {n R d s r H j : ℕ}
 variable {V : Type*} [AddCommGroup V] [Module K V]
 
-theorem single_profile_scalar_product_row_injective
+omit [Fintype σ] in
+theorem single_profile_scalar_product_row_injective [Finite σ]
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
     (hdeg : ∀ i, (o i).IsHomogeneous R)
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
@@ -31,6 +32,7 @@ theorem single_profile_scalar_product_row_injective
     (hQ : Function.Injective (ProjectedPrefix.multiplication
       (fun α => partialDegree S α≠j) Q s)) :
     Function.Injective (addRow (polynomialScalarRow (s := s) o Q) P) := by
+  let : Fintype σ := Fintype.ofFinite σ
   apply addRow_injective_of_disjoint _ _
   · exact (polynomialFormVector_injective o ho).comp
       (vector_scalar_injective_of_projected _ Q hQ)

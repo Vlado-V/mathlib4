@@ -8,6 +8,7 @@ module
 public import Archive.Froberg.WeightedParitySpace
 public import Archive.Froberg.PolynomialFamilyRestoration
 public import Archive.Froberg.HomogeneousOutputCoordinates
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! The actual coefficient and target spaces for restoring pure forms in even
 degree. The target remembers every positive output-weight component. -/
@@ -22,9 +23,11 @@ variable {K : Type} {σ : Type*} [Field K] [Fintype σ]
 def evenRestorationSpace (w : σ → ℕ) (d : ℕ) : Submodule K (MvPolynomial σ K) :=
   homogeneousSubmodule σ K d ⊓ weightedParitySpace w 0
 
-instance evenRestorationSpace_finite (w : σ → ℕ) (d : ℕ) :
+omit [Fintype σ] in
+instance evenRestorationSpace_finite [Finite σ] (w : σ → ℕ) (d : ℕ) :
     Module.Finite K (evenRestorationSpace (K := K) w d) := by
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let := Fintype.ofFinite σ
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   exact Submodule.finiteDimensional_of_le inf_le_left
 
@@ -32,6 +35,7 @@ def positiveWeightProjection (w : σ → ℕ) (d : ℕ) :
     MvPolynomial σ K →ₗ[K] ({r : ℕ // 0<r ∧ r≤2*d} → MvPolynomial σ K) :=
   LinearMap.pi (fun r => weightedHomogeneousComponent w r.val)
 
+omit [Fintype σ] in
 theorem positiveWeightProjection_zero (w : σ → ℕ) (d : ℕ)
     (f : MvPolynomial σ K) (hf : f.IsWeightedHomogeneous w 0) :
     positiveWeightProjection w d f=0 := by
@@ -60,6 +64,7 @@ def retainedScalarCoefficients {r : ℕ} (w : σ → ℕ) (d : ℕ)
     · intro i
       exact (weightedHomogeneousSubmodule K w 0).smul_mem a (hx.2 i)
 
+omit [Fintype σ] in
 theorem retainedScalarCoefficients_row_zero {r : ℕ} (w : σ → ℕ) (d : ℕ)
     (degree : Fin r → ℕ) (q : Fin r → evenRestorationSpace (K := K) w d)
     (hq : ∀ i, degree i = 0 → (q i).val.IsWeightedHomogeneous w 0)
@@ -94,6 +99,6 @@ theorem pureShift_at_slot {U V : Type*}
     (hslot : Function.Injective slot) (v : Fin u → U) (k : Fin u) :
     PolynomialRestoration.pureShift (K := K) (V := V) embed slot v (slot k)=embed (v k) := by
   classical
-  simp [PolynomialRestoration.pureShift,LinearMap.single_apply,Pi.single_apply,hslot.eq_iff]
+  simp [PolynomialRestoration.pureShift,Pi.single_apply,hslot.eq_iff]
 
 end Froberg

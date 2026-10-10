@@ -84,7 +84,7 @@ theorem coefficient_row_of_exact
     change Sum.inr ⟨R,e.symm i⟩=i.val at hi
     rw [←hi]
     change (p.2 R (e.symm i)).val=layers p R.val (e.symm i)
-    simp only [layers,dif_pos R.property]
+    simp only [layers,dite_eq_left R.property]
   have hrow := bilinearKoszulRow_exact_reindex
     (Equiv.refl (Label q J counts)) e.symm fullBiformScalarProduct
     (fun i => scalarMap i p) (fun i => intrinsicLayerMap hO R i p)

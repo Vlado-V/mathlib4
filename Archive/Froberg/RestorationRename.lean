@@ -19,6 +19,7 @@ namespace Froberg
 open MvPolynomial
 variable {K : Type} [Field K] {σ τ : Type*} [Fintype σ] [Fintype τ]
 
+omit [Fintype σ] [Fintype τ] in
 theorem weightedParity_rename_equiv (e : σ ≃ τ) (w : σ → ℕ)
     (f : MvPolynomial σ K) (hf : f ∈ weightedParitySpace w 0) :
     rename e f∈weightedParitySpace (w ∘ e.symm) 0 := by
@@ -43,10 +44,12 @@ def evenRestorationRenameEquiv (e : σ ≃ τ) (w : σ → ℕ) (d : ℕ) :
   map_add' f g := Subtype.ext (map_add (rename e) f.val g.val)
   map_smul' a f := Subtype.ext (map_smul (rename e) a f.val)
 
-theorem positiveWeightProjection_eq_zero_iff {d : ℕ}
+omit [Fintype σ] in
+theorem positiveWeightProjection_eq_zero_iff [Finite σ] {d : ℕ}
     (w : σ → ℕ) (hw : ∀ x, w x ≤ 1) (f : MvPolynomial σ K)
     (hf : f.IsHomogeneous (2 * d)) :
     positiveWeightProjection w d f=0 ↔ f.IsWeightedHomogeneous w 0 := by
+  let := Fintype.ofFinite σ
   constructor
   · intro hproj a ha
     have hdeg : a.degree=2*d := by
@@ -90,8 +93,7 @@ theorem restoration_reduction_rename (e : σ ≃ τ) (w : σ → ℕ)
   have hpzero : p.IsWeightedHomogeneous (w ∘ e.symm) 0 :=
     (positiveWeightProjection_eq_zero_iff (w ∘ e.symm) (fun x => hw _) p hp).mp hc
   have hsum : (∑ i,(g i).val*(c₀ i).val)=rename e.symm p := by
-    simp only [p,map_sum,map_mul,c₀,f,evenRestorationRenameEquiv,
-      LinearEquiv.symm_apply_apply]
+    simp only [p,map_sum,map_mul,c₀,f,evenRestorationRenameEquiv]
     apply Finset.sum_congr rfl
     intro i _
     congr 1

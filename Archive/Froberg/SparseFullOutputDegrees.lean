@@ -18,9 +18,10 @@ open Module MvPolynomial AttachedMultiplication Quartic.PolynomialBilinearCoordi
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 
+omit [Fintype σ] in
 /-- Sparse quotient exactness extends to every output direction and is
 compatible with an arbitrary nonempty scalar-injectivity open. -/
-theorem exists_sparse_full_output_row_all_degrees {n R s d b m r : ℕ}
+theorem exists_sparse_full_output_row_all_degrees [Finite σ] {n R s d b m r : ℕ}
     (hn : 0 < n) (O : Submodule K (MvPolynomial σ K))
     (hO : O ≤ homogeneousSubmodule σ K R) (hOpos : 0 < finrank K O)
     (hm : m ≤ b * (n + s - 1).choose s) (hcap : b * (s + d).choose s ≤ finrank K O)
@@ -43,6 +44,7 @@ theorem exists_sparse_full_output_row_all_degrees {n R s d b m r : ℕ}
         Function.Injective (homogeneousMultiplication (d := 0) e v he) ∧
         (∀ c ≤ d,Function.Injective (homogeneousMultiplication (d := c) e v he)) ∧
         (polynomialIntermediateRow o e v he Q).ker=(intermediateKoszul e v he Q).range := by
+  let := Fintype.ofFinite σ
   obtain ⟨o,L,ho,hdeg,hL,hLO⟩ := homogeneous_output_coordinate_embedding O hO
   obtain ⟨e,v,he,hdiv,hv,hpos,hinj,P,hP,hPQ⟩ :=
     exists_exact_sparse_intermediate (K := K) hn hOpos hm hcap hcount

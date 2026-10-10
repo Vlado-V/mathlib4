@@ -86,7 +86,7 @@ theorem privateGoodMultipliers_card_lower {a z s b : ℕ} (hs : 0 < s)
     intro γ hγ
     by_cases hp : ∀ j, ¬privateExponent a s ι j≤γ.val
     · exact mem_union_left _ (mem_filter.mpr ⟨hγ,hp⟩)
-    · push_neg at hp
+    · push Not at hp
       obtain ⟨j,hj⟩ := hp
       exact mem_union_right _ (mem_biUnion.mpr ⟨j,mem_univ _,mem_filter.mpr ⟨mem_univ _,hj⟩⟩)
   have hunion : (univ.biUnion B).card≤b*(a+z) := by

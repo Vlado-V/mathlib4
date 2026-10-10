@@ -19,6 +19,7 @@ variable {K P E F T : Type*} [Field K]
   [AddCommGroup F] [Module K F] [Module.Finite K F]
   [AddCommGroup T] [Module K T] [Module.Finite K T]
 
+omit [Module.Finite K T] in
 theorem polynomial_coprod (A : (P → K) → E →ₗ[K] T) (B : (P → K) → F →ₗ[K] T)
     (hA : IsPolynomialFamily A) (hB : IsPolynomialFamily B) :
     IsPolynomialFamily (fun a => (A a).coprod (B a)) := by

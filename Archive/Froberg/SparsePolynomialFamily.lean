@@ -23,11 +23,12 @@ def attachedPolynomialFamily (o : J → MvPolynomial σ K)
     (e : I → Fin n →₀ ℕ) (v : I → J → K) : I → MvPolynomial (σ ⊕ Fin n) K :=
   fun i => polynomialVector o (fun j => monomial (e i) (v i j))
 
+omit [Fintype I] in
 theorem attachedPolynomialFamily_homogeneous (o : J → MvPolynomial σ K)
     {R : ℕ} (ho : ∀ j, (o j).IsHomogeneous R)
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i, (e i).degree = s) (i : I) :
     (attachedPolynomialFamily o e v i).IsHomogeneous (R+s) :=
-  polynomialVector_homogeneous o _ ho (fun j => isHomogeneous_monomial _ (he i))
+  polynomialVector_homogeneous o _ ho (fun _ => isHomogeneous_monomial _ (he i))
 
 /-- Literal polynomial multiplication is exactly the transported vector map. -/
 theorem attachedPolynomialFamily_multiplication (o : J → MvPolynomial σ K)

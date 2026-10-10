@@ -87,6 +87,6 @@ theorem fourth_product_density_bound {d : ℕ} (hd : 8 ≤ d) :
   have h := reciprocal_of_binomial_lower_bound (d - 2) _ hp hl
   rw [hnear, show d - 2 + 3 = d + 1 by omega, show d - 2 + 2 = d by omega,
     Nat.cast_sub (by omega : 2 ≤ d), Nat.cast_ofNat] at h
-  convert h using 1 <;> ring
+  convert h using 1; ring
 
 end Froberg

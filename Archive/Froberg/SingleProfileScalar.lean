@@ -37,7 +37,7 @@ theorem eventually_single_profile_scalar_open {d e : ℕ} (hd : 0 < d)
   obtain ⟨n₁,hn₁⟩ := eventually_atTop.mp hbudget
   refine ⟨max (2*m₀+1) n₁,?_⟩
   intro n hn S hle hupper j
-  have hcard : S.card+Sᶜ.card=n := by simpa using Finset.card_add_card_compl S
+  have hcard : S.card+Sᶜ.card=n := by simp
   have hm : m₀≤S.card := by omega
   have hnpos : 0<n := by omega
   obtain ⟨P,hP,hgood⟩ := retained_prefix_generic_injective_of_growth

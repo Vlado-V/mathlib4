@@ -44,10 +44,11 @@ theorem topComplementDensity_pos {d : ℕ} (hd : 2 ≤ d) :
 theorem odd_tail_normalized_limit {d : ℕ} (hd : 0 < d) (ho : Odd d) :
     Tendsto (fun h : ℕ => (tailGeneratorCount d h : ℝ) / (h : ℝ) ^ d)
       atTop (𝓝 (2 / ((d + 1).factorial : ℝ))) := by
-  simp only [tailGeneratorCount, if_pos ho]
+  simp only [tailGeneratorCount, ite_eq_left ho]
   apply ceil_normalized_limit _ hd _ (Eventually.of_forall fun h => by positivity)
-  convert scaled_power_normalized_limit (2 / ((d + 1).factorial : ℝ)) d using 1 <;>
-    ext h <;> ring
+  convert scaled_power_normalized_limit (2 / ((d + 1).factorial : ℝ)) d using 1
+  ext h
+  ring
 
 /-- The natural subtraction in the quotient count is eventually exact. -/
 theorem odd_top_count_budget_limit {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :

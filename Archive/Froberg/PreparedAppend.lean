@@ -35,7 +35,7 @@ def addedSliceEquiv (R : J) :
     have hj : j.val=R.val := by
       by_contra h
       have hi := i.isLt
-      simp only [if_neg h] at hi
+      simp only [ite_eq_right h] at hi
       omega
     have heq : j=R := Subtype.ext hj
     subst j

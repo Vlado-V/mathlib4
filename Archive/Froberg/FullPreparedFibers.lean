@@ -64,25 +64,32 @@ def variablePrivateZeroScalar : FixedPureZeroScalarSpace m d q f u J counts O �
   map_add' p p' := by simp
   map_smul' a p := by simp
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem pureBase_add_variablePrivate (U : Fin u → homogeneousSubmodule σ K d)
     (p : FixedPureSpace m d q f u J counts O) :
     pureBase U+variablePrivate p=(U,p) := by simp [pureBase,variablePrivate]
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem pureBase_add_variablePrivateZeroScalar (U : Fin u → homogeneousSubmodule σ K d)
     (p : FixedPureZeroScalarSpace m d q f u J counts O) :
     pureBase U+variablePrivateZeroScalar p=(U,(p.1,PreparedTarget.zeroPrivateScalar p.2)) := by
   simp [pureBase,variablePrivateZeroScalar]
 
-theorem finite_fixedPureSpace (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
+omit [Fintype σ] in
+theorem finite_fixedPureSpace [Finite σ] (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (FixedPureSpace m d q f u J counts O) := by
-  letI : Module.Finite K (Space m d q f u J counts O) := finite_space hO
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   apply Module.Finite.of_injective variablePrivate
   intro p p' he
   exact congrArg (fun x : Space m d q f u J counts O => x.2) he
 
-theorem finite_fixedPureZeroScalarSpace (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
+omit [Fintype σ] in
+theorem finite_fixedPureZeroScalarSpace [Finite σ]
+    (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) := by
-  letI : Module.Finite K (Space m d q f u J counts O) := finite_space hO
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Module.Finite K (Space m d q f u J counts O) := finite_space hO
   apply Module.Finite.of_injective variablePrivateZeroScalar
   intro p p' he
   apply Prod.ext

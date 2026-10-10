@@ -37,6 +37,7 @@ def layerMap (j : ℕ) (i : Fin (counts j)) :
       classical
       by_cases hj : j∈J <;> simp [layers,hj] }
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem layerMap_apply (j : ℕ) (i : Fin (counts j)) (p : Space n d q J counts O) :
     layerMap j i p=layers p j i := by
   classical
@@ -51,7 +52,7 @@ def homogeneousLayerMap
     classical
     by_cases hj : j∈J
     · change layers p j i∈homogeneousSubmodule (σ ⊕ Fin n) K d
-      rw [layers,dif_pos hj]
+      rw [layers,dite_eq_left hj]
       have hh := biformImage_homogeneous _ _ (hO j hj) le_rfl (p.2 ⟨j,hj⟩ i).property
       simpa only [Nat.add_sub_of_le (hJ j hj)] using hh
     · simp [layerMap,layers,hj])
@@ -63,20 +64,22 @@ def intrinsicLayerMap
   (layerMap (q := q) R.val i).codRestrict (FullBiform K σ n R.val (d-R.val)) (by
     intro p
     change layers p R.val i∈FullBiform K σ n R.val (d-R.val)
-    rw [layers,dif_pos R.property]
+    rw [layers,dite_eq_left R.property]
     apply mem_biformImage_of_homogeneous
     · exact biformImage_homogeneous _ _ (hO _ R.property) le_rfl (p.2 R i).property
     · exact biformImage_output_weight _ _ (hO _ R.property) (p.2 R i).property)
 
+omit [Infinite K] [Fintype σ] in
 /-- All actual product columns are polynomial on the common parameter space. -/
-theorem product_polynomial
+theorem product_polynomial [Finite σ]
     [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (R : ℕ) :
     IsPolynomialFamily (fun a : Fin (finrank K (Space n d q J counts O)) → K =>
       ProductRows.multiplication counts
         (layers ((Module.finBasis K (Space n d q J counts O)).equivFun.symm a)) J R) := by
-  letI : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K d) :=
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Module.Finite K (homogeneousSubmodule (σ ⊕ Fin n) K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis (σ ⊕ Fin n) d)
   have hh := ProductRows.product_row_polynomial counts
     (homogeneousSubmodule (σ ⊕ Fin n) K d).subtype

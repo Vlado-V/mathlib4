@@ -24,22 +24,26 @@ def sumBiformMap : (Forms K h a ⊗[K] Forms K n c) →ₗ[K] MvPolynomial (Fin 
   (tensorEquivSum K (Fin h) (Fin n) K).toLinearMap.comp
     (TensorProduct.map (Forms K h a).subtype (Forms K n c).subtype)
 
+omit [Infinite K] in
 @[simp] theorem sumBiformMap_tmul (x : Forms K h a) (y : Forms K n c) :
     sumBiformMap (x ⊗ₜ[K] y)=rename Sum.inl x.val*rename Sum.inr y.val := by
   simp [sumBiformMap,tensorEquivSum_tmul]
 
+omit [Infinite K] in
 theorem sumBiformMap_injective : Function.Injective (sumBiformMap (K := K) (h := h) (n := n) (a :=
   a) (c := c)) :=
   (tensorEquivSum K (Fin h) (Fin n) K).injective.comp
     (TensorProduct.map_injective_of_flat_flat _ _
       (Forms K h a).injective_subtype (Forms K n c).injective_subtype)
 
+omit [Infinite K] in
 theorem sumBiformMap_range :
     (sumBiformMap (K := K) (h := h) (n := n) (a := a) (c := c)).range=
       biformImage (Forms K h a) (Forms K n c) := by
   rw [sumBiformMap,LinearMap.range_comp]
   rfl
 
+omit [Infinite K] in
 theorem sumBiformMap_degree_equiv (hx : a + b = r) (hy : e + c = t)
     (z : Forms K h (a + b) ⊗[K] Forms K n (e + c)) :
     sumBiformMap (tensorDegreeEquiv hx hy z)=sumBiformMap z := by
@@ -49,6 +53,7 @@ theorem sumBiformMap_degree_equiv (hx : a + b = r) (hy : e + c = t)
   | tmul x y => simp [tensorDegreeEquiv,formDegreeEquiv]
   | add x y hx hy => simp only [map_add,hx,hy]
 
+omit [Infinite K] in
 /-- The common-target tensor action is actual polynomial multiplication. -/
 theorem sumBiformMap_action (hx : a + b = r) (hy : e + c = t)
     (p : Forms K h a ⊗[K] Forms K n c) (v : Forms K h b ⊗[K] Forms K n e) :

@@ -23,8 +23,9 @@ variable {n s d R h H m r b : ℕ}
 variable {I : Type*} [Fintype I]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Fintype σ] [Fintype I] in
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
-theorem exists_even_polynomial_row_with_relations
+theorem exists_even_polynomial_row_with_relations [Finite σ] [Finite I]
     (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
@@ -65,6 +66,8 @@ theorem exists_even_polynomial_row_with_relations
             ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d))
             ((Σ j : ProductRows.Row J R, ProductRows.Columns counts j) →₀ K)).comp
             (intermediateKoszul e (fun i => L (v i)) he Q)).range := by
+  let := Fintype.ofFinite σ
+  let := Fintype.ofFinite I
   obtain ⟨D,hD,hgood⟩ := sparse_embedded_relations_open (d := 1) L hL Relations e he hdiv hrelations
   obtain ⟨v,Q,hv,hhom,hzero,hfull,hker⟩ := exists_even_polynomial_row_in_open
     hn hh w Yhalf o ho hdegree L hL hLodd e he hdiv D hD hcap hcount

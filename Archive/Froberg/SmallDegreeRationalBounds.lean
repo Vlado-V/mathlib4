@@ -16,7 +16,7 @@ namespace Froberg
 
 /-- Rational endpoints are certified by the defining quadratic identity. -/
 theorem criticalRatio_between_of_squares {d : ℕ} (hd : 2 ≤ d) (a b : ℝ)
-    (ha : a ≤ 1) (hb : b ≤ 1)
+    (ha : a ≤ 1) (_hb : b ≤ 1)
     (hl : (centralHalfBinomial d : ℝ) - 1 < (centralHalfBinomial d : ℝ) * (1 - a) ^ 2)
     (hu : (centralHalfBinomial d : ℝ) * (1 - b) ^ 2 < (centralHalfBinomial d : ℝ) - 1) :
     a < criticalRatio d ∧ criticalRatio d < b := by
@@ -68,10 +68,10 @@ def smallBetaBound (d : ℕ) : ℝ := (1011 / 1000) * max
 
 def smallRateBound (d : ℕ) : ℝ := (11 / 10) * 2 ^ d * smallCriticalUpper d
 
-theorem countBeta_le_smallBetaBound {d : ℕ} (hd : 3 ≤ d) (hd8 : d ≤ 8) :
+theorem countBeta_le_smallBetaBound {d : ℕ} (_hd : 3 ≤ d) (hd8 : d ≤ 8) :
     countBeta d ≤ smallBetaBound d := by
   unfold countBeta countGammaTwo smallBetaBound countTauFour
-  rw [if_pos hd8]
+  rw [ite_eq_left hd8]
   apply mul_le_mul_of_nonneg_left _ (by norm_num)
   apply max_le_max le_rfl
   apply max_le_max le_rfl

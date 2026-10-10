@@ -20,6 +20,7 @@ variable {K : Type*} [Field K] [Infinite K]
 variable {h m j e H r x y : ℕ}
 attribute [local instance] tensorGroup
 
+omit [Infinite K] in
 /-- An actual successful row in one H-plane gives a nonempty polynomial
 open of H-frames where that row still has a successful coefficient family. -/
 theorem framed_biform_row_base_open
@@ -55,7 +56,7 @@ theorem framed_biform_row_base_open
 
 /-- All target-row conditions share one output plane and, inside that plane,
 one coefficient family. Each initial witness may have used a different plane. -/
-theorem framed_biform_rows_common_open {J : Type*} [Fintype J] [Nonempty J]
+theorem framed_biform_rows_common_open {J : Type*} [Finite J] [Nonempty J]
     (x y : J → ℕ)
     (hwit : ∀ i, ∃ (W : Submodule K (Forms K h j)) (o : Fin r → W)
       (f : Fin r → Forms K m e), finrank K W = H ∧
@@ -68,6 +69,7 @@ theorem framed_biform_rows_common_open {J : Type*} [Fintype J] [Nonempty J]
             Function.Surjective (biformTensorFamilyMap (x := x i) (y := y i)
               (framedBiformFamily ((Module.finBasis K _).equivFun.symm a)
                 ((Module.finBasis K _).equivFun.symm c))) := by
+  let : Fintype J := Fintype.ofFinite J
   classical
   let P (i : J) (a : Fin (finrank K (Fin H → Forms K h j)) → K) : Prop :=
     LinearIndependent K ((Module.finBasis K (Fin H → Forms K h j)).equivFun.symm a) ∧

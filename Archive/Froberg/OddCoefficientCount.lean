@@ -27,7 +27,7 @@ theorem oddCoefficientCount_lower_order {d : ℕ} (hd : 0 < d) (h : ℕ) :
       atTop (𝓝 0) := by
   have hi (r : Fin ((d+1)/2)) :=
     (monomial_count_normalized_small_tendsto
-      (show d-(2*r.val+1)<d by omega)).const_mul
+      (Nat.sub_lt hd (by omega : 0 < 2*r.val+1))).const_mul
         (((h+(2*r.val+1)-1).choose (2*r.val+1) : ℕ) : ℝ)
   have hs := tendsto_finsetSum univ (fun r _ => hi r)
   simpa only [oddCoefficientCount,Nat.cast_mul,Nat.cast_sum,mul_zero,sum_const_zero,

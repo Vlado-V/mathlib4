@@ -21,8 +21,9 @@ open Module MvPolynomial AttachedMultiplication Quartic.PolynomialBilinearCoordi
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
- set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem homogeneous_output_embedding_basis {σ : Type*} [Fintype σ] {R H : ℕ}
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
+theorem homogeneous_output_embedding_basis {σ : Type*} {R H : ℕ}
     (bo : Basis (Fin H) K (homogeneousSubmodule σ K R))
     (O : Submodule K (MvPolynomial σ K)) (hO : O ≤ homogeneousSubmodule σ K R)
     [FiniteDimensional K O] :
@@ -47,9 +48,9 @@ theorem homogeneous_output_embedding_basis {σ : Type*} [Fintype σ] {R H : ℕ}
     rw [hh]
     exact (a.equivFun.symm z).property
 
- set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_finite_even_projected_row
-    {w v d R s b r H : ℕ} {I : Type*} [Fintype I]
+    {w v d R s b r H : ℕ} {I : Type*} [Finite I]
     (hw : 0 < w) (hv : 0 < v)
     (bo : Basis (Fin H) K (homogeneousSubmodule (Fin w × Bool) K R))
     (Relations : I → Submodule K (Fin H → K))
@@ -95,10 +96,11 @@ theorem exists_finite_even_projected_row
           ((Σ p : ProductRows.Row J R,ProductRows.Columns counts p) →₀ K)).comp
             (intermediateKoszul e z he Q)).range := by
   classical
-  letI : FiniteDimensional K (homogeneousSubmodule (Fin w × Bool) K R) :=
+  let : Fintype I := Fintype.ofFinite I
+  let : FiniteDimensional K (homogeneousSubmodule (Fin w × Bool) K R) :=
     Module.Finite.of_basis bo
   obtain ⟨O,hO,hOD,hOodd⟩ := exists_odd_output_space (K := K) w R
-  letI : FiniteDimensional K O := Submodule.finiteDimensional_of_le hO
+  let : FiniteDimensional K O := Submodule.finiteDimensional_of_le hO
   have hcoords := homogeneous_output_embedding_basis bo O hO
   rw [hOD] at hcoords
   obtain ⟨L,hL,hLO⟩ := hcoords

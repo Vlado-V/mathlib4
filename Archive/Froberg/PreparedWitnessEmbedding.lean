@@ -26,20 +26,24 @@ def ofPolynomialFamilies (Q : Label q J counts → Forms K n d)
     (hE : ∀ j ∈ J, ∀ i, E j i ∈ biformImage (O j) (Forms K n (d - j))) :
     Space n d q J counts O := (Q,fun j i => ⟨E j.val i,hE _ j.property i⟩)
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem layers_ofPolynomialFamilies
     (Q : Label q J counts → Forms K n d)
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hE : ∀ j ∈ J, ∀ i, E j i ∈ biformImage (O j) (Forms K n (d - j)))
     {j : ℕ} (hj : j ∈ J) (i : Fin (counts j)) :
     layers (ofPolynomialFamilies Q E hE) j i=E j i := by
-  simp only [layers,dif_pos hj,ofPolynomialFamilies]
+  simp only [layers,dite_eq_left hj,ofPolynomialFamilies]
 
-theorem products_ofPolynomialFamilies
+omit [Fintype σ] [Infinite K] in
+theorem products_ofPolynomialFamilies [Finite σ]
     (Q : Label q J counts → Forms K n d)
     (E : (j : ℕ) → Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hE : ∀ j ∈ J, ∀ i, E j i ∈ biformImage (O j) (Forms K n (d - j))) (R : ℕ) :
     ProductRows.multiplication counts (layers (ofPolynomialFamilies Q E hE)) J R=
       ProductRows.multiplication counts E J R := by
+  classical
+  let := Fintype.ofFinite σ
   unfold ProductRows.multiplication
   congr 1
   funext p
@@ -49,6 +53,7 @@ theorem products_ofPolynomialFamilies
   · funext i
     exact layers_ofPolynomialFamilies Q E hE p.1.property.2.1 i
 
+omit [Infinite K] in
 /-- A raw sparse row with the actual prescribed output memberships is an
 exact row at a point of the shared full coefficient space. -/
 theorem sparse_witness_common_parameter

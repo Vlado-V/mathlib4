@@ -33,7 +33,7 @@ theorem targetCost_eq_convolution {d j b : ℕ} (hjd : j ≤ d) (hb : b ≤ d + 
   rw [choose_real_factorial (show d - j ≤ 2 * d - b by omega),
     show 2 * d - b - (d - j) = d + j - b by omega]
   unfold targetCost
-  field_simp [factorial_real_ne_zero] <;> ring
+  field_simp [factorial_real_ne_zero]
 
 /-- The consecutive-row ratio from Proposition B.7. -/
 theorem targetCost_step {d j b : ℕ} (hjb : j ≤ b) (hbd : b < d + j)
@@ -61,7 +61,8 @@ theorem targetCost_step {d j b : ℕ} (hjb : j ≤ b) (hbd : b < d + j)
   field_simp [factorial_real_ne_zero, hdif, htwo]
   ring_nf
   have htwo' : -(b : ℝ) + (d : ℝ) * 2 ≠ 0 := by
-    convert htwo using 1 <;> ring
+    convert htwo using 1
+    ring
   field_simp [htwo']
   ring
 
@@ -94,14 +95,14 @@ theorem targetCost_le_first {d j a b : ℕ} (hj : 0 < j) (hja : j ≤ a)
 /-- The fourth layer's first row has exactly the prescribed density. -/
 theorem targetCost_fourth_first {d : ℕ} (hd : 4 ≤ d) :
     targetCost d 4 5 = higherCountGamma d 4 := by
-  simp only [targetCost, higherCountGamma, if_pos rfl]
+  simp only [targetCost, higherCountGamma]
   rw [show d + 4 - 5 = d - 1 by omega]
   norm_num
 
 /-- The initial row for every higher layer has exactly the prescribed density. -/
 theorem targetCost_higher_first {d j : ℕ} (hj : 6 ≤ j) (hjd : j ≤ d) :
     targetCost d j (2 * j - 4) = higherCountGamma d j := by
-  simp only [targetCost, higherCountGamma, if_neg (by omega : j ≠ 4)]
+  simp only [targetCost, higherCountGamma, ite_eq_right (by omega : j ≠ 4)]
   rw [show 2 * j - 4 - j = j - 4 by omega,
     show d + j - (2 * j - 4) = d - j + 4 by omega,
     show 2 * d - (2 * j - 4) = 2 * d - 2 * j + 4 by omega]

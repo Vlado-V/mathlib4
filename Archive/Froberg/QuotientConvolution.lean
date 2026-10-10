@@ -19,6 +19,7 @@ variable {K V Q : Type*} [Field K]
   [AddCommGroup V] [Module K V] [Module.Finite K V]
   [AddCommGroup Q] [Module K Q] [Module.Finite K Q]
 
+omit [Module.Finite K Q] in
 /-- A surjective linear quotient admits a surjective restriction of every
 permitted dimension at least the quotient dimension. -/
 theorem exists_surjective_restriction (π : V →ₗ[K] Q) (hπ : Function.Surjective π)

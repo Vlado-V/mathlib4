@@ -19,6 +19,7 @@ open Module TensorProduct
 variable {K : Type*} [Field K] [Infinite K]
 variable {h m j e x y q r : ℕ}
 
+omit [Infinite K] in
 theorem outputMultiplication_surjective_of_prefix (Q : Fin q → Forms K h j)
     (hQ : Function.Surjective (prefixMultiplication Q x)) :
     Function.Surjective (outputMultiplication (x := x) (Fintype.linearCombination K Q)) := by

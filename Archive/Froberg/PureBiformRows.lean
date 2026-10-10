@@ -30,8 +30,7 @@ theorem vectorFormFamilyMap_one_surjective_of_span (v : ι → V)
     exact one_mul f.val
   intro z
   change z∈(vectorFormFamilyMap (t := y) v (fun _ : ι => constantOneForm K m)).range
-  induction z using TensorProduct.induction_on with
-  | zero => exact Submodule.zero_mem _
+  induction z using TensorProduct.inductionOn with
   | add u w hu hw => exact Submodule.add_mem _ hu hw
   | tmul w f =>
     have hw : w∈Submodule.span K (Set.range v) := by rw [hv];trivial

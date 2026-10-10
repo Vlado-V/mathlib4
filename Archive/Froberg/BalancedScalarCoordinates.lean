@@ -52,6 +52,7 @@ theorem pairedScalarEquiv_halfWeight (v : ℕ) (x : Fin v × Bool) :
 
 variable {K : Type} [Field K] [Infinite K]
 
+omit [Infinite K] in
 /-- Scalar renaming identifies the product witness's scalar half-degree with
 the exact half-set used in the scalar quotient theorem. -/
 theorem fourBlock_scalar_weight_transport {w v r : ℕ}
@@ -66,6 +67,7 @@ theorem fourBlock_scalar_weight_transport {w v r : ℕ}
   · rfl
   · exact pairedScalarEquiv_halfWeight v y
 
+omit [Infinite K] in
 theorem fourBlock_output_weight_transport {w v r : ℕ}
     {f : MvPolynomial ((Fin w × Bool) ⊕ (Fin v × Bool)) K}
     (hf : f.IsWeightedHomogeneous FourBlocks.xHalfWeight r) :

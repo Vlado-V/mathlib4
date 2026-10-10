@@ -143,7 +143,7 @@ lemma uniform_private_outer_growth {K : Type*} [Field K]
     conv_rhs => rw [haz]
     have hp := mul_le_mul_of_nonneg_right hgl' (by positivity : 0 ≤ (n : ℝ)^(s+1))
     have he : (h*((h*2^h)*(n+s-1).choose s) : ℝ)=E n := by dsimp [E]; push_cast; ring
-    have hb : (h*(b*(n+s-1).choose s) : ℝ)=B n := by dsimp [B]; push_cast; ring
+    have hb : (h*(b*(n+s-1).choose s) : ℝ)=B n := by dsimp [B]; ring
     push_cast
     dsimp only [E,B,R'] at hnlow
     push_cast at hnlow

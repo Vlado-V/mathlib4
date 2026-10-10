@@ -62,14 +62,12 @@ theorem biformFamilyMap_surjective_of_output (O : V →ₗ[K] Forms K h j)
     rfl
   have hfull (z : V ⊗[K] Forms K h x) (w : Forms K m (e+y)) :
       outputMultiplication O z ⊗ₜ[K] w ∈ R := by
-    induction z using TensorProduct.induction_on with
-    | zero => simpa only [map_zero,zero_tmul] using Submodule.zero_mem R
+    induction z using TensorProduct.inductionOn with
     | tmul v g => exact hsingle v g w
     | add z z' hz hz' => simpa only [map_add,add_tmul] using Submodule.add_mem R hz hz'
   intro z
   change z ∈ R
-  induction z using TensorProduct.induction_on with
-  | zero => exact Submodule.zero_mem R
+  induction z using TensorProduct.inductionOn with
   | tmul g w =>
     obtain ⟨u,rfl⟩ := hO g
     exact hfull u w

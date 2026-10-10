@@ -19,24 +19,27 @@ open Module MvPolynomial AttachedMultiplication MonomialExpansion
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {n s d R h H m r j : ℕ}
 
-theorem biform_single_profile_zero (S : Finset (Fin n))
+omit [Fintype σ] [Infinite K] in
+theorem biform_single_profile_zero [Finite σ] (S : Finset (Fin n))
     (f : MvPolynomial (σ ⊕ Fin n) K)
     (hf : f.IsWeightedHomogeneous
       (Sum.elim (fun _ : σ => 0) (ProductRows.halfWeight S)) j) :
     biformScalarMap (retainMonomials (fun α => partialDegree S α≠j)) f=0 := by
+  let : Fintype σ := Fintype.ofFinite σ
   rw [biformScalarMap_retain]
   ext a
   rw [coeff_retainMonomials]
   by_cases ha : partialDegree S (scalarExponent a)≠j
-  · rw [if_pos ha]
+  · rw [ite_eq_left ha]
     by_contra hc
     have hh := hf hc
     rw [←scalarExponent_weight,ProductRows.weight_halfWeight] at hh
     exact ha hh
-  · rw [if_neg ha]
+  · rw [ite_eq_right ha]
     rfl
 
-theorem single_profile_product_disjoint
+omit [Fintype σ] in
+theorem single_profile_product_disjoint [Finite σ]
     {V : Type*} [AddCommGroup V] [Module K V]
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
     (hP : ∀ v, (P v).IsWeightedHomogeneous
@@ -44,15 +47,17 @@ theorem single_profile_product_disjoint
     (O : Submodule K (MvPolynomial σ K)) (Q : Fin r → Forms K n d)
     (hQ : Function.Injective (ProjectedPrefix.multiplication (fun α => partialDegree S α≠j) Q s)) :
     Disjoint (biformImage O (familySpace Q*Forms K n s)) P.range := by
+  let : Fintype σ := Fintype.ofFinite σ
   apply (biformImage_disjoint_scalar_kernel O (familySpace Q*Forms K n s)
     (retainMonomials (fun α => partialDegree S α≠j))
     (ProjectedPrefix.scalar_product_disjoint_kernel _ Q hQ)).mono_right
   rintro _ ⟨v,rfl⟩
   exact biform_single_profile_zero S _ (hP v)
 
+omit [Fintype σ] in
 /-- An arbitrary injective product block in one scalar profile can be
 adjoined to the same sparse/scalar row without introducing any relation. -/
-theorem single_profile_even_row_kernel
+theorem single_profile_even_row_kernel [Finite σ]
     {V : Type*} [AddCommGroup V] [Module K V]
     (w : σ → ℕ) (S : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
@@ -74,6 +79,7 @@ theorem single_profile_even_row_kernel
     (addRow (polynomialIntermediateRow o e (fun i => L (v i)) he Q) P).ker=
       ((LinearMap.inl K ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d)) V).comp
         (intermediateKoszul e (fun i => L (v i)) he Q)).range := by
+  let : Fintype σ := Fintype.ofFinite σ
   have hfree := vector_scalar_injective_of_projected (J := Fin H)
     (fun α => partialDegree S α≠j) Q hscalar
   have hkernel := intermediateRow_ker_output_embedding L hL e v he Q hE hQ hfree

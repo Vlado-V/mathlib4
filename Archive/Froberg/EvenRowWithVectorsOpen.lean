@@ -8,6 +8,7 @@ module
 public import Archive.Froberg.EvenPolynomialRow
 public import Archive.Froberg.GenericDimensions
 public import Archive.Froberg.SparseIntermediateOpen
+public import Mathlib.Data.Fintype.EquivFin
 
 /-! A complete finite B.4 witness from the proved sparse budget and retained
 scalar open. The scalar list is chosen once for both conditions. -/
@@ -23,8 +24,9 @@ variable {σ : Type*} [Fintype σ]
 variable {n s d R h H m r b : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Fintype σ] in
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
-theorem exists_even_polynomial_row_in_open
+theorem exists_even_polynomial_row_in_open [Finite σ]
     (hn : 0 < n) (hh : 0 < h)
     (w : σ → ℕ) (Yhalf : Finset (Fin n))
     (o : Fin H → MvPolynomial σ K) (ho : LinearIndependent K o)
@@ -64,6 +66,7 @@ theorem exists_even_polynomial_row_in_open
             ((Fin r → Fin H → Forms K n s) × (Fin m → Forms K n d))
             ((Σ j : ProductRows.Row J R, ProductRows.Columns counts j) →₀ K)).comp
             (intermediateKoszul e (fun i => L (v i)) he Q)).range := by
+  let := Fintype.ofFinite σ
   obtain ⟨v,hvextra,hv,hpos,hinj,P,hP,hPQ⟩ :=
     exists_sparse_intermediate_in_open hn hh e he hdiv hcap hcount Dextra hDextra
   obtain ⟨D,hD,hDQ⟩ := hscalarOpen

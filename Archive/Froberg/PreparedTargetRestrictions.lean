@@ -26,16 +26,20 @@ def zeroPrivateScalar :
   map_add' p p' := by simp
   map_smul' a p := by simp
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem zeroPrivateScalar_apply
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K σ m d f) :
     zeroPrivateScalar (u := u) p=(p.1,(p.2,0)) := rfl
 
-@[simp] theorem zeroPrivateScalar_generator_private
+omit [Fintype σ] [Infinite K] in
+@[simp] theorem zeroPrivateScalar_generator_private [Finite σ]
     (U : Fin u → homogeneousSubmodule σ K d)
     (P : Fin u → MvPolynomial (σ ⊕ Fin m) K)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K σ m d f) (i : Fin u) :
     generator U P (zeroPrivateScalar p) (Sum.inr (Sum.inr i))=
       rename Sum.inl (U i).val+P i := by
+  classical
+  let := Fintype.ofFinite σ
   simp [generator_private,zeroPrivateScalar]
 
 end Froberg.PreparedTarget

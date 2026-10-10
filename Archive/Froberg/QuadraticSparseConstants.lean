@@ -54,7 +54,6 @@ theorem quadratic_sparse_density_gap {d : ℕ} (hd : 3 ≤ d) :
       : 2≤d)]
     norm_num [quadraticOutputDensity,Nat.factorial]
     field_simp
-    <;> ring
   have hh := mul_lt_mul_of_pos_left (quadratic_sparse_scalar_margin hd) hδ
   rw [mul_add,he,mul_one] at hh
   simpa only [mul_assoc] using hh

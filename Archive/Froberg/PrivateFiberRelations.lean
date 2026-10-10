@@ -31,7 +31,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A coefficient away from the pairwise private powers has a unique output
 column, hence it vanishes in any relation. Diagonal private coefficients are
 included in this assertion. -/
-theorem private_relation_support (hs : 0 < s) (ι : Fin b ↪ Fin z)
+theorem private_relation_support (_hs : 0 < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → V →ₗ[K] T) (hA : ∀ i, Function.Injective (A i))
     (v : Fin b → (Fin (a + z) →₀ ℕ) → V)
     (hv : ∀ β, β.degree = 2 * s → privateCoefficient (s := s) ι A v β = 0)
@@ -44,10 +44,10 @@ theorem private_relation_support (hs : 0 < s) (ι : Fin b ↪ Fin z)
   have he : privateCoefficient (s := s) ι A v β=A i (v i α) := by
     unfold privateCoefficient
     rw [Finset.sum_eq_single i]
-    · rw [if_pos (show privateExponent a s ι i ≤ β from le_add_right le_rfl)]
+    · rw [ite_eq_left (show privateExponent a s ι i ≤ β from le_add_right le_rfl)]
       simp only [β,add_tsub_cancel_left]
     · intro j _ hji
-      rw [if_neg]
+      rw [ite_eq_right]
       intro hj
       exact hprivate j (Ne.symm hji) (private_overlap_coefficient ι (Ne.symm hji) hα hj)
     · intro hi
@@ -72,12 +72,12 @@ theorem private_relation_pair (hs : 0 < s) (ι : Fin b ↪ Fin z)
     unfold privateCoefficient
     rw [← Finset.sum_subset (show ({i,j} : Finset (Fin b)) ⊆ univ from subset_univ _) (by
       intro k _ hk
-      rw [if_neg]
+      rw [ite_eq_right]
       intro hdiv
       have hk' := (private_pair_divisors hs ι i j k).mp hdiv
       exact hk (by simpa using hk'))]
     rw [Finset.sum_insert (show i ∉ ({j} : Finset (Fin b)) by simpa using hij),Finset.sum_singleton]
-    rw [if_pos (le_add_right le_rfl),if_pos (le_add_left le_rfl)]
+    rw [ite_eq_left (le_add_right le_rfl),ite_eq_left (le_add_left le_rfl)]
     simp only [β,add_tsub_cancel_left,add_tsub_cancel_right]
   exact he.symm.trans h
 

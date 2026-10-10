@@ -119,7 +119,7 @@ theorem finite_profile_positive_transport {H σ : ℝ} {s : ℕ}
   refine ⟨T, hTr, hTc, hTp, ?_, hTz⟩
   intro i j hij
   have hh := hεv (i, j) (mem_univ _)
-  simp only [v, if_pos hij] at hh
+  simp only [v, ite_eq_left hij] at hh
   exact hh.trans_lt (hTb i j hij)
 
 end Froberg
