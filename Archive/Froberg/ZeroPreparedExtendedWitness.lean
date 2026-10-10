@@ -15,7 +15,7 @@ space after adjoining the fixed private variables. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial AttachedMultiplication
@@ -24,7 +24,8 @@ variable {σ : Type*} [Fintype σ] {a z d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
- theorem sparse_core_extended_parameter_exact_zero
+ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+theorem sparse_core_extended_parameter_exact_zero
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (R : J) (hRd : R.val=d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R.val)) → MvPolynomial σ K)

@@ -17,11 +17,12 @@ the scalar threshold. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedTarget
 open Froberg Filter Module MvPolynomial Quartic VectorMultiplicationCoordinates
 open scoped Topology
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_all_even_odd_open {d k h lo u : ℕ}
     (hd : 3≤d) (hdodd : d%2=1) (hk : 0<k)
     (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
@@ -86,6 +87,7 @@ namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial Quartic VectorMultiplicationCoordinates
 open scoped Topology
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_restored_outer_odd_open {d k h lo : ℕ}
     (hd : 3≤d) (hdeven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
     (upper : Bool) (a f e extra : ℕ → ℕ) (ha : ∀ n,a n≤n)
@@ -107,6 +109,7 @@ theorem uniform_exact_counts_restored_outer_odd_open {d k h lo : ℕ}
   obtain ⟨P,hP,hgood⟩ := hn K
   exact restored_outer_odd_open_of_rows hd hdeven hO hJ hpos heven idx slot P hP hgood
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_exact_counts_all_even_restored_odd_open {d k h lo : ℕ}
     (hd : 3≤d) (heven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
     (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)

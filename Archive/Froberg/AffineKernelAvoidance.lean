@@ -16,7 +16,7 @@ intersected before any auxiliary cuts are chosen. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.BilinearCovectorCharts
@@ -24,6 +24,7 @@ open Quartic.BilinearCoefficientKernel Quartic.HomogeneousSliceNormalization
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 variable {a b T T₀ H k q s s₀ nf r : ℕ}
 
+set_option maxHeartbeats 2500000 in -- Preserve the budget during this port.
 theorem affine_kernel_stratum_joint
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
@@ -104,6 +105,7 @@ theorem affine_kernel_stratum_joint
     change covector (c • ell) _=0
     rw [covector_smul,LinearMap.smul_apply,hbad.2 l,smul_zero]
 
+set_option maxHeartbeats 2500000 in -- Preserve the budget during this port.
 /-- Zero bottom cuts are allowed: then the homogeneous equations already
 force the bottom covector to vanish. -/
 theorem affine_kernel_stratum_joint_cuts

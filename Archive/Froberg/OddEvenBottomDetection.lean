@@ -14,12 +14,13 @@ after adding the actual common even-generator family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddEvenTargetExtensionEquiv_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -29,6 +30,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
       ((oddEvenRelativeMap Q F G E).range.mkQ ((fullOddRelations Q F G).mkQ v))=
       (fullOddRelations (Fin.append Q E) F G).mkQ v := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_even_append_bottom_detects
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

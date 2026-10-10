@@ -21,23 +21,27 @@ Auxiliary slices are appended as an explicitly separate linear family.
 noncomputable section
 namespace Quartic.AmbientCovectorSpreading
 open Module MvPolynomial BilinearCoefficientKernel BilinearCovectorCharts
-set_option maxHeartbeats 1500000
+
 variable {K : Type*} [Field K] {I : Type*} {a B T c q s d : ℕ}
 variable (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The original equations, before adding the separately indexed slices. -/
 abbrev Index (a B c q d : ℕ) :=
   ClosedCovectorEquations.Index a B q 0 (d+c) ⊕ (Fin c × Fin B)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def degree : Index a B c q d → ℕ
   | .inl j => ClosedCovectorEquations.degree j
   | .inr _ => 1
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def equation (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K) :
     (j : Index a B c q d) → Forms K T (degree j)
   | .inl j => ClosedCovectorEquations.equation mu (Q,0) j
   | .inr jf => ClosedCovectorEquations.linearForm (mu (Pi.single jf.2 1) (E jf.1))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The presentation equations annihilate all coefficient vectors, not just
 the finitely many standard basis vectors used in the polynomial encoding. -/
 theorem presentation_equations_iff (E : Fin c → Fin a → K) (ell : Fin T → K) :
@@ -57,6 +61,7 @@ theorem presentation_equations_iff (E : Fin c → Fin a → K) (ell : Fin T → 
   · intro h j f
     simpa only [ClosedCovectorEquations.eval_linearForm] using h j (Pi.single f 1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact semantics of the original ambient homogeneous equation system.
 Independence of E is not required for this literal statement. -/
 theorem equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
@@ -81,13 +86,16 @@ theorem equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
     | inr jf =>
       exact (presentation_equations_iff mu E ell).mpr hE jf.1 jf.2
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def finiteDegree (a B c q d : ℕ) : Fin (Fintype.card (Index a B c q d)) → ℕ :=
   fun j => degree ((Fintype.equivFin (Index a B c q d)).symm j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def finiteOriginalEquations (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K) :
     (j : Fin (Fintype.card (Index a B c q d))) → Forms K T (finiteDegree a B c q d j) :=
   fun j => equation mu E Q ((Fintype.equivFin (Index a B c q d)).symm j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finite_original_equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
     (hd : d+c ≤ a) (ell : Fin T → K) :
     (∀ j, eval ell (finiteOriginalEquations (d := d) mu E Q j).val = 0) ↔
@@ -103,15 +111,18 @@ theorem finite_original_equations_iff (E : Fin c → Fin a → K) (Q : Fin q →
   · intro h j
     exact h ((Fintype.equivFin (Index a B c q d)).symm j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Auxiliary target-vector annihilators remain separately available as
 linear forms for the projective slice argument. -/
 def slices (Z : Fin s → Fin T → K) : Fin s → Forms K T 1 :=
   fun j => ClosedCovectorEquations.linearForm (Z j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def finiteEquationsDegree (a B c q s d : ℕ) :
     Fin (Fintype.card (Index a B c q d)+s) → ℕ :=
   SliceFiniteModule.slicedDegrees (s := s) (finiteDegree a B c q d)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The exact combined family, with all original equations first and the
 auxiliary slices last. -/
 def finiteEquations (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
@@ -121,6 +132,7 @@ def finiteEquations (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
   SliceFiniteModule.slicedForms (finiteDegree a B c q d)
     (finiteOriginalEquations mu E Q) (slices Z)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Appending slices is exact over every extension field. -/
 theorem finite_equations_split {L : Type*} [Field L] [Algebra K L]
     (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K) (Z : Fin s → Fin T → K)
@@ -144,6 +156,7 @@ theorem finite_equations_split {L : Type*} [Field L] [Algebra K L]
     · intro i
       simpa only [finiteEquations,SliceFiniteModule.slicedForms,Fin.addCases_right] using hZ i
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact closed ambient-kernel and E/Q/slice annihilation semantics. -/
 theorem finite_equations_iff (E : Fin c → Fin a → K) (Q : Fin q → Fin B → K)
     (Z : Fin s → Fin T → K) (hd : d+c ≤ a) (ell : Fin T → K) :
@@ -164,6 +177,7 @@ variable (E : (I → K) → Fin c → Fin a → K)
   (hQ : ∀ i f, IsPolynomialFamily (fun p => Q p i f))
   (hZ : ∀ j k, IsPolynomialFamily (fun p => Z p j k))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ in
 theorem equation_polynomial (j : Index a B c q d) :
     IsPolynomialFamily (fun p => equation mu (E p) (Q p) j) := by
@@ -178,16 +192,19 @@ theorem equation_polynomial (j : Index a B c q d) :
     exact ClosedCovectorSpreading.mixed_coordinate_polynomial (fun _ => mu.flip)
       (fun _ _ _ => isPolynomialFamily_const _) E hE jf.1 jf.2 k
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ in
 theorem finiteOriginalEquations_polynomial
     (j : Fin (Fintype.card (Index a B c q d))) :
     IsPolynomialFamily (fun p => finiteOriginalEquations (d := d) mu (E p) (Q p) j) :=
   equation_polynomial mu E Q hE hQ _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hZ in
 theorem slices_polynomial (j : Fin s) : IsPolynomialFamily (fun p => slices (Z p) j) :=
   ClosedCovectorSpreading.linearForm_polynomial _ (hZ j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 theorem finiteEquations_polynomial
     (j : Fin (Fintype.card (Index a B c q d)+s)) :
@@ -219,6 +236,7 @@ theorem finiteEquations_polynomial
     simp only [finiteEquations,SliceFiniteModule.slicedForms,Fin.addCases_right]
     rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 /-- The actual fixed-ambient presentation equations spread from geometric
 emptiness on a principal open in E/Q/Z parameters. -/
@@ -242,6 +260,7 @@ theorem principal_open_empty_fiber {L : Type*} [Field L] [Algebra K L] [IsAlgClo
   intro p hp ell hf hZell
   exact hgood p hp ell ((finite_equations_split mu (E p) (Q p) (Z p) ell).mpr ⟨hf,hZell⟩)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 /-- Actual ambient relation-map semantics on the resulting base-field open. -/
 theorem principal_open_closed {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
@@ -274,6 +293,7 @@ theorem principal_open_closed {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L
   apply (algebraMap K L).injective
   simpa only [Pi.zero_apply,map_zero] using congrFun hz i
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 /-- Over an algebraically closed base, the witness and conclusion both use
 only the actual ambient kernel and annihilation conditions. -/
@@ -304,14 +324,17 @@ section ActualRows
 open RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 variable {m : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Fixed monomial coordinates of actual mixed columns. -/
 def rowPresentation (E : Fin c → Rows K m 1) : Fin c → Fin (RowCount m 1) → K :=
   fun j => rowFiniteEquiv (E j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Fixed monomial coordinates of the shared actual child quadrics. -/
 def rowChildren (Q : Fin q → Forms K m 2) : Fin q → Fin (FormCount m 2) → K :=
   fun i => finiteEquiv (Q i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Fixed monomial coordinates of the actual ambient target slices. -/
 def rowSlices (Z : Fin s → Rows K m 3) : Fin s → Fin (RowCount m 3) → K :=
   fun j => rowFiniteEquiv (Z j)
@@ -322,6 +345,7 @@ variable (E : (I → K) → Fin c → Rows K m 1)
   (hQ : ∀ i, IsPolynomialFamily (fun p => Q p i))
   (hZ : ∀ j, IsPolynomialFamily (fun p => Z p j))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 /-- Actual polynomial row, quadric, and slice families satisfy the literal
 ambient-equation polynomiality requirement in fixed monomial coordinates. -/
@@ -337,6 +361,7 @@ theorem rowEquations_polynomial
   · intro j k
     exact ((hZ j).linear_comp rowFiniteEquiv.toLinearMap).linear_comp (LinearMap.proj k)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include hE hQ hZ in
 /-- The principal open for the fixed actual row multiplication and varying
 actual mixed columns, shared quadrics, and target slices. No quotient basis

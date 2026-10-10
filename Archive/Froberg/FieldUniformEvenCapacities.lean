@@ -15,13 +15,14 @@ public import Archive.Froberg.FieldUniformProductCapacity
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 universe u
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_empty_higher_capacity {w d : ℕ} (hd : 9≤d)
     (J : Finset ℕ) (R : J) (hR : 4≤R.val) (hRd : R.val≤d)
     (hH : 0<oddOutputDimension w R.val)
@@ -70,6 +71,7 @@ theorem eventually_field_uniform_empty_higher_capacity {w d : ℕ} (hd : 9≤d)
           incidence := by simpa only [zero_mul,Nat.sub_zero,r] using hn₁ (v+v) (by omega)
           scalar_open := ⟨D,hD,fun Q hQ => (hgood Q hQ).1⟩ }
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9≤d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),

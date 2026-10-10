@@ -21,41 +21,55 @@ The proofs below use polynomial products and explicit spanning operations.
 
 noncomputable section
 namespace Quartic.SplitMiddle22
-set_option maxHeartbeats 2000000
+
 set_option maxRecDepth 4096
 open MvPolynomial Module
 
 variable (K : Type*) [Field K] (c w : ℕ)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Vars := (Fin c × Fin 2) ⊕ Fin w
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Linear := homogeneousSubmodule (Vars c w) K 1
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Quad := homogeneousSubmodule (Vars c w) K 2
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Source := Fin c → Fin 3 → Linear K c w
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Target := Quad K c w × Quad K c w
 
 variable {K c w}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def tvar (i : Fin c) : Vars c w := Sum.inl (i, 0)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def wvar (i : Fin c) : Vars c w := Sum.inl (i, 1)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def zvar (b : Fin w) : Vars c w := Sum.inr b
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def linearVariable (a : Vars c w) : Linear K c w := ⟨X a, isHomogeneous_X K a⟩
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def monomial (a b : Vars c w) : Quad K c w :=
   ⟨X a * X b, (isHomogeneous_X K a).mul (isHomogeneous_X K b)⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem monomial_comm (a b : Vars c w) :
     monomial (K := K) a b = monomial b a := Subtype.ext (mul_comm _ _)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual multiplication of homogeneous linear child polynomials. -/
 def mulLinear (a : Linear K c w) : Linear K c w →ₗ[K] Quad K c w where
   toFun b := ⟨a.val * b.val, a.property.mul b.property⟩
   map_add' _ _ := Subtype.ext (mul_add _ _ _)
   map_smul' _ _ := Subtype.ext (mul_smul_comm _ _ _)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The three actual Y-coefficients of `(x+z)tᵢ+(y+z)wᵢ`. -/
 def mixedGenerator (i : Fin c) : Fin 3 → Linear K c w :=
   ![linearVariable (tvar i), linearVariable (wvar i), linearVariable (tvar i) + linearVariable (wvar i)]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Multiplication by one mixed generator, reduced modulo the four pure quadrics. -/
 def middleAt (i : Fin c) : (Fin 3 → Linear K c w) →ₗ[K] Target K c w :=
   (((mulLinear (linearVariable (tvar i))).comp (LinearMap.proj (0 : Fin 3))) -
@@ -63,25 +77,33 @@ def middleAt (i : Fin c) : (Fin 3 → Linear K c w) →ₗ[K] Target K c w :=
   (((mulLinear (linearVariable (wvar i))).comp (LinearMap.proj (1 : Fin 3))) -
     ((mulLinear (linearVariable (tvar i) + linearVariable (wvar i))).comp (LinearMap.proj (2 : Fin 3))))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The full actual middle multiplication for these explicit mixed generators. -/
 def middleMap : Source K c w →ₗ[K] Target K c w :=
   ∑ i : Fin c, (middleAt i).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem middleMap_single (i : Fin c) (a : Fin 3 → Linear K c w) :
     middleMap (Pi.single i a) = middleAt i a := by
   classical
   simp [middleMap, Pi.single_apply, apply_ite]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def u : Quad K c w →ₗ[K] Target K c w := LinearMap.inl K _ _
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def v : Quad K c w →ₗ[K] Target K c w := LinearMap.inr K _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem u_apply (a : Quad K c w) : u a = (a, 0) := rfl
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem v_apply (a : Quad K c w) : v a = (0, a) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Child quadratic relations can be used in either pure-block coordinate. -/
 def filledSpace (Q : Submodule K (Quad K c w)) : Submodule K (Target K c w) :=
   LinearMap.range middleMap ⊔ Q.prod Q
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem u_t_mem (i : Fin c) (a : Vars c w) :
     u (monomial (K := K) (tvar i) a) ∈ LinearMap.range middleMap := by
   classical
@@ -89,6 +111,7 @@ theorem u_t_mem (i : Fin c) (a : Vars c w) :
   rw [middleMap_single]
   simp [middleAt, mulLinear, u, linearVariable, monomial]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem v_w_mem (i : Fin c) (a : Vars c w) :
     v (monomial (K := K) (wvar i) a) ∈ LinearMap.range middleMap := by
   classical
@@ -96,6 +119,7 @@ theorem v_w_mem (i : Fin c) (a : Vars c w) :
   rw [middleMap_single]
   simp [middleAt, mulLinear, v, linearVariable, monomial]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The remaining third-column product after subtracting its two known terms. -/
 theorem cross_mem (i : Fin c) (a : Vars c w) :
     u (monomial (K := K) (wvar i) a) + v (monomial (tvar i) a) ∈
@@ -112,6 +136,7 @@ theorem cross_mem (i : Fin c) (a : Vars c w) :
   exact (LinearMap.range middleMap).sub_mem
     ((LinearMap.range middleMap).sub_mem h (u_t_mem i a)) (v_w_mem i a)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every product between paired variables is filled in the first coordinate. -/
 theorem u_active_mem (i j : Fin c) (a b : Fin 2) :
     u (monomial (K := K) (w := w) (Sum.inl (i, a)) (Sum.inl (j, b))) ∈
@@ -126,6 +151,7 @@ theorem u_active_mem (i j : Fin c) (a b : Fin 2) :
       rw [monomial_comm (tvar i) (wvar j), add_sub_cancel_right] at h
       exact h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every product between paired variables is filled in the second coordinate. -/
 theorem v_active_mem (i j : Fin c) (a b : Fin 2) :
     v (monomial (K := K) (w := w) (Sum.inl (i, a)) (Sum.inl (j, b))) ∈
@@ -140,12 +166,15 @@ theorem v_active_mem (i j : Fin c) (a b : Fin 2) :
       exact v_w_mem j _
   · exact v_w_mem i _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem u_child_mem (Q : Submodule K (Quad K c w)) (a : Quad K c w) (ha : a ∈ Q) :
     u a ∈ filledSpace Q := Submodule.mem_sup_right ⟨ha, Q.zero_mem⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem v_child_mem (Q : Submodule K (Quad K c w)) (a : Quad K c w) (ha : a ∈ Q) :
     v a ∈ filledSpace Q := Submodule.mem_sup_right ⟨Q.zero_mem, ha⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The single child relation `tᵢz_b` repairs the missing cross-block direction. -/
 theorem u_cross_mem (Q : Submodule K (Quad K c w))
     (hQ : ∀ (i : Fin c) (b : Fin w), monomial (tvar i) (zvar b) ∈ Q)
@@ -158,6 +187,7 @@ theorem u_cross_mem (Q : Submodule K (Quad K c w))
     rw [add_sub_cancel_right] at h
     exact h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem v_cross_mem (Q : Submodule K (Quad K c w))
     (hQ : ∀ (i : Fin c) (b : Fin w), monomial (tvar i) (zvar b) ∈ Q)
     (i : Fin c) (a : Fin 2) (b : Fin w) :
@@ -166,6 +196,7 @@ theorem v_cross_mem (Q : Submodule K (Quad K c w))
   · exact v_child_mem Q _ (hQ i b)
   · exact Submodule.mem_sup_left (v_w_mem i _)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- All quadratic monomials are filled by the source's explicit repair relations. -/
 theorem monomial_mem_filled (Q : Submodule K (Quad K c w))
     (hcross : ∀ (i : Fin c) (b : Fin w), monomial (tvar i) (zvar b) ∈ Q)
@@ -179,6 +210,7 @@ theorem monomial_mem_filled (Q : Submodule K (Quad K c w))
     exact ⟨u_cross_mem Q hcross j b a, v_cross_mem Q hcross j b a⟩
   · exact ⟨u_child_mem Q _ (hresidual a b), v_child_mem Q _ (hresidual a b)⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Products of two variables span the actual homogeneous quadratic space. -/
 theorem monomials_span :
     Submodule.span K (Set.range (fun ab : Vars c w × Vars c w =>
@@ -198,6 +230,7 @@ theorem monomials_span :
   · rintro ⟨a, ⟨i, rfl⟩, b, ⟨j, rfl⟩, rfl⟩
     exact ⟨(i, j), rfl⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The explicit mixed products and repair quadrics fill the actual complete target. -/
 theorem filledSpace_eq_top (Q : Submodule K (Quad K c w))
     (hcross : ∀ (i : Fin c) (b : Fin w), monomial (tvar i) (zvar b) ∈ Q)
@@ -221,11 +254,13 @@ theorem filledSpace_eq_top (Q : Submodule K (Quad K c w))
   intro a _
   simpa using (filledSpace Q).add_mem (hu a.1) (hv a.2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual middle map after imposing the child quadratic relations. -/
 def quotientMiddleMap (Q : Submodule K (Quad K c w)) :
     Source K c w →ₗ[K] (Quad K c w ⧸ Q) × (Quad K c w ⧸ Q) :=
   (Q.mkQ.prodMap Q.mkQ).comp middleMap
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Uniform quotient surjectivity for the manuscript's concrete specialization. -/
 theorem quotientMiddleMap_surjective (Q : Submodule K (Quad K c w))
     (hcross : ∀ (i : Fin c) (b : Fin w), monomial (tvar i) (zvar b) ∈ Q)
@@ -243,6 +278,7 @@ theorem quotientMiddleMap_surjective (Q : Submodule K (Quad K c w))
   simpa only [map_add, hzero, add_zero, LinearMap.prodMap_apply,
     LinearMap.comp_apply, quotientMiddleMap] using h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Coefficients on distinct paired variables distinguish all mixed generators. -/
 theorem mixedGenerator_independent :
     LinearIndependent K (mixedGenerator (K := K) (c := c) (w := w)) := by
@@ -255,43 +291,53 @@ theorem mixedGenerator_independent :
     coeff_sum, coeff_smul, coeff_X, Finsupp.single_eq_single_iff, tvar,
     smul_eq_mul, Pi.smul_apply, Finset.sum_apply] using h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A monomial basis for the quadratic child space with its split variable labels. -/
 def quadBasis : Basis (Sym (Vars c w) 2) K (Quad K c w) := by
   rw [Quad, homogeneousSubmodule_eq_finsupp_supported]
   exact (MvPolynomial.basisRestrictSupport K {e : Vars c w →₀ ℕ | e.degree = 2}).reindex
     (Sym.equivNatSum (Vars c w) 2).symm
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 instance quadFinite : Module.Finite K (Quad K c w) := Module.Finite.of_basis quadBasis
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quad_finrank : Module.finrank K (Quad K c w) = (2 * c + w + 1).choose 2 := by
   rw [Module.finrank_eq_card_basis quadBasis, Sym.card_sym_eq_choose]
   simp [Vars, mul_comm]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Rename a residual quadratic into the full child polynomial ring. -/
 def residualQuadrics : Forms K w 2 →ₗ[K] Quad K c w where
   toFun f := ⟨MvPolynomial.rename (zvar (c := c)) f.val, f.property.rename_isHomogeneous⟩
   map_add' f g := Subtype.ext (map_add _ _ _)
   map_smul' a f := Subtype.ext (by simp)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The cross-repair monomials with arbitrary independent scalar coefficients. -/
 def crossQuadrics : ((Fin c × Fin w) → K) →ₗ[K] Quad K c w :=
   ∑ a : Fin c × Fin w, (LinearMap.proj a).smulRight (monomial (tvar a.1) (zvar a.2))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The exact repair quadratic family from `tb:middlecount`. -/
 def repairMap : (((Fin c × Fin w) → K) × Forms K w 2) →ₗ[K] Quad K c w :=
   crossQuadrics.coprod residualQuadrics
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The explicit child quadratic subspace. -/
 def repairSpace : Submodule K (Quad K c w) := LinearMap.range repairMap
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Erasing paired variables leaves precisely the residual quadratic component. -/
 def eraseActive : MvPolynomial (Vars c w) K →ₐ[K] Poly K w :=
   MvPolynomial.aeval (Sum.elim (fun _ => 0) X)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Setting just `tᵢ` to one reads the cross-repair coefficients on its row. -/
 def probeActive (i : Fin c) : MvPolynomial (Vars c w) K →ₐ[K] Poly K w :=
   MvPolynomial.aeval (Sum.elim (fun a => if a = (i, 0) then 1 else 0) X)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem eraseActive_residual (f : Forms K w 2) :
     eraseActive (residualQuadrics (c := c) f).val = f.val := by
   have h : (eraseActive (K := K) (c := c) (w := w)).comp
@@ -301,10 +347,12 @@ def probeActive (i : Fin c) : MvPolynomial (Vars c w) K →ₐ[K] Poly K w :=
     simp [eraseActive, zvar]
   exact congrArg (fun h : Poly K w →ₐ[K] Poly K w => h f.val) h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem eraseActive_cross (a : (Fin c × Fin w) → K) :
     eraseActive (crossQuadrics a).val = 0 := by
   simp [crossQuadrics, monomial, eraseActive, tvar, zvar]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Each scalar coefficient is recovered from a genuine polynomial substitution. -/
 theorem probeActive_cross_coeff (a : (Fin c × Fin w) → K) (i : Fin c) (b : Fin w) :
     (probeActive i (crossQuadrics a).val).coeff (Finsupp.single b 1) = a (i, b) := by
@@ -312,6 +360,7 @@ theorem probeActive_cross_coeff (a : (Fin c × Fin w) → K) (i : Fin c) (b : Fi
   simp [probeActive, crossQuadrics, monomial, tvar, zvar, coeff_X,
     Finsupp.single_eq_single_iff, Fintype.sum_prod_type, smul_eq_mul, apply_ite]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The repair quadrics are independent, including the full residual quadratic space. -/
 theorem repairMap_injective : Function.Injective (repairMap (K := K) (c := c) (w := w)) := by
   apply LinearMap.ker_eq_bot.mp
@@ -328,18 +377,21 @@ theorem repairMap_injective : Function.Injective (repairMap (K := K) (c := c) (w
     simpa [repairMap, LinearMap.coprod_apply, hf, probeActive_cross_coeff] using he
   exact Prod.ext ha hf
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- This is exactly the numerical repair budget appearing in `tb:middlecount`. -/
 theorem repairSpace_finrank :
     Module.finrank K (repairSpace (K := K) (c := c) (w := w)) = c * w + (w + 1).choose 2 := by
   rw [repairSpace, LinearMap.finrank_range_of_inj repairMap_injective]
   simp [Module.finrank_prod, Quartic.finrank_quadrics]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem repairSpace_contains_cross (i : Fin c) (b : Fin w) :
     monomial (K := K) (tvar i) (zvar b) ∈ repairSpace := by
   classical
   refine ⟨(Pi.single (i, b) 1, 0), ?_⟩
   simp [repairMap, crossQuadrics, LinearMap.coprod_apply, Pi.single_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem repairSpace_contains_residual (a b : Fin w) :
     monomial (K := K) (c := c) (zvar a) (zvar b) ∈ repairSpace := by
   let f : Forms K w 2 := ⟨X a * X b,
@@ -348,6 +400,7 @@ theorem repairSpace_contains_residual (a b : Fin w) :
   apply Subtype.ext
   simp [repairMap, residualQuadrics, f, monomial]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every enlargement of the explicit repair space retains middle surjectivity. -/
 theorem quotientMiddleMap_surjective_of_repair_le (Q : Submodule K (Quad K c w))
     (hQ : repairSpace ≤ Q) : Function.Surjective (quotientMiddleMap Q) :=
@@ -358,6 +411,7 @@ theorem quotientMiddleMap_surjective_of_repair_le (Q : Submodule K (Quad K c w))
 section Extension
 variable {V : Type*} [AddCommGroup V] [Module K V] [Module.Finite K V]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Extending an actual subspace to any permitted intermediate dimension. -/
 theorem exists_extension_finrank (S : Submodule K V) (q : ℕ)
     (hlo : Module.finrank K S ≤ q) (hhi : q ≤ Module.finrank K V) :
@@ -380,6 +434,7 @@ theorem exists_extension_finrank (S : Submodule K V) (q : ℕ)
 
 end Extension
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The source's entire second budget regime has a concrete uniform witness.
 The mixed generators are independent, and the child space has the prescribed
 exact dimension, with no assumed rank condition. -/
@@ -394,31 +449,38 @@ theorem middle_witness_of_budget (q : ℕ)
     (by simpa [repairSpace_finrank] using hlo) (by simpa [quad_finrank] using hhi)
   exact ⟨Q, hdim, quotientMiddleMap_surjective_of_repair_le Q hQ⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- An even-dimensional child space requires no repair quadrics at all. -/
 theorem even_middle_surjective (Q : Submodule K (Quad K c 0)) :
     Function.Surjective (quotientMiddleMap Q) :=
   quotientMiddleMap_surjective Q (fun _ b => Fin.elim0 b) (fun a => Fin.elim0 a)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- One further mixed generator `(x+y)z_b` on every remaining variable. -/
 def singletonGenerator (b : Fin w) : Fin 3 → Linear K c w :=
   ![linearVariable (zvar b), linearVariable (zvar b), 0]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def singletonAt (b : Fin w) : (Fin 3 → Linear K c w) →ₗ[K] Target K c w :=
   ((mulLinear (linearVariable (zvar b))).comp (LinearMap.proj (0 : Fin 3))).prod
     ((mulLinear (linearVariable (zvar b))).comp (LinearMap.proj (1 : Fin 3)))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def singletonMap : (Fin w → Fin 3 → Linear K c w) →ₗ[K] Target K c w :=
   ∑ b : Fin w, (singletonAt b).comp (LinearMap.proj b)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Combined actual polynomial map for the paired and singleton generators. -/
 def coveredMiddleMap : (Source K c w × (Fin w → Fin 3 → Linear K c w)) →ₗ[K] Target K c w :=
   middleMap.coprod singletonMap
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem singletonMap_single (b : Fin w) (a : Fin 3 → Linear K c w) :
     singletonMap (Pi.single b a) = singletonAt b a := by
   classical
   simp [singletonMap, Pi.single_apply, apply_ite]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem u_residual_mem (b : Fin w) (a : Vars c w) :
     u (monomial (K := K) (zvar b) a) ∈ LinearMap.range singletonMap := by
   classical
@@ -426,6 +488,7 @@ theorem u_residual_mem (b : Fin w) (a : Vars c w) :
   rw [singletonMap_single]
   simp [singletonAt, mulLinear, u, linearVariable, monomial]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem v_residual_mem (b : Fin w) (a : Vars c w) :
     v (monomial (K := K) (zvar b) a) ∈ LinearMap.range singletonMap := by
   classical
@@ -433,6 +496,7 @@ theorem v_residual_mem (b : Fin w) (a : Vars c w) :
   rw [singletonMap_single]
   simp [singletonAt, mulLinear, v, linearVariable, monomial]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Including a singleton for each unpaired variable fills every target before
 any child relations are imposed. In particular this treats odd child dimension
 with exactly `(m+1)/2` mixed generators by taking `w=1`. -/
@@ -474,6 +538,7 @@ theorem coveredMiddleMap_surjective :
   intro a _
   simpa using (LinearMap.range coveredMiddleMap).add_mem (hu a.1) (hv a.2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Passing to any child quadratic quotient preserves this surjectivity. -/
 theorem covered_quotient_surjective (Q : Submodule K (Quad K c w)) :
     Function.Surjective ((Q.mkQ.prodMap Q.mkQ).comp coveredMiddleMap) := by
@@ -483,10 +548,12 @@ theorem covered_quotient_surjective (Q : Submodule K (Quad K c w)) :
   obtain ⟨s, hs⟩ := coveredMiddleMap_surjective (a, b)
   exact ⟨s, by change (Q.mkQ.prodMap Q.mkQ) (coveredMiddleMap s) = _; rw [hs]; rfl⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The complete independent family of paired and singleton mixed generators. -/
 def coveredGenerators : Fin c ⊕ Fin w → Fin 3 → Linear K c w :=
   Sum.elim mixedGenerator singletonGenerator
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coveredGenerators_independent :
     LinearIndependent K (coveredGenerators (K := K) (c := c) (w := w)) := by
   classical
@@ -508,6 +575,7 @@ theorem coveredGenerators_independent :
       Finsupp.single_eq_single_iff, tvar, zvar, smul_eq_mul, Pi.smul_apply,
       Finset.sum_apply, Fintype.sum_sum_type] using h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Reduction of products for an arbitrary actual mixed polynomial. -/
 def projectedProduct (g : Fin 3 → Linear K c w) :
     (Fin 3 → Linear K c w) →ₗ[K] Target K c w :=
@@ -516,11 +584,13 @@ def projectedProduct (g : Fin 3 → Linear K c w) :
   (((mulLinear (g 1)).comp (LinearMap.proj (1 : Fin 3))) -
     ((mulLinear (g 2)).comp (LinearMap.proj (2 : Fin 3))))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Store an actual mixed polynomial as a polynomial in X with child-polynomial coefficients. -/
 def mixedPolynomial (g : Fin 3 → Linear K c w) :
     MvPolynomial (Fin 3) (MvPolynomial (Vars c w) K) :=
   C (g 0).val * X 0 + C (g 1).val * X 1 + C (g 2).val * X 2
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Universal coefficient calculation for two linear polynomials over any
 commutative coefficient ring. -/
 theorem reduction_linear_product {R : Type*} [CommRing R] (g a : Fin 3 → R) :
@@ -534,6 +604,7 @@ theorem reduction_linear_product {R : Type*} [CommRing R] (g a : Fin 3 → R) :
     norm_num [ThreeBlock.quadraticReduction, add_mul, mul_add, monomial_mul_monomial,
       coeff_monomial, Finsupp.ext_iff, Fin.forall_fin_succ]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The coordinate formula is precisely polynomial multiplication followed by
 reduction modulo `xy,xz,yz,x²+y²+z²`; it is not an unrelated matrix model. -/
 theorem projectedProduct_reduction (g a : Fin 3 → Linear K c w) :
@@ -542,9 +613,11 @@ theorem projectedProduct_reduction (g a : Fin 3 → Linear K c w) :
   simpa [mixedPolynomial, projectedProduct, mulLinear] using
     reduction_linear_product (fun i => (g i).val) (fun i => (a i).val)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem middleAt_eq_projectedProduct (i : Fin c) :
     middleAt (K := K) (w := w) i = projectedProduct (mixedGenerator i) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem singletonAt_eq_projectedProduct (b : Fin w) :
     singletonAt (K := K) (c := c) b = projectedProduct (singletonGenerator b) := by
   apply LinearMap.ext
@@ -552,16 +625,19 @@ theorem singletonAt_eq_projectedProduct (b : Fin w) :
   apply Prod.ext <;> apply Subtype.ext <;>
     simp [singletonAt, projectedProduct, singletonGenerator, mulLinear]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Intrinsic multiplication image of an actual subspace of mixed polynomials. -/
 def middleImage (E : Submodule K (Fin 3 → Linear K c w)) : Submodule K (Target K c w) :=
   Submodule.span K {p | ∃ g ∈ E, ∃ a, projectedProduct g a = p}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem middleImage_mono {E E' : Submodule K (Fin 3 → Linear K c w)} (h : E ≤ E') :
     middleImage E ≤ middleImage E' := by
   apply Submodule.span_mono
   rintro p ⟨g, hg, a, rfl⟩
   exact ⟨g, h hg, a, rfl⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem range_middleMap_le_image (E : Submodule K (Fin 3 → Linear K c w))
     (hE : ∀ i, mixedGenerator i ∈ E) : LinearMap.range middleMap ≤ middleImage E := by
   rintro p ⟨a, rfl⟩
@@ -571,6 +647,7 @@ theorem range_middleMap_le_image (E : Submodule K (Fin 3 → Linear K c w))
   exact Submodule.subset_span ⟨mixedGenerator i, hE i, a i,
     congrArg (fun f => f (a i)) (middleAt_eq_projectedProduct i).symm⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem range_singletonMap_le_image (E : Submodule K (Fin 3 → Linear K c w))
     (hE : ∀ b, singletonGenerator b ∈ E) : LinearMap.range singletonMap ≤ middleImage E := by
   rintro p ⟨a, rfl⟩
@@ -580,6 +657,7 @@ theorem range_singletonMap_le_image (E : Submodule K (Fin 3 → Linear K c w))
   exact Submodule.subset_span ⟨singletonGenerator b, hE b, a b,
     congrArg (fun f => f (a b)) (singletonAt_eq_projectedProduct b).symm⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The spanning result holds for every enlargement of the mixed-generator space. -/
 theorem covered_image_eq_top (E : Submodule K (Fin 3 → Linear K c w))
     (hE : ∀ i, coveredGenerators i ∈ E) : middleImage E = ⊤ := by
@@ -592,18 +670,22 @@ theorem covered_image_eq_top (E : Submodule K (Fin 3 → Linear K c w))
   rw [LinearMap.range_eq_top.mpr coveredMiddleMap_surjective] at h
   exact top_unique h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A monomial basis for the linear child space. -/
 def linearBasis : Basis (Sym (Vars c w) 1) K (Linear K c w) := by
   rw [Linear, homogeneousSubmodule_eq_finsupp_supported]
   exact (MvPolynomial.basisRestrictSupport K {e : Vars c w →₀ ℕ | e.degree = 1}).reindex
     (Sym.equivNatSum (Vars c w) 1).symm
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 instance linearFinite : Module.Finite K (Linear K c w) := Module.Finite.of_basis linearBasis
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem linear_finrank : Module.finrank K (Linear K c w) = 2 * c + w := by
   rw [Module.finrank_eq_card_basis linearBasis, Sym.card_sym_eq_choose]
   simp [Vars, mul_comm]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The whole first numerical regime has a concrete witness: enlarge the
 `c+w` paired/singleton generators to any allowed mixed dimension. Taking
 `w=0` or `w=1` gives exactly `ceil(m/2)` initial generators. -/

@@ -14,12 +14,13 @@ space as the restored odd-row and pure-basis conditions. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredOuterEndpoint (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -27,6 +28,7 @@ def restoredOuterEndpoint (hdp : 1≤d) (hd : d%2=0)
   biformSplitEndpoint (restoredBiformFamily hd hO hJ heven idx slot p.1)
     (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 i)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_outer_independent (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j)
@@ -45,6 +47,7 @@ theorem restored_outer_independent (hdp : 1≤d) (hd : d%2=0)
   · intro i
     rw [linearOddForm_component,if_neg (by decide)]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasRestoredIndependentOpen (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r) : Prop :=
@@ -54,6 +57,7 @@ def HasRestoredIndependentOpen (hdp : 1≤d) (hd : d%2=0)
     ∀ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) P≠0 →
       LinearIndependent K (restoredOuterEndpoint hdp hd hO hJ heven idx slot p)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_outer_independent_open (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j)

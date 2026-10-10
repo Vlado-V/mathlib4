@@ -14,7 +14,7 @@ index type and its dependent spaces. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module Quartic Quartic.FilteredImage
 variable {K P I : Type*} [Field K] [AddCommGroup P] [Module K P] [Fintype I]
@@ -22,15 +22,18 @@ variable {V W : I → Type*}
   [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)]
   [∀ i,AddCommGroup (W i)] [∀ i,Module K (W i)]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def piBilinear (mu : (i : I) → P →ₗ[K] V i →ₗ[K] W i) :
     P →ₗ[K] ((i : I) → V i) →ₗ[K] ((i : I) → W i) where
   toFun p := LinearMap.pi fun i => (mu i p).comp (LinearMap.proj i)
   map_add' p q := by ext v i;simp
   map_smul' c p := by ext v i;simp
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem piBilinear_apply (mu : (i : I) → P →ₗ[K] V i →ₗ[K] W i)
     (p : P) (v : (i : I) → V i) (i : I) : piBilinear mu p v i=mu i p (v i) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem piBilinear_growth [∀ i,FiniteDimensional K (V i)] [∀ i,FiniteDimensional K (W i)]
     (mu : (i : I) → P →ₗ[K] V i →ₗ[K] W i) (rate : ℕ)
     (hmu : ∀ i (S : Submodule K (V i)),rate*finrank K S ≤

@@ -13,11 +13,12 @@ images, with every source subspace covered by finite polynomial charts. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.SubspaceCharts Quartic.BilinearCovectorCharts
 variable {K : Type*} [Field K] [Infinite K] {a B N b ell t w : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Graph-chart basis vectors are literal polynomial families. -/
 theorem graphVector_coordinate_polynomial (j : Fin ell ↪ Fin a) (i : Fin ell) :
     IsPolynomialFamily (fun p : GraphParameters j → K => graphVector j p i) := by
@@ -35,6 +36,7 @@ theorem graphVector_coordinate_polynomial (j : Fin ell ↪ Fin a) (i : Fin ell) 
       funext k
       simp [Finset.sum_apply,Pi.smul_apply,Pi.single_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual product map on a graph-chart basis varies polynomially. -/
 theorem graphTupleMap_polynomial
     (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin N → K))
@@ -45,6 +47,7 @@ theorem graphTupleMap_polynomial
   have h := IsPolynomialFamily.sum (fun i => (graphVector_coordinate_polynomial j i).linear_comp (mu (v i)))
   simpa only [BilinearImage.tupleMap_apply] using h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A nonempty projection open excludes one bad output rank for every
 source subspace of a specified dimension and product-rank lower bound. -/
 theorem bilinear_projection_rank_open

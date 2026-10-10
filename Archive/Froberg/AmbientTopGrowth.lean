@@ -16,28 +16,32 @@ explicit, and preserve the literal product. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic Quartic.SplitTensor
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topGrowthDegree (hdp : 1≤d) (n : ℕ) :
     Forms K n (1+(d-1)) ≃ₗ[K] Forms K n d :=
   formDegreeEquiv (by omega)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topGrowthParameters (hdp : 1≤d) (Q : Fin q → Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     ProjectedTopParameters K h m (d-1) f q :=
   (F,fun i => (topGrowthDegree hdp m).symm (Q i))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topGrowthTensorMap (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) :
     RawOddTopTensor K h m d →ₗ[K] ((Fin b → K) ⊗[K] Forms K m (1+(d-1))) :=
   (TensorProduct.map R (LinearMap.id : Forms K m (1+(d-1)) →ₗ[K] _)).comp
     (rawTopTarget hdp).symm.toLinearMap
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem topGrowthTensorMap_tmul (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (x : Forms K h d) (y : Forms K m d) :
@@ -47,6 +51,7 @@ def topGrowthTensorMap (hdp : 1≤d)
     rawTopTarget,biformDegreeTransport,TensorProduct.congr_symm,
     TensorProduct.congr_tmul,TensorProduct.map_tmul,LinearMap.id_apply,topGrowthDegree]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem topGrowthTensorMap_relations (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -76,6 +81,7 @@ theorem topGrowthTensorMap_relations (hdp : 1≤d)
         topGrowthTensorMap,LinearMap.comp_apply,LinearEquiv.coe_coe,
         LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topGrowthQuotientProjection (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -87,6 +93,7 @@ def topGrowthQuotientProjection (hdp : 1≤d)
   Submodule.mapQ _ _ (topGrowthTensorMap hdp R)
     (topGrowthTensorMap_relations hdp R Q F U hU)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem topGrowthQuotientProjection_tmul (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -101,6 +108,7 @@ def topGrowthQuotientProjection (hdp : 1≤d)
   rw [topGrowthTensorMap_tmul]
   rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def ambientTopGrowthProjection (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -109,12 +117,14 @@ def ambientTopGrowthProjection (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
   (topGrowthQuotientProjection hdp R Q F U hU).comp
     (ambientTopProjection hdp hd hd1 Q F U P)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topGrowthScalarAction (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
   (projectedTensorScalarAction (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).comp
     (topGrowthDegree hdp m).symm.toLinearMap
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem ambientTopGrowthProjection_product (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -133,6 +143,7 @@ theorem ambientTopGrowthProjection_product (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d
   rw [ambientTopMap_scalar_product,topGrowthQuotientProjection_tmul]
   rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem topGrowthScalarAction_growth (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

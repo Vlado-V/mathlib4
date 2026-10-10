@@ -14,7 +14,7 @@ The first vector is universally quantified; only the final parameter is chosen. 
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Matrix Quartic Quartic.KernelPolynomialCharts
@@ -25,6 +25,7 @@ variable {K X Y U V : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 variable {q N s fcount r₁ r₂ : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem intrinsic_second_stage_with_parameters
     {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
     (degrees : Fin fcount → ℕ) (f : ∀ i,Forms K q (degrees i))

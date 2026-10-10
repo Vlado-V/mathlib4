@@ -14,24 +14,28 @@ of the degree-d and degree-2d generator quotients. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
 variable {K : Type} [Field K] {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev generatorQuotient (q : Fin r → Forms K n d) :=
   Forms K n d ⧸ Submodule.span K (Set.range q)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddCoefficientSpace (w : Fin n → ZMod 2) (q : Fin r → Forms K n d) :
     Submodule K (generatorQuotient q) :=
   ((Submodule.span K (Set.range q)).mkQ.comp (parityForm w 1)).range
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddTargetSpace (w : Fin n → ZMod 2) (q : Fin r → Forms K n d) :
     Submodule K (ProjectedEndpointCokernel (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q) :=
   ((projectedEndpointMultiplication (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q).range.mkQ.comp
     (parityForm w 1)).range
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- This is the same odd quotient used by the actual coefficient map. -/
 theorem oddCoefficientSpace_eq_range
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
@@ -47,6 +51,7 @@ theorem oddCoefficientSpace_eq_range
 
 variable {P : Type*} [AddCommGroup P] [Module K P]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Even multipliers send the actual odd quotient into the actual odd target. -/
 theorem projectedQuotientProduct_mem_odd
     (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
@@ -62,6 +67,7 @@ theorem projectedQuotientProduct_mem_odd
   simp only [sub_zero,parityForm_same w 1 _ (parityForm_homogeneous w 1 v)]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The scalar contraction bilinear map with no substituted source or target. -/
 def oddQuotientProduct
     (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
@@ -72,6 +78,7 @@ def oddQuotientProduct
   map_add' p p' := by ext a; simp only [map_add,LinearMap.add_apply]; rfl
   map_smul' c p := by ext a; simp only [map_smul,LinearMap.smul_apply,RingHom.id_apply]; rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddQuotientProduct_val
     (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
     (F : P →ₗ[K] Forms K n d) (hF : ∀ p,(F p).val.IsWeightedHomogeneous w 0)

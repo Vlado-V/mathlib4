@@ -17,12 +17,13 @@ reserve and appended columns, satisfy the full common-open construction. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_actual_cubic_extended_reduction_open :
     ∀ᶠ h : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
@@ -78,6 +79,7 @@ theorem eventually_actual_cubic_extended_reduction_open :
   exact finite_cubic_extended_reduction_open T ell hell
     (fun j _ hj => allEvenCount_off_two_small (Or.inl rfl) _ _ _ hj) hpv' ⟨_,hqv'⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_actual_quartic_extended_reduction_open :
     ∀ᶠ h : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),

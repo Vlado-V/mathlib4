@@ -26,8 +26,9 @@ open Module MvPolynomial UniformEndpoint ProfileCertificate
 open ActualSmallMotionAvoidance ActualDeformationResponse SmallCovectorCommonOpen
 open RowMultiplicationCoordinates
 variable {K : Type*} [Field K] [IsAlgClosed K] {m : ℕ} {upper : Bool}
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 omit [IsAlgClosed K] in
 /-- The numerical auxiliary budget is exactly the dimension difference of
 this actual response map and target. -/
@@ -63,6 +64,7 @@ theorem auxiliaryCount_eq (p : Parameters K m upper) (U : Marked p)
   rw [he]
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual motions with augmented injectivity and maximal response rank.
 No response-rank hypothesis or independently chosen stage is assumed. -/
 theorem exists_maximal_response (hm : 28 ≤ m) (p : Parameters K m upper)
@@ -101,6 +103,7 @@ theorem exists_maximal_response (hm : 28 ≤ m) (p : Parameters K m upper)
     rw [hj] at hz
     exact hz
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The resulting actual rank has the literal manuscript integer count. -/
 theorem exists_response_rank_formula (hm : 28 ≤ m) (p : Parameters K m upper)
     (hp : ClosedConditions p) (U : Marked p)
@@ -125,6 +128,7 @@ theorem exists_response_rank_formula (hm : 28 ≤ m) (p : Parameters K m upper)
   have hj := ActualSplitCokernel.rawJ_finrank_eq_j (G p) (Q p) hh hcubic h13
   rw [hrank,Nat.cast_min,hs',hj]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- On the actual common coefficient open, all marked subspaces admit
 actual motions with maximal response rank. The coefficient point is shared
 by every closed threshold and by every required block condition. -/
@@ -151,6 +155,7 @@ theorem common_open (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (ActualTraceMotion.mixedMultiplication_injective_of_blockConditions (baseProjection p) hblock)
     hf13.2.1 hf13.2.2 (AugmentedGeneric.coefficientMotions (baseProjection p)) hblock.1.2.2.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A shared actual coefficient witness, leaving the marked subspace and
 any old-child realization explicit for the induction step. -/
 theorem exists_common_maximal_response (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)

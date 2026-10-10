@@ -14,14 +14,15 @@ imposed on the very same vector tuple, in a prescribed output basis. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication Quartic.PolynomialBilinearCoordinates
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
- theorem homogeneous_output_embedding_basis {σ : Type*} [Fintype σ] {R H : ℕ}
+ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+theorem homogeneous_output_embedding_basis {σ : Type*} [Fintype σ] {R H : ℕ}
     (bo : Basis (Fin H) K (homogeneousSubmodule σ K R))
     (O : Submodule K (MvPolynomial σ K)) (hO : O≤homogeneousSubmodule σ K R)
     [FiniteDimensional K O] :
@@ -46,7 +47,8 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
     rw [hh]
     exact (a.equivFun.symm z).property
 
- theorem exists_finite_even_projected_row
+ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+theorem exists_finite_even_projected_row
     {w v d R s b r H : ℕ} {I : Type*} [Fintype I]
     (hw : 0<w) (hv : 0<v)
     (bo : Basis (Fin H) K (homogeneousSubmodule (Fin w × Bool) K R))

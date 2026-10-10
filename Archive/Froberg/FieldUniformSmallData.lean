@@ -17,11 +17,12 @@ and the common reduction open, in every sufficiently large scalar dimension. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open scoped Topology
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_cubic_extended_reduction_open :
     ∀ᶠ h : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
@@ -78,6 +79,7 @@ theorem eventually_field_uniform_actual_cubic_extended_reduction_open :
   exact finite_cubic_extended_reduction_open T ell hell
     (fun j _ hj => allEvenCount_off_two_small (Or.inl rfl) _ _ _ hj) hpv' ⟨_,hqv'⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_quartic_extended_reduction_open :
     ∀ᶠ h : ℕ in atTop,
       ∀ (z extra : ℕ) (e : ℕ → ℕ),
@@ -141,6 +143,7 @@ theorem eventually_field_uniform_actual_quartic_extended_reduction_open :
     (fun j _ hj => allEvenCount_off_two_small (Or.inr rfl) _ _ _ hj)
     (balancedScalarHalf v) hbal hpv' ⟨_,hqv'⟩ Q (by simpa only [show 4-4=0 by omega] using hgood Q hQ)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_small_leading_shift {d : ℕ} (hd : d=3 ∨ d=4) :
     ∀ᶠ h : ℕ in atTop,∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
@@ -184,6 +187,7 @@ theorem eventually_field_uniform_actual_small_leading_shift {d : ℕ} (hd : d=3 
     (mem_allEvenIndices.mpr ⟨le_rfl,by omega,by decide⟩)
     (fun j _ hj => allEvenCount_off_two_small hd _ _ _ hj) ⟨_,hcap⟩ ell hell
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_small_leading_all_scalars {d : ℕ} (hd : d=3 ∨ d=4) :
     ∀ᶠ h : ℕ in atTop,∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
@@ -199,6 +203,7 @@ theorem eventually_field_uniform_actual_small_leading_all_scalars {d : ℕ} (hd 
   intro extra e he
   exact eventually_of_twice_add_shifts 0 _ (hh 0 extra e he) (hh 1 extra e he)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_cubic_reduction_all_scalars :
     ∀ᶠ h : ℕ in atTop,
       ∀ (extra : ℕ) (e : ℕ → ℕ),
@@ -220,6 +225,7 @@ theorem eventually_field_uniform_actual_cubic_reduction_all_scalars :
   exact eventually_of_twice_add_shifts 0 _
     (hh 0 extra e he) (hh 1 extra e he)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_quartic_reduction_all_scalars :
     ∀ᶠ h : ℕ in atTop,
       ∀ (extra : ℕ) (e : ℕ → ℕ),
@@ -241,6 +247,7 @@ theorem eventually_field_uniform_actual_quartic_reduction_all_scalars :
   exact eventually_of_twice_add_shifts 0 _
     (hh 0 extra e he) (hh 1 extra e he)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_cubic_all_scalar_data :
     ∀ᶠ h : ℕ in atTop,
       ∀ (extra : ℕ) (e : ℕ → ℕ),
@@ -265,6 +272,7 @@ theorem eventually_field_uniform_cubic_all_scalar_data :
   intro K _ _ X _ _ _ T hX hO
   exact ⟨hln K X T hO,hrn K X T hX hO⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_quartic_all_scalar_data :
     ∀ᶠ h : ℕ in atTop,
       ∀ (extra : ℕ) (e : ℕ → ℕ),

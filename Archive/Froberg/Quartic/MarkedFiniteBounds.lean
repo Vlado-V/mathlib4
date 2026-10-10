@@ -19,13 +19,14 @@ range. The small range uses the literal Cell profile; dimensions 41 through
 namespace Quartic.MarkedFiniteBounds
 
 set_option maxRecDepth 10000
-set_option maxHeartbeats 1500000
+
 
 open Quartic.Counts Quartic.HullCertificate Quartic.ProfileCertificate
 open Quartic.SharpMinimization Quartic.UniformScalar
 open Quartic.UniformEndpoint
 open Quartic.MarkedProfileBounds
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The transfer count is the canonical lower parent endpoint. -/
 theorem finite_lower_parent_count (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 319) :
     upperEndpoint m + mixedCount m false + 4 = lowerEndpoint (m + 3) := by
@@ -33,12 +34,14 @@ theorem finite_lower_parent_count (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 319)
     lowerEndpoint_eq_table (m + 3) (by omega)]
   exact (FiniteCounts.structural_counts m hmlo hmhi false).1.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option maxRecDepth 10000 in
 private theorem integral_parent_88 :
     chi (88 + 3) (upperEndpoint 88 + mixedCount 88 false + 4) = 0 := by
   rw [upperEndpoint_eq_table 88 (by decide), mixedCount_eq_table 88 (by decide)]
   decide +kernel
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The marked scalar tests for every integral ordered profile in the sharp
 and weak-hull ranges, with the positive parent Euler hypothesis excluding the
 unique integral endpoint in this range. -/
@@ -65,6 +68,7 @@ theorem source_scalar_inequalities (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 319
   · exact MarkedWeakHullProfile.source_scalar_inequalities m (by omega) hmhi
       i n₁ n₂ n₃ hi hn₁ hn₂ hn₃ hdlo hdhi
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Original-count form of the marked covector inequality on all profiles in
 dimensions 41 through 319. -/
 theorem source_covector_bound (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 319)
@@ -78,6 +82,7 @@ theorem source_covector_bound (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 319)
   marked_covector_bound_of_imageBounds _ _ _ _ _ hpos
     (source_scalar_inequalities m hmlo hmhi hpos i n₁ n₂ n₃ hi hn₁ hn₂ hn₃ hdlo hdhi)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The small-range Cell-stratum covector test, at the canonical endpoints. -/
 theorem small_profile_covector_bound (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (i n₁ n₂ n₃ : ℕ) (hi : i ≤ coreA (mixedCount m false))
@@ -98,6 +103,7 @@ theorem small_profile_covector_bound (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 4
 open Quartic.ConvolutionFreePieces Quartic.ConvolutionProfileImage
 open Quartic.ConvolutionProfileBound Quartic.ConvolutionFiniteImages
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The marked covector estimate for the actual multiplication image of each
 nontrivial source subspace. Its profile and image bound are constructed, rather
 than supplied as hypotheses. -/

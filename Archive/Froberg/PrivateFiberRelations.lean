@@ -13,19 +13,21 @@ relation is supported on pairwise private powers, with one equation per pair. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PrivateColumns
 open Finset
 variable {K V T : Type*} [Field K]
   [AddCommGroup V] [Module K V] [AddCommGroup T] [Module K T]
   {a z s b : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal target coefficient obtained by multiplying each coefficient
 array by its private monomial and applying its output map. -/
 def privateCoefficient (ι : Fin b ↪ Fin z) (A : Fin b → V →ₗ[K] T)
     (v : Fin b → (Fin (a+z) →₀ ℕ) → V) (β : Fin (a+z) →₀ ℕ) : T :=
   ∑ i, if privateExponent a s ι i ≤ β then A i (v i (β-privateExponent a s ι i)) else 0
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A coefficient away from the pairwise private powers has a unique output
 column, hence it vanishes in any relation. Diagonal private coefficients are
 included in this assertion. -/
@@ -53,6 +55,7 @@ theorem private_relation_support (hs : 0 < s) (ι : Fin b ↪ Fin z)
   rw [he] at h
   exact hA i (h.trans (map_zero _).symm)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Each off-diagonal private overlap satisfies precisely its two-column
 output equation, with no contributions from other columns. -/
 theorem private_relation_pair (hs : 0 < s) (ι : Fin b ↪ Fin z)

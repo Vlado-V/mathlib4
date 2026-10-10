@@ -18,8 +18,9 @@ namespace Froberg.QuadraticMarkedFlag
 open Module MvPolynomial Quartic UniformEndpoint ActualDeformationColumns
 open FixedBlockChildOpen
 variable {K : Type*} [Field K] [Infinite K] {n : ℕ}
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def Data (q : Fin (upperEndpoint n) → Forms K n 2) : Prop :=
   LinearIndependent K q ∧
   finrank K (QuadraticChildFlag.Coker q)=genericCokernel K n 2 (upperEndpoint n) ∧
@@ -28,6 +29,7 @@ def Data (q : Fin (upperEndpoint n) → Forms K n 2) : Prop :=
       Counts.delta n (upperEndpoint n)+genericCokernel K n 2 (upperEndpoint n)-
         genericHomology K n 2 (upperEndpoint n-1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem principal_open (hn : 0<n) (h2 : (2 : K)≠0) :
     ∃ D : MvPolynomial (ChildIndex n (upperEndpoint n)) K,
       (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 → Data (decode a) := by

@@ -16,13 +16,14 @@ product block is supported entirely on the core variables. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg
 open Module MvPolynomial PrivateColumns Quartic.FreeCoefficients
 variable {K : Type} [Field K] [Infinite K]
 variable {a z s t b h c q : ℕ}
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def quadraticScalarRow (Q : Fin q → Poly K a) :
     (Fin q → Fin c → Forms K (a+z) t) →ₗ[K] (Fin c → Poly K (a+z)) where
   toFun x k := ∑ i,rename (Fin.castAdd z) (Q i)*(x i k).val
@@ -33,9 +34,11 @@ def quadraticScalarRow (Q : Fin q → Poly K a) :
     funext k
     simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def coreVectorExtension : (Fin c → Poly K a) →ₗ[K] (Fin c → Poly K (a+z)) :=
   LinearMap.pi fun k => (rename (Fin.castAdd z)).toLinearMap.comp (LinearMap.proj k)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem quadraticScalarRow_injective
     (Q : Fin q → Poly K a)
     (hQ : ∀ r,r≤t → ∀ x : Fin q → Forms K a r,
@@ -63,6 +66,7 @@ theorem quadraticScalarRow_injective
   simpa only [β,freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,
     Finsupp.zero_apply,Pi.zero_apply,Submodule.coe_zero] using hh
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_core_product_separation
     (hs : 2 ≤ s) (ht : t < s) (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
@@ -99,6 +103,7 @@ theorem private_core_product_separation
     LinearMap.coe_mk,AddHom.coe_mk,Pi.add_apply,Pi.zero_apply,map_add,map_sum,
     freeCoeff_rename_mul,freeCoeff_rename_core,ite_true,map_zero,x₀] using hh
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_scalar_row_exact
     {U : Type*} [AddCommGroup U] [Module K U]
     (hs : 2 ≤ s) (ht : t < s) (ι : Fin b ↪ Fin z)

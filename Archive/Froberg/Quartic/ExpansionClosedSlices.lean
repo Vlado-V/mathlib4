@@ -18,8 +18,9 @@ namespace Quartic.ExpansionClosedSlices
 open Module MvPolynomial PolynomialBilinearCoordinates
 open BilinearCovectorCharts BilinearCoefficientKernel
 variable {K : Type*} [Field K] [Infinite K] {a b T q s : ℕ}
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
 theorem graph_covered {d : ℕ} (S : Submodule K (Fin a → K)) (hd : finrank K S=d) :
     PolynomialSubspaceCovectorCharts.Covered
@@ -33,6 +34,7 @@ theorem graph_covered {d : ℕ} (S : Submodule K (Fin a → K)) (hd : finrank K 
   rw [PolynomialSubspaceCovectorCharts.subspace,hv,graphVector_span]
   exact hp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- All ordinary Grassmann charts and all actual image ranks occur in one
 shared coefficient/slice open. -/
 theorem generic_parameter_inequality
@@ -90,15 +92,18 @@ theorem generic_parameter_inequality
     exact Finset.prod_ne_zero_iff.mp hx c (Finset.mem_univ c)
   exact hgood c x hxP ell hell rfl rfl hbad hann
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual clipped rank budget decreases with the kernel dimension. -/
 def sliceCount (k h c J d : ℕ) : ℕ := (k-4*d)+(h-c*d)+(J-(k+h))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem sliceCount_antitone (k h c J : ℕ) : Antitone (sliceCount k h c J) := by
   intro u v huv
   unfold sliceCount
   exact Nat.add_le_add_right (Nat.add_le_add (Nat.sub_le_sub_left (by omega) _)
     (Nat.sub_le_sub_left (Nat.mul_le_mul_left c huv) _)) _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every exact kernel and image rank is included in the closed threshold. -/
 theorem principal_open_closed_threshold
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -122,6 +127,7 @@ theorem principal_open_closed_threshold
   dsimp only at h hc
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
 /-- The scalar test supplies the strict chart count; the two endpoint
 kernels are handled by source generation and the auxiliary-column budget. -/
@@ -163,15 +169,18 @@ theorem strict_count_of_scalar
     rw [hc] at hsZ
     simpa only [sliceCount,Nat.add_assoc,S] using hsZ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Input (K : Type*) [Field K] (a b T q : ℕ) (slices : ℕ → ℕ) :=
   (Fin q → Fin b → K) × ((d : Fin (a+1)) → Fin (slices d.val) → Fin T → K)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def projection (slices : ℕ → ℕ) (d : Fin (a+1)) :
     Input K a b T q slices →ₗ[K] SharedCovectorPolynomial.Input K b T q (slices d.val) where
   toFun x := (x.1,x.2 d)
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
 theorem projection_surjective (slices : ℕ → ℕ) (d : Fin (a+1)) :
     Function.Surjective (projection (K := K) (b := b) (T := T) (q := q) slices d) := by
@@ -180,6 +189,7 @@ theorem projection_surjective (slices : ℕ → ℕ) (d : Fin (a+1)) :
   refine ⟨(x.1,Function.update 0 d x.2),?_⟩
   simp only [projection,LinearMap.coe_mk,AddHom.coe_mk,Function.update_self]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One child tuple and all threshold slices are chosen simultaneously. -/
 theorem principal_open_all_thresholds
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))

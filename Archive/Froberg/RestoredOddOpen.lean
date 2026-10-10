@@ -16,7 +16,7 @@ uses a single scalar family injective in the last strict-prefix degree. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredOddRowLinear :
     (Fin r → evenRestorationSpace (K := K) (outputWeight (σ := Fin h) (n := m)) d) →ₗ[K]
       (Fin r → biformParitySpace K h m d 1) →ₗ[K] MvPolynomial (Fin h ⊕ Fin m) K where
@@ -42,9 +43,11 @@ def restoredOddRowLinear :
     change (∑ i,((a • g) i).val*(c i).val)=a • (∑ i,(g i).val*(c i).val)
     simp only [Pi.smul_apply,Submodule.coe_smul,smul_mul_assoc,Finset.smul_sum,LinearMap.smul_apply,RingHom.id_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def scalarRestoredPoint (idx : Fin r ≃ Label q J counts) (Q : Fin r → Forms K m d) :
     RestoredSpace m d q J counts O := ((fun i => Q (idx.symm i),0),0)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredFamily_scalar_point (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts)
@@ -63,6 +66,7 @@ theorem restoredFamily_scalar_point (hd : d%2=0)
   change rename Sum.inr (Q (idx.symm (idx i))).val=_
   rw [Equiv.symm_apply_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_odd_injective_principal_open (hm : 0 < m) (hdp : 0 < d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts)

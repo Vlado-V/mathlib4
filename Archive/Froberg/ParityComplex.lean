@@ -15,12 +15,13 @@ The grading group is `ZMod 2`; no division by two or sign involution is used. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open MvPolynomial Module
 variable {K : Type} [Field K] {n d r : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Projection to a monomial parity, inside the ordinary homogeneous component. -/
 def parityForm (w : Fin n → ZMod 2) (p : ZMod 2) : Forms K n d →ₗ[K] Forms K n d where
   toFun f := ⟨weightedHomogeneousComponent w p f.val, by
@@ -32,21 +33,26 @@ def parityForm (w : Fin n → ZMod 2) (p : ZMod 2) : Forms K n d →ₗ[K] Forms
   map_add' f g := Subtype.ext ((weightedHomogeneousComponent w p).map_add f.val g.val)
   map_smul' c f := Subtype.ext ((weightedHomogeneousComponent w p).map_smul c f.val)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem parityForm_val (w : Fin n → ZMod 2) (p : ZMod 2) (f : Forms K n d) :
     (parityForm w p f).val = weightedHomogeneousComponent w p f.val := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem parityForm_homogeneous (w : Fin n → ZMod 2) (p : ZMod 2) (f : Forms K n d) :
     (parityForm w p f).val.IsWeightedHomogeneous w p :=
   weightedHomogeneousComponent_isWeightedHomogeneous p f.val
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem parityForm_same (w : Fin n → ZMod 2) (p : ZMod 2) (f : Forms K n d)
     (hf : f.val.IsWeightedHomogeneous w p) : parityForm w p f = f :=
   Subtype.ext hf.weightedHomogeneousComponent_same
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem parityForm_other (w : Fin n → ZMod 2) (p q : ZMod 2) (f : Forms K n d)
     (hf : f.val.IsWeightedHomogeneous w q) (hpq : p ≠ q) : parityForm w p f = 0 :=
   Subtype.ext (hf.weightedHomogeneousComponent_ne p hpq)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem parityForm_decomposition (w : Fin n → ZMod 2) (p : ZMod 2) (f : Forms K n d) :
     parityForm w p f + parityForm w (p+1) f = f := by
   classical
@@ -59,6 +65,7 @@ theorem parityForm_decomposition (w : Fin n → ZMod 2) (p : ZMod 2) (f : Forms 
   have hp : p+1 ≠ p := fun h => one_ne_zero (add_left_cancel (h.trans (add_zero p).symm))
   rcases ha with ha | ha <;> simp [ha,hp,hp.symm]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Multiplying by a parity-homogeneous form shifts the monomial projection. -/
 theorem parityForm_mul (w : Fin n → ZMod 2) (p e : ZMod 2)
     (q a : Forms K n d) (hq : q.val.IsWeightedHomogeneous w e) :
@@ -80,15 +87,18 @@ theorem parityForm_mul (w : Fin n → ZMod 2) (p e : ZMod 2)
       intro h
       exact one_ne_zero (add_left_cancel (h.symm.trans (add_zero p).symm))),add_zero]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The source projection giving total product parity `p`. -/
 def paritySource (w : Fin n → ZMod 2) (e : Fin r → ZMod 2) (p : ZMod 2) :
     (Fin r → Forms K n d) →ₗ[K] (Fin r → Forms K n d) :=
   LinearMap.pi fun i => (parityForm w (p-e i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem paritySource_apply (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (p : ZMod 2) (a : Fin r → Forms K n d) (i : Fin r) :
     paritySource w e p a i = parityForm w (p-e i) (a i) := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem paritySource_decomposition (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (a : Fin r → Forms K n d) : paritySource w e 0 a + paritySource w e 1 a = a := by
   funext i
@@ -96,6 +106,7 @@ theorem paritySource_decomposition (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
   simpa only [Pi.add_apply,paritySource_apply,zero_sub,heq] using
     parityForm_decomposition w (-e i) (a i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem endpointMultiplication_paritySource (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
     (p : ZMod 2) (a : Fin r → Forms K n d) :
@@ -108,6 +119,7 @@ theorem endpointMultiplication_paritySource (w : Fin n → ZMod 2) (e : Fin r �
   intro i _
   exact (parityForm_mul w p (e i) (q i) (a i) (hq i)).symm
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Endpoint cycles decompose into actual even and odd cycles. -/
 theorem paritySource_cycle (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
@@ -116,17 +128,20 @@ theorem paritySource_cycle (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
   change endpointMultiplication q (paritySource w e p a.val) = 0
   rw [endpointMultiplication_paritySource w e q hq, a.property,map_zero]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The exact space of constant boundaries involving opposite generator parities. -/
 def oppositeKoszulSpace (q : Fin r → Forms K n d) (e : Fin r → ZMod 2) :
     Submodule K (Fin r → Forms K n d) :=
   Submodule.span K (koszulVector q '' {p : GeneratorPair r | e p.val.1 ≠ e p.val.2})
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oppositeKoszulSpace_le (q : Fin r → Forms K n d) (e : Fin r → ZMod 2) :
     oppositeKoszulSpace q e ≤ koszulSpace q := by
   apply Submodule.span_mono
   rintro _ ⟨p,_,rfl⟩
   exact ⟨p,rfl⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Odd exactness implies every actual endpoint homology class has an even
 cycle representative. The input is precisely the cross-parity exactness statement. -/
 theorem exists_even_cycle_representative
@@ -155,6 +170,7 @@ theorem exists_even_cycle_representative
 section Projected
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- If the discarded target is even, every odd projected cycle is a genuine cycle. -/
 theorem odd_paritySource_projected_cycle
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
@@ -167,6 +183,7 @@ theorem odd_paritySource_projected_cycle
   rw [endpointMultiplication_paritySource w e q hq]
   exact hpi _ a.property
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- With an even discarded target, odd exactness supplies even representatives
 for the actual projected endpoint homology as well. -/
 theorem exists_even_projected_cycle_representative

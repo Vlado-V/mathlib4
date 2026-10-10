@@ -15,11 +15,12 @@ prepared parameter space; finite rank openness makes them simultaneous. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.ProductRows
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] {σ : Type*}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem multiplication_empty_off_two_four (e : ℕ → ℕ) (J : Finset ℕ)
     (hz : ∀ k∈J,k≠2 → k≠4 → e k=0)
     (q : (k : ℕ) → Fin (e k) → MvPolynomial σ K)
@@ -50,6 +51,7 @@ open Froberg Module MvPolynomial MonomialExpansion
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem finite_middle_small_witnesses
     {w v d q a b : ℕ} {counts : ℕ → ℕ}
     [LinearOrder (Label q (allEvenIndices d) counts)]
@@ -134,6 +136,7 @@ theorem finite_middle_small_witnesses
       (layers (0 : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T)))
       (by omega) hR6 hR8⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem finite_middle_small_reduction_open
     {w v d q a b : ℕ} {counts : ℕ → ℕ}
     [LinearOrder (Label q (allEvenIndices d) counts)]

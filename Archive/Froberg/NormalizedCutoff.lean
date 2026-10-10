@@ -16,7 +16,7 @@ proved on nonempty opens in the same space of projection matrices. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K F V W E T : Type*} [Field K] [Infinite K]
@@ -26,6 +26,7 @@ variable {K F V W E T : Type*} [Field K] [Infinite K]
   [AddCommGroup E] [Module K E] [FiniteDimensional K E]
   [AddCommGroup T] [Module K T] [FiniteDimensional K T]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_normalized_projection_with_cutoff {u b : ℕ}
     (ha : 0<finrank K V) (hW : finrank K W=u+b)
     (hmargin : finrank K V*finrank K V<u*b)

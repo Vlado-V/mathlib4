@@ -14,10 +14,11 @@ public import Archive.Froberg.Quartic.PolynomialRankOpen
 
 noncomputable section
 namespace Quartic.GenericF13
-set_option maxHeartbeats 800000
+
 open Module MvPolynomial GeneralF13 MiddleCoordinates
 variable {K : Type*} [Field K] {m c q : ℕ}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The actual mixed polynomial multiplication is linear in its full coefficient family. -/
 def multiplicationFamily : GeneralF13.Mixed K m c →ₗ[K]
     CoefficientSource K m c →ₗ[K] GeneralF13.Ambient K m where
@@ -35,6 +36,7 @@ def multiplicationFamily : GeneralF13.Mixed K m c →ₗ[K]
     simp only [GeneralF13.multiplication, LinearMap.coe_mk, AddHom.coe_mk,
       Pi.smul_apply, map_smul, LinearMap.smul_apply, Finset.smul_sum, RingHom.id_apply]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The shared child cubic multiplication is linear in the original quadrics. -/
 def childFamily : Quadrics K m q →ₗ[K]
     CubicSource K m q →ₗ[K] GeneralF13.Ambient K m where
@@ -52,6 +54,7 @@ def childFamily : Quadrics K m q →ₗ[K]
     change CubicGeneric.bilinear.flip (s • Q) (fun j => v j r) = _
     exact LinearMap.congr_fun (CubicGeneric.bilinear.flip.map_smul s Q) (fun j => v j r)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- One fixed-space linear map family in all mixed and child coefficients. -/
 def combinedFamily : MiddleCoordinates.Parameters K m c q →ₗ[K]
     (CoefficientSource K m c × CubicSource K m q) →ₗ[K] GeneralF13.Ambient K m where
@@ -71,24 +74,29 @@ def combinedFamily : MiddleCoordinates.Parameters K m c q →ₗ[K]
     simp only [map_smul, LinearMap.smul_apply]
     exact (smul_add s _ _).symm
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The exact monomial-coordinate family used by the determinant-open theorem. -/
 def coordinateCombined : (MiddleCoordinates.CoefficientIndex m c q → K) →ₗ[K]
     (CoefficientSource K m c × CubicSource K m q) →ₗ[K] GeneralF13.Ambient K m :=
   combinedFamily.comp MiddleCoordinates.decode.toLinearMap
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 @[simp] theorem coordinateCombined_apply (a : MiddleCoordinates.CoefficientIndex m c q → K) :
     coordinateCombined a = GeneralF13.combined (MiddleCoordinates.decode a).1
       (MiddleCoordinates.decode a).2 := rfl
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Read the original child tuple from the full coefficient family. -/
 def coordinateChild : (MiddleCoordinates.CoefficientIndex m c q → K) →ₗ[K] Quadrics K m q :=
   (LinearMap.snd K _ _).comp MiddleCoordinates.decode.toLinearMap
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- All three concrete hypotheses needed for the varying-presentation F₁₃ theorem. -/
 def Conditions (E : GeneralF13.Mixed K m c) (Q : Quadrics K m q) : Prop :=
   LinearIndependent K Q ∧ Function.Injective (CubicGeneric.cubicMap Q) ∧
     Function.Injective (GeneralF13.f13Map E Q)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Every actual witness yields a principal open in all original E,Q coefficients.
 No openness property of quotient families is assumed. -/
 theorem principal_open_of_witness (E : GeneralF13.Mixed K m c) (Q : Quadrics K m q)

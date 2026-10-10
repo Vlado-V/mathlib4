@@ -22,21 +22,24 @@ noncomputable section
 namespace Quartic.SplitBlock22
 open Module MvPolynomial ThreeBlockModel
 open SplitBlock31 (pairVector pairVector_swap)
-set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K] {m c q : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The full pure–child generator pair. -/
 def fullCrossPair (i : Fin 4) (j : Fin q) : GeneratorPair (4+(c+q)) :=
   ⟨(Fin.castAdd (c+q) i, Fin.natAdd 4 (Fin.natAdd c j)), by
     change i.val < 4 + (c+j.val)
     omega⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A pair of mixed indices, with its order preserved in the full family. -/
 def fullMixedPair (p : GeneratorPair c) : GeneratorPair (4+(c+q)) :=
   ⟨(Fin.natAdd 4 (Fin.castAdd q p.val.1), Fin.natAdd 4 (Fin.castAdd q p.val.2)), by
     change 4+p.val.1.val < 4+p.val.2.val
     exact Nat.add_lt_add_left p.property 4⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Each explicit pure–child array is the indicated sum of actual full Koszul vectors. -/
 theorem sourceEmbedding_crossBoundary (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) :
@@ -57,6 +60,7 @@ theorem sourceEmbedding_crossBoundary (g : Fin c → MiddleCoordinates.Mixed K m
       rw [sourceEmbedding_child]
       simp [crossBoundary, koszulVector, fullCrossPair, Finset.sum_apply, map_sum, map_smul, smul_ite]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Each mixed–mixed array is its actual full Koszul vector. -/
 theorem sourceEmbedding_mixedBoundary (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : GeneratorPair c) :
@@ -79,6 +83,7 @@ theorem sourceEmbedding_mixedBoundary (g : Fin c → MiddleCoordinates.Mixed K m
     · intro j
       simp [mixedSourceEmbedding, koszulVector, fullMixedPair]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every incoming block boundary maps to a genuine full Koszul boundary. -/
 theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Source K m c q) (ha : a ∈ blockBoundarySpace g h) :
@@ -106,6 +111,7 @@ theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     exact hmixed hb
   exact hle ha
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_pair_pure
     (A : Fin (4+(c+q)) → Forms K (3+m) 2) (u v : Fin (4+(c+q))) (i : Fin 4) :
     (sourceProjection (pairVector A u v)).1 i =
@@ -116,6 +122,7 @@ theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (if Fin.castAdd (c+q) i = v then A u else 0)) = _
   split_ifs <;> simp_all only [map_sub, map_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_pair_mixed
     (A : Fin (4+(c+q)) → Forms K (3+m) 2) (u v : Fin (4+(c+q))) (i : Fin c) :
     (sourceProjection (pairVector A u v)).2.1 i =
@@ -126,6 +133,7 @@ theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (if Fin.natAdd 4 (Fin.castAdd q i) = v then A u else 0)) = _
   split_ifs <;> simp_all only [map_sub, map_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_pair_child
     (A : Fin (4+(c+q)) → Forms K (3+m) 2) (u v : Fin (4+(c+q))) (i : Fin q) :
     (sourceProjection (pairVector A u v)).2.2 i =
@@ -136,6 +144,7 @@ theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (if Fin.natAdd 4 (Fin.natAdd c i) = v then A u else 0)) = _
   split_ifs <;> simp_all only [map_sub, map_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 private theorem projection_cross_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (i : Fin 4) (j : Fin q) :
     sourceProjection (pairVector (fullGenerators g h) (Fin.castAdd (c+q) i)
@@ -152,6 +161,7 @@ private theorem projection_cross_mem (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [← hp]
   exact Submodule.mem_sup_left ⟨b,rfl⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 private theorem projection_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (i j : Fin c) :
     sourceProjection (pairVector (fullGenerators g h) (Fin.natAdd 4 (Fin.castAdd q i))
@@ -178,6 +188,7 @@ private theorem projection_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
   · rw [pairVector_swap, map_neg]
     exact Submodule.neg_mem _ (hlt j i hji)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every full incoming Koszul vector projects to one of the two actual block boundary types. -/
 theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (u v : Fin (4+(c+q))) :
@@ -231,6 +242,7 @@ theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
             refine Prod.ext (funext fun s => ?_) (Prod.ext (funext fun s => ?_) (funext fun s => ?_)) <;> simp
         rw [hz]; exact Submodule.zero_mem _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Projection of an arbitrary full incoming boundary remains a block boundary. -/
 theorem sourceProjection_koszul_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Fin (4+(c+q)) → Forms K (3+m) 2)
@@ -241,6 +253,7 @@ theorem sourceProjection_koszul_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     exact sourceProjection_pair_mem g h p.val.1 p.val.2
   exact hle ha
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The full boundary space pulls back to exactly the already identified actual block boundaries. -/
 theorem sourceEmbedding_comap_koszul (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) :
@@ -252,12 +265,14 @@ theorem sourceEmbedding_comap_koszul (g : Fin c → MiddleCoordinates.Mixed K m)
     simpa only [sourceProjection_sourceEmbedding] using hp
   · exact sourceEmbedding_boundary_mem g h a
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Embed actual (2,2) cycles into the full quartic multiplication kernel. -/
 def fullCycleEmbedding (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     (multiplication g h).ker →ₗ[K] (quadraticMultiplication (fullGenerators g h)).ker :=
   (sourceEmbedding.comp (multiplication g h).ker.subtype).codRestrict _
     (fun a => (sourceEmbedding_kernel g h a.val).mpr a.property)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency false in
 /-- The canonical actual homology map from the block to the full indexed split complex. -/
 def fullHomologyMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
@@ -288,11 +303,13 @@ def fullHomologyMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → F
     rw [map_smul]
     rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem fullHomologyMap_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : (multiplication g h).ker) :
     fullHomologyMap g h (Submodule.Quotient.mk a) =
       Submodule.Quotient.mk (fullCycleEmbedding g h a) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- No extra boundary in the full indexed complex collapses a nonzero block homology class. -/
 theorem fullHomologyMap_injective (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) : Function.Injective (fullHomologyMap g h) := by
@@ -310,6 +327,7 @@ theorem fullHomologyMap_injective (g : Fin c → MiddleCoordinates.Mixed K m)
     simpa only [sourceProjection_sourceEmbedding] using hp
   exact (Submodule.Quotient.mk_eq_zero _).mpr hblock
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual subspace of full homology has the manuscript's middle dimension. -/
 theorem fullHomologyMap_range_finrank_eq_H (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hg : LinearIndependent K g) (hh : LinearIndependent K h)
@@ -319,6 +337,7 @@ theorem fullHomologyMap_range_finrank_eq_H (g : Fin c → MiddleCoordinates.Mixe
   rw [LinearMap.finrank_range_of_inj (fullHomologyMap_injective g h)]
   exact homology_finrank_eq_H g h hg hh hs
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Under the actual middle surjectivity condition, the whole (2,2) target lies in the full image. -/
 theorem full_target_le_range (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2)

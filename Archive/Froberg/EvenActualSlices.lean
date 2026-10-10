@@ -15,7 +15,7 @@ All kernel and higher-image hypotheses are derived from actual graded actions. -
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates BilinearScalarFamily
@@ -35,6 +35,7 @@ local notation "mu" => evenBackgroundScalar hdp Q F
 local notation "nu" => bottomCoordinateScalarAction hdp Q g
 local notation "j" => finrank K W-e*finrank K V
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem even_actual_affine_slices
     (s₀ : ℕ → ℕ) (hs₀ : HasClosedKernelSlices nu s₀) (M : ℕ)
     (hmid : ∀ (k : ℕ) (hk : 3 ≤ k) (hkd : k ≤ d), k%2=1 →

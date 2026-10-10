@@ -15,12 +15,13 @@ arbitrary additional fixed columns and a late choice of output space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 400000
+
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem exact_counts_all_even_restored_odd_open {d k h lo : ℕ}
     (hd : 3≤d) (heven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
     (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n≤n)

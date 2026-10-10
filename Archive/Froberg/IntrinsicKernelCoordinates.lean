@@ -13,7 +13,7 @@ product images used by the intrinsic layered avoidance theorem. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Quartic Quartic.BilinearCovectorCharts Quartic.BilinearCoefficientKernel
@@ -25,6 +25,7 @@ variable {K P V W H : Type} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [AddCommGroup H] [Module K H] [FiniteDimensional K H]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def dualCoordinateEquiv : (W →ₗ[K] K) ≃ₗ[K] (Fin (finrank K W) → K) where
   toFun := dualCoordinates (coordinates K W)
   invFun ell := (covector ell).comp (coordinates K W).toLinearMap
@@ -36,26 +37,31 @@ def dualCoordinateEquiv : (W →ₗ[K] K) ≃ₗ[K] (Fin (finrank K W) → K) wh
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 @[simp] theorem coordinateTensor_coordinates (mu : P →ₗ[K] V →ₗ[K] W) (p : P) (v : V) :
     coordinateTensor mu (coordinates K P p) (coordinates K V v)=coordinates K W (mu p v) := by
   simp only [coordinateTensor,transportBilinear_apply,LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 @[simp] theorem covector_dualCoordinateEquiv (ell : W →ₗ[K] K) (w : W) :
     covector (dualCoordinateEquiv ell) (coordinates K W w)=ell w := by
   rw [show dualCoordinateEquiv ell=dualCoordinates (coordinates K W) ell from rfl,
     covector_dualCoordinates,LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coordinateTensor_kernel (mu : P →ₗ[K] V →ₗ[K] W) (ell : W →ₗ[K] K) :
     (relationMap (coordinateTensor mu) (dualCoordinateEquiv ell)).ker=
       (QuotientCovectorKernel.relation mu ell).ker.map (coordinates K V).toLinearMap :=
   kernel_coordinates (coordinates K P) (coordinates K V) (coordinates K W) mu
     (coordinateTensor mu) (coordinateTensor_coordinates mu) ell
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coordinateTensor_kernel_finrank (mu : P →ₗ[K] V →ₗ[K] W) (ell : W →ₗ[K] K) :
     finrank K (relationMap (coordinateTensor mu) (dualCoordinateEquiv ell)).ker=
       finrank K (QuotientCovectorKernel.relation mu ell).ker := by
   rw [coordinateTensor_kernel,LinearEquiv.finrank_map_eq]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coordinateTensor_kernel_image_finrank (mu : P →ₗ[K] V →ₗ[K] W)
     (muH : P →ₗ[K] V →ₗ[K] H) (ell : W →ₗ[K] K) :
     finrank K (BilinearImage.image (coordinateTensor muH)

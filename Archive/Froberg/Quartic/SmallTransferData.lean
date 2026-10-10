@@ -18,8 +18,9 @@ namespace Quartic.SmallTransferData
 open Module MvPolynomial UniformEndpoint SmallCovectorCommonOpen
 open ActualSmallMotionAvoidance ActualDeformationResponse ActualDeformationColumns
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The one marked space is realized by actual child cycles and has exactly
 δ dimensions. Both child and response conditions hold at the same actual
 parameter, as required to apply the exact deformation columns. -/

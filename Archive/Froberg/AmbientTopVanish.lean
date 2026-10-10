@@ -14,13 +14,14 @@ weight, in particular the literal bottom row. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b w : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem ambientTopMap_weighted_zero (hdw : d≠w)
     (v : biformParitySpace K h m (2*d) 1)
     (hv : v.val.IsWeightedHomogeneous (blockWeight h m) w) :
@@ -32,6 +33,7 @@ theorem ambientTopMap_weighted_zero (hdw : d≠w)
   rw [hz]
   exact (topRowTarget (K := K) (h := h) (m := m) (d := d)).map_zero
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem ambientTopGrowthProjection_weighted_zero (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1<d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

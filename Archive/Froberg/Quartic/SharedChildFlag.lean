@@ -17,13 +17,15 @@ noncomputable section
 namespace Quartic.SharedChildFlag
 open Module MvPolynomial EndpointHomology
 variable {K ι : Type*} [Field K] {n r : ℕ}
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def multiplicationLinear : (Fin r → Forms K n 2) →ₗ[K]
     ((Fin r → Forms K n 2) →ₗ[K] Forms K n 4) :=
   coefficientMultiplicationLinear.comp multiplierCoordinates.toLinearMap
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem multiplicationLinear_apply (q : Fin r → Forms K n 2) :
     multiplicationLinear q=quadraticMultiplication q := by
   change quadraticMultiplication (coefficientQuadrics K n r (multiplierCoordinates q))=_
@@ -31,6 +33,7 @@ def multiplicationLinear : (Fin r → Forms K n 2) →ₗ[K]
   funext i
   exact (formsBasis K n 2).equivFun.symm_apply_apply (q i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Transport the induction hypothesis to any surjective polynomial family
 of ordered child generators, including the full parent coefficient family. -/
 theorem quartic_open (f : (ι → K) → (Fin r → Forms K n 2))
@@ -67,6 +70,7 @@ theorem quartic_open (f : (ι → K) → (Fin r → Forms K n 2))
   rw [hb] at hr
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- On a positive-Euler child open the old multiplication kernel consists
 exactly of Koszul boundaries. -/
 theorem kernel_le_of_expected (q : Fin r → Forms K n 2) (hq : LinearIndependent K q)
@@ -84,6 +88,7 @@ theorem kernel_le_of_expected (q : Fin r → Forms K n 2) (hq : LinearIndependen
     (show finrank K (koszulSpace q)=finrank K (LinearMap.ker (quadraticMultiplication q)) by omega)
   exact heq.ge
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def quadraticProduct : Forms K n 2 →ₗ[K] Forms K n 2 →ₗ[K] Forms K n 4 where
   toFun := mulQuadratic
   map_add' a b := by
@@ -97,16 +102,19 @@ def quadraticProduct : Forms K n 2 →ₗ[K] Forms K n 2 →ₗ[K] Forms K n 4 w
     apply Subtype.ext
     exact smul_mul_assoc a b.val x.val
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def withSquare (q : Fin (r+1) → Forms K n 2) :
     ((Fin r → Forms K n 2) × K) →ₗ[K] Forms K n 4 :=
   (quadraticMultiplication (prefixFamily q)).coprod
     (LinearMap.toSpanSingleton K _ (mulQuadratic (q (Fin.last r)) (q (Fin.last r))))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem withSquare_range (q : Fin (r+1) → Forms K n 2) :
     (withSquare q).range=(quadraticMultiplication (prefixFamily q)).range ⊔
       K ∙ (mulQuadratic (q (Fin.last r)) (q (Fin.last r))) := by
   rw [withSquare,LinearMap.range_coprod,LinearMap.range_toSpanSingleton]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem withSquare_polynomial (f : (ι → K) → (Fin (r+1) → Forms K n 2))
     (hf : IsPolynomialFamily f) : IsPolynomialFamily (fun a => withSquare (f a)) := by
   apply isPolynomialFamily_linearMap
@@ -124,12 +132,14 @@ theorem withSquare_polynomial (f : (ι → K) → (Fin (r+1) → Forms K n 2))
   simpa only [withSquare,LinearMap.coprod_apply,LinearMap.toSpanSingleton_apply,
     multiplicationLinear_apply,LinearMap.applyₗ_apply_apply] using hmul.add hscale
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def Conditions (q : Fin (r+1) → Forms K n 2) : Prop :=
   LinearIndependent K q ∧ Function.Surjective (quadraticMultiplication q) ∧
   LinearMap.ker (quadraticMultiplication (prefixFamily q)) ≤ koszulSpace (prefixFamily q) ∧
   mulQuadratic (q (Fin.last r)) (q (Fin.last r)) ∉
     (quadraticMultiplication (prefixFamily q)).range
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Both adjacent child ranks and the surviving marked square hold on the
 same actual coefficient open. The square condition is proved by one extra
 column in the old multiplication matrix. -/
@@ -212,11 +222,13 @@ theorem principal_open [CharZero K]
     rw [hdp] at hda
     omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The marked coefficient map is now proved injective at the chosen flag. -/
 theorem marked_injective (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) :
     Function.Injective (MarkedCoefficient.markedCoefficientMap q) :=
   MarkedCoefficient.markedCoefficientMap_injective q hq.2.2.1 hq.2.2.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Its image has precisely the child defect required by the transfer. -/
 theorem marked_finrank (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) :
     (finrank K (MarkedCoefficient.markedCoefficientMap q).range:ℤ)=Counts.delta n (r+1) := by
@@ -230,6 +242,7 @@ theorem marked_finrank (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) :
   rw [hz] at he
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The marked subspace used by the response is the image of actual child
 cycles, so every member automatically has an actual source representative. -/
 def markedCycles (q : Fin r → Forms K n 2) (k : Fin r) :
@@ -238,21 +251,25 @@ def markedCycles (q : Fin r → Forms K n 2) (k : Fin r) :
   MarkedCoefficient.coefficientOnCycles (quadraticMultiplication q) (LinearMap.proj k)
     (Submodule.span K (Set.range q))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem markedCycles_range (q : Fin (r+1) → Forms K n 2) :
     (markedCycles q (Fin.last r)).range=(MarkedCoefficient.markedCoefficientMap q).range := by
   rw [MarkedCoefficient.markedCoefficientMap,MarkedCoefficient.quotientCoefficient,
     Submodule.range_liftQ]
   rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def Data (q : Fin r → Forms K n 2) : Prop :=
   LinearIndependent K q ∧ Function.Surjective (quadraticMultiplication q) ∧
     ∃ k : Fin r,(finrank K (markedCycles q k).range:ℤ)=Counts.delta n r
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem conditions_data (q : Fin (r+1) → Forms K n 2) (hq : Conditions q) : Data q := by
   refine ⟨hq.1,hq.2.1,Fin.last r,?_⟩
   rw [markedCycles_range]
   exact marked_finrank q hq
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem upper_positive (hn : 1 ≤ n) : 0 < UniformEndpoint.upperEndpoint n := by
   by_contra! hz
   have he : UniformEndpoint.upperEndpoint n=0 := by omega
@@ -263,6 +280,7 @@ theorem upper_positive (hn : 1 ≤ n) : 0 < UniformEndpoint.upperEndpoint n := b
     Nat.choose_eq_zero_of_lt (by omega : 0 < 2),add_zero] at hu
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The induction premise supplies one actual upper-child flag on a nonempty
 open in any surjective polynomial parameter family. This includes integral
 Euler roots: the predecessor still has strictly positive Euler count. -/

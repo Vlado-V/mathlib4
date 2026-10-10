@@ -14,15 +14,17 @@ thresholds independently of the later successful frame. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PreparedParameters
 variable {K : Type} [Field K] [Infinite K] {d w : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def pairedOutputEquiv (w : ℕ) : (Fin w × Bool) ≃ Fin (2*w) :=
   Fintype.equivOfCardEq (by simp [Nat.mul_comm])
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem exists_counted_private_frame_reference (hw : 0<w)
     (hdel : deletedTargetCount d (2*w)≤(2*w+1).choose 2) :
     ∃ (c : ℕ) (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] (Fin c → K)),

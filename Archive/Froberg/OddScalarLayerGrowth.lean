@@ -15,9 +15,9 @@ nonempty open of the original scalar/linear generator parameters. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module TensorProduct MvPolynomial Filter
 open scoped Topology
@@ -25,6 +25,8 @@ attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K]
 variable {h n d b qS qO t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem odd_scalar_layer_growth_open (hh : 0<h) (hn : 0<n)
     (hb : 1≤b) (hbd : b≤d)
     (hcount :

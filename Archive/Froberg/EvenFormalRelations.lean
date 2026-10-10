@@ -15,11 +15,12 @@ projected formal-relation equality used in the hyperplane replacement. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 variable {K : Type} [Field K] {n d r : ℕ}
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_formal_relations_of_even_reduction
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hi : LinearIndependent K q)

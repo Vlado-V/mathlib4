@@ -14,13 +14,14 @@ coefficient space of the enumerated endpoint family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 def oddEndpointSourceCoordinates (hd : 1≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -34,6 +35,7 @@ def oddEndpointSourceCoordinates (hd : 1≤d)
   (oddBackgroundSourceEquiv Q (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i)) G).symm.trans
     (oddSourceCoordinates hd F G B hB)
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 def oddEndpointBaseCoordinates (hd : 1≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :

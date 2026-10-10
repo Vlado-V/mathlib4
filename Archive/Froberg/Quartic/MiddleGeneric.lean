@@ -23,14 +23,18 @@ below are obtained from the concrete witnesses, rather than assumed ranks.
 noncomputable section
 namespace Quartic.MiddleGeneric
 open Module MvPolynomial SplitMiddle22
-set_option maxHeartbeats 2000000
+
 
 variable (K : Type*) [Field K] (c w r q : ℕ)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Mixed := Fin 3 → Linear K c w
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Parameters := (Fin r → Mixed K c w) × (Fin q → Quad K c w)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Domain := (Fin r → Mixed K c w) × (Fin q → K × K)
 variable {K c w r q}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Linearity of actual projected multiplication in the mixed generator. -/
 def productLinear : Mixed K c w →ₗ[K] (Mixed K c w →ₗ[K] Target K c w) where
   toFun := projectedProduct
@@ -45,24 +49,29 @@ def productLinear : Mixed K c w →ₗ[K] (Mixed K c w →ₗ[K] Target K c w) w
     apply Prod.ext <;> apply Subtype.ext <;>
       simp [projectedProduct, mulLinear, smul_sub]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def multiplication (g : Fin r → Mixed K c w) : (Fin r → Mixed K c w) →ₗ[K] Target K c w :=
   ∑ i : Fin r, (productLinear (g i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem multiplication_single (g : Fin r → Mixed K c w) (i : Fin r) (a : Mixed K c w) :
     multiplication g (Pi.single i a) = projectedProduct (g i) a := by
   classical
   simp [multiplication, Pi.single_apply, apply_ite, productLinear]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Scalar multiples of each child quadric in both pure-block coordinates. -/
 def childMap (h : Fin q → Quad K c w) : (Fin q → K × K) →ₗ[K] Target K c w where
   toFun a := (∑ i, (a i).1 • h i, ∑ i, (a i).2 • h i)
   map_add' a b := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' s a := by simp [smul_smul, Finset.smul_sum]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual polynomial map whose full rank tests quotient surjectivity. -/
 def combined (p : Parameters K c w r q) : Domain K c w r q →ₗ[K] Target K c w :=
   (multiplication p.1).coprod (childMap p.2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Dependence of every entry on the actual polynomial parameters is linear. -/
 def combinedLinear : Parameters K c w r q →ₗ[K] (Domain K c w r q →ₗ[K] Target K c w) where
   toFun := combined
@@ -83,6 +92,7 @@ def combinedLinear : Parameters K c w r q →ₗ[K] (Domain K c w r q →ₗ[K] 
         Pi.smul_apply, map_smul, LinearMap.smul_apply, Finset.smul_sum]
     simp [combined, hm, childMap, smul_smul, Finset.smul_sum, smul_add, mul_comm]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The multiplication image depends on the genuine span of the mixed generators. -/
 theorem range_multiplication (g : Fin r → Mixed K c w) :
     LinearMap.range (multiplication g) = middleImage (Submodule.span K (Set.range g)) := by
@@ -114,6 +124,7 @@ theorem range_multiplication (g : Fin r → Mixed K c w) :
       rw [he]
       exact Submodule.smul_mem _ s ih
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The child term has exactly the two copies of the child quadratic span as image. -/
 theorem range_childMap (h : Fin q → Quad K c w) :
     LinearMap.range (childMap h) = (Submodule.span K (Set.range h)).prod
@@ -130,23 +141,28 @@ theorem range_childMap (h : Fin q → Quad K c w) :
     obtain ⟨cb, hcb⟩ := (Submodule.mem_span_range_iff_exists_fun K).mp hb
     exact ⟨fun i => (ca i, cb i), Prod.ext hca hcb⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem range_combined (p : Parameters K c w r q) :
     LinearMap.range (combined p) = middleImage (Submodule.span K (Set.range p.1)) ⊔
       (Submodule.span K (Set.range p.2)).prod (Submodule.span K (Set.range p.2)) := by
   rw [combined, LinearMap.range_coprod, range_multiplication, range_childMap]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A finite coordinate index for the actual coefficient parameter space. -/
 abbrev ParameterIndex (K : Type*) [Field K] (c w r q : ℕ) :=
   Fin (Module.finrank K (Parameters K c w r q))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Coordinates range over every actual tuple of mixed polynomials and child quadrics. -/
 def decode : (ParameterIndex K c w r q → K) ≃ₗ[K] Parameters K c w r q :=
   (Module.finBasis K (Parameters K c w r q)).equivFun.symm
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def coordinateMap : (ParameterIndex K c w r q → K) →ₗ[K]
     (Domain K c w r q →ₗ[K] Target K c w) :=
   combinedLinear.comp decode.toLinearMap
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The precise generic statement: a nonempty principal open of actual coefficients
 has independent generator families and surjective combined polynomial multiplication. -/
 def GenericMiddle (K : Type*) [Field K] (c w r q : ℕ) : Prop :=
@@ -155,6 +171,7 @@ def GenericMiddle (K : Type*) [Field K] (c w r q : ℕ) : Prop :=
       LinearIndependent K (decode a).1 ∧ LinearIndependent K (decode a).2 ∧
       Function.Surjective (combined (decode a))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- An actual independent, surjective witness produces the stated determinant open. -/
 theorem genericMiddle_of_witness (p₀ : Parameters K c w r q)
     (hg : LinearIndependent K p₀.1) (hh : LinearIndependent K p₀.2)
@@ -189,6 +206,7 @@ theorem genericMiddle_of_witness (p₀ : Parameters K c w r q)
 section BasisFamily
 variable {V : Type*} [AddCommGroup V] [Module K V] [Module.Finite K V]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Ordered polynomial coordinates for a subspace of a prescribed dimension. -/
 theorem family_of_submodule (S : Submodule K V) (hS : Module.finrank K S = r) :
     ∃ f : Fin r → V, LinearIndependent K f ∧ Submodule.span K (Set.range f) = S := by
@@ -203,6 +221,7 @@ theorem family_of_submodule (S : Submodule K V) (hS : Module.finrank K S = r) :
 
 end BasisFamily
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The repaired paired-block specialization yields a nonempty determinant open
 throughout the manuscript's second budget regime. -/
 theorem genericMiddle_of_repair_budget
@@ -222,6 +241,7 @@ theorem genericMiddle_of_repair_budget
   exact filledSpace_eq_top Q (fun i b => hQ (repairSpace_contains_cross i b))
     (fun a b => hQ (repairSpace_contains_residual a b))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The paired/singleton specialization yields the complete first regime:
 any enlargement of its mixed space works, for every permitted child count. -/
 theorem genericMiddle_of_covered_budget
@@ -235,6 +255,7 @@ theorem genericMiddle_of_covered_budget
   apply LinearMap.range_eq_top.mp
   rw [range_combined, hspan, hfill, top_sup_eq]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual middle multiplication in both coordinates of the child quadratic quotient. -/
 def quotientMultiplication (p : Parameters K c w r q) :
     (Fin r → Mixed K c w) →ₗ[K]
@@ -243,6 +264,7 @@ def quotientMultiplication (p : Parameters K c w r q) :
   let Q := Submodule.span K (Set.range p.2)
   (Q.mkQ.prodMap Q.mkQ).comp (multiplication p.1)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem childMap_quotient_zero (h : Fin q → Quad K c w) (b : Fin q → K × K) :
     let Q := Submodule.span K (Set.range h)
     (Q.mkQ.prodMap Q.mkQ) (childMap h b) = 0 := by
@@ -254,6 +276,7 @@ theorem childMap_quotient_zero (h : Fin q → Quad K c w) (b : Fin q → K × K)
   · exact (Submodule.Quotient.mk_eq_zero Q).mpr hm.1
   · exact (Submodule.Quotient.mk_eq_zero Q).mpr hm.2
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Full rank of the combined polynomial map is exactly quotient surjectivity. -/
 theorem combined_surjective_iff_quotient (p : Parameters K c w r q) :
     Function.Surjective (combined p) ↔ Function.Surjective (quotientMultiplication p) := by
@@ -285,6 +308,7 @@ theorem combined_surjective_iff_quotient (p : Parameters K c w r q) :
     rw [ht]
     abel
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The nonempty determinant open really consists of independent generator
 families with surjective multiplication in the actual child quadratic quotient. -/
 theorem genericMiddle_quotient (h : GenericMiddle K c w r q) :

@@ -24,21 +24,28 @@ open BilinearCoefficientKernel BilinearCovectorCharts SmallCovectorCommonOpen
 open PolynomialBilinearCoordinates
 variable {K : Type*} [Field K] [IsAlgClosed K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Mixed (K : Type*) [Field K] (m c : ℕ) := Fin c → MiddleCoordinates.Mixed K m
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Child (K : Type*) [Field K] (m q : ℕ) := Fin q → Forms K m 2
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Marked (h : Child K m q) := Submodule K (ActualMarkedCorrectionMotionOmega.ChildQuotient h)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def correctionCount (h : Child K m q) (U : Marked h) : ℕ :=
   (Counts.H m q c+4+finrank K U).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def auxiliaryCount (h : Child K m q) (U : Marked h) : ℕ :=
   (Counts.j m q c-((2*m+2*c : ℕ):ℤ)-correctionCount (c := c) h U).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def sliceCount (h : Child K m q) (U : Marked h) (d : ℕ) : ℕ :=
   (2*m+2*c-4*d)+(correctionCount (c := c) h U-c*d)+auxiliaryCount (c := c) h U
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def ClosedSlices (g : Mixed K m c) (h : Child K m q) (U : Marked h)
     (Z : (d : AmbientSliceMotion.Threshold (RowCount m 1) c) →
       Fin (sliceCount (c := c) h U d.val) → Rows K m 3) : Prop :=
@@ -48,6 +55,7 @@ def ClosedSlices (g : Mixed K m c) (h : Child K m q) (U : Marked h)
     (∀ i v,covector ell (RowMultiplicationCoordinates.coordinate (finiteEquiv (h i)) v)=0) →
     (∀ j,covector ell (rowFiniteEquiv (Z d j))=0) → ell=0
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual augmented-injective pure motions, actual mixed motions, and the
 minimal number of auxiliary target vectors exclude every common covector.
 All relation-kernel strata are handled, with no remaining motion-rank premise. -/
@@ -190,6 +198,7 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q)
     simpa only [y,LinearEquiv.apply_symm_apply] using hy
   exact h.elim (fun h => h hfirst) (fun h => h hb)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The same exclusion stated solely with actual polynomial products and
 actual ambient covectors. This is the input to the response-rank theorem. -/
 theorem exists_actual_motions (g : Mixed K m c) (h : Child K m q)

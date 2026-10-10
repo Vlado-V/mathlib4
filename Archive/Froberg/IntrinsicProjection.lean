@@ -14,7 +14,7 @@ kernel dimension established from the same uniform growth estimate. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic
 open BilinearScalarFamily PolynomialBilinearCoordinates
@@ -23,6 +23,7 @@ variable {K F V W : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An actual quotient of the prescribed dimension satisfies normalized
 image growth on every source subspace at once. -/
 theorem exists_normalized_projection {u b : ℕ}

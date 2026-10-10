@@ -21,11 +21,12 @@ dimensions. The output module and its constraints are selected last. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem eventually_actual_all_degree_even_reduction {d : ℕ} (hd : 3≤d) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
@@ -65,6 +66,7 @@ theorem eventually_actual_all_degree_even_reduction {d : ℕ} (hd : 3≤d) :
     intro X _ _ _ T hX hO _
     exact hn X T hX hO
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem eventually_actual_all_degree_leading_witnesses {d : ℕ} (hd : 3≤d) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
@@ -102,6 +104,7 @@ theorem eventually_actual_all_degree_leading_witnesses {d : ℕ} (hd : 3≤d) :
     intro X _ _ _ T hX hO _
     exact hn X T hX hO
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem eventually_actual_all_degree_even_data {d : ℕ} (hd : 3≤d) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →

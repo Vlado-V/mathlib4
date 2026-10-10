@@ -15,7 +15,7 @@ projections and all coefficient degrees through the prescribed bound. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic.PolynomialBilinearCoordinates
@@ -23,6 +23,7 @@ variable {K I V : Type*} [Field K] [Infinite K] [Fintype I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 variable {n s d m H : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_sparse_injection_open
     (e : Fin m → Fin n →₀ ℕ) (he : ∀ i,(e i).degree=s)
     (F : I → V →ₗ[K] (Fin H → K))
@@ -48,6 +49,7 @@ theorem projected_sparse_injection_open
     exact Subtype.ext (congrArg (fun z : S => z.val) hjk)
   exact (hgood x hx i S hS).comp g hg
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A uniform divisor bound gives the projected open without checking each
 coefficient degree separately. -/
 theorem projected_sparse_injection_open_of_divisor_bound

@@ -15,25 +15,29 @@ so the matrix rank argument applies to the first normal map itself. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module
 variable {K : Type} [Field K] {n d r t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical class map is elaborated before specializing its spaces. -/
 def kernelClass {E T : Type*} [AddCommGroup E] [Module K E]
     [AddCommGroup T] [Module K T] (M : E →ₗ[K] T) (B : Submodule K E) :
     M.ker →ₗ[K] KernelModulo M B := (kernelBoundary M B).mkQ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem kernelClass_surjective {E T : Type*} [AddCommGroup E] [Module K E]
     [AddCommGroup T] [Module K T] (M : E →ₗ[K] T) (B : Submodule K E) :
     Function.Surjective (kernelClass M B) := (kernelBoundary M B).mkQ_surjective
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical target class map, before polynomial specialization. -/
 def cokernelClass {E T : Type*} [AddCommGroup E] [Module K E]
     [AddCommGroup T] [Module K T] (M : E →ₗ[K] T) : T →ₗ[K] (T ⧸ M.range) := M.range.mkQ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Coefficients of an arbitrary generator expression are obtained by the
 relative coordinate functionals, before taking homology. -/
 theorem relationCoefficientMap_general_coefficients
@@ -49,12 +53,14 @@ theorem relationCoefficientMap_general_coefficients
     (Submodule.Quotient.mk_eq_zero G).mpr (hqG j)
   simp only [hz,smul_zero,add_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual change of every generator induced by a scalar change of the
 new-generator coordinates. Old generators have zero relative coordinates. -/
 def relativeGeneratorMotion (q : Fin r → Forms K n d)
     (dual : Fin t → Forms K n d →ₗ[K] K) (z : Fin t → Forms K n d) :
     Fin r → Forms K n d := fun j => ∑ i, dual i (q j) • z i
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Scalar multiplication by an array of motions on a coefficient array. -/
 def coefficientResponse {J : Type*} [AddCommGroup J] [Module K J]
     (G : Submodule K (Forms K n d))
@@ -62,6 +68,7 @@ def coefficientResponse {J : Type*} [AddCommGroup J] [Module K J]
     (z : Fin t → Forms K n d) : (Fin t → Forms K n d ⧸ G) →ₗ[K] J :=
   ∑ i, (mu (z i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientResponse_apply {J : Type*} [AddCommGroup J] [Module K J]
     (G : Submodule K (Forms K n d))
     (mu : Forms K n d →ₗ[K] (Forms K n d ⧸ G) →ₗ[K] J)

@@ -14,7 +14,7 @@ kernel dimension established from the same uniform growth estimate. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic MvPolynomial
 open BilinearScalarFamily PolynomialBilinearCoordinates
@@ -23,16 +23,19 @@ variable {K F V W : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An actual quotient of the prescribed dimension satisfies normalized
 image growth on every source subspace at once. -/
 abbrev ProjectionParameter (K : Type*) [Field K] (W : Type*) [AddCommGroup W] [Module K W] (b : ℕ) :=
   Fin (finrank K ((Fin (finrank K W) → K) →ₗ[K] (Fin b → K)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def coordinateProjection {b : ℕ} (x : ProjectionParameter K W b → K) :
     W →ₗ[K] (Fin b → K) :=
   ((Module.finBasis K ((Fin (finrank K W) → K) →ₗ[K] (Fin b → K))).equivFun.symm x).comp
     (coordinates K W).toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem coordinateProjection_surjective (b : ℕ) :
     Function.Surjective (coordinateProjection (K := K) (W := W) (b := b)) := by
   intro P
@@ -42,6 +45,7 @@ theorem coordinateProjection_surjective (b : ℕ) :
   simp only [coordinateProjection,LinearEquiv.symm_apply_apply,LinearMap.comp_apply,
     LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem coordinateProjection_polynomial (b : ℕ) :
     IsPolynomialFamily (coordinateProjection (K := K) (W := W) (b := b)) := by
   let L : (ProjectionParameter K W b → K) →ₗ[K] (W →ₗ[K] (Fin b → K)) :=
@@ -56,6 +60,7 @@ theorem coordinateProjection_polynomial (b : ℕ) :
         simp only [coordinateProjection,map_smul,LinearMap.smul_comp,LinearMap.smul_apply,Pi.smul_apply,RingHom.id_apply] }
   exact isPolynomialFamily_linear L
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem normalized_projection_principal_open {u b : ℕ}
     (ha : 0 < finrank K V) (hW : finrank K W = u+b)
     (hmargin : finrank K V*finrank K V < u*b)

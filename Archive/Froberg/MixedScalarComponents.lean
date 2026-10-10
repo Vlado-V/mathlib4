@@ -14,13 +14,14 @@ public import Archive.Froberg.BiformTensorComponent
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d u t : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem privateScalarRelations_val
     (G : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
@@ -28,6 +29,7 @@ theorem privateScalarRelations_val
   rw [privateScalarRelations,LinearMap.comp_apply,privateEvenCoefficientMap_val]
   rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem scalarBiform_polynomial (v : Forms K h 0 ⊗[K] Forms K m d) :
     sumBiformMap v=rename Sum.inr ((scalarBiformEquiv (h := h)).symm v).val := by
   obtain ⟨a,rfl⟩ := (scalarBiformEquiv (K := K) (h := h) (n := m) (d := d)).surjective v
@@ -35,6 +37,7 @@ theorem scalarBiform_polynomial (v : Forms K h 0 ⊗[K] Forms K m d) :
   change rename Sum.inl (C (1 : K))*rename Sum.inr a.val=_
   simp
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem privateScalarRelations_component
     (G : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
@@ -49,6 +52,7 @@ theorem privateScalarRelations_component
   simpa only [Nat.add_zero] using
     weighted_component_mul_homogeneous (blockWeight h m) (G i).val (sumBiformMap (v i)) t 0 hv
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem mixedScalarRelations_other (hd : Odd d) (ht1 : t≠1) (htd : t≠d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
@@ -57,6 +61,7 @@ theorem mixedScalarRelations_other (hd : Odd d) (ht1 : t≠1) (htd : t≠d)
   rw [privateScalarRelations_component]
   simp only [mixedPureOddGenerator_other hd ht1 htd,zero_mul,Finset.sum_const_zero]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem mixedScalarRelations_bottom (hd : Odd d) (hd1 : 1<d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
@@ -66,6 +71,7 @@ theorem mixedScalarRelations_bottom (hd : Odd d) (hd1 : 1<d)
   rw [privateScalarRelations_component]
   simp only [mixedPureOddGenerator_bottom hd hd1]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem mixedScalarRelations_top (hd : Odd d) (hd1 : 1<d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d) :

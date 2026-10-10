@@ -15,7 +15,7 @@ of that quotient and its actual dimension bound. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily QuotientCovectorKernel
@@ -26,6 +26,7 @@ variable {K P V W W₀ : Type} [Field K] [Infinite K]
   [AddCommGroup W₀] [Module K W₀]
 variable {q s : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_detecting_vectors {X : Type} [AddCommGroup X] [Module K X]
     [FiniteDimensional K X] (hs : finrank K X ≤ s) :
     ∃ Z : Fin s → X,∀ ell : X →ₗ[K] K,(∀ i,ell (Z i)=0) → ell=0 := by
@@ -39,6 +40,7 @@ theorem exists_detecting_vectors {X : Type} [AddCommGroup X] [Module K X]
   have hz := hell (i.castLE hs)
   simpa only [Z,Fin.coe_castLE,dif_pos i.isLt,LinearMap.zero_apply] using hz
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem kernel_avoidance_quotient_slices
     (mu : P →ₗ[K] V →ₗ[K] W) (B : Fin q → V →ₗ[K] W)
     (bottom : (W →ₗ[K] K) →ₗ[K] (W₀ →ₗ[K] K))

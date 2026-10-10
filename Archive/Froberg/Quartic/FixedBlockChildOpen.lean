@@ -25,28 +25,35 @@ namespace Quartic.FixedBlockChildOpen
 open Module MvPolynomial RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 open UniformEndpoint AugmentedGeneric
 variable {K : Type*} [Field K] {m c q : ℕ}
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev ChildIndex (m q : ℕ) := Fin q × Fin (FormCount m 2)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def decode : (ChildIndex m q → K) →ₗ[K] (Fin q → Forms K m 2) :=
   LinearMap.pi fun i => finiteEquiv.symm.toLinearMap.comp
     (LinearMap.funLeft K K (fun j => (i,j)))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def encodeChild (h : Fin q → Forms K m 2) : ChildIndex m q → K :=
   fun i => finiteEquiv (h i.1) i.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem decode_encode (h : Fin q → Forms K m 2) : decode (encodeChild h) = h := by
   funext i
   exact finiteEquiv.symm_apply_apply (h i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem encode_decode (a : ChildIndex m q → K) : encodeChild (decode a) = a := by
   funext i
   exact congrFun (finiteEquiv.apply_symm_apply (fun j => a (i.1,j))) i.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem decode_surjective : Function.Surjective (decode (K := K) (m := m) (q := q)) :=
   fun h => ⟨encodeChild h,decode_encode h⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The original full coefficient point is recovered from its actual three families. -/
 theorem encode_recover (a : ParameterIndex m c q → K) :
     encode (coefficientMixed a) (coefficientChild a) (coefficientMotions a) = a := by
@@ -60,6 +67,7 @@ theorem encode_recover (a : ParameterIndex m c q → K) :
       (fun s => a (Sum.inr (j.1,s)))) j.2 = _
     rw [LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- With mixed coefficients and motions fixed, every original coefficient is polynomial in child coordinates. -/
 theorem coordinate_polynomial (g : Fin c → MiddleCoordinates.Mixed K m)
     (r : Fin 4 → Forms K m 2) (j : ParameterIndex m c q) :
@@ -74,19 +82,23 @@ theorem coordinate_polynomial (g : Fin c → MiddleCoordinates.Mixed K m)
   | inr j =>
     exact ⟨C ((formsBasis K m 2).equivFun (r j.1) j.2),fun a => by simp [encode]⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def coordinatePolynomial (g : Fin c → MiddleCoordinates.Mixed K m)
     (r : Fin 4 → Forms K m 2) (j : ParameterIndex m c q) :
     MvPolynomial (ChildIndex m q) K := Classical.choose (coordinate_polynomial g r j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem eval_coordinatePolynomial (g : Fin c → MiddleCoordinates.Mixed K m)
     (r : Fin 4 → Forms K m 2) (a : ChildIndex m q → K) (j : ParameterIndex m c q) :
     eval a (coordinatePolynomial g r j) = encode g (decode a) r j :=
   Classical.choose_spec (coordinate_polynomial g r j) a
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def pullback (g : Fin c → MiddleCoordinates.Mixed K m) (r : Fin 4 → Forms K m 2)
     (D : MvPolynomial (ParameterIndex m c q) K) : MvPolynomial (ChildIndex m q) K :=
   aeval (coordinatePolynomial g r) D
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem eval_pullback (g : Fin c → MiddleCoordinates.Mixed K m)
     (r : Fin 4 → Forms K m 2) (D : MvPolynomial (ParameterIndex m c q) K)
     (a : ChildIndex m q → K) : eval a (pullback g r D) = eval (encode g (decode a) r) D := by
@@ -97,6 +109,7 @@ def pullback (g : Fin c → MiddleCoordinates.Mixed K m) (r : Fin 4 → Forms K 
     exact eval_coordinatePolynomial g r a i
   rw [he]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Fix one mixed presentation on the common expansion locus. One child-only principal open
 then preserves all block conditions and imposes the actual upper-child flag. -/
 theorem exists_fixed_open [CharZero K] [IsAlgClosed K] (m : ℕ) (hm : 41 ≤ m) (upper : Bool)

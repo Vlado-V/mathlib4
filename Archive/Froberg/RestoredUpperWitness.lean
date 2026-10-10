@@ -17,12 +17,13 @@ additional quadratic slots. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f e : ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredOuterEndpoint_renamed (hdp : 1≤d) (hd : d%2=0)
     {J : Finset ℕ} {counts : ℕ → ℕ}
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -37,6 +38,7 @@ theorem restoredOuterEndpoint_renamed (hdp : 1≤d) (hd : d%2=0)
   rw [hc] at hh
   exact hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredUpperPoint (hd : 3≤d)
     (p : PreparedTarget.Space m d q f (finrank K (Forms K h d))
       (allEvenIndices d) (allEvenCount d h m e) O)
@@ -45,6 +47,7 @@ def restoredUpperPoint (hd : 3≤d)
       (allEvenCount d h m (e+finrank K (Forms K h d))) O :=
   ((extendQuadratic hd h m e _ p.1,U),p.2.1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_upper_point_contains (hd : 3≤d) (he : d%2=0)
     (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
     (idx : Fin r ≃ Label q (allEvenIndices d)
@@ -96,6 +99,7 @@ theorem restored_upper_point_contains (hd : 3≤d) (he : d%2=0)
     simp only [Pi.zero_apply,Submodule.coe_zero,map_zero,zero_add,add_zero]
     rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_upper_point_surjective (hd : 3≤d) (he : d%2=0)
     (hO : ∀ j∈allEvenIndices d,O j≤Forms K h j)
     (idx : Fin r ≃ Label q (allEvenIndices d)

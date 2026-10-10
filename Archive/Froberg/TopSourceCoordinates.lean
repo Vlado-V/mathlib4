@@ -13,13 +13,14 @@ pure coefficient used by the ambient target-growth projection. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u b : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem oddHigherBlocksEquiv_mk (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -31,6 +32,7 @@ theorem oddHigherBlocksEquiv_mk (hd : Odd d) (hd3 : 3≤d)
       (coordinateRelation (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r).mkQ (v r) := rfl
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem oddMixedSourceBlockCoordinates_higher (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -47,6 +49,7 @@ theorem oddMixedSourceBlockCoordinates_higher (hd : Odd d) (hd3 : 3≤d)
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r).mkQ
           (oddBiformCoordinatesEquiv v r.val) := rfl
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem oddHigherPureEquiv_top_component (hdp : 1≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hdp}) (hr : 2*r.val.val+1=d)
     (v : biformParitySpace K h m d 1) :
@@ -60,6 +63,7 @@ theorem oddHigherPureEquiv_top_component (hdp : 1≤d)
   rw [←h1,sumBiformMap_topRowScalarCoefficient,oddBiformCoordinatesEquiv_component,
     biformTensorComponent_spec,hr]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem oddMixedSourceBlockCoordinates_top_projection (hd : Odd d) (hd3 : 3≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

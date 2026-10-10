@@ -17,9 +17,10 @@ noncomputable section
 namespace Quartic.TraceTranspose
 open Module MvPolynomial
 variable {K : Type*} [Field K] {n d m c : ℕ}
-set_option maxHeartbeats 400000
+
 set_option backward.isDefEq.respectTransparency false
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 private theorem basis_transport_repr {V ι : Type*} [AddCommGroup V] [Module K V]
     (P Q : Submodule K V) (h : P = Q) (b : Basis ι K Q) (L : ι → V → K)
     (hb : ∀ p i, b.repr p i = L i p.val) (p : P) (i : ι) :
@@ -27,6 +28,7 @@ private theorem basis_transport_repr {V ι : Type*} [AddCommGroup V] [Module K V
   subst Q
   exact hb p i
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem formsBasis_equivFun_coeff (p : Forms K n d) (s : Sym (Fin n) d) :
     (formsBasis K n d).equivFun p s = p.val.coeff (exponentEquiv n d s).val := by
   rw [Basis.equivFun_apply]
@@ -35,6 +37,7 @@ theorem formsBasis_equivFun_coeff (p : Forms K n d) (s : Sym (Fin n) d) :
     ((basisRestrictSupport K {e : Fin n →₀ ℕ | e.degree = d}).reindex (exponentEquiv n d).symm)
     (fun s p => p.coeff (exponentEquiv n d s).val) (fun _ _ => rfl) p s
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem exponentEquiv_one (i : Fin n) :
     (exponentEquiv n 1 (Sym.oneEquiv i)).val = Finsupp.single i 1 := by
   classical
@@ -43,11 +46,13 @@ theorem exponentEquiv_one (i : Fin n) :
   rw [Sym.coe_equivNatSum_apply_apply]
   simp [Sym.oneEquiv_apply,Finsupp.single_apply,Multiset.count_singleton,eq_comm]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem formsBasis_equivFun_one (p : Forms K n 1) (i : Fin n) :
     (formsBasis K n 1).equivFun p (Sym.oneEquiv i) = p.val.coeff (Finsupp.single i 1) := by
   rw [formsBasis_equivFun_coeff,exponentEquiv_one]
 
 open FreeCoefficients
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 private theorem child_rename_exponent (b : Fin m →₀ ℕ) :
     b.mapDomain (Fin.natAdd 3) = mergeExponent (0 : Fin 3 →₀ ℕ) b := by
   ext s
@@ -63,6 +68,7 @@ private theorem child_rename_exponent (b : Fin m →₀ ℕ) :
     rw [Finsupp.mapDomain_apply_of_injective (Fin.natAdd_injective m 3)]
     simp
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem freeCoeff_child_rename (p : Poly K m) (b : Fin m →₀ ℕ) :
     freeCoeff (t := 3) b (rename (Fin.natAdd 3) p) = C (p.coeff b) := by
   classical
@@ -75,6 +81,7 @@ theorem freeCoeff_child_rename (p : Poly K m) (b : Fin m →₀ ℕ) :
     change C (p.coeff b) + C (q.coeff b) = C (p.coeff b + q.coeff b)
     exact (MvPolynomial.C_add (σ := Fin 3) (a := p.coeff b) (a' := q.coeff b)).symm
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem traceCoordinates_val (g : MiddleCoordinates.Mixed K m) (l : Fin m) :
     (SplitBlock22.traceCoordinates g l).val =
       ∑ i : Fin 3, X i * C ((g i).val.coeff (Finsupp.single l 1)) := by
@@ -84,6 +91,7 @@ theorem traceCoordinates_val (g : MiddleCoordinates.Mixed K m) (l : Fin m) :
   intro i _
   rw [freeCoeff_core_X_mul,freeCoeff_child_rename]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem traceCoordinates_coeff (g : MiddleCoordinates.Mixed K m) (l : Fin m) (i : Fin 3) :
     (SplitBlock22.traceCoordinates g l).val.coeff (Finsupp.single i 1) =
       (g i).val.coeff (Finsupp.single l 1) := by
@@ -91,6 +99,7 @@ theorem traceCoordinates_coeff (g : MiddleCoordinates.Mixed K m) (l : Fin m) (i 
   rw [traceCoordinates_val,coeff_sum]
   simp [mul_comm (X _) (C _),coeff_C_mul,coeff_X,Finsupp.single_left_inj,eq_comm]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem traceCoordinates_eq_transpose (g : Fin c → MiddleCoordinates.Mixed K m) (j : Fin c) :
     SplitBlock22.traceCoordinates (g j) = SimultaneousBlockConditions.transposeMixed g j := by
   funext l

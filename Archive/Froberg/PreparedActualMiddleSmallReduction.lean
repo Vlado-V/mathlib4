@@ -14,18 +14,20 @@ fixed appended columns, satisfy every finite small-degree witness bound. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem allEvenCount_off_two_four_small {d : ℕ} (hd8 : d≤8)
     (h n e : ℕ) {j : ℕ} (hj2 : j≠2) (hj4 : j≠4) : allEvenCount d h n e j=0 := by
   apply allEvenCount_inactive
   simp only [activeEvenIndices,if_pos hd8,Finset.mem_filter,Finset.mem_insert,Finset.mem_singleton]
   tauto
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem eventually_middle_quartic_diagonal_capacity_shift {d : ℕ} (hd : 5≤d) (hd8 : d≤8) :
     ∀ᶠ h : ℕ in atTop,∀ z : ℕ,∀ᶠ n : ℕ in atTop,
       higherGeneratorCount d h (n+z) 4≤
@@ -39,6 +41,7 @@ theorem eventually_middle_quartic_diagonal_capacity_shift {d : ℕ} (hd : 5≤d)
     intro z
     simpa only [if_neg hd5,Nat.add_zero] using hh z 0
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
     (hd : 5≤d) (hd8 : d≤8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →
@@ -130,6 +133,7 @@ theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
   · exact fun h => hs6 h (d-2)
   · exact fun h => hs8 h (2*((d-4)/2))
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_small_reduction_open_shift_uniform {d : ℕ}
     (hd : 5≤d) (hd8 : d≤8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →

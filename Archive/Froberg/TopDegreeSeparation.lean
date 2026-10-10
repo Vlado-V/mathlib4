@@ -13,12 +13,13 @@ explicit degree equalities 1+(d-1)=d. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module TensorProduct Quartic Quartic.SplitTensor
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m a b c e d q f n : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem biformDegreeTransport_disjoint
     (ha : a=b) (hc : c=e)
     (P : Submodule K (Forms K h b)) (Q : Submodule K (Forms K m e))
@@ -38,6 +39,7 @@ theorem biformDegreeTransport_disjoint
   rw [ht,Submodule.map_id]
   simpa only [hx,hy,Submodule.map_id] using hE
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem top_degree_separation (hd : 1 ≤ d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin n → K))
     (Q : Fin q → Forms K m d)

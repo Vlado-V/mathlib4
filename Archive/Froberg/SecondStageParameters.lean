@@ -14,12 +14,13 @@ first-stage vectors quantified and only the common final parameters chosen. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open MvPolynomial Matrix Quartic Quartic.KernelPolynomialCharts
 variable {K : Type*} [Field K] [Infinite K]
 variable {q N s fcount a b n l r₁ r₂ : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem principal_open_second_dehom_with_parameters
     {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
     (degrees : Fin fcount → ℕ) (f : ∀ i,Forms K q (degrees i))

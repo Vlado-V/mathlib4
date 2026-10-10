@@ -15,7 +15,7 @@ image. This supplies independent higher-covector conditions in C.4. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic.FilteredImage
 variable {K P : Type*} [Field K] [AddCommGroup P] [Module K P]
@@ -23,17 +23,20 @@ variable {n : ℕ} {V W : Fin n → Type*}
   [∀ i,AddCommGroup (V i)] [∀ i,Module K (V i)]
   [∀ i,AddCommGroup (W i)] [∀ i,Module K (W i)]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def blockBilinear (mu : (i : Fin n) → P →ₗ[K] V i →ₗ[K] W i) :
     P →ₗ[K] ((i : Fin n) → V i) →ₗ[K] ((i : Fin n) → W i) where
   toFun p := LinearMap.pi fun i => (mu i p).comp (LinearMap.proj i)
   map_add' p q := by ext v i; simp
   map_smul' c p := by ext v i; simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem blockBilinear_apply
     (mu : (i : Fin n) → P →ₗ[K] V i →ₗ[K] W i)
     (p : P) (v : (i : Fin n) → V i) (i : Fin n) :
     blockBilinear mu p v i=mu i p (v i) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every diagonal image in an initial source piece occurs as an actual
 initial target image, even when the original source subspace is a graph. -/
 theorem blockBilinear_initial_image
@@ -53,6 +56,7 @@ theorem blockBilinear_initial_image
   · change mu i p (x i)=mu i p v
     rw [hxi]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The higher-layer condition ranks add: their coefficient blocks have
 distinct leading target degrees. -/
 theorem blockBilinear_image_finrank [∀ i,FiniteDimensional K (W i)]
@@ -66,6 +70,7 @@ theorem blockBilinear_image_finrank [∀ i,FiniteDimensional K (W i)]
       exact Finset.sum_le_sum (fun i _ => Submodule.finrank_mono (blockBilinear_initial_image mu L i))
     _ = _ := sum_initialPiece_finrank W _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem blockBilinear_weighted_growth [∀ i,FiniteDimensional K (V i)]
     [∀ i,FiniteDimensional K (W i)]
     (mu : (i : Fin n) → P →ₗ[K] V i →ₗ[K] W i) (rate : Fin n → ℕ)

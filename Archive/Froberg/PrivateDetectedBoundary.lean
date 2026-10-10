@@ -14,12 +14,13 @@ private coefficient into a literal constant private Koszul boundary. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z s b h c q t : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem biformVectorDetector_private
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (o : Fin h → MvPolynomial σ K) (w : Fin b → MvPolynomial σ K)
@@ -48,6 +49,7 @@ theorem biformVectorDetector_private
   rw [he,biformVectorDetector_tmul,hA]
   rw [←smul_mul_assoc,smul_monomial,smul_eq_mul,mul_one]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A literal polynomial row has a constant private Koszul boundary whenever
 its nonprivate quadratic-output term is killed by the selected detector. -/
 theorem private_first_row_boundary

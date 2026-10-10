@@ -15,12 +15,13 @@ choice of the pure top forms. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f u t : ℕ} {G : ℝ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_odd_cycles_open (hh : 0<h) (hm : 0 < m) (hd : 3≤d) (hdodd : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)

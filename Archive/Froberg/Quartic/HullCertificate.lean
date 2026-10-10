@@ -28,7 +28,7 @@ namespace Quartic.HullCertificate
 open Quartic.Counts Quartic.FiniteCounts Quartic.ProfileCertificate
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- All 380 configurations, linked to the sign-certified endpoint table. -/
 theorem all_configurations_verified (index : Fin 190) (upper : Bool) :
     let m := (index : ℕ) + 130

@@ -17,14 +17,16 @@ noncomputable section
 namespace Quartic.SmallTransfer
 open Module UniformEndpoint ActualSmallMotionAvoidance ActualDeformationColumns
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parent_count (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     4+(mixedCount m upper+upperEndpoint m)=parentCount m upper := by
   have hc := (EndpointBlockConditions.structural_counts m hm upper).1
   unfold mixedCount at hc ⊢
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- At either actual parent endpoint the shared child data and exact deformation
 produce an independent quadratic family with the asserted quartic dimension. -/
 theorem parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
@@ -45,6 +47,7 @@ theorem parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bo
   have hw := EndpointReduction.witness_of_ordered f hlin hdim
   simpa only [parent_count m hmlo upper,Nat.add_comm 3 m] using hw
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- This is a genuine transfer of the complete actual generic statement,
 with the child premise explicit and all parent generator counts covered. -/
 theorem transfer (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)

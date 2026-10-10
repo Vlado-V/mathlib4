@@ -16,12 +16,13 @@ generator has been replaced by a scalar-plus-positive generator. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K] {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Add the odd projection as a fixed summand, so even coverage is ordinary
 surjectivity onto the full homogeneous space. -/
 def evenCoverageMap (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
@@ -29,6 +30,7 @@ def evenCoverageMap (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
     ((D × (Fin r → Forms K n d)) × Forms K n (2*d)) →ₗ[K] Forms K n (2*d) :=
   (D.subtype.coprod (endpointMultiplication q)).coprod (parityForm w 1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenCoverageMap_surjective_of_coverage
     (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
     (q : Fin r → Forms K n d)
@@ -41,6 +43,7 @@ theorem evenCoverageMap_surjective_of_coverage
   rw [he]
   exact parityForm_decomposition w 0 p
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenCoverageMap_coverage_of_surjective
     (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
     (e : Fin r → ZMod 2) (q : Fin r → Forms K n d)
@@ -62,6 +65,7 @@ theorem evenCoverageMap_coverage_of_surjective
   rw [←he]
   exact Submodule.add_mem_sup z.property ⟨paritySource w e 0 a,rfl⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenCoverageMap_polynomial {I : Type*}
     (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
     (q : (I → K) → Fin r → Forms K n d) (hq : IsPolynomialFamily q) :
@@ -78,6 +82,7 @@ theorem evenCoverageMap_polynomial {I : Type*}
   exact ((isPolynomialFamily_const x.1.1.val).add he).add
     (isPolynomialFamily_const (parityForm w 1 x.2))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem even_coverage_principal_open {I : Type*}
     (D : Submodule K (Forms K n (2*d))) (w : Fin n → ZMod 2)
     (e : Fin r → ZMod 2) (q : (I → K) → Fin r → Forms K n d)

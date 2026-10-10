@@ -16,30 +16,34 @@ homology from all distinguished coefficients over arbitrary characteristic. -/
 noncomputable section
 namespace Quartic.AugmentedMiddleOmega
 open Module MvPolynomial HomologyCoordinates AugmentedMiddle
-set_option maxHeartbeats 600000
+
 variable {K : Type*} [Field K]
 
 section LinearAlgebra
 variable {V A : Type*} [AddCommGroup V] [Module K V]
   [AddCommGroup A] [Module K A]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 def augmentedMap (ω : K) (f : V →ₗ[K] A) (r : Fin 4 → A) :
     (V × (A × BlockHomology K)) →ₗ[K] A × A :=
   (f.prod 0).coprod (((ω • LinearMap.id : A →ₗ[K] A).prod (-LinearMap.id)).coprod
     (pureTrace r))
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 @[simp] theorem augmentedMap_apply (ω : K) (f : V →ₗ[K] A) (r : Fin 4 → A)
     (b : V) (a : A) (ξ : BlockHomology K) :
     augmentedMap ω f r (b, a, ξ) =
       (f b + ω • a + (pureTrace r ξ).1, -a + (pureTrace r ξ).2) := by
   apply Prod.ext <;> simp [augmentedMap, add_assoc]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem pureTrace_contract (ω : K) (r : Fin 4 → A) (ξ : BlockHomology K) :
     (pureTrace r ξ).1 + ω • (pureTrace r ξ).2 =
       ∑ i, ThreeBlockOmega.scalarCoefficientMap ω ξ i • r i := by
   simp [pureTrace, ThreeBlockOmega.scalarCoefficientMap, Finset.smul_sum,
     smul_smul, add_smul, Finset.sum_add_distrib]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem augmentedMap_injective (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (f : V →ₗ[K] A) (hf : Function.Injective f) (r : Fin 4 → A)
     (hr : LinearIndependent K (fun i : Fin 3 => f.range.mkQ (r i.castSucc))) :
@@ -88,11 +92,13 @@ theorem augmentedMap_injective (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
   change (b, a, homologyEquiv t) = 0
   simp [hb, ha, ht]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 def augmentedOnSubspace (ω : K) (f : V →ₗ[K] A) (r : Fin 4 → A) (U : Submodule K A) :
     (V × (U × BlockHomology K)) →ₗ[K] A × A :=
   (augmentedMap ω f r).comp
     ((LinearMap.id : V →ₗ[K] V).prodMap (U.subtype.prodMap LinearMap.id))
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem augmentedOnSubspace_injective (ω : K) (f : V →ₗ[K] A) (r : Fin 4 → A)
     (h : Function.Injective (augmentedMap ω f r)) (U : Submodule K A) :
     Function.Injective (augmentedOnSubspace ω f r U) := by
@@ -105,6 +111,7 @@ theorem augmentedOnSubspace_injective (ω : K) (f : V →ₗ[K] A) (r : Fin 4 �
 
 variable [FiniteDimensional K A]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem exists_motions (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (f : V →ₗ[K] A) (hf : Function.Injective f)
     (hbudget : finrank K V + 3 ≤ finrank K A) :
@@ -123,6 +130,7 @@ theorem exists_motions (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     fin_cases i <;> exact hv _
   exact he ▸ hs
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem exists_quotient_motions (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (f : V →ₗ[K] A) (hf : Function.Injective f) (q : ℕ)
     (hbudget : q + finrank K V + 3 ≤ finrank K A) :
@@ -138,6 +146,7 @@ theorem exists_quotient_motions (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
 
 end LinearAlgebra
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem augmented_witness {m c q : ℕ} (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (hc : c ≤ m) (hbudget : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2) :
     LinearIndependent K (mixedFamily (K := K) hc) ∧

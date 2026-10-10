@@ -14,22 +14,25 @@ the full fixed-pure parameter space, for every fixed pure private tuple. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.FullPreparedParameters
 open Froberg Module MvPolynomial Filter PreparedParameters
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 local instance countedPrivatePreparedFrameFinite {h H m d q f u : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts (privateFrameOutputs frame)) :=
   finite_fixedPureZeroScalarSpace (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 local instance countedPrivatePreparedWitnessFinite {h H m d q : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (PreparedParameters.Space m d q J counts (privateFrameOutputs frame)) :=
   PreparedParameters.finite_space (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The scalar threshold precedes the frame, outer multiplicity, label
 identification, and fixed pure tuple. Only the frame-open polynomial and
 the private witness columns are selected at the intermediate stage. -/

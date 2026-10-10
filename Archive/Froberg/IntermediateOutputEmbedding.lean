@@ -15,12 +15,13 @@ output space into a larger output space. The extra scalar summands are free. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg.AttachedMultiplication
 open Module MvPolynomial
 variable {K I J H : Type*} [Field K] [Fintype I] [Fintype J] [Fintype H]
 variable {n s d q : ℕ}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 private def coefficientMultiply (f : Forms K n d) : Forms K n s →ₗ[K] Forms K n (s+d) where
   toFun p := ⟨f.val*p.val,by
     change (f.val*p.val).IsHomogeneous (s+d)
@@ -28,11 +29,13 @@ private def coefficientMultiply (f : Forms K n d) : Forms K n s →ₗ[K] Forms 
   map_add' p p' := Subtype.ext (mul_add _ _ _)
   map_smul' c p := Subtype.ext (mul_smul_comm _ _ _)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 private theorem vectorOutputMap_vectorMultiply
     (L : (J → K) →ₗ[K] (H → K)) (f : Forms K n d) (p : J → Forms K n s) :
     vectorOutputMap L (vectorMultiply f p) = vectorMultiply f (vectorOutputMap L p) :=
   vectorOutputMap_natural L (coefficientMultiply f) p
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 private theorem homogeneousMultiplication_sum
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
     (p : I → Forms K n d) :
@@ -48,6 +51,7 @@ private theorem homogeneousMultiplication_sum
   change monomial (e i) (v i j)*(p i).val = v i j • (monomial (e i) 1*(p i).val)
   rw [← smul_mul_assoc,smul_monomial,smul_eq_mul,mul_one]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem vectorOutputMap_homogeneousMultiplication
     (L : (J → K) →ₗ[K] (H → K))
     (e : I → Fin n →₀ ℕ) (v : I → J → K) (he : ∀ i,(e i).degree=s)
@@ -59,6 +63,7 @@ theorem vectorOutputMap_homogeneousMultiplication
   intro i hi
   exact vectorOutputMap_pure L (v i) _
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem vectorOutputMap_scalarFamily
     (L : (J → K) →ₗ[K] (H → K)) (Q : Fin q → Forms K n d)
     (p : Fin q → J → Forms K n s) :
@@ -66,6 +71,7 @@ theorem vectorOutputMap_scalarFamily
       BilinearScalarFamily.multiplication vectorMultiply Q (fun i => vectorOutputMap L (p i)) := by
   simp only [BilinearScalarFamily.multiplication_apply,map_sum,vectorOutputMap_vectorMultiply]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Embedding an output space adds only free scalar summands, so it creates no
 new row relations whenever the scalar family itself is injective. -/
 theorem intermediateRow_ker_output_embedding

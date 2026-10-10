@@ -16,7 +16,7 @@ namespace Quartic.MarkedEndpointBudget
 open Counts UniformEndpoint UniformScalar
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem finite_table : ∀ i : Fin 292, ∀ upper : Bool,
     let m := (i : ℕ) + 28
     let c := FiniteCounts.mixedCount m upper

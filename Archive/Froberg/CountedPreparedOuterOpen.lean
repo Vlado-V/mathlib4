@@ -17,13 +17,14 @@ pure private tuple selected later. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Filter MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters PrivateColumns
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def HasUniformPreparedOuterOpen {h n d q f u : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
     (hd : 0<d) (ho : d%2=1)
@@ -37,6 +38,7 @@ def HasUniformPreparedOuterOpen {h n d q f u : ℕ}
       eval ((Module.finBasis K _).equivFun p) D≠0 →
         PreparedOuterSeparation hd ho hO hJ heven U p
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_prepared_outer_open_from_shared_detector {d h : ℕ}
     (hd : 3≤d) (ho : d%2=1) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
@@ -77,6 +79,7 @@ theorem eventually_prepared_outer_open_from_shared_detector {d h : ℕ}
     (Function.Embedding.refl (Fin u)) hker' Q hQ o hdet C hCdeg hC hCQ
     (by simpa only [Fintype.card_fin] using hcap)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_counted_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=1) :
     ∀ᶠ h : ℕ in atTop, ∀ (r f : ℕ → ℕ),
       Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
@@ -109,6 +112,7 @@ theorem eventually_counted_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=
   exact hn J counts O hO hJ heven hmin idx _ e L w o
     (hO₂.trans (quadraticPolynomialDetector_frame frame L hL)) hdet hker
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_allEven_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=1) :
     ∀ᶠ h : ℕ in atTop, ∀ (e f : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →

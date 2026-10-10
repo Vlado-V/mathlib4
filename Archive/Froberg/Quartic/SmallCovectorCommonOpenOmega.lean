@@ -13,13 +13,14 @@ public import Archive.Froberg.Quartic.EndpointF13AllRangeOmega
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Quartic.SmallCovectorCommonOpenOmega
 open Module MvPolynomial UniformEndpoint ProfileCertificate ConvolutionClosedSlices
 open RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 open BilinearCoefficientKernel BilinearCovectorCharts SmallCovectorCommonOpen
 variable {K : Type*} [Field K] (ω : K)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The closed covector sections and every checked block/F13/cubic condition
 hold on one nonempty open, using identical mixed and child coefficients. -/
 theorem common_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
@@ -52,6 +53,7 @@ theorem common_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40
   obtain ⟨hblock,hf13,hcubic⟩ := hB (baseProjection p) hb'
   exact ⟨hblock,hf13,hcubic,hA p hp.1⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The common coefficient locus may be intersected with any prescribed
 nonempty principal open on the full base coefficients. -/
 theorem common_open_with [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)

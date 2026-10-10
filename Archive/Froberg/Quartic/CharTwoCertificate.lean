@@ -16,15 +16,18 @@ noncomputable section
 namespace Quartic.CharTwoCertificate
 open Module MvPolynomial Matrix
 open FiniteEndpointChecker FiniteEndpointCheckerPolynomial FiniteEndpointCertificate
-set_option maxHeartbeats 2000000
+
 
 variable {K : Type*} [Field K] [CharP K 2]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def binaryMap : ZMod 2 →+* K := ZMod.castHom (dvd_refl 2) K
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem binaryMap_injective : Function.Injective (binaryMap (K := K)) :=
   ZMod.castHom_injective K
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem binaryMap_sparseRow {N : ℕ} (s : List (Fin N)) (j : Fin N) :
     binaryMap (K := K) (sparseRow s j) =
       ((s.map (fun i => Pi.single i (1 : K))).sum) j := by
@@ -36,6 +39,7 @@ theorem binaryMap_sparseRow {N : ℕ} (s : List (Fin N)) (j : Fin N) :
     rw [ih]
     simp [Pi.single_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem rows_independent {N : ℕ} (A : Fin N → List (Fin N)) (B : Fin N → ℕ)
     (h : checkInverse A B = true) :
     LinearIndependent K (fun i => ((A i).map (fun j => Pi.single j (1 : K))).sum) := by
@@ -50,6 +54,7 @@ theorem rows_independent {N : ℕ} (A : Fin N → List (Fin N)) (B : Fin N → �
     exact binaryMap_sparseRow (A i) j
   rwa [he] at hi
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem polynomials_independent {N n : ℕ}
     (p : Fin N → Poly K n) (E : Fin N → Fin n →₀ ℕ)
     (A : Fin N → List (Fin N)) (B : Fin N → ℕ) (h : checkInverse A B = true)
@@ -62,6 +67,7 @@ theorem polynomials_independent {N n : ℕ}
       (fun i => ((A i).map (fun j => Pi.single j (1 : K))).sum) from funext hc]
   exact rows_independent A B h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coefficients_rowPolynomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     (hE : Function.Injective E) (s : List (Fin N)) :
     (fun j => (rowPolynomial (K := K) E s).coeff (E j)) =
@@ -79,6 +85,7 @@ theorem coefficients_rowPolynomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     rw [hij]
     simp [Pi.single_apply, eq_comm]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem sparse_count {N : ℕ} (s : List (Fin N)) (j : Fin N) :
     (s.map (fun i => Pi.single i (1 : K))).sum j = (s.count j : K) := by
   classical
@@ -94,11 +101,13 @@ theorem sparse_count {N : ℕ} (s : List (Fin N)) (j : Fin N) :
     · rw [List.count_cons_of_ne h]
       simp [Pi.single_apply, h, Ne.symm h]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem rowPolynomial_coeff_count {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     (hE : Function.Injective E) (s : List (Fin N)) (j : Fin N) :
     (rowPolynomial (K := K) E s).coeff (E j) = (s.count j : K) := by
   rw [congrFun (coefficients_rowPolynomial E hE s) j, sparse_count]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem rowPolynomial_mul_monomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     (s : List (Fin N)) (e : Fin n →₀ ℕ) :
     rowPolynomial (K := K) E s * monomial e 1 =
@@ -109,6 +118,7 @@ theorem rowPolynomial_mul_monomial {N n : ℕ} (E : Fin N → Fin n →₀ ℕ)
     simp only [rowPolynomial, List.map_cons, List.sum_cons, add_mul, monomial_mul_monomial, one_mul]
     exact congrArg (fun z => monomial (E i + e) (1 : K) + z) ih
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem product_mem_range {n r : ℕ} (q : Fin r → Forms K n 2) (i : Fin r)
     (a : Forms K n 2) : mulQuadratic (q i) a ∈ LinearMap.range (quadraticMultiplication q) := by
   classical
@@ -121,6 +131,7 @@ theorem product_mem_range {n r : ℕ} (q : Fin r → Forms K n 2) (i : Fin r)
     simp [hji]
   · simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem rank_lower_bound {n r s : ℕ} (q : Fin r → Forms K n 2)
     (f : Fin s → Forms K n 4) (hf : LinearIndependent K f)
     (hmem : ∀ i, f i ∈ LinearMap.range (quadraticMultiplication q)) :
@@ -132,6 +143,7 @@ theorem rank_lower_bound {n r s : ℕ} (q : Fin r → Forms K n 2)
 variable {n lo hi b₂ b₄ L : ℕ} (D : Data n lo hi b₂ b₄ L)
 include D
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem product_identity (i : Fin b₄) : D.product (K := K) i =
     mulQuadratic (D.quadrics (D.selected i).1) (D.multiplier (D.selected i).2) := by
   apply Subtype.ext
@@ -142,6 +154,7 @@ theorem product_identity (i : Fin b₄) : D.product (K := K) i =
   have h := congrArg (fun xs => (xs.map (fun z => monomial z (1 : K))).sum) (D.product_supports i)
   simpa only [List.map_map, Function.comp_def, rowPolynomial] using h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quadrics_independent : LinearIndependent K (D.quadrics (K := K)) := by
   apply LinearIndependent.of_comp (Forms K n 2).subtype
   apply polynomials_independent
@@ -153,21 +166,25 @@ theorem quadrics_independent : LinearIndependent K (D.quadrics (K := K)) := by
   rw [rowPolynomial_coeff_count D.exponent₂ D.injective₂, sparse_count]
   exact congrArg (fun n : ℕ => (n : K)) (D.quad_counts i j)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem products_independent : LinearIndependent K (D.product (K := K)) := by
   apply LinearIndependent.of_comp (Forms K n 4).subtype
   apply polynomials_independent _ D.exponent₄ D.rows D.inverse D.inverse_checked
   intro i
   exact coefficients_rowPolynomial D.exponent₄ D.injective₄ (D.rows i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem upper_rank : b₄ ≤ finrank K (LinearMap.range (quadraticMultiplication (D.quadrics (K := K)))) := by
   apply rank_lower_bound _ _ (products_independent D)
   intro i
   rw [product_identity D]
   exact product_mem_range _ _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lowerQuadrics_independent : LinearIndependent K (D.lowerQuadrics (K := K)) :=
   (quadrics_independent D).comp (Fin.castLE D.lo_le_hi) (Fin.castLE_injective D.lo_le_hi)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_product_mem (i : Fin L) : D.product (K := K) (D.lowerIndex i) ∈
     LinearMap.range (quadraticMultiplication (D.lowerQuadrics (K := K))) := by
   rw [product_identity D]
@@ -178,11 +195,13 @@ theorem lower_product_mem (i : Fin L) : D.product (K := K) (D.lowerIndex i) ∈
   rw [hj]
   exact product_mem_range _ _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_rank : L ≤ finrank K (LinearMap.range
     (quadraticMultiplication (D.lowerQuadrics (K := K)))) :=
   rank_lower_bound _ _ ((products_independent D).comp D.lowerIndex D.lowerIndex_injective)
     (lower_product_mem D)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_dimension : finrank K (QuarticQuotient K n
     (Submodule.span K (Set.range (fun i => (D.lowerQuadrics (K := K) i).val)))) =
       expectedDimension n lo := by
@@ -193,10 +212,12 @@ theorem lower_dimension : finrank K (QuarticQuotient K n
   rw [D.dimension₄] at hq
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_witness : QuarticWitness K n lo :=
   EndpointReduction.witness_of_ordered (D.lowerQuadrics (K := K))
     (lowerQuadrics_independent D) (lower_dimension D)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem upper_witness : QuarticWitness K n hi := by
   apply EndpointReduction.witness_of_ordered (D.quadrics (K := K)) (quadrics_independent D)
   have hq := quartic_quotient_add_rank (D.quadrics (K := K))
@@ -204,6 +225,7 @@ theorem upper_witness : QuarticWitness K n hi := by
   rw [D.expected_upper, D.dimension₄] at *
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem generic_of_certificate (hadjacent : hi ≤ lo + 1)
     (hlo : 0 ≤ Counts.chi n lo) (hhi : Counts.chi n hi ≤ 0)
     (r : ℕ) (hr : r ≤ (n + 1).choose 2) : GenericQuartic K n r :=

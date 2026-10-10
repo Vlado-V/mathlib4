@@ -18,7 +18,7 @@ its constant Koszul kernel without changing the private columns. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns
@@ -26,6 +26,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 variable {a z d b q h c : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Every actual biform coefficient has basis coordinates, and the selected
 output detector becomes the coordinate private-power map. -/
 theorem typed_private_quadratic_coordinates
@@ -53,6 +54,7 @@ theorem typed_private_quadratic_coordinates
   simpa only [hP,hv] using biformVectorDetector_private T (fun k => (bo k).val)
     (fun i => outputCombination (fun k => (bo k).val) (w i)) ι A hA v
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Scalar/private nuisance coefficients cannot absorb a core product that
 is already separated from the core scalar row. The private part vanishes
 separately as well. -/
@@ -89,6 +91,7 @@ theorem typed_private_quadratic_row_separation (hd : 3≤d)
     ι A (fun i => (Q i).val) C (fun x v hv => hC x v hv) x.1 u v hr
   exact ⟨hh.1,hrow.trans hh.2⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The actual quadratic nuisance row has exactly its constant private
 Koszul boundary as kernel. -/
 theorem typed_private_quadratic_row_exact (hd : 3≤d)

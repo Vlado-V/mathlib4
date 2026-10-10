@@ -19,8 +19,9 @@ noncomputable section
 namespace Froberg.QuadraticNonTwoRecurrence
 open Module Quartic UniformEndpoint QuadraticEndpointCounts
 variable {K : Type} [Field K] [Infinite K]
-set_option maxHeartbeats 1200000
 
+
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem endpoint_defects [IsAlgClosed K] (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (h2 : (2 : K) ≠ 0) :
     (genericHomology K (m+3) 2 (parentCount m upper) : ℤ) ≤ max (genericHomology K m 2 (upperEndpoint m-1) : ℤ)
@@ -40,6 +41,7 @@ theorem endpoint_defects [IsAlgClosed K] (m : ℕ) (hm : 320 ≤ m) (upper : Boo
       _ ≤ (finrank K (QuadraticChildFlag.Coker f):ℤ) := by exact_mod_cast hgC
       _ ≤ _ := hC
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem step_algebraicallyClosed [IsAlgClosed K] (m : ℕ) (hm : 320 ≤ m)
     (h2 : (2 : K) ≠ 0) : criticalDefect K (m+3) 2 ≤ criticalDefect K m 2 := by
   have hlow := (endpoint_defects (K := K) m hm false h2).1
@@ -52,6 +54,7 @@ theorem step_algebraicallyClosed [IsAlgClosed K] (m : ℕ) (hm : 320 ≤ m)
   rw [criticalDefect_eq (by omega : 0 < m+3)]
   omega
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem step (m : ℕ) (hm : 320 ≤ m) (h2 : (2 : K) ≠ 0) :
     criticalDefect K (m+3) 2 ≤ criticalDefect K m 2 := by
   let f := algebraMap K (AlgebraicClosure K)

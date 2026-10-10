@@ -15,18 +15,20 @@ base family, all high terms, the pure tuple, and the outer odd family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev RestoredScalarRest (m d q f : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   ScalarFiberRest m d q J counts O ×
     ((Fin (finrank K (Forms K h d)) → Forms K h d) ×
       PreparedTarget.OuterSpace K (Fin h) m d f)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredScalarFiberCoordinates : RestoredOuterSpace m d q f J counts O ≃ₗ[K]
     PositiveScalars (K := K) m d J counts × RestoredScalarRest m d q f J counts O where
   toFun p := ((scalarFiberCoordinates p.1.1).1,((scalarFiberCoordinates p.1.1).2,p.1.2,p.2))
@@ -45,6 +47,7 @@ def restoredScalarFiberCoordinates : RestoredOuterSpace m d q f J counts O ≃�
   map_add' p p' := rfl
   map_smul' c p := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finite_restoredScalarRest (hO : ∀ j∈J,O j≤Forms K h j) :
     Module.Finite K (RestoredScalarRest m d q f J counts O) := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
@@ -56,23 +59,28 @@ theorem finite_restoredScalarRest (hO : ∀ j∈J,O j≤Forms K h j) :
   change (restoredScalarFiberCoordinates (restoredScalarFiberCoordinates.symm (0,p))).2=p
   rw [LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem restoredScalarFiber_base
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O)
     (i : Fin q) :
     (restoredScalarFiberCoordinates.symm (a,rest)).1.1.1 (Sum.inl i)=rest.1.1 i := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem restoredScalarFiber_high
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O) :
     (restoredScalarFiberCoordinates.symm (a,rest)).1.1.2=rest.1.2 := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem restoredScalarFiber_pure
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O) :
     (restoredScalarFiberCoordinates.symm (a,rest)).1.2=rest.2.1 := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem restoredScalarFiber_outer
     (a : PositiveScalars (K := K) m d J counts) (rest : RestoredScalarRest m d q f J counts O) :
     (restoredScalarFiberCoordinates.symm (a,rest)).2=rest.2.2 := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem principal_open_restored_scalar_fiber_at (hO : ∀ j∈J,O j≤Forms K h j) :
     letI : Module.Finite K (Space m d q J counts O) := finite_space hO
     ∀ (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J counts O))) K)

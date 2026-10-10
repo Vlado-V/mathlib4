@@ -14,12 +14,13 @@ actual odd-cycle exactness has supplied even representatives. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open MvPolynomial
 variable {K : Type} [Field K] {n d r t : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- A span of parity-homogeneous generators is preserved by each monomial projection. -/
 theorem parity_preserves_generator_span
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
@@ -36,6 +37,7 @@ theorem parity_preserves_generator_span
   · rw [parityForm_other w p (e i) (q i) (hq i) he]
     exact Submodule.zero_mem _
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Monomial parity descends to the actual degree-d generator quotient. -/
 def parityGeneratorQuotient
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
@@ -46,6 +48,7 @@ def parityGeneratorQuotient
   (Submodule.span K (Set.range q)).mapQ (Submodule.span K (Set.range q))
     (parityForm w p) (parity_preserves_generator_span w e q hq p)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem parityGeneratorQuotient_mk
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i, (q i).val.IsWeightedHomogeneous w (e i))
@@ -55,6 +58,7 @@ def parityGeneratorQuotient
 
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Odd projection preserves the complete new-generator coefficient map,
 so it cannot introduce an extra coefficient kernel. -/
 theorem projectedHomologyCoefficients_odd
@@ -88,6 +92,7 @@ theorem projectedHomologyCoefficients_odd
       simpa only [hj',show (0 : ZMod 2)-1=1 by decide] using ha j
     rw [parityForm_same w 1 (a.val j) hjpar]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The odd projection therefore preserves the actual retained coefficient kernel. -/
 theorem projectedHomologyCoefficients_odd_kernel
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)

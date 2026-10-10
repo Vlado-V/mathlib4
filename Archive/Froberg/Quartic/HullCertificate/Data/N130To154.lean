@@ -38,7 +38,7 @@ private def data_130_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_130_lower : ConfigurationBounds 130 1617 69 := by
   apply configuration_of_cells 130 1617 69 data_130_lower
   decide +kernel
@@ -63,7 +63,7 @@ private def data_130_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_130_upper : ConfigurationBounds 130 1617 70 := by
   apply configuration_of_cells 130 1617 70 data_130_upper
   decide +kernel
@@ -88,7 +88,7 @@ private def data_131_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_131_lower : ConfigurationBounds 131 1641 70 := by
   apply configuration_of_cells 131 1641 70 data_131_lower
   decide +kernel
@@ -113,7 +113,7 @@ private def data_131_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_131_upper : ConfigurationBounds 131 1641 71 := by
   apply configuration_of_cells 131 1641 71 data_131_upper
   decide +kernel
@@ -138,7 +138,7 @@ private def data_132_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_132_lower : ConfigurationBounds 132 1666 70 := by
   apply configuration_of_cells 132 1666 70 data_132_lower
   decide +kernel
@@ -163,7 +163,7 @@ private def data_132_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_132_upper : ConfigurationBounds 132 1666 71 := by
   apply configuration_of_cells 132 1666 71 data_132_upper
   decide +kernel
@@ -187,7 +187,7 @@ private def data_133_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_133_lower : ConfigurationBounds 133 1691 70 := by
   apply configuration_of_cells 133 1691 70 data_133_lower
   decide +kernel
@@ -211,7 +211,7 @@ private def data_133_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_133_upper : ConfigurationBounds 133 1691 71 := by
   apply configuration_of_cells 133 1691 71 data_133_upper
   decide +kernel
@@ -235,7 +235,7 @@ private def data_134_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_134_lower : ConfigurationBounds 134 1716 71 := by
   apply configuration_of_cells 134 1716 71 data_134_lower
   decide +kernel
@@ -259,7 +259,7 @@ private def data_134_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_134_upper : ConfigurationBounds 134 1716 72 := by
   apply configuration_of_cells 134 1716 72 data_134_upper
   decide +kernel
@@ -284,7 +284,7 @@ private def data_135_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_135_lower : ConfigurationBounds 135 1741 72 := by
   apply configuration_of_cells 135 1741 72 data_135_lower
   decide +kernel
@@ -309,7 +309,7 @@ private def data_135_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_135_upper : ConfigurationBounds 135 1741 73 := by
   apply configuration_of_cells 135 1741 73 data_135_upper
   decide +kernel
@@ -334,7 +334,7 @@ private def data_136_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_136_lower : ConfigurationBounds 136 1766 72 := by
   apply configuration_of_cells 136 1766 72 data_136_lower
   decide +kernel
@@ -359,7 +359,7 @@ private def data_136_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_136_upper : ConfigurationBounds 136 1766 73 := by
   apply configuration_of_cells 136 1766 73 data_136_upper
   decide +kernel
@@ -384,7 +384,7 @@ private def data_137_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_137_lower : ConfigurationBounds 137 1792 73 := by
   apply configuration_of_cells 137 1792 73 data_137_lower
   decide +kernel
@@ -409,7 +409,7 @@ private def data_137_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_137_upper : ConfigurationBounds 137 1792 74 := by
   apply configuration_of_cells 137 1792 74 data_137_upper
   decide +kernel
@@ -433,7 +433,7 @@ private def data_138_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_138_lower : ConfigurationBounds 138 1818 73 := by
   apply configuration_of_cells 138 1818 73 data_138_lower
   decide +kernel
@@ -456,7 +456,7 @@ private def data_138_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_138_upper : ConfigurationBounds 138 1818 74 := by
   apply configuration_of_cells 138 1818 74 data_138_upper
   decide +kernel
@@ -481,7 +481,7 @@ private def data_139_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_139_lower : ConfigurationBounds 139 1843 74 := by
   apply configuration_of_cells 139 1843 74 data_139_lower
   decide +kernel
@@ -506,7 +506,7 @@ private def data_139_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_139_upper : ConfigurationBounds 139 1843 75 := by
   apply configuration_of_cells 139 1843 75 data_139_upper
   decide +kernel
@@ -530,7 +530,7 @@ private def data_140_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_140_lower : ConfigurationBounds 140 1870 74 := by
   apply configuration_of_cells 140 1870 74 data_140_lower
   decide +kernel
@@ -554,7 +554,7 @@ private def data_140_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_140_upper : ConfigurationBounds 140 1870 75 := by
   apply configuration_of_cells 140 1870 75 data_140_upper
   decide +kernel
@@ -579,7 +579,7 @@ private def data_141_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_141_lower : ConfigurationBounds 141 1896 75 := by
   apply configuration_of_cells 141 1896 75 data_141_lower
   decide +kernel
@@ -604,7 +604,7 @@ private def data_141_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_141_upper : ConfigurationBounds 141 1896 76 := by
   apply configuration_of_cells 141 1896 76 data_141_upper
   decide +kernel
@@ -629,7 +629,7 @@ private def data_142_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_142_lower : ConfigurationBounds 142 1922 76 := by
   apply configuration_of_cells 142 1922 76 data_142_lower
   decide +kernel
@@ -654,7 +654,7 @@ private def data_142_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_142_upper : ConfigurationBounds 142 1922 77 := by
   apply configuration_of_cells 142 1922 77 data_142_upper
   decide +kernel
@@ -679,7 +679,7 @@ private def data_143_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_143_lower : ConfigurationBounds 143 1949 76 := by
   apply configuration_of_cells 143 1949 76 data_143_lower
   decide +kernel
@@ -704,7 +704,7 @@ private def data_143_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_143_upper : ConfigurationBounds 143 1949 77 := by
   apply configuration_of_cells 143 1949 77 data_143_upper
   decide +kernel
@@ -729,7 +729,7 @@ private def data_144_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_144_lower : ConfigurationBounds 144 1976 76 := by
   apply configuration_of_cells 144 1976 76 data_144_lower
   decide +kernel
@@ -754,7 +754,7 @@ private def data_144_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_144_upper : ConfigurationBounds 144 1976 77 := by
   apply configuration_of_cells 144 1976 77 data_144_upper
   decide +kernel
@@ -779,7 +779,7 @@ private def data_145_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_145_lower : ConfigurationBounds 145 2003 77 := by
   apply configuration_of_cells 145 2003 77 data_145_lower
   decide +kernel
@@ -804,7 +804,7 @@ private def data_145_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_145_upper : ConfigurationBounds 145 2003 78 := by
   apply configuration_of_cells 145 2003 78 data_145_upper
   decide +kernel
@@ -829,7 +829,7 @@ private def data_146_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_146_lower : ConfigurationBounds 146 2030 78 := by
   apply configuration_of_cells 146 2030 78 data_146_lower
   decide +kernel
@@ -854,7 +854,7 @@ private def data_146_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_146_upper : ConfigurationBounds 146 2030 79 := by
   apply configuration_of_cells 146 2030 79 data_146_upper
   decide +kernel
@@ -879,7 +879,7 @@ private def data_147_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_147_lower : ConfigurationBounds 147 2057 79 := by
   apply configuration_of_cells 147 2057 79 data_147_lower
   decide +kernel
@@ -904,7 +904,7 @@ private def data_147_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_147_upper : ConfigurationBounds 147 2057 80 := by
   apply configuration_of_cells 147 2057 80 data_147_upper
   decide +kernel
@@ -929,7 +929,7 @@ private def data_148_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_148_lower : ConfigurationBounds 148 2085 79 := by
   apply configuration_of_cells 148 2085 79 data_148_lower
   decide +kernel
@@ -954,7 +954,7 @@ private def data_148_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_148_upper : ConfigurationBounds 148 2085 80 := by
   apply configuration_of_cells 148 2085 80 data_148_upper
   decide +kernel
@@ -978,7 +978,7 @@ private def data_149_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_149_lower : ConfigurationBounds 149 2113 79 := by
   apply configuration_of_cells 149 2113 79 data_149_lower
   decide +kernel
@@ -1002,7 +1002,7 @@ private def data_149_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_149_upper : ConfigurationBounds 149 2113 80 := by
   apply configuration_of_cells 149 2113 80 data_149_upper
   decide +kernel
@@ -1026,7 +1026,7 @@ private def data_150_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_150_lower : ConfigurationBounds 150 2141 80 := by
   apply configuration_of_cells 150 2141 80 data_150_lower
   decide +kernel
@@ -1050,7 +1050,7 @@ private def data_150_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_150_upper : ConfigurationBounds 150 2141 81 := by
   apply configuration_of_cells 150 2141 81 data_150_upper
   decide +kernel
@@ -1075,7 +1075,7 @@ private def data_151_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_151_lower : ConfigurationBounds 151 2169 80 := by
   apply configuration_of_cells 151 2169 80 data_151_lower
   decide +kernel
@@ -1099,7 +1099,7 @@ private def data_151_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_151_upper : ConfigurationBounds 151 2169 81 := by
   apply configuration_of_cells 151 2169 81 data_151_upper
   decide +kernel
@@ -1124,7 +1124,7 @@ private def data_152_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_152_lower : ConfigurationBounds 152 2197 81 := by
   apply configuration_of_cells 152 2197 81 data_152_lower
   decide +kernel
@@ -1149,7 +1149,7 @@ private def data_152_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_152_upper : ConfigurationBounds 152 2197 82 := by
   apply configuration_of_cells 152 2197 82 data_152_upper
   decide +kernel
@@ -1173,7 +1173,7 @@ private def data_153_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_153_lower : ConfigurationBounds 153 2226 81 := by
   apply configuration_of_cells 153 2226 81 data_153_lower
   decide +kernel
@@ -1196,7 +1196,7 @@ private def data_153_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_153_upper : ConfigurationBounds 153 2226 82 := by
   apply configuration_of_cells 153 2226 82 data_153_upper
   decide +kernel
@@ -1221,7 +1221,7 @@ private def data_154_lower : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_154_lower : ConfigurationBounds 154 2254 82 := by
   apply configuration_of_cells 154 2254 82 data_154_lower
   decide +kernel
@@ -1246,7 +1246,7 @@ private def data_154_upper : Array (List Chunk) := #[
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem configuration_154_upper : ConfigurationBounds 154 2254 83 := by
   apply configuration_of_cells 154 2254 83 data_154_upper
   decide +kernel

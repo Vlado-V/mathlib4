@@ -14,13 +14,14 @@ membership in the corresponding component of the background relations. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f b : ℕ}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem higher_target_zero_component_mem (hd : 1≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

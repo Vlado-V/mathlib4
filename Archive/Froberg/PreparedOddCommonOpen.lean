@@ -16,12 +16,13 @@ condition hold at one actual prepared parameter. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_prepared_independent_odd_on_open (hd : 0<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u) (counts := counts) hd hO hJ)
@@ -52,6 +53,7 @@ theorem exists_prepared_independent_odd_on_open (hd : 0<d)
   obtain ⟨p,hp⟩ := finite_basis_principal_intersection family hex
   exact ⟨p,hp 2,fun U => ⟨higood p (hp 0) U,hdgood p (hp 1) U⟩⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_prepared_odd_upper [CharZero K] {H r : ℕ}
     (hd : 3≤d) (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u)

@@ -21,8 +21,9 @@ namespace Froberg.QuadraticNonTwoTransfer
 open Module MvPolynomial Quartic UniformEndpoint
 open ActualDeformationColumns ActualDeformationResponse RowMultiplicationCoordinates
 variable {K : Type*} [Field K] [Infinite K] [IsAlgClosed K]
-set_option maxHeartbeats 2000000
 
+
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem parent_defect_witness (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (h2 : (2 : K) ≠ 0) :
     ∃ f : Fin (4+(mixedCount m upper+upperEndpoint m)) → Forms K (3+m) 2,

@@ -15,12 +15,13 @@ output frames and pure slots are selected after the scalar threshold. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 def HasRestoredCertificateOpen {h m d q r f : ℕ} {J : Finset ℕ}
     {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
     (hdp : 1≤d) (hd : d%2=0)
@@ -32,6 +33,7 @@ def HasRestoredCertificateOpen {h m d q r f : ℕ} {J : Finset ℕ}
     ∀ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) E≠0 →
       RestoredCertificate hdp hd hO hJ heven idx slot p
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem eventually_counted_restored_full_open {d : ℕ} (hd : 3≤d) (heven : d%2=0) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (k lo : ℕ),0<k → h=k*centralHalfBinomial d → 0<h →
       ∀ (upper : Bool) (a f e : ℕ → ℕ),(∀ n,a n≤n) →

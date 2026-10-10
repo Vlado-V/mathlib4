@@ -16,7 +16,7 @@ polynomial kernel vectors in the ambient space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K I E W T : Type*} [Field K] [Infinite K]
@@ -24,6 +24,7 @@ variable {K I E W T : Type*} [Field K] [Infinite K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [AddCommGroup T] [Module K T] [FiniteDimensional K T] {b : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem kernel_bilinear_surjective_open
     (P : (I → K) → W →ₗ[K] (Fin b → K)) (hP : IsPolynomialFamily P)
     (p₀ : I → K) (hP₀ : Function.Surjective (P p₀))

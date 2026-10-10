@@ -15,11 +15,12 @@ columns literally and separates its single extra positive column. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem span_range_one_extra {V I I' : Type*} [AddCommGroup V] [Module K V]
     (g : I' → V) (b : I → I') (a : I')
     (hcover : ∀ j,j=a ∨ ∃ i,b i=j) :
@@ -40,16 +41,19 @@ theorem span_range_one_extra {V I I' : Type*} [AddCommGroup V] [Module K V]
 namespace PreparedParameters
 variable {J : Finset ℕ} {c c' : ℕ → ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def countPositiveIndexMap (hc : ∀ j∈J,c j≤c' j) :
     Fin (Fintype.card (ProductRows.LayerLabel J c)) →
       Fin (Fintype.card (ProductRows.LayerLabel J c')) :=
   fun i => Fintype.equivFin _ (countLayerMap hc ((Fintype.equivFin _).symm i))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem countPositiveIndexMap_injective (hc : ∀ j∈J,c j≤c' j) :
     Function.Injective (countPositiveIndexMap hc) :=
   (Fintype.equivFin _).injective.comp
     ((countLayerMap_injective hc).comp (Fintype.equivFin _).symm.injective)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem countPositiveIndexMap_ne (hc : ∀ j∈J,c j≤c' j)
     (a : ProductRows.LayerLabel J c') (ha : ∀ i,countLayerMap hc i≠a)
     (i : Fin (Fintype.card (ProductRows.LayerLabel J c))) :
@@ -57,6 +61,7 @@ theorem countPositiveIndexMap_ne (hc : ∀ j∈J,c j≤c' j)
   intro h
   exact ha _ ((Fintype.equivFin _).injective h)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem countPositiveIndexMap_cover (hc : ∀ j∈J,c j≤c' j)
     (a : ProductRows.LayerLabel J c') (ha : ∀ j,j=a ∨ ∃ i,countLayerMap hc i=j)
     (j : Fin (Fintype.card (ProductRows.LayerLabel J c'))) :
@@ -67,10 +72,12 @@ theorem countPositiveIndexMap_cover (hc : ∀ j∈J,c j≤c' j)
     refine ⟨Fintype.equivFin _ i,?_⟩
     simp only [countPositiveIndexMap,Equiv.symm_apply_apply,hi,Equiv.apply_symm_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Append a single last column at the specified positive layer. -/
 def oneExtraCounts (c : ℕ → ℕ) (j : ℕ) : ℕ → ℕ :=
   Function.update c j (c j+1)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem le_oneExtraCounts (c : ℕ → ℕ) (j k : ℕ) : c k≤oneExtraCounts c j k := by
   classical
   by_cases hk : k=j
@@ -78,9 +85,11 @@ theorem le_oneExtraCounts (c : ℕ → ℕ) (j k : ℕ) : c k≤oneExtraCounts c
     simp [oneExtraCounts]
   · simp [oneExtraCounts,hk]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oneExtraLayer (c : ℕ → ℕ) (j : J) : ProductRows.LayerLabel J (oneExtraCounts c j) :=
   ⟨j,⟨c j,by simp [oneExtraCounts]⟩⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oneExtraLayer_not_old (c : ℕ → ℕ) (j : J)
     (i : ProductRows.LayerLabel J c) :
     countLayerMap (fun k _ => le_oneExtraCounts c j k) i≠oneExtraLayer c j := by
@@ -92,6 +101,7 @@ theorem oneExtraLayer_not_old (c : ℕ → ℕ) (j : J)
   have hv : i.val=c j := congrArg (fun a => a.2.val) he
   exact (Nat.ne_of_lt i.isLt) hv
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oneExtraLayer_cover (c : ℕ → ℕ) (j : J)
     (i : ProductRows.LayerLabel J (oneExtraCounts c j)) :
     i=oneExtraLayer c j ∨
@@ -118,6 +128,7 @@ theorem oneExtraLayer_cover (c : ℕ → ℕ) (j : J)
 variable [Infinite K] {h m d q r r' : ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restoredPositiveBiform_restrictCounts (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hc : ∀ j∈J,c j≤c' j)
@@ -134,6 +145,7 @@ theorem restoredPositiveBiform_restrictCounts (hd : d%2=0)
   simpa only [restoredPositiveBiform,restoredBiformFamily,countPositiveIndexMap,countIndexMap,
     countLabelMap,countLayerMap,Equiv.apply_symm_apply,Equiv.symm_apply_apply,Sum.elim_inr] using hh
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The retained restored positive family and the distinguished extra
 column span exactly the enlarged restored positive family. -/
 theorem restoredPositiveBiform_extra_span (hd : d%2=0)
@@ -163,6 +175,7 @@ theorem restoredPositiveBiform_extra_span (hd : d%2=0)
   exact congrArg evenPolynomialToForms
     (restoredPositiveBiform_restrictCounts hd hO hJ heven hc idx idx' slot p i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The same separation with an unchanged odd background appended. -/
 theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -184,6 +197,7 @@ theorem restoredPositiveBiform_extra_background_span {u : ℕ} (hd : d%2=0)
   rw [restoredPositiveBiform_extra_span hd hO hJ heven hc a hcover idx idx' slot p]
   ac_rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Joint quotient independence after separating one enlarged positive label.
 The quotient is arbitrary; in the application it is the pure-scalar quotient. -/
 theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d%2=0)
@@ -227,6 +241,7 @@ theorem restoredPositiveBiform_extra_quotient_independent {u : ℕ} (hd : d%2=0)
         (restoredPositiveBiform_restrictCounts hd hO hJ heven hc idx idx' slot p j)
     | inr j => rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The even-only specialization derives quotient independence directly
 from the enlarged parameter's independent prepared rows. -/
 theorem restoredPositiveBiform_extra_scalar_independent (hd : d%2=0)

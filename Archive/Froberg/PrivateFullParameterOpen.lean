@@ -15,7 +15,7 @@ arbitrarily; no fixed-private-tuple restriction is retained. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K]
@@ -23,21 +23,25 @@ variable {σ : Type*} [Fintype σ] {n d q r b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 abbrev PrivateParameterSpace (n d q b : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (MvPolynomial σ K)) :=
   Space n d q J counts O × (Fin b → FullBiform K σ n 1 (d-1))
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateParameterCoordinates (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
     PrivateParameterSpace n d q b J counts O ≃ₗ[K]
       (Fin (finrank K (PrivateParameterSpace n d q b J counts O)) → K) := by
   letI : Module.Finite K (Space n d q J counts O) := finite_space hO
   exact (Module.finBasis K (PrivateParameterSpace n d q b J counts O)).equivFun
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateOddLinear (hd : 0<d) :
     (Fin b → FullBiform K σ n 1 (d-1)) →ₗ[K]
       (Fin b → oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d) :=
   LinearMap.pi (fun i => (privateOddEmbed hd).comp (LinearMap.proj i))
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_full_parameter_principal_open
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

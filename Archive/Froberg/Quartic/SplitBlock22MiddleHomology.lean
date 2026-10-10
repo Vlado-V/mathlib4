@@ -21,9 +21,10 @@ noncomputable section
 namespace Quartic.SplitBlock22
 open Module
 open scoped TensorProduct
-set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K] {m c q : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Commutativity of the actual polynomial product, before elimination. -/
 theorem mixedProduct_comm (g a : MiddleCoordinates.Mixed K m) :
     mixedProduct g a = mixedProduct a g := by
@@ -31,6 +32,7 @@ theorem mixedProduct_comm (g a : MiddleCoordinates.Mixed K m) :
   apply Subtype.ext
   rw [mixedProduct_polynomial, mixedProduct_polynomial, mul_comm]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A coefficient supported at one mixed generator contributes its actual product. -/
 theorem mixedMap_single (g : Fin c → MiddleCoordinates.Mixed K m)
     (i : Fin c) (a : MiddleCoordinates.Mixed K m) :
@@ -43,6 +45,7 @@ theorem mixedMap_single (g : Fin c → MiddleCoordinates.Mixed K m)
   simp_rw [he]
   simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual commutativity relation on every pair of mixed generators is a cycle. -/
 theorem mixedMap_koszul (g : Fin c → MiddleCoordinates.Mixed K m) (p : GeneratorPair c) :
     mixedMap g (koszulVector g p) = 0 := by
@@ -52,17 +55,20 @@ theorem mixedMap_koszul (g : Fin c → MiddleCoordinates.Mixed K m) (p : Generat
     simp only [koszulVector, Pi.sub_apply, Pi.single_apply]
   rw [he, map_sub, mixedMap_single, mixedMap_single, mixedProduct_comm, sub_self]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Remaining incoming mixed–mixed boundaries, in their actual coefficient space. -/
 def mixedKoszulSpace (g : Fin c → MiddleCoordinates.Mixed K m) :
     Submodule K (Fin c → MiddleCoordinates.Mixed K m) :=
   Submodule.span K (Set.range (koszulVector g))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem mixedKoszulSpace_le_kernel (g : Fin c → MiddleCoordinates.Mixed K m) :
     mixedKoszulSpace g ≤ (mixedMap g).ker := by
   apply Submodule.span_le.mpr
   rintro _ ⟨p,rfl⟩
   exact mixedMap_koszul g p
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem mixedKoszulSpace_le_quotient_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
     (Q : Submodule K (Forms K m 2)) :
     mixedKoszulSpace g ≤ (MiddleCoordinates.quotientMap g Q).ker := by
@@ -70,14 +76,17 @@ theorem mixedKoszulSpace_le_quotient_kernel (g : Fin c → MiddleCoordinates.Mix
   change MiddleCoordinates.quotientMap g Q a = 0
   rw [← elimination_mixedMap, show mixedMap g a = 0 from mixedKoszulSpace_le_kernel g ha, map_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Insert mixed coefficients and zero pure and child coefficients. -/
 def mixedSourceEmbedding : (Fin c → MiddleCoordinates.Mixed K m) →ₗ[K] Source K m c q :=
   (0 : (Fin c → MiddleCoordinates.Mixed K m) →ₗ[K] (Fin 4 → Forms K m 2)).prod
     (LinearMap.id.prod (0 : (Fin c → MiddleCoordinates.Mixed K m) →ₗ[K] (Fin q → Forms K 3 2)))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem mixedSourceEmbedding_apply (a : Fin c → MiddleCoordinates.Mixed K m) :
     mixedSourceEmbedding (q := q) a = (0,a,0) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual multiplication of these coefficient arrays. -/
 @[simp] theorem multiplication_mixedSourceEmbedding (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Fin c → MiddleCoordinates.Mixed K m) :
@@ -85,11 +94,13 @@ def mixedSourceEmbedding : (Fin c → MiddleCoordinates.Mixed K m) →ₗ[K] Sou
   change pureMap 0 + (mixedMap g a + childMap h 0) = mixedMap g a
   simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Both types of incoming boundaries in bidegree (2,2). -/
 def blockBoundarySpace (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     Submodule K (Source K m c q) :=
   crossSpace h ⊔ (mixedKoszulSpace g).map mixedSourceEmbedding
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem blockBoundarySpace_le_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) : blockBoundarySpace g h ≤ (multiplication g h).ker := by
   apply sup_le (crossSpace_le_kernel g h)
@@ -98,6 +109,7 @@ theorem blockBoundarySpace_le_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [multiplication_mixedSourceEmbedding]
   exact mixedKoszulSpace_le_kernel g ha
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- An actual block cycle is a boundary exactly when its mixed coefficient is a remaining boundary. -/
 theorem boundary_iff_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h)
@@ -124,6 +136,7 @@ theorem boundary_iff_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
       mixedSourceEmbedding a.val.2.1, ⟨a.val.2.1,ha,rfl⟩, ?_⟩
     exact sub_add_cancel _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Pulling the remaining boundaries back along the canonical projection gives exactly all block boundaries. -/
 theorem blockBoundary_comap (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
@@ -134,20 +147,24 @@ theorem blockBoundary_comap (g : Fin c → MiddleCoordinates.Mixed K m)
   change a.val ∈ blockBoundarySpace g h ↔ (cycleProjection g h a).val ∈ mixedKoszulSpace g
   exact boundary_iff_mixed_mem g h hh a
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def quotientTransport {V W : Type*} [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] (f : V →ₗ[K] W) (A : Submodule K V) (B : Submodule K W)
     (hA : A = B.comap f) (hs : Function.Surjective f) : (V ⧸ A) ≃ₗ[K] (W ⧸ B) :=
   (Submodule.quotEquivOfEq _ _ (by rw [LinearMap.ker_comp, Submodule.ker_mkQ]; exact hA)).trans
     ((B.mkQ.comp f).quotKerEquivOfSurjective (B.mkQ_surjective.comp hs))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The full incoming-boundary quotient of actual block cycles. -/
 abbrev BlockHomology (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :=
   KernelModulo (W := Target K m) (multiplication g h) (blockBoundarySpace g h)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The middle quotient-map kernel modulo the actual pairwise mixed relations. -/
 abbrev MiddleHomology (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :=
   KernelModulo (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h))) (mixedKoszulSpace g)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Canonical homology identification induced by the actual mixed coefficient projection. -/
 def homologyEquiv (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
@@ -157,12 +174,14 @@ def homologyEquiv (g : Fin c → MiddleCoordinates.Mixed K m)
     (cycleProjection g h) _ _ (blockBoundary_comap g h hh)
     (cycleProjection_surjective g h)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem homologyEquiv_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) (a : (multiplication g h).ker) :
     homologyEquiv g h hh (Submodule.Quotient.mk a) =
       Submodule.Quotient.mk (cycleProjection g h a) := by
   simp [homologyEquiv, quotientTransport]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The remaining incoming relations have the expected independent pair count. -/
 theorem mixedIncoming_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (hg : LinearIndependent K g) (Q : Submodule K (Forms K m 2)) :
@@ -172,6 +191,7 @@ theorem mixedIncoming_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (mixedKoszulSpace_le_quotient_kernel g Q)).finrank_eq]
   exact (finrank_span_eq_card (koszulVector_linearIndependent g hg)).trans card_generatorPair
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The source's middle homology count, derived from the canonical actual quotient equivalence. -/
 theorem homology_finrank_balance (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hg : LinearIndependent K g) (hh : LinearIndependent K h)
@@ -198,6 +218,7 @@ theorem homology_finrank_balance (g : Fin c → MiddleCoordinates.Mixed K m)
     2*((m+1).choose 2-q) = 3*m*c
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The integer count `Counts.H` equals the actual block homology dimension. -/
 theorem homology_finrank_eq_H (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hg : LinearIndependent K g) (hh : LinearIndependent K h)

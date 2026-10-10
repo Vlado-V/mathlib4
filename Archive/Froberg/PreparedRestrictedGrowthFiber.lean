@@ -14,13 +14,14 @@ certificates coexist before the temporary columns are frozen. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 200000
+
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial VectorExpansionOpen Quartic
 open scoped Topology
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem exact_counts_prepared_restricted_growth_fiber {d k h lo u b : ℕ}
     (hd : 3 ≤ d) (hk : 0 < k) (hh : h = k*centralHalfBinomial d) (hhpos : 0 < h)
     (hb : 0 < b) (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))

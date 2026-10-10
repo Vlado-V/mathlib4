@@ -14,11 +14,12 @@ This is the precise uniform projection observation used in C.3. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K : Type*} [Field K] [Infinite K] {a B N b u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Uniform normalized growth survives a general projection whenever the
 explicit Schubert margin ub>a² is positive. -/
 theorem normalized_projection_open (ha : 0 < a) (hN : N = u+b)

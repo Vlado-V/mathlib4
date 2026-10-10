@@ -14,19 +14,21 @@ The left term is U tensor (Y/Q), not a dimensionally substituted vector space. -
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module TensorProduct Quartic.SplitTensor
 variable {K X Y : Type*} [Field K]
   [AddCommGroup X] [Module K X] [AddCommGroup Y] [Module K Y]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual quotient map on the left relation tensors. -/
 def mixedTensorMap (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) :
     (U ⊗[K] Y) →ₗ[K] (X ⊗[K] Y) ⧸ (rightRelations Q ⊔ E) :=
   (rightRelations Q ⊔ E).mkQ.comp (TensorProduct.map U.subtype LinearMap.id)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedTensorMap_kernel (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q)) :
     (mixedTensorMap U Q E).ker=(TensorProduct.map (LinearMap.id : U →ₗ[K] U) Q.mkQ).ker := by
@@ -65,6 +67,7 @@ theorem mixedTensorMap_kernel (U : Submodule K X) (Q : Submodule K Y)
     exact (show rightRelations Q ≤ rightRelations Q ⊔ E from le_sup_left)
       ((show _ ≤ rightRelations Q from hk.le) hz)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical left injection in C.10. -/
 def mixedTensorInjection (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q)) :
@@ -74,6 +77,7 @@ def mixedTensorInjection (U : Submodule K X) (Q : Submodule K Y)
       (g' := Q.mkQ) Function.surjective_id Q.mkQ_surjective)
     ⟨mixedTensorMap U Q E,(mixedTensorMap_kernel U Q E hE).ge⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem mixedTensorInjection_map (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q))
     (v : U ⊗[K] Y) :
@@ -81,6 +85,7 @@ def mixedTensorInjection (U : Submodule K X) (Q : Submodule K Y)
       mixedTensorMap U Q E v := by
   exact LinearMap.equivOfSurjective_apply _ _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem mixedTensorInjection_tmul (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q))
     (u : U) (y : Y) :
@@ -89,6 +94,7 @@ def mixedTensorInjection (U : Submodule K X) (Q : Submodule K Y)
   simpa only [TensorProduct.map_tmul,LinearMap.id_apply,mixedTensorMap,
     LinearMap.comp_apply,Submodule.subtype_apply] using mixedTensorInjection_map U Q E hE (u ⊗ₜ[K] y)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedTensorInjection_injective (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q)) :
     Function.Injective (mixedTensorInjection U Q E hE) := by
@@ -100,6 +106,7 @@ theorem mixedTensorInjection_injective (U : Submodule K X) (Q : Submodule K Y)
   rw [mixedTensorInjection_map] at hv
   exact (show (mixedTensorMap U Q E).ker ≤ _ from (mixedTensorMap_kernel U Q E hE).le) hv
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedTensorInjection_range (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q)) :
     (mixedTensorInjection U Q E hE).range=(leftRelations U).map (rightRelations Q ⊔ E).mkQ := by
@@ -113,12 +120,14 @@ theorem mixedTensorInjection_range (U : Submodule K X) (Q : Submodule K Y)
   · rintro ⟨w,⟨z,rfl⟩,rfl⟩
     exact ⟨TensorProduct.map (LinearMap.id : U →ₗ[K] U) Q.mkQ z,mixedTensorInjection_map U Q E hE z⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedTensor_exact (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q)) :
     (mixedTensorInjection U Q E hE).range=
       (mixedQuotientProjection (leftRelations U) (rightRelations Q) E).ker := by
   rw [mixedTensorInjection_range,mixedQuotientProjection_kernel]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedTensor_finrank [FiniteDimensional K X] [FiniteDimensional K Y]
     (U : Submodule K X) (Q : Submodule K Y)
     (E : Submodule K (X ⊗[K] Y)) (hE : Disjoint E (leftRelations U ⊔ rightRelations Q)) :

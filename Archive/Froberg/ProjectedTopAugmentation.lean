@@ -14,7 +14,7 @@ parameters, both injectivity and the scalar quotient-growth estimate. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Filter Module TensorProduct MvPolynomial Quartic
@@ -22,6 +22,7 @@ open scoped Topology
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev projectedTopMap (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :=
   twoFamilyMultiplication (K := K)
@@ -29,6 +30,7 @@ abbrev projectedTopMap (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (projectedTopLinearAction (m := m) P)
     (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) p
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev projectedTopScalarAction (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :=
   scalarModulo (K := K) (P := Forms K m (1+e)) (V := Fin b → K)
@@ -37,6 +39,7 @@ abbrev projectedTopScalarAction (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (projectedTopMap P p)
     (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def ProjectedTopGrowthOpen (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (m qF qS t : ℕ) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (ProjectedTopParameters K h m e qF qS))) K,
@@ -48,6 +51,7 @@ def ProjectedTopGrowthOpen (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
       ∀ L : Submodule K (Fin b → K),
         t*finrank K L≤finrank K (BilinearImage.image (projectedTopScalarAction P p) L)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_top_growth_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
     (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤
@@ -78,6 +82,7 @@ theorem projected_top_growth_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
   · simpa only [hdim,Module.finrank_pi_fintype,finrank_self,Finset.sum_const,
       Finset.card_univ,Fintype.card_fin,smul_eq_mul,mul_one] using hcount
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem eventually_projected_top_growth_open (hh : 0 < h) (he : 2≤e) (hb : 0 < b)
     (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤

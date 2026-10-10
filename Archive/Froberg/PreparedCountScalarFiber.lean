@@ -14,12 +14,13 @@ family. Every added scalar slot and every high term stays fixed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 150000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 /-- The second input stores the fixed enlarged family; its old positive
 scalar values are ignored and replaced by the first input. -/
 def countScalarFiberLinear (_hc : ∀ j ∈ J, c j ≤ c' j) :
@@ -48,14 +49,17 @@ def countScalarFiberLinear (_hc : ∀ j ∈ J, c j ≤ c' j) :
         split_ifs <;> rfl
     · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 @[simp] theorem countScalarFiberLinear_base (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O) (i : Fin q) :
     (countScalarFiberLinear hc (a,p)).1 (Sum.inl i)=p.1 (Sum.inl i) := rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 @[simp] theorem countScalarFiberLinear_high (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O) :
     (countScalarFiberLinear hc (a,p)).2=p.2 := rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem countScalarFiberLinear_old (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O)
     (i : ProductRows.LayerLabel J c) :
@@ -65,6 +69,7 @@ theorem countScalarFiberLinear_old (hc : ∀ j ∈ J, c j ≤ c' j)
   simp only [countScalarFiberLinear,LinearMap.coe_mk,AddHom.coe_mk,countLayerMap,
     Sum.elim_inr,Fin.val_castLE,dite_eq_left i.isLt]
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem countScalarFiberLinear_extra (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :
@@ -72,6 +77,7 @@ theorem countScalarFiberLinear_extra (hc : ∀ j ∈ J, c j ≤ c' j)
   simp only [countScalarFiberLinear,LinearMap.coe_mk,AddHom.coe_mk,Sum.elim_inr,
     dite_eq_right (not_lt.mpr hi)]
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem countScalarFiberLinear_extra_generator (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :
@@ -81,6 +87,7 @@ theorem countScalarFiberLinear_extra_generator (hc : ∀ j ∈ J, c j ≤ c' j)
     (p.2 j i).val = rename Sum.inr (p.1 (Sum.inr ⟨j,i⟩)).val + (p.2 j i).val
   rw [countScalarFiberLinear_extra hc a p j i hi]
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem countScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O) :
     restrictCounts hc (countScalarFiberLinear hc (a,p))=
@@ -92,6 +99,7 @@ theorem countScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     | inr i => exact countScalarFiberLinear_old hc a p i
   · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem countScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : Space m d q J c' O) :
     countScalarFiberLinear hc ((scalarFiberCoordinates (restrictCounts hc p)).1,p)=p := by
@@ -112,6 +120,7 @@ theorem countScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
       · simp [countScalarFiberLinear,hi]
   · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 def fullCountScalarFiberLinear (hc : ∀ j ∈ J, c j ≤ c' j) :
     PositiveScalars (K := K) m d J c ×
       FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O →ₗ[K]
@@ -130,6 +139,7 @@ def fullCountScalarFiberLinear (hc : ∀ j ∈ J, c j ≤ c' j) :
     · exact (countScalarFiberLinear hc).map_smul t (x.1,x.2.2.1)
     · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem fullCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :
@@ -141,6 +151,7 @@ theorem fullCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
   · exact countScalarFiberLinear_restrict hc a p.2.1
   · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem fullCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :
     fullCountScalarFiberLinear hc ((fullScalarFiberCoordinates (fullRestrictCounts hc p)).1,p)=p := by
@@ -150,6 +161,7 @@ theorem fullCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
   · exact countScalarFiberLinear_at hc p.2.1
   · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem principal_open_full_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :=

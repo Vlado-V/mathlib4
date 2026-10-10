@@ -15,7 +15,7 @@ and the genuine private-private constants, in the literal prepared family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns
@@ -24,6 +24,7 @@ variable {σ : Type*} [Fintype σ] {a z d q b h c : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_first_core_row_exact
     (hd : 3≤d) (h2J : 2∈J)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

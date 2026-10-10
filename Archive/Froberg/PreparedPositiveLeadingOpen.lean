@@ -15,12 +15,13 @@ the full prepared parameter space using the actual row witnesses. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def fullHighLinear (j : J) (i : Fin (counts j.val)) :
     FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
       biformImage (O j.val) (Forms K m (d-j.val)) where
@@ -28,6 +29,7 @@ def fullHighLinear (j : J) (i : Fin (counts j.val)) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def fullPrivateLinear (i : Fin u) :
     FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
       biformImage (Forms K h 1) (Forms K m (d-1)) where
@@ -35,6 +37,7 @@ def fullPrivateLinear (i : Fin u) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem positive_leading_principal_open
     (hO : ∀ j∈J,O j≤Forms K h j)
     (hw : ∀ j : J,∃ p : Space m d q J counts O,LinearIndependent K (p.2 j))

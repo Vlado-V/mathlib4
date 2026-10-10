@@ -15,18 +15,20 @@ linear-coefficient injectivity is used only where a private power can occur. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PrivateColumns
 open MvPolynomial Module Quartic.FreeCoefficients
 variable {K : Type*} [Field K] [Infinite K] {a z s b h c m r : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 lemma privateExponent_le_merge (ι : Fin b ↪ Fin z) (i : Fin b)
     (α : Fin a →₀ ℕ) (β : Fin z →₀ ℕ) :
     privateExponent a s ι i ≤ mergeExponent α β ↔ s ≤ β (ι i) := by
   rw [privateExponent_le_iff]
   simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 lemma private_unique_of_small_free_degree (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
     (β : Fin z →₀ ℕ) (hβ : β.degree ≤ s+1) (i j : Fin b)
     (hi : s ≤ β (ι i)) (hj : s ≤ β (ι j)) : i=j := by
@@ -42,10 +44,12 @@ lemma private_unique_of_small_free_degree (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
   · simp only [privateDivisors,Finset.mem_filter,Finset.mem_univ,true_and]
     exact (privateExponent_le_merge ι j 0 β).mpr hj
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A polynomial tuple has no monomial divisible by any private power. -/
 def avoidsPrivatePowers (ι : Fin b ↪ Fin z) (f : Fin c → Poly K (a+z)) : Prop :=
   ∀ k δ i,privateExponent a s ι i ≤ δ → (f k).coeff δ=0
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The scalar/existing-product side avoids private powers whenever all of
 its private coefficient polynomials above degree s−1 vanish. -/
 theorem avoidsPrivatePowers_of_free_degree_lt (ι : Fin b ↪ Fin z)
@@ -59,6 +63,7 @@ theorem avoidsPrivatePowers_of_free_degree_lt (ι : Fin b ↪ Fin z)
   have hh := congrArg (fun p : Poly K a => p.coeff (coreExponent δ)) (hf k _ hd)
   simpa only [freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,Finsupp.zero_apply] using hh
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A private target coefficient with only one eligible private power lies
 in exactly that column's output image. -/
 theorem private_coefficient_mem_range (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
@@ -80,6 +85,7 @@ theorem private_coefficient_mem_range (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
       ((privateExponent_le_merge ι j α β).mp hj) hi)
   · simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Projected linear and constant injectivity separate the new sparse layer
 from every private column, even with arbitrary private-variable coefficients. -/
 theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
@@ -156,6 +162,7 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
     rw [if_neg (fun hj => hd ⟨j,hj⟩)]
     rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- In every later row there is no private coefficient at all; only row
 two can reach the first pairwise private-power overlap. -/
 theorem private_sparse_lower_zero (hs : 2 ≤ s) (hr : r < s) (ι : Fin b ↪ Fin z)

@@ -16,7 +16,7 @@ full odd-degree even-cycle reduction, uniformly in its fixed pure U tuple. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
@@ -25,6 +25,7 @@ variable {σ : Type*} [Fintype σ] {n d q b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_prepared_positive_reduction [LinearOrder (Label q J counts)]
     (hd : 3≤d) (hodd : d%2=1)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

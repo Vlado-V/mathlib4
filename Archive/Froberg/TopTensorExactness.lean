@@ -15,19 +15,21 @@ hypothesis of the C.10 exact sequence. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module TensorProduct Quartic Quartic.SplitTensor
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def rawTopFamily (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
     (Fin qF → Forms K h e ⊗[K] Forms K m 1) →ₗ[K]
       (Forms K h (1+e) ⊗[K] Forms K m (1+e)) :=
   BilinearScalarFamily.multiplication
     (tensorFormProduct (d := e) (e := 1) (gradedMultiplication (K := K) (n := h) (d := 1) (e := e))) F
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projectedTopFamily_eq (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
     BilinearScalarFamily.multiplication (K := K)
@@ -42,6 +44,7 @@ theorem projectedTopFamily_eq (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
   simp only [rawTopFamily,BilinearScalarFamily.multiplication_apply,
     LinearMap.comp_apply,LinearMap.compr₂ₛₗ_apply,map_sum]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem top_tensor_separation (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) (Q : Fin qS → Forms K m (1+e))
     (hinj : Function.Injective (twoFamilyMultiplication (K := K)

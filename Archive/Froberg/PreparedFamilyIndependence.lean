@@ -14,12 +14,13 @@ independence of the entire prepared family, for arbitrary higher parts. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_generator_component_zero
     (hO : ∀ j∈J,O j≤Forms K h j) (hpos : ∀ j∈J,0<j)
     (p : PreparedParameters.Space m d q J counts O) (i : PreparedParameters.Label q J counts) :
@@ -38,12 +39,14 @@ theorem prepared_generator_component_zero
     rw [weightedHomogeneousComponent_of_mem hh]
     exact if_neg (by have := hpos _ i.1.property; change ¬0=i.1.val; omega)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem combinedLinear_weight (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f)
     (k : Fin f ⊕ Fin u) : (combinedLinear P F k).IsWeightedHomogeneous (blockWeight h m) 1 := by
   cases k with
   | inl i => exact biformImage_output_weight _ _ le_rfl (F i).property
   | inr i => exact biformImage_output_weight _ _ le_rfl (P i).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem combinedPure_weight (U : Fin u → Forms K h d) (k : Fin f ⊕ Fin u) :
     (combinedPure U k).IsWeightedHomogeneous (blockWeight h m) d := by
   cases k with
@@ -53,6 +56,7 @@ theorem combinedPure_weight (U : Fin u → Forms K h d) (k : Fin f ⊕ Fin u) :
       (⟨Sum.inl,Sum.inl_injective⟩ : Fin h ↪ Fin h ⊕ Fin m)
       (fun _ => 1) (blockWeight h m) (fun _ => rfl) (U i).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddGenerator_component_zero (hd : 0<d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     weightedHomogeneousComponent (blockWeight h m) 0 (oddGenerator U P F k)=0 := by
@@ -61,6 +65,7 @@ theorem oddGenerator_component_zero (hd : 0<d) (U : Fin u → Forms K h d)
     weightedHomogeneousComponent_of_mem (combinedPure_weight U k),if_neg (by omega),
     if_neg (by omega),zero_add]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddGenerator_component_one (hd : 1<d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     weightedHomogeneousComponent (blockWeight h m) 1 (oddGenerator U P F k)=combinedLinear P F k := by
@@ -69,6 +74,7 @@ theorem oddGenerator_component_one (hd : 1<d) (U : Fin u → Forms K h d)
     weightedHomogeneousComponent_of_mem (combinedPure_weight U k),if_pos rfl,
     if_neg (by omega),add_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_family_independent (hd : 1<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

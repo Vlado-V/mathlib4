@@ -14,13 +14,14 @@ the prescribed parity. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d t : ℕ} {p : ZMod 2}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def biformTensorComponent (ht : t ≤ d) :
     biformParitySpace K h m d p →ₗ[K]
       Forms K h t ⊗[K] Forms K m (d-t) :=
@@ -35,6 +36,7 @@ def biformTensorComponent (ht : t ≤ d) :
             weightedComponent_preserves_homogeneous (blockWeight h m) v.property.1 t
         · exact weightedHomogeneousComponent_isWeightedHomogeneous _ _))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem biformTensorComponent_spec (ht : t ≤ d)
     (v : biformParitySpace K h m d p) :
     sumBiformMap (biformTensorComponent ht v)=
@@ -45,6 +47,7 @@ def biformTensorComponent (ht : t ≤ d) :
   rw [LinearEquiv.apply_symm_apply]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_even (ht : t ≤ d) (he : t%2=0)
     (v : Forms K h t ⊗[K] Forms K m (d-t)) :
     biformTensorComponent ht (evenBiformEmbedding ht he v)=v := by
@@ -53,6 +56,7 @@ theorem biformTensorComponent_even (ht : t ≤ d) (he : t%2=0)
   exact (biformImage_output_weight (Forms K h t) (Forms K m (d-t)) le_rfl
     (sumBiformMap_range.le ⟨v,rfl⟩)).weightedHomogeneousComponent_same
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_odd (ht : t ≤ d) (ho : t%2=1)
     (v : Forms K h t ⊗[K] Forms K m (d-t)) :
     biformTensorComponent ht (oddBiformEmbedding ht ho v)=v := by
@@ -61,14 +65,17 @@ theorem biformTensorComponent_odd (ht : t ≤ d) (ho : t%2=1)
   exact (biformImage_output_weight (Forms K h t) (Forms K m (d-t)) le_rfl
     (sumBiformMap_range.le ⟨v,rfl⟩)).weightedHomogeneousComponent_same
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_even_surjective (ht : t ≤ d) (he : t%2=0) :
     Function.Surjective (biformTensorComponent (K := K) (h := h) (m := m) (p := 0) ht) :=
   fun v => ⟨evenBiformEmbedding ht he v,biformTensorComponent_even ht he v⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_odd_surjective (ht : t ≤ d) (ho : t%2=1) :
     Function.Surjective (biformTensorComponent (K := K) (h := h) (m := m) (p := 1) ht) :=
   fun v => ⟨oddBiformEmbedding ht ho v,biformTensorComponent_odd ht ho v⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_eq_oddCoordinates (v : biformParitySpace K h m d 1)
     (r : Fin ((d+1)/2)) :
     biformTensorComponent (by omega : 2*r.val+1 ≤ d) v=oddBiformCoordinatesEquiv v r := by

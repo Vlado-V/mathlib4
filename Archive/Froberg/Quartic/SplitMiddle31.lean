@@ -23,7 +23,7 @@ noncomputable section
 
 namespace Quartic.SplitMiddle31
 
-set_option maxHeartbeats 2000000
+
 
 open Module MvPolynomial ThreeBlockModel
 
@@ -33,6 +33,7 @@ variable {K V W Z : Type*} [Field K]
   [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
   [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A coefficient projection vanishing on boundaries descends to homology. -/
 def quotientProjection (f : V →ₗ[K] W) (B : Submodule K V) (p : V →ₗ[K] Z)
     (hB : B ≤ p.ker) : KernelModulo f B →ₗ[K] Z :=
@@ -40,6 +41,7 @@ def quotientProjection (f : V →ₗ[K] W) (B : Submodule K V) (p : V →ₗ[K] 
     intro a ha
     exact hB ha)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quotientProjection_injective (f : V →ₗ[K] W) (B : Submodule K V) (p : V →ₗ[K] Z)
     (hB : B ≤ p.ker) (hker : ∀ a, f a = 0 → p a = 0 → a ∈ B) :
     Function.Injective (quotientProjection f B p hB) := by
@@ -52,11 +54,16 @@ end GeneralProjection
 
 variable (K : Type*) [Field K] (m c : ℕ)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Mixed := Fin c → Fin m → Forms K 3 1
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Source := (Fin c → Forms K 3 2) × (Fin 4 → Fin m → Forms K 3 1)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Target := Fin m → Forms K 3 3
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev BoundarySource := Fin 4 → Fin c → K
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Multiplication by the four actual pure block quadrics on linear coefficients. -/
 def pureCubic : (Fin 4 → Forms K 3 1) →ₗ[K] Forms K 3 3 where
   toFun b := ⟨∑ i, (blockQuadrics i).val * (b i).val,
@@ -66,6 +73,7 @@ def pureCubic : (Fin 4 → Forms K 3 1) →ₗ[K] Forms K 3 3 where
 
 variable {K m c}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem pureCubic_surjective : Function.Surjective (pureCubic K) := by
   have hrange : LinearMap.range ((Forms K 3 3).subtype.comp (pureCubic K)) =
       blockSpace (K := K) * Forms K 3 1 := by
@@ -88,6 +96,7 @@ theorem pureCubic_surjective : Function.Surjective (pureCubic K) := by
   obtain ⟨b, hb⟩ := hp
   exact ⟨b, Subtype.ext hb⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The mixed-generator component in bidegree (3,1). -/
 def mixedMultiplication (g : Mixed K m c) : (Fin c → Forms K 3 2) →ₗ[K] Target K m where
   toFun a l := ⟨∑ j, (a j).val * (g j l).val,
@@ -95,16 +104,19 @@ def mixedMultiplication (g : Mixed K m c) : (Fin c → Forms K 3 2) →ₗ[K] Ta
   map_add' a b := by ext l : 1; apply Subtype.ext; simp [add_mul, Finset.sum_add_distrib]
   map_smul' a b := by ext l : 1; apply Subtype.ext; simp [← Finset.smul_sum]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The pure-generator component in bidegree (3,1). -/
 def pureMultiplication : (Fin 4 → Fin m → Forms K 3 1) →ₗ[K] Target K m where
   toFun b l := pureCubic K (fun i => b i l)
   map_add' b d := by ext l; simp [pureCubic, mul_add, Finset.sum_add_distrib]
   map_smul' a b := by ext l; simp [pureCubic, ← Finset.smul_sum]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The complete polynomial multiplication map for the (3,1) coefficient types. -/
 def multiplication (g : Mixed K m c) : Source K m c →ₗ[K] Target K m :=
   (mixedMultiplication g).coprod pureMultiplication
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Incoming Koszul boundaries between a pure generator and a mixed generator. -/
 def boundary (g : Mixed K m c) : BoundarySource K c →ₗ[K] Source K m c where
   toFun t := (fun j => ∑ i, t i j • blockQuadrics i,
@@ -112,12 +124,15 @@ def boundary (g : Mixed K m c) : BoundarySource K c →ₗ[K] Source K m c where
   map_add' t s := by ext <;> simp [add_smul, Finset.sum_add_distrib, add_comm]
   map_smul' a t := by ext <;> simp [mul_smul, Finset.smul_sum, smul_neg]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem boundary_fst (g : Mixed K m c) (t : BoundarySource K c) (j : Fin c) :
     (boundary g t).1 j = ∑ i, t i j • blockQuadrics i := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem boundary_snd (g : Mixed K m c) (t : BoundarySource K c) (i : Fin 4) (l : Fin m) :
     (boundary g t).2 i l = -(∑ j, t i j • g j l) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_injective (g : Mixed K m c) : Function.Injective (boundary g) := by
   apply LinearMap.ker_eq_bot.mp
   apply LinearMap.ker_eq_bot'.mpr
@@ -127,6 +142,7 @@ theorem boundary_injective (g : Mixed K m c) : Function.Injective (boundary g) :
     congrArg (fun a : Source K m c => a.1 j) ht
   exact Fintype.linearIndependent_iff.mp blockQuadrics_independent (fun i => t i j) hj i
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem multiplication_boundary (g : Mixed K m c) (t : BoundarySource K c) :
     multiplication g (boundary g t) = 0 := by
   funext l
@@ -139,11 +155,13 @@ theorem boundary_injective (g : Mixed K m c) : Function.Injective (boundary g) :
   rw [Finset.sum_comm]
   simp only [Finset.sum_neg_distrib, add_neg_cancel]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_range_le_kernel (g : Mixed K m c) :
     LinearMap.range (boundary g) ≤ LinearMap.ker (multiplication g) := by
   rintro _ ⟨t, rfl⟩
   exact multiplication_boundary g t
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem multiplication_surjective (g : Mixed K m c) : Function.Surjective (multiplication g) := by
   intro p
   choose b hb using fun l => pureCubic_surjective (K := K) (p l)
@@ -153,15 +171,18 @@ theorem multiplication_surjective (g : Mixed K m c) : Function.Surjective (multi
   rw [map_zero]
   exact (zero_add _).trans (hb l)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The homology of this actual bidegree block. -/
 abbrev Homology (g : Mixed K m c) :=
   KernelModulo (multiplication g) (LinearMap.range (boundary g))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_finrank (g : Mixed K m c) :
     finrank K (LinearMap.range (boundary g)) = 4 * c := by
   rw [LinearMap.finrank_range_of_inj (boundary_injective g)]
   simp [BoundarySource, Module.finrank_pi_fintype]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The uniform (3,1) entry of the split-complex homology inventory. -/
 theorem homology_finrank (g : Mixed K m c) : finrank K (Homology g) = 2 * m + 2 * c := by
   have hhom := finrank_kernelModulo_add (multiplication g) (LinearMap.range (boundary g))
@@ -182,24 +203,29 @@ theorem homology_finrank (g : Mixed K m c) : finrank K (Homology g) = 2 * m + 2 
   change finrank K (Homology g) + 4 * c = _ at hhom
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The mixed-generator subspace of actual (1,1) coefficient arrays. -/
 def mixedSpace (g : Mixed K m c) : Submodule K (Fin m → Forms K 3 1) :=
   Submodule.span K (Set.range g)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Four pure-generator coefficients, each reduced modulo the mixed space. -/
 def coefficientProjection (g : Mixed K m c) :
     Source K m c →ₗ[K] (Fin 4 → ((Fin m → Forms K 3 1) ⧸ mixedSpace g)) :=
   (LinearMap.pi fun i => (mixedSpace g).mkQ.comp (LinearMap.proj i)).comp
     (LinearMap.snd K _ _)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientProjection_apply (g : Mixed K m c) (a : Source K m c) (i : Fin 4) :
     coefficientProjection g a i = (mixedSpace g).mkQ (a.2 i) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_snd_vector (g : Mixed K m c) (t : BoundarySource K c) (i : Fin 4) :
     (boundary g t).2 i = -(∑ j, t i j • g j) := by
   funext l
   simp [boundary]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientProjection_boundary (g : Mixed K m c) (t : BoundarySource K c) :
     coefficientProjection g (boundary g t) = 0 := by
   funext i
@@ -210,11 +236,13 @@ theorem boundary_snd_vector (g : Mixed K m c) (t : BoundarySource K c) (i : Fin 
   intro j _
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨j, rfl⟩)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Reading pure coefficients on the actual polynomial cycle space. -/
 def coefficientOnCycles (g : Mixed K m c) :
     (multiplication g).ker →ₗ[K] (Fin 4 → ((Fin m → Forms K 3 1) ⧸ mixedSpace g)) :=
   (coefficientProjection g).comp (multiplication g).ker.subtype
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_le_trace_kernel (g : Mixed K m c) :
     kernelBoundary (multiplication g) (LinearMap.range (boundary g)) ≤
       LinearMap.ker (coefficientOnCycles g) := by
@@ -225,17 +253,20 @@ theorem boundary_le_trace_kernel (g : Mixed K m c) :
   rw [← ht]
   exact coefficientProjection_boundary g t
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_range_le_projection_kernel (g : Mixed K m c) :
     LinearMap.range (boundary g) ≤ LinearMap.ker (coefficientProjection g) := by
   rintro _ ⟨t, rfl⟩
   exact coefficientProjection_boundary g t
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The full (3,1) trace on homology, including the pure cubic-kernel classes. -/
 def trace (g : Mixed K m c) :
     Homology g →ₗ[K] (Fin 4 → ((Fin m → Forms K 3 1) ⧸ mixedSpace g)) :=
   quotientProjection (multiplication g) (LinearMap.range (boundary g))
     (coefficientProjection g) (boundary_range_le_projection_kernel g)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A cycle whose pure coefficients lie in the mixed space is a cross-boundary,
 provided multiplication by the mixed generators is injective in this bidegree. -/
 theorem coefficient_kernel_is_boundary (g : Mixed K m c)
@@ -274,6 +305,7 @@ theorem coefficient_kernel_is_boundary (g : Mixed K m c)
   change b = a
   exact Prod.ext hfst.symm hsnd
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Uniform algebraic trace injection from `tb:k31injective`. Its injectivity
 hypothesis has an explicit separated-variable witness below. -/
 theorem trace_injective (g : Mixed K m c)
@@ -282,6 +314,7 @@ theorem trace_injective (g : Mixed K m c)
     (coefficientProjection g) (boundary_range_le_projection_kernel g)
     (coefficient_kernel_is_boundary g hinj)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Further quotient the four coefficient traces by a prescribed subspace. -/
 def traceModulo (g : Mixed K m c)
     (D : Submodule K ((Fin m → Forms K 3 1) ⧸ mixedSpace g)) :
@@ -290,6 +323,7 @@ def traceModulo (g : Mixed K m c)
   map_add' a b := by funext i; simp
   map_smul' t a := by funext i; simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Uniform rank loss after quotienting each of the four trace coordinates.
 This is the quantitative conclusion of `tb:k31injective`. -/
 theorem traceModulo_rank_bound (g : Mixed K m c)
@@ -323,13 +357,16 @@ theorem traceModulo_rank_bound (g : Mixed K m c)
     Fintype.card_fin, smul_eq_mul] at hker
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- One nonzero X-linear form, used to separate the Y coefficients. -/
 def coordinateX : Forms K 3 1 := ⟨X 0, isHomogeneous_X K 0⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The uniform witness `gⱼ = x yⱼ`, for every `c ≤ m`. -/
 def separatedMixed (hcm : c ≤ m) : Mixed K m c :=
   fun j l => if l = Fin.castLE hcm j then coordinateX else 0
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem separatedMixed_injective (hcm : c ≤ m) :
     Function.Injective (mixedMultiplication (separatedMixed (K := K) hcm)) := by
   apply LinearMap.ker_eq_bot.mp
@@ -345,10 +382,12 @@ theorem separatedMixed_injective (hcm : c ≤ m) :
     simpa [mixedMultiplication, separatedMixed, coordinateX, heq, apply_ite] using hj
   exact (mul_eq_zero.mp hproduct).resolve_right (X_ne_zero (0 : Fin 3))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem separated_trace_injective (hcm : c ≤ m) :
     Function.Injective (trace (separatedMixed (K := K) hcm)) :=
   trace_injective _ (separatedMixed_injective hcm)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The mixed generators in the separated witness are independent as actual
 bidegree-(1,1) polynomial coefficient arrays. -/
 theorem separatedMixed_independent (hcm : c ≤ m) :

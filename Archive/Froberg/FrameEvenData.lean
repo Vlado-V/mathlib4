@@ -14,12 +14,13 @@ independent quadratic output frame, selected after the scalar threshold. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def FrameEvenData {h : ℕ} (d n e : ℕ)
     (frame : Fin (quadraticOutputDimension d h) → Forms K h 2) : Prop :=
   letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
@@ -32,6 +33,7 @@ def FrameEvenData {h : ℕ} (d n e : ℕ)
     (∃ p : A,eval ((Module.finBasis K A).equivFun p) D≠0) ∧
     ∀ p : A,eval ((Module.finBasis K A).equivFun p) D≠0 → EvenPositiveReduction p
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem eventually_frame_even_data {d : ℕ} (hd : 3≤d) :
     ∀ᶠ h : ℕ in atTop,4∣h → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →

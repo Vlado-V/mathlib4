@@ -161,7 +161,7 @@ def cubicCoefficientMap (a : Fin 4 → Fin 3 → K) : Fin 10 → K :=
     a 2 1 + a 3 2, a 2 2 + a 3 1, a 3 2]
 
 set_option maxRecDepth 4096 in
-set_option maxHeartbeats 2000000 in
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The coordinate matrix agrees with multiplication in `MvPolynomial`. -/
 theorem cubicCoefficientMap_spec (a : Fin 4 → Fin 3 → K) (j : Fin 10) :
     (relation (fun i => linearForm (a i))).coeff (cubicExponents j) =

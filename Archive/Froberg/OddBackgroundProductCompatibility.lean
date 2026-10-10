@@ -14,12 +14,13 @@ odd multiplication under the source and target quotient equivalences. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddBackgroundSourceEquiv_mk_val
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -29,20 +30,24 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
         (parityPolynomialToFormsEquiv finSumFinEquiv
           (fun i => (blockWeight h m i : ZMod 2)) 1 a).val := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def evenPolynomialToForms : biformParitySpace K h m d 0 →ₗ[K] Forms K (h+m) d :=
   (parityPartForms ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm) 0).subtype.comp
     (parityPolynomialToFormsEquiv finSumFinEquiv
       (fun i => (blockWeight h m i : ZMod 2)) 0).toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem evenPolynomialToForms_val (a : biformParitySpace K h m d 0) :
     (evenPolynomialToForms a).val=rename finSumFinEquiv a.val := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenPolynomialToForms_parity (a : biformParitySpace K h m d 0) :
     (evenPolynomialToForms a).val.IsWeightedHomogeneous
       ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm) 0 :=
   (parityPolynomialToFormsEquiv finSumFinEquiv
     (fun i => (blockWeight h m i : ZMod 2)) 0 a).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddBackgroundQuotientProduct_compatible
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

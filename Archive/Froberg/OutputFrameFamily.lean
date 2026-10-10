@@ -17,12 +17,13 @@ this same parameter space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 200000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module TensorProduct MvPolynomial Quartic
 variable {K : Type*} [Field K] {h m j e H r : ℕ}
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- One common output frame with unrestricted scalar coefficient forms. -/
 def framedBiformFamily : (Fin H → Forms K h j) →ₗ[K]
     (Fin r → Fin H → Forms K m e) →ₗ[K]
@@ -50,11 +51,13 @@ def framedBiformFamily : (Fin H → Forms K h j) →ₗ[K]
     change (∑ a,(k • o) a ⊗ₜ[K] c i a)=k • (∑ a,o a ⊗ₜ[K] c i a)
     simp only [Pi.smul_apply,smul_tmul',Finset.smul_sum]
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 @[simp] theorem framedBiformFamily_apply (o : Fin H → Forms K h j)
     (c : Fin r → Fin H → Forms K m e) (i : Fin r) :
     framedBiformFamily o c i = ∑ a,o a ⊗ₜ[K] c i a := by
   simp [framedBiformFamily]
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- Every pure-tensor witness in an H-dimensional output plane is a point
 of the unrestricted frame/coefficient parameter space. The frame itself is
 independent, so it represents a plane of exactly the prescribed dimension. -/
@@ -73,6 +76,7 @@ theorem exists_output_frame_lift (W : Submodule K (Forms K h j))
 
 attribute [local instance] tensorGroup
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- Holding coefficient forms fixed makes the family polynomial in the
 output frame, and holding the frame fixed makes it polynomial in coefficients. -/
 theorem framedBiformFamily_polynomial_frame
@@ -83,6 +87,7 @@ theorem framedBiformFamily_polynomial_frame
     (((framedBiformFamily (h := h) (m := m) (j := j) (e := e) (H := H) (r := r)).flip c).comp
       (Module.finBasis K (Fin H → Forms K h j)).equivFun.symm.toLinearMap)
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem framedBiformFamily_polynomial_coefficients (frame : Fin H → Forms K h j) :
     IsPolynomialFamily (fun a : Fin (finrank K (Fin r → Fin H → Forms K m e)) → K =>
       framedBiformFamily frame ((Module.finBasis K _).equivFun.symm a)) := by

@@ -14,13 +14,14 @@ parameter space. Exactness of their combined row is a principal-open property. -
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K]
 
- theorem addRow_exact_of_separated
+ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+theorem addRow_exact_of_separated
     {A B U V : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
     (F : A →ₗ[K] V) (P : B →ₗ[K] V) (C : U →ₗ[K] A)
@@ -49,12 +50,15 @@ variable {σ : Type*} [Fintype σ] {n d q b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 abbrev IntrinsicRowSource (R : ℕ) :=
   ((Label q J counts → FullBiform K σ n R (d-R)) × (Fin (counts R) → Forms K n d)) ×
     RowProducts (K := K) (J := J) (counts := counts) R
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 abbrev PrivateRowSource (R : ℕ) := Fin b → FullBiform K σ n (R-1) (d-(R-1))
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 def privateRowMap (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) (R : ℕ) :
     PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R →ₗ[K]
       MvPolynomial (σ ⊕ Fin n) K where
@@ -62,16 +66,19 @@ def privateRowMap (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) (R : ℕ) :
   map_add' v w := by simp only [Pi.add_apply,Submodule.coe_add,mul_add,Finset.sum_add_distrib]
   map_smul' c v := by simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 def privateAugmentedRow (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) :=
   addRow (row hO R p) (privateRowMap (d := d) P R.val)
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 def privateAugmentedConstants (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) :=
   (LinearMap.inl K (IntrinsicRowSource (K := K) (σ := σ) (n := n) (d := d) (q := q) (J := J) (counts := counts) R.val)
     (PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)).comp (rowConstants hO R p)
 
- theorem private_augmented_exact
+ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+theorem private_augmented_exact
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (hrow : (row hO R p).ker=(rowConstants hO R p).range)
@@ -79,7 +86,8 @@ def privateAugmentedConstants (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (privateAugmentedRow hO R p P).ker=(privateAugmentedConstants (b := b) hO R p).range :=
   addRow_exact_of_separated _ _ _ hrow hsep
 
- theorem private_row_principal_open [Module.Finite K (Space n d q J counts O)]
+ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+theorem private_row_principal_open [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (p₀ : Space n d q J counts O)

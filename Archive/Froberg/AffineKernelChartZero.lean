@@ -12,7 +12,7 @@ public import Archive.Froberg.AffineKernelCharts
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.BilinearCovectorCharts
@@ -20,6 +20,7 @@ open Quartic.BilinearCoefficientKernel
 variable {K : Type} [Field K] [Infinite K]
 variable {a b T T₀ H k : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem affineKernelChart_zero
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))

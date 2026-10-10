@@ -18,24 +18,28 @@ remain arbitrary. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def combinedLinear (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) :
     Fin f ⊕ Fin u → MvPolynomial (Fin h ⊕ Fin m) K :=
   Sum.elim (fun i => (F i).val) (fun j => (P j).val)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def combinedPure (U : Fin u → Forms K h d) :
     Fin f ⊕ Fin u → MvPolynomial (Fin h ⊕ Fin m) K :=
   Sum.elim (fun _ => 0) (fun j => rename Sum.inl (U j).val)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddGenerator (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) : Fin f ⊕ Fin u → MvPolynomial (Fin h ⊕ Fin m) K :=
   combinedLinear P F+combinedPure U
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def OddCyclesExact (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (p : PreparedParameters.Space m d q J counts O × OuterSpace K (Fin h) m d f) : Prop :=
   ∀ (c : PreparedParameters.Label q J counts → MvPolynomial (Fin h ⊕ Fin m) K)
@@ -48,6 +52,7 @@ def OddCyclesExact (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
       (∀ i,c i=∑ k,B i k • oddGenerator U P p.2 k) ∧
       (∀ k,v k = -∑ i,B i k • PreparedParameters.generator p.1 i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem zero_scalar_odd_cycles_exact (hd : 3≤d) (hdodd : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)

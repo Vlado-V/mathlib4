@@ -18,8 +18,9 @@ namespace Quartic.ActualMarkedSquareRankOmega
 open Module MvPolynomial ActualDeformationColumnsOmega ActualMarkedSquareColumnsOmega
 variable {K : Type*} [Field K] [Infinite K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 1800000
 
+
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- The retained target projection kills every initial augmented column. -/
 theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (ζ : MiddleCoordinates.Mixed K m)
@@ -29,6 +30,7 @@ theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m)
   MarkedRankTransfer.projection_annihilates _ _ (square_mem_split_range g h ζ hs) _
     (ActualDeformationRankOmega.projection_annihilates g h)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)
@@ -58,6 +60,7 @@ theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [deformed_multiplication,MarkedRankTransfer.pencil_eq]
   exact he
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)
@@ -83,6 +86,7 @@ theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K
     simpa only [map_mul] using hDE
   exact ⟨he ε hne.2,hRank ε hε hne.1⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem exists_independent_rank_gain (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)

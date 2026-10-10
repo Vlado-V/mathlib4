@@ -45,7 +45,7 @@ def expectedCounts (m : ℕ) (upper : Bool) : ℕ × ℕ :=
   (countRecords[(m - 41) * 2 + if upper then 1 else 0]?).getD (0, 0)
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- Every expected record is linked to the actual edge checker and source intervals. -/
 theorem all_configuration_counts (index : Fin 89) (upper : Bool) :
     let m := (index : ℕ) + 41
@@ -233,14 +233,14 @@ theorem all_configuration_counts (index : Fin 89) (upper : Bool) :
   · exact configuration_counts_129_upper
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- The finite proof covers 89,988 indexed core/edge pairs. -/
 theorem total_edge_count :
     rangeTotal (fun m upper => configurationEdgeCount (mixedCount m upper)) = 89988 := by
   decide +kernel
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- Those edge domains contain 7,023,720 integer evaluations before compression. -/
 theorem total_integer_edge_value_count :
     rangeTotal (fun m upper => configurationValueCount m (mixedCount m upper)) = 7023720 := by
@@ -257,7 +257,7 @@ theorem total_integer_edge_value_count :
   decide +kernel
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- The actual certificate algorithm uses 171,859 intervals. -/
 theorem total_interval_count :
     rangeTotal (fun m upper => configurationIntervalCount m (upperEndpoint m) (mixedCount m upper)) =

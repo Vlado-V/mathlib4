@@ -14,7 +14,7 @@ its scalar multiplication. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
@@ -30,6 +30,7 @@ variable (hd : 1≤d)
   (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
     oddAmbientBottomRelationMap hd Q F hQ hF G)
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddAmbientCoordinates_weighted_bottom
     (p : biformParitySpace K h m (2*d) 1)
     (hp : p.val.IsWeightedHomogeneous (blockWeight h m) 1) :
@@ -38,6 +39,7 @@ theorem oddAmbientCoordinates_weighted_bottom
   rw [oddAmbientCoordinates_mk,oddTargetBaseMap_weighted_higher_zero hd Q F hQ hF p hp]
   simp only [map_zero,sub_zero]
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddAmbientCoordinates_bottom_product
     (s : biformParitySpace K h m d 0)
     (hs : s.val.IsWeightedHomogeneous (blockWeight h m) 0)

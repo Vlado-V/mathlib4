@@ -13,7 +13,7 @@ the scalar and outer-linear background relations have been removed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
@@ -26,19 +26,23 @@ variable (hd : 1≤d)
   (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
   (G : Fin u → biformParitySpace K h m d 1)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddAmbientRelationMap :
     (Fin u → Forms K h 0 ⊗[K] Forms K m d) →ₗ[K] OddTargetBaseSpace hd Q F :=
   (oddTargetBaseMap hd Q F hQ hF).comp (privateScalarRelations G)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddAmbientBottomRelationMap :
     (Fin u → Forms K h 0 ⊗[K] Forms K m d) →ₗ[K]
       OddTargetRowQuotient Q F (oddTargetBottomIndex hd) :=
   (LinearMap.fst K _ _).comp (oddAmbientRelationMap hd Q F hQ hF G)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddAmbientHigherRelationMap :
     (Fin u → Forms K h 0 ⊗[K] Forms K m d) →ₗ[K] HigherOddTargetRows hd Q F :=
   (LinearMap.snd K _ _).comp (oddAmbientRelationMap hd Q F hQ hF G)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oddAmbientRelationMap_prod :
     (oddAmbientBottomRelationMap hd Q F hQ hF G).prod
       (oddAmbientHigherRelationMap hd Q F hQ hF G)=oddAmbientRelationMap hd Q F hQ hF G := by
@@ -46,6 +50,7 @@ theorem oddAmbientRelationMap_prod :
   intro v
   rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddAmbientGraphQuotientEquiv :
     (biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations Q F G) ≃ₗ[K]
       (OddTargetBaseSpace hd Q F ⧸

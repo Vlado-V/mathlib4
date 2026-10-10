@@ -16,11 +16,12 @@ actual odd target after the scalar flag has changed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_appended_slot_polynomial
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -52,6 +53,7 @@ theorem background_appended_slot_polynomial
 
 attribute [local irreducible] backgroundEnumeratedForms oddEndpointScalarAction
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem appended_slot_even_coverage_open
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -75,6 +77,7 @@ theorem appended_slot_even_coverage_open
     (by simpa only [A,Pi.zero_apply,zero_smul,add_zero,Function.update_eq_self] using hc)
   exact ⟨P,hP,fun c hc => hgood (fun _ => c) hc⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_covered_endpoint_slot_thin [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

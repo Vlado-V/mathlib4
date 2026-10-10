@@ -12,22 +12,25 @@ public import Archive.Froberg.OddRelativeDimensions
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddEvenAffineFamily (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d) : Fin e → biformParitySpace K h m d 0 :=
   fun i => E i+scalarEvenBiform (a i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddEvenAffineRelations
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (E : Fin e → biformParitySpace K h m d 0) (a : Fin e → Forms K m d) :=
   (oddEvenRelativeMap Q F G (oddEvenAffineFamily E a)).range
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oddEvenRelativeMap_single
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -41,6 +44,7 @@ theorem oddEvenRelativeMap_single
     rw [Pi.single_eq_of_ne hji,map_zero]
   · simp
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oddEvenAffineRelations_generator_mem
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -54,6 +58,7 @@ theorem oddEvenAffineRelations_generator_mem
   rw [map_add,LinearMap.add_apply,add_comm]
   rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oddEvenAffineRelations_finrank
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

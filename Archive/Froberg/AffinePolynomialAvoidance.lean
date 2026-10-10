@@ -14,26 +14,30 @@ components retained in the same equations. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K I V W : Type*} [Field K] [Infinite K] [Fintype I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Homogenization uses one shared scalar for every affine equation. -/
 def affineHomogenization (A : V →ₗ[K] W) (b : W) : V × K →ₗ[K] W :=
   (A.comp (LinearMap.fst K V K)) + (LinearMap.smulRight (LinearMap.snd K V K) b)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] lemma affineHomogenization_apply (A : V →ₗ[K] W) (b : W) (x : V × K) :
     affineHomogenization A b x=A x.1+x.2 • b := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma affineHomogenization_rank (A : V →ₗ[K] W) (b : W) :
     finrank K A.range ≤ finrank K (affineHomogenization A b).range := by
   apply Submodule.finrank_mono
   rintro _ ⟨v,rfl⟩
   exact ⟨(v,0),by simp⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma affineHomogenization_polynomial (A : (I → K) → V →ₗ[K] W) (b : (I → K) → W)
     (hA : IsPolynomialFamily A) (hb : IsPolynomialFamily b) :
     IsPolynomialFamily (fun t => affineHomogenization (A t) (b t)) := by
@@ -42,6 +46,7 @@ lemma affineHomogenization_polynomial (A : (I → K) → V →ₗ[K] W) (b : (I 
   exact (hA.linear_comp (LinearMap.applyₗ (R := K) (M₂ := W) x.1)).add
     ((isPolynomialFamily_const x.2).smul hb)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- If the number of parameter coordinates is below the linear equation
 rank, one actual scalar choice avoids all the affine equations at once. -/
 theorem exists_affine_polynomial_avoidance (A : (I → K) → V →ₗ[K] W)

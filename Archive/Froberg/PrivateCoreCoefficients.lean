@@ -14,12 +14,13 @@ monomial coefficient is an actual lower-degree core relation. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open MvPolynomial Module Quartic.FreeCoefficients Quartic.FreeCoefficientProducts
 open Quartic.ConvolutionLayers Quartic.ConvolutionFreeMultiplication
 variable {K : Type*} [Field K] {a z t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma liftCoeff_zero_eq_rename (f : Poly K a) :
     liftCoeff (0 : Fin z →₀ ℕ) f=rename (Fin.castAdd z) f := by
   rw [liftCoeff_eq_mul]
@@ -28,6 +29,7 @@ lemma liftCoeff_zero_eq_rename (f : Poly K a) :
     refine Fin.addCases (fun j => ?_) (fun j => ?_) i <;> simp
   simp [hz]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Extraction in private variables commutes with every core polynomial multiplier. -/
 theorem freeCoeff_rename_mul (β : Fin z →₀ ℕ) (f : Poly K a) (p : Poly K (a+z)) :
     freeCoeff β (rename (Fin.castAdd z) f*p)=f*freeCoeff β p := by
@@ -42,6 +44,7 @@ theorem freeCoeff_rename_mul (β : Fin z →₀ ℕ) (f : Poly K a) (p : Poly K 
 
 variable {I J : Type*} [Fintype I]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Multiplication by a finite matrix whose entries use only core variables. -/
 def corePolynomialMatrix (q : J → I → Poly K a) :
     (I → Forms K a t) →ₗ[K] (J → Poly K a) where
@@ -49,12 +52,14 @@ def corePolynomialMatrix (q : J → I → Poly K a) :
   map_add' p p' := by ext j; simp [mul_add,Finset.sum_add_distrib]
   map_smul' c p := by ext j; simp [mul_smul_comm,Finset.smul_sum]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def extendedCorePolynomialMatrix (q : J → I → Poly K a) :
     (I → Forms K (a+z) t) →ₗ[K] (J → Poly K (a+z)) where
   toFun p j := ∑ i,rename (Fin.castAdd z) (q j i)*(p i).val
   map_add' p p' := by ext j; simp [mul_add,Finset.sum_add_distrib]
   map_smul' c p := by ext j; simp [mul_smul_comm,Finset.smul_sum]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual lower-degree injectivity is preserved on adjoining any number
 of private variables, without a new general-position assumption. -/
 theorem extendedCorePolynomialMatrix_injective (q : J → I → Poly K a)

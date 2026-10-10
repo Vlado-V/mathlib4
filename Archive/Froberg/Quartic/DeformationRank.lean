@@ -28,24 +28,28 @@ variable {K V W J : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [AddCommGroup J] [Module K J] [FiniteDimensional K J]
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The two exact cancellation equations on a corrected column. -/
 def equations (M₀ M₁ : V →ₗ[K] W) : (V × V) →ₗ[K] W × W :=
   (M₀.comp (LinearMap.fst K V V)).prod
     ((M₁.comp (LinearMap.fst K V V)) + (M₀.comp (LinearMap.snd K V V)))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The true second response of a corrected column. -/
 def secondResponse (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J) :
     (equations M₀ M₁).ker →ₗ[K] J :=
   π.comp (M₁.comp ((LinearMap.snd K V V).comp (equations M₀ M₁).ker.subtype))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem column_equations (M₀ M₁ : V →ₗ[K] W) (a : (equations M₀ M₁).ker) :
     M₀ a.val.1 = 0 ∧ M₀ a.val.2 = -M₁ a.val.1 := by
   have h := a.property
   change (M₀ a.val.1, M₁ a.val.1 + M₀ a.val.2) = (0,0) at h
   exact ⟨congrArg Prod.fst h, eq_neg_of_add_eq_zero_right (congrArg Prod.snd h)⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Corrected source columns give the rank gain of their actual cokernel responses. -/
 theorem rank_gain_principal_open (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J)
     (hπ : π.comp M₀ = 0) :
@@ -108,6 +112,7 @@ theorem rank_gain_principal_open (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J
   rw [LinearMap.finrank_range_of_inj (hEinj a hDa),Module.finrank_prod] at hr
   exact hr
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A nonzero specialization attains the actual second-response rank gain. -/
 theorem rank_gain (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J)
     (hπ : π.comp M₀ = 0) :
@@ -124,6 +129,7 @@ theorem rank_gain (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J)
   have hconst : (fun _ : Fin 1 => a 0) = a := by ext i; fin_cases i; rfl
   rwa [hconst]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A response map realized by exact corrected columns contributes its full actual image rank. -/
 theorem rank_gain_of_realizations {T : Type*} [AddCommGroup T] [Module K T]
     (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J) (N : T →ₗ[K] J)
@@ -141,6 +147,7 @@ theorem rank_gain_of_realizations {T : Type*} [AddCommGroup T] [Module K T]
   obtain ⟨ε,he,hr⟩ := rank_gain M₀ M₁ π hπ
   exact ⟨ε,he,(Nat.add_le_add_left (Submodule.finrank_mono hsub) _).trans hr⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The same concrete response rank gain holds on a principal open of nonzero parameters. -/
 theorem rank_gain_of_realizations_principal_open {T : Type*} [AddCommGroup T] [Module K T]
     (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J) (N : T →ₗ[K] J)

@@ -14,7 +14,7 @@ including its actual scalar multiplication. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
@@ -29,6 +29,7 @@ local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
 local notation "eW" => oddTargetBaseEquiv hdp Q₀ F₁ hQ₀ hF₁
 local notation "eV" => oddSourceBaseEquiv hdp F
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenBackgroundScalar_bottom (p : Forms K m d) (x : OddBottomQuotient F) :
     eW (evenBackgroundScalar hdp Q F p ((eV).symm (x,0)))=
       (bottomCoordinateScalarAction hdp Q g p x,0) := by

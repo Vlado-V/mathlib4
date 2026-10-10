@@ -15,11 +15,12 @@ quotient, and an arbitrary nonempty joint open of the remaining parameters. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Filter Module MvPolynomial VectorExpansionOpen BilinearScalarFamily
 open scoped Topology
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def ChildFlagCondition {K V W : Type*} [Field K]
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     [AddCommGroup W] [Module K W] [FiniteDimensional K W]
@@ -34,6 +35,7 @@ def ChildFlagCondition {K V W : Type*} [Field K]
   HasClosedKernelSlices (scalarQuotientBilinear mu (coefficientForms K n d q a))
     (BilinearCovectorStrata.thinSlices j C)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_count_generic_flag_joint {K : Type*} [Field K] [Infinite K]
     {d k h lo b : ℕ} (hd : 3 ≤ d) (hk : 0 < k)
     (hh : h=k*centralHalfBinomial d) (hhpos : 0 < h)

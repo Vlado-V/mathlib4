@@ -16,13 +16,14 @@ assumption. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddPrivateProduct (g : biformParitySpace K h m d 1) :
     biformParitySpace K h m d 0 →ₗ[K] biformParitySpace K h m (2*d) 1 where
   toFun v := ⟨g.val*v.val,by
@@ -34,35 +35,42 @@ def oddPrivateProduct (g : biformParitySpace K h m d 1) :
   map_add' v w := Subtype.ext (mul_add _ _ _)
   map_smul' a v := Subtype.ext (mul_smul_comm _ _ _)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def privateEvenCoefficientMap (g : Fin u → biformParitySpace K h m d 1) :
     (Fin u → biformParitySpace K h m d 0) →ₗ[K] biformParitySpace K h m (2*d) 1 :=
   ∑ i,(oddPrivateProduct (g i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem privateEvenCoefficientMap_val (g : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → biformParitySpace K h m d 0) :
     (privateEvenCoefficientMap g v).val=∑ i,(g i).val*(v i).val := by
   simp [privateEvenCoefficientMap,oddPrivateProduct]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def privateScalarRelations (g : Fin u → biformParitySpace K h m d 1) :
     (Fin u → Forms K h 0 ⊗[K] Forms K m d) →ₗ[K] biformParitySpace K h m (2*d) 1 :=
   (privateEvenCoefficientMap g).comp
     (LinearMap.piMap (fun _ => evenBiformEmbedding (t := 0) (Nat.zero_le d) (by omega)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def privateHigherRelations (g : Fin u → biformParitySpace K h m d 1) :
     (Fin u → HigherEvenCoefficients K h m d) →ₗ[K] biformParitySpace K h m (2*d) 1 :=
   (privateEvenCoefficientMap g).comp (LinearMap.piMap (fun _ => positiveEvenAssembly))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem privateHigherRelations_val (g : Fin u → biformParitySpace K h m d 1)
     (v : Fin u → HigherEvenCoefficients K h m d) :
     (privateHigherRelations g v).val=∑ i,∑ r,(g i).val*sumBiformMap (v i r) := by
   simp [privateHigherRelations,Finset.mul_sum]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def privateCoefficientAssembly :
     ((Fin u → Forms K h 0 ⊗[K] Forms K m d) × (Fin u → HigherEvenCoefficients K h m d)) →ₗ[K]
       (Fin u → biformParitySpace K h m d 0) :=
   (LinearMap.piMap (fun _ => evenBiformEmbedding (t := 0) (Nat.zero_le d) (by omega))).coprod
     (LinearMap.piMap (fun _ => positiveEvenAssembly))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privateCoefficientAssembly_surjective (hd : Odd d) :
     Function.Surjective (privateCoefficientAssembly (K := K) (h := h) (m := m) (d := d) (u := u)) := by
   intro v
@@ -71,6 +79,7 @@ theorem privateCoefficientAssembly_surjective (hd : Odd d) :
   funext i
   exact hz i
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privateEvenCoefficientMap_range (hd : Odd d)
     (g : Fin u → biformParitySpace K h m d 1) :
     (privateEvenCoefficientMap g).range=
@@ -85,6 +94,7 @@ theorem privateEvenCoefficientMap_range (hd : Odd d)
   rw [←LinearMap.range_coprod,he,LinearMap.range_comp,
     LinearMap.range_eq_top.mpr (privateCoefficientAssembly_surjective hd),Submodule.map_top]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_private_relation_loss (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
     (g : Fin u → biformParitySpace K h m d 1)
     (base : Submodule K (biformParitySpace K h m (2*d) 1)) :

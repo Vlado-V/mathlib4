@@ -20,11 +20,13 @@ namespace Quartic.FiniteEndpointCertified30
 noncomputable section
 open FiniteEndpointChecker FiniteEndpointCertificate
 open FiniteEndpointMetadata30Data
-set_option maxHeartbeats 2000000
 
+
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def inverse : Fin 40920 → Nat :=
   FiniteEndpointNatural.finInverse FiniteEndpointInverse30.binaryInverse
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem inverse_checked : checkInverse rows inverse = true := by
   unfold inverse
   rw [FiniteEndpointMetadata30Data.rows_eq_natural]
@@ -33,6 +35,7 @@ theorem inverse_checked : checkInverse rows inverse = true := by
     (fun i _ => FiniteEndpointMetadata30.naturalRow_bound i)
     FiniteEndpointRows30.all_rows_checked
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def certificate : Data 30 98 99 465 40920 40817 where
   exponent₂ := exponent2
   exponent₄ := exponent4
@@ -60,10 +63,13 @@ def certificate : Data 30 98 99 465 40920 40817 where
 
 variable {K : Type*} [Field K] [CharZero K]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_witness : QuarticWitness K 30 98 := certificate.lower_witness
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem upper_witness : QuarticWitness K 30 99 := certificate.upper_witness
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every admissible generator count over every characteristic-zero field. -/
 theorem generic (r : ℕ) (hr : r ≤ (30+1).choose 2) : GenericQuartic K 30 r :=
   certificate.generic_of_certificate (by decide +kernel) (by decide +kernel)

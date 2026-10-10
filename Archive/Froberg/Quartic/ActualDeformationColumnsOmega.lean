@@ -28,22 +28,25 @@ noncomputable section
 namespace Quartic.ActualDeformationColumnsOmega
 open Module MvPolynomial ActualSplitCokernel
 open scoped TensorProduct
-set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K] {m c q : ℕ}
 variable (ω : K)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual quadratic motions: child quadrics on pure/mixed slots and pure quadrics on child slots. -/
 def motionFamily (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) : Fin (4+(c+q)) → Forms K (3+m) 2 :=
   Fin.addCases (fun i => SplitBlock31.childEmbed (r i))
     (Fin.addCases (fun j => SplitBlock31.childEmbed (p j)) (fun k => SplitBlock31.coreEmbed (s k)))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The literal perturbed family of actual quadrics. -/
 def deformedFamily (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (s : Fin q → Forms K 3 2) (ε : K) :
     Fin (4+(c+q)) → Forms K (3+m) 2 :=
   SplitBlock22.fullGenerators g h + ε • motionFamily p r s
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quadraticMultiplication_add_smul {n t : ℕ} (f v : Fin t → Forms K n 2) (ε : K) :
     quadraticMultiplication (f + ε • v) = quadraticMultiplication f + ε • quadraticMultiplication v := by
   apply LinearMap.ext
@@ -53,6 +56,7 @@ theorem quadraticMultiplication_add_smul {n t : ℕ} (f v : Fin t → Forms K n 
     Submodule.coe_smul, LinearMap.add_apply, LinearMap.smul_apply, add_mul, smul_mul_assoc,
     Finset.sum_add_distrib, Finset.smul_sum]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- No matrix-family premise: the actual perturbed multiplication is affine linear. -/
 theorem deformed_multiplication (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (s : Fin q → Forms K 3 2) (ε : K) :
@@ -60,22 +64,26 @@ theorem deformed_multiplication (g : Fin c → MiddleCoordinates.Mixed K m) (h :
       quadraticMultiplication (SplitBlock22.fullGenerators g h) + ε • quadraticMultiplication (motionFamily p r s) :=
   quadraticMultiplication_add_smul _ _ ε
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual fixed ambient projection used by the deformation response. -/
 def projectionRawJ (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     Forms K (3+m) 4 →ₗ[K] RawJ g h :=
   (GeneralF13.combined g h).range.mkQ.comp projection13
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem projectionRawJ_rowEmbedding (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : GeneralF13.Ambient K m) :
     projectionRawJ g h (rowEmbedding 3 a) = (GeneralF13.combined g h).range.mkQ a := by
   simp [projectionRawJ]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem rowProduct_eq_multiplication (a : MiddleCoordinates.Mixed K m) (p : Forms K m 2) :
     rowProduct a p = RowMultiplicationCoordinates.multiplication p a := by
   funext i
   apply Subtype.ext
   exact mul_comm _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual first variation on every complete middle-block source, including its pure/child corrections. -/
 theorem firstVariation_middle (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) (a : SplitBlock22.Source K m c q) :
@@ -89,10 +97,12 @@ theorem firstVariation_middle (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K
     SplitBlock22.middleProjection_mixedEmbedding, map_zero,
     projection13_core_mul, rowProduct_eq_multiplication, Finset.sum_const_zero, zero_add, add_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Reorient a true mixed polynomial's child-first coefficients back to its three rows. -/
 def traceRows : (Fin m → Forms K 3 1) →ₗ[K] MiddleCoordinates.Mixed K m :=
   SplitBlock22.middleProjection.comp SplitBlock31.linearYEmbed
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual first variation on every complete (3,1) source. -/
 theorem firstVariation_trace (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) (a : SplitMiddle31.Source K m c) :
@@ -106,6 +116,7 @@ theorem firstVariation_trace (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K 
     rowProduct_eq_multiplication, map_zero, Finset.sum_const_zero, add_zero]
   rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- First-order columns are actual cycles embedded in the full indexed polynomial source. -/
 theorem middle_first_order (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (s : Fin q → Forms K 3 2)
@@ -116,6 +127,7 @@ theorem middle_first_order (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin 
   apply deformation_first_response
   rw [SplitBlock22.full_multiplication_commutes, ha, map_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The complete trace cycle gives its literal order-one polynomial column. -/
 theorem trace_first_order (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (s : Fin q → Forms K 3 2)
@@ -129,10 +141,12 @@ theorem trace_first_order (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q
     (SplitBlock31.sourceEmbedding a) = 0
   rw [SplitBlock31.multiplication_commutes, ha, map_zero]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The unreduced (2,2) first response of an actual pure quartic source. -/
 def pureFirstResponse (r : Fin 4 → Forms K m 2) (a : Fin 4 → Forms K 3 2) : SplitBlock22.Target K m :=
   ∑ i, a i ⊗ₜ[K] r i
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Pure sources first respond by the actual pure-coefficient tensor, before elimination. -/
 theorem firstVariation_pure (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) (a : Fin 4 → Forms K 3 2) :
@@ -149,10 +163,12 @@ theorem firstVariation_pure (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m
   intro i _
   exact mul_comm _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The unreduced (2,2) first response of a child quartic source. -/
 def childFirstResponse (s : Fin q → Forms K 3 2) (a : Fin q → Forms K m 2) : SplitBlock22.Target K m :=
   ∑ i, s i ⊗ₜ[K] a i
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Child cycles also have a literal bidegree-(2,2) first response. -/
 theorem firstVariation_child (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) (a : Fin q → Forms K m 2) :
@@ -163,6 +179,7 @@ theorem firstVariation_child (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K 
   simp [sourceEmbedding04, motionFamily, Fin.sum_univ_add, SplitBlock31.childEmbed_val,
     SplitBlock31.coreEmbed_val, childFirstResponse, SplitBlock22.targetEmbedding_tmul_val]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Complete any prescribed mixed coefficient vector whose actual quotient product matches the target. -/
 theorem prescribed_middle_completion (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (t : SplitBlock22.Target K m)
@@ -187,6 +204,7 @@ theorem prescribed_middle_completion (g : Fin c → MiddleCoordinates.Mixed K m)
     _ = SplitBlock22.pureMap a + SplitBlock22.childMap h d + SplitBlock22.mixedMap g z := by abel
     _ = _ := he'
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual corrected polynomial source columns, with prescribed mixed coefficients and their response. -/
 theorem corrected_column (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -218,6 +236,7 @@ theorem corrected_column (g : Fin c → MiddleCoordinates.Mixed K m)
       (projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding b))) = _
     rw [firstVariation_middle, hb]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The pure first-response tensor reduces to the actual pure trace on homology. -/
 theorem pureFirstResponse_elimination (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (a : (quadraticMultiplication (ThreeBlockModel.blockQuadrics (K := K))).ker) :
@@ -231,13 +250,16 @@ theorem pureFirstResponse_elimination (h : Fin q → Forms K m 2) (r : Fin 4 →
   · exact Prod.fst_sum
   · exact Prod.snd_sum
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The concrete marked pure direction used in the simultaneous augmented open. -/
 def markedDirection : Forms K 3 2 := ω • ThreeBlockQuotient.square 0 - ThreeBlockQuotient.square 1
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem markedDirection_reduction :
     ThreeBlockQuotient.reduction (markedDirection ω (K := K)) = (ω,-1) := by
   simp [markedDirection]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The literal marked child response gives the marked direction used by the correction space. -/
 theorem marked_child_elimination (h : Fin q → Forms K m 2) (k : Fin q)
     (a : Fin q → Forms K m 2) :
@@ -251,6 +273,7 @@ theorem marked_child_elimination (h : Fin q → Forms K m 2) (k : Fin q)
   rw [he, SplitBlock22.elimination_tmul, markedDirection_reduction]
   simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Both orientations recover the identical mixed polynomial. -/
 theorem traceRows_eq (a : Fin m → Forms K 3 1) :
     traceRows a = ActualTraceMotion.rowTraceEquiv.symm a := by
@@ -260,6 +283,7 @@ theorem traceRows_eq (a : Fin m → Forms K 3 1) :
     (SplitBlock31.linearYEmbed (SplitBlock22.traceCoordinates v)) = v
   rw [SplitBlock22.linearYEmbed_traceCoordinates, SplitBlock22.middleProjection_mixedEmbedding]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The literal order-one column has exactly the previously constructed trace response. -/
 theorem trace_response_compatibility (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -273,16 +297,19 @@ theorem trace_response_compatibility (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [firstVariation_trace,ActualDeformationResponseOmega.traceResponse_mk]
   simp only [traceRows_eq]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every pure homology class has an actual polynomial cycle representative. -/
 theorem pure_class_surjective : Function.Surjective (HomologyCoordinates.homologyClass (K := K)) := by
   exact Submodule.mkQ_surjective _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- An explicit representative condition for the marked old-child correction space. -/
 def MarkedRepresentatives (h : Fin q → Forms K m 2) (k : Fin q)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) : Prop :=
   ∀ u : markedU, ∃ a : (quadraticMultiplication h).ker,
     (Submodule.span K (Set.range h)).mkQ (a.val k) = u.val
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- An actual middle correction preimage has actual pure and marked-child source representatives. -/
 theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)
@@ -306,12 +333,14 @@ theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K 
   rw [map_add,pureFirstResponse_elimination,marked_child_elimination,hbx,hby,← he]
   apply Prod.ext <;> simp only [MovingMiddleCorrectionOmega.traceMap_apply ω,Prod.fst_add,Prod.snd_add] <;> abel
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual marked child coefficient on the actual child cycle space. -/
 def childMarkedCoefficient (h : Fin q → Forms K m 2) (k : Fin q) :
     (quadraticMultiplication h).ker →ₗ[K] (Forms K m 2 ⧸ Submodule.span K (Set.range h)) :=
   (Submodule.span K (Set.range h)).mkQ.comp
     ((LinearMap.proj k).comp (quadraticMultiplication h).ker.subtype)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The canonical marked space needs no representative assumption. -/
 theorem canonical_marked_representatives (h : Fin q → Forms K m 2) (k : Fin q) :
     MarkedRepresentatives h k (childMarkedCoefficient h k).range := by
@@ -319,6 +348,7 @@ theorem canonical_marked_representatives (h : Fin q → Forms K m 2) (k : Fin q)
   obtain ⟨a,ha⟩ := u.property
   exact ⟨a,ha⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every literal correction preimage is the second response of an actual corrected source
 column. The only marked input is a representative condition on actual old-child cycles. -/
 theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
@@ -368,6 +398,7 @@ theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
   refine ⟨a,SplitBlock22.sourceEmbedding b,ha,hcancel,hpoly,?_⟩
   rw [hresponse,ActualDeformationResponseOmega.correctionResponse_mk ω]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual first-order column realizes every class of trace homology. -/
 theorem trace_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -387,6 +418,7 @@ theorem trace_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
     exact trace_first_order g h p r s b.val b.property ε
   · exact trace_response_compatibility g h p r s b
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual second-order corrected column realizes every correction homology class. -/
 theorem correction_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)

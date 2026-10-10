@@ -16,7 +16,7 @@ by the polynomial elimination, without any sparse form assumption. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
@@ -25,6 +25,7 @@ variable {σ I J W : Type*} [Fintype σ] [Fintype I] [Fintype J]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {n d R s : ℕ}
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem intrinsic_row_relation_constants
     (Q : I → Forms K n d) (E : J → FullBiform K σ n R s)
     (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
@@ -59,6 +60,7 @@ theorem intrinsic_row_relation_constants
     change 0=z at hz
     rw [←hz,map_zero]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- Exactness of the full intrinsic row is exactly the coefficient-row rule
 needed by the increasing-degree induction. -/
 theorem intrinsic_polynomial_coefficient_row_exact

@@ -14,13 +14,14 @@ coordinate of the full source decomposition, for arbitrary graph correction. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddMixedSourceBlockCoordinates_higher_mk (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -37,6 +38,7 @@ theorem oddMixedSourceBlockCoordinates_higher_mk (hd : Odd d) (hd3 : 3≤d)
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r).mkQ
           (oddBiformCoordinatesEquiv v r.val) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddIntermediateSourceProjection_coordinates (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))

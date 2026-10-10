@@ -15,12 +15,13 @@ public import Archive.Froberg.UniformCountedUpperFrames
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial
 open scoped Topology
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem eventually_uniform_counted_restored_frames {d : ℕ} (hd : 3≤d) (heven : d%2=0)
     (N₂ : ℕ) (hquad : ∀ h,N₂≤h → ∀ (K : Type) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :

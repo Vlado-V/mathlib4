@@ -14,7 +14,7 @@ polynomial change of the target relations. No varying basis is assumed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.BilinearScalarFamily
 open Module MvPolynomial Quartic PolynomialBilinearCoordinates
 open AmbientCovectorTransport BilinearCovectorCharts BilinearCoefficientKernel
@@ -24,6 +24,7 @@ variable {K F V W I : Type*} [Field K] [IsAlgClosed K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_slices_principal_open (mu : F →ₗ[K] V →ₗ[K] W)
     (A : (I → K) → Fin c → W) (hA : ∀ i,IsPolynomialFamily (fun p => A p i))
     (s : ℕ → ℕ) (p₀ : I → K)

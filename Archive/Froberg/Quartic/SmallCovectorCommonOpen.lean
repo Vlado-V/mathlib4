@@ -14,40 +14,49 @@ public import Archive.Froberg.Quartic.EndpointF13AllRange
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Quartic.SmallCovectorCommonOpen
 open Module MvPolynomial UniformEndpoint ProfileCertificate ConvolutionClosedSlices
 open RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 open BilinearCoefficientKernel BilinearCovectorCharts
 variable {K : Type*} [Field K] {M m c q : ℕ} {upper : Bool}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Threshold := ConvolutionSharedSlices.Threshold
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev SliceIndex (M : ℕ) (upper : Bool) (m : ℕ) :=
   (d : Threshold M upper) × (Fin (sliceCount M upper d.val) × RowIndex m 3)
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev ParameterIndex (M : ℕ) (upper : Bool) (m c q : ℕ) :=
   AugmentedGeneric.ParameterIndex m c q ⊕ SliceIndex M upper m
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def baseProjection : (ParameterIndex M upper m c q → K) →ₗ[K]
     (AugmentedGeneric.ParameterIndex m c q → K) :=
   LinearMap.pi (fun i => LinearMap.proj (Sum.inl i))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def sliceColumn (d : Threshold M upper) (j : Fin (sliceCount M upper d.val)) :
     (ParameterIndex M upper m c q → K) →ₗ[K] Rows K m 3 :=
   rowEquiv.symm.toLinearMap.comp (LinearMap.pi (fun i => LinearMap.proj (Sum.inr ⟨d,(j,i)⟩)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def coefficientSlices (p : ParameterIndex M upper m c q → K)
     (d : Threshold M upper) : Fin (sliceCount M upper d.val) → Rows K m 3 :=
   fun j => sliceColumn d j p
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def encode (b : AugmentedGeneric.ParameterIndex m c q → K)
     (Z : (d : Threshold M upper) → Fin (sliceCount M upper d.val) → Rows K m 3) :
     ParameterIndex M upper m c q → K :=
   Sum.elim b (fun i => rowEquiv (Z i.1 i.2.1) i.2.2)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem baseProjection_encode (b : AugmentedGeneric.ParameterIndex m c q → K)
     (Z : (d : Threshold M upper) → Fin (sliceCount M upper d.val) → Rows K m 3) :
     baseProjection (encode b Z) = b := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientSlices_encode (b : AugmentedGeneric.ParameterIndex m c q → K)
     (Z : (d : Threshold M upper) → Fin (sliceCount M upper d.val) → Rows K m 3)
     (d : Threshold M upper) (j : Fin (sliceCount M upper d.val)) :
@@ -55,6 +64,7 @@ def encode (b : AugmentedGeneric.ParameterIndex m c q → K)
   change rowEquiv.symm (rowEquiv (Z d j)) = Z d j
   exact rowEquiv.symm_apply_apply (Z d j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The same E and Q occur in every threshold. -/
 def ClosedConditions (p : ParameterIndex M upper m c q → K) : Prop :=
   ∀ d : Threshold M upper,∀ ell : Fin (RowCount m 3) → K,
@@ -65,6 +75,7 @@ def ClosedConditions (p : ParameterIndex M upper m c q → K) : Prop :=
       (finiteEquiv (AugmentedGeneric.coefficientChild (baseProjection p) i)) v)=0) →
     (∀ j,covector ell (rowFiniteEquiv (coefficientSlices p d j))=0) → ell=0
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A finite product retains all closed sections at the same witness. -/
 theorem principal_open_of_witness [IsAlgClosed K]
     (hd : ∀ d : Threshold M upper,d.val+c ≤ RowCount m 1)
@@ -108,6 +119,7 @@ theorem principal_open_of_witness [IsAlgClosed K]
       Finset.prod_ne_zero_iff.mp (by simpa only [map_prod] using hp) d (Finset.mem_univ d)
     exact hgood d p hd'
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 include K in
 theorem rowCount_one (m : ℕ) : RowCount m 1 = 3*m := by
   have h := (rowFiniteEquiv (K := K) (m := m) (d := 1)).finrank_eq
@@ -116,11 +128,13 @@ theorem rowCount_one (m : ℕ) : RowCount m 1 = 3*m := by
     simp [Rows,Module.finrank_pi_fintype,finrank_forms]
   exact h.symm.trans hdim
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- No geometric witness or compatibility premise remains in this proposition. -/
 def ClosedOpen (M : ℕ) (upper : Bool) (m c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (ParameterIndex M upper m c q) K,
     (∃ p,eval p D ≠ 0) ∧ ∀ p,eval p D ≠ 0 → ClosedConditions p
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem convolution_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (upper : Bool) : ClosedOpen (K := K) m upper m (mixedCount m upper) (upperEndpoint m) := by
   let t := coreP (mixedCount m upper)+1
@@ -154,6 +168,7 @@ theorem convolution_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m �
   have hh : ClosedOpen (K := K) m upper (t+w) (t+2) q := ⟨D,⟨p₀,hD⟩,hgood⟩
   simpa only [hvars,hcols,q] using hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The closed covector sections and every checked block/F13/cubic condition
 hold on one nonempty open, using identical mixed and child coefficients. -/
 theorem common_open [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)

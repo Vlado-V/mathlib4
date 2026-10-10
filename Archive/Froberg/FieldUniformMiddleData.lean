@@ -17,11 +17,12 @@ sufficiently large scalar dimension, with output data chosen afterwards. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2600000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open scoped Topology
 
+set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_middle_extended_data {d : ℕ}
     (hd : 5≤d) (hd8 : d≤8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (z extra : ℕ) (e : ℕ → ℕ),
@@ -83,6 +84,7 @@ theorem eventually_field_uniform_middle_extended_data {d : ℕ}
       (fun _ hj => (mem_allEvenIndices.mp hj).2.2)
       (fun r hr hrd hre => mem_allEvenIndices.mpr ⟨by omega,hrd,hre⟩) hr hp
 
+set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_middle_all_scalar_data {d : ℕ}
     (hd : 5≤d) (hd8 : d≤8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (e : ℕ → ℕ),

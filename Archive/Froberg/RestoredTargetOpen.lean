@@ -14,12 +14,13 @@ actual even restored coefficient space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasRestoredUpperOpen (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r) : Prop :=
@@ -35,6 +36,7 @@ namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters
 variable {K : Type} [Field K] [Infinite K] {h m d q r f H e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem HasUpperWitness.restored_upper_open (hd : 3≤d) (he : d%2=0)
     (frame : Fin H → Forms K h 2)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d)

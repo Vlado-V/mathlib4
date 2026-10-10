@@ -15,12 +15,13 @@ columns belong to one actual polynomial family and use one scalar list. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication Quartic.PolynomialBilinearCoordinates
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Assemble the odd output space, constrained product witnesses, and the
 common scalar open. Every remaining hypothesis is an explicit finite capacity
 or the retained-scalar open already established asymptotically. -/

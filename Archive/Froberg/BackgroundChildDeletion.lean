@@ -15,11 +15,12 @@ coverage needed by the concrete background comparison. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q e f u : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_background_child_deletion
     (Q : Fin q → Forms K m d)
     (E : Fin e → biformParitySpace K h m d 0)
@@ -71,6 +72,7 @@ theorem exists_background_child_deletion
 variable {V W : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem childFlag_scalar_properties
     (mu : Forms K m d →ₗ[K] V →ₗ[K] W) (j : ℕ) (C : ℝ)
     (Q : Fin q → Forms K m d)

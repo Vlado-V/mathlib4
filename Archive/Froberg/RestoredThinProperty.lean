@@ -14,12 +14,13 @@ public import Archive.Froberg.BottomVectorQuotient
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily BilinearCovectorStrata
 variable {K : Type} [Field K] [Infinite K] {h m d q f r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 def RestoredEndpointThin (hdp : 1 ≤ d) (hd : d%2=0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (heven : ∀ j ∈ J, j%2=0) (idx : Fin r ≃ Label q J counts)
@@ -33,6 +34,7 @@ def RestoredEndpointThin (hdp : 1 ≤ d) (hd : d%2=0)
       ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
       (backgroundEnumeratedForms Q F emptyOddFamily))) C)
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem linearOddForm_family_eq_embedding (hdp : 1 ≤ d)
     (g : Fin f → Rows K h m (d-1)) :
     (fun i => linearOddForm hdp (g i))=

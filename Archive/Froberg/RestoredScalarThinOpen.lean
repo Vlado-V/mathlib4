@@ -16,7 +16,7 @@ scalar fiber preserves every condition on its supplied open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily BilinearCovectorStrata
@@ -39,6 +39,7 @@ local notation "T₀" => finrank K (OddTargetRowQuotient Q₀ F₁ (oddTargetBot
 
 attribute [local irreducible] RestoredEndpointThin
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 include hslot in
 theorem restored_scalar_thin_open (hh : 0 < h) (hm : 0 < m)
     (C S : ℝ) (hC : 0 ≤ C)

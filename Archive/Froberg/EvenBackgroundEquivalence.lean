@@ -14,20 +14,23 @@ with the G family empty. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def emptyOddFamily : Fin 0 → biformParitySpace K h m d 1 := Fin.elim0
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem oddBackgroundCoefficientRelations_empty
     (F : Fin f → biformParitySpace K h m d 1) :
     oddBackgroundCoefficientRelations F (emptyOddFamily (K := K) (h := h) (m := m) (d := d))=
       Submodule.span K (Set.range F) := by
   simp [oddBackgroundCoefficientRelations,emptyOddFamily,Set.range_eq_empty]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem fullOddRelations_empty
     (Q : Fin q → biformParitySpace K h m d 0) (F : Fin f → biformParitySpace K h m d 1) :
     fullOddRelations Q F (emptyOddFamily (K := K) (h := h) (m := m) (d := d))=
@@ -39,6 +42,7 @@ def emptyOddFamily : Fin 0 → biformParitySpace K h m d 1 := Fin.elim0
     simp [privateEvenCoefficientMap_val]
   simp [fullOddRelations,he]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundSourceEquiv (hdp : 1 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     EvenBackgroundSource hdp F ≃ₗ[K]
@@ -46,6 +50,7 @@ def evenBackgroundSourceEquiv (hdp : 1 ≤ d)
         (fun i => oddBiformEmbedding hdp (by decide) (F i)) emptyOddFamily) :=
   Submodule.quotEquivOfEq _ _ (oddBackgroundCoefficientRelations_empty _).symm
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundTargetEquiv (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     EvenBackgroundTarget hdp Q F ≃ₗ[K]
@@ -54,6 +59,7 @@ def evenBackgroundTargetEquiv (hdp : 1 ≤ d)
         (fun i => oddBiformEmbedding hdp (by decide) (F i)) emptyOddFamily) :=
   Submodule.quotEquivOfEq _ _ (fullOddRelations_empty _ _).symm
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundEquiv_scalar (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (p : Forms K m d) (v : EvenBackgroundSource hdp F) :

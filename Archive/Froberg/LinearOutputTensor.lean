@@ -16,7 +16,7 @@ homogeneous polynomial rows. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic.ClosedCovectorEquations
@@ -24,6 +24,7 @@ open Quartic.BilinearCovectorCharts VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m s d : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem linearCutMap_injective : Function.Injective (linearCutMap (K := K) (n := h)) := by
   classical
   intro x y he
@@ -33,25 +34,30 @@ theorem linearCutMap_injective : Function.Injective (linearCutMap (K := K) (n :=
   simpa only [eval_linearForm,covector_apply,Pi.single_apply,ite_mul,one_mul,zero_mul,
     Finset.sum_ite_eq',Finset.mem_univ,ite_true] using ht
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def linearCutEquiv : (Fin h → K) ≃ₗ[K] Forms K h 1 :=
   LinearEquiv.ofBijective linearCutMap ⟨linearCutMap_injective,linearCutMap_surjective⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem linearCutEquiv_single (i : Fin h) :
     (linearCutEquiv (Pi.single i (1 : K))).val=X i := by
   classical
   change (linearForm (Pi.single i 1)).val=X i
   simp [linearForm,Pi.single_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def linearOutputTensorEquiv : Rows K h m s ≃ₗ[K] (Forms K h 1 ⊗[K] Forms K m s) :=
   (TensorProduct.piScalarRight K K (Forms K m s) (Fin h)).symm.trans
     ((TensorProduct.comm K (Forms K m s) (Fin h → K)).trans
       (TensorProduct.congr linearCutEquiv (LinearEquiv.refl K (Forms K m s))))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem linearOutputTensorEquiv_single (i : Fin h) (p : Forms K m s) :
     linearOutputTensorEquiv (Pi.single i p)=linearCutEquiv (Pi.single i (1 : K)) ⊗ₜ[K] p := by
   simp only [linearOutputTensorEquiv,LinearEquiv.trans_apply,TensorProduct.piScalarRight_symm_single,
     TensorProduct.comm_tmul,TensorProduct.congr_tmul,LinearEquiv.refl_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem linearOutputTensorEquiv_sum (v : Rows K h m s) :
     linearOutputTensorEquiv v=∑ i,linearCutEquiv (Pi.single i (1 : K)) ⊗ₜ[K] v i := by
   classical
@@ -61,11 +67,13 @@ theorem linearOutputTensorEquiv_sum (v : Rows K h m s) :
     _=∑ i,linearOutputTensorEquiv (Pi.single i (v i)) := map_sum (linearOutputTensorEquiv (K := K) (h := h) (m := m) (s := s)) (fun i => Pi.single i (v i)) Finset.univ
     _=_ := by simp only [linearOutputTensorEquiv_single]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem sumBiformMap_linearOutput (v : Rows K h m s) :
     sumBiformMap (linearOutputTensorEquiv v)=∑ i,rename Sum.inl (X i)*rename Sum.inr (v i).val := by
   rw [linearOutputTensorEquiv_sum,map_sum]
   simp only [sumBiformMap_tmul,linearCutEquiv_single]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem linearOutput_scalar_product (p : Forms K m d) (v : Rows K h m s) :
     sumBiformMap (linearOutputTensorEquiv (multiplication p v))=
       rename Sum.inr p.val*sumBiformMap (linearOutputTensorEquiv v) := by

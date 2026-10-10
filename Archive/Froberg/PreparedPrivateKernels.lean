@@ -15,11 +15,12 @@ private separation used by coefficient elimination. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K]
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem addRow_private_mem_of_exact
     {A B U Z V : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup Z] [Module K Z] [AddCommGroup V] [Module K V]
@@ -31,6 +32,7 @@ theorem addRow_private_mem_of_exact
   obtain ⟨⟨c,z⟩,hz⟩ := hx
   exact ⟨z,congrArg Prod.snd hz⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem addRow_ordinary_exact
     {A B U Z V : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup Z] [Module K Z] [AddCommGroup V] [Module K V]
@@ -53,6 +55,7 @@ theorem addRow_ordinary_exact
     change F (C c)=0
     simpa only [map_zero,add_zero] using hx
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem range_prodMap_zero_eq_inl
     {A B U Z : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup Z] [Module K Z]
@@ -70,6 +73,7 @@ variable [Infinite K] {σ : Type*} [Fintype σ] {n d q b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateBoundaryAt (P : Fin b → FullBiform K σ n 1 (d-1)) (R : ℕ) :
     (Fin b → Fin b → K) →ₗ[K] PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R := by
   classical
@@ -78,14 +82,17 @@ def privateBoundaryAt (P : Fin b → FullBiform K σ n 1 (d-1)) (R : ℕ) :
     exact intrinsicPrivateBoundary P
   · exact 0
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 @[simp] theorem privateBoundaryAt_two (P : Fin b → FullBiform K σ n 1 (d-1)) :
     privateBoundaryAt P 2=intrinsicPrivateBoundary P := by
   simp [privateBoundaryAt]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem privateBoundaryAt_ne (P : Fin b → FullBiform K σ n 1 (d-1))
     {R : ℕ} (hR : R≠2) : privateBoundaryAt P R=0 := by
   simp only [privateBoundaryAt,dif_neg hR]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem privateBoundaryAt_cycle (P : Fin b → FullBiform K σ n 1 (d-1)) (R : ℕ) :
     (privateRowMap (d := d) (fun i => (P i).val) R).comp (privateBoundaryAt P R)=0 := by
   by_cases hR : R=2
@@ -94,6 +101,7 @@ theorem privateBoundaryAt_cycle (P : Fin b → FullBiform K σ n 1 (d-1)) (R : �
     exact intrinsicPrivateBoundary_cycle P
   · rw [privateBoundaryAt_ne P hR,LinearMap.comp_zero]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_row_ordinary_exact
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O)
@@ -103,6 +111,7 @@ theorem private_row_ordinary_exact
     (row hO R p).ker=(rowConstants hO R p).range :=
   addRow_ordinary_exact _ _ _ _ h
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_row_separated
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (R : J) (hR : R.val≠2) (p : Space n d q J counts O)

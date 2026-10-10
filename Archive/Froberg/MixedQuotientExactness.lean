@@ -14,12 +14,13 @@ family is adjoined. All terms are actual subspace quotients. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- A new family disjoint from the old two-factor relations cannot create
 an extra intersection with the first-factor relation space. -/
 theorem mixed_intersection_of_disjoint (A B E : Submodule K V)
@@ -36,9 +37,11 @@ theorem mixed_intersection_of_disjoint (A B E : Submodule K V)
     exact ⟨hx.1,hbx ▸ hb⟩
   · exact inf_le_inf_left A le_sup_left
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def mixedRelationMap (A B E : Submodule K V) : A →ₗ[K] V ⧸ (B ⊔ E) :=
   (B ⊔ E).mkQ.comp A.subtype
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem mixedRelationMap_kernel (A B E : Submodule K V)
     (hE : Disjoint E (A ⊔ B)) : (mixedRelationMap A B E).ker=B.comap A.subtype := by
   ext x
@@ -52,6 +55,7 @@ theorem mixedRelationMap_kernel (A B E : Submodule K V)
   · intro hx
     exact (show B ≤ B ⊔ E from le_sup_left) hx
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The left term embeds in the actual mixed quotient with exactly its
 pre-existing scalar relations. -/
 def mixedQuotientInjection (A B E : Submodule K V) (hE : Disjoint E (A ⊔ B)) :
@@ -59,17 +63,20 @@ def mixedQuotientInjection (A B E : Submodule K V) (hE : Disjoint E (A ⊔ B)) :
   (B.comap A.subtype).liftQ (mixedRelationMap A B E)
     (mixedRelationMap_kernel A B E hE).ge
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem mixedQuotientInjection_injective (A B E : Submodule K V)
     (hE : Disjoint E (A ⊔ B)) : Function.Injective (mixedQuotientInjection A B E hE) := by
   apply LinearMap.ker_eq_bot.mp
   exact Submodule.ker_liftQ_eq_bot _ _ _ (mixedRelationMap_kernel A B E hE).le
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem mixedQuotientInjection_range (A B E : Submodule K V)
     (hE : Disjoint E (A ⊔ B)) :
     (mixedQuotientInjection A B E hE).range=A.map (B ⊔ E).mkQ := by
   rw [mixedQuotientInjection,Submodule.range_liftQ,mixedRelationMap,
     LinearMap.range_comp,Submodule.range_subtype]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The right quotient is the literal quotient after both old relation
 spaces and the new family have been removed. -/
 def mixedQuotientProjection (A B E : Submodule K V) :
@@ -79,12 +86,14 @@ def mixedQuotientProjection (A B E : Submodule K V) :
     exact (show B ⊔ E ≤ (A ⊔ B) ⊔ E from
       sup_le (le_sup_of_le_left le_sup_right) le_sup_right) hx)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem mixedQuotientProjection_surjective (A B E : Submodule K V) :
     Function.Surjective (mixedQuotientProjection A B E) := by
   intro y
   obtain ⟨x,rfl⟩ := ((A ⊔ B) ⊔ E).mkQ_surjective y
   exact ⟨(B ⊔ E).mkQ x,rfl⟩
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem mixedQuotientProjection_kernel (A B E : Submodule K V) :
     (mixedQuotientProjection A B E).ker=A.map (B ⊔ E).mkQ := by
   rw [mixedQuotientProjection,Submodule.ker_mapQ,Submodule.comap_id]
@@ -98,11 +107,13 @@ theorem mixedQuotientProjection_kernel (A B E : Submodule K V) :
     exact le_sup_right
   rw [Submodule.map_sup,Submodule.map_sup,hB,hE,sup_bot_eq,sup_bot_eq]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Exactness of the mixed-row quotient sequence. -/
 theorem mixedQuotient_exact (A B E : Submodule K V) (hE : Disjoint E (A ⊔ B)) :
     (mixedQuotientInjection A B E hE).range=(mixedQuotientProjection A B E).ker := by
   rw [mixedQuotientInjection_range,mixedQuotientProjection_kernel]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem mixedQuotient_finrank [FiniteDimensional K V]
     (A B E : Submodule K V) (hE : Disjoint E (A ⊔ B)) :
     finrank K (V ⧸ (B ⊔ E)) =

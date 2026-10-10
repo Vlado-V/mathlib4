@@ -15,18 +15,20 @@ family, and remaining actual prepared parameters. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev JointRest (m d q f u : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   PreparedTarget.OuterSpace K (Fin h) m d u ×
     (PositiveScalars (K := K) m d J counts ×
       ((j : J) → Fin (counts j.val) → biformImage (O j.val) (Forms K m (d-j.val))))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def preparedJointCoordinates :
     FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O ≃ₗ[K]
       (Fin f → Rows K h m (d-1)) × ((Fin q → Forms K m d) × JointRest m d q f u J counts O) where
@@ -65,6 +67,7 @@ def preparedJointCoordinates :
       exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d := d)).symm a (p.2.2 i)
     · rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finite_jointRest (hO : ∀ j∈J,O j≤Forms K h j) :
     Module.Finite K (JointRest m d q f u J counts O) := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
@@ -78,6 +81,7 @@ theorem finite_jointRest (hO : ∀ j∈J,O j≤Forms K h j) :
   change (preparedJointCoordinates (preparedJointCoordinates.symm (0,0,p))).2.2=p
   rw [LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def preparedJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
     ((VectorParameters.Index h m (d-1) f ⊕
       (CoefficientIndex m d q ⊕ Fin (finrank K (JointRest m d q f u J counts O)))) → K) →ₗ[K]
@@ -94,6 +98,7 @@ def preparedJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
     (LinearMap.funLeft K K (Sum.inr ∘ Sum.inr))
   exact preparedJointCoordinates.symm.toLinearMap.comp (g.prod (Q.prod R))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem preparedJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
     (pF : VectorParameters.Index h m (d-1) f → K) (pQ : CoefficientIndex m d q → K)
     (pR : Fin (finrank K (JointRest m d q f u J counts O)) → K) :
@@ -106,6 +111,7 @@ theorem preparedJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
   rw [LinearEquiv.apply_symm_apply]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem preparedJointFromCoordinates_surjective (hO : ∀ j∈J,O j≤Forms K h j) :
     Function.Surjective (preparedJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (u := u) (counts := counts) hO) := by

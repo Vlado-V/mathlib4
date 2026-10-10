@@ -12,7 +12,7 @@ public import Archive.Froberg.AffineSharedCovectors
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Quartic Quartic.BilinearCovectorCharts
@@ -20,6 +20,7 @@ variable {K V W : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Affine homogenization is linear in its linear and constant terms. -/
 def affineHomogenizationLinear : ((V →ₗ[K] W) × W) →ₗ[K] (V × K →ₗ[K] W) where
   toFun x := affineHomogenization x.1 x.2
@@ -37,11 +38,13 @@ def affineHomogenizationLinear : ((V →ₗ[K] W) × W) →ₗ[K] (V × K →ₗ
 
 variable {a b T q s : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def fixedCovectorTermsLinear
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) :
     (Fin T → K) →ₗ[K] SharedCovectorPolynomial.Output K a q s :=
   (LinearMap.pi fun i => LinearMap.pi fun j => covector (B i (Pi.single j 1))).prod 0
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem fixedCovectorTermsLinear_apply
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) :
     fixedCovectorTermsLinear (s := s) B ell=fixedCovectorTerms B ell := by
@@ -51,6 +54,7 @@ def fixedCovectorTermsLinear
     simp only [covector_apply,mul_comm]
   · rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One shared linear covector parameter controls every shifted scalar equation. -/
 def affineSharedFamily
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -60,6 +64,7 @@ def affineSharedFamily
   affineHomogenizationLinear.comp
     ((SharedCovectorPolynomial.family mu).prod (fixedCovectorTermsLinear B))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem affineSharedFamily_apply
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) :
@@ -69,6 +74,7 @@ def affineSharedFamily
   rw [fixedCovectorTermsLinear_apply]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Polynomial graph or affine-extension coordinates give polynomial matrices
 for exactly the same common scalar family. -/
 theorem affineSharedConstraint_polynomial {I : Type*} [Fintype I]

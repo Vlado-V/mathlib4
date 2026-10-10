@@ -16,13 +16,14 @@ the literal first-row exactness needed by the common private-family open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_quadratic_private_row_parameter {a z d q b t h c : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (MvPolynomial σ K)}
     (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

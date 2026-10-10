@@ -19,11 +19,12 @@ public import Archive.Froberg.Quartic.FiniteEndpointMetadata28Checks.Products400
 open Quartic.FiniteEndpointMetadata28Data Quartic.FiniteEndpointCheckerPolynomial
 open Quartic.FiniteEndpointChunks
 set_option maxRecDepth 1000000
-set_option maxHeartbeats 32000000
+
 set_option Elab.async false
 noncomputable section
 namespace Quartic.FiniteEndpointMetadata28
 
+set_option maxHeartbeats 32000000 in -- Preserve the budget during this port.
 theorem product_all : ∀ i,i < 164836 → productCondition i := by
   apply forall_lt_of_fin_chunks productCondition 164836 256 (by decide)
   intro k

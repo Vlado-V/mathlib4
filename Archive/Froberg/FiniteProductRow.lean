@@ -14,12 +14,13 @@ product row. All degree and output constraints hold for the same family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg.ProductRows
 open Froberg MvPolynomial Module
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The actual degree constraints of a layer in a fixed row. -/
 def layerCondition (w v R d j : ℕ)
     (T : MvPolynomial (Fin w × Bool) K →ₗ[K] X)
@@ -30,6 +31,7 @@ def layerCondition (w v R d j : ℕ)
   f.IsWeightedHomogeneous FourBlocks.yHalfWeight (assignedScalarDegree R d j) ∧
   biformOutputMap T f = 0
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Exact finite capacities suffice for an injective product row with the
 prescribed output constraints. No separate-pair independence is assumed. -/
 theorem exists_constrained_product_row {w v d R : ℕ} (hw : 0<w) (hv : 0<v)

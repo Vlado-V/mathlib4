@@ -15,7 +15,7 @@ without introducing spurious even contraction kernels. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Quartic PolynomialBilinearCoordinates
@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 variable {Z : Type*} [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable {n d r t a b T : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual homology coefficients followed by a specified coefficient projection. -/
 def projectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
@@ -32,11 +33,13 @@ def projectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r �
   (vmap.compLeft (Fin t)).comp
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev ProjectedCoefficientQuotient (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K)) :=
   ProjectedEndpointHomology pi q ⧸ (projectedMappedCoefficients pi q hq dual vmap).ker
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The faithful map from its genuine coefficient-kernel quotient. -/
 def faithfulProjectedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
@@ -45,12 +48,14 @@ def faithfulProjectedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r 
   let c := projectedMappedCoefficients pi q hq dual vmap
   c.ker.liftQ c le_rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem faithfulProjectedCoefficients_injective (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K)) :
     Function.Injective (faithfulProjectedCoefficients pi q hq dual vmap) :=
   LinearMap.ker_eq_bot.mp (Submodule.ker_liftQ_eq_bot _ _ _ le_rfl)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Literal product compatibility implies the exact coordinate factorization
 of the projected normal map through its faithful coefficients. -/
 theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
@@ -73,6 +78,7 @@ theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2*d) →ₗ
   exact (hmu (z i)
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual x i)).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Source quotienting and target coordinates preserve the exact response rank. -/
 theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
@@ -90,6 +96,7 @@ theorem projectedNormalMap_rank_eq_coefficient_motion (pi : Forms K n (2*d) →�
     LinearMap.range_comp_of_range_eq_top _ (Submodule.range_mkQ _)] at hr
   exact hr
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- C.6 on the actual projected complex, with literal scalar-incidence budget. -/
 theorem exists_maximal_projected_normal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
@@ -114,6 +121,7 @@ theorem exists_maximal_projected_normal (pi : Forms K n (2*d) →ₗ[K] Z) (q : 
   rw [projectedNormalMap_rank_eq_coefficient_motion pi q hq dual vmap eJ phi mu hmu z]
   exact hz
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The C.4 closed-stratum interface for the actual projected normal map.
 This version consumes genuine empty projective sections and does not replace
 the multilayer C.4 estimate by a stronger global Grassmannian shadow. -/

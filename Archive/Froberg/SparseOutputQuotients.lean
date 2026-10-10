@@ -14,22 +14,25 @@ modulo each of finitely many fixed output relation spaces. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic.PolynomialBilinearCoordinates
 variable {K V I : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Fintype I]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An actual linear projection with exactly the prescribed kernel. -/
 def relationProjection (R : Submodule K V) : V →ₗ[K] V :=
   (Classical.choose R.exists_isCompl).projection R
     (Classical.choose_spec R.exists_isCompl).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem relationProjection_kernel (R : Submodule K V) :
     (relationProjection R).ker=R := by
   exact Submodule.ker_projection _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Restricting a relation space to an output subspace can only reduce its dimension. -/
 theorem restricted_relation_finrank (O R : Submodule K V) :
     finrank K (R.comap O.subtype)≤finrank K R := by
@@ -38,6 +41,7 @@ theorem restricted_relation_finrank (O R : Submodule K V) :
     exact hv
   simpa only [Submodule.finrank_map_subtype_eq] using Submodule.finrank_mono hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The quotient output dimension loses at most the ambient relation dimension. -/
 theorem relationProjection_restricted_rank (O R : Submodule K V) :
     finrank K O-finrank K R≤finrank K (relationProjection (R.comap O.subtype)).range := by
@@ -46,6 +50,7 @@ theorem relationProjection_restricted_rank (O R : Submodule K V) :
   have hle := restricted_relation_finrank O R
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One unrestricted sparse coefficient tuple works modulo all output relations.
 The kernels are literal intersections with the specified ambient spaces. -/
 theorem sparse_output_quotients_open {n s d m b : ℕ}
@@ -70,11 +75,13 @@ theorem sparse_output_quotients_open {n s d m b : ℕ}
   rw [heq]
   exact (hcap i).trans (relationProjection_restricted_rank O (R i))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual output coefficient at a scalar monomial in a sparse product sum. -/
 def sparseOutputCoefficient {n m d : ℕ} (e : Fin m → Fin n →₀ ℕ)
     (v : Fin m → V) (p : Fin m → Forms K n d) (β : Fin n →₀ ℕ) : V :=
   ∑ i : {i // e i≤β},(p i.val).val.coeff (β-e i.val) • v i.val
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Projected sparse injectivity excludes every polynomial combination whose
 output coefficients all lie in the specified output relation space. -/
 theorem sparse_zero_of_relation_coefficients {n m d : ℕ}
@@ -97,6 +104,7 @@ theorem sparse_zero_of_relation_coefficients {n m d : ℕ}
   simpa only [sparseOutputCoefficient,map_sum,map_smul,map_zero,Finset.sum_apply,
     Pi.smul_apply,smul_eq_mul,Pi.zero_apply,MvPolynomial.coeff_zero,Finsupp.zero_apply] using hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The resulting common open is stated directly using the coefficients of
 actual polynomial product sums, with no quotient-coordinate hypothesis. -/
 theorem sparse_output_relations_open {n s d m b : ℕ}

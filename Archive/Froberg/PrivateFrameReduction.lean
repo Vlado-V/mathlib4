@@ -15,17 +15,19 @@ of coefficients associated with the actual quadratic output frame. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {w h H c a z d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def privateFrameOutputs (frame : Fin H → Forms K h 2) (j : ℕ) :
     Submodule K (Poly K h) :=
   if j=2 then outputFrameSpace frame else Forms K h j
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem privateFrameOutputs_homogeneous (frame : Fin H → Forms K h 2) (j : ℕ) :
     privateFrameOutputs frame j≤Forms K h j := by
   by_cases hj : j=2
@@ -35,6 +37,7 @@ theorem privateFrameOutputs_homogeneous (frame : Fin H → Forms K h 2) (j : ℕ
 
 namespace PreparedParameters
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def PrivateReductionOpen {σ : Type*} [Fintype σ] {n t : ℕ}
     (O : ℕ → Submodule K (MvPolynomial σ K))
     [Module.Finite K (Space n d q J counts O)]
@@ -44,6 +47,7 @@ def PrivateReductionOpen {σ : Type*} [Fintype σ] {n t : ℕ}
     ∀ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0 →
       PrivatePositiveReduction p P
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem privateReductionOpen_congr_outputs {σ : Type*} [Fintype σ] {n t : ℕ}
     {O O' : ℕ → Submodule K (MvPolynomial σ K)}
     [Module.Finite K (Space n d q J counts O)] [Module.Finite K (Space n d q J counts O')]
@@ -53,15 +57,18 @@ theorem privateReductionOpen_congr_outputs {σ : Type*} [Fintype σ] {n t : ℕ}
   subst O'
   rfl
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 local instance privateFrameSpaceFinite (frame : Fin H → Forms K h 2) {n : ℕ} :
     Module.Finite K (Space n d q J counts (privateFrameOutputs frame)) :=
   finite_space (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 local instance privateFrameConstrainedSpaceFinite {X : Type*} [AddCommGroup X] [Module K X]
     {n : ℕ} (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X) :
     Module.Finite K (Space n d q J counts (constrainedOutputs T)) :=
   finite_space (fun _ _ => inf_le_left)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Transport a private coefficient open to the full finite-variable
 frame family. The private columns in the conclusion are fixed in the
 original finite-variable coordinates. -/

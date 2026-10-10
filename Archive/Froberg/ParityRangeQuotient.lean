@@ -14,24 +14,28 @@ odd homogeneous polynomial space by its actual product relations. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityPartForms (w : Fin n → ZMod 2) (p : ZMod 2) :
     Submodule K (Forms K n d) :=
   (weightedHomogeneousSubmodule K w p).comap (Forms K n d).subtype
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 instance parityPartFormsGroup (w : Fin n → ZMod 2) (p : ZMod 2) :
     AddCommGroup (parityPartForms (K := K) (d := d) w p) :=
   Submodule.addCommGroup _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 instance parityPartFormsModule (w : Fin n → ZMod 2) (p : ZMod 2) :
     Module K (parityPartForms (K := K) (d := d) w p) :=
   Submodule.module _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityForm_range (w : Fin n → ZMod 2) (p : ZMod 2) :
     (parityForm (K := K) (d := d) w p).range=parityPartForms w p := by
   ext f
@@ -41,6 +45,7 @@ theorem parityForm_range (w : Fin n → ZMod 2) (p : ZMod 2) :
   · intro hf
     exact ⟨f,parityForm_same w p f hf⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityPartPolynomialEquiv (w : Fin n → ZMod 2) (p : ZMod 2) :
     parityPartForms (K := K) (d := d) w p ≃ₗ[K]
       homogeneousParitySpace K (Fin n) d w p where
@@ -51,6 +56,7 @@ def parityPartPolynomialEquiv (w : Fin n → ZMod 2) (p : ZMod 2) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The quotient equivalence is induced by inclusion of actual odd forms,
 followed by the actual target quotient map. -/
 def parityRangeQuotientEquiv (R : Submodule K (Forms K n d))
@@ -67,6 +73,7 @@ def parityRangeQuotientEquiv (R : Submodule K (Forms K n d))
   exact (Submodule.quotEquivOfEq _ _ hker.symm).trans
     (F.quotKerEquivRange.trans (LinearEquiv.ofEq _ _ hrange))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def endpointOddQuotientEquiv (w : Fin n → ZMod 2) (q : Fin r → Forms K n d) :
     (↥(parityPartForms (K := K) (d := 2*d) w 1) ⧸
       ((projectedEndpointMultiplication (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q).range).comap

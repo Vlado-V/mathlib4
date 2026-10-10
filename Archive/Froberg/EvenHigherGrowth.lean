@@ -15,7 +15,7 @@ Q,F quotient target rows, while every unused target row is retained. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
@@ -32,11 +32,13 @@ local notation "eW" => oddTargetBaseEquiv hdp Q₀ F₁ hQ₀ hF₁
 local notation "eV" => oddSourceBaseEquiv hdp F
 local notation "μ" => evenBackgroundScalar hdp Q F
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def evenHigherProjection (r : MixedHigherIndex d hd3) :
     EvenBackgroundTarget hdp Q F →ₗ[K] MixedMiddleTarget hd3 Q F r :=
   oddBackgroundRowProjection (by omega) (by have := r.val.isLt; omega) (by omega)
     (fun i => scalarBiformEquiv (h := h) (Q i)) F
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem evenHigherProjection_scalar (p : Forms K m d)
     (v : EvenBackgroundSource hdp F) (r : MixedHigherIndex d hd3) :
     evenHigherProjection hd3 Q F r (μ p v)=
@@ -52,6 +54,7 @@ theorem evenHigherProjection_scalar (p : Forms K m d)
     oddBiformCoordinatesEquiv v r.val
   exact biformTensorComponent_eq_oddCoordinates v r.val
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem evenHigherProjection_kills_bottom (r : MixedHigherIndex d hd3)
     (x : OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp)) :
     evenHigherProjection hd3 Q F r ((eW).symm (x,0))=0 := by
@@ -72,6 +75,7 @@ theorem evenHigherProjection_kills_bottom (r : MixedHigherIndex d hd3)
     have := mixedHigherIndex_ge_three hd3 r
     omega),map_zero]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem evenAmbientHigher_growth
     (t : ℕ)
     (hmid : ∀ (j : ℕ) (hj : 3≤j) (hjd : j≤d), j%2=1 →

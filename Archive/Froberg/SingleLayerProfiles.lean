@@ -14,7 +14,7 @@ and the scalar-profile support used to separate it from old scalar products. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
@@ -22,6 +22,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem exists_single_layer_profile_parameter (j : ℕ)
     (hz : ∀ k∈J,k≠j → counts k=0)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
@@ -47,6 +48,7 @@ theorem exists_single_layer_profile_parameter (j : ℕ)
 
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem exists_strong_quartic_profile_parameter {h : ℕ}
     (T : ℕ → Poly K h →ₗ[K] X)
     (hz : ∀ k∈J,k≠2 → counts k=0)

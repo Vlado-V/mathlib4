@@ -15,13 +15,14 @@ of the manuscript, with both the pure and mixed relation spaces present. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module TensorProduct Quartic Quartic.SplitTensor MvPolynomial
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS t : ℕ}
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :
     projectedTopMap P p=projectedTensorFamily (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P (rawTopFamily p.1) p.2 := by
@@ -36,6 +37,7 @@ theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1+e) →ₗ[K] (Fin b �
   simp only [projectedTopMap,twoFamilyMultiplication,projectedTopFamily_eq,hQ,
     projectedTensorFamily]
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem top_tensor_scalar_growth (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (hP : Function.Surjective P) (p : ProjectedTopParameters K h m e qF qS)
     (hgrowth : ∀ L : Submodule K (Fin b → K),
@@ -56,6 +58,7 @@ theorem top_tensor_scalar_growth (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
   rw [projectedTopMap_eq_tensorFamily] at hg
   exact hg
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem top_tensor_growth_open (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (hP : Function.Surjective P) (hopen : ProjectedTopGrowthOpen P m qF qS t) :
     ∃ D : MvPolynomial (Fin (finrank K (ProjectedTopParameters K h m e qF qS))) K,

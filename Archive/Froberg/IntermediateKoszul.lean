@@ -14,21 +14,24 @@ constant scalar-layer Koszul kernel before taking the quotient. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg.AttachedMultiplication
 open Module MvPolynomial
 variable {K I J : Type*} [Field K] [Fintype I] [Fintype J]
 variable {n s d q : ℕ}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Multiply a degree-zero coefficient by a fixed homogeneous form. -/
 def constantMul (f : Forms K n d) : Forms K n 0 →ₗ[K] Forms K n d where
   toFun c := ⟨f.val*c.val,by simpa using f.property.mul c.property⟩
   map_add' a b := by apply Subtype.ext; exact mul_add _ _ _
   map_smul' k a := by apply Subtype.ext; exact mul_smul_comm _ _ _
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 @[simp] theorem constantMul_val (f : Forms K n d) (c : Forms K n 0) :
     (constantMul f c).val=f.val*c.val := rfl
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem vectorMultiply_constantRelation (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree=s) (f : Forms K n d) (c : I → Forms K n 0) :
     vectorMultiply f (homogeneousMultiplication (d := 0) e v he c) =
@@ -41,6 +44,7 @@ theorem vectorMultiply_constantRelation (e : I → Fin n →₀ ℕ) (v : I → 
   intro i hi
   ring
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The scalar part plus the new-layer part of a single polynomial row. -/
 def intermediateRow (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree=s) (Q : Fin q → Forms K n d) :
@@ -60,6 +64,7 @@ def intermediateRow (e : I → Fin n →₀ ℕ) (v : I → J → K)
     rw [map_smul,map_smul]
     exact (smul_add c _ _).symm
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The literal constant scalar-layer Koszul map. -/
 def intermediateKoszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree=s) (Q : Fin q → Forms K n d) :
@@ -84,6 +89,7 @@ def intermediateKoszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
       simp only [Prod.smul_snd,Pi.smul_apply,Pi.neg_apply,Finset.sum_apply,RingHom.id_apply,
         map_smul,← Finset.smul_sum,smul_neg]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Every prescribed constant Koszul vector is an actual polynomial relation. -/
 theorem intermediateRow_koszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
     (he : ∀ i, (e i).degree=s) (Q : Fin q → Forms K n d)
@@ -96,6 +102,7 @@ theorem intermediateRow_koszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
   simp_rw [vectorMultiply_constantRelation]
   exact add_neg_cancel _
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Scalar injectivity in the quotient and layer injectivity give precisely
 the constant Koszul kernel, with no other relations. -/
 theorem intermediateRow_ker_eq_koszul (e : I → Fin n →₀ ℕ) (v : I → J → K)
@@ -137,6 +144,7 @@ theorem intermediateRow_ker_eq_koszul (e : I → Fin n →₀ ℕ) (v : I → J 
   · rintro x ⟨c,rfl⟩
     exact intermediateRow_koszul e v he Q c
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Independence of the layer at coefficient degree zero also proves that
 the prescribed constant Koszul source has its stated dimension. -/
 theorem intermediateKoszul_injective (e : I → Fin n →₀ ℕ) (v : I → J → K)

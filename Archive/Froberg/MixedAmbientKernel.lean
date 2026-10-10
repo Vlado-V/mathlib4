@@ -17,13 +17,14 @@ coordinates to be an existing Q relation, so it cannot kill the bottom. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic.SplitTensor
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixed_ambient_higher_kernel (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (Q : Fin q → Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

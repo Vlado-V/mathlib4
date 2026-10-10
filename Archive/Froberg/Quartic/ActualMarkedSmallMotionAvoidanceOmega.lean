@@ -23,20 +23,27 @@ open BilinearCoefficientKernel BilinearCovectorCharts SmallCovectorCommonOpen
 open PolynomialBilinearCoordinates
 variable {K : Type*} [Field K] [IsAlgClosed K] {m : ℕ} {upper : Bool}
 variable (ω : K)
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Parameters := SmallCovectorMotion.Parameters
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev G (p : Parameters K m upper) := AugmentedGeneric.coefficientMixed (baseProjection p)
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Q (p : Parameters K m upper) := AugmentedGeneric.coefficientChild (baseProjection p)
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Marked (p : Parameters K m upper) := Submodule K (ActualMarkedCorrectionMotionOmega.ChildQuotient (Q p))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def correctionCount (p : Parameters K m upper) (U : Marked p) : ℕ :=
   (Counts.H m (upperEndpoint m) (mixedCount m upper)+4+finrank K U).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def auxiliaryCount (p : Parameters K m upper) (U : Marked p) : ℕ :=
   (Counts.j m (upperEndpoint m) (mixedCount m upper)-
     ((2*m+2*mixedCount m upper : ℕ):ℤ)-correctionCount p U).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual augmented-injective pure motions, actual mixed motions, and the
 minimal number of auxiliary target vectors exclude every common covector.
 All relation-kernel strata are handled, with no remaining motion-rank premise. -/
@@ -177,6 +184,7 @@ theorem exists_matrix_motions (hm : 28 ≤ m) (p : Parameters K m upper)
     simpa only [y,LinearEquiv.apply_symm_apply] using hy
   exact h.elim (fun h => h hfirst) (fun h => h hb)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The same exclusion stated solely with actual polynomial products and
 actual ambient covectors. This is the input to the response-rank theorem. -/
 theorem exists_actual_motions (hm : 28 ≤ m) (p : Parameters K m upper)

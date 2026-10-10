@@ -14,12 +14,13 @@ vector polynomial module, not a hypothetical graded complex. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K I J : Type*} [Field K] [Fintype I] [Fintype J] {n : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual multiplication of vector polynomial columns by linear coefficients. -/
 def linearVectorCombination (E : I → J → Poly K n) :
     (I → Forms K n 1) →ₗ[K] (J → Poly K n) where
@@ -31,6 +32,7 @@ def linearVectorCombination (E : I → J → Poly K n) :
     funext j
     simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- If both independent linear multiples of a vector polynomial lie in the
 constant column space, linear-coefficient injectivity forces the vector and
 both constant expressions to vanish. -/

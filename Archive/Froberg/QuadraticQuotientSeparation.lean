@@ -13,7 +13,7 @@ polynomial spaces, with the precise formal-product conclusion used in C.6. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg
 open Module TensorProduct
 variable {K : Type} [Field K] [Infinite K]
@@ -21,6 +21,7 @@ variable {X : Type*} [AddCommGroup X] [Module K X]
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 variable {h n j t m : ℕ}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Pointwise annihilation of old polynomial products annihilates the full
 formal mixed-product image. -/
 theorem formalMixed_polynomial_map_le_ker (W : Submodule K (Forms K n j))
@@ -35,6 +36,7 @@ theorem formalMixed_polynomial_map_le_ker (W : Submodule K (Forms K n j))
   rw [formalPolynomialMultiplication_symProd]
   exact hW a ha b
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The tensor-space construction supplies actual homogeneous forms with
 independent products after the output/scalar detector. -/
 theorem exists_detected_homogeneous_family
@@ -69,6 +71,7 @@ theorem exists_detected_homogeneous_family
     simp only [splitPolynomialDetector,LinearMap.comp_apply,AlgEquiv.toLinearMap_apply,
       e,AlgEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Appendix C.2's separation conclusion, in actual homogeneous polynomial
 spaces. Taking j=1 and t=d−1 gives exactly the new generator family F. -/
 theorem exists_separated_homogeneous_family

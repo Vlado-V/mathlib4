@@ -13,7 +13,7 @@ public import Archive.Froberg.AffineLayeredAvoidance
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.BilinearCovectorCharts
@@ -21,6 +21,7 @@ open Quartic.BilinearCoefficientKernel
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 variable {a b T T₀ H k q s s₀ nf r : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def KernelCovectorExcluded
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K))
@@ -28,6 +29,7 @@ def KernelCovectorExcluded
   ¬ ((∀ i v,covector ell (mu (y.1 i) v+B i v)=0) ∧
     (∀ j,covector ell (y.2 j)=0))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem affine_kernel_normalized_joint
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))

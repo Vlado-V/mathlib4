@@ -16,12 +16,13 @@ the scalar threshold. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedTarget
 open Froberg Filter Module MvPolynomial Quartic VectorMultiplicationCoordinates
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exact_counts_all_even_odd_open {d k h lo u : ℕ}
     (hd : 3≤d) (hdodd : d%2=1) (hk : 0<k)
     (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
@@ -80,6 +81,7 @@ theorem exact_counts_all_even_odd_open {d k h lo u : ℕ}
   · exact hsn
   · exact hun
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exact_counts_all_even_independent_open {d k h lo u : ℕ}
     (hd : 3≤d) (hh : 0<h) (upper : Bool) (a f e : ℕ → ℕ)
     (hc : ∀ᶠ n in atTop,ExactCountConditions d k h lo n (a n) (f n) (e n) upper)

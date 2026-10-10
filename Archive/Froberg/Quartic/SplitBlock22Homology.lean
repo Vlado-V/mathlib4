@@ -22,9 +22,10 @@ noncomputable section
 namespace Quartic.SplitBlock22
 open Module MvPolynomial ThreeBlockModel SplitTensor
 open scoped TensorProduct
-set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K] {m c q : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 private theorem sumTensorLeft_injective {I X Y : Type*} [Fintype I]
     [AddCommGroup X] [Module K X] [AddCommGroup Y] [Module K Y]
     (v : I → X) (hv : LinearIndependent K v) :
@@ -44,21 +45,26 @@ private theorem sumTensorLeft_injective {I X Y : Type*} [Fintype I]
     simp [recover, sumTensorLeft_apply, hrvi, Pi.single_apply]
   exact Function.LeftInverse.injective hrec
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Independence of the fixed four pure quadrics makes their coefficient map injective. -/
 theorem pureMap_injective : Function.Injective (pureMap (K := K) (m := m)) :=
   sumTensorLeft_injective blockQuadrics blockQuadrics_independent
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Independent child quadrics likewise have no relation with constant pure coefficients. -/
 theorem childMap_injective (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
     Function.Injective (childMap h) :=
   (TensorProduct.comm K _ _).injective.comp (sumTensorLeft_injective h hh)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Source (K : Type*) [Field K] (m c q : ℕ) :=
   (Fin 4 → Forms K m 2) × (Fin c → MiddleCoordinates.Mixed K m) × (Fin q → Forms K 3 2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Scalar coefficients of the actual pure–child generator pairs. -/
 abbrev CrossCoefficients (K : Type*) (q : ℕ) := Fin 4 × Fin q → K
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The explicit incoming pure–child Koszul relation array. -/
 def crossBoundary (h : Fin q → Forms K m 2) : CrossCoefficients K q →ₗ[K] Source K m c q where
   toFun b := (fun i => ∑ j, b (i,j) • h j, 0, fun j => -(∑ i, b (i,j) • blockQuadrics i))
@@ -75,14 +81,17 @@ def crossBoundary (h : Fin q → Forms K m 2) : CrossCoefficients K q →ₗ[K] 
       · simp
       · funext j; simp [smul_smul, Finset.smul_sum]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The common polynomial product represented by a pure–child boundary. -/
 def crossProduct (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) : Target K m :=
   ∑ i : Fin 4, ∑ j : Fin q, b (i,j) • (blockQuadrics i ⊗ₜ[K] h j)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem pureMap_crossBoundary (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) :
     pureMap (crossBoundary (c := c) h b).1 = crossProduct h b := by
   simp [pureMap_apply, crossBoundary, crossProduct, TensorProduct.tmul_sum, TensorProduct.tmul_smul]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem childMap_crossBoundary (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) :
     childMap h (crossBoundary (c := c) h b).2.2 = -crossProduct h b := by
   change childMap h (-(fun j => ∑ i, b (i,j) • blockQuadrics i)) = -crossProduct h b
@@ -92,6 +101,7 @@ def crossProduct (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) : Targe
     TensorProduct.tmul_smul, crossProduct]
   exact Finset.sum_comm (β := Target K m) (γ := Fin q)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every displayed pure–child array is an actual cycle. -/
 theorem crossBoundary_cycle (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) :
@@ -101,15 +111,18 @@ theorem crossBoundary_cycle (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [map_zero, zero_add, pureMap_crossBoundary, childMap_crossBoundary]
   exact add_neg_cancel (crossProduct h b)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual incoming pure–child boundary space in the full block source. -/
 def crossSpace (h : Fin q → Forms K m 2) : Submodule K (Source K m c q) :=
   LinearMap.range (crossBoundary h)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem crossSpace_le_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) : crossSpace h ≤ (multiplication g h).ker := by
   rintro a ⟨b, rfl⟩
   exact crossBoundary_cycle g h b
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A cycle with zero mixed coefficients is exactly a pure–child Koszul boundary. -/
 theorem cycle_zero_mixed_iff (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h)
@@ -147,6 +160,7 @@ theorem cycle_zero_mixed_iff (g : Fin c → MiddleCoordinates.Mixed K m)
   · rintro ⟨b, rfl⟩
     rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The mixed coefficient projection, restricted to actual block cycles. -/
 def cycleProjection (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) : (multiplication g h).ker →ₗ[K]
@@ -159,10 +173,12 @@ def cycleProjection (g : Fin c → MiddleCoordinates.Mixed K m)
       change pureMap a.val.1 + (mixedMap g a.val.2.1 + childMap h a.val.2.2) = 0 at ha
       rwa [add_assoc])
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem cycleProjection_val (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : (multiplication g h).ker) :
     (cycleProjection g h a).val = a.val.2.1 := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Every quotient-middle cycle is represented by an actual block cycle. -/
 theorem cycleProjection_surjective (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) : Function.Surjective (cycleProjection g h) := by
@@ -174,6 +190,7 @@ theorem cycleProjection_surjective (g : Fin c → MiddleCoordinates.Mixed K m)
   · apply Subtype.ext
     rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The projection kernel is precisely the incoming pure–child boundaries. -/
 theorem cycleProjection_ker (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
@@ -183,11 +200,13 @@ theorem cycleProjection_ker (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [← Subtype.val_inj]
   exact cycle_zero_mixed_iff g h hh a.val a.property
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def quotientByKernel {V W : Type*} [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] (f : V →ₗ[K] W) (B : Submodule K V)
     (hk : f.ker = B) (hs : Function.Surjective f) : (V ⧸ B) ≃ₗ[K] W :=
   (Submodule.quotEquivOfEq _ _ hk.symm).trans (f.quotKerEquivOfSurjective hs)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Canonical cycle quotient after eliminating exactly the pure–child Koszul boundaries. -/
 def crossQuotientEquiv (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
@@ -198,6 +217,7 @@ def crossQuotientEquiv (g : Fin c → MiddleCoordinates.Mixed K m)
     (cycleProjection g h) _ (cycleProjection_ker g h hh)
     (cycleProjection_surjective g h)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem crossQuotientEquiv_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) (a : (multiplication g h).ker) :
     crossQuotientEquiv g h hh (Submodule.Quotient.mk a) = cycleProjection g h a := by

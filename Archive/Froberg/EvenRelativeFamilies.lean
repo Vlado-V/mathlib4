@@ -14,12 +14,13 @@ Q/F coordinates. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f e : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundProduct (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     biformParitySpace K h m d 0 →ₗ[K] EvenBackgroundSource hdp F →ₗ[K] EvenBackgroundTarget hdp Q F where
@@ -30,6 +31,7 @@ def evenBackgroundProduct (hdp : 1 ≤ d)
   map_add' p z := by ext v; simp only [map_add,LinearMap.add_apply,LinearMap.comp_apply,LinearEquiv.map_add]
   map_smul' c p := by ext v; simp only [map_smul,LinearMap.smul_apply,LinearMap.comp_apply,LinearEquiv.map_smul,RingHom.id_apply]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundProduct_scalar (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (p : Forms K m d) (v : EvenBackgroundSource hdp F) :
@@ -39,18 +41,21 @@ theorem evenBackgroundProduct_scalar (hdp : 1 ≤ d)
     LinearEquiv.coe_toLinearMap,LinearEquiv.apply_symm_apply]
   exact (evenBackgroundEquiv_scalar hdp Q F p v).symm
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenRelativeFamily (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) :
     (Fin e → EvenBackgroundSource hdp F) →ₗ[K] EvenBackgroundTarget hdp Q F :=
   ∑ i,(evenBackgroundProduct hdp Q F (E i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem evenRelativeFamily_apply (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) (a : Fin e → EvenBackgroundSource hdp F) :
     evenRelativeFamily hdp Q F E a=∑ i,evenBackgroundProduct hdp Q F (E i) (a i) := by
   simp only [evenRelativeFamily,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenRelativeFamily_compatible (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) (a : Fin e → EvenBackgroundSource hdp F) :
@@ -63,6 +68,7 @@ theorem evenRelativeFamily_compatible (hdp : 1 ≤ d)
   intro i _
   exact (evenBackgroundTargetEquiv hdp Q F).apply_symm_apply _
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenRelativeFamily_injective (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0)

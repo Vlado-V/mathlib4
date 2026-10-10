@@ -16,7 +16,7 @@ certificate with C.2 on the full prepared parameter space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters FullPreparedParameters
@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r f u c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem preparedScalarSpace_eq_familySpace
     (idx : Fin r ≃ PreparedParameters.Label q J counts)
     (p : PreparedParameters.Space m d q J counts O) :
@@ -36,6 +37,7 @@ theorem preparedScalarSpace_eq_familySpace
   · rintro ⟨i,rfl⟩
     exact ⟨idx i,rfl⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_outer_separation_of_quadratic_row
     (hd : 3≤d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -56,6 +58,7 @@ theorem prepared_outer_separation_of_quadratic_row
   change rename finSumFinEquiv ((p.2.2 i).val+0)=rename finSumFinEquiv (p.2.2 i).val
   rw [add_zero]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_outer_separation_principal_open
     (hd : 3≤d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -85,6 +88,7 @@ theorem prepared_outer_separation_principal_open
   exact ⟨D,hD,fun p hp => prepared_outer_separation_of_quadratic_row
     hd ho hO hJ heven hmin idx T hT hO₂ U p (hgood p hp)⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_outer_separation_principal_open_uniform
     (hd : 3≤d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)

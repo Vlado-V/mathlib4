@@ -16,13 +16,15 @@ Koszul statement for the ordinary enumerated polynomial endpoint. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def biformSplitParity : Fin q ⊕ Fin f → ZMod 2 := Sum.elim (fun _ => 0) (fun _ => 1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def biformSplitFamily (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) :
     (i : Fin q ⊕ Fin f) → homogeneousParitySpace K (Fin h ⊕ Fin m) d
@@ -30,13 +32,16 @@ def biformSplitFamily (Q : Fin q → biformParitySpace K h m d 0)
   | Sum.inl i => Q i
   | Sum.inr i => F i
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def biformSplitEndpoint (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) : Fin (q+f) → Forms K (h+m) d :=
   parityEnumeratedForms finSumFinEquiv finSumFinEquiv
     (fun x => (blockWeight h m x : ZMod 2)) biformSplitParity (biformSplitFamily Q F)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def biformSplitEndpointParity : Fin (q+f) → ZMod 2 := biformSplitParity ∘ finSumFinEquiv.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformSplitEndpoint_parity (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (i : Fin (q+f)) :
     (biformSplitEndpoint Q F i).val.IsWeightedHomogeneous (coreParity h m)
@@ -46,6 +51,7 @@ theorem biformSplitEndpoint_parity (Q : Fin q → biformParitySpace K h m d 0)
     finSumFinEquiv finSumFinEquiv (fun x => (blockWeight h m x : ZMod 2))
     biformSplitParity (biformSplitFamily Q F) i
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biformSplitEndpoint_back (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (i : Fin q ⊕ Fin f) :
     rename finSumFinEquiv.symm (biformSplitEndpoint Q F (finSumFinEquiv i)).val=
@@ -58,6 +64,7 @@ theorem biformSplitEndpoint_back (Q : Fin q → biformParitySpace K h m d 0)
   rw [hcancel]
   cases i <;> rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_endpoint (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (H : OddSplitExact Q F)
     (a : (endpointMultiplication (biformSplitEndpoint Q F)).ker)

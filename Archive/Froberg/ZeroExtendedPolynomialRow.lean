@@ -14,7 +14,7 @@ The generators, product columns and scalar list are the same core witness. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication Quartic.FreeCoefficients
@@ -22,7 +22,8 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {a z s d R m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W]
 
- theorem extended_polynomial_row_relation_constants_zero (hs : s=0) (hsd : s ≤ d)
+ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+theorem extended_polynomial_row_relation_constants_zero (hs : s=0) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
     (e : Fin m → Fin a →₀ ℕ)

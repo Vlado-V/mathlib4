@@ -19,10 +19,12 @@ open Module MvPolynomial Matrix KernelPolynomialCharts
 open BilinearCoefficientKernel BilinearCovectorCharts
 variable {K : Type*} [Field K] [IsAlgClosed K]
 variable {a b T c q a₁ a₂ n₁ n₂ r₁ r₂ : ℕ}
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Threshold (a c : ℕ) := Fin (a-c+1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem kernel_lower
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (E : Fin c → Fin a → K) (hE : LinearIndependent K E) (ell : Fin T → K)
@@ -35,6 +37,7 @@ theorem kernel_lower
   have h := Submodule.finrank_mono hle
   rwa [finrank_span_eq_card hE,Fintype.card_fin] at h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem principal_open_two_stage
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (E : Fin c → Fin a → K) (Q : Fin q → Fin b → K)
@@ -75,6 +78,7 @@ theorem principal_open_two_stage
   apply hgood z hz ell hell
   exact (AmbientCovectorSpreading.finite_original_equations_iff mu E Q hd ell).mpr ⟨hker,hE,hQ⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem principal_open_all_kernel_ranks
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (E : Fin c → Fin a → K) (Q : Fin q → Fin b → K) (hE : LinearIndependent K E)

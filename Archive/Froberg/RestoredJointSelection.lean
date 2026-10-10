@@ -13,12 +13,13 @@ chosen inside any nonempty open of the full actual restored family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial VectorMultiplicationCoordinates VectorExpansionOpen
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_restored_joint {d k h lo : ℕ}
     (hd : 3≤d) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
     (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)
@@ -74,6 +75,7 @@ theorem exact_counts_restored_joint {d k h lo : ℕ}
     rw [LinearEquiv.apply_symm_apply]
     exact hchild
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Once the generic child flag and outer model have been chosen in a full
 open, every point of a nonempty positive-scalar fiber keeps both choices. -/
 theorem restored_joint_positive_scalar_fiber_at {h m d q f : ℕ}

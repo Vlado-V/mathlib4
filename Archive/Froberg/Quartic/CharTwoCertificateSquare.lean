@@ -15,11 +15,12 @@ noncomputable section
 namespace Quartic.CharTwoCertificate
 open Module MvPolynomial Matrix
 open FiniteEndpointChecker FiniteEndpointCheckerPolynomial FiniteEndpointCertificate
-set_option maxHeartbeats 2000000
+
 
 variable {K : Type*} [Field K] [CharP K 2]
 variable {n lo hi b₂ b₄ L : ℕ} (D : Data n lo hi b₂ b₄ L)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_range_eq_span :
     LinearMap.range (quadraticMultiplication (D.lowerQuadrics (K := K))) =
       Submodule.span K (Set.range (fun i : Fin L => D.product (K := K) (D.lowerIndex i))) := by
@@ -34,6 +35,7 @@ theorem lower_range_eq_span :
     have he := D.expected_lower
     omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_exact (hlo : 0 ≤ Counts.chi n lo) :
     LinearMap.ker (quadraticMultiplication (D.lowerQuadrics (K := K))) ≤
       koszulSpace (D.lowerQuadrics (K := K)) := by
@@ -50,6 +52,7 @@ theorem lower_exact (hlo : 0 ≤ Counts.chi n lo) :
     omega
   exact heq.ge
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A nonzero inverse coordinate after the lower basis detects an element outside
 the entire lower multiplication image, not only outside the selected rows. -/
 theorem outside_lower_of_inverse_bit (t j : Fin b₄) (hj : L ≤ j.val)
@@ -97,6 +100,7 @@ theorem outside_lower_of_inverse_bit (t j : Fin b₄) (hj : L ≤ j.val)
   rw [lower_range_eq_span D] at hmrange
   exact hfm (hs hmrange)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Convenient specialization to a square whose coefficient vector is a monomial. -/
 theorem marked_of_inverse_bit (hlo : 0 ≤ Counts.chi n lo)
     (t j : Fin b₄) (hj : L ≤ j.val) (hbit : (D.inverse t).testBit j.val = true)
@@ -107,15 +111,18 @@ theorem marked_of_inverse_bit (hlo : 0 ≤ Counts.chi n lo)
   ⟨D.lowerQuadrics, lowerQuadrics_independent D, lower_exact D hlo, ζ,
     outside_lower_of_inverse_bit D t j hj hbit (mulQuadratic ζ ζ) hζ⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The square of a single variable, viewed as a quadratic form. -/
 def coordinateQuadratic (z : Fin n) : Forms K n 2 :=
   ⟨monomial (Finsupp.single z 2) 1, isHomogeneous_monomial _ (by simp)⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coordinateQuadratic_square (z : Fin n) :
     (mulQuadratic (coordinateQuadratic (K := K) z) (coordinateQuadratic z)).val =
       monomial (Finsupp.single z 4) (1 : K) := by
   simp [coordinateQuadratic, mulQuadratic, monomial_mul_monomial, ← Finsupp.single_add]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A single inverse bit certifies that the square of a coordinate quadratic survives. -/
 theorem marked_of_coordinate_inverse_bit (hlo : 0 ≤ Counts.chi n lo)
     (z : Fin n) (t j : Fin b₄) (ht : D.exponent₄ t = Finsupp.single z 4)

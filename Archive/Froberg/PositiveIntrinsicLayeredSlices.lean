@@ -15,7 +15,7 @@ closed kernel slices on the actual quotient, on one common scalar open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily QuotientCovectorKernel
@@ -28,6 +28,7 @@ variable {K P V V₀ W W₀ H : Type} [Field K] [Infinite K] [IsAlgClosed K]
   [AddCommGroup H] [Module K H] [FiniteDimensional K H]
 variable {q M : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem intrinsic_layered_quotient_slices_positive
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)
     (mu₀ : P →ₗ[K] V →ₗ[K] W₀) (muH : P →ₗ[K] V →ₗ[K] H)
@@ -65,6 +66,7 @@ theorem intrinsic_layered_quotient_slices_positive
   exact intrinsic_kernel_profiles_avoid_positive mu nu mu₀ muH bottom higher res hres hcompat
     s₀ hs₀ hmono hgrowth B (hcount r hr)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem intrinsic_uniform_quotient_slices_positive
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)
     (mu₀ : P →ₗ[K] V →ₗ[K] W₀) (muH : P →ₗ[K] V →ₗ[K] H)

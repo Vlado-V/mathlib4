@@ -19,9 +19,10 @@ polynomiality of their determinant and annihilator equations is proved.
 noncomputable section
 namespace Quartic.ClosedCovectorSpreading
 open Module MvPolynomial ClosedCovectorEquations BilinearCoefficientKernel BilinearCovectorCharts
-set_option maxHeartbeats 1000000
+
 variable {K : Type*} [Field K] {I : Type*} {a B T q s d : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A linear covector equation varies polynomially with its actual vector
 coordinates. -/
 theorem linearForm_polynomial (y : (I → K) → Fin T → K)
@@ -34,6 +35,7 @@ theorem linearForm_polynomial (y : (I → K) → Fin T → K)
   apply Subtype.ext
   simp only [linearForm,Submodule.coe_sum,Submodule.coe_smul,smul_eq_C_mul]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Evaluating μ on a varying child vector and a fixed source basis vector
 is polynomial, as shown by the literal coefficient sum. -/
 theorem mixed_coordinate_polynomial
@@ -49,6 +51,7 @@ theorem mixed_coordinate_polynomial
   simp only [map_sum,map_smul,LinearMap.sum_apply,LinearMap.smul_apply,
     Pi.basisFun_apply,Pi.basisFun_equivFun,LinearEquiv.refl_apply,Finset.sum_apply,Pi.smul_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Every actual minor, shared-child equation, and auxiliary slice equation
 varies polynomially in the supplied coefficients. -/
 theorem equation_polynomial
@@ -71,6 +74,7 @@ theorem equation_polynomial
       exact linearForm_polynomial _ (mixed_coordinate_polynomial mu hmu Q hQ iv.1 iv.2)
     | inr h => exact linearForm_polynomial _ (hZ h)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The exact finite dependent family used by the empty-fiber theorem. -/
 theorem finiteEquations_polynomial
     (mu : (I → K) → (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -83,6 +87,7 @@ theorem finiteEquations_polynomial
     IsPolynomialFamily (fun p => finiteEquations (d := d) (mu p) (Q p,Z p) j) :=
   equation_polynomial mu hmu Q hQ Z hZ _
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual closed covector equations remain geometrically empty throughout
 a principal open whose polynomial is nonzero at the given witness. -/
 theorem principal_open_empty_fiber {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
@@ -103,6 +108,7 @@ theorem principal_open_empty_fiber {L : Type*} [Field L] [Algebra K L] [IsAlgClo
     (fun j p => finiteEquations (mu p) (Q p,Z p) j)
     (finiteEquations_polynomial mu hmu Q hQ Z hZ) p₀ hempty
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The geometric open also excludes every actual base-field covector whose
 relation kernel meets the closed threshold and which annihilates Q and Z. -/
 theorem principal_open_closed {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L]
@@ -133,6 +139,7 @@ theorem principal_open_closed {L : Type*} [Field L] [Algebra K L] [IsAlgClosed L
   apply (algebraMap K L).injective
   simpa only [Pi.zero_apply,map_zero] using congrFun hz i
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Over an algebraically closed base field, the witness may be stated
 directly using the actual relation map and the actual annihilation equations. -/
 theorem principal_open_closed_of_witness [IsAlgClosed K]

@@ -15,20 +15,23 @@ slices of the actual enlarged endpoint odd multiplication. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial
 open BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def scalarEndpointEmbedding : Forms K m d →ₗ[K] Forms K (h+m) d :=
   evenPolynomialToForms.comp scalarEvenBiform
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem scalarEndpointEmbedding_parity (p : Forms K m d) :
     (scalarEndpointEmbedding (h := h) p).val.IsWeightedHomogeneous
       ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm) 0 :=
   evenPolynomialToForms_parity (scalarEvenBiform p)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddEndpointScalarAction
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :=
@@ -36,6 +39,7 @@ def oddEndpointScalarAction
     (backgroundEnumeratedForms Q F G) evenPolynomialToForms evenPolynomialToForms_parity).comp
       (scalarEvenBiform (K := K) (h := h) (m := m) (d := d))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEndpointScalarAction_eq
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -44,6 +48,7 @@ theorem oddEndpointScalarAction_eq
         (backgroundEnumeratedForms Q F G) scalarEndpointEmbedding scalarEndpointEmbedding_parity := by
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenEndpointScalar_compatible
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -61,6 +66,7 @@ theorem oddEvenEndpointScalar_compatible
   exact oddBackgroundQuotientProduct_compatible (Fin.append Q E) F G (scalarEvenBiform p)
     ((oddBackgroundCoefficientRelations F G).mkQ a)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEndpointScalarAction_closed_slices
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

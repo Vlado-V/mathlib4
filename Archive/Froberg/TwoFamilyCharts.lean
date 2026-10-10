@@ -16,11 +16,12 @@ the two projective charts without treating their parameters independently. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.ProjectiveTupleCharts
 variable {K : Type*} [Field K] [Infinite K] {a₁ a₂ q₁ q₂ d₁ d₂ : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The existing projective tuple chart is a polynomial vector-space family. -/
 theorem projectiveTuple_polynomial (c : ChartType a₁ q₁ d₁) :
     IsPolynomialFamily (tupleMap (K := K) c) := by
@@ -35,15 +36,18 @@ theorem projectiveTuple_polynomial (c : ChartType a₁ q₁ d₁) :
       simp only [map_sum,map_smul,smul_eq_mul,tupleMap]
     _ = L (tupleMap c p) := congrArg L (ProjectiveKernelIncidence.tuple_expansion (tupleMap c p)).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev TwoTupleParameters (c₁ : ChartType a₁ q₁ d₁) (c₂ : ChartType a₂ q₂ d₂) :=
   ParameterIndex c₁ ⊕ (ParameterIndex c₂ ⊕ Unit)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def twoTupleChart (c₁ : ChartType a₁ q₁ d₁) (c₂ : ChartType a₂ q₂ d₂)
     (p : TwoTupleParameters c₁ c₂ → K) :
     (Fin q₁ → Fin a₁ → K) × (Fin q₂ → Fin a₂ → K) :=
   (tupleMap c₁ (p ∘ Sum.inl),p (Sum.inr (Sum.inr ())) •
     tupleMap c₂ (p ∘ Sum.inr ∘ Sum.inl))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem twoTupleChart_polynomial (c₁ : ChartType a₁ q₁ d₁) (c₂ : ChartType a₂ q₂ d₂) :
     IsPolynomialFamily (twoTupleChart (K := K) c₁ c₂) := by
   classical
@@ -51,6 +55,7 @@ theorem twoTupleChart_polynomial (c₁ : ChartType a₁ q₁ d₁) (c₂ : Chart
     ((isPolynomialFamily_linear (LinearMap.proj (Sum.inr (Sum.inr ())))).smul
       (polynomial_family_reindex (projectiveTuple_polynomial c₂) (Sum.inr ∘ Sum.inl)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Precisely one common projective normalization is saved. -/
 theorem twoTuple_parameter_count (c₁ : ChartType a₁ q₁ d₁) (c₂ : ChartType a₂ q₂ d₂) :
     Fintype.card (TwoTupleParameters c₁ c₂) =
@@ -63,6 +68,7 @@ theorem twoTuple_parameter_count (c₁ : ChartType a₁ q₁ d₁) (c₂ : Chart
   simp only [TwoTupleParameters,Fintype.card_sum,Fintype.card_unit] at hc₁ hc₂ ⊢
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every pair with both families nonzero has one common scaling and a
 literal value of the combined polynomial chart. -/
 theorem cover_two_nonzero_tuples
@@ -82,6 +88,7 @@ theorem cover_two_nonzero_tuples
     rw [smul_smul,← mul_assoc,mul_inv_cancel₀ hs₁,one_mul]
     exact hF₂
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Avoidance on a combined chart with the exact two-family parameter count. -/
 theorem twoTuple_chart_avoidance {V W : Type*}
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]

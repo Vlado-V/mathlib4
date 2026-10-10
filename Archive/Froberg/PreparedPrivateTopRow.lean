@@ -15,7 +15,7 @@ then persists on the same unrestricted prepared coefficient space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns Quartic
@@ -24,10 +24,12 @@ variable {σ : Type*} [Fintype σ] {a z n d q b hi ho : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 def privateTopRow (p : Space n d q J counts O)
     (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) :=
   addRow (ProductRows.multiplication counts (layers p) J (d+1)) (privateRowMap (d := d) P (d+1))
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_top_core_injective
     (hd : 3≤d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d)
@@ -70,6 +72,7 @@ theorem private_top_core_injective
       Finset.sum_const_zero,add_zero,map_zero] using hrel
   exact Prod.ext hx hu'
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_top_principal_open [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)

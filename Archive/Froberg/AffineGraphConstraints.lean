@@ -15,7 +15,7 @@ cannot lower that rank. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Matrix MvPolynomial Quartic Quartic.BilinearCovectorCharts
@@ -23,12 +23,14 @@ open Quartic.BilinearCoefficientKernel Quartic.KernelPolynomialCharts
 variable {K I : Type*} [Field K] [Infinite K] [Fintype I]
 variable {a b T T₀ N : ℕ}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def tupleProductConstraint
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → K) : (Fin T → K) →ₗ[K] (Fin (N*b) → K) :=
   LinearMap.pi fun l => covector (mu (Pi.single (finProdFinEquiv.symm l).2 1)
     (H (finProdFinEquiv.symm l).1))
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 @[simp] theorem tupleProductConstraint_apply
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → K) (ell : Fin T → K) (l : Fin (N*b)) :
@@ -36,6 +38,7 @@ def tupleProductConstraint
       (mu (Pi.single (finProdFinEquiv.symm l).2 1) (H (finProdFinEquiv.symm l).1)) := by
   simp only [tupleProductConstraint,LinearMap.pi_apply,covector_apply,mul_comm]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def tupleProductConstraintLinear
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K)) :
     (Fin N → Fin a → K) →ₗ[K] ((Fin T → K) →ₗ[K] (Fin (N*b) → K)) where
@@ -51,6 +54,7 @@ def tupleProductConstraintLinear
     funext l
     simp only [tupleProductConstraint_apply,LinearMap.smul_apply,Pi.smul_apply,map_smul,RingHom.id_apply]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem tupleProductConstraint_rank
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → K) :
@@ -77,6 +81,7 @@ theorem tupleProductConstraint_rank
   rw [hvec] at hr
   exact hr
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Higher graph equations with the bottom contribution in one shared
 homogenizing column. -/
 def affineGraphConstraint
@@ -86,6 +91,7 @@ def affineGraphConstraint
     ((Fin T → K) × K) →ₗ[K] (Fin (N*b) → K) :=
   affineHomogenization (tupleProductConstraint mu H) (tupleProductConstraint mu₀ H ell₀)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem affineGraphConstraint_rank
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -95,6 +101,7 @@ theorem affineGraphConstraint_rank
   rw [←tupleProductConstraint_rank]
   exact affineHomogenization_rank _ _
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem affineGraphConstraint_polynomial
     (mu₀ : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T₀ → K))
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))

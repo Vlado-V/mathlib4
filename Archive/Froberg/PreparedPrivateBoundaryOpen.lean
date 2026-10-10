@@ -14,7 +14,7 @@ are handled uniformly by exactness on the same prepared coefficient space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
@@ -24,7 +24,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 variable {B : Type*} [AddCommGroup B] [Module K B] [FiniteDimensional K B]
 
- theorem private_boundary_row_principal_open [Module.Finite K (Space n d q J counts O)]
+ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+theorem private_boundary_row_principal_open [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (Z : B →ₗ[K] PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val)

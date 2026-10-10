@@ -14,13 +14,14 @@ scalar relation space after the supported endpoint deletion. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredEndpointFamily (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts)
@@ -28,6 +29,7 @@ def restoredEndpointFamily (hd : d%2=0)
     (p : RestoredSpace m d q J counts O) : Fin r → Forms K (h+m) d :=
   biformRestorationForms (restoredFamilyLinear hd hO hJ heven idx slot p)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredEndpointFamily_scalar (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts)
@@ -56,6 +58,7 @@ theorem restoredEndpointFamily_scalar (hd : d%2=0)
   rw [heq,rename_rename]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_restored_formal_relations (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)

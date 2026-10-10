@@ -23,14 +23,16 @@ open Module UniformEndpoint ActualSmallMotionAvoidanceOmega
 open ActualDeformationColumnsOmega ActualDeformationResponseOmega RowMultiplicationCoordinates
 variable {K : Type*} [Field K] [IsAlgClosed K]
 variable (ω : K)
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parent_count (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     4+(mixedCount m upper+upperEndpoint m)=parentCount m upper := by
   have hc := (EndpointBlockConditions.structural_counts m hm upper).1
   unfold mixedCount at hc ⊢
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- At either actual parent endpoint the shared child data and exact deformation
 produce an independent quadratic family with the asserted quartic dimension. -/
 theorem small_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
@@ -51,6 +53,7 @@ theorem small_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (uppe
   have hw := EndpointReduction.witness_of_ordered f hlin hdim
   simpa only [parent_count m hmlo upper,Nat.add_comm 3 m] using hw
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem large_parent_witness (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (hchild : MarkedEndpoints K m) :
     QuarticWitness K (m+3) (parentCount m upper) := by
@@ -95,6 +98,7 @@ theorem large_parent_witness (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (hω : ω 
   have hw := EndpointReduction.witness_of_ordered f hlin hdimParent
   simpa only [parent_count m (by omega) upper,Nat.add_comm 3 m] using hw
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Both ordinary parent endpoints follow from a marked exact child. -/
 theorem parent_witness (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
     (hω : ω ≠ 0) (hω1 : ω ≠ -1) (hchild : MarkedEndpoints K m) :
@@ -103,6 +107,7 @@ theorem parent_witness (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
   · exact small_parent_witness ω m hm hsmall upper hω hω1 hchild
   · exact large_parent_witness ω m (by omega) upper hω hω1 hchild
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Generic maximal rank at every parent count. -/
 theorem transfer (m : ℕ) (hm : 28 ≤ m) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (hchild : MarkedEndpoints K m) :
@@ -120,6 +125,7 @@ theorem transfer (m : ℕ) (hm : 28 ≤ m) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
   · have hp := SharedChildFlag.upper_positive (by omega : 1 ≤ m + 3)
     exact (before_upper_positive (m + 3) (upperEndpoint (m + 3) - 1) (by omega)).le
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The admissible pencil parameter is chosen internally. -/
 theorem ordinary_parent_witness (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
     (hchild : MarkedEndpoints K m) :
@@ -127,6 +133,7 @@ theorem ordinary_parent_witness (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
   obtain ⟨ω, hω, hω1⟩ := ThreeBlockOmega.exists_parameter (K := K)
   exact parent_witness ω m hm upper hω hω1 hchild
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A marked child supplies ordinary generic maximal rank at every parent
 count, with no pencil parameter left as a premise. -/
 theorem ordinary_transfer (m : ℕ) (hm : 28 ≤ m) (hchild : MarkedEndpoints K m) :

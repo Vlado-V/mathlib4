@@ -15,17 +15,19 @@ background products and every scalar-only polynomial. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K] {h m c d : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Apply the output detector coefficientwise after splitting the variables. -/
 def preparedQuadraticDetector (T : Poly K h →ₗ[K] (Fin c → K)) :
     Poly K (h+m) →ₗ[K] (Fin c → Poly K m) :=
   (biformVectorDetector T).comp (rename finSumFinEquiv.symm).toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
 @[simp] theorem preparedQuadraticDetector_rename
     (T : Poly K h →ₗ[K] (Fin c → K)) (p : MvPolynomial (Fin h ⊕ Fin m) K) :
@@ -33,6 +35,7 @@ omit [Infinite K] in
   change biformVectorDetector T (rename finSumFinEquiv.symm (rename finSumFinEquiv p))=_
   exact congrArg (biformVectorDetector T) ((renameEquiv K finSumFinEquiv).left_inv p)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem preparedQuadraticDetector_tmul
     (T : Poly K h →ₗ[K] (Fin c → K)) (a : Poly K h) (b : Poly K m) (k : Fin c) :
     preparedQuadraticDetector T (splitPolynomialEquiv (K := K) h m (a ⊗ₜ[K] b)) k=
@@ -46,12 +49,14 @@ omit [Infinite K] in
     funext fun i => finSumFinEquiv_symm_apply_natAdd i
   rw [hl,hr,biformVectorDetector_tmul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem preparedQuadraticDetector_mul_rename
     (T : Poly K h →ₗ[K] (Fin c → K)) (a : Poly K h) (b : Poly K m) (k : Fin c) :
     preparedQuadraticDetector T (rename (Fin.castAdd m) a * rename (Fin.natAdd h) b) k=
       T a k • b := by
   simpa only [splitPolynomialEquiv_tmul] using preparedQuadraticDetector_tmul T a b k
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem preparedQuadraticDetector_supported
     (T : Poly K h →ₗ[K] (Fin c → K))
     (hT : T.comp (homogeneousComponent 2)=T) :
@@ -73,6 +78,7 @@ theorem preparedQuadraticDetector_supported
   | add a b ha hb =>
     simpa only [map_add,LinearMap.comp_apply] using congrArg₂ HAdd.hAdd ha hb
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 omit [Infinite K] in
 /-- A detector supported in degree two vanishes on the constant polynomial. -/
 theorem quadratic_output_one_zero (T : Poly K h →ₗ[K] (Fin c → K))
@@ -82,6 +88,7 @@ theorem quadratic_output_one_zero (T : Poly K h →ₗ[K] (Fin c → K))
   rw [homogeneousComponent_of_mem (isHomogeneous_one _ _)] at he
   simpa using he.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every polynomial supported only in the scalar variables is invisible. -/
 theorem preparedQuadraticDetector_scalar
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -95,6 +102,7 @@ theorem preparedQuadraticDetector_scalar
   rw [preparedQuadraticDetector_tmul,quadratic_output_one_zero T hT]
   simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A killed output subspace remains killed with arbitrary scalar coefficients. -/
 theorem polynomialTensorSpace_le_preparedQuadraticDetector_ker
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -111,6 +119,7 @@ theorem polynomialTensorSpace_le_preparedQuadraticDetector_ker
     simp
   | add a b ha hb => simp only [map_add,ha,hb,add_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Products are killed whenever their output-factor product is killed. -/
 theorem polynomialTensorSpace_product_le_preparedQuadraticDetector_ker
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -135,6 +144,7 @@ theorem polynomialTensorSpace_product_le_preparedQuadraticDetector_ker
     | add x y hx hy => simp only [map_add,mul_add,hx,hy,add_zero]
   | add x y hx hy => simp only [map_add,add_mul,hx,hy,add_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The constrained quadratic term stays invisible after multiplying by any
 scalar-only coefficient of the required total degree. -/
 theorem preparedQuadraticDetector_quadratic_product

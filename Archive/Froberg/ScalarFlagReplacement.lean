@@ -14,11 +14,12 @@ the actual even family, with every positive generator retained. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem update_append_left {V : Type*} (Q : Fin q → V) (E : Fin e → V) (i : Fin q) (x : V) :
     Function.update (Fin.append Q E) (Fin.castAdd e i) x=Fin.append (Function.update Q i x) E := by
   classical
@@ -39,18 +40,21 @@ theorem update_append_left {V : Type*} (Q : Fin q → V) (E : Fin e → V) (i : 
       omega
     rw [Function.update_of_ne hne,Fin.append_right,Fin.append_right]
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 private theorem predicate_reindex_cast {V : Type*} {a b : ℕ} (h : a=b)
     (P : (n : ℕ) → (Fin n → V) → Prop) (v : Fin b → V) :
     P a (v ∘ Fin.cast h) ↔ P b v := by
   subst b
   rfl
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 private theorem predicate_empty_append {V : Type*} {n : ℕ}
     (P : (n : ℕ) → (Fin n → V) → Prop) (v : Fin n → V) :
     P (0+n) (Fin.append (Fin.elim0 : Fin 0 → V) v) ↔ P n v := by
   rw [Fin.elim0_append]
   exact predicate_reindex_cast (Nat.zero_add n) P v
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem exists_covered_background_slot_thin [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

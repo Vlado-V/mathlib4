@@ -16,12 +16,13 @@ before restricting to the last positive-scalar fiber. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)
@@ -83,6 +84,7 @@ theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
     hIgood p hall.2.2.2.1,hAgood p hall.2.2.2.2.1,hTgood p hall.2.2.2.2.2,
     hDgood p hall.2.1,hRgood p hall.1⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A fully restored certificate together with the generic lower-degree
 child flag and the strict outer vector model, at the same parameter point. -/
 def RestoredGenericCertificate (hdp : 1≤d) (hd : d%2=0)
@@ -99,6 +101,7 @@ def RestoredGenericCertificate (hdp : 1≤d) (hd : d%2=0)
 open Filter VectorExpansionOpen
 open scoped Topology
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The exact-count child flag, all restored certificate conditions, and any
 additional full open survive together on one nonempty positive-scalar fiber. -/
 theorem exact_counts_restored_certified_fiber {d k h lo : ℕ}

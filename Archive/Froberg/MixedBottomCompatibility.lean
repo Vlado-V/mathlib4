@@ -15,7 +15,7 @@ quotient action in the corrected ambient target. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
@@ -37,6 +37,7 @@ local notation "G₁" => fun i => mixedPureOddGenerator hd (U i) (P i)
 local notation "hQ₀" => fun i => scalarEvenBiform_weighted (h := h) (Q i)
 local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem mixedAmbientScalar_bottom
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=

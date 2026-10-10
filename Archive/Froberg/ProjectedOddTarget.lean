@@ -14,16 +14,18 @@ endpoint quotient when the even target is generated modulo that deletion. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module
 variable {K : Type} [Field K] {n d r : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def projectedTargetClass (D : Submodule K (Forms K n (2*d)))
     (q : Fin r → Forms K n d) :
     Forms K n (2*d) →ₗ[K] ProjectedEndpointCokernel D.mkQ q :=
   (projectedEndpointMultiplication D.mkQ q).range.mkQ.comp D.mkQ
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem projectedTargetClass_zero_iff (D : Submodule K (Forms K n (2*d)))
     (q : Fin r → Forms K n d) (p : Forms K n (2*d)) :
     projectedTargetClass D q p=0 ↔ p∈D ⊔ (endpointMultiplication q).range := by
@@ -44,10 +46,12 @@ def projectedTargetClass (D : Submodule K (Forms K n (2*d)))
     change D.mkQ (endpointMultiplication q c)=D.mkQ p
     rw [←hab,map_add,show D.mkQ a=0 from (Submodule.Quotient.mk_eq_zero _).mpr ha,zero_add]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem projectedTargetClass_surjective (D : Submodule K (Forms K n (2*d)))
     (q : Fin r → Forms K n d) : Function.Surjective (projectedTargetClass D q) :=
   (projectedEndpointMultiplication D.mkQ q).range.mkQ_surjective.comp D.mkQ_surjective
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def projectedToOddTarget (D : Submodule K (Forms K n (2*d)))
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
@@ -63,12 +67,14 @@ def projectedToOddTarget (D : Submodule K (Forms K n (2*d)))
     rintro _ ⟨c,rfl⟩
     exact oddTargetClass_product w e q hq c)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem projectedToOddTarget_class (D : Submodule K (Forms K n (2*d)))
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
     (hD : D≤(parityForm w 1).ker) (p : Forms K n (2*d)) :
     projectedToOddTarget D w e q hq hD (projectedTargetClass D q p)=oddTargetClass w q p := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem projectedToOddTarget_bijective (D : Submodule K (Forms K n (2*d)))
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
@@ -95,6 +101,7 @@ theorem projectedToOddTarget_bijective (D : Submodule K (Forms K n (2*d)))
     obtain ⟨p,rfl⟩ := oddTargetClass_surjective w q z
     exact ⟨projectedTargetClass D q p,rfl⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def projectedOddTargetEquiv (D : Submodule K (Forms K n (2*d)))
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
@@ -104,6 +111,7 @@ def projectedOddTargetEquiv (D : Submodule K (Forms K n (2*d)))
   LinearEquiv.ofBijective (projectedToOddTarget D w e q hq hD)
     (projectedToOddTarget_bijective D w e q hq hD heven)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem projectedOddTargetEquiv_class (D : Submodule K (Forms K n (2*d)))
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
@@ -115,6 +123,7 @@ def projectedOddTargetEquiv (D : Submodule K (Forms K n (2*d)))
 
 variable {P : Type*} [AddCommGroup P] [Module K P]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem projectedOddTargetEquiv_product (D : Submodule K (Forms K n (2*d)))
     (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))

@@ -19,11 +19,12 @@ range of the actual relative even multiplication map. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenScalar_compatible
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -37,6 +38,7 @@ theorem oddEvenScalar_compatible
   obtain ⟨a,rfl⟩ := (oddBackgroundCoefficientRelations F G).mkQ_surjective v
   exact oddEvenTargetExtensionEquiv_mk Q F G E (evenOddBiformProduct (scalarEvenBiform p) a)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenScalar_slices_iff
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -59,6 +61,7 @@ theorem oddEvenScalar_slices_iff
     rw [LinearEquiv.apply_symm_apply]
     exact (oddEvenScalar_compatible Q F G E p v).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenRelativeMap_smul
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -69,6 +72,7 @@ theorem oddEvenRelativeMap_smul
   intro a
   simp only [oddEvenRelativeMap_apply,map_smul,LinearMap.smul_apply,Finset.smul_sum]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_even_pencil_slices_open [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -88,6 +92,7 @@ theorem odd_even_pencil_slices_open [IsAlgClosed K]
   rw [oddEvenRelativeMap_add,oddEvenRelativeMap_smul]
   exact hgood c hc
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_even_pencil_exact_open
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -112,6 +117,7 @@ theorem odd_even_pencil_exact_open
     (fun j => isPolynomialFamily_const _) 0 (by simpa only [A,Pi.zero_apply,zero_smul,add_zero] using hex)
   exact ⟨P,hP,fun c hc => hgood (fun _ => c) hc⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_actual_even_pencil_replacement [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -132,6 +138,7 @@ theorem exists_actual_even_pencil_replacement [IsAlgClosed K]
     simpa only [map_mul,mul_ne_zero_iff] using hgood
   exact ⟨c,hc,hg.1,ha c hg.2.1,hb c hg.2.2⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_actual_even_slot_replacement [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

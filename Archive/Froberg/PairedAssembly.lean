@@ -13,28 +13,33 @@ public import Archive.Froberg.GenericProductSupport
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg.PairedMonomials
 open Finset ProductFibers ProductMinors
 variable {X : Type*} [Fintype X] [DecidableEq X] {s : ℕ}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def formTerms (s : ℕ) (S : SizedSubset X s) : Finset ((X × Bool) →₀ ℕ) :=
   allowedExponents (s/2) S.1
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem formTerms_nonempty (S : SizedSubset X s) : (formTerms s S).Nonempty := by
   obtain ⟨A,hAS,hA⟩ := Finset.exists_subset_card_eq (s := S.1) (n := s/2)
     (by rw [S.2]; omega)
   exact ⟨pairedExponent S.1 A, mem_allowedExponents hAS hA⟩
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def defaultTerm (S : SizedSubset X s) : (X × Bool) →₀ ℕ :=
   (formTerms_nonempty S).choose
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem defaultTerm_mem (S : SizedSubset X s) : defaultTerm S ∈ formTerms s S :=
   (formTerms_nonempty S).choose_spec
 
 namespace ProductFiber
 variable {K : Type*} [CommRing K] [Nontrivial K]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- A genuine coefficient minor, with the selected rows also realized as products of allowed terms. -/
 structure MinorCertificate (K : Type*) [CommRing K] (F : ProductFiber X s) where
   rows : F.Columns → (X × Bool) →₀ ℕ
@@ -43,6 +48,7 @@ structure MinorCertificate (K : Type*) [CommRing K] (F : ProductFiber X s) where
   permitted : ∀ p, ∃ e ∈ formTerms s (F.label (p,false)),
     ∃ f ∈ formTerms s (F.label (p,true)), rows p = e+f
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem columns_subsingleton (F : ProductFiber X s) (ht : F.halfSize = 0) :
     Subsingleton F.Columns := by
   constructor
@@ -53,6 +59,7 @@ theorem columns_subsingleton (F : ProductFiber X s) (ht : F.halfSize = 0) :
       have hQ : Q.1 = ∅ := Finset.card_eq_zero.mp (Q.2.trans ht)
       exact congrArg (fun P => (⟦P⟧ : F.Columns)) (Subtype.ext (hP.trans hQ.symm))
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Every actual product fiber has a nonzero coefficient-polynomial minor. -/
 theorem minorCertificate_nonempty (F : ProductFiber X s) : Nonempty (MinorCertificate K F) := by
   classical
@@ -72,6 +79,7 @@ theorem minorCertificate_nonempty (F : ProductFiber X s) : Nonempty (MinorCertif
     exact ⟨choices T (p,false),choices_mem T _,choices T (p,true),choices_mem T _,
       (choices_product T p).symm⟩
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Doubled indices and the total index support determine a fiber. -/
 theorem eq_of_keys (F G : ProductFiber X s) (hi : F.doubled = G.doubled)
     (hu : F.doubled ∪ F.single = G.doubled ∪ G.single) : F = G := by
@@ -88,6 +96,7 @@ theorem eq_of_keys (F G : ProductFiber X s) (hi : F.doubled = G.doubled)
       simpa only [hx,hx',false_or] using h
   exact Subtype.ext (Prod.ext hi hs)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Products of permitted monomials in distinct fibers have distinct exponents. -/
 theorem eq_of_permitted_products (F G : ProductFiber X s) (p : F.Columns) (q : G.Columns)
     {e f g h : (X × Bool) →₀ ℕ}
@@ -105,6 +114,7 @@ theorem eq_of_permitted_products (F G : ProductFiber X s) (p : F.Columns) (q : G
   rw [F.label_inter p,G.label_inter q,F.label_union p,G.label_union q] at hk
   exact eq_of_keys F G hk.1 hk.2
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- A selected minor row has zero coefficient in every other fiber. -/
 theorem MinorCertificate.cross {F G : ProductFiber X s} (M : MinorCertificate K F)
     (hFG : F ≠ G) (p : F.Columns) (q : G.Columns) :
@@ -116,12 +126,14 @@ theorem MinorCertificate.cross {F G : ProductFiber X s} (M : MinorCertificate K 
   exact hFG (eq_of_permitted_products F G p q he hf hg hh (hrow.symm.trans heq))
 
 end ProductFiber
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Actual specialization of the coefficient-polynomial family. -/
 def specializedForm {K : Type*} [CommRing K]
     (values : SizedSubset X s × ((X × Bool) →₀ ℕ) → K) (S : SizedSubset X s) :
     MvPolynomial (X × Bool) K :=
   MvPolynomial.map (MvPolynomial.eval values) (genericForm (formTerms s) S)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- One common coefficient assignment makes all product fibers independent,
 and index-degree separation makes their union independent. -/
 theorem exists_independent_fiber_products {K : Type*} [CommRing K] [IsDomain K] [Infinite K] :

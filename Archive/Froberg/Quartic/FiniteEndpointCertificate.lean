@@ -15,8 +15,9 @@ All remaining work per dimension is checking finite data against these fields. -
 namespace Quartic.FiniteEndpointCertificate
 open Module MvPolynomial
 open FiniteEndpointChecker FiniteEndpointCheckerPolynomial
-set_option maxHeartbeats 2000000
 
+
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Separately checked rows imply the whole Boolean certificate without evaluating it again. -/
 theorem checkInverse_of_equations {s : ℕ} (A : Fin s → List (Fin s)) (B : Fin s → ℕ)
     (h : ∀ i, xorSum ((A i).map B) = 2^i.val) : checkInverse A B = true := by
@@ -24,11 +25,13 @@ theorem checkInverse_of_equations {s : ℕ} (A : Fin s → List (Fin s)) (B : Fi
   intro i _
   exact decide_eq_true (h i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The packed inverse checker asserts exactly its individual row equations. -/
 theorem checkInverse_iff {s : ℕ} (A : Fin s → List (Fin s)) (B : Fin s → ℕ) :
     checkInverse A B = true ↔ ∀ i, xorSum ((A i).map B) = 2^i.val :=
   ⟨checkInverse_equations A B,checkInverse_of_equations A B⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 structure Data (n lo hi b₂ b₄ L : ℕ) where
   exponent₂ : Fin b₂ → Fin n →₀ ℕ
   exponent₄ : Fin b₄ → Fin n →₀ ℕ
@@ -61,8 +64,10 @@ variable {K : Type*} [Field K] [CharZero K] {n lo hi b₂ b₄ L : ℕ}
 variable (D : Data n lo hi b₂ b₄ L)
 include D
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def quadrics (i : Fin hi) : Forms K n 2 := rowForm D.exponent₂ D.degree₂ (D.support i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quadrics_independent : LinearIndependent K (D.quadrics (K := K)) := by
   apply LinearIndependent.of_comp (Forms K n 2).subtype
   apply polynomials_independent_of_coefficients
@@ -74,35 +79,45 @@ theorem quadrics_independent : LinearIndependent K (D.quadrics (K := K)) := by
   rw [rowPolynomial_coeff_count D.exponent₂ D.injective₂,sparse_count]
   exact congrArg (fun n : ℕ => (n : K)) (D.quad_counts i j)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def multiplier (i : Fin b₂) : Forms K n 2 :=
   ⟨monomial (D.exponent₂ i) 1,isHomogeneous_monomial _ (D.degree₂ i)⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def product (i : Fin b₄) : Forms K n 4 := rowForm D.exponent₄ D.degree₄ (D.rows i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem product_identity (i : Fin b₄) : D.product (K := K) i =
     mulQuadratic (D.quadrics (D.selected i).1) (D.multiplier (D.selected i).2) := by
   apply Subtype.ext
   exact (FiniteEndpointCheckerPolynomial.product_identity D.exponent₄ D.exponent₂
     (D.support (D.selected i).1) (D.exponent₂ (D.selected i).2) (D.rows i) (D.product_supports i)).symm
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem products_independent : LinearIndependent K (D.product (K := K)) :=
   rowForms_independent D.exponent₄ D.degree₄ D.injective₄ D.rows D.inverse D.inverse_checked
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem upper_rank : b₄ ≤ finrank K (LinearMap.range (quadraticMultiplication (D.quadrics (K := K)))) := by
   apply rank_lower_bound _ _ D.products_independent
   intro i
   rw [D.product_identity]
   exact product_mem_range _ _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def lowerQuadrics (i : Fin lo) : Forms K n 2 := D.quadrics (i.castLE D.lo_le_hi)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lowerQuadrics_independent : LinearIndependent K (D.lowerQuadrics (K := K)) :=
   D.quadrics_independent.comp (Fin.castLE D.lo_le_hi) (Fin.castLE_injective D.lo_le_hi)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def lowerIndex (i : Fin L) : Fin b₄ := i.castLE D.lower_le
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lowerIndex_injective : Function.Injective D.lowerIndex := Fin.castLE_injective D.lower_le
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_rank : L ≤ finrank K (LinearMap.range
     (quadraticMultiplication (D.lowerQuadrics (K := K)))) := by
   apply rank_lower_bound _ (fun i => D.product (D.lowerIndex i))
@@ -116,6 +131,7 @@ theorem lower_rank : L ≤ finrank K (LinearMap.range
   rw [hj]
   exact product_mem_range _ _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem lower_witness : QuarticWitness K n lo := by
   apply EndpointReduction.witness_of_ordered (D.lowerQuadrics (K := K)) D.lowerQuadrics_independent
   have hq := quartic_quotient_add_rank (D.lowerQuadrics (K := K))
@@ -125,6 +141,7 @@ theorem lower_witness : QuarticWitness K n lo := by
   rw [D.dimension₄] at hq
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem upper_witness : QuarticWitness K n hi := by
   apply EndpointReduction.witness_of_ordered (D.quadrics (K := K)) D.quadrics_independent
   have hq := quartic_quotient_add_rank (D.quadrics (K := K))
@@ -132,6 +149,7 @@ theorem upper_witness : QuarticWitness K n hi := by
   rw [D.expected_upper,D.dimension₄] at *
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem generic_of_certificate (hadjacent : hi ≤ lo+1)
     (hlo : 0 ≤ Counts.chi n lo) (hhi : Counts.chi n hi ≤ 0)
     (r : ℕ) (hr : r ≤ (n+1).choose 2) : GenericQuartic K n r :=

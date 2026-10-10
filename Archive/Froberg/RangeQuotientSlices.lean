@@ -13,7 +13,7 @@ and in particular for an affine replacement pencil. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.BilinearScalarFamily
 open Module MvPolynomial Quartic
 variable {K F V W U I : Type*} [Field K] [IsAlgClosed K]
@@ -22,6 +22,7 @@ variable {K F V W U I : Type*} [Field K] [IsAlgClosed K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [AddCommGroup U] [Module K U] [FiniteDimensional K U]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_range_slices_principal_open (mu : F →ₗ[K] V →ₗ[K] W)
     (A : (I → K) → (U →ₗ[K] W)) (hA : IsPolynomialFamily A)
     (s : ℕ → ℕ) (p₀ : I → K)
@@ -45,6 +46,7 @@ theorem quotient_range_slices_principal_open (mu : F →ₗ[K] V →ₗ[K] W)
   rw [hr p] at ht
   exact ht
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_pencil_slices_principal_open (mu : F →ₗ[K] V →ₗ[K] W)
     (A₀ A₁ : U →ₗ[K] W) (s : ℕ → ℕ)
     (hzero : HasClosedKernelSlices (targetPostcompose mu A₀.range.mkQ) s) :

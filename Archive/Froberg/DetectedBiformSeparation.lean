@@ -15,12 +15,13 @@ the full scalar coefficient row in the actual polynomial coordinates. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {h n d t c q f R s : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem scalarCoefficientRow_injective (Q : Fin q → Forms K n d)
     (hQ : Function.Injective (prefixMultiplication Q t)) :
     Function.Injective (scalarCoefficientRow (c := c) (t := t) Q) := by
@@ -33,6 +34,7 @@ theorem scalarCoefficientRow_injective (Q : Fin q → Forms K n d)
   funext i k
   exact congrFun (hk k) i
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem scalarCoefficientRow_mem (Q : Fin q → Forms K n d)
     (x : Fin q → Fin c → Forms K n t) (k : Fin c) :
     scalarCoefficientRow Q x k ∈ familySpace Q*Forms K n t := by
@@ -41,6 +43,7 @@ theorem scalarCoefficientRow_mem (Q : Fin q → Forms K n d)
   intro i hi
   exact Submodule.mul_mem_mul (Submodule.subset_span ⟨i,rfl⟩) (x i k).property
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem scalar_detected_biform_separation
     (Q : Fin q → Forms K n d) (T : Poly K h →ₗ[K] (Fin c → K))
     (F : Fin f → FullBiform K (Fin h) n R s)
@@ -55,6 +58,7 @@ theorem scalar_detected_biform_separation
     (pairProducts (fun i => (F i).val)) hF (scalarCoefficientRow Q x)
     (scalarCoefficientRow_mem Q x) a hrel
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_scalar_separated_biform_family
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (Q : Fin q → Forms K n d)

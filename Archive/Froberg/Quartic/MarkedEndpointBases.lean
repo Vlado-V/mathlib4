@@ -15,25 +15,29 @@ public import Archive.Froberg.Quartic.CharTwoCertificateBases
 namespace Quartic
 
 set_option maxRecDepth 100000
-set_option maxHeartbeats 2000000
+
 
 variable {K : Type*} [Field K] [CharP K 2]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem markedEndpoints_28 : MarkedEndpoints K 28 := by
   refine ⟨CharTwoCertificate28.generic, fun _ => ?_⟩
   rw [UniformEndpoint.lowerEndpoint_eq_table 28 (by decide)]
   exact CharTwoCertificate28.marked_lower
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem markedEndpoints_29 : MarkedEndpoints K 29 := by
   refine ⟨CharTwoCertificate29.generic, fun _ => ?_⟩
   rw [UniformEndpoint.lowerEndpoint_eq_table 29 (by decide)]
   exact CharTwoCertificate29.marked_lower
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem markedEndpoints_30 : MarkedEndpoints K 30 := by
   refine ⟨CharTwoCertificate30.generic, fun _ => ?_⟩
   rw [UniformEndpoint.lowerEndpoint_eq_table 30 (by decide)]
   exact CharTwoCertificate30.marked_lower
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The finite base certificates discharge every initial obligation for a
 three-variable marked transfer starting in dimension 28. -/
 theorem markedEndpoints_of_transfer

@@ -13,30 +13,35 @@ when either their output product or their scalar product is killed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module TensorProduct MvPolynomial
 variable {K : Type} [Field K] {h m : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual polynomial image of a tensor product of arbitrary subspaces. -/
 def polynomialTensorMap (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m)) :
     (A ⊗[K] B) →ₗ[K] Poly K (h+m) :=
   (splitPolynomialEquiv (K := K) h m).toLinearMap.comp (TensorProduct.map A.subtype B.subtype)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def polynomialTensorSpace (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m)) :
     Submodule K (Poly K (h+m)) := (polynomialTensorMap A B).range
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem polynomialTensorMap_tmul (A : Submodule K (Poly K h))
     (B : Submodule K (Poly K m)) (a : A) (b : B) :
     polynomialTensorMap A B (a ⊗ₜ[K] b) =
       splitPolynomialEquiv (K := K) h m (a.val ⊗ₜ[K] b.val) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem coreCoefficientSpace_eq_polynomialTensorSpace (i j : ℕ) :
     coreCoefficientSpace K h m (i+j) i =
       polynomialTensorSpace (Forms K h i) (Forms K m j) :=
   coreCoefficientSpace_eq_split_range
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The pure-tensor formula for a product is its actual polynomial formula. -/
 theorem splitPolynomialDetector_product {X : Type*} [AddCommGroup X] [Module K X]
     (T : Poly K h →ₗ[K] X) (Q : Submodule K (Poly K m))
@@ -49,6 +54,7 @@ theorem splitPolynomialDetector_product {X : Type*} [AddCommGroup X] [Module K X
   simp only [splitPolynomialDetector,LinearMap.comp_apply,AlgEquiv.toLinearMap_apply,
     AlgEquiv.symm_apply_apply,TensorProduct.map_tmul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Products of actual tensor-subspaces are killed whenever the pure
 output-scalar pairs are killed; finite tensor sums introduce no extra condition. -/
 theorem polynomialTensorSpace_product_killed {X : Type*} [AddCommGroup X] [Module K X]
@@ -71,6 +77,7 @@ theorem polynomialTensorSpace_product_killed {X : Type*} [AddCommGroup X] [Modul
     | add u v hu hv => simp only [map_add,mul_add,hu,hv,add_zero]
   | add u v hu hv => simp only [map_add,add_mul,hu,hv,add_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A killed output product kills the entire actual polynomial denominator. -/
 theorem polynomialTensorSpace_product_le_ker_left {X : Type*} [AddCommGroup X] [Module K X]
     (T : Poly K h →ₗ[K] X) (Q : Submodule K (Poly K m))
@@ -83,6 +90,7 @@ theorem polynomialTensorSpace_product_le_ker_left {X : Type*} [AddCommGroup X] [
   change T (a.val*c.val) = 0 at hz
   rw [hz,zero_tmul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A scalar ideal product kills the entire actual polynomial denominator. -/
 theorem polynomialTensorSpace_product_le_ker_right {X : Type*} [AddCommGroup X] [Module K X]
     (T : Poly K h →ₗ[K] X) (Q : Submodule K (Poly K m))

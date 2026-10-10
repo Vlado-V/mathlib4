@@ -14,7 +14,7 @@ through both the chart and profile intersections and are fixed only once. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.BilinearCovectorCharts
@@ -53,6 +53,7 @@ variable
 
 include nu mu₀ muH higher res hres hcompat s₀ nf degrees f cuts hempty hpresentation hmono hgrowth hcount
 
+set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 /-- A single joint principal open works for every full and bottom kernel
 profile. There is no choice of cuts depending on a profile or covector. -/
 theorem affine_kernel_profiles_joint :
@@ -89,6 +90,7 @@ theorem affine_kernel_profiles_joint :
   let c : C := ⟨(k,k₀),ht,hmono ell hb⟩
   exact hgood y hy c ell hb (hpresentation k₀ (bottom ell) rfl) rfl (hgrowth ell hb)
 
+set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 /-- Freeze the target cuts only after the full finite profile intersection. -/
 theorem affine_kernel_profiles_avoid :
     ∃ Z : Fin s → Fin T → K,

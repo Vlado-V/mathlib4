@@ -14,13 +14,14 @@ retained and the bottom inclusion given by the literal linear biform. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 abbrev OddMixedBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
@@ -29,16 +30,19 @@ abbrev OddMixedBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
       coordinateRelation (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r)
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 instance oddMixedBlockCoordinatesGroup (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     AddCommGroup (OddMixedBlockCoordinates hd hd3 F U P) := Pi.addCommGroup
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 instance oddMixedBlockCoordinatesModule (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     Module K (OddMixedBlockCoordinates hd hd3 F U P) := Pi.module _ _ K
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 def oddMixedSourceBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -54,6 +58,7 @@ def oddMixedSourceBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
     (LinearEquiv.prodCongr (LinearEquiv.refl K (OddBottomQuotient F))
       (oddHigherBlocksEquiv hd hd3 F U P))
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem oddMixedSourceBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -81,6 +86,7 @@ theorem oddMixedSourceBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
       (fun i => mixedPureOddGenerator hd (U i) (P i))).range.mkQ).map_zero]
     exact (oddHigherBlocksEquiv hd hd3 F U P).map_zero
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -98,6 +104,7 @@ def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
     (fun i => mixedPureOddGenerator hd (U i) (P i))).symm.trans
       (oddMixedSourceBlockCoordinates hd hd3 F U P B hB)
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem oddEndpointBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

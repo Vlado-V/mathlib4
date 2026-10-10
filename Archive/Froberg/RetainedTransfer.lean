@@ -15,8 +15,8 @@ child homology dimension, and hence is bounded by the old critical defect. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
-set_option synthInstance.maxHeartbeats 200000
+
+
 namespace Froberg
 attribute [local irreducible] upperCount
 open Module
@@ -25,6 +25,8 @@ variable {Z U : Type*} [AddCommGroup Z] [Module K Z]
   [AddCommGroup U] [Module K U]
 variable {m n d r t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem projected_retained_old_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q))
     (old : Fin t → Forms K m d) (hold : LinearIndependent K old) (f : Fin m ↪ Fin n)
@@ -36,6 +38,8 @@ theorem projected_retained_old_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : F
   rw [projectedRetainedHomology_finrank pi q hq W hW,hrel]
   exact renamed_old_homology_finrank old hold f pi hinj
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem coefficient_kernel_critical_bound (hm : 0 < m)
     (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q))

@@ -14,12 +14,13 @@ background used in the local comparison, including its enumeration. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem restored_background_independent (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -44,6 +45,7 @@ theorem restored_background_independent (hdp : 1≤d) (hd : d%2=0)
   funext i
   simpa only [Equiv.apply_symm_apply,Function.comp_apply] using he (e.symm i)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem restored_certificate_background (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

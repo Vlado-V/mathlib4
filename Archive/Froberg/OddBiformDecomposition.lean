@@ -14,24 +14,28 @@ component formula in each degree. This applies also to degree 2*d. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Finset
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev OddBiformCoordinates (K : Type) [Field K] (h m d : ℕ) :=
   (r : Fin ((d+1)/2)) → Forms K h (2*r.val+1) ⊗[K] Forms K m (d-(2*r.val+1))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddCoefficientAssembly : OddBiformCoordinates K h m d →ₗ[K] biformParitySpace K h m d 1 :=
   ∑ r : Fin ((d+1)/2),
     (oddBiformEmbedding (t := 2*r.val+1) (by omega) (by omega)).comp (LinearMap.proj r)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddCoefficientAssembly_val (v : OddBiformCoordinates K h m d) :
     (oddCoefficientAssembly v).val=∑ r,sumBiformMap (v r) := by
   simp [oddCoefficientAssembly]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddCoefficientAssembly_component (v : OddBiformCoordinates K h m d)
     (r : Fin ((d+1)/2)) :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val+1) (oddCoefficientAssembly v).val=
@@ -52,6 +56,7 @@ theorem oddCoefficientAssembly_component (v : OddBiformCoordinates K h m d)
       omega)
   · simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddCoefficientAssembly_injective :
     Function.Injective (oddCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v z he
@@ -61,6 +66,7 @@ theorem oddCoefficientAssembly_injective :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val+1) x.val) he
   simpa only [oddCoefficientAssembly_component] using hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddCoefficientAssembly_surjective :
     Function.Surjective (oddCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v
@@ -81,15 +87,18 @@ theorem oddCoefficientAssembly_surjective :
   exact (odd_homogeneous_components (blockWeight h m)
     (by intro x; cases x <;> simp [blockWeight]) v.val v.property.1 hpar).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddBiformCoordinatesEquiv :
     biformParitySpace K h m d 1 ≃ₗ[K] OddBiformCoordinates K h m d :=
   (LinearEquiv.ofBijective oddCoefficientAssembly
     ⟨oddCoefficientAssembly_injective,oddCoefficientAssembly_surjective⟩).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddBiformCoordinatesEquiv_symm_val (v : OddBiformCoordinates K h m d) :
     (oddBiformCoordinatesEquiv.symm v).val=∑ r,sumBiformMap (v r) :=
   oddCoefficientAssembly_val v
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 1)
     (r : Fin ((d+1)/2)) :
     sumBiformMap (oddBiformCoordinatesEquiv v r)=
@@ -101,6 +110,7 @@ theorem oddBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 1)
   rw [hv] at hc
   exact hc.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finrank_odd_biform_space (hh : 0 < h) (hm : 0 < m) :
     finrank K (biformParitySpace K h m d 1)=
       ∑ r : Fin ((d+1)/2),

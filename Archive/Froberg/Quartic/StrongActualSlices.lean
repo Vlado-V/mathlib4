@@ -23,12 +23,14 @@ open UniformEndpoint ProfileCertificate PolynomialBilinearCoordinates
 open BilinearCovectorCharts BilinearCoefficientKernel ConvolutionClosedSlices
 open ActualExpansionSlices
 variable {K : Type*} [Field K]
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def slices (m : ℕ) (upper : Bool) (S : ℕ) : ℕ → ℕ :=
   ExpansionClosedSlices.sliceCount (2*m+2*mixedCount m upper) S
     (mixedCount m upper) (Counts.j m (upperEndpoint m) (mixedCount m upper)).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The scalar implication is independent of the correction count `S`. -/
 theorem scalar_bounds_of_uniform_surplus (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (S d E : ℝ) (hdlo : 0<d) (hdhi : d<(totalA m (mixedCount m upper) : ℝ))
@@ -57,6 +59,7 @@ theorem scalar_bounds_of_uniform_surplus (m : ℕ) (hm : 320 ≤ m) (upper : Boo
   exact UniformScalar.normal_of_uniform_surplus _ _ _ _ _ _ _ _ _ _
     hdom.1 rfl hdlo hdhi hdom.2.2.2.1 hdom.2.2.2.2.1 hE'
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual quotient images inherit the normal incidence inequality for every
 chosen correction count. -/
 theorem actual_scalar_bounds (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (S₀ : ℕ)
@@ -95,6 +98,7 @@ theorem actual_scalar_bounds (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (S₀ : �
   rw [hsurR]
   simpa only [Nat.cast_add,Nat.cast_mul,Nat.cast_ofNat] using hb
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- On an actual expanded mixed presentation, one genuine principal open
 chooses a shared child tuple and all closed-threshold slices. -/
 theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (S : ℕ)
@@ -132,6 +136,7 @@ theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 320 ≤ m) (up
         actual_scalar_bounds m hm upper S g hg E hE hexp eV eW W hlo hhi) ell hell
   simpa only [hsurN,slices] using h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An arbitrary additional child-coefficient principal open can be
 intersected without changing the fixed mixed presentation or any threshold. -/
 theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (S : ℕ)
@@ -191,6 +196,7 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 320 ≤ m) (u
     simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using hh
   · simpa only [LinearEquiv.apply_symm_apply] using hZ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Literal ambient closed slices for the fixed mixed and child families. -/
 def HasAmbientSlices {m : ℕ} {upper : Bool}
     (g : Fin (mixedCount m upper) → Rows K m 1) (S : ℕ)
@@ -204,6 +210,7 @@ def HasAmbientSlices {m : ℕ} {upper : Bool}
       (∀ i v, covector lam (RowMultiplicationCoordinates.coordinate (finiteEquiv (Q i)) v)=0) →
       (∀ j, covector lam (rowFiniteEquiv (Z d j))=0) → lam=0
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Freezing one successful set of cuts gives a genuine nonempty open in the
 child coefficients alone. This permits later intersection across correction
 counts and with any independently prescribed child open. -/
@@ -254,6 +261,7 @@ theorem child_slices_open [Infinite K] (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
       exact finiteEquiv.apply_symm_apply _
     simpa only [hdecode] using hchild i v
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One child tuple works for every member of any finite family of correction
 counts and lies in the prescribed nonempty child-coordinate open. -/
 theorem exists_all_corrections_in_open [Infinite K]
@@ -288,16 +296,19 @@ theorem exists_all_corrections_in_open [Infinite K]
     exact Finset.prod_ne_zero_iff.mp (by simpa only [map_prod] using hz.2)
       i (Finset.mem_univ i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Correction dimension for an actual marked subspace of dimension `w`. -/
 def markedCorrectionCount (m : ℕ) (upper : Bool) (w : ℕ) : ℕ :=
   (Counts.H m (upperEndpoint m) (mixedCount m upper)).toNat+3+w
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem markedCorrectionCount_cast (m : ℕ) (hm : 320 ≤ m) (upper : Bool) (w : ℕ) :
     (markedCorrectionCount m upper w : ℤ)=
       Counts.H m (upperEndpoint m) (mixedCount m upper)+3+w := by
   have hH := (UniformScalar.structural_dimension_signs m hm upper).2.1
   simp only [markedCorrectionCount,Nat.cast_add,Nat.cast_ofNat,Int.toNat_of_nonneg hH]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal motion budget, without replacing the marked dimension by an
 expected Hilbert function. -/
 theorem slices_eq (m : ℕ) (upper : Bool) (S d : ℕ) :

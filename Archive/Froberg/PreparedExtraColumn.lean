@@ -15,11 +15,12 @@ are restrictions of one parameter point. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 600000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} {V I J : Type*} [Field K] [AddCommGroup V] [Module K V]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem span_range_eq_sup_extra (g : J → V) (b : I → J) (k : J)
     (hcover : ∀ j,(∃ i,b i=j) ∨ j=k) :
     Submodule.span K (Set.range g)=
@@ -42,31 +43,37 @@ namespace PreparedParameters
 variable [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 def countPositiveIndex (hc : ∀ j∈J,c j≤c' j) :
     Fin (Fintype.card (ProductRows.LayerLabel J c)) →
       Fin (Fintype.card (ProductRows.LayerLabel J c')) :=
   fun i => Fintype.equivFin _ (countLayerMap hc ((Fintype.equivFin _).symm i))
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem countPositiveIndex_injective (hc : ∀ j∈J,c j≤c' j) :
     Function.Injective (countPositiveIndex hc) :=
   (Fintype.equivFin _).injective.comp
     ((countLayerMap_injective hc).comp (Fintype.equivFin _).symm.injective)
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 def countBackgroundIndex (hc : ∀ j∈J,c j≤c' j) :
     Fin (Fintype.card (ProductRows.LayerLabel J c)) ⊕ Fin u →
       Fin (Fintype.card (ProductRows.LayerLabel J c')) ⊕ Fin u :=
   Sum.map (countPositiveIndex hc) id
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem countBackgroundIndex_injective (hc : ∀ j∈J,c j≤c' j) :
     Function.Injective (countBackgroundIndex (u := u) hc) :=
   (countPositiveIndex_injective hc).sumMap Function.injective_id
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 def quadraticExtraLayer {d : ℕ} (hd : 3≤d) (h m e : ℕ) :
     ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m (e+1)) :=
   ⟨⟨2,mem_allEvenIndices.mpr ⟨le_rfl,by omega,by decide⟩⟩,
     ⟨e,by simp only [allEvenCount_active h m _ (two_mem_activeEvenIndices hd),
       targetLayerCount,ite_true]; omega⟩⟩
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem quadraticExtraLayer_not_old {d : ℕ} (hd : 3≤d) (h m e : ℕ)
     (i : ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m e)) :
     countLayerMap (allEvenCount_le_append hd h m e 1) i≠quadraticExtraLayer hd h m e := by
@@ -78,6 +85,7 @@ theorem quadraticExtraLayer_not_old {d : ℕ} (hd : 3≤d) (h m e : ℕ)
     exact congrArg Sum.inr hi.symm
   exact quadraticTailSlot_ne_old hd h m e 1 0 (Sum.inr i) hs
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem quadraticExtraLayer_cover {d : ℕ} (hd : 3≤d) (h m e : ℕ)
     (i : ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h m (e+1))) :
     (∃ j,countLayerMap (allEvenCount_le_append hd h m e 1) j=i) ∨
@@ -115,6 +123,7 @@ open PreparedParameters
 variable [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem preparedPositiveBiform_restrictCounts
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)
@@ -125,6 +134,7 @@ theorem preparedPositiveBiform_restrictCounts
   rw [Equiv.symm_apply_apply,preparedEvenBiform_restrictCounts]
   rfl
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem preparedBackground_restrictCounts
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -143,6 +153,7 @@ theorem preparedBackground_restrictCounts
     rfl
   | inr i => rfl
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem prepared_extra_positive_independent
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -177,6 +188,7 @@ theorem prepared_extra_positive_independent
     congr 1
     exact (congrFun (preparedBackground_restrictCounts hd ho hO hJ heven hc p U P F) i).symm
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem prepared_extra_background_span
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)

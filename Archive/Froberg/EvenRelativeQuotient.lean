@@ -13,12 +13,13 @@ public import Archive.Froberg.OddEndpointScalarSlices
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1400000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct BilinearScalarFamily
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f e : ℕ}
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem evenRelativeFamily_range (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) :
@@ -37,6 +38,7 @@ theorem evenRelativeFamily_range (hdp : 1 ≤ d)
     funext i
     exact (evenBackgroundSourceEquiv hdp F).apply_symm_apply (a i)
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 def evenRelativeQuotientEquiv (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) :
@@ -49,6 +51,7 @@ def evenRelativeQuotientEquiv (hdp : 1 ≤ d)
   Submodule.Quotient.equiv _ _ (evenBackgroundTargetEquiv hdp Q F)
     (evenRelativeFamily_range hdp Q F E)
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem evenRelativeQuotient_compatible (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) (p : Forms K m d)
@@ -64,6 +67,7 @@ theorem evenRelativeQuotient_compatible (hdp : 1 ≤ d)
     (evenBackgroundTargetEquiv hdp Q F (evenBackgroundScalar hdp Q F p v))=_
   rw [evenBackgroundEquiv_scalar]
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem evenRelative_closed_slices (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (E : Fin e → biformParitySpace K h m d 0) (s : ℕ → ℕ)

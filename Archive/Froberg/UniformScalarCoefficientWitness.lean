@@ -13,12 +13,13 @@ public import Archive.Froberg.UniformScalarSeparation
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module Filter MvPolynomial
 open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- One nonempty principal open supplies all scalar injections and the
 separated paired coefficient space simultaneously. -/
 theorem eventually_uniform_scalar_coefficient_witnesses {d : ℕ} (hd : 2≤d)
@@ -44,6 +45,7 @@ theorem eventually_uniform_scalar_coefficient_witnesses {d : ℕ} (hd : 2≤d)
   have hh := hgood Q hQ
   exact scalar_coefficient_witness_of_quotient hd (by omega) S hS Q hh.1 hh.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Reserving z scalar variables preserves the C.1 asymptotic bound. The
 family has its actual count r(n+z) while its polynomials use only n variables. -/
 theorem eventually_uniform_scalar_coefficient_witnesses_shift {d : ℕ} (hd : 2≤d)
@@ -63,6 +65,7 @@ theorem eventually_uniform_scalar_coefficient_witnesses_shift {d : ℕ} (hd : 2�
   eventually_uniform_scalar_coefficient_witnesses hd (fun n => r (n+z))
     (normalized_limit_shift hr z)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The same shifted scalar open also attains the actual outer-family count
 in the paired coefficient space. Both count bounds use the full n+z variables,
 while the witness itself is supported on the n core variables. -/

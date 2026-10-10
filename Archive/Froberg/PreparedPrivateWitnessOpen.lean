@@ -15,7 +15,7 @@ row condition. The pure output tuple is arbitrary and remains fixed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
@@ -24,6 +24,7 @@ variable {σ : Type*} [Fintype σ] {n d q b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Every positive even relation in the private prepared family reduces to
 scalar relations and actual constant alternating boundaries. -/
 def PrivatePositiveReduction (p : Space n d q J counts O)
@@ -48,6 +49,7 @@ def PrivatePositiveReduction (p : Space n d q J counts O)
       (∀ i,(z i).IsHomogeneous d ∧ (z i).IsWeightedHomogeneous
         (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) 0)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_reduction_open_of_witnesses
     [Module.Finite K (Space n d q J counts O)] [LinearOrder (Label q J counts)]
     (hd : 3≤d) (hodd : d%2=1)

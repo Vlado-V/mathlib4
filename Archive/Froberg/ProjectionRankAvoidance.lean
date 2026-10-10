@@ -13,7 +13,7 @@ spaces when the Schubert equation count exceeds the parameter count. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.SubspaceCharts Quartic.BilinearCovectorCharts
@@ -22,6 +22,7 @@ variable {K I U V : Type*} [Field K] [Infinite K] [Fintype I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   {b t w : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One rank stratum of a polynomial family is avoided on a nonempty
 principal open of actual projection maps. -/
 theorem projection_family_rank_open

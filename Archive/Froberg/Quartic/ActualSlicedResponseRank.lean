@@ -26,8 +26,9 @@ open Module MvPolynomial UniformEndpoint ProfileCertificate
 open ActualSlicedMotionAvoidance ActualDeformationResponse SmallCovectorCommonOpen
 open RowMultiplicationCoordinates
 variable {K : Type*} [Field K] [IsAlgClosed K] {m c q : ℕ}
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 omit [IsAlgClosed K] in
 /-- The numerical auxiliary budget is exactly the dimension difference of
 this actual response map and target. -/
@@ -63,6 +64,7 @@ theorem auxiliaryCount_eq (g : Mixed K m c) (h : Child K m q) (U : Marked h)
   rw [he]
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual motions with augmented injectivity and maximal response rank.
 No response-rank hypothesis or independently chosen stage is assumed. -/
 theorem exists_maximal_response (g : Mixed K m c) (h : Child K m q) (U : Marked h)
@@ -103,6 +105,7 @@ theorem exists_maximal_response (g : Mixed K m c) (h : Child K m q) (U : Marked 
     rw [hj] at hz
     exact hz
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The resulting actual rank has the literal manuscript integer count. -/
 theorem exists_response_rank_formula (g : Mixed K m c) (h : Child K m q) (U : Marked h)
     (Z : (d : AmbientSliceMotion.Threshold (RowCount m 1) c) →

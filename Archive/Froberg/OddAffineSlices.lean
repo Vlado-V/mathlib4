@@ -15,7 +15,7 @@ supply the dimension budget, and B.7 supplies the zero-bottom exclusion. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily QuotientCovectorKernel
@@ -37,6 +37,7 @@ local notation "μA" => LinearMap.comp (oddAmbientScalarProduct Q F G) (LinearEq
 local notation "π" => oddAmbientToFull Q F G
 local notation "j" => finrank K W-e*finrank K V
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem actual_odd_affine_slices (hh : 0  <  h) (hm : 0  <  m) (hd : Odd d)
     (ec : WA ≃ₗ[K] W₀ × H)
     (hw : ∀ v : biformParitySpace K h m (2*d) 1,

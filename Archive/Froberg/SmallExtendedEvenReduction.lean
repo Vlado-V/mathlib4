@@ -16,13 +16,14 @@ one nonempty principal open, including every inactive even row. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial MonomialExpansion
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 variable {h n q z : ℕ} {counts : ℕ → ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem finite_cubic_extended_reduction_open
     [LinearOrder (Label q (allEvenIndices 3) counts)]
     (T : ℕ → Poly K h →ₗ[K] X)
@@ -54,6 +55,7 @@ theorem finite_cubic_extended_reduction_open
     obtain ⟨p,hp⟩ := exists_strong_cubic_product_parameter (q := q) T hz hm
     exact ⟨coreExtension z p,private_product_extension p (hp R)⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem finite_quartic_extended_reduction_open
     [LinearOrder (Label q (allEvenIndices 4) counts)]
     (T : ℕ → Poly K h →ₗ[K] X)

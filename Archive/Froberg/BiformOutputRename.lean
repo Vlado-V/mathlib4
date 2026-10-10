@@ -14,13 +14,14 @@ scalar half-degree profiles. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*} {n j s : ℕ}
 variable {X : Type*} [AddCommGroup X] [Module K X]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biformImage_mono_types
     {A : Type*} {B : Type*} {O O' : Submodule K (MvPolynomial A K)}
     {C C' : Submodule K (MvPolynomial B K)} (hO : O≤O') (hC : C≤C') :
@@ -33,6 +34,7 @@ theorem biformImage_mono_types
     exact mul_mem_biformImage _ _ (hO a.property) (hC b.property)
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biform_output_rename_mem (e : σ ≃ τ)
     (T : MvPolynomial τ K →ₗ[K] X)
     {f : MvPolynomial (σ ⊕ Fin n) K}
@@ -49,6 +51,7 @@ theorem biform_output_rename_mem (e : σ ≃ τ)
   · rintro z ⟨p,hp,rfl⟩
     exact hp.rename_isHomogeneous
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biform_output_rename_profile (e : σ ≃ τ) (S : Finset (Fin n))
     {f : MvPolynomial (σ ⊕ Fin n) K}
     (hf : f.IsWeightedHomogeneous

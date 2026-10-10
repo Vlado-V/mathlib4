@@ -13,7 +13,7 @@ when both alternating boundary maps have kernels. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.SplitRestoration
 open Module MvPolynomial Quartic PolynomialRestoration
 variable {K : Type} {σ I V W Z S : Type*} [Field K]
@@ -23,16 +23,19 @@ variable {K : Type} {σ I V W Z S : Type*} [Field K]
   [AddCommGroup S] [Module K S] [FiniteDimensional K S]
 variable {r b : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def row (j : V →ₗ[K] MvPolynomial σ K) (k : W →ₗ[K] MvPolynomial σ K)
     (pi : MvPolynomial σ K →ₗ[K] Z) (g : Fin r → V) (p : Fin b → W) :
     ((Fin r → V) × (Fin b → W)) →ₗ[K] Z :=
   (PolynomialRestoration.row j pi g).coprod (PolynomialRestoration.row k pi p)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def boundary (g : Fin r → V) (p : Fin b → W) (T : S →ₗ[K] (Fin r → V)) :
     (((Fin r → Fin r → K) × S) × (Fin b → Fin b → K)) →ₗ[K]
       ((Fin r → V) × (Fin b → W)) :=
   ((PolynomialRestoration.boundary g).coprod T).prodMap (PolynomialRestoration.boundary p)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem split_restoration_open
     (j : V →ₗ[K] MvPolynomial σ K) (k : W →ₗ[K] MvPolynomial σ K)
     (pi : MvPolynomial σ K →ₗ[K] Z)

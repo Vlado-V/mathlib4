@@ -15,7 +15,7 @@ the private coefficient block in the common prepared parameter space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns
@@ -24,6 +24,7 @@ variable {σ : Type*} [Fintype σ] {a z d q b R hi ho : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_core_row_separation
     (hd : 3≤d) (hR : 2≤R) (hRd : R+1≤d) (hRJ : R+1∈J)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

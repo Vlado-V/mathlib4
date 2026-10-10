@@ -15,7 +15,7 @@ and scalar degrees, retaining both gradings in the separation witness. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
@@ -23,6 +23,7 @@ variable {X : Type*} [AddCommGroup X] [Module K X]
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 variable {h n j t m : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_detected_biform_family
     (o : ι → Forms K h j) (T : Poly K h →ₗ[K] X)
     (ho : LinearIndependent K (fun p => T (pairProducts (fun i => (o i).val) p)))

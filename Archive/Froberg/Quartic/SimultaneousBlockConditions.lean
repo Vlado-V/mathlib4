@@ -23,9 +23,10 @@ not assert an assembled split complex or any endpoint/incidence condition.
 noncomputable section
 namespace Quartic.SimultaneousBlockConditions
 open MvPolynomial AugmentedGeneric SimultaneousMiddle
-set_option maxHeartbeats 400000
+
 variable {K : Type*} [Field K] {m c q : ℕ}
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Exchange the pure and child degree-one monomial positions. -/
 def mixedIndexEquiv : TraceGeneric.CoefficientIndex m c ≃
     (Fin c × Fin 3 × Sym (Fin m) 1) where
@@ -34,35 +35,43 @@ def mixedIndexEquiv : TraceGeneric.CoefficientIndex m c ≃
   left_inv s := by rcases s with ⟨j, l, b⟩; simp only [Equiv.symm_apply_apply, Equiv.apply_symm_apply]
   right_inv s := by rcases s with ⟨j, i, b⟩; simp only [Equiv.symm_apply_apply, Equiv.apply_symm_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Embed every trace coefficient into the full mixed/child/motion parameter space. -/
 def traceIndex : TraceGeneric.CoefficientIndex m c → ParameterIndex m c q :=
   fun s => Sum.inl (Sum.inl (mixedIndexEquiv s))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem traceIndex_injective : Function.Injective (traceIndex (m := m) (c := c) (q := q)) := by
   intro a b h
   exact mixedIndexEquiv.injective (Sum.inl.inj (Sum.inl.inj h))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def traceCoefficients (a : ParameterIndex m c q → K) : TraceGeneric.CoefficientIndex m c → K :=
   fun s => a (traceIndex s)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- A trace point extends with zero child generators and zero pure motions. -/
 def traceExtension (a : TraceGeneric.CoefficientIndex m c → K) : ParameterIndex m c q → K :=
   Sum.elim (Sum.elim (fun s => a (mixedIndexEquiv.symm s)) (fun _ => 0)) (fun _ => 0)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem traceCoefficients_extension (a : TraceGeneric.CoefficientIndex m c → K) :
     traceCoefficients (traceExtension (q := q) a) = a := by
   funext s
   simp [traceCoefficients, traceExtension, traceIndex]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The actual mixed family in the trace's child-first polynomial coordinates. -/
 def traceFamily (a : ParameterIndex m c q → K) : SplitMiddle31.Mixed K m c :=
   TraceGeneric.decode (traceCoefficients a)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Explicit transposition of actual homogeneous linear-form coefficients. -/
 def transposeMixed (g : Fin c → MiddleCoordinates.Mixed K m) : SplitMiddle31.Mixed K m c :=
   TraceGeneric.decode (fun s => (formsBasis K m 1).equivFun
     (g s.1 ((Sym.oneEquiv (α := Fin 3)).symm s.2.2)) (Sym.oneEquiv (α := Fin m) s.2.1))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem middleCoefficient (a : ParameterIndex m c q → K) (j : Fin c) (i : Fin 3)
     (b : Sym (Fin m) 1) :
     (formsBasis K m 1).equivFun (coefficientMixed a j i) b = a (Sum.inl (Sum.inl (j, i, b))) := by
@@ -70,6 +79,7 @@ theorem middleCoefficient (a : ParameterIndex m c q → K) (j : Fin c) (i : Fin 
     (fun s => a (Sum.inl (Sum.inl (j, i, s))))) b = _
   exact congrFun (LinearEquiv.apply_symm_apply _ _) b
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The trace family is exactly the transposition of the same actual mixed generators. -/
 theorem traceFamily_eq_transpose (a : ParameterIndex m c q → K) :
     traceFamily a = transposeMixed (coefficientMixed a) := by
@@ -78,6 +88,7 @@ theorem traceFamily_eq_transpose (a : ParameterIndex m c q → K) :
   exact (middleCoefficient a s.1 ((Sym.oneEquiv (α := Fin 3)).symm s.2.2)
     (Sym.oneEquiv (α := Fin m) s.2.1)).symm
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The equality reads actual degree-one polynomial coefficients in both orientations. -/
 theorem transposed_coefficients (a : ParameterIndex m c q → K)
     (j : Fin c) (l : Fin m) (i : Fin 3) :
@@ -90,22 +101,27 @@ theorem transposed_coefficients (a : ParameterIndex m c q → K)
     (Sym.oneEquiv i), Sym.oneEquiv l))) = _
   rw [Equiv.symm_apply_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Rename the trace determinant into the shared full coefficient space. -/
 def tracePullback (P : MvPolynomial (TraceGeneric.CoefficientIndex m c) K) :
     MvPolynomial (ParameterIndex m c q) K := MvPolynomial.rename traceIndex P
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem eval_tracePullback (a : ParameterIndex m c q → K)
     (P : MvPolynomial (TraceGeneric.CoefficientIndex m c) K) :
     eval a (tracePullback P) = eval (traceCoefficients a) P := eval_rename _ _ _
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- All three actual component conditions, with a checked coordinate transposition. -/
 def BlockConditions (a : ParameterIndex m c q → K) : Prop :=
   Both a ∧ TraceGeneric.TraceProperties (transposeMixed (coefficientMixed a))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def GenericBlockConditions (K : Type*) [Field K] (m c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (ParameterIndex m c q) K,
     (∃ a₀, eval a₀ D ≠ 0) ∧ ∀ a, eval a D ≠ 0 → BlockConditions a
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Intersect the trace open with the already common middle/augmented open. -/
 theorem genericBlockConditions_of_generic [Infinite K]
     (hboth : GenericBoth K m c q) (htrace : TraceGeneric.GenericTrace K m c) :
@@ -133,6 +149,7 @@ theorem genericBlockConditions_of_generic [Infinite K]
     rw [← traceFamily_eq_transpose]
     exact ht (traceCoefficients a) hat
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The full three component conditions hold on one nonempty principal open
 under exactly the source middle/augmented budgets and `c ≤ m`. -/
 theorem genericBlockConditions_of_budgets [Infinite K] (hc : c ≤ m)
@@ -143,6 +160,7 @@ theorem genericBlockConditions_of_budgets [Infinite K] (hc : c ≤ m)
   genericBlockConditions_of_generic (genericBoth_of_budgets hc haug hmid h2)
     (TraceGeneric.generic_trace hc)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem exists_blockConditions_of_budgets [Infinite K] (hc : c ≤ m)
     (haug : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2)
     (hmid : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨

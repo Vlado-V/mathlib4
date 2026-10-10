@@ -16,13 +16,14 @@ vectors at the base point. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Matrix Quartic
 open HomogeneousEmptyFiberOpen
 variable {K I W : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W] {b : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_polynomial_kernel_frame
     (P : (I → K) → W →ₗ[K] (Fin b → K)) (hP : IsPolynomialFamily P)
     (p₀ : I → K) (S : (Fin b → K) →ₗ[K] W)

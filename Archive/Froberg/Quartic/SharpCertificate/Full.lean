@@ -16,7 +16,7 @@ namespace Quartic.SharpCertificate
 open Quartic.Counts Quartic.FiniteCounts Quartic.ProfileCertificate
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- The exact full-source outer inequality for all 178 endpoint configurations. -/
 theorem full_source_outer_verified :
     ∀ index : Fin 89, ∀ upper : Bool,

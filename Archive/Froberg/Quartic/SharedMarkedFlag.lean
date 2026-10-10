@@ -16,9 +16,10 @@ noncomputable section
 namespace Quartic.SharedMarkedFlag
 open Module MvPolynomial EndpointHomology SharedChildFlag
 variable {K ι : Type*} [Field K] {n r : ℕ}
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem principal_open [Infinite K]
     (f : (ι → K) → (Fin (r+1) → Forms K n 2))
     (hf : IsPolynomialFamily f) (hfSurj : Function.Surjective f)

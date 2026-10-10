@@ -15,22 +15,25 @@ any relation whose remaining scalar coordinates lie in the old space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ I : Type*} {n c : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def outputTensorVectorEquiv (V : Type*) [AddCommGroup V] [Module K V] :
     (Fin c → K) ⊗[K] V ≃ₗ[K] (Fin c → V) :=
   (TensorProduct.comm K (Fin c → K) V).trans (TensorProduct.piScalarRight K K V (Fin c))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem outputTensorVectorEquiv_tmul
     {V : Type*} [AddCommGroup V] [Module K V] (a : Fin c → K) (v : V) :
     outputTensorVectorEquiv (K := K) V (a ⊗ₜ[K] v)=fun k => a k • v := by
   simp only [outputTensorVectorEquiv,LinearEquiv.trans_apply,TensorProduct.comm_tmul,
     TensorProduct.piScalarRight_apply,TensorProduct.piScalarRightHom_tmul]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem outputTensorVectorEquiv_biform_quotient
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (Q : Submodule K (Poly K n)) (p : MvPolynomial (σ ⊕ Fin n) K) :
@@ -47,6 +50,7 @@ theorem outputTensorVectorEquiv_biform_quotient
     funext k
     simpa only [map_add,Pi.add_apply] using congrFun (congrArg₂ HAdd.hAdd ha hb) k
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem detected_biform_coordinate_quotient_independent
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (Q : Submodule K (Poly K n)) (p : I → MvPolynomial (σ ⊕ Fin n) K)
@@ -58,6 +62,7 @@ theorem detected_biform_coordinate_quotient_independent
   simpa only [Function.comp_def,LinearEquiv.coe_coe,e,
     outputTensorVectorEquiv_biform_quotient] using hi
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem detected_biform_vector_relation_coefficients [Fintype I]
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (Q : Submodule K (Poly K n)) (p : I → MvPolynomial (σ ⊕ Fin n) K)

@@ -14,24 +14,28 @@ independent family it contains, in arbitrary characteristic. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K]
 variable {V : Type*} [AddCommGroup V] [Module K V]
 variable {ι : Type*}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Formal products of a vector family, indexed without an order on the labels. -/
 def formalPair (q : ι → V) : Sym2 ι → SymmetricSquare K V :=
   Sym2.lift ⟨fun i j => symProd (q i) (q j), fun i j => symProd_comm _ _⟩
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 @[simp] theorem formalPair_mk (q : ι → V) (i j : ι) :
     formalPair (K := K) q s(i,j) = symProd (q i) (q j) := rfl
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def unorderedPairExponent : Sym2 ι → (ι →₀ ℕ) :=
   Sym2.lift ⟨fun i j => Finsupp.single i 1 + Finsupp.single j 1,
     fun i j => add_comm _ _⟩
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem unorderedPairExponent_injective : Function.Injective (unorderedPairExponent (ι := ι)) := by
   classical
   intro p q h
@@ -49,6 +53,7 @@ theorem unorderedPairExponent_injective : Function.Injective (unorderedPairExpon
       by_cases hi : i = x <;> by_cases hj : j = x <;>
         by_cases hk : k = x <;> by_cases hl : l = x <;> simp_all [eq_comm]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem linearIndependent_pairProducts_X :
     LinearIndependent K (pairProducts (X : ι → MvPolynomial ι K)) := by
   have h := (MvPolynomial.basisMonomials ι K).linearIndependent.comp
@@ -61,6 +66,7 @@ theorem linearIndependent_pairProducts_X :
       unorderedPairExponent, Sym2.lift_mk]
     rw [X, X, monomial_mul_monomial, one_mul]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Every independent vector family has independent unordered formal products. -/
 theorem linearIndependent_formalPair (q : ι → V) (hq : LinearIndependent K q) :
     LinearIndependent K (formalPair (K := K) q) := by
@@ -86,6 +92,7 @@ theorem linearIndependent_formalPair (q : ι → V) (hq : LinearIndependent K q)
 
 variable {A : Type*} [CommRing A] [Algebra K A]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Product injectivity of a subspace applies to every independent family in it. -/
 theorem linearIndependent_pairProducts_in_subspace (W : Submodule K A)
     (hW : Function.Injective (subspaceSymmetricMultiplication W))

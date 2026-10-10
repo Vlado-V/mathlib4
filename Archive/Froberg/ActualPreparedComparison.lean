@@ -19,13 +19,14 @@ the final family before its scalar slot is replaced. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedTarget
 open Froberg PreparedParameters Filter Module MvPolynomial
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- The enlarged-family data used in the concrete comparison, on one actual
 parameter point and with one fixed enumeration of its even generators. -/
 structure EnlargedPreparedCertificate {h m d q f u r : ℕ} {J : Finset ℕ}
@@ -41,6 +42,7 @@ structure EnlargedPreparedCertificate {h m d q f u r : ℕ} {J : Finset ℕ}
   reduction : FullPreparedParameters.PrivateSplitReduction hd ho hO hJ heven idx U p
   separation : PreparedOuterSeparation hd ho hO hJ heven U p
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- A nonempty principal open of the actual enlarged coefficient space. -/
 def HasEnlargedPreparedOpen {h m d q f u r : ℕ} {J : Finset ℕ}
     {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
@@ -58,6 +60,7 @@ def HasEnlargedPreparedOpen {h m d q f u r : ℕ} {J : Finset ℕ}
 
 variable [CharZero K] [IsAlgClosed K]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Once the finite geometric opens are available, exact counts produce the
 actual critical comparison for every sufficiently large scalar block. -/
 theorem eventually_actual_prepared_comparison {d k h lo : ℕ}

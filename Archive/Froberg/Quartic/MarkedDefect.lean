@@ -15,9 +15,10 @@ noncomputable section
 namespace Quartic.MarkedDefect
 open Module EndpointHomology MarkedCoefficient
 variable {K : Type*} [Field K] {n r : ℕ}
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem marked_kernel_old_plus_boundary (q : Fin (r + 1) → Quartic.Forms K n 2)
     (hsquare : Quartic.mulQuadratic (q (Fin.last r)) (q (Fin.last r)) ∉
       LinearMap.range (Quartic.quadraticMultiplication (prefixFamily q)))
@@ -67,6 +68,7 @@ theorem marked_kernel_old_plus_boundary (q : Fin (r + 1) → Quartic.Forms K n 2
   rw [heq]
   exact (koszulSpace q).neg_mem hzmem
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Precisely the old homology is lost when the marked coefficient is read. -/
 theorem marked_kernel_eq_old_range (q : Fin (r+1) → Forms K n 2)
     (hsquare : mulQuadratic (q (Fin.last r)) (q (Fin.last r)) ∉
@@ -85,6 +87,7 @@ theorem marked_kernel_eq_old_range (q : Fin (r+1) → Forms K n 2)
     obtain ⟨b,hb⟩ := marked_kernel_old_plus_boundary q hsquare a ha hc
     exact ⟨b.val,b.property,hb⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The rank formula includes both child defects, with no exact-child hypothesis. -/
 theorem marked_rank_add_old (q : Fin (r+1) → Forms K n 2)
     (hq : LinearIndependent K q)

@@ -14,12 +14,13 @@ are needed; all higher components disappear under X-degree extraction. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] {h m d : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The concrete low-component assumptions imply the precise background
 annihilation required by the homogeneous C.2 separation construction. -/
 theorem prepared_tensor_detector_annihilates {X : Type*} [AddCommGroup X] [Module K X]

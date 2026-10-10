@@ -14,13 +14,14 @@ elimination needed for the odd source, for every private linear tuple P. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u : ℕ}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddHigherRelationMap_mixed_injective (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (hU : LinearIndependent K U)
@@ -56,6 +57,7 @@ theorem oddHigherRelationMap_mixed_injective (hd : Odd d) (hd3 : 3≤d)
   apply rename_injective (Sum.inl : Fin h → Fin h ⊕ Fin m) Sum.inl_injective
   simpa only [Submodule.coe_zero,map_zero] using hz
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem exists_odd_mixed_source_coordinates (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (hU : LinearIndependent K U)

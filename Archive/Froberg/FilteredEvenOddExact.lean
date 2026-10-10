@@ -14,11 +14,12 @@ allowed in the full odd row once the scalar and vector rows are exact. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem filtered_even_odd_exact (hd : 3≤d)
     (A : Fin q → biformParitySpace K h m d 0)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))

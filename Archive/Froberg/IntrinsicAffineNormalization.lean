@@ -12,12 +12,13 @@ public import Archive.Froberg.PrincipalAffineNormalization
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K V : Type*} [Field K] [Infinite K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem intrinsic_principal_open_affine_normalization
     (D : MvPolynomial (Fin (finrank K (V × K))) K)
     (hD : ∃ y,eval y D≠0) (Good : V × K → Prop)

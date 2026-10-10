@@ -12,10 +12,11 @@ public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Failure of normalized projected growth costs more parameters than a
 Grassmannian source family whenever ub>a². -/
 theorem projection_failure_count_real {a u b ell w t : ℝ}

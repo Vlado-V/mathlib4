@@ -14,7 +14,7 @@ exactly the required intrinsic prepared-row exactness. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 900000
+
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication MonomialExpansion
 variable {K : Type} [Field K] [Infinite K]
@@ -22,6 +22,7 @@ variable {σ J : Type*} [Fintype σ] [Fintype J] [IsEmpty J]
 variable {n R s d r j : ℕ}
 variable {V : Type*} [AddCommGroup V] [Module K V] [Module.Finite K V]
 
+set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem intrinsic_empty_single_profile_exact
     (S : Finset (Fin n)) (P : V →ₗ[K] MvPolynomial (σ ⊕ Fin n) K)
     (hP : Function.Injective P)

@@ -14,22 +14,25 @@ that are independent of the infinite coefficient field. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.FullPreparedParameters
 open Froberg Module MvPolynomial Filter PreparedParameters
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 local instance fieldUniformPreparedFrameFinite {h H m d q f u : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts (privateFrameOutputs frame)) :=
   finite_fixedPureZeroScalarSpace (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 local instance fieldUniformPreparedWitnessFinite {h H m d q : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (PreparedParameters.Space m d q J counts (privateFrameOutputs frame)) :=
   PreparedParameters.finite_space (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem eventually_uniform_counted_all_odd_private_prepared_all_scalars {d : ℕ}
     (hd : 3≤d) (hodd : d%2=1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (err : ℕ → ℕ),

@@ -14,17 +14,19 @@ relations. Even scalar generators disappear under the parity projection. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def backgroundOddFamily (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1) :
     BackgroundLabel q f u → biformParitySpace K h m d 1 :=
   Sum.elim (fun _ => 0) (Sum.elim F G)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundOddFamily_span (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1) :
     Submodule.span K (Set.range (backgroundOddFamily (q := q) F G))=
@@ -46,6 +48,7 @@ theorem backgroundOddFamily_span (F : Fin f → biformParitySpace K h m d 1)
       rintro _ ⟨i,rfl⟩
       exact Submodule.subset_span ⟨Sum.inr (Sum.inr i),rfl⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_parity_projection
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -69,6 +72,7 @@ theorem background_parity_projection
   · apply Subtype.ext
     exact parityForm_same _ 1 _ (parityPolynomialToFormsEquiv _ _ 1 (G i)).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_source_relations_map
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -92,6 +96,7 @@ theorem background_source_relations_map
     exact ⟨(Fintype.equivFin (BackgroundLabel q f u)).symm i,
       (background_parity_projection Q F G _).symm⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddBackgroundSourceEquiv (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
     (biformParitySpace K h m d 1 ⧸

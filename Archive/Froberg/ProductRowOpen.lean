@@ -15,12 +15,13 @@ space, and finitely many row witnesses can be imposed simultaneously. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.ProductRows
 open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K]
 variable {ι σ U : Type*} [AddCommGroup U] [Module K U] [FiniteDimensional K U]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 private def embeddedProduct (L : U →ₗ[K] MvPolynomial σ K) :
     U →ₗ[K] U →ₗ[K] MvPolynomial σ K where
   toFun x :=
@@ -39,6 +40,7 @@ private def embeddedProduct (L : U →ₗ[K] MvPolynomial σ K) :
     change L (c • x) * L z = c • (L x * L z)
     rw [map_smul,smul_mul_assoc]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem products_polynomial (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K)
     (q : (j : ℕ) → Fin (e j) → (ι → K) → U) {J R}
     (hq : ∀ j∈J, ∀ i, IsPolynomialFamily (q j i))
@@ -56,6 +58,7 @@ theorem products_polynomial (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K
     simp only [dif_neg h]
     exact (hq _ r.property.1 _).bilinear (hq _ r.property.2.1 _) (embeddedProduct L)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 private theorem polynomial_family_open_fintype
     {I V : Type*} [Fintype I] [AddCommGroup V] [Module K V]
     (f : I → (ι → K) → V) (hf : ∀ i,IsPolynomialFamily (f i))
@@ -68,6 +71,7 @@ private theorem polynomial_family_open_fintype
     (fun i => f (E i)) (fun i => hf (E i)) a₀ (hli.comp E E.injective)
   exact ⟨D,hD,fun a ha => (linearIndependent_equiv E).mp (hopen a ha)⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Every injective product row yields a determinant open in the given common
 coefficient space; no new or independent coefficient variables are introduced. -/
 theorem product_row_principal_open (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomial σ K)
@@ -85,6 +89,7 @@ theorem product_row_principal_open (e : ℕ → ℕ) (L : U →ₗ[K] MvPolynomi
     (fun i => products_polynomial e L q hq i.1 i.2) a₀ hli
   exact ⟨D,hD,fun a ha => hopen a ha⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- All finitely many row witnesses are compatible because they are opens in
 the same actual coefficient space. -/
 theorem simultaneous_product_rows [Infinite K]

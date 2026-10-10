@@ -22,20 +22,23 @@ excludes the corresponding negative conditioned strata.
 
 noncomputable section
 namespace Quartic.PolynomialSubspaceCovectorCharts
-set_option maxHeartbeats 1000000
+
 open Module Matrix MvPolynomial SubspaceCharts KernelPolynomialCharts
 open BilinearCovectorCharts (covector covector_apply)
 open BilinearCoefficientKernel
 variable {K I : Type*} [Field K] {a b T N e : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- An actual evaluated polynomial vector. -/
 def vector (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (i : Fin N) : Fin a → K :=
   fun k => eval t (H i k)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The subspace actually spanned by a polynomial chart. -/
 def subspace (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) : Submodule K (Fin a → K) :=
   Submodule.span K (Set.range (vector H t))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The covector equations imposed by products with the actual chart vectors. -/
 def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) :
@@ -43,6 +46,7 @@ def constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → 
   fun l k => ∑ h : Fin a,H (finProdFinEquiv.symm l).1 h *
     C (mu (Pi.single (finProdFinEquiv.symm l).2 1) (Pi.single h 1) k)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eval_constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (l : Fin (N*b)) (k : Fin T) :
     evaluated (constraint mu H) t l k=
@@ -53,6 +57,7 @@ theorem eval_constraint (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (F
   simp [constraint,vector,Pi.basisFun_apply,Pi.basisFun_equivFun,map_sum,map_smul,
     Finset.sum_apply,Pi.smul_apply,smul_eq_mul]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Constraint rank equals the actual bilinear-image dimension of the spanned subspace. -/
 theorem constraint_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) :
@@ -76,12 +81,14 @@ theorem constraint_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (F
         eval_constraint mu H t (finProdFinEquiv (i,h)) k
   rw [hset]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem constraint_mulVec (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (ell : Fin T → K) (l : Fin (N*b)) :
     (evaluated (constraint mu H) t *ᵥ ell) l=covector ell
       (mu (Pi.single (finProdFinEquiv.symm l).2 1) (vector H t (finProdFinEquiv.symm l).1)) := by
   simp only [Matrix.mulVec,dotProduct,eval_constraint,covector_apply,mul_comm]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The matrix kernel is exactly the annihilator of the actual product image. -/
 theorem constraint_kernel_iff (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) (t : I → K) (ell : Fin T → K) :
@@ -102,27 +109,33 @@ theorem constraint_kernel_iff (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ
     rw [constraint_mulVec]
     exact h (Submodule.subset_span ⟨finProdFinEquiv.symm l,by simp only [Pi.basisFun_apply]⟩)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Minor choices and a nonzero free coordinate of the covector. -/
 abbrev ChartType (b T N e : ℕ) :=
   (Fin e ↪ Fin (N*b)) × (v : Fin e ↪ Fin T) × Outside v
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev Parameters (I : Type*) (c : ChartType b T N e) :=
   ProjectiveKernelCharts.Parameters I c.2.1 c.2.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def numerator (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) (c : ChartType b T N e) :
     Fin T → MvPolynomial (Parameters I c) K :=
   ProjectiveKernelCharts.numerator (constraint mu H) c.1 c.2.1 c.2.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def denominator (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (H : Fin N → Fin a → MvPolynomial I K) (c : ChartType b T N e) :
     MvPolynomial (Parameters I c) K :=
   ProjectiveKernelCharts.denominator (constraint mu H) c.1 c.2.1 c.2.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem parameter_count [Fintype I] (c : ChartType b T N e) :
     Fintype.card (Parameters I c)=Fintype.card I+(T-e)-1 :=
   ProjectiveKernelCharts.parameter_count c.2.1 c.2.2
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Every actual nonzero annihilator is covered projectively, preserving all
 original subspace parameters inside the same rational chart. -/
 theorem cover_annihilator (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -141,6 +154,7 @@ theorem cover_annihilator (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] 
     ProjectiveKernelCharts.cover_nonzero_kernel (constraint mu H) u v t hdet ell hker hnz
   exact ⟨⟨u,v,z⟩,p,s,hs,hp,hden,he⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A subspace annihilated by a nonzero coordinate covector is strictly
 smaller than the full target, over every field. -/
 theorem annihilated_finrank_lt (S : Submodule K (Fin T → K))
@@ -157,6 +171,7 @@ theorem annihilated_finrank_lt (S : Submodule K (Fin T → K))
   change covector ell (Pi.single k 1)=0 at hz
   simpa [covector_apply,Pi.single_apply] using hz
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- In particular, a nonzero annihilator forces every actual bilinear image
 it annihilates to have dimension strictly below the target dimension. -/
 theorem image_finrank_lt (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -168,11 +183,13 @@ theorem image_finrank_lt (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (
 section FiniteFamily
 variable {C : Type*} [Fintype C] {I : C → Type*} [∀ c,Fintype (I c)] {d q : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Coverage by the supplied literal polynomial chart vectors. -/
 def Covered (H : ∀ c,Fin N → Fin a → MvPolynomial (I c) K)
     (S : Submodule K (Fin a → K)) : Prop :=
   ∃ c,∃ t : I c → K,subspace (H c) t=S
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A negative projective parameter count excludes the entire covered
 kernel-dimension stratum for one shared tuple of coefficient vectors. -/
 theorem principal_open_excludes_covered_stratum [Infinite K]
@@ -241,6 +258,7 @@ theorem principal_open_excludes_covered_stratum [Infinite K]
   have hz := (smul_eq_zero.mp h).resolve_left hs
   rw [hz,smul_zero]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A uniform upper bound g on scalar chart parameters gives the expected
 negative conditioned count g+T-e-1-q(a-d). -/
 theorem principal_open_excludes_covered_stratum_of_bound [Infinite K]
@@ -259,6 +277,7 @@ theorem principal_open_excludes_covered_stratum_of_bound [Infinite K]
   have hc := hg c
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Integer-valued parameter bounds are accepted directly, including the
 empty full-image case e≥T. No truncated projective dimension is interpreted
 as a nonempty covector family. -/

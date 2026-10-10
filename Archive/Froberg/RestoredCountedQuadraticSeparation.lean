@@ -15,13 +15,14 @@ all choices of output detector. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module Filter MvPolynomial
 open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The paired C.1 scalar witness supplies Q and C internally, uniformly in
 all restored parameters and output detectors chosen after the threshold. -/
 theorem eventually_restored_counted_quadratic_separation

@@ -16,8 +16,9 @@ noncomputable section
 namespace Quartic.DeformationIndependence
 open Module MvPolynomial SplitBlock22 ActualDeformationColumns
 variable {K : Type*} [Field K] {m c q : ℕ}
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem split_independent (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (hg : LinearIndependent K g) (hh : LinearIndependent K h) :
     LinearIndependent K (fullGenerators g h) := by
@@ -48,6 +49,7 @@ theorem split_independent (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q
     · intro k
       exact Fintype.linearIndependent_iff.mp hh _ hc k
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The actual deformed quadrics stay independent on a determinant open
 containing ε=0, which can be intersected with the rank-gain determinant. -/
 theorem principal_open (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)

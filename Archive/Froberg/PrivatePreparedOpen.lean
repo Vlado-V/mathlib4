@@ -14,7 +14,7 @@ fixed-pure parameter space used for the outer and scalar conditions. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.FullPreparedParameters
 open Froberg Module MvPolynomial PreparedParameters
 variable {K : Type} [Field K] [Infinite K]
@@ -22,18 +22,21 @@ variable {σ : Type*} [Fintype σ] {m d q f u r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def privateReductionProjection : FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
     PrivateParameterSpace m d q u J counts O where
   toFun p := (p.2.1,p.1)
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem privateReductionProjection_surjective : Function.Surjective
     (privateReductionProjection (K := K) (m := m) (d := d) (q := q) (f := f)
       (u := u) (J := J) (counts := counts) (O := O)) := by
   intro p
   exact ⟨(p.2,(p.1,0)),rfl⟩
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def PrivateSplitReduction (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -50,6 +53,7 @@ def PrivateSplitReduction (hd : 0<d) (ho : d%2=1)
       c-coefficientBoundary (fun i => evenGenerator hO hJ heven p.2.1 (e i)) M=z.val ∧
       v=coefficientBoundary (privateOddFamily hd ho p.1 U) C
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem private_split_reduction_principal_open
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

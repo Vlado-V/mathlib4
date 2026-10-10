@@ -15,12 +15,13 @@ its outer generators. The scalar overhead may include fixed extra slots. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial Quartic VectorMultiplicationCoordinates
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasRestoredOuterOddOpen {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (Poly K h)} (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -32,6 +33,7 @@ def HasRestoredOuterOddOpen {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ �
       OddSplitExact (restoredBiformFamily hd hO hJ heven idx slot p.1)
         (fun j => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (p.2 j)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_outer_odd_open_of_rows {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (Poly K h)} (hd : 3≤d) (hdeven : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
@@ -52,6 +54,7 @@ theorem restored_outer_odd_open_of_rows {h m d q r f : ℕ} {J : Finset ℕ} {co
     (restoredBiformFamily_scalar_component (by omega) hdeven hO hJ heven hpos idx slot p.1)
     hfirst hhigher
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_restored_outer_odd_open {d k h lo : ℕ}
     (hd : 3≤d) (hdeven : d%2=0) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
     (upper : Bool) (a f e extra : ℕ → ℕ) (ha : ∀ n,a n≤n)

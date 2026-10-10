@@ -15,16 +15,19 @@ simultaneously, with a single family in each active layer. -/
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial Filter Quartic
 open scoped Topology
 variable {K : Type*} [Field K] [Infinite K]
 attribute [local instance] tensorGroup
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev MiddleTargetIndex (d : ℕ) := {b : Fin (d+1) // 5≤b.val ∧ (b.val<d ∨ Odd d)}
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev HigherLayerIndex (d : ℕ) := {j : ℕ // j∈activeHigherIndices d}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_middle_rows_common_open {d : ℕ} (hd : 3≤d) :
     ∃ layer : MiddleTargetIndex d → HigherLayerIndex d,
       (∀ b,(layer b).val<b.val.val ∧ b.val.val<2*(layer b).val) ∧

@@ -15,7 +15,7 @@ target, simultaneously over all higher source blocks. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
@@ -40,7 +40,8 @@ local notation "G₁" => fun i => mixedPureOddGenerator hd (U i) (P i)
 local notation "hQ₀" => fun i => scalarEvenBiform_weighted (h := h) (Q i)
 local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
 
- theorem mixedHigherProjection_kills_bottom
+ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+theorem mixedHigherProjection_kills_bottom
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) (r : MixedHigherIndex d hd3)
@@ -51,6 +52,7 @@ local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
   intro v hv
   exact mixedHigherProjection_weighted_bottom hd hd3 R Q F U P hker r v hv
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include hR hker in
  theorem mixedAmbientHigher_growth
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))

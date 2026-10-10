@@ -14,13 +14,14 @@ public import Archive.Froberg.PreparedOddCertificateOpen
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedTarget
 open Froberg Filter Module MvPolynomial PreparedParameters
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def BasicCertificate {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (Poly K h)} (hd : 0<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
@@ -30,6 +31,7 @@ def BasicCertificate {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     OddCyclesExact U p.1 p.2 ∧
     Function.Surjective (upperTargetMap (zeroScalarEndpointFamily hd hO hJ U p.1 p.2))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def HasBasicOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (Poly K h)} (hd : 0<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
@@ -42,6 +44,7 @@ def HasBasicOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
       eval ((Module.finBasis K _).equivFun p) D≠0) ∧
     ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 → BasicCertificate hd hO hJ U p
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem HasUpperWitness.all_even_basic_open {h m d H f r q u : ℕ}
     (hd : 3 ≤ d) (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u)

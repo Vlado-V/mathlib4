@@ -14,12 +14,13 @@ before the pure-family projection data. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedTarget
 open Froberg PreparedParameters Filter Module MvPolynomial
 open scoped Topology
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem eventually_uniform_actual_prepared_comparison {d k h lo : ℕ}
     (hd : 3≤d) (ho : d%2=1) (hk : 0<k) (hh : h=k*centralHalfBinomial d)
     (hhpos : 0<h)

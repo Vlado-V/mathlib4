@@ -14,13 +14,14 @@ public import Archive.Froberg.MiddleRowsCommonOpen
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial Filter Quartic
 open scoped Topology
 universe u
 attribute [local instance] tensorGroup
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_target_row_from_prefix_uniform {d j b : ℕ} (hj : 0 < j) (hjd : j < d)
     (hjb : j≤b) (hbj : b<2*j) (hbd : b≤d+j) (α : ℝ) (hα : targetCost d j b < α) :
     ∀ᶠ h : ℕ in atTop, ∀ᶠ m : ℕ in atTop, ∀ (K : Type u) [Field K] [Infinite K],
@@ -30,6 +31,7 @@ theorem eventually_target_row_from_prefix_uniform {d j b : ℕ} (hj : 0 < j) (hj
   apply eventually_middle_biform_surjective_uniform hj (by omega) (by omega) α
   rwa [convolutionOutputThreshold_targetCost hjd.le hjb hbd]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_higher_target_row_uniform {d b : ℕ} (hd : 3 ≤ d) (hb : 5 ≤ b)
     (hbd : b ≤ d) (hcut : b < d ∨ Odd d) :
     ∃ j ∈ activeHigherIndices d, j < b ∧ b < 2*j ∧
@@ -41,6 +43,7 @@ theorem eventually_higher_target_row_uniform {d b : ℕ} (hd : 3 ≤ d) (hb : 5 
   refine ⟨j,hj,hjb,hbj,?_⟩
   exact eventually_target_row_from_prefix_uniform (by omega) (by omega) hjb.le hbj (by omega) _ hcost
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_middle_rows_common_open_uniform {d : ℕ} (hd : 3≤d) :
     ∃ layer : MiddleTargetIndex d → HigherLayerIndex d,
       (∀ b,(layer b).val<b.val.val ∧ b.val.val<2*(layer b).val) ∧

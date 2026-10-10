@@ -17,12 +17,13 @@ generators. The sparse family and the private tuple are kept unchanged. -/
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {a z b h c m q d R : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem private_coefficient_row_separation (hd : 3≤d) (hR : 2≤R) (hRd : R+1≤d)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R+1)))
@@ -114,6 +115,7 @@ theorem private_coefficient_row_separation (hd : 3≤d) (hR : 2≤R) (hRd : R+1�
   rw [hnew]
   simpa only [C,map_sum,map_smul,map_mul] using hrel
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The last possible private coefficient lies in pure output degree d.
 Its private variable support separates it from every core product. -/
 theorem private_coefficient_boundary_row (hd : 3≤d)
@@ -179,6 +181,7 @@ theorem private_coefficient_boundary_row (hd : 3≤d)
   simpa only [C,hx0,mul_zero,Finset.sum_const_zero,hneq,ite_false,zero_add,
     map_sum,map_smul,map_mul] using hrel
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Above the last private coefficient degree the separation condition is
 vacuous, regardless of the other terms in the row. -/
 theorem private_coefficient_above_degree (hR : d+1<R)

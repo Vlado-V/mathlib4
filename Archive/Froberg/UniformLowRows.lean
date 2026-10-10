@@ -15,7 +15,7 @@ Both variable thresholds precede the choice of infinite coefficient field. -/
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1000000
+
 noncomputable section
 namespace Froberg
 open Module MvPolynomial Filter Quartic
@@ -23,6 +23,7 @@ open scoped Topology
 universe u
 attribute [local instance] tensorGroup
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_low_rows_shared_frames_uniform {d : ℕ} (hd : 3≤d) (N₂ : ℕ)
     (hquad : ∀ h, N₂ ≤ h → ∀ (K : Type u) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :

@@ -15,12 +15,13 @@ growth before any positive-row scalar coefficients are chosen. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 namespace Froberg
 open Filter Module MvPolynomial Quartic
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h d b k lo : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def BaseC4GrowthProperty {m f q : ℕ} (hd : 1 ≤ d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (t : ℕ)
     (p : OddScalarParameters K h m d f q) : Prop :=
@@ -31,6 +32,7 @@ def BaseC4GrowthProperty {m f q : ℕ} (hd : 1 ≤ d)
   ∀ (j : ℕ) (hj : 3 ≤ j) (hjd : j ≤ d),
     OddScalarLayerProperty t (by omega) hjd (oddScalarBiformParameters p)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def HasBaseC4GrowthOpen {m f q : ℕ} (hd : 1 ≤ d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (t : ℕ) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (OddScalarParameters K h m d f q))) K,
@@ -38,6 +40,7 @@ def HasBaseC4GrowthOpen {m f q : ℕ} (hd : 1 ≤ d)
       eval ((Module.finBasis K _).equivFun p) D≠0) ∧
     ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 → BaseC4GrowthProperty hd R t p
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem has_base_c4_growth_open {m f q t : ℕ} (hd : 1 ≤ d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (htop : ProjectedTopGrowthOpen R m f q t)
@@ -45,6 +48,7 @@ theorem has_base_c4_growth_open {m f q t : ℕ} (hd : 1 ≤ d)
     HasBaseC4GrowthOpen (m := m) (f := f) (q := q) hd R t :=
   base_c4_growth_open hd R htop hmid
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem eventually_counted_base_c4_growth (hd : 3 ≤ d) (hh : 0 < h) (hb : 0 < b)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h (d-1)),b*finrank K L ≤

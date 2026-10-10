@@ -14,13 +14,14 @@ any fixed number of scalar variables, including the scalar-degree-zero row. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_quadratic_extended_row_parameter {σ : Type*} [Fintype σ]
     {a z d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}

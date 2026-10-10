@@ -14,13 +14,14 @@ tensor algebra and with the output detector used in C.2. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open MvPolynomial TensorProduct
 open Quartic.FreeCoefficients Quartic.ConvolutionFreeMultiplication
 variable {K : Type} [Field K] {h m i : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A free monomial coefficient does not affect the extracted X degree. -/
 theorem coreComponent_liftCoeff (b : Fin m →₀ ℕ) (p : Poly K h) :
     coreComponent h m i (liftCoeff b p) = liftCoeff b (homogeneousComponent i p) := by
@@ -30,12 +31,14 @@ theorem coreComponent_liftCoeff (b : Fin m →₀ ℕ) (p : Poly K h) :
   rw [map_sub,freeCoeff_coreComponent,freeCoeff_liftCoeff,freeCoeff_liftCoeff]
   split_ifs <;> simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem splitPolynomialEquiv_tmul_monomial (p : Poly K h) (b : Fin m →₀ ℕ) (c : K) :
     splitPolynomialEquiv (K := K) h m (p ⊗ₜ[K] monomial b c) = c • liftCoeff b p := by
   have he : (monomial b c : Poly K m) = c • monomial b 1 := by simp [smul_monomial,smul_eq_mul]
   rw [he,tmul_smul,map_smul,splitPolynomialEquiv_tmul,rename_monomial,
     Quartic.SplitTensor.child_rename_exponent,← liftCoeff_eq_mul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- X-degree extraction acts only on the first tensor factor. -/
 theorem coreComponent_split_tmul (p : Poly K h) (q : Poly K m) :
     coreComponent h m i (splitPolynomialEquiv (K := K) h m (p ⊗ₜ[K] q)) =
@@ -46,6 +49,7 @@ theorem coreComponent_split_tmul (p : Poly K h) (q : Poly K m) :
       splitPolynomialEquiv_tmul_monomial]
   | add q r hq hr => simp only [tmul_add,map_add,hq,hr]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An output detector supported in degree i is supported in the same exact
 X degree after tensoring with the scalar quotient. -/
 theorem splitPolynomialDetector_supported {X : Type*} [AddCommGroup X] [Module K X]

@@ -13,13 +13,14 @@ endpoint deletion and the literal restored background. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r f c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Uniform C.2 separation for every scalar-supported target deletion. -/
 def RestoredFormalQuadraticSeparation (hdp : 1≤d) (he : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)

@@ -13,12 +13,13 @@ injective polynomial multiplication map, with arbitrary injective output maps. -
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PrivateColumns
 open MvPolynomial
 variable {K : Type*} [Field K] {a z s t b h c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The private-column multiplication map with arbitrary coefficient degree. -/
 def privatePolynomialMapAt (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) :
@@ -31,6 +32,7 @@ def privatePolynomialMapAt (ι : Fin b ↪ Fin z)
     funext k
     simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privatePolynomialMapAt_coefficient (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (v : Fin b → Fin h → Forms K (a+z) t) (β : Fin (a+z) →₀ ℕ) (k : Fin c) :
@@ -49,6 +51,7 @@ theorem privatePolynomialMapAt_coefficient (ι : Fin b ↪ Fin z)
     exact mul_comm _ _
   · simp only [hi,ite_false,Finset.sum_const_zero,Pi.zero_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A coefficient of degree strictly below the private exponent cannot meet
 another private column, so injectivity is unconditional in this range. -/
 theorem privatePolynomialMapAt_injective (ht : t<s) (ι : Fin b ↪ Fin z)
@@ -92,6 +95,7 @@ theorem privatePolynomialMapAt_injective (ht : t<s) (ι : Fin b ↪ Fin z)
     exact congrFun hc j
   · exact (v i j).property.coeff_eq_zero hα
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privatePolynomialMapAt_homogeneous (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
     (v : Fin b → Fin h → Forms K (a+z) t) (k : Fin c) :

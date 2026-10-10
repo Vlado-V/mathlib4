@@ -20,10 +20,11 @@ endpoint, and no induction on the generating degree is used. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Filter PreparedParameters PreparedTarget
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 private theorem uniform_tendsto_double_atTop :
     Tendsto (fun w : ℕ => 2*w) atTop atTop := by
   apply tendsto_atTop.2
@@ -31,6 +32,7 @@ private theorem uniform_tendsto_double_atTop :
   filter_upwards [eventually_ge_atTop b] with w hw
   omega
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem eventually_uniform_criticalComparisonBlock {d : ℕ} (hd : 3≤d)
     (N₂ : ℕ) (hquad : ∀ h,N₂≤h → ∀ (K : Type) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :
@@ -60,6 +62,7 @@ theorem eventually_uniform_criticalComparisonBlock {d : ℕ} (hd : 3≤d)
       (fun j (_ : j∈allEvenIndices d) => targetLayerOutput_homogeneous frame j)
       hframe.base _ (Fintype.equivFin _).symm hframe.enlarged
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniform_high_degree_recurrence_of_quadratic_endpoint
     (hquad : UniformEndpointStatement 2) {d : ℕ} (hd : 3≤d) :
     UniformCriticalRecurrence d := by
@@ -69,6 +72,7 @@ theorem uniform_high_degree_recurrence_of_quadratic_endpoint
   intro h hh K _ _
   exact hbase K h hh _ (upperCount_le_monomial_count (by omega) 2)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem uniformMainStatement_of_quadratic_endpoint
     (hquad : UniformEndpointStatement 2) : UniformMainStatement := by
   apply uniformMainStatement_of_uniformEndpoints

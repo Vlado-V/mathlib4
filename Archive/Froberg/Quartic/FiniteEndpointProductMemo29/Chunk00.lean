@@ -17,8 +17,9 @@ public import Archive.Froberg.Quartic.FiniteEndpointShapeMemo
 namespace Quartic.FiniteEndpointRows29
 set_option Elab.async false
 set_option maxRecDepth 1000000
-set_option maxHeartbeats 32000000
 
+
+set_option maxHeartbeats 32000000 in -- Preserve the budget during this port.
 certify_product_lookups certificate from "certificates/finite/n29"
   product_fn Quartic.FiniteEndpointMetadata29Data.naturalProduct
   start_index 0 lookup_count 23653

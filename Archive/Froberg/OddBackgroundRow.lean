@@ -14,14 +14,16 @@ are exactly the two-family tensor multiplication relations. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d b q f : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_scalar_product (hb : b ≤ d)
     (Q : Forms K h 0 ⊗[K] Forms K m d) (a : biformParitySpace K h m d 1) :
     biformTensorComponent (by omega : b ≤ 2*d)
@@ -37,6 +39,8 @@ theorem biformTensorComponent_scalar_product (hb : b ≤ d)
   have he := weighted_component_mul_homogeneous (blockWeight h m) a.val (sumBiformMap Q) b 0 hQ
   simpa only [Nat.add_zero,mul_comm] using he
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_linear_product (hb : 1 ≤ b) (hbd : b ≤ d)
     (F : Forms K h 1 ⊗[K] Forms K m (d-1)) (a : biformParitySpace K h m d 0) :
     biformTensorComponent (by omega : b ≤ 2*d)
@@ -60,6 +64,8 @@ theorem biformTensorComponent_linear_product (hb : 1 ≤ b) (hbd : b ≤ d)
       simpa only [Nat.sub_add_cancel hb,mul_comm] using he
     _=_ := congrArg (fun z => sumBiformMap F*z) hs.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddLinearCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
     biformParitySpace K h m d 0 →ₗ[K]
       Forms K h (b-1) ⊗[K] Forms K m (d-b+1) :=
@@ -67,6 +73,8 @@ def oddLinearCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
     (by omega : (d-(b-1))+0=d-b+1)).toLinearMap.comp
       (biformTensorComponent (by omega : b-1 ≤ d))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddLinearCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
     (ho : b%2=1) : Function.Surjective
       (oddLinearCoefficientProjection (K := K) (h := h) (m := m) hb hbd) :=
@@ -74,6 +82,8 @@ theorem oddLinearCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
     (by omega : (d-(b-1))+0=d-b+1)).surjective.comp
       (biformTensorComponent_even_surjective (by omega) (by omega))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddRowCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
     ((Fin f → biformParitySpace K h m d 0) ×
       (Fin q → biformParitySpace K h m d 1)) →ₗ[K]
@@ -83,6 +93,8 @@ def oddRowCoefficientProjection (hb : 1 ≤ b) (hbd : b ≤ d) :
     (LinearMap.fst K _ _)).prod
     (((biformTensorComponent hbd).compLeft (Fin q)).comp (LinearMap.snd K _ _))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddRowCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
     (ho : b%2=1) : Function.Surjective
       (oddRowCoefficientProjection (K := K) (h := h) (m := m) (q := q) (f := f) hb hbd) := by
@@ -95,6 +107,8 @@ theorem oddRowCoefficientProjection_surjective (hb : 1 ≤ b) (hbd : b ≤ d)
   choose c hc using hy
   exact ⟨(a,c),Prod.ext (funext ha) (funext hc)⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddTensorRowMap (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -110,6 +124,8 @@ def oddTensorRowMap (hb : 1 ≤ b) (hbd : b ≤ d)
     (oddRowLinearAction (K := K) (h := h) (n := m) hb hbd)
     (oddRowScalarAction (K := K) (h := h) (n := m) hbd) (F,Q)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddBackground_row_commutes (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -129,6 +145,8 @@ theorem oddBackground_row_commutes (hb : 1 ≤ b) (hbd : b ≤ d)
   rw [oddTensorRowMap,twoFamilyMultiplication_apply]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddBackground_tensor_row_range (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :

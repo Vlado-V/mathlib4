@@ -16,12 +16,13 @@ or quartic output space, without an artificial output-half restriction. -/
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 600000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*}
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- Symmetric-product independent output and scalar spaces give literal
 biform columns with independent unordered products. -/
 theorem exists_diagonal_sum_biforms
@@ -47,6 +48,7 @@ theorem exists_diagonal_sum_biforms
   induction p using Sym2.inductionOn with
   | _ i j => simp only [pairProducts_mk,Function.comp_apply,AlgEquiv.toLinearMap_apply,f,map_mul]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- Intersecting the output witness with a prescribed detector kernel loses
 at most the detector target dimension. -/
 theorem exists_constrained_diagonal_biforms
@@ -65,6 +67,7 @@ theorem exists_constrained_diagonal_biforms
     (subspaceSymmetricMultiplication_injective_mono inf_le_left hO) hC
   exact hm.trans (Nat.mul_le_mul_right _ (finrank_intersection_kernel_lower_bound O T))
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- The full span of the scalar variables has independent unordered products. -/
 theorem linear_scalar_space_exists (n : ℕ) :
     ∃ C : Submodule K (MvPolynomial (Fin n) K),
@@ -79,6 +82,7 @@ theorem linear_scalar_space_exists (n : ℕ) :
   · exact symmetricMultiplication_injective_of_pairProducts
       (X : Fin n → MvPolynomial (Fin n) K) (linearIndependent_pairProducts_X (K := K) (ι := Fin n))
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- The special quadratic diagonal capacity, with the full linear scalar
 space used in degree three. -/
 theorem quadratic_linear_diagonal_exists

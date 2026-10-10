@@ -125,7 +125,7 @@ instance (n lower upper : ℕ) : Decidable (EndpointValid n lower upper) := by
   infer_instance
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- All 323 records, including every base dimension and every finite transfer
 child/parent dimension, satisfy the defining endpoint sign tests. -/
 theorem endpoint_table_verified : ∀ n : Fin 323,
@@ -174,7 +174,7 @@ instance (m q c : ℕ) : Decidable (StructuralValid m q c) := by
   infer_instance
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- Both parent endpoints satisfy all structural count inequalities for every
 child dimension `28 ≤ m ≤ 319`: 584 integer configurations. -/
 theorem structural_table_verified : ∀ i : Fin 292, ∀ upper : Bool,

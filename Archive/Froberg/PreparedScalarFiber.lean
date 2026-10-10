@@ -15,20 +15,23 @@ factor of the shared prepared parameter space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev PositiveScalars (m d : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ) :=
   Fin (Fintype.card (ProductRows.LayerLabel J counts)) → Forms K m d
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev ScalarFiberRest (m d q : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   (Fin q → Forms K m d) ×
     ((j : J) → Fin (counts j.val) → biformImage (O j.val) (Forms K m (d-j.val)))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def scalarFiberCoordinates : Space m d q J counts O ≃ₗ[K]
     PositiveScalars (K := K) m d J counts × ScalarFiberRest m d q J counts O where
   toFun p := ((fun i => p.1 (Sum.inr ((Fintype.equivFin _).symm i))),
@@ -47,25 +50,30 @@ def scalarFiberCoordinates : Space m d q J counts O ≃ₗ[K]
   map_add' p p' := rfl
   map_smul' c p := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem scalarFiberCoordinates_symm_base
     (a : PositiveScalars (K := K) m d J counts) (p : ScalarFiberRest m d q J counts O) (i : Fin q) :
     (scalarFiberCoordinates.symm (a,p)).1 (Sum.inl i)=p.1 i := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem scalarFiberCoordinates_symm_positive
     (a : PositiveScalars (K := K) m d J counts) (p : ScalarFiberRest m d q J counts O)
     (i : Fin (Fintype.card (ProductRows.LayerLabel J counts))) :
     (scalarFiberCoordinates.symm (a,p)).1 (Sum.inr ((Fintype.equivFin _).symm i))=a i := by
   simp [scalarFiberCoordinates]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem scalarFiberCoordinates_symm_high
     (a : PositiveScalars (K := K) m d J counts) (p : ScalarFiberRest m d q J counts O) :
     (scalarFiberCoordinates.symm (a,p)).2=p.2 := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev FullScalarFiberRest (m d q f u : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   PreparedTarget.OuterSpace K (Fin h) m d u ×
     (ScalarFiberRest m d q J counts O × PreparedTarget.OuterSpace K (Fin h) m d f)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def fullScalarFiberCoordinates :
     FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O ≃ₗ[K]
       PositiveScalars (K := K) m d J counts × FullScalarFiberRest m d q f u J counts O where
@@ -85,6 +93,7 @@ def fullScalarFiberCoordinates :
   map_add' p p' := rfl
   map_smul' c p := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem finite_fullScalarFiberRest (hO : ∀ j∈J,O j≤Forms K h j) :
     Module.Finite K (FullScalarFiberRest m d q f u J counts O) := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
@@ -98,6 +107,7 @@ theorem finite_fullScalarFiberRest (hO : ∀ j∈J,O j≤Forms K h j) :
   change (fullScalarFiberCoordinates (fullScalarFiberCoordinates.symm (0,p))).2=p
   rw [LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem principal_open_positive_scalar_fiber (hO : ∀ j∈J,O j≤Forms K h j) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
       FullPreparedParameters.finite_fixedPureZeroScalarSpace hO

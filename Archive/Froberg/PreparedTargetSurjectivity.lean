@@ -23,17 +23,20 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 attribute [local instance] tensorGroup
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1200000
 
+
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def outerTensorFamily (p : Space m d q f u J counts O) :
     Fin f → Forms K h 1 ⊗[K] Forms K m (d-1) :=
   fun i => sumBiformEquiv.symm (p.2.1 i)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def quadraticTensorFamily (h2 : 2∈J) (hO2 : O 2≤Forms K h 2)
     (p : Space m d q f u J counts O) :
     Fin (counts 2) → Forms K h 2 ⊗[K] Forms K m (d-2) :=
   preparedLayerTensor ⟨2,h2⟩ hO2 p.1
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem all_prepared_target_lifts (hd : 3≤d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,0<j ∧ j≤d) (h2 : 2∈J)
     (S : Submodule K (Poly K h)) (hS : S≤Forms K h d)

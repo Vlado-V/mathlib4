@@ -15,34 +15,46 @@ quotients, and transfer of the checked scalar growth to literal products. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d b q f : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 abbrev OddRowTensor (K : Type) [Field K] (h m x y : ℕ) :=
   Forms K h x ⊗[K] Forms K m y
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 instance oddRowTensorGroup (K : Type) [Field K] (h m x y : ℕ) :
     AddCommGroup (OddRowTensor K h m x y) := tensorFormGroup
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 instance oddRowTensorModule (K : Type) [Field K] (h m x y : ℕ) :
     Module K (OddRowTensor K h m x y) := TensorProduct.leftModule
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 abbrev tensorOddBackgroundRelations (hd : 1 ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
   oddBackgroundRelations (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i))
     (fun i => oddBiformEmbedding hd (by decide) (F i))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 abbrev tensorOddRowRelations (hb : 1 ≤ b) (hbd : b ≤ d)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
   (oddTensorRowMap hb hbd Q F).range
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddBackgroundRowProjection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -54,6 +66,8 @@ def oddBackgroundRowProjection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
       apply (Submodule.Quotient.mk_eq_zero _).mpr
       exact (oddBackground_tensor_row_range hb hbd ho Q F).le ⟨a,ha,rfl⟩)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 @[simp] theorem oddBackgroundRowProjection_mk (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -61,6 +75,8 @@ def oddBackgroundRowProjection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
     oddBackgroundRowProjection hb hbd ho Q F ((tensorOddBackgroundRelations (by omega) Q F).mkQ a)=
       (tensorOddRowRelations hb hbd Q F).mkQ (biformTensorComponent (by omega) a) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- Literal scalar multiplication of a single source row, modulo all Q/F
 relations in the entire odd polynomial target. -/
 def oddBackgroundRowScalar (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
@@ -72,6 +88,8 @@ def oddBackgroundRowScalar (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
   ((evenOddBiformProduct.comp (evenBiformEmbedding (Nat.zero_le d) (by decide))).compl₂
     (oddBiformEmbedding hbd ho)).compr₂ₛₗ (tensorOddBackgroundRelations (by omega) Q F).mkQ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddBackgroundRowScalar_projection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -95,6 +113,8 @@ theorem oddBackgroundRowScalar_projection (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b
   rw [biformTensorComponent_scalar_product,biformTensorComponent_odd]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddBackgroundRowScalar_growth (hb : 1 ≤ b) (hbd : b ≤ d) (ho : b%2=1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) (t : ℕ)

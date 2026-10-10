@@ -100,7 +100,7 @@ theorem generic_parameter_inequality
 end Quartic.ClosedSlicedProfiles
 
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1500000
+
 namespace Quartic.ConvolutionClosedSlices
 open Module MvPolynomial ProfileCertificate UniformEndpoint ConvolutionFreePieces
 open PolynomialBilinearCoordinates ConvolutionProfileCoordinates
@@ -112,7 +112,8 @@ variable [AddCommGroup U] [Module K U]
 variable [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
 variable [AddCommGroup V'] [Module K V'] [AddCommGroup W'] [Module K W']
 
- theorem image_conjugate (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem image_conjugate (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : U →ₗ[K] V →ₗ[K] W) (S : Submodule K V') :
     BilinearImage.image (conjugate eV eW mu) S =
       (BilinearImage.image mu (S.map eV.symm.toLinearMap)).map eW.toLinearMap := by
@@ -121,27 +122,34 @@ variable [AddCommGroup V'] [Module K V'] [AddCommGroup W'] [Module K W']
   funext u
   exact (Submodule.map_comp _ _ _).trans (congrArg (Submodule.map _) (Submodule.map_comp _ _ _))
 
- theorem image_precompose {U' : Type*} [AddCommGroup U'] [Module K U']
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem image_precompose {U' : Type*} [AddCommGroup U'] [Module K U']
     (eU : U' ≃ₗ[K] U) (mu : U →ₗ[K] V →ₗ[K] W) (S : Submodule K V) :
     BilinearImage.image (mu.comp eU.toLinearMap) S = BilinearImage.image mu S := by
   exact eU.surjective.iSup_comp (fun u => S.map (mu u))
 end Transport
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Src (K : Type*) [Field K] (m : ℕ) (upper : Bool) :=
   Piece K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)) 1
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Tgt (K : Type*) [Field K] (m : ℕ) (upper : Bool) :=
   Piece K (coreP (mixedCount m upper)+1) (freeW m (mixedCount m upper)) 3
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Coeff (K : Type*) [Field K] (m : ℕ) (upper : Bool) :=
   Forms K (coreP (mixedCount m upper)+1+freeW m (mixedCount m upper)) 2
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev blocks (m : ℕ) (upper : Bool) :=
   ProfileChartBound.blockDimensions (2*((coreP (mixedCount m upper)+1)-1))
     (freeW m (mixedCount m upper))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def sourceCoordinates (m : ℕ) (upper : Bool)
     (ht : 2 ≤ coreP (mixedCount m upper)+1) :
     Src K m upper ≃ₗ[K] (Fin (∑ i,blocks m upper i) → K) :=
   (ConvolutionProfileCoordinates.coordinates ht).trans (IteratedCovectorCharts.coordinates K _)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- This is literal quotient multiplication in finite coordinates. -/
 def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) :
     (Fin (finrank K (Coeff K m upper)) → K) →ₗ[K]
@@ -152,6 +160,7 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
       (t := coreP (mixedCount m upper)+1) (w := freeW m (mixedCount m upper)) (d := 1) (k := 2))).comp
       (PolynomialBilinearCoordinates.coordinates K (Coeff K m upper)).symm.toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem actualMu_apply (m : ℕ) (upper : Bool)
     (ht : 2 ≤ coreP (mixedCount m upper)+1)
     (f : Fin (finrank K (Coeff K m upper)) → K)
@@ -161,7 +170,8 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
         ((PolynomialBilinearCoordinates.coordinates K (Coeff K m upper)).symm f)
         ((sourceCoordinates m upper ht).symm x)) := rfl
 
- theorem actual_image (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1)
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem actual_image (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1)
     (S : Submodule K (Fin (∑ i,blocks m upper i) → K)) :
     BilinearImage.image (actualMu m upper ht) S =
       (ConvolutionProfileImage.quadraticImage (S.map (sourceCoordinates m upper ht).symm.toLinearMap)).map
@@ -169,7 +179,8 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
   rw [actualMu,image_precompose,image_conjugate]
   rfl
 
- theorem actual_image_finrank (m : ℕ) (upper : Bool)
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem actual_image_finrank (m : ℕ) (upper : Bool)
     (ht : 2 ≤ coreP (mixedCount m upper)+1)
     (S : Submodule K (Fin (∑ i,blocks m upper i) → K)) :
     finrank K (BilinearImage.image (actualMu m upper ht) S) =
@@ -177,7 +188,8 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
         (S.map (sourceCoordinates m upper ht).symm.toLinearMap)) := by
   rw [actual_image,LinearEquiv.finrank_map_eq]
 
- theorem actual_profile (m : ℕ) (upper : Bool)
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem actual_profile (m : ℕ) (upper : Bool)
     (ht : 2 ≤ coreP (mixedCount m upper)+1)
     (S : Submodule K (Fin (∑ i,blocks m upper i) → K)) :
     (fun i => (IteratedChartGeneric.profile S i).val) =
@@ -208,12 +220,14 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
   dsimp only [IteratedChartGeneric.profile, ConvolutionProfileCoordinates.ranks]
   rw [hsub]
 
- theorem blocks_sum (m : ℕ) (upper : Bool) :
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem blocks_sum (m : ℕ) (upper : Bool) :
     (∑ i,blocks m upper i)=totalA m (mixedCount m upper) := by
   simpa only [blocks,Nat.add_sub_cancel,coreA] using
     IteratedCovectorCharts.sum_blockDimensions m (mixedCount m upper)
 
- theorem target_eq_j_add (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem target_eq_j_add (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     (finrank K (Tgt K m upper):ℤ)=Counts.j m (upperEndpoint m) (mixedCount m upper)+
       (upperEndpoint m:ℤ)*(totalA m (mixedCount m upper):ℤ) := by
   rw [ConvolutionAllRange.endpoint_target_euler m hm upper]
@@ -223,8 +237,9 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
   push_cast
   ring
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
  theorem full_profile_target_verified : ∀ k : Fin 13,∀ upper : Bool,
     let m := k.val+28
     let c := FiniteCounts.mixedCount m upper
@@ -232,7 +247,8 @@ set_option maxHeartbeats 0 in
       UniformScalar.targetCount m c := by
   decide +kernel
 
- theorem full_image_finrank [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem full_image_finrank [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
     (hmhi : m ≤ 40) (upper : Bool) :
     finrank K (ConvolutionProfileImage.quadraticImage (⊤ : Submodule K (Src K m upper)))=
       finrank K (Tgt K m upper) := by
@@ -252,12 +268,14 @@ set_option maxHeartbeats 0 in
   rw [hnum,←ConvolutionAllRange.endpoint_target_euler (K := K) m hmlo upper] at hE
   exact le_antisymm (Submodule.finrank_le _) (by exact_mod_cast hE)
 
- theorem full_image_top [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem full_image_top [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
     (hmhi : m ≤ 40) (upper : Bool) :
     ConvolutionProfileImage.quadraticImage (⊤ : Submodule K (Src K m upper))=⊤ :=
   Submodule.eq_top_of_finrank_eq (full_image_finrank m hmlo hmhi upper)
 
- theorem actual_profile_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem actual_profile_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
     (hmhi : m ≤ 40) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1)
     (S : Submodule K (Fin (∑ i,blocks m upper i) → K))
     (hdlo : 0 < finrank K S) (hdhi : finrank K S < totalA m (mixedCount m upper)) :
@@ -284,6 +302,7 @@ set_option maxHeartbeats 0 in
 
 open BilinearCoefficientKernel BilinearCovectorCharts
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A nonzero actual target covector can never have the whole degree-one source
 as its relation kernel. This endpoint does not use a genericity assertion. -/
  theorem actual_kernel_finrank_lt [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
@@ -305,11 +324,13 @@ as its relation kernel. This endpoint does not use a genericity assertion. -/
     full_image_finrank m hmlo hmhi upper] at hE
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The auxiliary slice count for the closed kernel threshold d. -/
 def sliceCount (m : ℕ) (upper : Bool) (d : ℕ) : ℕ :=
   (Counts.j m (upperEndpoint m) (mixedCount m upper)-((mixedCount m upper:ℤ)+4)*(d:ℤ)).toNat
 
- theorem sliceCount_budget (m : ℕ) (upper : Bool) (d u : ℕ) (hdu : d ≤ u) :
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem sliceCount_budget (m : ℕ) (upper : Bool) (d u : ℕ) (hdu : d ≤ u) :
     Counts.j m (upperEndpoint m) (mixedCount m upper) ≤
       min (((mixedCount m upper:ℤ)+4)*(u:ℤ))
         (Counts.j m (upperEndpoint m) (mixedCount m upper)) + sliceCount m upper d := by
@@ -322,11 +343,13 @@ def sliceCount (m : ℕ) (upper : Bool) (d : ℕ) : ℕ :=
   · nlinarith
   · omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual child coefficients and auxiliary target vectors, in fixed bases. -/
 abbrev SlicedInput (K : Type*) [Field K] (m : ℕ) (upper : Bool) (d : ℕ) :=
   SharedCovectorPolynomial.Input K (finrank K (Coeff K m upper))
     (finrank K (Tgt K m upper)) (upperEndpoint m) (sliceCount m upper d)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One nonempty joint coefficient/slice open excludes the entire closed
 kernel-threshold locus, including every exact-rank and profile boundary.
 The statement is pointwise over K; when K is algebraically closed it is
@@ -392,11 +415,12 @@ theorem principal_open_closed_sliced_empty [Infinite K] (m : ℕ) (hmlo : 28 ≤
 
 end Quartic.ConvolutionClosedSlices
 
-set_option maxHeartbeats 200000
+
 namespace Quartic.ClosedCovectorEquations
 open Module MvPolynomial BilinearCoefficientKernel BilinearCovectorCharts
 variable {K : Type*} [Field K] {a B T q s d : ℕ}
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The linear equation represented by a target vector. -/
 def linearForm (y : Fin T → K) : Forms K T 1 :=
   ⟨∑ k,C (y k)*X k, by
@@ -404,6 +428,7 @@ def linearForm (y : Fin T → K) : Forms K T 1 :=
     intro k _
     exact (isHomogeneous_X K k).C_mul (y k)⟩
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 @[simp] theorem eval_linearForm (y ell : Fin T → K) :
     eval ell (linearForm y).val=covector ell y := by
   change (eval ell) (∑ k,C (y k)*X k)=covector ell y
@@ -415,15 +440,18 @@ def linearForm (y : Fin T → K) : Forms K T 1 :=
   rw [MvPolynomial.eval_mul,MvPolynomial.eval_C,MvPolynomial.eval_X]
   exact mul_comm _ _
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- All minors, shared child equations and auxiliary hyperplanes. Repeated
 row/column selections are allowed, so no chart or exact-rank open is omitted. -/
 abbrev Index (a B q s d : ℕ) :=
   ((Fin (a-d+1) → Fin a) × (Fin (a-d+1) → Fin B)) ⊕ ((Fin q × Fin a) ⊕ Fin s)
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 def degree : Index a B q s d → ℕ
   | .inl _ => a-d+1
   | .inr _ => 1
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 def equation (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (x : SharedCovectorPolynomial.Input K B T q s) :
     (i : Index a B q s d) → Forms K T (degree i)
@@ -432,7 +460,8 @@ def equation (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K)
   | .inr (.inl iv) => linearForm (mu (x.1 iv.1) (Pi.single iv.2 1))
   | .inr (.inr h) => linearForm (x.2 h)
 
- theorem eval_minor (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+ set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
+theorem eval_minor (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (x : SharedCovectorPolynomial.Input K B T q s)
     (u : Fin (a-d+1) → Fin a) (v : Fin (a-d+1) → Fin B) (ell : Fin T → K) :
     eval ell (equation mu x (.inl (u,v))).val =
@@ -443,6 +472,7 @@ def equation (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K)
   ext i j
   exact eval_linearForm _ _
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- Vanishing of the finite homogeneous equation family is exactly the actual
 closed kernel threshold and both groups of annihilation equations. -/
 theorem equations_iff (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
@@ -481,17 +511,20 @@ theorem equations_iff (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin
       | inl iv => simpa only [equation,eval_linearForm] using hQ iv.1 (Pi.single iv.2 1)
       | inr h => simpa only [equation,eval_linearForm] using hZ h
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- Enumeration produces exactly the finite dependent family accepted by
 HomogeneousEmptyFiberOpen. -/
 def finiteDegree (a B q s d : ℕ) : Fin (Fintype.card (Index a B q s d)) → ℕ :=
   fun i => degree ((Fintype.equivFin (Index a B q s d)).symm i)
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 def finiteEquations (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (x : SharedCovectorPolynomial.Input K B T q s) :
     (i : Fin (Fintype.card (Index a B q s d))) → Forms K T (finiteDegree a B q s d i) :=
   fun i => equation mu x ((Fintype.equivFin (Index a B q s d)).symm i)
 
- theorem finite_equations_iff (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
+ set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
+theorem finite_equations_iff (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (x : SharedCovectorPolynomial.Input K B T q s) (hd : d ≤ a) (ell : Fin T → K) :
     (∀ i,eval ell (finiteEquations (d := d) mu x i).val=0) ↔
       d ≤ finrank K (LinearMap.ker (relationMap mu ell)) ∧
@@ -512,6 +545,7 @@ open Module MvPolynomial ProfileCertificate UniformEndpoint ConvolutionFreePiece
 open BilinearCoefficientKernel BilinearCovectorCharts ClosedCovectorEquations
 variable {K : Type*} [Field K]
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The literal finite homogeneous equations have only the origin on one
 nonempty joint Q/slice open. Over algebraically closed K this supplies the
 geometric empty-fiber hypothesis, with L=K, of HomogeneousEmptyFiberOpen. -/
@@ -533,6 +567,7 @@ theorem principal_open_homogeneous_empty [IsAlgClosed K] (m : ℕ) (hmlo : 28 �
     (by simpa only [aeval_eq_eval] using heq)
   exact hgood x hx ell hh.1 hh.2
 
+set_option maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- A geometric witness with the precise finite dependent homogeneous family
 needed for the existing finite multiplication certificate theorem. -/
 theorem exists_homogeneous_empty_witness [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m)

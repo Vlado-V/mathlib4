@@ -14,13 +14,14 @@ exactly the pure degree-d space modulo the prescribed pure generators. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def oddTopHigherIndex (hd : Odd d) (hd3 : 3≤d) :
     {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3) hd3)} := by
   have hodd := Nat.odd_iff.mp hd
@@ -30,12 +31,14 @@ def oddTopHigherIndex (hd : Odd d) (hd3 : 3≤d) :
   change (d-1)/2=0 at hh
   omega
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem oddTopHigherIndex_degree (hd : Odd d) (hd3 : 3≤d) :
     2*(oddTopHigherIndex hd hd3).val.val+1=d := by
   have hodd := Nat.odd_iff.mp hd
   change 2*((d-1)/2)+1=d
   omega
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddHigherCoordinateRelation_eq_bot (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -51,6 +54,7 @@ theorem oddHigherCoordinateRelation_eq_bot (hd : Odd d) (hd3 : 3≤d)
     (fun i => mixedPureOddGenerator hd (U i) (P i)) c r=x at he
   exact he.symm.trans (oddHigherRelationMap_mixed_component_zero hd hd3 F U P r hr c)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def oddHigherNonTopQuotientEquiv (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -62,12 +66,14 @@ def oddHigherNonTopQuotientEquiv (hd : Odd d) (hd3 : 3≤d)
       OddHigherBlock K h m d (Nat.le_trans (by decide : 1≤3) hd3) r :=
   Submodule.quotEquivOfEqBot _ (oddHigherCoordinateRelation_eq_bot hd hd3 F U P r hr)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def oddHigherPureEquiv (hd1 : 1≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd1}) (hr : 2*r.val.val+1=d) :
     Forms K h d ≃ₗ[K] OddHigherBlock K h m d hd1 r :=
   (rightScalarBiformEquiv (m := m)).trans
     (biformDegreeTransport hr.symm (by omega : 0=d-(2*r.val.val+1)))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem sumBiformMap_oddHigherPureEquiv (hd1 : 1≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd1}) (hr : 2*r.val.val+1=d)
     (v : Forms K h d) :
@@ -75,6 +81,7 @@ def oddHigherPureEquiv (hd1 : 1≤d)
   rw [oddHigherPureEquiv,LinearEquiv.trans_apply,sumBiformMap_degreeTransport,
     sumBiformMap_rightScalar]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddHigherRelationMap_mixed_top (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -90,6 +97,7 @@ theorem oddHigherRelationMap_mixed_top (hd : Odd d) (hd3 : 3≤d)
   simp only [Fintype.linearCombination_apply,Submodule.coe_sum,Submodule.coe_smul,
     map_sum,map_smul,mixedPureOddGenerator_top hd (by omega : 1<d)]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddHigherCoordinateRelation_top (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -109,6 +117,7 @@ theorem oddHigherCoordinateRelation_top (hd : Odd d) (hd3 : 3≤d)
     exact oddHigherRelationMap_mixed_top hd hd3 F U P r hr c
   rw [he,LinearMap.range_comp,Fintype.range_linearCombination]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def oddHigherTopQuotientEquiv (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))

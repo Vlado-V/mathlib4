@@ -14,7 +14,7 @@ supply the actual private/outer witness required by the full parameter open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters PrivateColumns
@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h a z d q r f u c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem prepared_outer_open_of_detected_scalar_witness
     {I : Type*} [Fintype I] [DecidableEq I]
     (hd : 3≤d) (ho : d%2=1)

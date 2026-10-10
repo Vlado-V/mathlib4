@@ -15,15 +15,17 @@ coefficient spaces, ready for polynomial-complex openness. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def oddRestorationSpace (w : σ → ℕ) (d : ℕ) : Submodule K (MvPolynomial σ K) :=
   homogeneousSubmodule σ K d⊓weightedParitySpace w 1
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 instance oddRestorationSpace_finite (w : σ → ℕ) (d : ℕ) :
     Module.Finite K (oddRestorationSpace (K := K) w d) := by
   letI : Module.Finite K (homogeneousSubmodule σ K d) :=
@@ -34,6 +36,7 @@ namespace PreparedParameters
 variable {n d q r b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateOddEmbed (hd : 0<d) : FullBiform K σ n 1 (d-1) →ₗ[K]
     oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d where
   toFun P := ⟨P.val,by
@@ -45,6 +48,7 @@ def privateOddEmbed (hd : 0<d) : FullBiform K σ n 1 (d-1) →ₗ[K]
   map_add' := by intros; rfl
   map_smul' := by intros; rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def pureOddEmbed (hd : d%2=1) : homogeneousSubmodule σ K d →ₗ[K]
     oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d where
   toFun U := ⟨rename Sum.inl U.val,U.property.rename_isHomogeneous,by
@@ -55,17 +59,20 @@ def pureOddEmbed (hd : d%2=1) : homogeneousSubmodule σ K d →ₗ[K]
   map_add' U V := Subtype.ext (map_add (rename Sum.inl) U.val V.val)
   map_smul' c U := Subtype.ext (map_smul (rename Sum.inl) c U.val)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateOddFamily (hd : 0<d) (ho : d%2=1)
     (P : Fin b → FullBiform K σ n 1 (d-1))
     (U : Fin b → homogeneousSubmodule σ K d) :
     Fin b → oddRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d :=
   fun i => privateOddEmbed hd (P i)+pureOddEmbed ho (U i)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 @[simp] theorem privateOddFamily_val (hd : 0<d) (ho : d%2=1)
     (P : Fin b → FullBiform K σ n 1 (d-1))
     (U : Fin b → homogeneousSubmodule σ K d) (i : Fin b) :
     (privateOddFamily hd ho P U i).val=(P i).val+rename Sum.inl (U i).val := rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_typed_reduction
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

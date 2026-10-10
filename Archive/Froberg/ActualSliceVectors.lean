@@ -14,7 +14,7 @@ many actual target vectors. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.BilinearScalarFamily
 open Module MvPolynomial Quartic PolynomialBilinearCoordinates
 open AmbientCovectorTransport BilinearCoefficientKernel BilinearCovectorCharts
@@ -23,6 +23,7 @@ variable {K F V W : Type*} [Field K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem hasClosedKernelSlices_iff_vectors (mu : F →ₗ[K] V →ₗ[K] W) (s : ℕ → ℕ) :
     HasClosedKernelSlices mu s ↔
       ∃ Z : (r : Fin (finrank K V+1)) → Fin (s r.val) → W,

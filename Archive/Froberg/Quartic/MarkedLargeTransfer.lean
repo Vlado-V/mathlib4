@@ -22,8 +22,9 @@ namespace Quartic.MarkedLargeTransfer
 open Module MvPolynomial UniformEndpoint RowMultiplicationCoordinates
 open ActualDeformationColumnsOmega
 variable {K : Type*} [Field K] [Infinite K] [IsAlgClosed K]
-set_option maxHeartbeats 2000000
 
+
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem parent_witness (m : ℕ) (hm : 320 ≤ m)
     (hchild : MarkedEndpoints K m)
     (hpos : 0 < Counts.chi (m+3) (lowerEndpoint (m+3))) :

@@ -14,12 +14,13 @@ size divisible by four. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 universe u
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 instance homogeneousKernelSpaceFinite {σ : Type*} [Fintype σ]
     {X : Type*} [AddCommGroup X] [Module K X]
     {n d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
@@ -28,6 +29,7 @@ instance homogeneousKernelSpaceFinite {σ : Type*} [Fintype σ]
       (fun j => homogeneousSubmodule σ K j⊓(T j).ker)) :=
   finite_space (fun _ _ => inf_le_left)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem evenReductionOpen_congr_counts {σ : Type*} [Fintype σ]
     {n d q : ℕ} {J : Finset ℕ} {counts counts' : ℕ → ℕ}
     (O : ℕ → Submodule K (MvPolynomial σ K))
@@ -39,6 +41,7 @@ theorem evenReductionOpen_congr_counts {σ : Type*} [Fintype σ]
   subst counts'
   rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem eventually_even_reduction_from_paired {d : ℕ} (hd : 3≤d)
     (hp : ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →

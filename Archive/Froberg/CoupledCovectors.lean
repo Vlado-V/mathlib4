@@ -17,13 +17,14 @@ affine translate of the dual top quotient. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module
 variable {K U X Y : Type*} [Field K]
   [AddCommGroup U] [Module K U] [AddCommGroup X] [Module K X]
   [AddCommGroup Y] [Module K Y]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- All actual low/top covectors satisfying the mixed generator relation. -/
 def coupledCovectors (P : U →ₗ[K] X) (C : U →ₗ[K] Y) :
     Submodule K ((X →ₗ[K] K) × (Y →ₗ[K] K)) where
@@ -38,11 +39,13 @@ def coupledCovectors (P : U →ₗ[K] X) (C : U →ₗ[K] Y) :
     change k*z.1 (P u)+k*z.2 (C u)=0
     rw [←mul_add,hz u,mul_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Restriction to the bottom covector is an actual linear map. -/
 def coupledRestriction (P : U →ₗ[K] X) (C : U →ₗ[K] Y) :
     coupledCovectors P C →ₗ[K] (X →ₗ[K] K) :=
   (LinearMap.fst K _ _).comp (coupledCovectors P C).subtype
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem coupledRestriction_surjective (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
     (hC : Function.Injective C) : Function.Surjective (coupledRestriction P C) := by
   obtain ⟨p,hp⟩ := C.exists_leftInverse_of_injective (LinearMap.ker_eq_bot.mpr hC)
@@ -53,6 +56,7 @@ theorem coupledRestriction_surjective (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
   have he : p (C u)=u := LinearMap.congr_fun hp u
   rw [he,add_neg_cancel]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Differences of two extensions are exactly covectors annihilating the
 injected relation space. This is the affine-fiber assertion in C.12. -/
 theorem coupled_extension_difference (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
@@ -73,12 +77,14 @@ theorem coupled_extension_difference (P : U →ₗ[K] X) (C : U →ₗ[K] Y)
     change ell (P u)+theta (C u)=0
     linear_combination hf+he
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Restriction of a linear functional along the specified map. -/
 def precomposeDual (C : U →ₗ[K] Y) : (Y →ₗ[K] K) →ₗ[K] (U →ₗ[K] K) where
   toFun ell := ell.comp C
   map_add' ell eta := rfl
   map_smul' c ell := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The direction of the extension fiber is literally the dual of the top
 quotient, by the universal property of that quotient. -/
 def topExtensionDirectionEquiv (C : U →ₗ[K] Y) :

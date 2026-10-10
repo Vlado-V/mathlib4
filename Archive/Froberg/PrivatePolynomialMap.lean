@@ -14,11 +14,12 @@ exact connection with the coefficientwise pair-overlap calculation. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PrivateColumns
 open MvPolynomial
 variable {K : Type*} [Field K] {a z s b h c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A column output map is applied to the linear-form coefficient and its
 scalar coefficient is multiplied by the prescribed private power. -/
 def privatePolynomialMap (ι : Fin b ↪ Fin z)
@@ -32,10 +33,12 @@ def privatePolynomialMap (ι : Fin b ↪ Fin z)
     funext k
     simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The vector of actual polynomial coefficients at a scalar monomial. -/
 def privateSourceCoefficient (v : Fin b → Fin h → Forms K (a+z) s)
     (i : Fin b) (α : Fin (a+z) →₀ ℕ) : Fin h → K := fun j => (v i j).val.coeff α
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma pi_linear_expansion (A : (Fin h → K) →ₗ[K] (Fin c → K))
     (v : Fin h → K) (k : Fin c) :
     A v k = ∑ j, v j * A (Pi.single j 1) k := by
@@ -48,6 +51,7 @@ lemma pi_linear_expansion (A : (Fin h → K) →ₗ[K] (Fin c → K))
     _ = ∑ j, v j * A (Pi.single j 1) k := by
       simp only [map_sum,map_smul,Finset.sum_apply,Pi.smul_apply,smul_eq_mul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact monomial coefficient formula for the actual polynomial map. -/
 theorem privatePolynomialMap_coefficient (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
@@ -67,6 +71,7 @@ theorem privatePolynomialMap_coefficient (ι : Fin b ↪ Fin z)
     exact mul_comm _ _
   · simp only [hi,ite_false,Finset.sum_const_zero,Pi.zero_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Polynomial relations give the literal coefficient equations used in the
 private-overlap kernel calculation. -/
 theorem privatePolynomialMap_relation (ι : Fin b ↪ Fin z)
@@ -78,6 +83,7 @@ theorem privatePolynomialMap_relation (ι : Fin b ↪ Fin z)
   rw [hv]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal private polynomial output lies in the required endpoint degree. -/
 theorem privatePolynomialMap_homogeneous (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K))
@@ -91,6 +97,7 @@ theorem privatePolynomialMap_homogeneous (ι : Fin b ↪ Fin z)
     (MvPolynomial.isHomogeneous_monomial (A i (Pi.single j 1) k)
       (privateExponent_degree ι i)).mul (v i j).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Finite-dimensional form of the same private polynomial map. -/
 def homogeneousPrivatePolynomialMap (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) :
@@ -98,6 +105,7 @@ def homogeneousPrivatePolynomialMap (ι : Fin b ↪ Fin z)
   LinearMap.pi fun k => (((LinearMap.proj k).comp (privatePolynomialMap ι A)).codRestrict
     (Forms K (a+z) (2*s)) (fun v => privatePolynomialMap_homogeneous ι A v k))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem homogeneousPrivatePolynomialMap_kernel (ι : Fin b ↪ Fin z)
     (A : Fin b → (Fin h → K) →ₗ[K] (Fin c → K)) :
     (homogeneousPrivatePolynomialMap (a := a) (s := s) ι A).ker=(privatePolynomialMap (a := a) (s := s) ι A).ker := by

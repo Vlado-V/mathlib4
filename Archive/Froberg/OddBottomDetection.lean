@@ -16,18 +16,21 @@ The target here is the actual endpoint quotient, not a larger row model. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {h m d r n : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def coreParity (h m : ℕ) : Fin (h+m) → ZMod 2 :=
   fun i => (coreWeight h m i : ZMod 2)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem coreWeight_le_one (i : Fin (h+m)) : coreWeight h m i≤1 := by
   refine Fin.addCases ?_ ?_ i <;> intro j <;> simp [coreWeight]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- On a form supported in X-degrees zero and one, odd projection is
 supported in X-degree one. -/
 theorem lowTarget_odd_weight_one (p : Forms K (h+m) (2*d))
@@ -54,18 +57,21 @@ theorem lowTarget_odd_weight_one (p : Forms K (h+m) (2*d))
   simp only [coeff_weightedHomogeneousComponent,ite_true] at hc
   exact hcoeff hc
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Projection to the actual odd endpoint quotient. -/
 def oddTargetClass (w : Fin n → ZMod 2) (q : Fin r → Forms K n d) :
     Forms K n (2*d) →ₗ[K] oddTargetSpace w q :=
   ((projectedEndpointMultiplication (LinearMap.id : Forms K n (2*d) →ₗ[K] _) q).range.mkQ.comp
     (parityForm w 1)).rangeRestrict
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem oddTargetClass_surjective (w : Fin n → ZMod 2) (q : Fin r → Forms K n d) :
     Function.Surjective (oddTargetClass w q) := by
   intro z
   obtain ⟨p,hp⟩ := z.property
   exact ⟨p,Subtype.ext hp⟩
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem oddTargetClass_parity (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
     (p : Forms K n (2*d)) :
     oddTargetClass w q (parityForm w 1 p)=oddTargetClass w q p := by
@@ -75,6 +81,7 @@ theorem oddTargetClass_parity (w : Fin n → ZMod 2) (q : Fin r → Forms K n d)
   rw [parityForm_same w 1 _ (parityForm_homogeneous w 1 p)]
   rfl
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem oddTargetClass_product (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i))
     (c : Fin r → Forms K n d) : oddTargetClass w q (endpointMultiplication q c)=0 := by
@@ -85,6 +92,7 @@ theorem oddTargetClass_product (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
   refine ⟨paritySource w e 1 c,?_⟩
   exact endpointMultiplication_paritySource w e q hq 1 c
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- An odd covector is determined by its X-degree-one component whenever
 the actual generator products fill all target rows of X-degree at least two. -/
 theorem oddTarget_bottom_detects (e : Fin r → ZMod 2)

@@ -16,7 +16,7 @@ kernel is the private constant Koszul boundary. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic
@@ -27,6 +27,7 @@ variable [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable [AddCommGroup Y] [Module K Y]
 variable {n d t c q b f : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def scalarCoefficientRow (Q : Fin q → Forms K n d) :
     (Fin q → Fin c → Forms K n t) →ₗ[K] (Fin c → Poly K n) where
   toFun x k := ∑ i,(Q i).val*(x i k).val
@@ -37,6 +38,7 @@ def scalarCoefficientRow (Q : Fin q → Forms K n d) :
     funext k
     simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def scalarCoefficientRowInFamily (x : Fin q → Fin c → Forms K n t) :
     (Fin q → Forms K n d) →ₗ[K] (Fin c → Poly K n) where
   toFun Q := scalarCoefficientRow Q x
@@ -49,16 +51,19 @@ def scalarCoefficientRowInFamily (x : Fin q → Fin c → Forms K n t) :
     simp only [scalarCoefficientRow,LinearMap.coe_mk,AddHom.coe_mk,Pi.smul_apply,
       Submodule.coe_smul,smul_mul_assoc,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def quadraticNuisanceRow (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] (Fin c → Poly K n))
     (Q : Fin q → Forms K n d) (P : Fin b → V) :
     ((Fin q → Fin c → Forms K n t) × (Fin b → V)) →ₗ[K] (Fin c → Poly K n) :=
   addRow (scalarCoefficientRow Q) (PolynomialRestoration.row j T P)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def quadraticNuisanceBoundary (P : Fin b → V) :
     (Fin b → Fin b → K) →ₗ[K] ((Fin q → Fin c → Forms K n t) × (Fin b → V)) :=
   (LinearMap.inr K _ _).comp (PolynomialRestoration.boundary P)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quadraticNuisanceRow_boundary
     (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] (Fin c → Poly K n))
@@ -71,6 +76,7 @@ theorem quadraticNuisanceRow_boundary
     (PolynomialRestoration.boundary P M)=0
   rw [map_zero,zero_add,PolynomialRestoration.row_boundary]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem quadratic_nuisance_separation_open
     (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] (Fin c → Poly K n))
@@ -99,6 +105,7 @@ theorem quadratic_nuisance_separation_open
   exact separated_complex_principal_open _ _ C hrow hboundary hC
     (fun p => quadraticNuisanceRow_boundary j T (Q p) (P p)) p₀ hexact hsep
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def detectedSymmetricProductRow (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] Y) (F : Fin f → V) :
     (Sym2 (Fin f) → K) →ₗ[K] Y where
@@ -106,6 +113,7 @@ def detectedSymmetricProductRow (j : V →ₗ[K] MvPolynomial σ K)
   map_add' a b := by simp only [Pi.add_apply,add_smul,Finset.sum_add_distrib]
   map_smul' a b := by simp only [Pi.smul_apply,smul_eq_mul,mul_smul,Finset.smul_sum,RingHom.id_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 private def detectedProductBilinear (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] Y) : V →ₗ[K] V →ₗ[K] Y where
   toFun x :=
@@ -124,6 +132,7 @@ private def detectedProductBilinear (j : V →ₗ[K] MvPolynomial σ K)
     simp only [LinearMap.coe_mk,AddHom.coe_mk,LinearMap.smul_apply,map_smul,
       smul_mul_assoc,RingHom.id_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem detectedSymmetricProductRow_polynomial
     (j : V →ₗ[K] MvPolynomial σ K) (T : MvPolynomial σ K →ₗ[K] Y)
     (F : (I → K) → Fin f → V) (hF : IsPolynomialFamily F) :

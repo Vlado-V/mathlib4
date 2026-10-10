@@ -15,18 +15,20 @@ and remaining restored parameters. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev RestoredJointRest (m d : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   (Fin (finrank K (Forms K h d)) → Forms K h d) ×
     (PositiveScalars (K := K) m d J counts ×
       ((j : J) → Fin (counts j.val) → biformImage (O j.val) (Forms K m (d-j.val))))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredJointCoordinates : RestoredOuterSpace m d q f J counts O ≃ₗ[K]
     (Fin f → Rows K h m (d-1)) × ((Fin q → Forms K m d) × RestoredJointRest m d J counts O) where
   toFun p := (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i),
@@ -64,6 +66,7 @@ def restoredJointCoordinates : RestoredOuterSpace m d q f J counts O ≃ₗ[K]
       exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d := d)).symm a (p.2 i)
     · rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finite_restoredJointRest (hO : ∀ j∈J,O j≤Forms K h j) :
     Module.Finite K (RestoredJointRest m d J counts O) := by
   letI : Module.Finite K (Space m d 0 J counts O) := finite_space hO
@@ -75,6 +78,7 @@ theorem finite_restoredJointRest (hO : ∀ j∈J,O j≤Forms K h j) :
   change (restoredJointCoordinates (restoredJointCoordinates.symm (0,0,p))).2.2=p
   rw [LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
     ((VectorParameters.Index h m (d-1) f ⊕
       (CoefficientIndex m d q ⊕ Fin (finrank K (RestoredJointRest m d J counts O)))) → K) →ₗ[K]
@@ -91,6 +95,7 @@ def restoredJointFromCoordinates (hO : ∀ j∈J,O j≤Forms K h j) :
     (LinearMap.funLeft K K (Sum.inr ∘ Sum.inr))
   exact restoredJointCoordinates.symm.toLinearMap.comp (g.prod (Q.prod R))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
     (pF : VectorParameters.Index h m (d-1) f → K) (pQ : CoefficientIndex m d q → K)
     (pR : Fin (finrank K (RestoredJointRest m d J counts O)) → K) :
@@ -103,6 +108,7 @@ theorem restoredJointFromCoordinates_eval (hO : ∀ j∈J,O j≤Forms K h j)
   rw [LinearEquiv.apply_symm_apply]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredJointFromCoordinates_surjective (hO : ∀ j∈J,O j≤Forms K h j) :
     Function.Surjective (restoredJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (counts := counts) hO) := by

@@ -18,19 +18,22 @@ private odd labels; the full outer family remains separate. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddPolynomialToForms : biformParitySpace K h m d 1 →ₗ[K] Forms K (h+m) d :=
   (parityPartForms ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm) 1).subtype.comp
     (parityPolynomialToFormsEquiv finSumFinEquiv
       (fun i => (blockWeight h m i : ZMod 2)) 1).toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddPolynomialToForms_val (a : biformParitySpace K h m d 1) :
     (oddPolynomialToForms a).val=rename finSumFinEquiv a.val := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundEnumeratedForms_reindex
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -45,6 +48,7 @@ theorem backgroundEnumeratedForms_reindex
   rw [Equiv.symm_apply_apply]
   rcases i with i | (i | i) <;> rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundEnumeratedForms_span
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -57,6 +61,7 @@ theorem backgroundEnumeratedForms_span
     (backgroundEnumeratedForms Q F G),backgroundEnumeratedForms_reindex,
     Set.Sum.elim_range,Set.Sum.elim_range,Submodule.span_union,Submodule.span_union]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_even_mem_of
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -75,11 +80,13 @@ theorem background_even_mem_of
   · exact (one_ne_zero hi).elim
   · exact (one_ne_zero hi).elim
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def backgroundPositiveForms
     (E : Fin e → biformParitySpace K h m d 0)
     (G : Fin u → biformParitySpace K h m d 1) : Fin e ⊕ Fin u → Forms K (h+m) d :=
   Sum.elim (fun i => evenPolynomialToForms (E i)) (fun i => oddPolynomialToForms (G i))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenPolynomialToForms_scalar (a : Forms K m d) :
     evenPolynomialToForms (scalarEvenBiform (h := h) a)=renameForm (Fin.natAdd h) a := by
   apply Subtype.ext
@@ -91,6 +98,7 @@ theorem evenPolynomialToForms_scalar (a : Forms K m d) :
 section GeneralFlag
 variable {U V : Type*} [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem scalarFlagPrefix_update_last (Q : Fin q → V) (hq : 0 < q) (M : V) :
     scalarFlagPrefix (Function.update Q (lastScalarSlot hq) M)=scalarFlagPrefix Q := by
   classical
@@ -102,6 +110,7 @@ theorem scalarFlagPrefix_update_last (Q : Fin q → V) (hq : 0 < q) (M : V) :
   change i.val=q-1 at hv
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mapped_scalar_flag_update_span (j : U →ₗ[K] V) (Q : Fin q → U)
     (hq : 0 < q) (M : V) :
     Submodule.span K (Set.range (Function.update (fun i => j (Q i)) (lastScalarSlot hq) M))=
@@ -113,10 +122,12 @@ theorem mapped_scalar_flag_update_span (j : U →ₗ[K] V) (Q : Fin q → U)
 
 end GeneralFlag
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 private theorem background_sup_reorder {α : Type*} [SemilatticeSup α]
     (A B C D E : α) : ((A ⊔ B) ⊔ C) ⊔ (D ⊔ E)=((A ⊔ (C ⊔ E)) ⊔ B) ⊔ D := by
   ac_rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_replaced_flag_span
     (Q : Fin q → Forms K m d) (hq : 0 < q)
     (E : Fin e → biformParitySpace K h m d 0)

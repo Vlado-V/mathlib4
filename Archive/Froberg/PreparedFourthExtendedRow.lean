@@ -14,12 +14,13 @@ fixed number of scalar variables. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem exists_fourth_extended_row_parameter {w v z d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X} (h4 : 4∈J)
     (h : FourthRowCapacity w v d q b J counts T) (hd : 4<d)

@@ -16,7 +16,7 @@ unrestricted coefficient family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.PolynomialBilinearCoordinates
@@ -25,6 +25,7 @@ variable {K V W : Type*} [Field K] [Infinite K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {m : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every fixed linear quotient admits vectors whose small projected
 subfamilies are independent, up to the exact quotient-image dimension. -/
 theorem exists_projected_general_vectors (F : V →ₗ[K] W) :
@@ -42,6 +43,7 @@ theorem exists_projected_general_vectors (F : V →ₗ[K] W) :
     F.range.subtype F.range.ker_subtype
   simpa only [Function.comp_def,LinearMap.comp_apply,LinearEquiv.coe_coe,Submodule.subtype_apply,← hv] using hli
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Projected general position holds on a principal open in the actual
 vector coefficients; its bound is the rank of the specified projection. -/
 theorem projected_general_vectors_open (F : V →ₗ[K] W) :
@@ -77,6 +79,7 @@ theorem projected_general_vectors_open (F : V →ₗ[K] W) :
   rw [map_prod] at hx
   exact hgood ⟨S,hS⟩ x (Finset.prod_ne_zero_iff.mp hx ⟨S,hS⟩ (Finset.mem_univ _))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Finitely many projection requirements use one and the same vector tuple. -/
 theorem finite_projected_general_vectors_open {I : Type*} [Fintype I]
     (F : I → V →ₗ[K] W) :

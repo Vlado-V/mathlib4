@@ -15,7 +15,7 @@ linear coordinates, so every supplied row witness lifts to that space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.FullPreparedParameters
 open Froberg Module MvPolynomial PreparedParameters PreparedTarget Quartic
@@ -23,9 +23,11 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r f u t c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 abbrev PreparedQuadraticParameters (K : Type) [Field K] (h m d r f u : ℕ) :=
   (Fin r → Forms K m d) × (OuterSpace K (Fin h) m d u × OuterSpace K (Fin h) m d f)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def preparedQuadraticProjection (idx : Fin r ≃ PreparedParameters.Label q J counts) :
     FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
       PreparedQuadraticParameters K h m d r f u where
@@ -33,6 +35,7 @@ def preparedQuadraticProjection (idx : Fin r ≃ PreparedParameters.Label q J co
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem preparedQuadraticProjection_surjective (idx : Fin r ≃ PreparedParameters.Label q J counts) :
     Function.Surjective (preparedQuadraticProjection (K := K) (h := h) (m := m) (d := d)
       (f := f) (u := u) (O := O) idx) := by
@@ -43,6 +46,7 @@ theorem preparedQuadraticProjection_surjective (idx : Fin r ≃ PreparedParamete
     exact congrArg Q (idx.symm_apply_apply i)
   · rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def PreparedQuadraticRowSeparated
     (idx : Fin r ≃ PreparedParameters.Label q J counts)
     (T : MvPolynomial (Fin h ⊕ Fin m) K →ₗ[K] (Fin c → Poly K m))
@@ -51,6 +55,7 @@ def PreparedQuadraticRowSeparated
       (fun i => p.2.1.1 (idx i)) p.1 x+
     detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype T p.2.2 z=0 → z=0
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_quadratic_separation_principal_open
     (hO : ∀ j∈J,O j≤Forms K h j)
     (idx : Fin r ≃ PreparedParameters.Label q J counts)

@@ -15,11 +15,12 @@ multiplication of homogeneous forms. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic
 variable {K : Type*} [Field K] {n d e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The bilinear image of graded multiplication is the genuine polynomial
 product subspace after forgetting the homogeneous subtype. -/
 theorem graded_image_polynomial (L : Submodule K (Forms K n e)) :
@@ -37,6 +38,7 @@ theorem graded_image_polynomial (L : Submodule K (Forms K n e)) :
     exact ⟨gradedMultiplication ⟨f,hf⟩ g,
       BilinearImage.product_mem gradedMultiplication L ⟨f,hf⟩ g hg,rfl⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual graded multiplication obeys the ordinary normalized estimate
 in every pair of degrees, without an asymptotic hypothesis. -/
 theorem graded_normalized_growth (hn : 0 < n) (L : Submodule K (Forms K n e)) :
@@ -54,6 +56,7 @@ theorem graded_normalized_growth (hn : 0 < n) (L : Submodule K (Forms K n e)) :
   rw [← heq] at h
   simpa only [finrank_forms K n (d+e) hn,finrank_forms K n e hn,Nat.add_comm e d] using h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The C.8 projection statement for actual multiplication by linear forms.
 All remaining hypotheses are the explicit finite numerical dimension margin. -/
 theorem exists_projected_linear_growth [Infinite K] (hn : 0 < n) {u b : ℕ}

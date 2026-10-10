@@ -15,7 +15,7 @@ hypothesis of the coefficientwise extension argument. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication Quartic.FreeCoefficients
@@ -23,6 +23,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z s d h m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem sparse_endpoint_coordinate_constants
     (o : Fin h → MvPolynomial σ K)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i,(e i).degree=s)
@@ -58,7 +59,8 @@ theorem sparse_endpoint_coordinate_constants
   intro k _
   rw [zero_form_eq_C,mul_comm,MvPolynomial.C_mul']
 
- theorem extended_sparse_relation_core (hs : 1 ≤ s) (hsd : s≤d)
+ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+theorem extended_sparse_relation_core (hs : 1 ≤ s) (hsd : s≤d)
     (o : Fin h → MvPolynomial σ K)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i,(e i).degree=s)
     (Q : Fin q → Forms K a d) (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin a) K)

@@ -13,13 +13,14 @@ endpoint deletion and the literal restored background. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r f c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Empty private columns contribute no nuisance row. -/
 theorem quadraticSeparated_empty_private
     (T : Poly K h →ₗ[K] (Fin c → K))

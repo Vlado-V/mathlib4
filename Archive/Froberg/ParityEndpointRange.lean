@@ -13,22 +13,25 @@ the image obtained using coefficient parity opposite to each generator. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
 variable {K : Type} [Field K] {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityCoefficientInclusion (w : Fin n → ZMod 2) (e : Fin r → ZMod 2) (p : ZMod 2) :
     ((i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) →ₗ[K] (Fin r → Forms K n d) :=
   LinearMap.pi (fun i => (parityPartForms w (p-e i)).subtype.comp (LinearMap.proj i))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem paritySource_inclusion (w : Fin n → ZMod 2) (e : Fin r → ZMod 2) (p : ZMod 2)
     (a : (i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) :
     paritySource w e p (parityCoefficientInclusion w e p a)=parityCoefficientInclusion w e p a := by
   funext i
   exact parityForm_same w (p-e i) (a i).val (a i).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityEndpointMultiplication (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2) :
     ((i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) →ₗ[K]
@@ -40,12 +43,14 @@ def parityEndpointMultiplication (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     rw [←endpointMultiplication_paritySource w e q hq,paritySource_inclusion]
     rfl)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem parityEndpointMultiplication_val (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2)
     (a : (i : Fin r) → parityPartForms (K := K) (d := d) w (p-e i)) :
     (parityEndpointMultiplication w e q hq p a).val=
       endpointMultiplication q (parityCoefficientInclusion w e p a) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityEndpointMultiplication_range (w : Fin n → ZMod 2) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K n d) (hq : ∀ i,(q i).val.IsWeightedHomogeneous w (e i)) (p : ZMod 2) :
     (parityEndpointMultiplication w e q hq p).range=

@@ -12,11 +12,12 @@ public import Archive.Froberg.IndexedPureTail
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Filter Module Quartic
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem eventually_odd_tail_projection_uniform {e : ℕ} (he : 2≤e) (ho : Odd (1+e)) :
     ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
       ∃ P : Forms K h (1+e) →ₗ[K] (Fin (topComplementCount (1+e) h) → K),
@@ -46,6 +47,7 @@ theorem eventually_odd_tail_projection_uniform {e : ℕ} (he : 2≤e) (ho : Odd 
     (by simpa only [show 1+e+1=e+2 by omega] using hcut)
   exact ⟨P,hP,hker,hgrowth,hfill,htop.2.2⟩
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem eventually_indexed_odd_tail_projection_uniform {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :
     ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
       ∃ (U : Fin (tailGeneratorCount d h) → Forms K h d)
@@ -89,6 +91,7 @@ theorem eventually_indexed_odd_tail_projection_uniform {d : ℕ} (hd : 3 ≤ d) 
   · rw [hspan]
     exact formDegreeEquiv_cutoff heq R.ker hcut
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem eventually_odd_pure_projection_data_uniform {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :
     ∀ᶠ h : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K], Nonempty (OddPureProjectionData K d h (by omega)) := by
   filter_upwards [eventually_indexed_odd_tail_projection_uniform hd ho,

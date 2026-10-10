@@ -15,7 +15,7 @@ bottom-detection consequence. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
 attribute [local instance] tensorFormGroup
@@ -30,10 +30,12 @@ local notation "ec" => oddTargetBaseEquiv hdp Q₀ F₁
   (fun i => scalarEvenBiform_weighted (h := h) (Q i))
   (fun i => oddLinearBiform_weighted hdp (F i))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def evenAffineRelations (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d) : Submodule K W :=
   (evenRelativeFamily hdp Q F (oddEvenAffineFamily E a)).range
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem evenAffineRelations_generator_mem (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d) (i : Fin e) (v : V) :
     evenBackgroundScalar hdp Q F (a i) v+evenBackgroundProduct hdp Q F (E i) v ∈
@@ -48,6 +50,7 @@ theorem evenAffineRelations_generator_mem (E : Fin e → biformParitySpace K h m
     rw [Pi.single_eq_of_ne hji,map_zero]
   · simp
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem evenAffineRelations_finrank (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d)
     (hi : Function.Injective (oddEvenRelativeMap Q₀ F₁ emptyOddFamily (oddEvenAffineFamily E a))) :
@@ -56,6 +59,7 @@ theorem evenAffineRelations_finrank (E : Fin e → biformParitySpace K h m d 0)
     (evenRelativeFamily hdp Q F (oddEvenAffineFamily E a))
     (evenRelativeFamily_injective hdp Q F _ hi)).symm
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem even_affine_bottom_detects (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d)
     (hupper : Function.Surjective (upperTargetMap

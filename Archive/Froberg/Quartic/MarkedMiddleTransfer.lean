@@ -23,8 +23,9 @@ namespace Quartic.MarkedMiddleTransfer
 open Module MvPolynomial UniformEndpoint RowMultiplicationCoordinates
 open ActualDeformationColumnsOmega
 variable {K : Type*} [Field K] [Infinite K] [IsAlgClosed K]
-set_option maxHeartbeats 2000000
 
+
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A fixed admissible pure-pencil parameter gives the marked lower parent. -/
 theorem lower_parent_witness_of_parameter (ω : K) (m : ℕ)
     (hmlo : 41 ≤ m) (hmhi : m ≤ 319)
@@ -94,6 +95,7 @@ theorem lower_parent_witness_of_parameter (ω : K) (m : ℕ)
     hdim hpos hresponse
   simpa only [Nat.add_comm 3 m,hcount] using hw
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A marked exact child gives the marked lower endpoint throughout 41–319. -/
 theorem lower_parent_witness (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 319)
     (hpositive : 0 < Counts.chi (m+3) (lowerEndpoint (m+3)))

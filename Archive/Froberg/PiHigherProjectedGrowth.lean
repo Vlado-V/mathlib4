@@ -14,7 +14,7 @@ coordinates, with arbitrary finite labels on the higher blocks. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic
 variable {K P V V₀ W I : Type*} [Field K] [Fintype I]
@@ -26,6 +26,7 @@ variable {Vi Wi : I → Type*}
   [∀ i,AddCommGroup (Vi i)] [∀ i,Module K (Vi i)] [∀ i,FiniteDimensional K (Vi i)]
   [∀ i,AddCommGroup (Wi i)] [∀ i,Module K (Wi i)] [∀ i,FiniteDimensional K (Wi i)]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem higher_growth_of_pi_projection
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (pi : W →ₗ[K] ((i : I) → Wi i))
@@ -53,6 +54,7 @@ theorem higher_growth_of_pi_projection
 
 variable {W₀ : Type*} [AddCommGroup W₀] [Module K W₀]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem pi_bottom_kernel_eq
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)
@@ -76,6 +78,7 @@ theorem pi_bottom_kernel_eq
     rw [hbottom]
     exact LinearMap.congr_fun hx p
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem pi_bottom_kernel_finrank_le
     (eV : V ≃ₗ[K] V₀ × ((i : I) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] V₀ →ₗ[K] W₀)

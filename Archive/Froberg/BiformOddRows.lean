@@ -14,13 +14,14 @@ Every dimension is the cardinality of the corresponding homogeneous monomials. -
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module TensorProduct MvPolynomial
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K]
 variable {h n d b qS qO : ℕ}
 
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The ordinary scalar/linear odd row has maximal rank on a concrete
 nonempty polynomial open in its actual two lists of biform coefficients. -/
 theorem higher_odd_biform_open (hh : 0<h) (hn : 0<n)
@@ -73,6 +74,7 @@ theorem higher_odd_biform_open (hh : 0<h) (hn : 0<n)
         (r := b) (t := 2*d-b) (by omega) (by omega) L
   · simpa only [finrank_biform hh hn] using hcount
 
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The corresponding one-family budget for the final scalar-free odd row. -/
 theorem single_family_generic_of_natural_growth
     {F V W : Type*} [AddCommGroup F] [Module K F] [FiniteDimensional K F]
@@ -106,6 +108,7 @@ theorem single_family_generic_of_natural_growth
         _ ≤T*finrank K L := Nat.mul_le_mul_right _ hcount
     _ ≤finrank K V*finrank K (Quartic.BilinearImage.image mu L) := hgrowth L
 
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The last odd row has only linear-output generators and constant scalar
 coefficients, so its open follows from the one-family natural budget. -/
 theorem upper_odd_biform_open (hh : 0<h) (hn : 0<n) (hd : 1≤d)

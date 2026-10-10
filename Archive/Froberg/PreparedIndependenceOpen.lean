@@ -14,12 +14,13 @@ The same open works for every choice of the pure top forms. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem combined_linear_independent (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f)
     (hg : LinearIndependent K (combinedVectorEnumeration P F)) :
@@ -33,6 +34,7 @@ theorem combined_linear_independent (P : OuterSpace K (Fin h) m d u)
     sumBiformMap (linearOutputTensorEquiv (combinedVectorEnumeration P F (finSumFinEquiv i)))) at h₃
   simpa only [combinedVectorEnumeration_val,Equiv.symm_apply_apply] using h₃
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasIndependentOpen (hd : 0<d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) : Prop :=
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -44,6 +46,7 @@ def HasIndependentOpen (hd : 0<d) (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j
       eval ((Module.finBasis K _).equivFun p) P≠0 →
       ∀ U : Fin u → Forms K h d,LinearIndependent K (zeroScalarEndpointFamily hd hO hJ U p.1 p.2)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_independent_open (hd : 1<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
     (hq : Fintype.card (PreparedParameters.Label q J counts)≤finrank K (Forms K m d))

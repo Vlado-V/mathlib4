@@ -14,12 +14,13 @@ relations. The proof uses the literal coefficients of its polynomial kernel. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PrivateColumns
 open Module
 variable {K : Type*} [Field K] {a z s b h c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Extraction of a scalar-monomial coefficient as an output vector. -/
 def privateSourceCoefficientMap (i : Fin b) (α : Fin (a+z) →₀ ℕ) :
     (Fin b → Fin h → Forms K (a+z) s) →ₗ[K] (Fin h → K) where
@@ -32,6 +33,7 @@ def privateSourceCoefficientMap (i : Fin b) (α : Fin (a+z) →₀ ℕ) :
     simp only [privateSourceCoefficient,Pi.smul_apply,Submodule.coe_smul,MvPolynomial.coeff_smul,
       RingHom.id_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Each unordered pair has one candidate constant alternating coefficient. -/
 def privateAlternatingCoefficients (ι : Fin b ↪ Fin z)
     (dual : Fin b → (Fin h → K) →ₗ[K] K) :
@@ -39,6 +41,7 @@ def privateAlternatingCoefficients (ι : Fin b ↪ Fin z)
   LinearMap.pi fun p => (dual p.val.2).comp
     (privateSourceCoefficientMap p.val.1 (privateExponent a s ι p.val.2))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every actual private-row relation is determined by these pair coefficients.
 The two-output hypothesis is precisely the one-dimensional product overlap. -/
 theorem privateAlternatingCoefficients_injective_on_kernel (hs : 0 < s)
@@ -95,6 +98,7 @@ theorem privateAlternatingCoefficients_injective_on_kernel (hs : 0 < s)
   rw [map_sub]
   exact sub_eq_zero.mpr hxy
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Consequently the actual polynomial kernel has at most one scalar
 parameter per unordered pair of private generators. -/
 theorem privatePolynomialMap_kernel_finrank_le (hs : 0 < s)

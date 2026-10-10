@@ -16,7 +16,7 @@ coefficient boundary, leaving precisely the scalar background relations. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K]
 section Boundary
 variable {V : Type*} [AddCommGroup V] [Module K V] {r b : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def splitDiagonalMatrix (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) :
     Fin (r+b) → Fin (r+b) → K := fun i j =>
   match finSumFinEquiv.symm i,finSumFinEquiv.symm j with
@@ -31,6 +32,7 @@ def splitDiagonalMatrix (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) 
   | Sum.inr i,Sum.inr j => C i j
   | _,_ => 0
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coefficientBoundary_split_left (q : Fin (r+b) → V)
     (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (i : Fin r) :
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inl i))=
@@ -40,6 +42,7 @@ theorem coefficientBoundary_split_left (q : Fin (r+b) → V)
     ←finSumFinEquiv.sum_comp (fun j => splitDiagonalMatrix M C j (finSumFinEquiv (Sum.inl i)) • q j)]
   simp [Fintype.sum_sum_type,splitDiagonalMatrix]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coefficientBoundary_split_right (q : Fin (r+b) → V)
     (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (i : Fin b) :
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inr i))=
@@ -52,22 +55,26 @@ end Boundary
 
 variable {h m d r b : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def evenRestorationBiform (g : evenRestorationSpace (K := K) (blockWeight h m) d) :
     biformParitySpace K h m d 0 :=
   ⟨g.val,g.property.1,(parity_homogeneous_iff _ _ 0 (by decide)).mpr
     ((mem_weightedParitySpace_iff _ _ _).mp g.property.2)⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def oddRestorationBiform (g : oddRestorationSpace (K := K) (blockWeight h m) d) :
     biformParitySpace K h m d 1 :=
   ⟨g.val,g.property.1,(parity_homogeneous_iff _ _ 1 (by decide)).mpr
     ((mem_weightedParitySpace_iff _ _ _).mp g.property.2)⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def privateSplitEndpoint
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d) :
     Fin (r+b) → Forms K (h+m) d :=
   biformSplitEndpoint (fun i => evenRestorationBiform (g i)) (fun i => oddRestorationBiform (p i))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem privateSplitEndpoint_back
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d) (i : Fin r ⊕ Fin b) :
@@ -75,6 +82,7 @@ theorem privateSplitEndpoint_back
       Sum.elim (fun j => (g j).val) (fun j => (p j).val) i :=
   biformSplitEndpoint_back _ _ i
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d)
     (hi : LinearIndependent K (privateSplitEndpoint g p))

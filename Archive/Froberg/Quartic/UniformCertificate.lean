@@ -83,12 +83,12 @@ theorem bernstein_nonnegative (c : Fin 5 → Fin 4 → ℝ)
 def coeff_0_0_0 : Fin 5 → Fin 4 → ℝ :=
   ![![0, 0, 0, 0], ![0, 0, 0, 0], ![0, 0, 0, 0], ![0, 0, 0, 0], ![0, 0, 0, 0]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_0_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_0_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_0_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_0_0 (v s : ℝ) :
     inequalityPolynomial 0 0 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_0_0 v s := by
@@ -103,12 +103,12 @@ def coeff_0_0_1 : Fin 5 → Fin 4 → ℝ :=
     7680000), (2681141483 / 491520000)], ![(248668 / 46875), (7889201 / 1500000), (250203457 /
     48000000), (7932431299 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_0_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_0_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_0_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_0_1 (v s : ℝ) :
     inequalityPolynomial 0 0 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_0_1 v s := by
@@ -124,12 +124,12 @@ def coeff_0_1_0 : Fin 5 → Fin 4 → ℝ :=
     (29922179 / 2560000), (11443332011 / 983040000)], ![(541343 / 46875), (719499 / 62500),
     (1101362339 / 96000000), (35113966723 / 3072000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_1_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_1_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_1_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_1_0 (v s : ℝ) :
     inequalityPolynomial 0 1 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_1_0 v s := by
@@ -145,12 +145,12 @@ def coeff_0_1_1 : Fin 5 → Fin 4 → ℝ :=
     (120749593 / 46080000), (2578814059 / 983040000)], ![(37881 / 15625), (10951603 / 4500000),
     (703090717 / 288000000), (7517899523 / 3072000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_1_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_1_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_1_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_1_1 (v s : ℝ) :
     inequalityPolynomial 0 1 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_1_1 v s := by
@@ -166,12 +166,12 @@ def coeff_0_2_0 : Fin 5 → Fin 4 → ℝ :=
     (11443332011 / 491520000)], ![(1082686 / 46875), (719499 / 31250), (1101362339 / 48000000),
     (35113966723 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_2_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_2_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_2_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_2_0 (v s : ℝ) :
     inequalityPolynomial 0 2 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_2_0 v s := by
@@ -187,12 +187,12 @@ def coeff_0_2_1 : Fin 5 → Fin 4 → ℝ :=
     (131869763 / 9216000), (467404869 / 32768000)], ![(654986 / 46875), (62755531 / 4500000),
     (2003588867 / 144000000), (7105311041 / 512000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_2_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_2_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_2_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_2_1 (v s : ℝ) :
     inequalityPolynomial 0 2 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_2_1 v s := by
@@ -208,12 +208,12 @@ def coeff_0_3_0 : Fin 5 → Fin 4 → ℝ :=
     (108431477 / 5120000)], ![(13387 / 625), (1279927 / 60000), (40783589 / 1920000), (13534213 /
     640000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_3_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_3_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_3_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_3_0 (v s : ℝ) :
     inequalityPolynomial 0 3 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_3_0 v s := by
@@ -229,12 +229,12 @@ def coeff_0_3_1 : Fin 5 → Fin 4 → ℝ :=
     (93393169 / 7680000)], ![(23053 / 1875), (275711 / 22500), (70330841 / 5760000), (23355097 /
     1920000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_0_3_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_0_3_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_0_3_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_0_3_1 (v s : ℝ) :
     inequalityPolynomial 0 3 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_0_3_1 v s := by
@@ -250,12 +250,12 @@ def coeff_1_0_0 : Fin 5 → Fin 4 → ℝ :=
     23040000), (552658297 / 163840000)], ![(303661 / 93750), (14429953 / 4500000), (913755517 /
     288000000), (1606390033 / 512000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_0_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_0_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_0_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_0_0 (v s : ℝ) :
     inequalityPolynomial 1 0 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_0_0 v s := by
@@ -271,12 +271,12 @@ def coeff_1_0_1 : Fin 5 → Fin 4 → ℝ :=
     (2139200747 / 327680000)], ![(198343 / 31250), (1571419 / 250000), (199110657 / 32000000),
     (6304501699 / 1024000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_0_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_0_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_0_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_0_1 (v s : ℝ) :
     inequalityPolynomial 1 0 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_0_1 v s := by
@@ -292,12 +292,12 @@ def coeff_1_1_0 : Fin 5 → Fin 4 → ℝ :=
     46080000), (538787449 / 327680000)], ![(134261 / 93750), (407783 / 281250), (105545573 /
     72000000), (1515745441 / 1024000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_1_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_1_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_1_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_1_0 (v s : ℝ) :
     inequalityPolynomial 1 1 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_1_0 v s := by
@@ -313,12 +313,12 @@ def coeff_1_1_1 : Fin 5 → Fin 4 → ℝ :=
     (71432441 / 327680000)], ![(12293 / 93750), (143591 / 1125000), (35515121 / 288000000),
     (121058433 / 1024000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_1_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_1_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_1_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_1_1 (v s : ℝ) :
     inequalityPolynomial 1 1 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_1_1 v s := by
@@ -334,12 +334,12 @@ def coeff_1_2_0 : Fin 5 → Fin 4 → ℝ :=
     (132974287 / 9216000), (1414357583 / 98304000)], ![(439199 / 31250), (63139031 / 4500000),
     (4032826109 / 288000000), (21458531123 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_2_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_2_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_2_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_2_0 (v s : ℝ) :
     inequalityPolynomial 1 2 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_2_0 v s := by
@@ -355,12 +355,12 @@ def coeff_1_2_1 : Fin 5 → Fin 4 → ℝ :=
     2048000), (1013182783 / 98304000)], ![(932597 / 93750), (465986 / 46875), (29791229 / 3000000),
     (15230881123 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_2_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_2_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_2_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_2_1 (v s : ℝ) :
     inequalityPolynomial 1 2 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_2_1 v s := by
@@ -376,12 +376,12 @@ def coeff_1_3_0 : Fin 5 → Fin 4 → ℝ :=
     23040000), (102809663 / 7680000)], ![(50437 / 3750), (2413451 / 180000), (153949889 / 11520000),
     (51136513 / 3840000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_3_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_3_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_3_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_3_0 (v s : ℝ) :
     inequalityPolynomial 1 3 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_3_0 v s := by
@@ -397,12 +397,12 @@ def coeff_1_3_1 : Fin 5 → Fin 4 → ℝ :=
     (95290509 / 10240000)], ![(11679 / 1250), (46591 / 5000), (2973199 / 320000), (2963949 /
     320000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_1_3_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_1_3_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_1_3_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_1_3_1 (v s : ℝ) :
     inequalityPolynomial 1 3 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_1_3_1 v s := by
@@ -418,12 +418,12 @@ def coeff_2_0_0 : Fin 5 → Fin 4 → ℝ :=
     (2139200747 / 327680000)], ![(198343 / 31250), (1571419 / 250000), (199110657 / 32000000),
     (6304501699 / 1024000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_0_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_0_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_0_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_0_0 (v s : ℝ) :
     inequalityPolynomial 2 0 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_0_0 v s := by
@@ -439,12 +439,12 @@ def coeff_2_0_1 : Fin 5 → Fin 4 → ℝ :=
     (28187723 / 2880000), (31730849 / 3276800)], ![(886397 / 93750), (42141131 / 4500000),
     (2670236309 / 288000000), (2349055833 / 256000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_0_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_0_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_0_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_0_1 (v s : ℝ) :
     inequalityPolynomial 2 0 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_0_1 v s := by
@@ -460,12 +460,12 @@ def coeff_2_1_0 : Fin 5 → Fin 4 → ℝ :=
     (71432441 / 327680000)], ![(12293 / 93750), (143591 / 1125000), (35515121 / 288000000),
     (121058433 / 1024000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_1_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_1_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_1_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_1_0 (v s : ℝ) :
     inequalityPolynomial 2 1 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_1_0 v s := by
@@ -481,12 +481,12 @@ def coeff_2_1_1 : Fin 5 → Fin 4 → ℝ :=
     23040000), (552658297 / 163840000)], ![(303661 / 93750), (14429953 / 4500000), (913755517 /
     288000000), (1606390033 / 512000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_1_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_1_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_1_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_1_1 (v s : ℝ) :
     inequalityPolynomial 2 1 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_1_1 v s := by
@@ -502,12 +502,12 @@ def coeff_2_2_0 : Fin 5 → Fin 4 → ℝ :=
     2048000), (1013182783 / 98304000)], ![(932597 / 93750), (465986 / 46875), (29791229 / 3000000),
     (15230881123 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_2_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_2_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_2_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_2_0 (v s : ℝ) :
     inequalityPolynomial 2 2 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_2_0 v s := by
@@ -523,12 +523,12 @@ def coeff_2_2_1 : Fin 5 → Fin 4 → ℝ :=
     / 4608000), (204002661 / 32768000)], ![(547597 / 93750), (26330281 / 4500000), (1687089859 /
     288000000), (3001077041 / 512000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_2_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_2_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_2_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_2_1 (v s : ℝ) :
     inequalityPolynomial 2 2 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_2_1 v s := by
@@ -544,12 +544,12 @@ def coeff_2_3_0 : Fin 5 → Fin 4 → ℝ :=
     (95290509 / 10240000)], ![(11679 / 1250), (46591 / 5000), (2973199 / 320000), (2963949 /
     320000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_3_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_3_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_3_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_3_0 (v s : ℝ) :
     inequalityPolynomial 2 3 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_3_0 v s := by
@@ -565,12 +565,12 @@ def coeff_2_3_1 : Fin 5 → Fin 4 → ℝ :=
     46080000), (80252201 / 15360000)], ![(19637 / 3750), (941101 / 180000), (60120439 / 11520000),
     (19998263 / 3840000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_2_3_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_2_3_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_2_3_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_2_3_1 (v s : ℝ) :
     inequalityPolynomial 2 3 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_2_3_1 v s := by
@@ -586,12 +586,12 @@ def coeff_3_0_0 : Fin 5 → Fin 4 → ℝ :=
     (2078485867 / 245760000)], ![(129687 / 15625), (2309191 / 281250), (1169015567 / 144000000),
     (6161903699 / 768000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_0_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_0_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_0_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_0_0 (v s : ℝ) :
     inequalityPolynomial 3 0 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_0_0 v s := by
@@ -607,12 +607,12 @@ def coeff_3_0_1 : Fin 5 → Fin 4 → ℝ :=
     7680000), (2559711723 / 163840000)], ![(241043 / 15625), (22900603 / 1500000), (181240499 /
     12000000), (7647235299 / 512000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_0_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_0_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_0_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_0_1 (v s : ℝ) :
     inequalityPolynomial 3 0 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_0_1 v s := by
@@ -628,12 +628,12 @@ def coeff_3_1_0 : Fin 5 → Fin 4 → ℝ :=
     (1597260011 / 491520000)], ![(148018 / 46875), (1560717 / 500000), (148017857 / 48000000),
     (4676572099 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_1_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_1_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_1_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_1_0 (v s : ℝ) :
     inequalityPolynomial 3 1 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_1_0 v s := by
@@ -649,12 +649,12 @@ def coeff_3_1_1 : Fin 5 → Fin 4 → ℝ :=
     11520000), (853237241 / 81920000)], ![(482086 / 46875), (22900603 / 2250000), (181240499 /
     18000000), (2549078433 / 256000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_1_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_1_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_1_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_1_1 (v s : ℝ) :
     inequalityPolynomial 3 1 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_1_1 v s := by
@@ -670,12 +670,12 @@ def coeff_3_2_0 : Fin 5 → Fin 4 → ℝ :=
     7680000), (3541265771 / 491520000)], ![(320311 / 46875), (854371 / 125000), (54666619 /
     8000000), (10488562723 / 1536000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_2_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_2_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_2_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_2_0 (v s : ℝ) :
     inequalityPolynomial 3 2 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_2_0 v s := by
@@ -691,12 +691,12 @@ def coeff_3_2_1 : Fin 5 → Fin 4 → ℝ :=
     / 23040000), (853237241 / 163840000)], ![(241043 / 46875), (22900603 / 4500000), (181240499 /
     36000000), (2549078433 / 512000000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_2_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_2_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_2_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_2_1 (v s : ℝ) :
     inequalityPolynomial 3 2 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_2_1 v s := by
@@ -711,12 +711,12 @@ def coeff_3_3_0 : Fin 5 → Fin 4 → ℝ :=
     (18836799 / 2560000)], ![(18453 / 2500), (1177217 / 160000), (37543269 / 5120000), (37408719 /
     5120000)], ![(4564 / 625), (145623 / 20000), (3484127 / 480000), (1157559 / 160000)]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_3_0_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_3_0 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_3_0]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_3_0 (v s : ℝ) :
     inequalityPolynomial 3 3 0 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_3_0 v s := by
@@ -728,12 +728,12 @@ private theorem identity_3_3_0 (v s : ℝ) :
 def coeff_3_3_1 : Fin 5 → Fin 4 → ℝ :=
   ![![0, 0, 0, 0], ![0, 0, 0, 0], ![0, 0, 0, 0], ![0, 0, 0, 0], ![0, 0, 0, 0]]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem coeff_3_3_1_nonnegative (i : Fin 5) (j : Fin 4) :
     0 ≤ coeff_3_3_1 i j := by
   fin_cases i <;> fin_cases j <;> norm_num [coeff_3_3_1]
 
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 private theorem identity_3_3_1 (v s : ℝ) :
     inequalityPolynomial 3 3 1 (1 / 2 + (3 / 50) * v) (s / 64) =
       bernstein coeff_3_3_1 v s := by

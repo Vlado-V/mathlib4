@@ -14,25 +14,29 @@ private graph imposes relations only in the top source block. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u : ℕ}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 abbrev OddHigherBlock (K : Type) [Field K] (h m d : ℕ) (hd : 1≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) :=
   Forms K h (2*r.val.val+1) ⊗[K] Forms K m (d-(2*r.val.val+1))
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 instance oddHigherBlockGroup (hd : 1≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) :
     AddCommGroup (OddHigherBlock K h m d hd r) := tensorFormGroup
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 instance oddHigherBlockModule (hd : 1≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd}) :
     Module K (OddHigherBlock K h m d hd r) := TensorProduct.leftModule
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -53,6 +57,7 @@ theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3≤d)
   simp only [Fintype.linearCombination_apply,Submodule.coe_sum,Submodule.coe_smul,
     map_sum,map_smul,mixedPureOddGenerator_other hd hr1 hr,smul_zero,Finset.sum_const_zero]
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -86,6 +91,7 @@ theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3≤d)
       (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range)
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 def oddHigherBlocksEquiv (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :

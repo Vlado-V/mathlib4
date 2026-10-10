@@ -13,7 +13,7 @@ target map need only be injective on the old multiplication image. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module
 variable {K : Type} [Field K]
@@ -21,6 +21,7 @@ variable {V W T Z : Type*} [AddCommGroup V] [Module K V]
   [AddCommGroup W] [Module K W] [AddCommGroup T] [Module K T]
   [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem map_formalMixed_linear (j : V →ₗ[K] W) (L : Submodule K V) :
     (formalMixed L).map (SymmetricFunctor.map (ι := Fin 2) j)=
       formalProducts (L.map j) j.range := by
@@ -35,6 +36,7 @@ theorem map_formalMixed_linear (j : V →ₗ[K] W) (L : Submodule K V) :
     rintro _ ⟨a,b,⟨a',ha,rfl⟩,⟨b',rfl⟩,rfl⟩
     exact ⟨symProd a' b',symProd_mem_formalMixed L ha b',symmetricMap_symProd j a' b'⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formal_relation_embedding (j : V →ₗ[K] W)
     (M : SymmetricSquare K V →ₗ[K] T) (N : SymmetricSquare K W →ₗ[K] Z)
     (J : T →ₗ[K] Z) (L : Submodule K V)
@@ -59,6 +61,7 @@ theorem formal_relation_embedding (j : V →ₗ[K] W)
     change N (SymmetricFunctor.map j y)=0
     rw [hc,hy,map_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def formalRelationEmbeddingEquiv (j : V →ₗ[K] W) (hj : Function.Injective j)
     (M : SymmetricSquare K V →ₗ[K] T) (N : SymmetricSquare K W →ₗ[K] Z)
     (J : T →ₗ[K] Z) (L : Submodule K V)
@@ -72,11 +75,13 @@ def formalRelationEmbeddingEquiv (j : V →ₗ[K] W) (hj : Function.Injective j)
 
 variable {m n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formal_old_product_image (q : Fin r → Forms K m d) :
     (formalMixed (Submodule.span K (Set.range q))).map formalPolynomialMultiplication=
       (endpointMultiplication q).range := by
   rw [← range_formalCoefficientMap q,← LinearMap.range_comp,formalPolynomialMultiplication_comp q]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem embedded_old_homology_finrank (q : Fin r → Forms K m d) (hq : LinearIndependent K q)
     (j : Forms K m d →ₗ[K] Forms K n d) (hj : Function.Injective j)
     (pi : Forms K n (2*d) →ₗ[K] Z) (J : Forms K m (2*d) →ₗ[K] Z)

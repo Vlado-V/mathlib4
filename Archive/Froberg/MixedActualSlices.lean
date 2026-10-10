@@ -14,7 +14,7 @@ estimates are obtained from the actual graded multiplication maps. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic Quartic.SplitTensor VectorMultiplicationCoordinates
@@ -34,10 +34,12 @@ local notation "hQ₀" => fun i => scalarEvenBiform_weighted (h := h) (Q i)
 local notation "hF₁" => fun i => oddLinearBiform_weighted hdp (F i)
 local notation "V" => biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRelations F₁ G₁
 local notation "W" => biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Dimension of the literal mixed odd source. Naming it keeps finite-index
 hypotheses from repeatedly elaborating the quotient presentation. -/
 def mixedActualSourceDimension : ℕ := finrank K V
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Dimension of the literal mixed odd target. -/
 def mixedActualTargetDimension : ℕ := finrank K W
 
@@ -47,6 +49,7 @@ local notation "nW" => mixedActualTargetDimension hd hd3 Q g U P
 local notation "ν" => bottomCoordinateScalarAction hdp Q g
 local notation "j" => nW-e*nV
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem mixed_actual_affine_slices (hh : 0 < h) (hm : 0 < m)
     (hU : LinearIndependent K U)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)

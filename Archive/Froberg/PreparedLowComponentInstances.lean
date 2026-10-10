@@ -18,12 +18,13 @@ only the private columns. Pure restoration terms disappear in degrees at most tw
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] {h m d : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- It suffices to check low components on the displayed generators. -/
 theorem PreparedLowComponents.span {I : Type*} (g : I → Forms K (h+m) d)
     (S P D : Submodule K (Poly K (h+m)))
@@ -44,6 +45,7 @@ theorem PreparedLowComponents.span {I : Type*} (g : I → Forms K (h+m) d)
   exact ⟨hmem 0 S (fun i => (hg i).1),hmem 1 P (fun i => (hg i).2.1),
     hmem 2 D (fun i => (hg i).2.2)⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem PreparedLowComponents.sup
     {W W' : Submodule K (Forms K (h+m) d)}
     {S P D : Submodule K (Poly K (h+m))}
@@ -59,6 +61,7 @@ theorem PreparedLowComponents.sup
   exact ⟨hmem 0 S H.scalar H'.scalar,hmem 1 P H.linear H'.linear,
     hmem 2 D H.quadratic H'.quadratic⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The two-block tensor image is the literal split-polynomial tensor image. -/
 theorem rename_mem_polynomialTensorSpace
     (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m))
@@ -76,6 +79,7 @@ theorem rename_mem_polynomialTensorSpace
   | add x y hx hy =>
     simpa only [map_add] using (polynomialTensorSpace A B).add_mem hx hy
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Scalar tails use the degree-zero output factor. -/
 theorem scalar_mem_polynomialTensorSpace (Q : Submodule K (Poly K m))
     {p : Poly K m} (hp : p∈Q) :
@@ -84,6 +88,7 @@ theorem scalar_mem_polynomialTensorSpace (Q : Submodule K (Poly K m))
   simp only [polynomialTensorMap_tmul,splitPolynomialEquiv_tmul,constantOneForm,
     map_one,one_mul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Block weight is preserved by the canonical enumeration of variables. -/
 theorem core_weighted_rename {j : ℕ} {p : MvPolynomial (Fin h ⊕ Fin m) K}
     (hp : p.IsWeightedHomogeneous (blockWeight h m) j) :
@@ -98,15 +103,18 @@ variable [Infinite K]
 variable {q f u r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- All scalar slots, including the tails of positive prepared columns. -/
 def preparedScalarSpace (p : PreparedParameters.Space m d q J counts O) :
     Submodule K (Poly K m) := Submodule.span K (Set.range (fun i => (p.1 i).val))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual private linear pieces, with no outer columns included. -/
 def preparedPrivateLinearSpace (P : OuterSpace K (Fin h) m d u) :
     Submodule K (Poly K (h+m)) :=
   Submodule.span K (Set.range (fun i => rename finSumFinEquiv (P i).val))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem renamed_prepared_low_components
     (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j)
     (p : PreparedParameters.Space m d q J counts O) (i : PreparedParameters.Label q J counts) :
@@ -153,6 +161,7 @@ theorem renamed_prepared_low_components
     add_zero,zero_add]
   exact ⟨hsmem,trivial,hh.2.2⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem renamed_private_low_components (hd : 3≤d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (i : Fin u) :
@@ -174,6 +183,7 @@ theorem renamed_private_low_components (hd : 3≤d)
     combinedLinear,Sum.elim_inr]
   exact ⟨trivial,trivial,trivial⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal prepared private background has exactly the required low pieces. -/
 theorem prepared_private_background_lowComponents (hd : 3≤d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
@@ -215,6 +225,7 @@ theorem prepared_private_background_lowComponents (hd : 3≤d) (ho : d%2=1)
       exact ⟨hh.1 ▸ Submodule.zero_mem _,hh.2.1 ▸ Submodule.subset_span ⟨i,rfl⟩,
         hh.2.2 ▸ Submodule.zero_mem _⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Pure restoration changes none of the three low components. -/
 theorem renamed_restored_low_components (hd : 3≤d) (he : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
@@ -244,6 +255,7 @@ theorem renamed_restored_low_components (hd : 3≤d) (he : d%2=0)
     hu.weightedHomogeneousComponent_ne 1 (by omega),
     hu.weightedHomogeneousComponent_ne 2 (by omega),add_zero] using hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The restored even background has no linear piece and retains its original
 scalar and constrained quadratic pieces. The outer family remains separate. -/
 theorem restored_background_lowComponents (hd : 3≤d) (he : d%2=0)

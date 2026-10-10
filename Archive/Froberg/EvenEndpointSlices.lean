@@ -14,7 +14,7 @@ public import Archive.Froberg.PreparedLayeredBudget
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
@@ -31,6 +31,7 @@ local notation "W" => EvenBackgroundTarget hdp Q F
 local notation "T₀" => finrank K (OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
 local notation "j" => finrank K W-e*finrank K V
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenEndpointScalarAction_target_finrank
     (E : Fin e → biformParitySpace K h m d 0)
     (hi : Function.Injective (oddEvenRelativeMap Q₀ F₁ emptyOddFamily E)) :
@@ -40,6 +41,7 @@ theorem evenEndpointScalarAction_target_finrank
   rw [←(evenBackgroundTargetEquiv hdp Q F).finrank_eq,
     ←(evenBackgroundSourceEquiv hdp F).finrank_eq]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem even_actual_thin_open
     (C S : ℝ) (hC : 0 ≤ C)
     (hs₀ : HasClosedKernelSlices (bottomCoordinateScalarAction hdp Q g) (thinSlices T₀ C))

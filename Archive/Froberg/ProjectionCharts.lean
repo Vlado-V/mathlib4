@@ -15,20 +15,23 @@ number of equations imposed on a varying projection. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module Quartic Quartic.SubspaceCharts Quartic.BilinearCovectorCharts
 variable {K : Type*} [Field K] {b t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A graph chart is cut out by its outside coordinates minus its graph. -/
 def graphQuotient (j : Fin t ↪ Fin b) (p : GraphParameters j → K) :
     (Fin b → K) →ₗ[K] (Outside j → K) :=
   outsideProjection j - (parameterMap (graphCoefficients j p)).comp (selectedProjection j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem graphQuotient_ker (j : Fin t ↪ Fin b) (p : GraphParameters j → K) :
     (graphQuotient j p).ker = chartSubspace j (graphCoefficients j p) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem graphQuotient_rank (j : Fin t ↪ Fin b) (p : GraphParameters j → K) :
     finrank K (graphQuotient j p).range = b-t := by
   have hr := LinearMap.finrank_range_add_finrank_ker (graphQuotient j p)
@@ -36,6 +39,7 @@ theorem graphQuotient_rank (j : Fin t ↪ Fin b) (p : GraphParameters j → K) :
     finrank_self,Finset.sum_const,Finset.card_univ,Fintype.card_fin,smul_eq_mul,mul_one] at hr
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Polynomiality remains literal after selecting parameter coordinates. -/
 theorem polynomial_family_reindex {I J V : Type*} [AddCommGroup V] [Module K V]
     {f : (I → K) → V} (hf : IsPolynomialFamily f) (u : I → J) :
@@ -44,6 +48,7 @@ theorem polynomial_family_reindex {I J V : Type*} [AddCommGroup V] [Module K V]
   obtain ⟨P,hP⟩ := hf ell
   exact ⟨MvPolynomial.rename u P,fun p => by simpa only [MvPolynomial.eval_rename] using hP (p ∘ u)⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The graph quotient depends polynomially (in fact affinely) on its entries. -/
 theorem graphQuotient_polynomial (j : Fin t ↪ Fin b) :
     IsPolynomialFamily (graphQuotient (K := K) j) := by
@@ -72,6 +77,7 @@ theorem graphQuotient_polynomial (j : Fin t ↪ Fin b) :
       simp only [map_sum,map_smul,smul_eq_mul,hc]
     _ = ell (graphQuotient j p x) := congrArg ell hs
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The equations imposed by a graph quotient on a varying projection have
 exactly the expected rank, without any generic-rank assumption. -/
 theorem projection_graph_equation_rank {U V : Type*}
@@ -82,6 +88,7 @@ theorem projection_graph_equation_rank {U V : Type*}
       finrank K A.range * (b-t) := by
   rw [sandwichMap_rank,graphQuotient_rank]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Polynomiality of the actual sandwich equations. -/
 theorem polynomial_sandwich_family {I U V W Z : Type*}
     [AddCommGroup U] [Module K U] [FiniteDimensional K U]

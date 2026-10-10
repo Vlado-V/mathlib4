@@ -21,7 +21,7 @@ variable {K M N V : Type*} [Field K]
     [AddCommMonoid V] [Module K V]
 
 set_option backward.isDefEq.respectTransparency false in
-set_option maxHeartbeats 800000 in
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem exists_linearEquiv_of_equal_dimension_range (F : M →ₗ[K] V) (J : N →ₗ[K] V)
     (hJ : Function.Injective J) (himage : LinearMap.range J ≤ LinearMap.range F)
     (hdim : finrank K M = finrank K N) :

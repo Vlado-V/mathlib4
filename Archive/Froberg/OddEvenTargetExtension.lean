@@ -15,12 +15,13 @@ identification to the actual enlarged endpoint odd target. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenScalarOddFamily_append_apply
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin e → biformParitySpace K h m d 0)
@@ -36,6 +37,7 @@ theorem evenScalarOddFamily_append_apply
   simp only [Fin.append_left,Fin.append_right]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenScalarOddFamily_append_range
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin e → biformParitySpace K h m d 0) :
@@ -55,6 +57,7 @@ theorem evenScalarOddFamily_append_range
       rw [evenScalarOddFamily_append_apply]
       simp only [Fin.append_left,Fin.append_right,map_zero,zero_add]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem fullOddRelations_append_even
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -64,6 +67,7 @@ theorem fullOddRelations_append_even
   simp only [fullOddRelations,oddBackgroundRelations,evenScalarOddFamily_append_range]
   ac_rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddEvenRelativeMap
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -72,6 +76,7 @@ def oddEvenRelativeMap
       (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q F G) :=
   ∑ i,(oddBackgroundQuotientProduct Q F G (E i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddEvenRelativeMap_apply
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -80,6 +85,7 @@ def oddEvenRelativeMap
     oddEvenRelativeMap Q F G E a=∑ i,oddBackgroundQuotientProduct Q F G (E i) (a i) := by
   simp only [oddEvenRelativeMap,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenRelativeMap_add
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -90,6 +96,7 @@ theorem oddEvenRelativeMap_add
   intro a
   simp only [oddEvenRelativeMap_apply,map_add,LinearMap.add_apply,Finset.sum_add_distrib]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenRelativeMap_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -103,6 +110,7 @@ theorem oddEvenRelativeMap_mk
   simp only [evenScalarOddFamily,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply]
   rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddEvenRelativeMap_range
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -121,6 +129,7 @@ theorem oddEvenRelativeMap_range
   · rintro ⟨_,⟨a,rfl⟩,rfl⟩
     exact ⟨_,oddEvenRelativeMap_mk Q F G E a⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddEvenTargetExtensionEquiv
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -132,6 +141,7 @@ def oddEvenTargetExtensionEquiv
     ((Submodule.quotientQuotientEquivQuotientSup _ _).trans
       (Submodule.quotEquivOfEq _ _ (fullOddRelations_append_even Q F G E).symm))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddEvenEndpointExtensionEquiv
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

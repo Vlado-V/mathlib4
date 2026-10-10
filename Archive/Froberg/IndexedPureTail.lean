@@ -15,12 +15,13 @@ The family is chosen from the actual kernel of the projection. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Filter Module Quartic
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem exists_indexed_submodule_basis {V : Type*} [AddCommGroup V] [Module K V]
     [Module.Finite K V] (W : Submodule K V) {u : ℕ} (hu : finrank K W=u) :
     ∃ v : Fin u → V,LinearIndependent K v ∧ Submodule.span K (Set.range v)=W := by
@@ -31,6 +32,7 @@ theorem exists_indexed_submodule_basis {V : Type*} [AddCommGroup V] [Module K V]
     Function.comp_def,Submodule.subtype_apply]
     using hs
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem formDegreeEquiv_cutoff {h a b : ℕ} (hab : a=b)
     (W : Submodule K (Forms K h a))
     (hW : BilinearImage.image (gradedMultiplication (K := K) (n := h)
@@ -41,6 +43,7 @@ theorem formDegreeEquiv_cutoff {h a b : ℕ} (hab : a=b)
   have ht : (formDegreeEquiv (K := K) (n := h) (rfl : a=a)).toLinearMap=LinearMap.id := rfl
   simpa only [ht,Submodule.map_id] using hW
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem eventually_indexed_odd_tail_projection {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :
     ∀ᶠ h : ℕ in atTop,
       ∃ (U : Fin (tailGeneratorCount d h) → Forms K h d)
@@ -83,6 +86,7 @@ theorem eventually_indexed_odd_tail_projection {d : ℕ} (hd : 3 ≤ d) (ho : Od
   · rw [hspan]
     exact formDegreeEquiv_cutoff heq R.ker hcut
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 /-- All pure-family inputs to the actual odd endpoint construction. -/
 structure OddPureProjectionData (K : Type) [Field K] (d h : ℕ) (hd : 1 ≤ d) where
   U : Fin (tailGeneratorCount d h) → Forms K h d
@@ -99,6 +103,7 @@ structure OddPureProjectionData (K : Type) [Field K] (d h : ℕ) (hd : 1 ≤ d) 
   ratio : (h : ℝ)/(2*((1+(d-1) : ℕ) : ℝ)) ≤
     (topComplementCount d h : ℝ)/((h+(d-1)-1).choose (d-1) : ℝ)
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem eventually_odd_pure_projection_data {d : ℕ} (hd : 3 ≤ d) (ho : Odd d) :
     ∀ᶠ h : ℕ in atTop,Nonempty (OddPureProjectionData K d h (by omega)) := by
   filter_upwards [eventually_indexed_odd_tail_projection (K := K) hd ho,

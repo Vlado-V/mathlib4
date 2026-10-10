@@ -14,13 +14,14 @@ public import Archive.Froberg.PreparedPrivateFinite
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_finite_reduction_open_of_core_products {w v z d q t c b₂ H : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}

@@ -15,11 +15,12 @@ output module and all output constraints. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open scoped Topology
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem eventually_field_uniform_actual_middle_small_witnesses_shift {d : ℕ}
     (hd : 5≤d) (hd8 : d≤8) :
     ∀ᶠ w : ℕ in atTop,4∣2*w →

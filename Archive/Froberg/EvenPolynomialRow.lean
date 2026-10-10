@@ -16,13 +16,14 @@ and all formal products. Its only kernel is the literal constant Koszul source. 
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 variable {n s d R h H m r : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Combine the two independent detections and the free-output extension in
 the actual ambient polynomial ring. -/
 theorem even_polynomial_row_kernel

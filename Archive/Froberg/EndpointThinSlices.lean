@@ -14,11 +14,12 @@ endpoint target, using the proved relative injection. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddEndpointScalarAction_target_finrank
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -32,6 +33,7 @@ theorem oddEndpointScalarAction_target_finrank
   rw [←(oddEvenEndpointExtensionEquiv Q F G E).finrank_eq]
   exact Nat.eq_sub_of_add_eq (injective_pi_quotient_finrank (oddEvenRelativeMap Q F G E) hi).symm
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddEndpointScalarAction_closed_thin_slices
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

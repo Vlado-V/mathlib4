@@ -14,24 +14,28 @@ component formula in each degree. This applies also to degree 2*d. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Finset
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev EvenBiformCoordinates (K : Type) [Field K] (h m d : ℕ) :=
   (r : Fin (d/2+1)) → Forms K h (2*r.val) ⊗[K] Forms K m (d-(2*r.val))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def allEvenCoefficientAssembly : EvenBiformCoordinates K h m d →ₗ[K] biformParitySpace K h m d 0 :=
   ∑ r : Fin (d/2+1),
     (evenBiformEmbedding (t := 2*r.val) (by omega) (by omega)).comp (LinearMap.proj r)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem allEvenCoefficientAssembly_val (v : EvenBiformCoordinates K h m d) :
     (allEvenCoefficientAssembly v).val=∑ r,sumBiformMap (v r) := by
   simp [allEvenCoefficientAssembly]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem allEvenCoefficientAssembly_component (v : EvenBiformCoordinates K h m d)
     (r : Fin (d/2+1)) :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val) (allEvenCoefficientAssembly v).val=
@@ -52,6 +56,7 @@ theorem allEvenCoefficientAssembly_component (v : EvenBiformCoordinates K h m d)
       omega)
   · simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem allEvenCoefficientAssembly_injective :
     Function.Injective (allEvenCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v z he
@@ -61,6 +66,7 @@ theorem allEvenCoefficientAssembly_injective :
     weightedHomogeneousComponent (blockWeight h m) (2*r.val) x.val) he
   simpa only [allEvenCoefficientAssembly_component] using hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem allEvenCoefficientAssembly_surjective :
     Function.Surjective (allEvenCoefficientAssembly (K := K) (h := h) (m := m) (d := d)) := by
   intro v
@@ -81,15 +87,18 @@ theorem allEvenCoefficientAssembly_surjective :
   exact (all_even_homogeneous_components (blockWeight h m)
     (by intro x; cases x <;> simp [blockWeight]) v.val v.property.1 hpar).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def evenBiformCoordinatesEquiv :
     biformParitySpace K h m d 0 ≃ₗ[K] EvenBiformCoordinates K h m d :=
   (LinearEquiv.ofBijective allEvenCoefficientAssembly
     ⟨allEvenCoefficientAssembly_injective,allEvenCoefficientAssembly_surjective⟩).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem evenBiformCoordinatesEquiv_symm_val (v : EvenBiformCoordinates K h m d) :
     (evenBiformCoordinatesEquiv.symm v).val=∑ r,sumBiformMap (v r) :=
   allEvenCoefficientAssembly_val v
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 0)
     (r : Fin (d/2+1)) :
     sumBiformMap (evenBiformCoordinatesEquiv v r)=
@@ -101,6 +110,7 @@ theorem evenBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 0)
   rw [hv] at hc
   exact hc.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem finrank_even_biform_space (hh : 0 < h) (hm : 0 < m) :
     finrank K (biformParitySpace K h m d 0)=
       ∑ r : Fin (d/2+1),

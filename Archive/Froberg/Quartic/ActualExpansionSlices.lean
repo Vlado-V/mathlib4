@@ -19,8 +19,9 @@ open Module MvPolynomial RowMultiplicationCoordinates HomogeneousCoefficientCoor
 open UniformEndpoint ProfileCertificate PolynomialBilinearCoordinates
 open BilinearCovectorCharts BilinearCoefficientKernel ConvolutionClosedSlices
 variable {K : Type*} [Field K] {m c : ℕ}
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Products of actual row-linear forms with quadrics span every row-cubic. -/
 theorem row_image_top : BilinearImage.image (multiplication (K := K) (m := m)) ⊤=⊤ := by
   classical
@@ -48,19 +49,26 @@ theorem row_image_top : BilinearImage.image (multiplication (K := K) (m := m)) �
   rw [←he]
   exact Submodule.sum_mem _ (fun j _ => hj j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev MixedSpace (g : Fin c → Rows K m 1) := Submodule.span K (Set.range g)
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Relations (g : Fin c → Rows K m 1) := BilinearImage.image multiplication (MixedSpace g)
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Source (g : Fin c → Rows K m 1) := (Rows K m 1) ⧸ MixedSpace g
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Target (g : Fin c → Rows K m 1) := (Rows K m 3) ⧸ Relations g
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def quotientMul (g : Fin c → Rows K m 1) := QuotientBilinearImage.quotientMap multiplication (MixedSpace g)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_image_top (g : Fin c → Rows K m 1) : BilinearImage.image (quotientMul g) ⊤=⊤ := by
   rw [quotientMul,QuotientBilinearImage.image_eq_map multiplication (MixedSpace g) (Relations g)
     (QuotientBilinearImage.quotientMap multiplication (MixedSpace g)) (fun _ _ => rfl)]
   rw [Submodule.comap_top,row_image_top,Submodule.map_top]
   exact (Relations g).range_mkQ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal quotient multiplication, using fixed coordinate equivalences
 only after the mixed presentation has been fixed. -/
 def actualMu {a T : ℕ} (g : Fin c → Rows K m 1)
@@ -68,6 +76,7 @@ def actualMu {a T : ℕ} (g : Fin c → Rows K m 1)
     (Fin (FormCount m 2) → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K) :=
   (conjugate eV eW (quotientMul g)).comp finiteEquiv.symm.toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem actual_image {a T : ℕ} (g : Fin c → Rows K m 1)
     (eV : Source g ≃ₗ[K] (Fin a → K)) (eW : Target g ≃ₗ[K] (Fin T → K))
     (S : Submodule K (Fin a → K)) :
@@ -75,6 +84,7 @@ theorem actual_image {a T : ℕ} (g : Fin c → Rows K m 1)
       (BilinearImage.image (quotientMul g) (S.map eV.symm.toLinearMap)).map eW.toLinearMap := by
   rw [actualMu,image_precompose,image_conjugate]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem actual_image_finrank {a T : ℕ} (g : Fin c → Rows K m 1)
     (eV : Source g ≃ₗ[K] (Fin a → K)) (eW : Target g ≃ₗ[K] (Fin T → K))
     (S : Submodule K (Fin a → K)) :
@@ -82,11 +92,13 @@ theorem actual_image_finrank {a T : ℕ} (g : Fin c → Rows K m 1)
       finrank K (BilinearImage.image (quotientMul g) (S.map eV.symm.toLinearMap)) := by
   rw [actual_image,LinearEquiv.finrank_map_eq]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem actual_image_top {a T : ℕ} (g : Fin c → Rows K m 1)
     (eV : Source g ≃ₗ[K] (Fin a → K)) (eW : Target g ≃ₗ[K] (Fin T → K)) :
     BilinearImage.image (actualMu g eV eW) ⊤=⊤ := by
   rw [actual_image,Submodule.map_top,eV.symm.range,quotient_image_top,Submodule.map_top,eW.range]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The endpoint signs are available uniformly, including the finite range. -/
 theorem dimension_signs (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     0 < Counts.j m (upperEndpoint m) (mixedCount m upper) ∧
@@ -99,19 +111,23 @@ theorem dimension_signs (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
   · have h := UniformScalar.structural_dimension_signs m (by omega) upper
     exact ⟨h.1,h.2.1,h.2.2.1⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def correctionCount (m : ℕ) (upper : Bool) : ℕ :=
   (Counts.H m (upperEndpoint m) (mixedCount m upper)+3+Counts.delta m (upperEndpoint m)).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def slices (m : ℕ) (upper : Bool) : ℕ → ℕ :=
   ExpansionClosedSlices.sliceCount (2*m+2*mixedCount m upper) (correctionCount m upper)
     (mixedCount m upper) (Counts.j m (upperEndpoint m) (mixedCount m upper)).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem correctionCount_cast (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     (correctionCount m upper:ℤ)=Counts.H m (upperEndpoint m) (mixedCount m upper)+3+
       Counts.delta m (upperEndpoint m) := by
   have h := dimension_signs m hm upper
   exact Int.toNat_of_nonneg (by omega)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual quotient target has precisely the integer source count T. -/
 theorem target_finrank_cast (g : Fin c → Rows K m 1) (hg : LinearIndependent K g)
     (e₀ : ℕ) (hzero : RowExpansionOpen.Expands g c (e₀+c*(m+1).choose 2)) :
@@ -129,6 +145,7 @@ theorem target_finrank_cast (g : Fin c → Rows K m 1) (hg : LinearIndependent K
   unfold UniformScalar.targetCount Counts.b2 Counts.b3
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact quotient-target surplus at the canonical endpoints. -/
 theorem surplus_cast (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
     (g : Fin (mixedCount m upper) → Rows K m 1) (hg : LinearIndependent K g)
@@ -152,6 +169,7 @@ theorem surplus_cast (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
     exact_mod_cast this
   exact ⟨hle,by rw [Nat.cast_sub hle,Nat.cast_mul]; exact he⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The attained ambient expansion bounds become the scalar incidence
 bounds for every actual quotient subspace. -/
 theorem actual_scalar_bounds (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
@@ -204,6 +222,7 @@ theorem actual_scalar_bounds (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
   simp only [Nat.cast_add,Nat.cast_mul,Nat.cast_ofNat,hcorR] at hs
   simpa only [Int.cast_one] using hs
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- On an actual expanded mixed presentation, one genuine principal open
 chooses a shared child tuple and all closed-threshold slices. -/
 theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
@@ -241,6 +260,7 @@ theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 28 ≤ m) (upp
         actual_scalar_bounds m hm upper g hg E hE hexp eV eW S hlo hhi) ell hell
   simpa only [hsurN,slices] using h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Products with the mixed generators are exactly the relations killed
 before quotient covectors are formed. -/
 theorem annihilates_relations (g : Fin c → Rows K m 1) (ell : Rows K m 3 →ₗ[K] K)
@@ -254,6 +274,7 @@ theorem annihilates_relations (g : Fin c → Rows K m 1) (ell : Rows K m 3 →�
     exact hE j f
   exact hh hv
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Any actual quotient-slice witness lifts to literal row-cubic slices.
 This retains both shared child coefficients and the exact ambient kernel shift. -/
 theorem lift_closed_slices {a T q : ℕ} (g : Fin c → Rows K m 1) (hg : LinearIndependent K g)
@@ -312,6 +333,7 @@ theorem lift_closed_slices {a T q : ℕ} (g : Fin c → Rows K m 1) (hg : Linear
   have hh := DFunLike.congr_fun heQ ((Relations g).mkQ w)
   exact hh
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The lifted slices in the fixed ambient monomial coordinates used by
 the two actual motion matrices. -/
 theorem lift_closed_slices_coordinates {a T q : ℕ} (g : Fin c → Rows K m 1)
@@ -355,6 +377,7 @@ theorem lift_closed_slices_coordinates {a T q : ℕ} (g : Fin c → Rows K m 1)
   rw [←hdual]
   exact (AmbientCovectorTransport.dualCoordinates_eq_zero_iff rowFiniteEquiv ell).mpr hz
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An arbitrary additional child-coefficient principal open can be
 intersected without changing the fixed mixed presentation or any threshold. -/
 theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
@@ -414,6 +437,7 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
     simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using hh
   · simpa only [LinearEquiv.apply_symm_apply] using hZ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The slice budget is exactly the motion budget with an integer target
 surplus; this is the form consumed by the actual ambient motion matrices. -/
 theorem slices_eq (m : ℕ) (upper : Bool) (d : ℕ) :

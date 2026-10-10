@@ -13,11 +13,12 @@ columns. The only target dimension cost is 2h−1. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module
 variable {K : Type*} [Field K] [Infinite K] {h b c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A single quadratic detector retains each private column injectively and
 retains precisely the one-dimensional classical overlap of every pair. -/
 theorem exists_detected_private_outputs (hh : 0<h) (hc : 2*h-1≤c)

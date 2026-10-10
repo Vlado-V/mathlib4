@@ -31,26 +31,30 @@ coefficient injection.
 noncomputable section
 namespace Quartic.MovingMiddleCorrection
 open Module HomologyCoordinates AugmentedMiddle AugmentedGeneric
-set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K]
 
 section Traces
 variable {S A : Type*} [AddCommGroup S] [Module K S]
   [AddCommGroup A] [Module K A]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def traceMap (r : Fin 4 → A) (U : Submodule K A) :
     (U × BlockHomology K) →ₗ[K] A × A :=
   (U.subtype.prod (-U.subtype)).coprod (pureTrace r)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem traceMap_apply (r : Fin 4 → A) (U : Submodule K A)
     (a : U) (ξ : BlockHomology K) :
     traceMap r U (a,ξ) = (a.val + (pureTrace r ξ).1, -a.val + (pureTrace r ξ).2) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem augmented_decomposition (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (U : Submodule K A) (b : S) (a : U) (ξ : BlockHomology K) :
     augmented F r (b,a.val,ξ) = F b + traceMap r U (a,ξ) := by
   apply Prod.ext <;> simp [augmented_apply, sub_eq_add_neg, add_assoc]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem product_injective (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (ha : Function.Injective (augmented F r)) : Function.Injective F := by
   intro b b' h
@@ -59,6 +63,7 @@ theorem product_injective (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     exact Prod.ext (congrArg Prod.fst h) (congrArg Prod.snd h)
   exact congrArg Prod.fst (ha he)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem traceMap_injective (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (ha : Function.Injective (augmented F r)) (U : Submodule K A) :
     Function.Injective (traceMap r U) := by
@@ -70,6 +75,7 @@ theorem traceMap_injective (F : S →ₗ[K] A × A) (r : Fin 4 → A)
   · exact Subtype.ext (congrArg Prod.fst hz)
   · exact congrArg (fun p : A × BlockHomology K => p.2) hz
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem product_disjoint_trace (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (ha : Function.Injective (augmented F r)) (U : Submodule K A) :
     Disjoint F.range (traceMap r U).range := by
@@ -82,6 +88,7 @@ theorem product_disjoint_trace (F : S →ₗ[K] A × A) (r : Fin 4 → A)
   have hb0 : b = 0 := congrArg Prod.fst (ha he)
   simpa only [hb0, map_zero] using hb.symm
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem traceMap_finrank [FiniteDimensional K A]
     (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (ha : Function.Injective (augmented F r)) (U : Submodule K A) :
@@ -94,15 +101,18 @@ end Traces
 section Actual
 variable {m c q : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def discarded (g : Fin c → MiddleCoordinates.Mixed K m) :
     Submodule K (Fin c → MiddleCoordinates.Mixed K m) :=
   Submodule.pi Set.univ (fun _ => Submodule.span K (Set.range g))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem mem_discarded (g : Fin c → MiddleCoordinates.Mixed K m)
     (a : Fin c → MiddleCoordinates.Mixed K m) :
     a ∈ discarded g ↔ ∀ i, a i ∈ Submodule.span K (Set.range g) := by
   simp [discarded, Submodule.mem_pi]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def discardedEquiv (g : Fin c → MiddleCoordinates.Mixed K m) :
     discarded g ≃ₗ[K] (Fin c → Submodule.span K (Set.range g)) where
   toFun a i := ⟨a.val i, (mem_discarded g a.val).mp a.property i⟩
@@ -112,6 +122,7 @@ def discardedEquiv (g : Fin c → MiddleCoordinates.Mixed K m) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 set_option backward.isDefEq.respectTransparency false in
 theorem discarded_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (hg : LinearIndependent K g) : finrank K (discarded g) = c*c := by
@@ -120,6 +131,7 @@ theorem discarded_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [Module.finrank_pi_fintype]
   simp [finrank_span_eq_card hg]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem boundary_le_discarded (g : Fin c → MiddleCoordinates.Mixed K m) :
     SplitBlock22.mixedKoszulSpace g ≤ discarded g := by
   apply Submodule.span_le.mpr
@@ -132,6 +144,7 @@ theorem boundary_le_discarded (g : Fin c → MiddleCoordinates.Mixed K m) :
   · split_ifs <;> first | exact Submodule.subset_span ⟨_,rfl⟩ | exact Submodule.zero_mem _
   · split_ifs <;> first | exact Submodule.subset_span ⟨_,rfl⟩ | exact Submodule.zero_mem _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem multiplication_single (g : Fin c → MiddleCoordinates.Mixed K m)
     (i : Fin c) (a : MiddleCoordinates.Mixed K m) :
     MiddleCoordinates.multiplication g (Pi.single i a) = MiddleCoordinates.projectedProduct (g i) a := by
@@ -144,6 +157,7 @@ theorem multiplication_single (g : Fin c → MiddleCoordinates.Mixed K m)
   simp_rw [he]
   simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem discarded_image (g : Fin c → MiddleCoordinates.Mixed K m) :
     (discarded g).map (MiddleCoordinates.multiplication g) = (productMap g).range := by
   classical
@@ -173,16 +187,19 @@ theorem discarded_image (g : Fin c → MiddleCoordinates.Mixed K m) :
       · rw [multiplication_single, productMap_monomial]
     exact he (Submodule.mem_top)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def quotientProduct (g : Fin c → MiddleCoordinates.Mixed K m)
     (Q : Submodule K (Forms K m 2)) : Forms K c 2 →ₗ[K] (Forms K m 2 ⧸ Q) × (Forms K m 2 ⧸ Q) :=
   (Q.mkQ.prodMap Q.mkQ).comp (productMap g)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem discarded_quotient_image (g : Fin c → MiddleCoordinates.Mixed K m)
     (Q : Submodule K (Forms K m 2)) :
     (discarded g).map (MiddleCoordinates.quotientMap g Q) = (quotientProduct g Q).range := by
   rw [MiddleCoordinates.quotientMap, Submodule.map_comp, discarded_image,
     quotientProduct, LinearMap.range_comp]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Rank-nullity on a coefficient subspace, retaining its actual intersection kernel. -/
 theorem finrank_map_add_inf_ker {V W : Type*} [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] [FiniteDimensional K V]
@@ -198,6 +215,7 @@ theorem finrank_map_add_inf_ker {V W : Type*} [AddCommGroup V] [Module K V]
     (show D ⊓ F.ker ≤ D from inf_le_left)).finrank_eq] at hr
   exact hr
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 private theorem symmetric_alternating_count (c : ℕ) :
     (c+1).choose 2 + c.choose 2 = c*c := by
   have h₁ := Nat.choose_succ_succ c 1
@@ -205,6 +223,7 @@ private theorem symmetric_alternating_count (c : ℕ) :
   simp only [Nat.choose_one_right] at h₁ h₂
   nlinarith
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Exactness on coefficients entirely contained in the mixed generator space. -/
 theorem discarded_inter_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
     (Q : Submodule K (Forms K m 2)) (hg : LinearIndependent K g)
@@ -225,6 +244,7 @@ theorem discarded_inter_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
   have hc := symmetric_alternating_count c
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual marked and pure trace subspace, with the marked child subspace explicit. -/
 def traceSpace (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :
@@ -232,6 +252,7 @@ def traceSpace (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
       (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :=
   (traceMap (fun i => (Submodule.span K (Set.range h)).mkQ (r i)) markedU).range
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- No quotient-rank assumption: the actual augmented map supplies trace independence. -/
 theorem traceSpace_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -240,6 +261,7 @@ theorem traceSpace_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     finrank K (traceSpace h r markedU) = finrank K markedU + 3 :=
   traceMap_finrank (quotientProduct g _) _ ha markedU
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem discarded_image_disjoint_trace (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (ha : Function.Injective (quotientAugmented (productMap g) h r))
@@ -249,6 +271,7 @@ theorem discarded_image_disjoint_trace (g : Fin c → MiddleCoordinates.Mixed K 
   rw [discarded_quotient_image]
   exact product_disjoint_trace (quotientProduct g _) _ ha markedU
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The only correction coefficients discarded modulo the mixed generators are boundaries. -/
 theorem discarded_inter_correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -262,6 +285,7 @@ theorem discarded_inter_correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (discarded_image_disjoint_trace g h r ha markedU)
     (discarded_inter_kernel g _ hg (product_injective (quotientProduct g _) _ ha))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual correction space, modulo the actual alternating mixed boundaries. -/
 abbrev Correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -270,6 +294,7 @@ abbrev Correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))
     (SplitBlock22.mixedKoszulSpace g) (traceSpace h r markedU)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Coordinatewise coefficient reduction modulo the actual mixed generator space. -/
 def coefficientProjection (g : Fin c → MiddleCoordinates.Mixed K m) :
     (Fin c → MiddleCoordinates.Mixed K m) →ₗ[K]
@@ -280,19 +305,23 @@ def coefficientProjection (g : Fin c → MiddleCoordinates.Mixed K m) :
     ext i
     exact (Submodule.span K (Set.range g)).mkQ.map_smul s (a i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientProjection_apply (g : Fin c → MiddleCoordinates.Mixed K m)
     (a : Fin c → MiddleCoordinates.Mixed K m) (i : Fin c) :
     coefficientProjection g a i = (Submodule.span K (Set.range g)).mkQ (a i) := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def coefficientQuotientEquiv (g : Fin c → MiddleCoordinates.Mixed K m) :
     ((Fin c → MiddleCoordinates.Mixed K m) ⧸ discarded g) ≃ₗ[K]
       (Fin c → MiddleCoordinates.Mixed K m ⧸ Submodule.span K (Set.range g)) :=
   Submodule.quotientPi (fun _ : Fin c => Submodule.span K (Set.range g))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientQuotientEquiv_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (a : Fin c → MiddleCoordinates.Mixed K m) :
     coefficientQuotientEquiv g ((discarded g).mkQ a) = coefficientProjection g a := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual coefficient map on the correction quotient. -/
 def coefficientMap (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -302,6 +331,7 @@ def coefficientMap (g : Fin c → MiddleCoordinates.Mixed K m)
   (coefficientQuotientEquiv g).toLinearMap.comp
     (CorrectionSpace.correctionCoefficientMap _ _ _ _ (boundary_le_discarded g))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientMap_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
@@ -309,6 +339,7 @@ def coefficientMap (g : Fin c → MiddleCoordinates.Mixed K m)
       (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))) :
     coefficientMap g h r markedU (Submodule.Quotient.mk a) = coefficientProjection g a.val := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual coefficient injection, derived from augmented injectivity. -/
 theorem coefficientMap_injective (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -320,6 +351,7 @@ theorem coefficientMap_injective (g : Fin c → MiddleCoordinates.Mixed K m)
     (CorrectionSpace.correctionCoefficientMap_injective _ _ _ _
       (boundary_le_discarded g) (discarded_inter_correction g h r hg ha markedU))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual projected coefficient image, defined before quotienting any boundaries. -/
 def coefficientImage (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -328,6 +360,7 @@ def coefficientImage (g : Fin c → MiddleCoordinates.Mixed K m)
   ((traceSpace h r markedU).comap
     (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection g)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :
@@ -340,6 +373,7 @@ theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)
     intro a
     exact ⟨a.val, a.property, (coefficientMap_mk g h r markedU a).symm⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Dimension of the actual correction space, with the marked coefficient dimension explicit. -/
 theorem correction_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -355,6 +389,7 @@ theorem correction_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
   change finrank K (SplitBlock22.MiddleHomology g h) + (finrank K markedU + 3) = _
   omega
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual coordinate-quotient coefficient image has the required transfer dimension. -/
 theorem coefficientImage_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
@@ -372,6 +407,7 @@ theorem coefficientImage_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
   push_cast
   rw [SplitBlock22.homology_finrank_eq_H g h hg hh hs]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Numerical form after separately identifying the marked child coefficient dimension. -/
 theorem coefficientImage_finrank_of_marked (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)

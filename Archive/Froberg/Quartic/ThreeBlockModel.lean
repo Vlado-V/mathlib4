@@ -50,7 +50,7 @@ def separatingExponents : Fin 4 → (Fin 3 →₀ ℕ) :=
     Finsupp.single 1 1 + Finsupp.single 2 1, Finsupp.single 0 2]
 
 set_option maxRecDepth 4096 in
-set_option maxHeartbeats 2000000 in
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem separating_coefficients (i j : Fin 4) :
     (quadrics (K := K) j).coeff (separatingExponents i) = if i = j then 1 else 0 := by
   fin_cases i <;> fin_cases j <;>
@@ -92,7 +92,7 @@ theorem cubicMonomials_mem_product (i : Fin 10) :
   rw [← cubicPreimages_spec]
   exact relation_mem_cubic_product _ (cubicPreimages_homogeneous i)
 
-set_option maxHeartbeats 2000000 in
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem triple_variable_product_mem (i j k : Fin 3) :
     (X i * X j) * X k ∈ blockSpace (K := K) * Quartic.Forms K 3 1 := by
   fin_cases i <;> fin_cases j <;> fin_cases k

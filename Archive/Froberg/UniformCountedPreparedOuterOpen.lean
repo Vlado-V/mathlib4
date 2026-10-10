@@ -14,12 +14,13 @@ public import Archive.Froberg.UniformSharedQuadraticFrame
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Filter MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters PrivateColumns
 open scoped Topology
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_uniform_prepared_outer_open_from_shared_detector {d h : ℕ}
     (hd : 3≤d) (ho : d%2=1) (hh : 0 < h) (r f : ℕ → ℕ)
     (hr : Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
@@ -60,6 +61,7 @@ theorem eventually_uniform_prepared_outer_open_from_shared_detector {d h : ℕ}
     (Function.Embedding.refl (Fin u)) hker' Q hQ o hdet C hCdeg hC hCQ
     (by simpa only [Fintype.card_fin] using hcap)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_uniform_counted_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=1) :
     ∀ᶠ h : ℕ in atTop, ∀ (r f : ℕ → ℕ),
       Tendsto (fun n : ℕ => (r n : ℝ)/(n : ℝ)^d)
@@ -93,6 +95,7 @@ theorem eventually_uniform_counted_prepared_outer_open {d : ℕ} (hd : 3≤d) (h
   exact hn K J counts O hO hJ heven hmin idx _ e L w o
     (hO₂.trans (quadraticPolynomialDetector_frame frame L hL)) hdet hker
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eventually_uniform_allEven_prepared_outer_open {d : ℕ} (hd : 3≤d) (ho : d%2=1) :
     ∀ᶠ h : ℕ in atTop, ∀ (e f : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →

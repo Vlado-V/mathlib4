@@ -16,17 +16,19 @@ diagonal factors in the product row. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*}
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 def biformImage (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) : Submodule K (MvPolynomial (σ ⊕ τ) K) :=
   (LinearMap.range (TensorProduct.map O.subtype C.subtype)).map
     (MvPolynomial.tensorEquivSum K σ τ K).toLinearMap
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Full finite tensor capacity in the sum-variable polynomial model. -/
 theorem exists_independent_sum_biforms (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) [Module.Finite K O] [Module.Finite K C]
@@ -38,6 +40,7 @@ theorem exists_independent_sum_biforms (O : Submodule K (MvPolynomial σ K))
   refine ⟨fun i => e (a i),fun i => ⟨a i,ha i,rfl⟩,?_⟩
   exact hi.map' e.toLinearMap (LinearMap.ker_eq_bot.mpr e.injective)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Homogeneous biforms have the sum of their two total degrees. -/
 theorem biformImage_homogeneous (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {j t : ℕ}
@@ -51,6 +54,7 @@ theorem biformImage_homogeneous (O : Submodule K (MvPolynomial σ K))
     exact (hO a.property).rename_isHomogeneous.mul (hC b.property).rename_isHomogeneous
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Scalar weight, complementary to output weight, in a sum of variables. -/
 theorem biformImage_scalar_weight (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {t : ℕ}
@@ -72,6 +76,7 @@ theorem biformImage_scalar_weight (O : Submodule K (MvPolynomial σ K))
     simpa only [zero_add] using hl.mul hr
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Output degree of every biform, independently of scalar coefficients. -/
 theorem biformImage_output_weight (O : Submodule K (MvPolynomial σ K))
     (C : Submodule K (MvPolynomial τ K)) {j : ℕ}
@@ -79,6 +84,7 @@ theorem biformImage_output_weight (O : Submodule K (MvPolynomial σ K))
     biformImage O C ≤ weightedHomogeneousSubmodule K (FourBlocks.outputWeight (A := σ) (B := τ)) j :=
   tensorImage_weighted (fun _ => 1) O C hO
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- A finite cross-pair witness, with exact output and scalar half-degrees
 and genuinely independent products in one common four-block variable set. -/
 theorem exists_fourBlock_cross_pair
@@ -113,6 +119,7 @@ theorem exists_fourBlock_cross_pair
     exact ⟨(biformImage_homogeneous O₂ C₂ hO₂ hC₂ (hg i)).rename_isHomogeneous,
       FourBlocks.rightVar_weighted_output (g i),FourBlocks.rightVar_weighted_scalar (g i)⟩
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Project a pair-valued weight grading to its first coordinate. -/
 theorem weightedHomogeneous_fst {υ : Type*} [Fintype υ]
     (w : υ → ℕ × ℕ) {p : MvPolynomial υ K} {a b : ℕ}
@@ -125,6 +132,7 @@ theorem weightedHomogeneous_fst {υ : Type*} [Fintype υ]
     simp
   rw [he,hp hα]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Arbitrary scalar weight is preserved by the second tensor factor. -/
 theorem biformImage_right_weight (w : τ → ℕ)
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (MvPolynomial τ K))
@@ -146,6 +154,7 @@ theorem biformImage_right_weight (w : τ → ℕ)
     simpa only [zero_add] using hl.mul hr
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- A diagonal-pair witness at the exact paired capacity, in the common
 four-block polynomial ring and with both half-degrees explicitly recorded. -/
 theorem exists_fourBlock_diagonal_pair (w v j t m : ℕ)

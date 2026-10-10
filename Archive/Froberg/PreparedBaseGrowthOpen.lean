@@ -15,13 +15,14 @@ leaving all positive-row and private parameters free. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b t : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem prepared_base_growth_open (hd : 1 ≤ d)
     (hO : ∀ j∈J,O j≤Forms K h j)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
@@ -39,6 +40,7 @@ theorem prepared_base_growth_open (hd : 1 ≤ d)
   obtain ⟨D,hD,hgood⟩ := hgrowth
   exact prepared_base_principal_pullback hO D hD (BaseC4GrowthProperty hd R t) hgood
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem restored_base_ordinary_growth_open
     (hO : ∀ j∈J,O j≤Forms K h j)
     (hgrowth : HasOddScalarLayersOpen K h m d f q t) :

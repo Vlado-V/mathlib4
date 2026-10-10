@@ -13,7 +13,7 @@ separate span costs and one common projective scaling. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.ProjectiveTupleCharts Quartic.ProjectiveKernelIncidence
@@ -22,6 +22,7 @@ variable {K V W : Type*} [Field K] [Infinite K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   {a₁ a₂ q₁ q₂ : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The locus with both coefficient families nonzero is excluded on one
 nonempty principal open under the exact two-span incidence budget. -/
 theorem two_family_nonzero_open
@@ -64,6 +65,7 @@ theorem two_family_nonzero_open
   rw [hF,map_smul,LinearMap.smul_apply] at hz
   exact (smul_eq_zero.mp hz).resolve_left hs
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact two-family coefficient incidence, including loci where either
 family of relation coefficients is zero. -/
 theorem two_family_generic_injective

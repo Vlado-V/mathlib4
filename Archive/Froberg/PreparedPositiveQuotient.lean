@@ -15,12 +15,13 @@ independent modulo the entire scalar form space used in flag replacement. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem positive_private_forms_scalar_independent (hd : 1<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j)
     (hJ : ∀ j∈J,0<counts j → j<d)
@@ -39,6 +40,7 @@ theorem positive_private_forms_scalar_independent (hd : 1<d)
   apply scalar_quotient_independence_transport
   simpa only [hg] using positive_private_scalar_independent hd hO hmin hJ p hp U hU P W hP hW hPi
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem prepared_positive_endpoint_scalar_independent (hd : 1<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j)
     (hJ : ∀ j∈J,j≤d) (hJlt : ∀ j∈J,0<counts j → j<d)
@@ -69,6 +71,7 @@ theorem prepared_positive_endpoint_scalar_independent (hd : 1<d)
     rw [PreparedTarget.zeroScalarEndpointFamily_back]
     rfl
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem restored_positive_endpoint_scalar_independent (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j) (hJlt : ∀ j∈J,0<counts j → j<d)

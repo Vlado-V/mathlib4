@@ -15,23 +15,29 @@ linear-form and scalar-form coefficients. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h n d qO qS t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 abbrev OddScalarParameters (K : Type*) [Field K] (h n d qO qS : ℕ) :=
   (Fin qO → Forms K h 1 ⊗[K] Forms K n (d-1)) × (Fin qS → Forms K n d)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddScalarBiformParameters : OddScalarParameters K h n d qO qS →ₗ[K]
     OddLayerParameters K h n d qO qS :=
   (LinearMap.fst K _ _).prod
     ((scalarBiformEquiv (K := K) (h := h) (n := n) (d := d)).toLinearMap.compLeft
       (Fin qS) |>.comp (LinearMap.snd K _ _))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddScalarBiformParameters_surjective :
     Function.Surjective (oddScalarBiformParameters (K := K) (h := h) (n := n)
       (d := d) (qO := qO) (qS := qS)) := by
@@ -44,6 +50,8 @@ theorem oddScalarBiformParameters_surjective :
 
 attribute [local irreducible] OddScalarLayerProperty
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem odd_scalar_forms_open (hopen : HasOddScalarLayersOpen K h n d qO qS t) :
     ∃ D : MvPolynomial (Fin (finrank K (OddScalarParameters K h n d qO qS))) K,
       (∃ p : OddScalarParameters K h n d qO qS,

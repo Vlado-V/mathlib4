@@ -18,12 +18,13 @@ choosing the restored basis and coefficient reduction. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 structure RestoredCertificate (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -42,6 +43,7 @@ structure RestoredCertificate (hdp : 1≤d) (hd : d%2=0)
         (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
         c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p.1) M=z.val
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_restored_certificate_on_open (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j) (idx : Fin r ≃ Label q J counts)

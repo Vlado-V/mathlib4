@@ -15,12 +15,13 @@ space used by the relation and comparison theorems. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters
 variable {K : Type} [Field K] [Infinite K] {h m d H f r q u : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem HasUpperWitness.all_even_variable_private_open (hd : 3 ≤ d)
     (frame : Fin H → Forms K h 2) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u)

@@ -13,7 +13,7 @@ same positive even-relation reduction on the full parameter space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
@@ -21,6 +21,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem even_reduction_open_of_witnesses
     [Module.Finite K (Space n d q J counts O)] [LinearOrder (Label q J counts)]
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

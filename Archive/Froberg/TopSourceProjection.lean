@@ -14,17 +14,19 @@ and hence the projection target R. Degree transports match target growth. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d f u b : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def topSourceMap (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) : Forms K h d →ₗ[K] (Fin b → K) :=
   R.comp (topGrowthDegree hdp h).symm.toLinearMap
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem topSourceMap_kernel (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (U : Fin u → Forms K h d)
     (hker : R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap) :
@@ -39,6 +41,7 @@ theorem topSourceMap_kernel (hdp : 1≤d)
   · intro hx
     exact ⟨x,hx,rfl⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def topSourceQuotientEquiv (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (U : Fin u → Forms K h d)
@@ -48,6 +51,7 @@ def topSourceQuotientEquiv (hdp : 1≤d)
     ((topSourceMap hdp R).quotKerEquivOfSurjective
       (hR.comp (topGrowthDegree hdp h).symm.surjective))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 @[simp] theorem topSourceQuotientEquiv_mk (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (U : Fin u → Forms K h d)
@@ -56,6 +60,7 @@ def topSourceQuotientEquiv (hdp : 1≤d)
     topSourceQuotientEquiv hdp R hR U hker ((Submodule.span K (Set.range U)).mkQ v)=
       R ((topGrowthDegree hdp h).symm v) := rfl
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def oddHigherTopProjectionEquiv (hd : Odd d) (hd3 : 3≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -70,6 +75,7 @@ def oddHigherTopProjectionEquiv (hd : Odd d) (hd3 : 3≤d)
   (oddHigherTopQuotientEquiv hd hd3 F U P r hr).trans
     (topSourceQuotientEquiv (Nat.le_trans (by decide : 1≤3) hd3) R hR U hker)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 @[simp] theorem oddHigherTopProjectionEquiv_mk (hd : Odd d) (hd3 : 3≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

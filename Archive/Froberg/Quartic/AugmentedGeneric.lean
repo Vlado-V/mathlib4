@@ -22,39 +22,45 @@ mixed coefficients.
 noncomputable section
 namespace Quartic.AugmentedGeneric
 open Module MvPolynomial HomologyCoordinates AugmentedMiddle
-set_option maxHeartbeats 500000
+
 variable {K : Type*} [Field K]
 
 section QuotientBridge
 variable {S A : Type*} [AddCommGroup S] [Module K S]
   [AddCommGroup A] [Module K A] {q : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Augmentation of an arbitrary actual symmetric-product map. -/
 def augmented (F : S →ₗ[K] A × A) (r : Fin 4 → A) :
     (S × (A × BlockHomology K)) →ₗ[K] A × A :=
   F.coprod (((LinearMap.id : A →ₗ[K] A).prod (-LinearMap.id)).coprod (pureTrace r))
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem augmented_apply (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (b : S) (a : A) (ξ : BlockHomology K) :
     augmented F r (b, a, ξ) = ((F b).1 + a + (pureTrace r ξ).1,
       (F b).2 - a + (pureTrace r ξ).2) := by
   apply Prod.ext <;> simp [augmented, sub_eq_add_neg, add_assoc]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Scalar combinations of the actual ordered child generators. -/
 def childSum (h : Fin q → A) : (Fin q → K) →ₗ[K] A where
   toFun t := ∑ i, t i • h i
   map_add' _ _ := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' _ _ := by simp [smul_smul, Finset.smul_sum]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Fixed target and source: only the first coordinate needs added child columns. -/
 def lifted (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A) :
     ((S × (A × BlockHomology K)) × (Fin q → K)) →ₗ[K] A × A :=
   (augmented F r).coprod ((childSum h).prod 0)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem lifted_apply (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A)
     (b : S) (a : A) (ξ : BlockHomology K) (t : Fin q → K) :
     lifted F h r ((b, a, ξ), t) = augmented F r (b, a, ξ) + (childSum h t, 0) := rfl
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The actual augmented map modulo the span of the child generators. -/
 def quotientAugmented (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A) :
     let Q := Submodule.span K (Set.range h)
@@ -62,6 +68,7 @@ def quotientAugmented (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → 
   let Q := Submodule.span K (Set.range h)
   augmented ((Q.mkQ.prodMap Q.mkQ).comp F) (fun i => Q.mkQ (r i))
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem quotientAugmented_span_eq (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A)
     (Q : Submodule K A) (hQ : Submodule.span K (Set.range h) = Q) :
     Function.Injective (quotientAugmented F h r) ↔
@@ -69,11 +76,13 @@ theorem quotientAugmented_span_eq (F : S →ₗ[K] A × A) (h : Fin q → A) (r 
   subst Q
   rfl
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pureTrace_map {A' : Type*} [AddCommGroup A'] [Module K A'] (L : A →ₗ[K] A')
     (r : Fin 4 → A) (ξ : BlockHomology K) :
     (L.prodMap L) (pureTrace r ξ) = pureTrace (fun i => L (r i)) ξ := by
   apply Prod.ext <;> simp [pureTrace, map_sum]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem augmented_quotient (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A)
     (b : S) (a : A) (ξ : BlockHomology K) :
     let Q := Submodule.span K (Set.range h)
@@ -92,6 +101,7 @@ theorem augmented_quotient (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4
       Q.mkQ (F b).2 - Q.mkQ a + (pureTrace (fun i => Q.mkQ (r i)) ξ).2
     rw [map_add, map_sub, ht₂]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem childSum_mem (h : Fin q → A) (t : Fin q → K) :
     childSum h t ∈ Submodule.span K (Set.range h) := by
   change (∑ i, t i • h i) ∈ Submodule.span K (Set.range h)
@@ -99,6 +109,7 @@ theorem childSum_mem (h : Fin q → A) (t : Fin q → K) :
   intro i _
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem lifted_injective_of_quotient (F : S →ₗ[K] A × A)
     (h : Fin q → A) (r : Fin 4 → A) (hh : LinearIndependent K h)
     (hq : Function.Injective (quotientAugmented F h r)) : Function.Injective (lifted F h r) := by
@@ -128,6 +139,7 @@ theorem lifted_injective_of_quotient (F : S →ₗ[K] A × A)
   change ((b, a, ξ), t) = 0
   simp [hb, ha, hξ, ht]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Injectivity on the fixed polynomial spaces descends to the moving actual quotient. -/
 theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
     (h : Fin q → A) (r : Fin 4 → A)
@@ -163,6 +175,7 @@ theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
   change (b, Q.mkQ a, ξ) = 0
   simp [hb, ha₀, hξ]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The fixed-space lifted matrix is polynomial whenever its product and coefficient families are. -/
 theorem lifted_polynomial {ι : Type*} [FiniteDimensional K S] [FiniteDimensional K A]
     (F : (ι → K) → (S →ₗ[K] A × A)) (h : (ι → K) → Fin q → A)
@@ -188,6 +201,7 @@ end QuotientBridge
 section Products
 variable {m c : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Substitute actual child linear forms in a homogeneous quadratic. -/
 def quadSubstitute (l : Fin c → Forms K m 1) : Forms K c 2 →ₗ[K] Forms K m 2 where
   toFun b := ⟨MvPolynomial.aeval (fun i => (l i).val) b.val,
@@ -195,18 +209,21 @@ def quadSubstitute (l : Fin c → Forms K m 1) : Forms K c 2 →ₗ[K] Forms K m
   map_add' _ _ := Subtype.ext (map_add _ _ _)
   map_smul' _ _ := Subtype.ext (by simp)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Actual symmetric products reduced modulo the fixed four pure quadrics. -/
 def productMap (g : Fin c → MiddleCoordinates.Mixed K m) :
     Forms K c 2 →ₗ[K] (Forms K m 2 × Forms K m 2) :=
   ((quadSubstitute (fun i => g i 0)) - (quadSubstitute (fun i => g i 2))).prod
     ((quadSubstitute (fun i => g i 1)) - (quadSubstitute (fun i => g i 2)))
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem productMap_monomial (g : Fin c → MiddleCoordinates.Mixed K m) (i j : Fin c) :
     productMap g (quadraticMonomial i j) = MiddleCoordinates.projectedProduct (g i) (g j) := by
   apply Prod.ext <;> apply Subtype.ext <;>
     simp [productMap, quadSubstitute, quadraticMonomial,
       MiddleCoordinates.projectedProduct, MiddleCoordinates.mulLinear]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 private theorem span_subtype_of_span_value {V J : Type*} [AddCommGroup V] [Module K V]
     (S : Submodule K V) (f : J → S)
     (hf : Submodule.span K (Set.range (fun i => (f i).val)) = S) :
@@ -222,6 +239,7 @@ private theorem span_subtype_of_span_value {V J : Type*} [AddCommGroup V] [Modul
   obtain ⟨d, hd, he⟩ := hb
   exact (Subtype.ext he) ▸ hd
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 private theorem polynomial_quadratic_span :
     Submodule.span K (Set.range (fun p : Fin c × Fin c => (X p.1 * X p.2 : Poly K c))) = Forms K c 2 := by
   rw [Forms, ← homogeneousSubmodule_one_pow K 2, pow_two,
@@ -234,11 +252,13 @@ private theorem polynomial_quadratic_span :
   · rintro ⟨_, ⟨i, rfl⟩, _, ⟨j, rfl⟩, rfl⟩
     exact ⟨(i, j), rfl⟩
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem quadraticMonomial_span :
     Submodule.span K (Set.range (fun p : Fin c × Fin c => quadraticMonomial (K := K) p.1 p.2)) = ⊤ := by
   apply span_subtype_of_span_value
   exact polynomial_quadratic_span
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The general product map recovers the actual witness specialization. -/
 theorem productMap_specialization (hc : c ≤ m) :
     productMap (mixedFamily (K := K) hc) = (activeForms hc 2).prod 0 := by
@@ -247,6 +267,7 @@ theorem productMap_specialization (hc : c ≤ m) :
   rw [productMap_monomial, mixedFamily_product]
   rfl
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Bilinearity of the actual reduced product in both mixed inputs. -/
 def mixedProduct : MiddleCoordinates.Mixed K m →ₗ[K]
     (MiddleCoordinates.Mixed K m →ₗ[K] (Forms K m 2 × Forms K m 2)) where
@@ -263,6 +284,7 @@ def mixedProduct : MiddleCoordinates.Mixed K m →ₗ[K]
       simp [MiddleCoordinates.projectedProduct, MiddleCoordinates.mulLinear, smul_sub]
 
 variable {ι : Type*}
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The actual symmetric product matrix varies polynomially in mixed coefficients. -/
 theorem productMap_polynomial (g : (ι → K) → (Fin c → MiddleCoordinates.Mixed K m))
     (hg : ∀ i, IsPolynomialFamily (fun a => g a i)) : IsPolynomialFamily (fun a => productMap (g a)) := by
@@ -290,56 +312,69 @@ end Products
 section Coefficients
 variable (K : Type*) [Field K] (m c q : ℕ)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- Every coefficient of the mixed family, child quadrics, and four pure motions. -/
 abbrev ParameterIndex := MiddleCoordinates.CoefficientIndex m c q ⊕ (Fin 4 × Sym (Fin m) 2)
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 abbrev LiftedSource := (Forms K c 2 × (Forms K m 2 × BlockHomology K)) × (Fin q → K)
 variable {K m c q}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def coefficientBase : (ParameterIndex m c q → K) →ₗ[K]
     MiddleCoordinates.Parameters K m c q :=
   MiddleCoordinates.decode.toLinearMap.comp (LinearMap.pi (fun i => LinearMap.proj (Sum.inl i)))
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def coefficientMixed : (ParameterIndex m c q → K) →ₗ[K] (Fin c → MiddleCoordinates.Mixed K m) :=
   (LinearMap.fst K _ _).comp coefficientBase
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def coefficientChild : (ParameterIndex m c q → K) →ₗ[K] (Fin q → Forms K m 2) :=
   (LinearMap.snd K _ _).comp coefficientBase
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def coefficientMotions : (ParameterIndex m c q → K) →ₗ[K] (Fin 4 → Forms K m 2) :=
   LinearMap.pi (fun i => (formsBasis K m 2).equivFun.symm.toLinearMap.comp
     (LinearMap.pi (fun j => LinearMap.proj (Sum.inr (i, j)))))
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The explicit coefficient point of any actual ordered families. -/
 def encode (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2) : ParameterIndex m c q → K :=
   Sum.elim (MiddleCoordinates.decode.symm (g, h))
     (fun p => (formsBasis K m 2).equivFun (r p.1) p.2)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientBase_encode (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2) :
     coefficientBase (encode g h r) = (g, h) := by
   change MiddleCoordinates.decode (MiddleCoordinates.decode.symm (g, h)) = (g, h)
   exact LinearEquiv.apply_symm_apply _ _
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientMixed_encode (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2) : coefficientMixed (encode g h r) = g := by
   exact congrArg Prod.fst (coefficientBase_encode g h r)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientChild_encode (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2) : coefficientChild (encode g h r) = h := by
   exact congrArg Prod.snd (coefficientBase_encode g h r)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientMotions_encode (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2) : coefficientMotions (encode g h r) = r := by
   funext i
   change (formsBasis K m 2).equivFun.symm ((formsBasis K m 2).equivFun (r i)) = r i
   exact LinearEquiv.symm_apply_apply _ _
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The actual full matrix family on fixed homogeneous polynomial spaces. -/
 def liftedFamily (a : ParameterIndex m c q → K) :
     LiftedSource K m c q →ₗ[K] (Forms K m 2 × Forms K m 2) :=
   lifted (productMap (coefficientMixed a)) (coefficientChild a) (coefficientMotions a)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily (K := K) (m := m) (c := c) (q := q)) := by
   classical
   apply lifted_polynomial
@@ -351,6 +386,7 @@ theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily (K := K) (m :
   · intro i
     exact isPolynomialFamily_linear ((LinearMap.proj i).comp coefficientMotions)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The concrete augmented witness gives an actual full-coefficient injective point. -/
 theorem exists_injective_parameter (hc : c ≤ m)
     (hbudget : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2) (h2 : (2 : K) ≠ 0) :
@@ -372,6 +408,7 @@ theorem exists_injective_parameter (hc : c ≤ m)
   · simpa only [liftedFamily, coefficientMixed_encode, coefficientChild_encode, coefficientMotions_encode] using
       lifted_injective_of_quotient (productMap (mixedFamily hc)) h r₀ hh hquot
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- A principal open in the actual full monomial coefficient space. -/
 def GenericAugmented (K : Type*) [Field K] (m c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (ParameterIndex m c q) K, (∃ a₀, eval a₀ D ≠ 0) ∧
@@ -379,6 +416,7 @@ def GenericAugmented (K : Type*) [Field K] (m c q : ℕ) : Prop :=
       LinearIndependent K (coefficientChild a) ∧ Function.Injective
         (quotientAugmented (productMap (coefficientMixed a)) (coefficientChild a) (coefficientMotions a))
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 /-- The source augmented numerical budget supplies a nonempty determinant open,
 with the actual quotient, actual symmetric products, and actual pure homology. -/
 theorem genericAugmented_of_budget (hc : c ≤ m)

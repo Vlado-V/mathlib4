@@ -23,8 +23,9 @@ open Module MvPolynomial UniformEndpoint SmallCovectorCommonOpen
 open ActualMarkedSmallMotionAvoidanceOmega ActualDeformationResponseOmega ActualDeformationColumnsOmega
 variable {K : Type*} [Field K] [Infinite K] [IsAlgClosed K]
 variable (ω : K)
-set_option maxHeartbeats 1800000
 
+
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- The canonical marked child space and the enlarged response are realized
 at the same actual mixed/child coefficient point. -/
 theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
@@ -90,12 +91,14 @@ theorem exists_data (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40) (upper : Bool)
     (extra (baseProjection p)) U s).range : ℤ) = _
   rw [hrank,Nat.cast_min,hsource,hj]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 private theorem parent_count (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     4+(mixedCount m upper+upperEndpoint m)=parentCount m upper := by
   have hc := (EndpointBlockConditions.structural_counts m hm upper).1
   unfold mixedCount at hc ⊢
   omega
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Positive lower surplus retains a parent square after the exact response. -/
 theorem lower_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (hω : ω ≠ 0) (hω1 : ω ≠ -1) (hchild : MarkedEndpoints K m)
@@ -113,6 +116,7 @@ theorem lower_parent_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
   simpa only [parent_count m hmlo false,parentCount,Bool.false_eq_true,ite_false,
     Nat.add_comm 3 m] using hw
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- The pencil parameter is chosen internally over the infinite field. -/
 theorem lower_witness (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (hchild : MarkedEndpoints K m)

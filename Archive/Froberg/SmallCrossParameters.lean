@@ -16,7 +16,7 @@ space as the scalar, sparse and diagonal witnesses. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
@@ -24,6 +24,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_cross_row_profile_parameter
     (R j : ℕ) (hj : j≠R-j)
     (honly : ∀ r : ProductRows.Row J R,ProductRows.Columns counts r → r.val.val=j)
@@ -50,6 +51,7 @@ theorem exists_cross_row_profile_parameter
 
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_small_cross_profile_parameter {a b v : ℕ}
     (ha : 0<a) (hb : 0<b) (hv : 0<v)
     (T : ℕ → Poly K (a+b) →ₗ[K] X) (hT : T 4=0)
@@ -75,6 +77,7 @@ theorem exists_small_cross_profile_parameter {a b v : ℕ}
       simpa only [add_zero] using (hfw z.1).mul (hgw z.2))
   exact ⟨p,hpi,fun z => hprange (LinearMap.mem_range_self _ z)⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_small_cross_empty_row_parameter {a b v : ℕ}
     (ha : 0<a) (hb : 0<b) (hv : 0<v)
     (T : ℕ → Poly K (a+b) →ₗ[K] X) (hT : T 4=0)

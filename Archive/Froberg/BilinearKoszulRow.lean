@@ -13,7 +13,7 @@ constant relations and all row entries vary polynomially in common parameters. -
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K U V A W I J ι : Type*} [Field K]
@@ -23,6 +23,7 @@ variable {K U V A W I J ι : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [Fintype I] [Fintype J]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The actual scalar/new-layer row together with its product columns. -/
 def bilinearKoszulRow (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → V) (E : J → U)
     (P : W →ₗ[K] A) : (((I → U) × (J → V)) × W) →ₗ[K] A where
@@ -34,6 +35,7 @@ def bilinearKoszulRow (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → V) (E : J → 
     change (∑ i,μ (Q i) (c • x.1.1 i))+(∑ j,μ (c • x.1.2 j) (E j))+P (c • x.2)=_
     simp only [map_smul,LinearMap.smul_apply,← Finset.smul_sum,smul_add,RingHom.id_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Literal constant scalar-layer Koszul relations. -/
 def bilinearKoszulConstants (Q : I → V) (E : J → U) :
     (I → J → K) →ₗ[K] (((I → U) × (J → V)) × W) where
@@ -54,6 +56,7 @@ def bilinearKoszulConstants (Q : I → V) (E : J → U) :
         simp only [mul_smul,Finset.smul_sum,smul_neg]
     · simp
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The mandatory constants are relations without any independence assumption. -/
 theorem bilinearKoszulRow_constants (μ : V →ₗ[K] U →ₗ[K] A)
     (Q : I → V) (E : J → U) (P : W →ₗ[K] A) :
@@ -66,6 +69,7 @@ theorem bilinearKoszulRow_constants (μ : V →ₗ[K] U →ₗ[K] A)
   rw [Finset.sum_comm (f := fun j i => C i j • μ (Q i) (E j))]
   exact add_neg_cancel _
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bilinearKoszulConstants_injective (Q : I → V) (E : J → U)
     (hE : LinearIndependent K E) :
     Function.Injective (bilinearKoszulConstants (K := K) (W := W) Q E) := by
@@ -74,6 +78,7 @@ theorem bilinearKoszulConstants_injective (Q : I → V) (E : J → U)
   apply (linearIndependent_iff_injective_fintypeLinearCombination.mp hE)
   exact congrArg (fun x : ((I → U) × (J → V)) × W => x.1.1 i) hCD
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Row maps are polynomial in the same parameters as their scalar, new-layer,
 and product families. -/
 theorem bilinearKoszulRow_polynomial
@@ -88,6 +93,7 @@ theorem bilinearKoszulRow_polynomial
     (IsPolynomialFamily.sum (fun j => (hE j).linear_comp (μ (x.1.2 j))))).add
       (hP.linear_comp (LinearMap.applyₗ (R := K) (M₂ := A) x.2))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bilinearKoszulConstants_polynomial
     (Q : I → (ι → K) → V) (E : J → (ι → K) → U)
     (hQ : ∀ i,IsPolynomialFamily (Q i)) (hE : ∀ j,IsPolynomialFamily (E j)) :
@@ -108,6 +114,7 @@ theorem bilinearKoszulConstants_polynomial
     simpa only [LinearMap.single_apply,Finset.univ_sum_single] using hh
   exact (hL.prod_mk hR).prod_mk (isPolynomialFamily_const (0 : W))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- One row witness yields a nonempty principal open in the full common
 coefficient space; no independent row-wise parameters are introduced. -/
 theorem bilinearKoszulRow_open

@@ -15,17 +15,19 @@ scalar dimension, with the frame chosen after that dimension. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.FullPreparedParameters
 open Froberg Module MvPolynomial Filter PreparedParameters
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 local instance allScalarPrivateFrameFinite {h H n d q f u : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (FixedPureZeroScalarSpace n d q f u J counts (targetLayerOutput frame)) :=
   finite_fixedPureZeroScalarSpace (fun j _ => targetLayerOutput_homogeneous frame j)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def PrivatePreparedFrameOpen {d : ℕ} (hd : 0<d) (hodd : d%2=1)
     (h n u e : ℕ) : Prop :=
   ∃ P : MvPolynomial (Fin (finrank K
@@ -47,6 +49,7 @@ def PrivatePreparedFrameOpen {d : ℕ} (hd : 0<d) (hodd : d%2=1)
             (fun j hj => (mem_allEvenIndices.mp hj).2.1)
             (fun j hj => (mem_allEvenIndices.mp hj).2.2) label U p
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem counted_private_prepared_all_scalars {d w : ℕ}
     (hd : 0<d) (hodd : d%2=1)
     (hw : CountedPrivatePreparedAt (K := K) hd hodd w)
@@ -69,6 +72,7 @@ theorem counted_private_prepared_all_scalars {d w : ℕ}
     intro frame hframe hframeP f r label U
     exact hgood frame hframe hframeP f r label U
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem eventually_counted_all_odd_private_prepared_all_scalars {d : ℕ}
     (hd : 3≤d) (hodd : d%2=1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → ∀ (extra : ℕ) (err : ℕ → ℕ),

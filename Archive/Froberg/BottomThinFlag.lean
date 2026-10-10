@@ -14,12 +14,13 @@ with the dimension of the bottom target itself. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 900000
+
 namespace Froberg
 open Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem bottomCoordinateTarget_finrank (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
     finrank K (OddTargetRowQuotient
@@ -29,6 +30,7 @@ theorem bottomCoordinateTarget_finrank (hd : 1 ≤ d)
     finrank K (ScalarQuotient (VectorExpansionOpen.quotientMultiplication g d) Q) :=
   ((bottomVectorTargetEquiv hd Q g).trans (bottomCoordinateTargetEquiv hd Q g)).finrank_eq.symm
 
+set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem bottomCoordinateScalarAction_thin_slices (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) (j : ℕ) (C : ℝ)
     (hj : finrank K (ScalarQuotient (VectorExpansionOpen.quotientMultiplication g d) Q)=j)
@@ -44,6 +46,7 @@ theorem bottomCoordinateScalarAction_thin_slices (hd : 1 ≤ d)
   rw [bottomCoordinateTarget_finrank,hj]
   exact bottomCoordinateScalarAction_closed_slices hd Q g _ hs
 
+set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem ChildFlagCondition.bottom_thin_slices (hd : 1 ≤ d)
     (g : Fin f → Rows K h m (d-1)) (j : ℕ) (C : ℝ)
     (a : CoefficientIndex m d q → K)
@@ -57,6 +60,7 @@ theorem ChildFlagCondition.bottom_thin_slices (hd : 1 ≤ d)
   rcases ha with ⟨_,_,_,_,hj,hs⟩
   exact bottomCoordinateScalarAction_thin_slices hd _ g j C hj hs
 
+set_option maxHeartbeats 900000 in -- Preserve the budget during this port.
 theorem ChildFlagCondition.bottom_thin_slices_coordinates (hd : 1 ≤ d)
     (g : Fin f → Rows K h m (d-1)) (Q : Fin q → Forms K m d) (j : ℕ) (C : ℝ)
     (ha : ChildFlagCondition (VectorExpansionOpen.quotientMultiplication g d) j C

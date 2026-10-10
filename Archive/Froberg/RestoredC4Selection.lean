@@ -16,7 +16,7 @@ temporary added columns and the supplied enlarged-family open fixed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial VectorExpansionOpen Quartic
@@ -25,6 +25,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 attribute [local irreducible] RestoredEndpointThin
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem exact_counts_restored_c4_selection {d k h lo : ℕ}
     (hd : 3 ≤ d) (hdeven : d%2=0) (hk : 0 < k)
     (hh : h=k*centralHalfBinomial d) (hhpos : 0 < h)

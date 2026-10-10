@@ -14,26 +14,31 @@ closed sliced base. The dimension cost is exactly the number of new parameters. 
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open MvPolynomial Matrix Quartic Quartic.KernelPolynomialCharts
 variable {K : Type*} [Field K] {q N s fcount d a b n l r₁ r₂ : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def liftBaseForm (f : Forms K q d) : Forms K (q+N) d :=
   ⟨rename (Fin.castAdd N) f.val,f.property.rename_isHomogeneous⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def freeParameterForm (i : Fin N) : Forms K (q+N) 1 :=
   ⟨X (Fin.natAdd q i),isHomogeneous_X K (Fin.natAdd q i)⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def baseParameterSlices (ell : Fin (s+1) → Forms K q 1) :
     Fin (s+N+1) → Forms K (q+N) 1 :=
   Fin.cons (liftBaseForm (N := N) (ell 0))
     (Fin.append (fun i : Fin s => liftBaseForm (N := N) (ell i.succ)) freeParameterForm)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] lemma eval_liftBaseForm (f : Forms K q d) (t : Fin (q+N) → K) :
     eval t (liftBaseForm (N := N) f).val=eval (fun i => t (Fin.castAdd N i)) f.val := by
   exact eval_rename _ _ _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 lemma baseParameterSlices_empty {L : Type*} [Field L] [Algebra K L]
     (degrees : Fin fcount → ℕ) (f : ∀ i, Forms K q (degrees i))
     (ell : Fin (s+1) → Forms K q 1)
@@ -60,6 +65,7 @@ lemma baseParameterSlices_empty {L : Type*} [Field L] [Algebra K L]
     simpa only [baseParameterSlices,Fin.cons_succ,Fin.append_right,freeParameterForm,
       aeval_X,Pi.zero_apply] using h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The actual algebraic slice theorem remains valid after adjoining N
 arbitrary parameters, with exactly N additional units in its dimension budget. -/
 theorem principal_open_dehom_with_parameters [Infinite K]

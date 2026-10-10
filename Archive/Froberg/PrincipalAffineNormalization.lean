@@ -15,17 +15,19 @@ nonzero last coordinate; polynomial nonvanishing is retained explicitly. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open MvPolynomial Quartic
 variable {K : Type*} [Field K] [Infinite K] {n : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Put a vector in the first coordinates and zero in the last coordinate. -/
 def affineVectorLinear : (Fin n → K) →ₗ[K] (Fin (n+1) → K) where
   toFun x := Fin.snoc x 0
   map_add' x y := by ext i; refine Fin.lastCases ?_ (fun j => ?_) i <;> simp
   map_smul' c x := by ext i; refine Fin.lastCases ?_ (fun j => ?_) i <;> simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Normalization of a principal open, for any condition invariant under
 nonzero scalar multiplication of the full parameter vector. -/
 theorem principal_open_affine_normalization

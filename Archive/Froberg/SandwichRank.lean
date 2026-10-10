@@ -17,7 +17,7 @@ This supplies the Schubert codimension calculation used in C.3. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
@@ -25,6 +25,7 @@ variable {K U V W Z : Type*} [Field K]
   [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
   [AddCommGroup W] [Module K W] [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The literal sandwich equations on a varying linear map. -/
 def sandwichMap (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
     (V →ₗ[K] W) →ₗ[K] (U →ₗ[K] Z) where
@@ -32,6 +33,7 @@ def sandwichMap (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
   map_add' P Q := by ext u; simp
   map_smul' c P := by ext u; simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- First restrict to the image of A and corestrict through the image of C. -/
 def restrictedSandwich (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
     (V →ₗ[K] W) →ₗ[K] (A.range →ₗ[K] C.range) where
@@ -39,6 +41,7 @@ def restrictedSandwich (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
   map_add' P Q := by ext u; simp
   map_smul' c P := by ext u; simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every map between the two image spaces is realized by an actual P. -/
 theorem restrictedSandwich_surjective (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
     Function.Surjective (restrictedSandwich A C) := by
@@ -53,6 +56,7 @@ theorem restrictedSandwich_surjective (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
   have hs' : C.rangeRestrict (s (F u)) = F u := LinearMap.congr_fun hs (F u)
   rw [hp',hs']
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Inflation back to the ambient source and target loses no information. -/
 def inflateSandwich (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
     (A.range →ₗ[K] C.range) →ₗ[K] (U →ₗ[K] Z) where
@@ -60,6 +64,7 @@ def inflateSandwich (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
   map_add' P Q := by ext u; simp
   map_smul' c P := by ext u; simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem inflateSandwich_injective (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
     Function.Injective (inflateSandwich A C) := by
   intro F G h
@@ -69,9 +74,11 @@ theorem inflateSandwich_injective (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
   apply Subtype.ext
   exact LinearMap.congr_fun h v
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem sandwichMap_factorization (A : U →ₗ[K] V) (C : W →ₗ[K] Z) :
     sandwichMap A C = (inflateSandwich A C).comp (restrictedSandwich A C) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The codimension of C P A=0 is rank(A)rank(C), with no general-position
 or surjectivity assumption on A or C. -/
 theorem sandwichMap_rank [FiniteDimensional K V] [FiniteDimensional K W]

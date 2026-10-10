@@ -15,7 +15,7 @@ projection and arbitrary coordinates on the coefficient source. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Quartic Quartic.FilteredImage
@@ -23,6 +23,7 @@ variable {K P V V' W : Type*} [Field K]
   [AddCommGroup P] [Module K P] [AddCommGroup V] [Module K V]
   [AddCommGroup V'] [Module K V'] [AddCommGroup W] [Module K W]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bilinearImage_precompose (mu : P →ₗ[K] V →ₗ[K] W)
     (g : V' →ₗ[K] V) (L : Submodule K V') :
     BilinearImage.image (mu.compl₂ g) L=BilinearImage.image mu (L.map g) := by
@@ -39,6 +40,7 @@ variable {n : ℕ} {Vi Wi : Fin (n+1) → Type*}
   [∀ i,FiniteDimensional K (Wi i)]
   [FiniteDimensional K V] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem higher_growth_of_block_projection
     (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i))
     (pi : W →ₗ[K] ((i : Fin (n+1)) → Wi i))
@@ -66,6 +68,7 @@ theorem higher_growth_of_block_projection
   rw [eV.finrank_map_eq,hi] at hg
   exact hg.trans (Submodule.finrank_map_le _ _)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem initialPiece_zero_eq_comap
     (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i)) (L : Submodule K V) :
     initialPiece Vi (L.map eV.toLinearMap) 0=
@@ -100,6 +103,7 @@ theorem initialPiece_zero_eq_comap
 
 variable {W0 : Type*} [AddCommGroup W0] [Module K W0]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem kernel_initialPiece_zero
     (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] Vi 0 →ₗ[K] W0)
@@ -123,6 +127,7 @@ theorem kernel_initialPiece_zero
     rw [hbottom]
     exact LinearMap.congr_fun hx p
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem bottom_kernel_finrank_le
     (eV : V ≃ₗ[K] ((i : Fin (n+1)) → Vi i))
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P →ₗ[K] Vi 0 →ₗ[K] W0)

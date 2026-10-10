@@ -17,7 +17,7 @@ fiber. The input open retains all geometric certificates already imposed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters BilinearScalarFamily BilinearCovectorStrata
@@ -35,6 +35,7 @@ local notation "Q₀" => fun i => scalarEvenBiform (h := h) (Q i)
 local notation "F₁" => fun i => oddBiformEmbedding hdp (by decide) (F i)
 local notation "T₀" => finrank K (OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem prepared_scalar_thin_open (hh : 0 < h) (hm : 0 < m)
     (hU : LinearIndependent K U)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)

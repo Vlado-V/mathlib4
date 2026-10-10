@@ -17,7 +17,7 @@ numerical cutoff are chosen before the field and restored family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial VectorExpansionOpen Quartic
@@ -26,6 +26,7 @@ open scoped Topology
 attribute [local instance] tensorFormGroup
 attribute [local irreducible] RestoredEndpointThin
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The passage from an outer open to a full restored joint selection is finite. -/
 theorem restored_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     {h n d f : ℕ} {G C : ℝ} (hnpos : 0 < n)
@@ -74,6 +75,7 @@ theorem restored_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     rw [LinearEquiv.apply_symm_apply]
     exact hchild
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Restriction to the base counts and scalar freezing preserve the supplied open. -/
 theorem restored_restricted_fiber_of_strict_thin_open
     {K : Type} [Field K] [Infinite K] {h n d f : ℕ} {G C : ℝ}
@@ -134,6 +136,7 @@ theorem restored_restricted_fiber_of_strict_thin_open
         simpa only [map_mul] using hBD')
   exact ⟨hboth.2,hBgood _ hboth.1,hm,hchild'⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The thinness constant and cutoff precede the choice of the field and
 all restored-family parameters. Only uniform input opens are assumed. -/
 theorem field_uniform_restored_c4_selection {d h : ℕ}
@@ -253,6 +256,7 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
   rw [restoredCountScalarFiberLinear_restrict]
   exact hs
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Exact count hypotheses provide both input opens uniformly over the field. -/
 theorem uniform_exact_counts_restored_c4_selection {d k h lo : ℕ}
     (hd : 3 ≤ d) (hdeven : d%2=0) (hk : 0 < k)

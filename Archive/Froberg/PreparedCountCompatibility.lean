@@ -15,11 +15,12 @@ generators, including the restored pure parts in their retained slots. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 250000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K]
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem pureShift_injective_index {U V : Type*}
     [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
     {u r r' : ℕ} (embed : U →ₗ[K] V) (slot : Fin u → Fin r)
@@ -35,15 +36,18 @@ namespace PreparedParameters
 variable [Infinite K] {h m d q f r r' : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 def countIndexMap (hc : ∀ j∈J,c j≤c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c') : Fin r → Fin r' :=
   fun i => idx'.symm (countLabelMap hc (idx i))
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem countIndexMap_injective (hc : ∀ j∈J,c j≤c' j)
     (idx : Fin r ≃ Label q J c) (idx' : Fin r' ≃ Label q J c') :
     Function.Injective (countIndexMap hc idx idx') :=
   idx'.symm.injective.comp ((countLabelMap_injective hc).comp idx.injective)
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem restoredFamilyLinear_restrictCounts (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hc : ∀ j∈J,c j≤c' j)
@@ -62,6 +66,7 @@ theorem restoredFamilyLinear_restrictCounts (hd : d%2=0)
   rw [restrictCounts_generator,Equiv.apply_symm_apply,
     pureShift_injective_index _ _ _ (countIndexMap_injective hc idx idx')]
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem restoredEndpointFamily_restrictCounts (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hc : ∀ j∈J,c j≤c' j)
@@ -83,6 +88,7 @@ namespace PreparedTarget
 variable [Infinite K] {h m d q : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem preparedEvenBiform_restrictCounts
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hc : ∀ j∈J,c j≤c' j) (p : PreparedParameters.Space m d q J c' O)

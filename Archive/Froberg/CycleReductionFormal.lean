@@ -15,16 +15,18 @@ arbitrary, so the same result applies after deleting pure scalar targets. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 variable {K : Type} [Field K]
 variable {V Z A : Type*} [AddCommGroup V] [Module K V]
   [AddCommGroup Z] [Module K Z]
 variable {r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def coefficientBoundary (q : Fin r → V) (M : Fin r → Fin r → K) : Fin r → V :=
   fun i => (∑ j,M i j • q j)-(∑ j,M j i • q j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formalCoefficientMap_boundary (q : Fin r → V) (M : Fin r → Fin r → K) :
     formalCoefficientMap (K := K) q (coefficientBoundary q M)=0 := by
   have hs (i : Fin r) (c : Fin r → K) :
@@ -46,12 +48,14 @@ theorem formalCoefficientMap_boundary (q : Fin r → V) (M : Fin r → Fin r →
   intro j _
   rw [symProd_comm]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formalCoefficientMap_eq_of_boundary_reduction
     (q c z : Fin r → V) (M : Fin r → Fin r → K)
     (hz : c-coefficientBoundary q M=z) :
     formalCoefficientMap (K := K) q c=formalCoefficientMap (K := K) q z := by
   rw [← hz,map_sub,formalCoefficientMap_boundary,sub_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formalCoefficientMap_mem_products (q z : Fin r → V)
     (Q A : Submodule K V) (hQ : ∀ i,z i=0 ∨ q i∈Q) (hA : ∀ i,z i∈A) :
     formalCoefficientMap (K := K) q z∈formalProducts Q A := by
@@ -63,6 +67,7 @@ theorem formalCoefficientMap_mem_products (q z : Fin r → V)
     exact Submodule.zero_mem _
   · exact Submodule.subset_span ⟨q i,z i,hq,hA i,rfl⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem formal_relations_of_cycle_reduction
     (mu : SymmetricSquare K V →ₗ[K] Z) (q : Fin r → V)
     (Q A : Submodule K V) (hQ : Q≤Submodule.span K (Set.range q))
@@ -87,12 +92,14 @@ theorem formal_relations_of_cycle_reduction
 section PolynomialReduction
 variable [CommRing A] [Algebra K A]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem coefficientBoundary_map (j : V →ₗ[K] A)
     (q : Fin r → V) (M : Fin r → Fin r → K) (i : Fin r) :
     j (coefficientBoundary q M i)=matrixBoundary (fun k => j (q k)) M i := by
   simp only [coefficientBoundary,matrixBoundary,matrixCombination,Pi.sub_apply,
     map_sub,map_sum,map_smul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem boundary_reduction_of_injective_map (j : V →ₗ[K] A)
     (hj : Function.Injective j) (q c z : Fin r → V) (M : Fin r → Fin r → K)
     (h : (fun i => j (c i))-matrixBoundary (fun i => j (q i)) M=(fun i => j (z i))) :

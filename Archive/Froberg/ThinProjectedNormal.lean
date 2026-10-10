@@ -15,7 +15,7 @@ projected normal map and hence the local comparison data. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic PolynomialBilinearCoordinates
 open BilinearCovectorCharts BilinearCoefficientKernel
@@ -23,6 +23,7 @@ variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 variable {Z : Type*} [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable {n d r t a b T : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))
@@ -49,6 +50,7 @@ theorem exists_maximal_projected_normal_of_thin_slices (pi : Forms K n (2*d) →
   intro k
   exact thinSlices_le_coefficientSliceCount _ t T k.val C hC
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_local_comparison_of_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] (Fin a → K))

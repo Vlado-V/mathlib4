@@ -15,23 +15,27 @@ supplies the two-fifths / three-fifths split of Appendix E. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.UnequalBlocks
 open MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {a b v : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev Variables (a b v : ℕ) := (Fin a ⊕ Fin b) ⊕ (Fin v × Bool)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def leftVar : Fin a ⊕ Fin v → Variables a b v
   | .inl x => .inl (.inl x)
   | .inr y => .inr (y,true)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def rightVar : Fin b ⊕ Fin v → Variables a b v
   | .inl x => .inl (.inr x)
   | .inr y => .inr (y,false)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def regroup : ((Fin a ⊕ Fin v) ⊕ (Fin b ⊕ Fin v)) ≃ Variables a b v where
   toFun := Sum.elim leftVar rightVar
   invFun := fun z => match z with
@@ -45,25 +49,31 @@ def regroup : ((Fin a ⊕ Fin v) ⊕ (Fin b ⊕ Fin v)) ≃ Variables a b v wher
     · rfl
     · cases c <;> rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def finalEquiv : Variables a b v ≃ (Fin (a+b) ⊕ Fin (v+v)) :=
   finSumFinEquiv.sumCongr (pairedScalarEquiv v)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def leftFinal : Fin a ⊕ Fin v → Fin (a+b) ⊕ Fin (v+v) :=
   finalEquiv ∘ leftVar
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def rightFinal : Fin b ⊕ Fin v → Fin (a+b) ⊕ Fin (v+v) :=
   finalEquiv ∘ rightVar
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem leftFinal_eq : (leftFinal (a := a) (b := b) (v := v)) =
     Sum.map (Fin.castAdd b) (fun y => pairedScalarEquiv v (y,true)) := by
   funext z
   cases z <;> rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem rightFinal_eq : (rightFinal (a := a) (b := b) (v := v)) =
     Sum.map (Fin.natAdd a) (fun y => pairedScalarEquiv v (y,false)) := by
   funext z
   cases z <;> rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem cross_independent {r t : ℕ}
     (f : Fin r → MvPolynomial (Fin a ⊕ Fin v) K)
     (g : Fin t → MvPolynomial (Fin b ⊕ Fin v) K)
@@ -84,6 +94,7 @@ namespace Froberg
 open Module MvPolynomial UnequalBlocks
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Unequal output blocks and balanced scalar blocks give the full tensor
 cross capacity, with a single scalar profile for every product. -/
 theorem exists_unequal_constrained_cross_pair

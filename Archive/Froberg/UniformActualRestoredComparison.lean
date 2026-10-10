@@ -18,7 +18,7 @@ before the field and common output frame are chosen. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial VectorExpansionOpen
@@ -26,6 +26,7 @@ open scoped Topology
 attribute [local instance] tensorFormGroup
 attribute [local irreducible] RestoredEndpointThin RestoredFormalQuadraticSeparation
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem eventually_uniform_actual_restored_comparison {d k h lo : ℕ}
     (hd : 3≤d) (he : d%2=0) (hk : 0<k)
     (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
@@ -108,6 +109,7 @@ theorem eventually_uniform_actual_restored_comparison {d k h lo : ℕ}
   unfold RestoredFormalQuadraticSeparation at hsep
   exact hsep
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 /-- Eventual common-frame data gives the critical comparison at every
 sufficiently large scalar dimension. -/
 theorem uniform_actual_restored_comparison_of_eventual_frames {d k h lo : ℕ}

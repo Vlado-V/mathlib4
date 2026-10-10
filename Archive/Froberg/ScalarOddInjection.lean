@@ -19,17 +19,19 @@ scalar degree, so the same tuple controls all layers. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d t s r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def fullBiformScalarRow (Q : Fin r → Forms K m d) :
     (Fin r → FullBiform K (Fin h) m t s) →ₗ[K] MvPolynomial (Fin h ⊕ Fin m) K :=
   ∑ i,(fullBiformScalarProduct (Q i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem fullBiform_scalar_injective (Q : Fin r → Forms K m d)
     (hQ : Function.Injective (prefixMultiplication Q s)) :
     Function.Injective (fullBiformScalarRow (h := h) (t := t) (s := s) Q) := by
@@ -62,6 +64,7 @@ theorem fullBiform_scalar_injective (Q : Fin r → Forms K m d)
   funext i
   exact c.symm.injective (congrFun hz i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem scalar_odd_relation_zero (hm : 0 < m) (Q : Fin r → Forms K m d)
     (hQ : Function.Injective (prefixMultiplication Q (d-1)))
     (v : Fin r → biformParitySpace K h m d 1)

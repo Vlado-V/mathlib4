@@ -14,24 +14,27 @@ remaining even generators are added. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev EvenBackgroundSource (hdp : 1≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
   biformParitySpace K h m d 1 ⧸ Submodule.span K
     (Set.range (fun i => oddBiformEmbedding hdp (by decide) (F i)))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev EvenBackgroundTarget (hdp : 1≤d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
   biformParitySpace K h m (2*d) 1 ⧸ oddBackgroundRelations
     (fun i => scalarEvenBiform (h := h) (Q i))
     (fun i => oddBiformEmbedding hdp (by decide) (F i))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundScalar (hdp : 1≤d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     Forms K m d →ₗ[K] EvenBackgroundSource hdp F →ₗ[K] EvenBackgroundTarget hdp Q F where
@@ -67,6 +70,7 @@ def evenBackgroundScalar (hdp : 1≤d)
     rw [map_smul,map_smul,LinearMap.smul_apply,map_smul]
     rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem evenBackgroundScalar_mk (hdp : 1≤d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (p : Forms K m d) (v : biformParitySpace K h m d 1) :
@@ -75,6 +79,7 @@ def evenBackgroundScalar (hdp : 1≤d)
       (oddBackgroundRelations _ _).mkQ
         (evenScalarOddProduct (scalarEvenBiform p) v) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundScalar_higher_projection {j : ℕ}
     (hdp : 1≤d) (hj : 1≤j) (hjd : j≤d) (ho : j%2=1)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

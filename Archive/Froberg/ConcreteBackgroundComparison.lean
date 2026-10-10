@@ -16,12 +16,13 @@ and the endpoint coordinates are constructed internally. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2000000
+
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 variable {h m d e f u : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem exists_critical_comparison_of_concrete_background
     (hm : 0 < m) (upper : Bool)
     (hcard : upperCount m d+e+f+u=adjacentCriticalCount upper (h+m) d)

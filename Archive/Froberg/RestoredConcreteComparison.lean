@@ -18,13 +18,14 @@ actual thin and separation conditions give the critical local comparison. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial BilinearScalarFamily VectorExpansionOpen
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K]
 variable {h m d f r r' : ℕ} {J : Finset ℕ} {c c' : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 private theorem positive_empty_span (E : Fin r → biformParitySpace K h m d 0) :
     Submodule.span K (Set.range (backgroundPositiveForms E (emptyOddFamily (K := K))))=
       Submodule.span K (Set.range (fun i => evenPolynomialToForms (E i))) := by
@@ -38,6 +39,7 @@ private theorem positive_empty_span (E : Fin r → biformParitySpace K h m d 0) 
   · rintro ⟨i,rfl⟩
     exact ⟨Sum.inl i,rfl⟩
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem exists_critical_comparison_of_restored_background
     (hm : 0 < m) (hdp : 1≤d) (hd : d%2=0) (upper : Bool)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)

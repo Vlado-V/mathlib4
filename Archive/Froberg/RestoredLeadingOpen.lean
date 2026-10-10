@@ -14,12 +14,13 @@ open where all restored leading families are independent. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def restoredHighLinear (j : J) (i : Fin (counts j.val)) :
     RestoredOuterSpace m d q f J counts O →ₗ[K]
       biformImage (O j.val) (Forms K m (d-j.val)) where
@@ -27,6 +28,7 @@ def restoredHighLinear (j : J) (i : Fin (counts j.val)) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restored_leading_principal_open
     (hO : ∀ j∈J,O j≤Forms K h j)
     (hw : ∀ j : J,∃ p : Space m d q J counts O,LinearIndependent K (p.2 j)) :

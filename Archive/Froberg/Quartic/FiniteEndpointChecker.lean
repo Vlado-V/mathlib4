@@ -19,45 +19,54 @@ does not claim that any manuscript endpoint has supplied such an inverse.
 
 namespace Quartic.FiniteEndpointChecker
 open Matrix Module
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Decode a packed natural number as a binary row of a specified width. -/
 def unpack (n : ℕ) (x : ℕ) : Fin n → ZMod 2 :=
   fun i => if x.testBit i.val then 1 else 0
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem unpack_xor (n x y : ℕ) : unpack n (x ^^^ y) = unpack n x + unpack n y := by
   funext i
   cases hx : x.testBit i.val <;> cases hy : y.testBit i.val <;>
     norm_num [unpack,Nat.testBit_xor,hx,hy] <;> decide
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem unpack_zero (n : ℕ) : unpack n 0 = 0 := by
   funext i
   simp [unpack]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem unpack_unit {n : ℕ} (i : Fin n) : unpack n (2^i.val) = Pi.single i 1 := by
   classical
   funext j
   simp only [unpack,Nat.testBit_two_pow,Pi.single_apply]
   simp [Fin.ext_iff,eq_comm]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- XOR a sparse list of packed rows; repetitions cancel over F₂. -/
 def xorSum : List ℕ → ℕ
   | [] => 0
   | x::xs => x ^^^ xorSum xs
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem unpack_xorSum (n : ℕ) (xs : List ℕ) :
     unpack n (xorSum xs) = (xs.map (unpack n)).sum := by
   induction xs with
   | nil => simp [xorSum]
   | cons x xs ih => simp only [xorSum,unpack_xor,ih,List.map_cons,List.sum_cons]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A sparse row is a sum of coordinate basis vectors. -/
 def sparseRow {n : ℕ} (s : List (Fin n)) : Fin n → ZMod 2 :=
   (s.map (fun i => Pi.single i (1 : ZMod 2))).sum
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def sparseMatrix {r n : ℕ} (A : Fin r → List (Fin n)) : Matrix (Fin r) (Fin n) (ZMod 2) :=
   fun i => sparseRow (A i)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem sparseRow_vecMul {n k : ℕ} (s : List (Fin n)) (B : Matrix (Fin n) (Fin k) (ZMod 2)) :
     sparseRow s ᵥ* B = (s.map (fun i => B i)).sum := by
   induction s with
@@ -66,19 +75,23 @@ theorem sparseRow_vecMul {n k : ℕ} (s : List (Fin n)) (B : Matrix (Fin n) (Fin
     simp only [sparseRow,List.map_cons,List.sum_cons,add_vecMul,single_one_vecMul]
     exact congrArg (fun v => B i + v) ih
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Exactly the sparse inverse equations; no determinant is computed. -/
 def checkInverse {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n → ℕ) : Bool :=
   (List.finRange n).all (fun i => decide (xorSum ((A i).map B) = 2^i.val))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem checkInverse_equations {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n → ℕ)
     (h : checkInverse A B = true) : ∀ i, xorSum ((A i).map B) = 2^i.val := by
   intro i
   have hi := List.all_eq_true.mp h i (by simp)
   exact of_decide_eq_true hi
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def packedMatrix (n : ℕ) (B : Fin n → ℕ) : Matrix (Fin n) (Fin n) (ZMod 2) :=
   Matrix.of (fun i => unpack n (B i))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The verified packed-row equations give a literal matrix right inverse. -/
 theorem inverse_identity {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n → ℕ)
     (h : checkInverse A B = true) :
@@ -92,6 +105,7 @@ theorem inverse_identity {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n → �
   change ((A i).map (fun k => unpack n (B k))).sum j = (1 : Matrix (Fin n) (Fin n) (ZMod 2)) i j
   simpa only [List.map_map,Function.comp_def,Pi.single_apply,Matrix.one_apply,eq_comm] using he
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Kernel verification of a sparse inverse certificate proves the determinant nonzero. -/
 theorem determinant_ne_zero {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n → ℕ)
     (h : checkInverse A B = true) : (sparseMatrix A).det ≠ 0 := by
@@ -101,17 +115,22 @@ theorem determinant_ne_zero {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n �
   rw [hz,zero_mul] at hd
   exact zero_ne_one hd
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The same checked certificate proves full binary rank. -/
 theorem full_rank {n : ℕ} (A : Fin n → List (Fin n)) (B : Fin n → ℕ)
     (h : checkInverse A B = true) : (sparseMatrix A).rank = n := by
   simpa using Matrix.rank_of_det_ne_zero (determinant_ne_zero A B h)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A small nontrivial certificate exercises the actual Boolean checker. -/
 def testRows : Fin 3 → List (Fin 3) := ![[0,1],[1,2],[0,1,2]]
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def testInverse : Fin 3 → ℕ := ![6,7,5]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem test_inverse_checked : checkInverse testRows testInverse = true := by decide
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem test_full_rank : (sparseMatrix testRows).rank = 3 :=
   full_rank testRows testInverse test_inverse_checked
 

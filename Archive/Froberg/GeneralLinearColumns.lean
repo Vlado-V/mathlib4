@@ -14,11 +14,12 @@ quadratic detector, constructed over every infinite field. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module
 variable {K : Type*} [Field K] [Infinite K] {h b c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Arbitrarily many private linear columns may be put in pairwise general position. -/
 theorem exists_pairwise_independent_linear_columns (hh : 2≤h) (b : ℕ) :
     ∃ w : Fin b → Forms K h 1,
@@ -57,6 +58,7 @@ theorem exists_pairwise_independent_linear_columns (hh : 2≤h) (b : ℕ) :
     ext i
     fin_cases i <;> rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The private detector exists with exactly the manuscript's 2h−1 target
 bound; its columns and pair relations are the actual quadratic products. -/
 theorem exists_general_detected_private_outputs (hh : 2≤h) (hc : 2*h-1≤c) (b : ℕ) :

@@ -14,13 +14,14 @@ quotients. Scalar multiplication is its restriction to pure Y forms. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def evenOddBiformProduct : biformParitySpace K h m d 0 →ₗ[K]
     biformParitySpace K h m d 1 →ₗ[K] biformParitySpace K h m (2*d) 1 where
   toFun := evenScalarOddProduct
@@ -35,6 +36,7 @@ def evenOddBiformProduct : biformParitySpace K h m d 0 →ₗ[K]
     apply Subtype.ext
     exact smul_mul_assoc c p.val v.val
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem evenOddBiformProduct_generator_mem
     (F : Fin f → biformParitySpace K h m d 1)
     (p : biformParitySpace K h m d 0) (i : Fin f) :
@@ -52,11 +54,13 @@ theorem evenOddBiformProduct_generator_mem
     simp
   · simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddBackgroundCoefficientRelations
     (F : Fin f → biformParitySpace K h m d 1)
     (G : Fin u → biformParitySpace K h m d 1) :=
   Submodule.span K (Set.range F) ⊔ Submodule.span K (Set.range G)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddBackgroundProduct_relations
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -73,6 +77,7 @@ theorem oddBackgroundProduct_relations
     exact (show (privateEvenCoefficientMap G).range ≤ fullOddRelations Q F G from
       le_sup_right) (evenOddBiformProduct_generator_mem G p i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddBackgroundQuotientProduct
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -99,6 +104,7 @@ def oddBackgroundQuotientProduct
       c • (fullOddRelations Q F G).mkQ (evenOddBiformProduct p v)
     rw [map_smul,LinearMap.smul_apply,map_smul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddBackgroundQuotientProduct_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -106,10 +112,12 @@ def oddBackgroundQuotientProduct
     oddBackgroundQuotientProduct Q F G p ((oddBackgroundCoefficientRelations F G).mkQ v)=
       (fullOddRelations Q F G).mkQ (evenOddBiformProduct p v) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def scalarEvenBiform : Forms K m d →ₗ[K] biformParitySpace K h m d 0 :=
   (evenBiformEmbedding (t := 0) (Nat.zero_le d) (by omega)).comp
     (scalarBiformEquiv (h := h)).toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem scalarEvenBiform_val (p : Forms K m d) :
     (scalarEvenBiform (h := h) p).val=rename Sum.inr p.val := by
   change sumBiformMap (scalarBiformEquiv (h := h) p)=_
@@ -117,6 +125,7 @@ def scalarEvenBiform : Forms K m d →ₗ[K] biformParitySpace K h m d 0 :=
   change rename Sum.inl (1 : MvPolynomial (Fin h) K)*rename Sum.inr p.val=_
   rw [map_one,one_mul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddBackgroundScalarProduct
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :

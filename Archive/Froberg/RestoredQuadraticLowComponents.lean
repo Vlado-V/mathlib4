@@ -15,12 +15,13 @@ low components used by the formal separation bridge. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restoredC2Projection_familySpace
     (idx : Fin r ≃ Label q J counts) (p : RestoredOuterSpace m d q f J counts O) :
     familySpace ((restoredC2Projection idx p).1)=PreparedTarget.preparedScalarSpace p.1.1 := by
@@ -28,6 +29,7 @@ theorem restoredC2Projection_familySpace
     Submodule.span K (Set.range (fun i => (p.1.1.1 i).val))
   rw [idx.surjective.range_comp]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restoredEndpointFamily_lowComponents (hd : 3≤d) (he : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (heven : ∀ j∈J,j%2=0) (hmin : ∀ j∈J,2≤j)
@@ -43,6 +45,7 @@ theorem restoredEndpointFamily_lowComponents (hd : 3≤d) (he : d%2=0)
   intro i
   exact PreparedTarget.renamed_restored_low_components hd he hO hJ heven hmin idx slot p.1 i
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem oddPolynomialToForms_linearOuter_val (hd : 1≤d)
     (F : FullBiform K (Fin h) m 1 (d-1)) :
     (oddPolynomialToForms (linearOddForm hd (PreparedTarget.outerVectorEquiv.symm F))).val=

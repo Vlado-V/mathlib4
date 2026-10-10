@@ -14,7 +14,7 @@ No extension or consistency assumption is made for these equations. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module TensorProduct
 attribute [local instance] tensorFormGroup
@@ -22,6 +22,7 @@ variable {K E V : Type*} [Field K]
   [AddCommGroup E] [Module K E] [FiniteDimensional K E]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem quotient_extra_relation_loss (A : Submodule K V) (g : E →ₗ[K] V) :
     finrank K (V ⧸ A)≤finrank K (V ⧸ (A ⊔ g.range))+finrank K E := by
   have hA := A.finrank_quotient_add_finrank
@@ -30,6 +31,7 @@ theorem quotient_extra_relation_loss (A : Submodule K V) (g : E →ₗ[K] V) :
   have hr := g.finrank_range_le
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem annihilator_extra_relation_loss (A : Submodule K V) (g : E →ₗ[K] V) :
     finrank K A.dualAnnihilator≤finrank K (A ⊔ g.range).dualAnnihilator+finrank K E := by
   have hA := Subspace.finrank_add_finrank_dualAnnihilator_eq A
@@ -38,6 +40,7 @@ theorem annihilator_extra_relation_loss (A : Submodule K V) (g : E →ₗ[K] V) 
   have hr := g.finrank_range_le
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem biform_extra_relation_loss {I : Type*} [Fintype I]
     {h m u : ℕ} (hh : 0 < h) (hm : 0 < m) (x y : I → ℕ)
     (A : Submodule K V)

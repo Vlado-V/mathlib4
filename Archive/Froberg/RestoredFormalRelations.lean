@@ -15,22 +15,25 @@ formal-relation equality for the intrinsic projected endpoint complex. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1400000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {n d r : ℕ}
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 def restorationForms (w : Fin n → ℕ)
     (g : Fin r → evenRestorationSpace (K := K) w d) : Fin r → Forms K n d :=
   fun i => ⟨(g i).val,(g i).property.1⟩
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem restorationForms_even (w : Fin n → ℕ)
     (g : Fin r → evenRestorationSpace (K := K) w d) (i : Fin r) :
     (restorationForms w g i).val.IsWeightedHomogeneous (fun x => (w x : ZMod 2)) 0 := by
   apply (parity_homogeneous_iff w (g i).val 0 (by omega)).mpr
   exact (mem_weightedParitySpace_iff w 0 (g i).val).mp (g i).property.2
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem restored_projected_formal_relations
     (w : Fin n → ℕ)
     (g : Fin r → evenRestorationSpace (K := K) w d)

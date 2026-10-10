@@ -14,13 +14,14 @@ whose dimensions fit in its target. The simultaneous condition is open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K V W I : Type*} [Field K] [Infinite K] [Fintype I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The individual restriction dimension bounds give a common nonempty
 principal open of projections, with no assumed general-position witness. -/
 theorem finite_subspace_projection_open (U : I → Submodule K V)
@@ -64,6 +65,7 @@ theorem finite_subspace_projection_open (U : I → Submodule K V)
   have hh : ∏ i, eval x (D i) ≠ 0 := by simpa only [map_prod] using hx
   exact hgood i x (Finset.prod_ne_zero_iff.mp hh i (Finset.mem_univ _))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_finite_subspace_projection (U : I → Submodule K V)
     (hU : ∀ i, finrank K (U i) ≤ finrank K W) :
     ∃ L : V →ₗ[K] W, ∀ i, Function.Injective (L.comp (U i).subtype) := by

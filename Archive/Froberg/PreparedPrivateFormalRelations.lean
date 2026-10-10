@@ -16,7 +16,7 @@ scalar formal relations after any supported scalar target deletion. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateEndpointFamily (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
@@ -31,6 +32,7 @@ def privateEndpointFamily (hd : 0<d) (ho : d%2=1)
     Fin (r+b) → Forms K (h+m) d :=
   privateSplitEndpoint (fun i => evenGenerator hO hJ heven p (e i)) (privateOddFamily hd ho P U)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem privateEndpointFamily_scalar (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
@@ -51,6 +53,7 @@ theorem privateEndpointFamily_scalar (hd : 0<d) (ho : d%2=1)
     funext fun k => finSumFinEquiv_symm_apply_natAdd k]
   simp [generator,scalar,high]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem prepared_private_formal_relations (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j) (e : Fin r ≃ Label q J counts)
@@ -99,6 +102,7 @@ theorem prepared_private_formal_relations (hd : 0<d) (ho : d%2=1)
       change a.1.val=0 at hi0
       omega
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def privateBackgroundFlagIndex (e : Fin r ≃ Label q J counts) :
     (Fin q ⊕ (Fin (Fintype.card (ProductRows.LayerLabel J counts)) ⊕ Fin b)) ≃ Fin (r+b) :=
   (Equiv.sumAssoc _ _ _).symm.trans
@@ -106,6 +110,7 @@ def privateBackgroundFlagIndex (e : Fin r ≃ Label q J counts) :
       ((Equiv.sumCongr (Equiv.refl (Fin q)) (Fintype.equivFin _).symm).trans e.symm)
       (Equiv.refl (Fin b))).trans finSumFinEquiv)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)
@@ -145,6 +150,7 @@ theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0<d) (ho : d%2=1)
     simp only [Sum.elim_inr,backgroundPositiveForms,oddPolynomialToForms_val,privateOddFamily_val,hG]
     exact ((renameEquiv K finSumFinEquiv).left_inv _).symm
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem privateEndpointFamily_flag_span {f : ℕ} (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (e : Fin r ≃ Label q J counts) (p : Space m d q J counts O)

@@ -18,23 +18,26 @@ the frame and its private model. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 local instance countedPrivateFrameSpaceFinite {h H n d q : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (Space n d q J counts (privateFrameOutputs frame)) :=
   finite_space (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 local instance countedPrivateConstrainedFinite {X : Type*} [AddCommGroup X] [Module K X]
     {w n d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X) :
     Module.Finite K (Space n d q J counts (constrainedOutputs T)) :=
   finite_space (fun _ _ => inf_le_left)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_private_frame_reduction_open {d : ℕ}
     (hd : 9≤d) (hodd : d%2=1) :
     ∀ᶠ w : ℕ in atTop,
@@ -108,6 +111,7 @@ theorem eventually_counted_private_frame_reduction_open {d : ℕ}
   exact private_frame_reduction_open_rename (by omega)
     (fun j hj => (mem_allEvenIndices.mp hj).2.1) f frame e columns ι L₀ hL₀ D hD hgood
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- After the scalar threshold, one nonempty frame open works with a fixed
 nonzero private tuple; every independent frame in it has a nonempty open of
 all its actual prepared coefficients. -/

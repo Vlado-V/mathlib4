@@ -12,11 +12,12 @@ public import Archive.Froberg.OddQuotientProduct
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical map between the projected parts of two nested quotients. -/
 def projectedRangeExtension (P : V →ₗ[K] V) (R E : Submodule K V) :
     (R.mkQ.comp P).range →ₗ[K] ((R ⊔ E).mkQ.comp P).range :=
@@ -29,6 +30,7 @@ def projectedRangeExtension (P : V →ₗ[K] V) (R E : Submodule K V) :
       rw [← hv]
       rfl)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A projection kills newly added relations, so its quotient range does not change. -/
 theorem projectedRangeExtension_bijective (P : V →ₗ[K] V) (R E : Submodule K V)
     (hP : ∀ v,P (P v)=P v)
@@ -61,6 +63,7 @@ theorem projectedRangeExtension_bijective (P : V →ₗ[K] V) (R E : Submodule K
     apply Subtype.ext
     exact hv
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def projectedRangeExtensionEquiv (P : V →ₗ[K] V) (R E : Submodule K V)
     (hP : ∀ v,P (P v)=P v)
     (hR : ∀ v∈R,P v∈R) (hE : E≤P.ker) :

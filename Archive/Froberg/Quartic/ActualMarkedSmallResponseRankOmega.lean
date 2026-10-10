@@ -28,8 +28,9 @@ open ActualMarkedSmallMotionAvoidanceOmega ActualDeformationResponseOmega SmallC
 open RowMultiplicationCoordinates
 variable {K : Type*} [Field K] [IsAlgClosed K] {m : ℕ} {upper : Bool}
 variable (ω : K)
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 omit [IsAlgClosed K] in
 /-- The numerical auxiliary budget is exactly the dimension difference of
 this actual response map and target. -/
@@ -66,6 +67,7 @@ theorem auxiliaryCount_eq (p : Parameters K m upper)
   rw [he]
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual motions with augmented injectivity and maximal response rank.
 No response-rank hypothesis or independently chosen stage is assumed. -/
 theorem exists_maximal_response (hm : 28 ≤ m) (p : Parameters K m upper)
@@ -105,6 +107,7 @@ theorem exists_maximal_response (hm : 28 ≤ m) (p : Parameters K m upper)
     rw [hj] at hz
     exact hz
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The resulting actual rank has the literal manuscript integer count. -/
 theorem exists_response_rank_formula (hm : 28 ≤ m) (p : Parameters K m upper)
     (extra : ActualMarkedCorrectionMotionOmega.MiddleTarget (Q p))
@@ -130,6 +133,7 @@ theorem exists_response_rank_formula (hm : 28 ≤ m) (p : Parameters K m upper)
   have hj := ActualSplitCokernel.rawJ_finrank_eq_j (G p) (Q p) hh hcubic h13
   rw [hrank,Nat.cast_min,hs',hj]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem common_open_with (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (upper : Bool) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (extra : (a : AugmentedGeneric.ParameterIndex m (mixedCount m upper) (upperEndpoint m) → K) →
@@ -161,6 +165,7 @@ theorem common_open_with (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (by rw [ActualTraceMotion.rowMixed_eq_transpose]; exact hblock.2.2.1)
     hf13.2.1 hf13.2.2 (AugmentedGeneric.coefficientMotions (baseProjection p)) (hExtra _ hPp)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A shared actual coefficient witness, leaving the marked subspace and
 any old-child realization explicit for the induction step. -/
 theorem exists_common_maximal_response_with (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)

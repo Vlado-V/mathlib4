@@ -16,13 +16,14 @@ prepared parameter space and supply all six comparison certificates. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters FullPreparedParameters
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q f u r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem hasEnlargedPreparedOpen_of_opens
     (hd : 0<d) (ho : d%2=1)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)

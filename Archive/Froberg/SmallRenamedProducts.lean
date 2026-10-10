@@ -14,7 +14,7 @@ coordinates. All witnesses remain points of the same prepared space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1400000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
@@ -22,6 +22,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_small_cross_profile_parameter_equiv {a b v : ℕ}
     (e : Fin (a+b) ≃ σ) (ha : 0<a) (hb : 0<b) (hv : 0<v)
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4=0)
@@ -38,6 +39,7 @@ theorem exists_small_cross_profile_parameter_equiv {a b v : ℕ}
   exact ⟨renameOutputParameter e T p,renameOutputParameter_injective_products e T p hp,
     renameOutputParameter_profile e T p _ hw⟩
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_strong_fourth_profile_parameter_equiv {h : ℕ}
     (e : Fin h ≃ σ) (hh : 144≤h) (hfour : 4∣h)
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4=0)
@@ -54,6 +56,7 @@ theorem exists_strong_fourth_profile_parameter_equiv {h : ℕ}
   exact ⟨renameOutputParameter e T p,renameOutputParameter_injective_products e T p hp,
     renameOutputParameter_profile e T p _ hw⟩
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_quintic_fourth_product_parameter {h : ℕ}
     (hh : 144≤h) (hfour : 4∣h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4=0)
     (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)
@@ -68,6 +71,7 @@ theorem exists_quintic_fourth_product_parameter {h : ℕ}
     (ProductRows.eighth_row_only_fourth counts J hz) f hf' hi ⊤ (fun _ => Submodule.mem_top)
   exact ⟨p,hp⟩
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_quintic_fourth_product_parameter_equiv {h : ℕ}
     (e : Fin h ≃ σ) (hh : 144≤h) (hfour : 4∣h)
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) (hT : T 4=0)
@@ -80,6 +84,7 @@ theorem exists_quintic_fourth_product_parameter_equiv {h : ℕ}
   obtain ⟨p,hp⟩ := exists_quintic_fourth_product_parameter (q := q) hh hfour T' hT' hz hm
   exact ⟨renameOutputParameter e T p,renameOutputParameter_injective_products e T p hp⟩
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem exists_strong_cubic_product_parameter_equiv {h : ℕ}
     (e : Fin h ≃ σ) (T : ℕ → MvPolynomial σ K →ₗ[K] X)
     (hz : ∀ k∈J,k≠2 → counts k=0)

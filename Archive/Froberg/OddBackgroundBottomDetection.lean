@@ -13,23 +13,26 @@ public import Archive.Froberg.OddBackgroundEndpoint
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem coreWeight_eq_blockWeight :
     coreWeight h m=blockWeight h m ∘ finSumFinEquiv.symm := by
   funext i
   refine Fin.addCases ?_ ?_ i <;> intro j <;>
     simp [coreWeight,blockWeight]
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem coreParity_eq_blockParity :
     coreParity h m=(fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm := by
   funext i
   exact congrArg (fun n : ℕ => (n : ZMod 2)) (congrFun coreWeight_eq_blockWeight i)
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddBackgroundEndpointEquiv_mk (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (a : biformParitySpace K h m (2*d) 1) :
@@ -47,6 +50,7 @@ theorem oddBackgroundEndpointEquiv_mk (Q : Fin q → biformParitySpace K h m d 0
     (backgroundEnumeratedForms Q F G)).range.mkQ (parityForm _ 1 p.val)
   rw [parityForm_same _ 1 p.val p.property]
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddBackground_bottom_detects (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (hupper : Function.Surjective (upperTargetMap (backgroundEnumeratedForms Q F G)))

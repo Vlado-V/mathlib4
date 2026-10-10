@@ -14,11 +14,12 @@ coordinate maps used in private-row separation. -/
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 600000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} {R H L : ℕ}
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 lemma outputCombination_basis (O : Submodule K (MvPolynomial σ K))
     (b : Basis (Fin H) K O) (x : O) :
     outputCombination (fun i => (b i).val) (b.equivFun x)=x.val := by
@@ -26,6 +27,7 @@ lemma outputCombination_basis (O : Submodule K (MvPolynomial σ K))
   simpa only [LinearEquiv.symm_apply_apply,Submodule.coe_sum,Submodule.coe_smul,
     outputCombination,LinearMap.coe_mk,AddHom.coe_mk] using hh.symm
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- A literal output multiplication matrix in any two homogeneous bases. -/
 def privateOutputMatrix
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
@@ -40,6 +42,7 @@ def privateOutputMatrix
         simpa only [Nat.add_comm 1 R] using w.property.mul x.property)
   ho.equivFun.toLinearMap.comp (F.comp hi.equivFun.symm.toLinearMap)
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 /-- Each column is exactly the product of its lower basis element with w. -/
 theorem privateOutputMatrix_column
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
@@ -56,6 +59,7 @@ theorem privateOutputMatrix_column
   change w.val*(hi.equivFun.symm (Pi.single j 1)).val=w.val*(hi j).val
   rw [hsingle]
 
+set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
 theorem privateOutputMatrix_injective
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
     (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R+1)))

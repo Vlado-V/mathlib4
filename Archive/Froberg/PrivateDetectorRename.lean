@@ -15,23 +15,26 @@ coordinates after reindexing the output variables. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 300000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z s b h H c : ℕ}
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 def renamedPrivateBasis (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) :
     Basis (Fin h) K (homogeneousSubmodule σ K 1) :=
   Basis.ofEquivFun ((homogeneousVariableEquiv (K := K) f 1).trans e.symm)
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 def renamedPrivateColumn (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin h → K) :
     homogeneousSubmodule σ K 1 :=
   (homogeneousVariableEquiv (K := K) f 1).symm (e w)
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 @[simp] theorem renamedPrivateBasis_column (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin h → K) :
     (renamedPrivateBasis f e).equivFun (renamedPrivateColumn f e w)=w := by
@@ -40,6 +43,7 @@ def renamedPrivateColumn (f : σ ≃ Fin h)
     ((homogeneousVariableEquiv (K := K) f 1).symm (e w)))=w
   rw [LinearEquiv.apply_symm_apply,LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) {w : Fin h → K} (hw : w≠0) :
     renamedPrivateColumn f e w≠0 := by
@@ -51,6 +55,7 @@ theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
     _=(renamedPrivateBasis f e).equivFun 0 := congrArg (renamedPrivateBasis f e).equivFun hz
     _=0 := (renamedPrivateBasis f e).equivFun.map_zero
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 @[simp] theorem rename_renamedPrivateColumn (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin h → K) :
     rename f (renamedPrivateColumn f e w).val=(e w).val := by
@@ -58,6 +63,7 @@ theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
     ((homogeneousVariableEquiv (K := K) f 1).symm (e w))).val=(e w).val
   rw [LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 @[simp] theorem rename_renamedPrivateBasis (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (j : Fin h) :
     rename f ((renamedPrivateBasis f e) j).val=(e (Pi.single j 1)).val := by
@@ -68,6 +74,7 @@ theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
     rfl
   rw [hb,rename_renamedPrivateColumn]
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem renamed_private_detector_column (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) (w : Fin h → K) (j : Fin h) :
@@ -78,6 +85,7 @@ theorem renamed_private_detector_column (f : σ ≃ Fin h)
     rename_renamedPrivateColumn,rename_renamedPrivateBasis]
   exact quadraticPolynomialDetector_form L (mulForm (e w) (e (Pi.single j 1)))
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem privatePowerBiform_output_rename [Fintype σ] {d : ℕ}
     (f : σ ≃ Fin h) (l : Fin b → homogeneousSubmodule σ K 1)
     (ι : Fin b ↪ Fin z) (i : Fin b) :
@@ -87,6 +95,7 @@ theorem privatePowerBiform_output_rename [Fintype σ] {d : ℕ}
   simp only [privatePowerBiform_val,coe_homogeneousVariableEquiv,map_mul,rename_rename]
   rfl
 
+set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 /-- A detector supplied by the finite-variable frame open feeds the prepared
 private-row theorem on any equivalent variable type. -/
 theorem private_detector_coordinate_pullback (f : σ ≃ Fin h)

@@ -13,13 +13,14 @@ no row of the odd target is discarded. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedHigherProjection_scalar (hd : Odd d) (hd3 : 3≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -64,6 +65,7 @@ theorem mixedHigherProjection_scalar (hd : Odd d) (hd3 : 3≤d)
           (by have := r.val.isLt; omega) (mixedHigherIndex_ge_three hd3 r)]
       rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedHigherProjection_weighted_bottom (hd : Odd d) (hd3 : 3≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

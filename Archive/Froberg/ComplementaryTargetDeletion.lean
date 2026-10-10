@@ -13,13 +13,14 @@ image preserves that image and fills the embedded old target. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module
 variable {K V W : Type*} [Field K]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_complementary_target_deletion (j : V →ₗ[K] W) (hj : Function.Injective j)
     (U : Submodule K V) :
     ∃ Z : Submodule K W,

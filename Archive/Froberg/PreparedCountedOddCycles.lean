@@ -16,12 +16,13 @@ every hypothesis of the full prepared odd-cycle open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Filter Module MvPolynomial Quartic VectorMultiplicationCoordinates
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasOddCyclesOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (Poly K h)} (hO : ∀ j∈J,O j≤Forms K h j) : Prop :=
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
@@ -34,6 +35,7 @@ def HasOddCyclesOpen {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
       eval ((Module.finBasis K _).equivFun p) P≠0 →
       ∀ U : Fin u → Forms K h d,OddCyclesExact U p.1 p.2
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_prepared_odd_cycles_open {d k h lo u : ℕ}
     (hd : 3≤d) (hdodd : d%2=1) (hk : 0<k)
     (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)

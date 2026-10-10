@@ -14,18 +14,20 @@ and odd-cycle hypotheses of the literal formal-relation theorem. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d r : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem biformRestorationForms_back
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d) (i : Fin r) :
     rename finSumFinEquiv.symm (biformRestorationForms g i).val=(g i).val := by
   change rename finSumFinEquiv.symm (rename finSumFinEquiv (g i).val)=(g i).val
   exact (renameEquiv K finSumFinEquiv).left_inv (g i).val
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem biform_restoration_odd_cycle_zero
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (hinj : Function.Injective (PreparedParameters.restoredOddRowLinear g))
@@ -58,6 +60,7 @@ namespace PreparedParameters
 variable {q f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restoredOuterEndpoint_castAdd (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -73,6 +76,7 @@ theorem restoredOuterEndpoint_castAdd (hdp : 1≤d) (hd : d%2=0)
   rw [finSumFinEquiv_symm_apply_castAdd]
   rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem RestoredCertificate.background_independent (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -82,6 +86,7 @@ theorem RestoredCertificate.background_independent (hdp : 1≤d) (hd : d%2=0)
   have hi := cert.independent.comp (Fin.castAdd f) (Fin.castAdd_injective r f)
   simpa only [Function.comp_def,restoredOuterEndpoint_castAdd] using hi
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem restored_certificate_formal_relations (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j)

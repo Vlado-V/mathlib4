@@ -23,7 +23,7 @@ mixed coefficients.
 noncomputable section
 namespace Quartic.AugmentedGenericOmega
 open Module MvPolynomial HomologyCoordinates AugmentedMiddle AugmentedGeneric
-set_option maxHeartbeats 1200000
+
 variable {K : Type*} [Field K]
 variable (ω : K)
 
@@ -31,32 +31,38 @@ section QuotientBridge
 variable {S A : Type*} [AddCommGroup S] [Module K S]
   [AddCommGroup A] [Module K A] {q : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Augmentation of an arbitrary actual symmetric-product map. -/
 def augmented (F : S →ₗ[K] A × A) (r : Fin 4 → A) :
     (S × (A × BlockHomology K)) →ₗ[K] A × A :=
   F.coprod (((ω • LinearMap.id : A →ₗ[K] A).prod (-LinearMap.id)).coprod (pureTrace r))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem augmented_apply (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (b : S) (a : A) (ξ : BlockHomology K) :
     augmented ω F r (b, a, ξ) = ((F b).1 + ω • a + (pureTrace r ξ).1,
       (F b).2 - a + (pureTrace r ξ).2) := by
   apply Prod.ext <;> simp [augmented, sub_eq_add_neg, add_assoc]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Scalar combinations of the actual ordered child generators. -/
 def childSum (h : Fin q → A) : (Fin q → K) →ₗ[K] A where
   toFun t := ∑ i, t i • h i
   map_add' _ _ := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' _ _ := by simp [smul_smul, Finset.smul_sum]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Fixed target and source: only the first coordinate needs added child columns. -/
 def lifted (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A) :
     ((S × (A × BlockHomology K)) × (Fin q → K)) →ₗ[K] A × A :=
   (augmented ω F r).coprod ((childSum h).prod 0)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem lifted_apply (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A)
     (b : S) (a : A) (ξ : BlockHomology K) (t : Fin q → K) :
     lifted ω F h r ((b, a, ξ), t) = augmented ω F r (b, a, ξ) + (childSum h t, 0) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The actual parameterized augmented map modulo the span of the child generators. -/
 def quotientAugmented (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A) :
     let Q := Submodule.span K (Set.range h)
@@ -64,6 +70,7 @@ def quotientAugmented (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → 
   let Q := Submodule.span K (Set.range h)
   augmented ω ((Q.mkQ.prodMap Q.mkQ).comp F) (fun i => Q.mkQ (r i))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem quotientAugmented_span_eq (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A)
     (Q : Submodule K A) (hQ : Submodule.span K (Set.range h) = Q) :
     Function.Injective (quotientAugmented ω F h r) ↔
@@ -71,11 +78,13 @@ theorem quotientAugmented_span_eq (F : S →ₗ[K] A × A) (h : Fin q → A) (r 
   subst Q
   rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem pureTrace_map {A' : Type*} [AddCommGroup A'] [Module K A'] (L : A →ₗ[K] A')
     (r : Fin 4 → A) (ξ : BlockHomology K) :
     (L.prodMap L) (pureTrace r ξ) = pureTrace (fun i => L (r i)) ξ := by
   apply Prod.ext <;> simp [pureTrace, map_sum]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem augmented_quotient (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4 → A)
     (b : S) (a : A) (ξ : BlockHomology K) :
     let Q := Submodule.span K (Set.range h)
@@ -94,6 +103,7 @@ theorem augmented_quotient (F : S →ₗ[K] A × A) (h : Fin q → A) (r : Fin 4
       Q.mkQ (F b).2 - Q.mkQ a + (pureTrace (fun i => Q.mkQ (r i)) ξ).2
     rw [map_add, map_sub, ht₂]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem childSum_mem (h : Fin q → A) (t : Fin q → K) :
     childSum h t ∈ Submodule.span K (Set.range h) := by
   change (∑ i, t i • h i) ∈ Submodule.span K (Set.range h)
@@ -101,6 +111,7 @@ theorem childSum_mem (h : Fin q → A) (t : Fin q → K) :
   intro i _
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem lifted_injective_of_quotient (F : S →ₗ[K] A × A)
     (h : Fin q → A) (r : Fin 4 → A) (hh : LinearIndependent K h)
     (hq : Function.Injective (quotientAugmented ω F h r)) : Function.Injective (lifted ω F h r) := by
@@ -130,6 +141,7 @@ theorem lifted_injective_of_quotient (F : S →ₗ[K] A × A)
   change ((b, a, ξ), t) = 0
   simp [hb, ha, hξ, ht]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Injectivity on the fixed polynomial spaces descends to the moving actual quotient. -/
 theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
     (h : Fin q → A) (r : Fin 4 → A)
@@ -166,6 +178,7 @@ theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
   change (b, Q.mkQ a, ξ) = 0
   simp [hb, ha₀, hξ]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The fixed-space lifted matrix is polynomial whenever its product and coefficient families are. -/
 theorem lifted_polynomial {ι : Type*} [FiniteDimensional K S] [FiniteDimensional K A]
     (F : (ι → K) → (S →ₗ[K] A × A)) (h : (ι → K) → Fin q → A)
@@ -190,11 +203,13 @@ theorem lifted_polynomial {ι : Type*} [FiniteDimensional K S] [FiniteDimensiona
 end QuotientBridge
 section Coefficients
 variable {m c q : ℕ}
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The actual full matrix family on fixed homogeneous polynomial spaces. -/
 def liftedFamily (a : ParameterIndex m c q → K) :
     LiftedSource K m c q →ₗ[K] (Forms K m 2 × Forms K m 2) :=
   lifted ω (productMap (coefficientMixed a)) (coefficientChild a) (coefficientMotions a)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily ω (K := K) (m := m) (c := c) (q := q)) := by
   classical
   apply lifted_polynomial ω
@@ -206,6 +221,7 @@ theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily ω (K := K) (
   · intro i
     exact isPolynomialFamily_linear ((LinearMap.proj i).comp coefficientMotions)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The concrete parameterized augmented witness gives an actual full-coefficient injective point. -/
 theorem exists_injective_parameter (hc : c ≤ m)
     (hbudget : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2) (hω : ω ≠ 0) (hω1 : ω ≠ -1) :
@@ -227,6 +243,7 @@ theorem exists_injective_parameter (hc : c ≤ m)
   · simpa only [liftedFamily, coefficientMixed_encode, coefficientChild_encode, coefficientMotions_encode] using
       lifted_injective_of_quotient ω (productMap (mixedFamily hc)) h r₀ hh hquot
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- A principal open in the actual full monomial coefficient space. -/
 def GenericAugmented (K : Type*) [Field K] (ω : K) (m c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (ParameterIndex m c q) K, (∃ a₀, eval a₀ D ≠ 0) ∧
@@ -234,6 +251,7 @@ def GenericAugmented (K : Type*) [Field K] (ω : K) (m c q : ℕ) : Prop :=
       LinearIndependent K (coefficientChild a) ∧ Function.Injective
         (quotientAugmented ω (productMap (coefficientMixed a)) (coefficientChild a) (coefficientMotions a))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The source parameterized augmented numerical budget supplies a nonempty determinant open,
 with the actual quotient, actual symmetric products, and actual pure homology. -/
 theorem genericAugmented_of_budget (hc : c ≤ m)

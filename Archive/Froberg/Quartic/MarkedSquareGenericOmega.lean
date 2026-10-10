@@ -18,18 +18,21 @@ namespace Quartic.MarkedSquareGenericOmega
 open Module MvPolynomial HomologyCoordinates AugmentedMiddle AugmentedGeneric
 open AugmentedGenericOmega MarkedSquareEmbedding
 variable {K : Type*} [Field K] {m c q : ℕ}
-set_option maxHeartbeats 1200000
 
+
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def productWithSquare (g : Fin c → MiddleCoordinates.Mixed K m)
     (ζ : MiddleCoordinates.Mixed K m) :
     (Forms K c 2 × K) →ₗ[K] (Forms K m 2 × Forms K m 2) :=
   (productMap g).coprod (LinearMap.toSpanSingleton K _
     (MiddleCoordinates.projectedProduct ζ ζ))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem productWithSquare_apply (g : Fin c → MiddleCoordinates.Mixed K m)
     (ζ : MiddleCoordinates.Mixed K m) (b : Forms K c 2) (a : K) :
     productWithSquare g ζ (b,a) = productMap g b + a • MiddleCoordinates.projectedProduct ζ ζ := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem productWithSquare_specialization (hc : c < m) :
     productWithSquare (mixedFamily (K := K) hc.le) (zeta hc) = (embedding hc).prod 0 := by
   apply LinearMap.ext
@@ -37,6 +40,7 @@ theorem productWithSquare_specialization (hc : c < m) :
   rw [productWithSquare_apply, productMap_specialization, zeta_product]
   apply Prod.ext <;> simp [embedding]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem productWithSquare_polynomial {ι : Type*}
     (g : (ι → K) → (Fin c → MiddleCoordinates.Mixed K m))
     (hg : ∀ i, IsPolynomialFamily (fun a => g a i)) (ζ : MiddleCoordinates.Mixed K m) :
@@ -47,14 +51,17 @@ theorem productWithSquare_polynomial {ι : Type*}
     (LinearMap.applyₗ (R := K) (M₂ := Forms K m 2 × Forms K m 2) b)).add
       (isPolynomialFamily_const (t • MiddleCoordinates.projectedProduct ζ ζ))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev LiftedSource (K : Type*) [Field K] (m c q : ℕ) :=
   (((Forms K c 2 × K) × (Forms K m 2 × BlockHomology K)) × (Fin q → K))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def liftedFamily (ω : K) (ζ : MiddleCoordinates.Mixed K m) (a : ParameterIndex m c q → K) :
     LiftedSource K m c q →ₗ[K] (Forms K m 2 × Forms K m 2) :=
   AugmentedGenericOmega.lifted ω (productWithSquare (coefficientMixed a) ζ)
     (coefficientChild a) (coefficientMotions a)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem liftedFamily_polynomial (ω : K) (ζ : MiddleCoordinates.Mixed K m) :
     IsPolynomialFamily (liftedFamily (K := K) (c := c) (q := q) ω ζ) := by
   apply AugmentedGenericOmega.lifted_polynomial ω
@@ -66,6 +73,7 @@ theorem liftedFamily_polynomial (ω : K) (ζ : MiddleCoordinates.Mixed K m) :
   · intro i
     exact isPolynomialFamily_linear ((LinearMap.proj i).comp coefficientMotions)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_injective_parameter (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (hc : c < m) (hbudget : q + (c + 1).choose 2 + 4 ≤ (m + 1).choose 2) :
     ∃ a : ParameterIndex m c q → K,
@@ -89,6 +97,7 @@ theorem exists_injective_parameter (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
       coefficientMotions_encode] using AugmentedGenericOmega.lifted_injective_of_quotient ω
       (productWithSquare (mixedFamily hc.le) (zeta hc)) h r₀ hh hquot
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def GenericMarkedAugmented (ω : K) (ζ : MiddleCoordinates.Mixed K m) (c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (ParameterIndex m c q) K, (∃ a₀, eval a₀ D ≠ 0) ∧
     ∀ a, eval a D ≠ 0 → LinearIndependent K (coefficientMixed a) ∧
@@ -96,6 +105,7 @@ def GenericMarkedAugmented (ω : K) (ζ : MiddleCoordinates.Mixed K m) (c q : �
         (AugmentedGenericOmega.quotientAugmented ω
           (productWithSquare (coefficientMixed a) ζ) (coefficientChild a) (coefficientMotions a))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The D.12 open uses exactly the old mixed/child/pure-motion parameter space. -/
 theorem genericMarkedAugmented_of_budget (ω : K) (hω : ω ≠ 0) (hω1 : ω ≠ -1)
     (hc : c < m) (hbudget : q + (c + 1).choose 2 + 4 ≤ (m + 1).choose 2) :

@@ -13,7 +13,7 @@ The auxiliary cuts are transported as target vectors. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg.BilinearScalarFamily
 open Module Quartic
 variable {K P V W P' V' W' : Type*} [Field K]
@@ -24,7 +24,8 @@ variable {K P V W P' V' W' : Type*} [Field K]
   [AddCommGroup V'] [Module K V'] [FiniteDimensional K V']
   [AddCommGroup W'] [Module K W'] [FiniteDimensional K W']
 
- theorem relation_kernel_equivalence
+ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+theorem relation_kernel_equivalence
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')
     (hmu : ∀ p v,eW (mu p v)=nu (eP p) (eV v)) (ell : W' →ₗ[K] K) :
@@ -47,6 +48,7 @@ variable {K P V W P' V' W' : Type*} [Field K]
     rw [←hmu]
     exact DFunLike.congr_fun hv p
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem relation_kernel_finrank_equivalence
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')
@@ -55,6 +57,7 @@ theorem relation_kernel_finrank_equivalence
       finrank K (QuotientCovectorKernel.relation mu (ell.comp eW.toLinearMap)).ker := by
   rw [relation_kernel_equivalence eP eV eW mu nu hmu ell,LinearEquiv.finrank_map_eq]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem HasClosedKernelSlices.equiv
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')

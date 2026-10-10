@@ -57,8 +57,9 @@ namespace Quartic.FiniteEndpointRows30
 open FiniteEndpointChecker
 set_option Elab.async false
 set_option maxRecDepth 1000000
-set_option maxHeartbeats 64000000
 
+
+set_option maxHeartbeats 64000000 in -- Preserve the budget during this port.
 theorem all_rows_checked : ∀i : Nat, i < 40920 →
     xorSum ((FiniteEndpointMetadata30Data.naturalRow i).map FiniteEndpointInverse30.binaryInverse) = 2^i := by
   refine FiniteEndpointChunks.forall_lt_of_fin_chunks

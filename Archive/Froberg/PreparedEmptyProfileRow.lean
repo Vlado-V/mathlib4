@@ -16,7 +16,7 @@ are injective after that profile is removed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial MonomialExpansion
 variable {K : Type} [Field K] [Infinite K]
@@ -24,6 +24,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_empty_profile_row_parameter
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) (R : J)
     (hz : counts R.val=0) (S : Finset (Fin n)) (j : ℕ)
@@ -53,6 +54,7 @@ theorem exists_empty_profile_row_parameter
 
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_strong_quartic_empty_row_parameter {h : ℕ}
     (T : ℕ → Poly K h →ₗ[K] X)
     (hz : ∀ k∈J,k≠2 → counts k=0) (R : J) (hR : R.val≠2)

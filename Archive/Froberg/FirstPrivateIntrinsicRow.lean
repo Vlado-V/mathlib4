@@ -15,14 +15,15 @@ boundary and an ordinary scalar/new-layer relation. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 variable {a z d b q m h c : ℕ}
 
- theorem first_private_intrinsic_row (hd : 3≤d)
+ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+theorem first_private_intrinsic_row (hd : 3≤d)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)

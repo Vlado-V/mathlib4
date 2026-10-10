@@ -16,7 +16,7 @@ scalar open. The scalar list is chosen once for both conditions. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication Quartic.PolynomialBilinearCoordinates
 variable {K : Type} [Field K] [Infinite K]
@@ -25,6 +25,7 @@ variable {n s d R h H m r b j : ℕ}
 variable {I : Type*} [Fintype I]
 variable {V : Type*} [AddCommGroup V] [Module K V]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- All parts of a finite even-row witness use the same actual scalar list. -/
 theorem exists_single_profile_even_row_with_relations
     (hn : 0<n) (hh : 0<h)

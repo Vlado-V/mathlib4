@@ -13,12 +13,13 @@ the private-power overlap calculation used in the degree-two row of B.4. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
 variable {K : Type*} [Field K] {n r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem linear_homology_eq_zero (hn : 0 < n) (q : Fin r → Forms K n 1)
     (hq : LinearIndependent K q) : finrank K (EndpointHomology q) = 0 := by
   have hr : r ≤ n := by
@@ -30,6 +31,7 @@ theorem linear_homology_eq_zero (hn : 0 < n) (q : Fin r → Forms K n 1)
   simp only [expectedEndpoint,euler_linear hr,Int.toNat_natCast] at he
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- There are exactly the constant alternating relations, over every field. -/
 theorem linear_endpoint_kernel (hn : 0 < n) (q : Fin r → Forms K n 1)
     (hq : LinearIndependent K q) : (endpointMultiplication q).ker = koszulSpace q := by
@@ -40,6 +42,7 @@ theorem linear_endpoint_kernel (hn : 0 < n) (q : Fin r → Forms K n 1)
   rw [← hd]
   exact (finrank_span_eq_card (koszulVector_linearIndependent q hq)).trans card_generatorPair
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Two independent linear factors have only their common scalar product
 as an overlap of their spaces of quadratic multiples. -/
 theorem independent_linear_product_overlap (hn : 0 < n)

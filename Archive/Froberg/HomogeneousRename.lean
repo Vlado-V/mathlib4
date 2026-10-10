@@ -13,26 +13,30 @@ public import Archive.Froberg.ComplementaryTargetDeletion
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {m n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def renameForm (f : Fin m → Fin n) : Forms K m d →ₗ[K] Forms K n d where
   toFun p := ⟨rename f p.val,p.property.rename_isHomogeneous⟩
   map_add' a b := Subtype.ext (map_add (rename f) a.val b.val)
   map_smul' c a := Subtype.ext (by simp)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem renameForm_injective (f : Fin m ↪ Fin n) :
     Function.Injective (renameForm (K := K) (d := d) f) := by
   intro a b h
   apply Subtype.ext
   exact rename_injective f f.injective (congrArg Subtype.val h)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem renameForm_mulForm (f : Fin m → Fin n) (a b : Forms K m d) :
     renameForm f (mulForm a b)=mulForm (renameForm f a) (renameForm f b) :=
   Subtype.ext (map_mul (rename f) a.val b.val)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem renameForm_formal_multiplication (f : Fin m → Fin n) :
     (formalPolynomialMultiplication (K := K) (n := n) (d := d)).comp
         (SymmetricFunctor.map (renameForm f))=
@@ -47,6 +51,7 @@ theorem renameForm_formal_multiplication (f : Fin m → Fin n) :
   | hadd a b ha hb => simp only [map_add,ha,hb]
   | hsmul c a ha => simp only [map_smul,ha]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_old_target_deletion (f : Fin m ↪ Fin n) (q : Fin r → Forms K m d) :
     ∃ Z : Submodule K (Forms K n (2*d)),
       finrank K Z=finrank K (EndpointQuotient K m d
@@ -64,6 +69,7 @@ theorem exists_old_target_deletion (f : Fin m ↪ Fin n) (q : Fin r → Forms K 
 
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem renamed_old_homology_finrank (q : Fin r → Forms K m d) (hq : LinearIndependent K q) (f : Fin m ↪ Fin n)
     (pi : Forms K n (2*d) →ₗ[K] Z)
     (hinj : Set.InjOn (pi.comp (renameForm f)) (endpointMultiplication q).range) :

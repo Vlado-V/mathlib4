@@ -15,11 +15,13 @@ noncomputable section
 namespace Quartic.SplitDefectCokernel
 open Module MvPolynomial ActualSplitCokernel SplitBigrading
 variable {K : Type*} [Field K] {m c q : ℕ}
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev ChildCokernel (h : Fin q → Forms K m 2) :=
   Forms K m 4 ⧸ (quadraticMultiplication h).range
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def outerMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     RawJ g h →ₗ[K] Cokernel g h :=
   (GeneralF13.combined g h).range.liftQ
@@ -29,6 +31,7 @@ def outerMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K 
       apply (Submodule.Quotient.mk_eq_zero _).mpr
       exact ⟨sourceEmbedding13 a,multiplication_sourceEmbedding13 g h a⟩)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def childMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     ChildCokernel h →ₗ[K] Cokernel g h :=
   (quadraticMultiplication h).range.liftQ
@@ -38,10 +41,12 @@ def childMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K 
       apply (Submodule.Quotient.mk_eq_zero _).mpr
       exact ⟨sourceEmbedding04 a,multiplication_sourceEmbedding04 g h a⟩)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def fromComponents (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     RawJ g h × ChildCokernel h →ₗ[K] Cokernel g h :=
   (outerMap g h).coprod (childMap g h)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- All split cokernel classes come from the outer row or the pure child row. -/
 theorem fromComponents_surjective (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2)
@@ -89,6 +94,7 @@ theorem fromComponents_surjective (g : Fin c → MiddleCoordinates.Mixed K m)
     exact Submodule.sum_mem _ (fun j _ => hgen j)
   exact hp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The child cokernel is the only extra term in the old split rank formula. -/
 theorem cokernel_finrank_le (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2)

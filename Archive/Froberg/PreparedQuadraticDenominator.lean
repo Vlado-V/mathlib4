@@ -14,13 +14,14 @@ coefficient row. This keeps the C.2 certificate uniform in scalar deletions. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d t c q b : ℕ}
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem mem_scalarCoefficientRow_range
     (Q : Fin q → Forms K m d) (g : Fin c → Poly K m)
     (hg : ∀ k,g k∈familySpace Q*Forms K m t) :
@@ -35,6 +36,7 @@ theorem mem_scalarCoefficientRow_range
   funext k
   simpa only [scalarCoefficientRow,LinearMap.coe_mk,AddHom.coe_mk,prefixMultiplication_val] using hx k
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_product_scalar_range
     (T : Poly K h →ₗ[K] (Fin c → K)) (Q : Fin q → Forms K m d)
     (A C : Submodule K (Poly K h)) (B D : Submodule K (Poly K m))
@@ -61,6 +63,7 @@ theorem polynomialTensorSpace_product_scalar_range
   | add u v hu hv =>
     simpa only [map_add,add_mul] using Submodule.add_mem _ hu hv
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_rename_back
     (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m))
     {p : Poly K (h+m)} (hp : p∈polynomialTensorSpace A B) :
@@ -81,6 +84,7 @@ theorem polynomialTensorSpace_rename_back
   | add x y hx hy =>
     simpa only [map_add] using (biformImage A B).add_mem hx hy
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem private_product_mem_quadratic_row
     (T : Poly K h →ₗ[K] (Fin c → K))
     (P : Fin b → FullBiform K (Fin h) m 1 (d-1)) :
@@ -120,6 +124,7 @@ theorem private_product_mem_quadratic_row
   | smul r p hp ih =>
     simpa only [smul_mul_assoc,map_smul] using Submodule.smul_mem _ r ih
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem prepared_denominator_mem_quadratic_row
     (hd : 2≤d) (T : Poly K h →ₗ[K] (Fin c → K))
     (Q : Fin q → Forms K m d) (P : Fin b → FullBiform K (Fin h) m 1 (d-1))
@@ -166,6 +171,7 @@ theorem prepared_denominator_mem_quadratic_row
     rw [hz]
     exact Submodule.zero_mem _
 
+set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem prepared_background_mem_quadratic_row
     (hd : 2≤d) (T : Poly K h →ₗ[K] (Fin c → K))
     (hT : T.comp (homogeneousComponent 2)=T)

@@ -13,7 +13,7 @@ monotonicity and the full higher-image bound needed by C.4. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1400000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
@@ -31,6 +31,7 @@ local notation "eV" => oddSourceBaseEquiv hdp F
 local notation "μ" => evenBackgroundScalar hdp Q F
 local notation "ν" => bottomCoordinateScalarAction hdp Q g
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem even_full_bottom_compat (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K)
     (p : Forms K m d) (x : OddBottomQuotient F) :
     ell (μ p ((eV).symm (x,0)))=splitTargetBottom eW ell (ν p x) := by
@@ -38,6 +39,7 @@ theorem even_full_bottom_compat (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K)
   change ell (μ p ((eV).symm (x,0)))=ell ((eW).symm (ν p x,0))
   rw [←he,LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem even_full_bottom_kernel (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K) :
     (QuotientCovectorKernel.relation μ ell).ker.comap
       ((eV).symm.toLinearMap.comp (LinearMap.inl K (OddBottomQuotient F)
@@ -46,12 +48,14 @@ theorem even_full_bottom_kernel (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K)
   pi_bottom_kernel_eq eV μ ν ell (splitTargetBottom eW ell)
     (even_full_bottom_compat hd3 Q g ell)
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem even_full_bottom_kernel_finrank_le (ell : EvenBackgroundTarget hdp Q F →ₗ[K] K) :
     finrank K (QuotientCovectorKernel.relation ν (splitTargetBottom eW ell)).ker≤
       finrank K (QuotientCovectorKernel.relation μ ell).ker :=
   pi_bottom_kernel_finrank_le eV μ ν ell (splitTargetBottom eW ell)
     (even_full_bottom_compat hd3 Q g ell)
 
+set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
 theorem even_full_higher_kernel_growth
     (t : ℕ)
     (hmid : ∀ (j : ℕ) (hj : 3≤j) (hjd : j≤d), j%2=1 →

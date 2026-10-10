@@ -15,7 +15,7 @@ an actual finite C.2 witness with fixed private columns. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct PrivateColumns
@@ -23,6 +23,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ]
 variable {a z n R s d b q h c f : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Adjoin scalar variables without changing any biform coefficient. -/
 def fullBiformCoreExtension (z : ℕ) :
     FullBiform K σ a R s →ₗ[K] FullBiform K σ (a+z) R s where
@@ -31,9 +32,11 @@ def fullBiformCoreExtension (z : ℕ) :
   map_add' p r := Subtype.ext (map_add _ _ _)
   map_smul' c p := Subtype.ext (map_smul (rename (Sum.map id (Fin.castAdd z))).toLinearMap c _)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 @[simp] theorem fullBiformCoreExtension_val (p : FullBiform K σ a R s) :
     (fullBiformCoreExtension z p).val=rename (Sum.map id (Fin.castAdd z)) p.val := rfl
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem fullBiformCoreExtension_injective :
     Function.Injective (fullBiformCoreExtension (K := K) (σ := σ) (a := a) (R := R) (s := s) z) := by
   intro p r he
@@ -42,6 +45,7 @@ theorem fullBiformCoreExtension_injective :
     (Function.Injective.sumMap Function.injective_id (Fin.castAdd_injective a z))
     (congrArg Subtype.val he)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
 /-- Scalar renaming commutes with any output detector. -/
 theorem biformVectorDetector_scalar_rename
@@ -61,6 +65,7 @@ theorem biformVectorDetector_scalar_rename
   | add x y hx hy =>
     simpa only [map_add,Pi.add_apply] using congrArg₂ HAdd.hAdd hx hy
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The extended outer product row is literally the renamed core row. -/
 theorem detectedSymmetricProductRow_core_extension
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
@@ -83,6 +88,7 @@ theorem detectedSymmetricProductRow_core_extension
     AlgHom.toLinearMap_apply,Finset.sum_apply,Pi.smul_apply,map_sum,map_smul,
     Submodule.subtype_apply,hpair,biformVectorDetector_scalar_rename]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Core scalar/outer separation survives the addition of private variables
 and the fixed private nuisance block. -/
 theorem typed_private_quadratic_extended_products_separation (hd : 3≤d)
@@ -110,6 +116,7 @@ theorem typed_private_quadratic_extended_products_separation (hd : 3≤d)
     (detectedSymmetricProductRow (FullBiform K σ a 1 (d-1)).subtype
       (biformVectorDetector T) F) hF x v hrel).1
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The finite C.2 witness uses the supplied scalar and private families and
 chooses its actual outer family internally from the paired coefficient space. -/
 theorem exists_typed_private_quadratic_witness {H : ℕ}

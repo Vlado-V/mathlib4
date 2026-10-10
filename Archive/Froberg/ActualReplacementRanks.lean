@@ -15,12 +15,13 @@ same literal replacement family and the same nonzero parameter as C.4. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundEnumeratedForms_pencil
     (Q D : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -38,6 +39,7 @@ theorem backgroundEnumeratedForms_pencil
   · simp only [backgroundParityFamily,Pi.zero_apply,Submodule.coe_zero,map_zero,smul_zero,add_zero]
   · simp only [backgroundParityFamily,Pi.zero_apply,Submodule.coe_zero,map_zero,smul_zero,add_zero]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_pencil_polynomial
     (Q D : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -56,6 +58,7 @@ theorem background_pencil_polynomial
 
 attribute [local irreducible] backgroundEnumeratedForms upperTargetMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem polynomial_endpoint_rank_open {r : ℕ}
     (A : (Fin 1 → K) → Fin r → Forms K (h+m) d) (hA : IsPolynomialFamily A)
     (hi : LinearIndependent K (A 0))
@@ -74,6 +77,7 @@ theorem polynomial_endpoint_rank_open {r : ℕ}
     simpa only [map_mul,mul_ne_zero_iff] using hc
   exact ⟨hp _ hc'.1,hs _ hc'.2⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_pencil_rank_open
     (Q D : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -95,6 +99,7 @@ theorem background_pencil_rank_open
   · rw [hzero]
     exact hu
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_actual_even_pencil_all_properties [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

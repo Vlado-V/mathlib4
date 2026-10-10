@@ -16,13 +16,14 @@ The scalar threshold precedes every choice of the shared quadratic frame. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module Filter MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r f : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_restored_formal_quadratic_open {d k h lo : ℕ}
     (hd : 3≤d) (he : d%2=0) (hh : 0<h)
     (upper : Bool) (a f e : ℕ → ℕ) (extra : ℕ)
@@ -53,6 +54,7 @@ theorem exact_counts_restored_formal_quadratic_open {d k h lo : ℕ}
     (fun j hj => (mem_allEvenIndices.mp hj).1)
     (actualRestoredIndex K d h n (e n) extra) slot T hT hO₂ p (hgood p hp)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The quadratic quotient supplied by the common frame open satisfies
 all detector assumptions, so no further choice of output space is needed. -/
 theorem exact_counts_restored_frame_quadratic_open {d k h lo : ℕ}

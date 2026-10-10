@@ -13,7 +13,7 @@ parameters, with one fixed affine contribution to the second family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.SplitRestoration
 open Module MvPolynomial Quartic PolynomialRestoration
 variable {K : Type} {σ E V W Z S : Type*} [Field K]
@@ -24,6 +24,7 @@ variable {K : Type} {σ E V W Z S : Type*} [Field K]
   [AddCommGroup S] [Module K S] [FiniteDimensional K S]
 variable {r b : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem split_linear_restoration_open
     (j : V →ₗ[K] MvPolynomial σ K) (k : W →ₗ[K] MvPolynomial σ K)
     (pi : MvPolynomial σ K →ₗ[K] Z)

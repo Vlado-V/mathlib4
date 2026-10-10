@@ -16,13 +16,14 @@ reduction, including the restored pure tuple and the literal boundaries. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*} [Fintype σ] [Fintype τ] {n : ℕ}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem output_rename_weighted {M : Type*} [AddCommMonoid M]
     (e : σ ≃ τ) (x y r : M) (f : MvPolynomial (σ ⊕ Fin n) K)
     (hf : f.IsWeightedHomogeneous (Sum.elim (fun _ : σ => x) (fun _ : Fin n => y)) r) :
@@ -33,6 +34,7 @@ theorem output_rename_weighted {M : Type*} [AddCommMonoid M]
   funext a
   cases a <;> rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem output_rename_parity (e : σ ≃ τ) (p : ℕ) (hp : p<2)
     (f : MvPolynomial (σ ⊕ Fin n) K)
     (hf : ∀ a,f.coeff a≠0 → Finsupp.weight
@@ -54,6 +56,7 @@ namespace PreparedParameters
 variable {d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_positive_reduction_output_rename
     (hd : 0<d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (e : σ ≃ τ)
@@ -138,6 +141,7 @@ theorem private_positive_reduction_output_rename
   · intro i
     exact ⟨(hzw i).1.rename_isHomogeneous,output_rename_weighted e 1 0 0 (z i) (hzw i).2⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem private_positive_reduction_open_output_rename
     [Module.Finite K (Space n d q J counts O)]
     (hd : 0<d) (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

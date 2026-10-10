@@ -22,13 +22,14 @@ Koszul homology. The dimension budget constructs the child space and motions.
 noncomputable section
 namespace Quartic.AugmentedMiddle
 open Module MvPolynomial HomologyCoordinates ThreeBlockQuotient
-set_option maxHeartbeats 400000
+
 variable {K : Type*} [Field K]
 
 section LinearAlgebra
 variable {V A : Type*} [AddCommGroup V] [Module K V]
   [AddCommGroup A] [Module K A]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The trace of actual pure homology under four quadratic motions. -/
 def pureTrace (r : Fin 4 → A) : BlockHomology K →ₗ[K] A × A where
   toFun ξ := (∑ i, (homologyReduction ξ i).1 • r i,
@@ -36,6 +37,7 @@ def pureTrace (r : Fin 4 → A) : BlockHomology K →ₗ[K] A × A where
   map_add' ξ η := by simp [map_add, add_smul, Finset.sum_add_distrib]
   map_smul' s ξ := by simp [map_smul, smul_smul, Finset.smul_sum]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- These are the actual coefficient maps `R_i : H_X → P`, in the proved quotient coordinates. -/
 theorem pureTrace_actual_coefficients (r : Fin 4 → A) (ξ : BlockHomology K) :
     pureTrace r ξ =
@@ -43,17 +45,20 @@ theorem pureTrace_actual_coefficients (r : Fin 4 → A) (ξ : BlockHomology K) :
        ∑ i, (quotientEquiv (coefficientMap i ξ)).2 • r i) := by
   simp [pureTrace, coefficientMap]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Products, the fixed marked motion `(u-v)`, and the actual pure trace. -/
 def augmentedMap (f : V →ₗ[K] A) (r : Fin 4 → A) :
     (V × (A × BlockHomology K)) →ₗ[K] A × A :=
   (f.prod 0).coprod (((LinearMap.id : A →ₗ[K] A).prod (-LinearMap.id)).coprod (pureTrace r))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem augmentedMap_apply (f : V →ₗ[K] A) (r : Fin 4 → A)
     (b : V) (a : A) (ξ : BlockHomology K) :
     augmentedMap f r (b, a, ξ) = (f b + a + (pureTrace r ξ).1,
       -a + (pureTrace r ξ).2) := by
   apply Prod.ext <;> simp [augmentedMap, add_assoc]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem pureTrace_sum (r : Fin 4 → A) (ξ : BlockHomology K) :
     (pureTrace r ξ).1 + (pureTrace r ξ).2 = ∑ i, scalarCoefficientMap ξ i • r i := by
   simp only [pureTrace, LinearMap.coe_mk, AddHom.coe_mk, scalarCoefficientMap,
@@ -61,6 +66,7 @@ theorem pureTrace_sum (r : Fin 4 → A) (ξ : BlockHomology K) :
     LinearMap.fst_apply, LinearMap.snd_apply, LinearMap.proj_apply, add_smul,
     Finset.sum_add_distrib]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem augmentedMap_injective (f : V →ₗ[K] A) (hf : Function.Injective f)
     (r : Fin 4 → A) (h2 : (2 : K) ≠ 0)
     (hr : LinearIndependent K (fun i : Fin 3 => f.range.mkQ (r i.castSucc))) :
@@ -99,12 +105,14 @@ theorem augmentedMap_injective (f : V →ₗ[K] A) (hf : Function.Injective f)
   change (b, a, homologyEquiv t) = 0
   simp [hb, ha, ht]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The same witness works simultaneously for every marked coefficient subspace. -/
 def augmentedOnSubspace (f : V →ₗ[K] A) (r : Fin 4 → A) (U : Submodule K A) :
     (V × (U × BlockHomology K)) →ₗ[K] A × A :=
   (augmentedMap f r).comp
     ((LinearMap.id : V →ₗ[K] V).prodMap (U.subtype.prodMap LinearMap.id))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem augmentedOnSubspace_injective (f : V →ₗ[K] A) (r : Fin 4 → A)
     (h : Function.Injective (augmentedMap f r)) (U : Submodule K A) :
     Function.Injective (augmentedOnSubspace f r U) := by
@@ -118,6 +126,7 @@ theorem augmentedOnSubspace_injective (f : V →ₗ[K] A) (r : Fin 4 → A)
 
 variable [FiniteDimensional K A]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- A quadratic relation subspace can be chosen disjoint from the prescribed products. -/
 theorem exists_disjoint_subspace (C : Submodule K A) (q : ℕ)
     (hq : q + finrank K C ≤ finrank K A) :
@@ -132,6 +141,7 @@ theorem exists_disjoint_subspace (C : Submodule K A) (q : ℕ)
     rintro x ⟨v, _, rfl⟩
     exact v.property
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The numerical codimension budget supplies the three actual quotient motions. -/
 theorem exists_motions (f : V →ₗ[K] A) (hf : Function.Injective f)
     (hbudget : finrank K V + 3 ≤ finrank K A) (h2 : (2 : K) ≠ 0) :
@@ -150,10 +160,12 @@ theorem exists_motions (f : V →ₗ[K] A) (hf : Function.Injective f)
     fin_cases i <;> exact hv _
   exact he ▸ hs
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Actual product coordinates after imposing the child quadratic relations. -/
 def quotientAlong (f : V →ₗ[K] A) (Q : Submodule K A) : V →ₗ[K] A ⧸ Q :=
   Q.mkQ.comp f
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 omit [FiniteDimensional K A] in
 theorem quotientAlong_injective (f : V →ₗ[K] A) (hf : Function.Injective f)
     (Q : Submodule K A) (hdis : Disjoint f.range Q) :
@@ -165,6 +177,7 @@ theorem quotientAlong_injective (f : V →ₗ[K] A) (hf : Function.Injective f)
   have hz : f v = 0 := (Submodule.disjoint_def.mp hdis) (f v) ⟨v, rfl⟩ hQ
   exact hf (hz.trans f.map_zero.symm)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Construct the child relations and motions solely from the numerical budget. -/
 theorem exists_quotient_motions (f : V →ₗ[K] A) (hf : Function.Injective f) (q : ℕ)
     (hbudget : q + finrank K V + 3 ≤ finrank K A) (h2 : (2 : K) ≠ 0) :
@@ -182,12 +195,14 @@ end LinearAlgebra
 section PolynomialSpecialization
 variable {m c q : ℕ}
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The actual child polynomial embedding of the first `c` variables. -/
 def activeForms (hc : c ≤ m) (d : ℕ) : Forms K c d →ₗ[K] Forms K m d where
   toFun f := ⟨rename (Fin.castLE hc) f.val, f.property.rename_isHomogeneous⟩
   map_add' _ _ := Subtype.ext (map_add _ _ _)
   map_smul' _ _ := Subtype.ext (by simp)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem activeForms_injective (hc : c ≤ m) (d : ℕ) :
     Function.Injective (activeForms (K := K) hc d) := by
   intro f g h
@@ -195,17 +210,21 @@ theorem activeForms_injective (hc : c ≤ m) (d : ℕ) :
   apply MvPolynomial.rename_injective (Fin.castLE hc) (Fin.castLE_injective hc)
   exact congrArg Subtype.val h
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- An actual monomial in the symmetric-product coordinates. -/
 def quadraticMonomial (i j : Fin c) : Forms K c 2 :=
   ⟨X i * X j, (isHomogeneous_X K i).mul (isHomogeneous_X K j)⟩
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def activeVariable (hc : c ≤ m) (i : Fin c) : Forms K m 1 :=
   ⟨X (Fin.castLE hc i), isHomogeneous_X K _⟩
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The concrete mixed specialization `g_i=x y_i`. -/
 def mixedFamily (hc : c ≤ m) (i : Fin c) : MiddleCoordinates.Mixed K m :=
   ![activeVariable hc i, 0, 0]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem mixedFamily_independent (hc : c ≤ m) :
     LinearIndependent K (mixedFamily (K := K) hc) := by
   classical
@@ -217,6 +236,7 @@ theorem mixedFamily_independent (hc : c ≤ m) :
     coeff_sum, coeff_smul, coeff_X, Finsupp.single_eq_single_iff,
     smul_eq_mul, Pi.smul_apply, Finset.sum_apply] using h
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem mixedFamily_product (hc : c ≤ m) (i j : Fin c) :
     MiddleCoordinates.projectedProduct (mixedFamily (K := K) hc i) (mixedFamily hc j) =
       (activeForms hc 2 (quadraticMonomial i j), 0) := by
@@ -224,6 +244,7 @@ theorem mixedFamily_product (hc : c ≤ m) (i j : Fin c) :
     simp [MiddleCoordinates.projectedProduct, MiddleCoordinates.mulLinear,
       mixedFamily, activeVariable, activeForms, quadraticMonomial]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Uniform concrete augmented witness on the actual child polynomial quotient.
 The same motions work for every subspace of marked child coefficients. -/
 theorem augmented_witness (hc : c ≤ m)

@@ -13,7 +13,7 @@ including both the prepared coefficients and the pure output forms. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {n d q r : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def evenGeneratorLinear (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) :
@@ -39,11 +40,13 @@ def evenGeneratorLinear (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     change generator (a • p) (idx i)=a • generator p (idx i)
     rcases idx i with i | j <;> simp [generator,scalar,high,map_smul,smul_add]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev RestoredSpace (n d q : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (MvPolynomial σ K)) :=
   Space n d q J counts O ×
     (Fin (finrank K (homogeneousSubmodule σ K d)) → homogeneousSubmodule σ K d)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredCoordinates (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
     RestoredSpace n d q J counts O ≃ₗ[K]
       (Fin (finrank K (RestoredSpace n d q J counts O)) → K) := by
@@ -52,6 +55,7 @@ def restoredCoordinates (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j) :
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   exact (Module.finBasis K (RestoredSpace n d q J counts O)).equivFun
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredFamilyLinear (hd : d%2=0)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
@@ -62,6 +66,7 @@ def restoredFamilyLinear (hd : d%2=0)
   (evenGeneratorLinear hO hJ heven idx).comp (LinearMap.fst K _ _) +
     (PolynomialRestoration.pureShift (pureEvenEmbed hd) slot).comp (LinearMap.snd K _ _)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem even_prepared_restoration_principal_open (hd : d%2=0)
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0) (hpos : ∀ j∈J,0<j)
@@ -133,6 +138,7 @@ theorem even_prepared_restoration_principal_open (hd : d%2=0)
   intro p hp
   simpa only [LinearEquiv.symm_apply_apply,g,Submodule.subtype_apply] using hgood (coord p) hp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Any further nonempty principal condition in the same parameter space
 can be imposed together with restoration exactness and a full pure basis. -/
 theorem exists_even_restored_basis_on_open (hd : d%2=0)

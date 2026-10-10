@@ -16,12 +16,13 @@ odd scalar action, with generator independence and B.7 surjectivity. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddBackgroundScalar_endpoint_slices_iff
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -47,6 +48,7 @@ theorem oddBackgroundScalar_endpoint_slices_iff
     rw [LinearEquiv.apply_symm_apply] at hh
     exact hh.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_actual_endpoint_pencil [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -68,6 +70,7 @@ theorem exists_actual_endpoint_pencil [IsAlgClosed K]
     ((oddBackgroundScalar_endpoint_slices_iff (Fin.append Q E) F G s).mpr hs) hi hu P hP
   exact ⟨c,hc,hP,hex,(oddBackgroundScalar_endpoint_slices_iff _ F G s).mp hs,hi,hu⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_actual_endpoint_slot_replacement [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -100,6 +103,7 @@ theorem exists_actual_endpoint_slot_replacement [IsAlgClosed K]
   rw [he] at hex hs hi hu
   exact ⟨c,hc,hP,hex,hs,hi,hu⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def backgroundOddTargetDimension
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -108,6 +112,7 @@ def backgroundOddTargetDimension
     ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
     (backgroundEnumeratedForms Q F G))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_endpoint_dimension_eq_of_split_exact
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -124,6 +129,7 @@ theorem odd_endpoint_dimension_eq_of_split_exact
   dsimp only [backgroundOddTargetDimension]
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_actual_endpoint_slot_thin [IsAlgClosed K]
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

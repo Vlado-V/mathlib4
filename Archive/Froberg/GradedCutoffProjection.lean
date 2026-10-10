@@ -16,11 +16,12 @@ linear multiplication estimate. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic
 variable {K : Type*} [Field K] [Infinite K] {n e u b : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_projected_linear_growth_with_cutoff (hn : 0<n) (he : 0<e)
     (hW : (n+(1+e)-1).choose (1+e)=u+b)
     (hmargin : ((n+e-1).choose e)*((n+e-1).choose e)<u*b)

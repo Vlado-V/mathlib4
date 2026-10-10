@@ -16,7 +16,7 @@ namespace Quartic.ProfileOuterFinite
 open ProfileCertificate FiniteCounts
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- The full-profile budget in all 26 small endpoint configurations. -/
 theorem full_profile_verified : ∀ k : Fin 13,∀ upper : Bool,
     let m := k.val+28

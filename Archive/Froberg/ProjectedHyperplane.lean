@@ -14,13 +14,14 @@ complex after deleting a fixed target subspace. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module
 variable {K : Type} [Field K]
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 variable {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def projectedHyperplaneReplacement (pi : Forms K n (2*d) →ₗ[K] Z)
     (W A Q Qminus W₀ : Submodule K (Forms K n d))
     {f M : Forms K n d} {e : K}
@@ -42,6 +43,7 @@ def projectedHyperplaneReplacement (pi : Forms K n (2*d) →ₗ[K] Z)
     exact formal_hyperplane_replacement _ W A Q Qminus W₀ hWA hQ hW hQ₀ hf₀ hM he hrelations
   exact (projectedHomologyEquivFormal pi q hq).trans (LinearEquiv.ofEq _ _ hEq)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q)) :
     projectedRetainedHomology pi q hq W ≃ₗ[K]
@@ -76,6 +78,7 @@ def projectedRetainedHomologyEquivFormal (pi : Forms K n (2*d) →ₗ[K] Z) (q :
     · apply Subtype.ext
       exact hrep
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projectedRetainedHomology_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q)) :
     finrank K (projectedRetainedHomology pi q hq W)=

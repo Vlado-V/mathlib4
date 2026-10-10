@@ -17,7 +17,7 @@ quotient action in the corrected ambient target. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
@@ -44,6 +44,7 @@ local notation "π" => oddAmbientToFull Q₀ F₁ G₁
 local notation "μ" => oddBackgroundScalarProduct Q₀ F₁ G₁
 local notation "ν" => bottomCoordinateScalarAction hdp Q g
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_bottom_compat
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
@@ -70,6 +71,7 @@ theorem mixed_full_bottom_compat
     ell (π (((oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD)).symm (ν p x,0)))
   rw [←he,LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_bottom_kernel
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
@@ -83,6 +85,7 @@ theorem mixed_full_bottom_kernel
   pi_bottom_kernel_eq eV μ ν ell (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)
     (mixed_full_bottom_compat hd hd3 Q g U P B hB D hD ell)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_bottom_kernel_finrank_le
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
@@ -94,6 +97,7 @@ theorem mixed_full_bottom_kernel_finrank_le
   pi_bottom_kernel_finrank_le eV μ ν ell (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)
     (mixed_full_bottom_compat hd hd3 Q g U P B hB D hD ell)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 include B hB in
 theorem mixed_full_higher_kernel_growth
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))

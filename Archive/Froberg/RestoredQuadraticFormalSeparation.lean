@@ -15,13 +15,14 @@ endpoint deletion and the literal restored background. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q r f c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- C.2 in exactly the endpoint coordinates used by the restored comparison. -/
 theorem restored_quadratic_formal_separation
     (hd : 3≤d) (hdp : 1≤d) (he : d%2=0)
@@ -53,6 +54,7 @@ theorem restored_quadratic_formal_separation
     rw [hempty]
     exact restoredEndpointFamily_lowComponents hd he hO hJ heven hmin idx slot p
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem QuadraticSeparated.restored_formal
     (hd : 3≤d) (hdp : 1≤d) (he : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)

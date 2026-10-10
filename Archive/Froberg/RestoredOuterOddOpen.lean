@@ -14,16 +14,18 @@ outer linear family, on one common parameter open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K] {h m d q r f t : ℕ} {G : ℝ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev RestoredOuterSpace (m d q f : ℕ) (J : Finset ℕ) (counts : ℕ → ℕ)
     (O : ℕ → Submodule K (Poly K h)) :=
   RestoredSpace m d q J counts O × PreparedTarget.OuterSpace K (Fin h) m d f
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredOuterVectorParameters (idx : Fin r ≃ Label q J counts) :
     RestoredOuterSpace m d q f J counts O →ₗ[K] ScalarVectorParameters K h m d f r where
   toFun p := (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i),fun i => p.1.1.1 (idx i))
@@ -40,6 +42,7 @@ def restoredOuterVectorParameters (idx : Fin r ≃ Label q J counts) :
       exact map_smul (PreparedTarget.outerVectorEquiv (K := K) (h := h) (m := m) (d := d)).symm a (p.2 i)
     · rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredOuterVectorParameters_surjective (idx : Fin r ≃ Label q J counts) :
     Function.Surjective (restoredOuterVectorParameters (m := m) (d := d) (f := f) (O := O) idx) := by
   rintro ⟨g,Q⟩
@@ -50,6 +53,7 @@ theorem restoredOuterVectorParameters_surjective (idx : Fin r ≃ Label q J coun
   · funext i
     exact congrArg Q (idx.symm_apply_apply i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_outer_odd_open (hh : 0<h) (hm : 0 < m) (hd : 3≤d) (hdeven : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

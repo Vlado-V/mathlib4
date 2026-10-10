@@ -14,12 +14,13 @@ endpoint map after enumeration, not an additional relation space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {σ I : Type} [Fintype I] {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityPolynomialProduct (w : σ → ZMod 2) (e p : ZMod 2)
     (g : homogeneousParitySpace K σ d w e) :
     homogeneousParitySpace K σ d w (p-e) →ₗ[K]
@@ -33,33 +34,39 @@ def parityPolynomialProduct (w : σ → ZMod 2) (e p : ZMod 2)
   map_add' a b := Subtype.ext (mul_add _ _ _)
   map_smul' c a := Subtype.ext (mul_smul_comm _ _ _)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityPolynomialEndpoint (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (p : ZMod 2) :
     ((i : I) → homogeneousParitySpace K σ d w (p-e i)) →ₗ[K]
       homogeneousParitySpace K σ (2*d) w p :=
   ∑ i,(parityPolynomialProduct w (e i) p (g i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem parityPolynomialEndpoint_val (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (p : ZMod 2)
     (a : (i : I) → homogeneousParitySpace K σ d w (p-e i)) :
     (parityPolynomialEndpoint w e g p a).val=∑ i,(g i).val*(a i).val := by
   simp [parityPolynomialEndpoint,parityPolynomialProduct]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityPolynomialToFormsEquiv (v : σ ≃ Fin n) (w : σ → ZMod 2) (p : ZMod 2) :
     homogeneousParitySpace K σ d w p ≃ₗ[K]
       parityPartForms (K := K) (d := d) (w ∘ v.symm) p :=
   (homogeneousParityRenameEquiv v w d p).trans (parityPartPolynomialEquiv _ _).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem parityPolynomialToFormsEquiv_val (v : σ ≃ Fin n)
     (w : σ → ZMod 2) (p : ZMod 2) (a : homogeneousParitySpace K σ d w p) :
     (parityPolynomialToFormsEquiv v w p a).val.val=rename v a.val := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityEnumeratedForms (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) :
     Fin r → Forms K n d :=
   fun i => (parityPolynomialToFormsEquiv v w (e (j.symm i)) (g (j.symm i))).val
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityEnumeratedForms_homogeneous (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (i : Fin r) :
@@ -67,6 +74,7 @@ theorem parityEnumeratedForms_homogeneous (v : σ ≃ Fin n) (j : I ≃ Fin r)
       (w ∘ v.symm) (e (j.symm i)) :=
   (parityPolynomialToFormsEquiv v w (e (j.symm i)) (g (j.symm i))).property
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityEnumeratedCoefficientsEquiv (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2) (p : ZMod 2) :
     ((i : I) → homogeneousParitySpace K σ d w (p-e i)) ≃ₗ[K]
@@ -75,17 +83,20 @@ def parityEnumeratedCoefficientsEquiv (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (LinearEquiv.piCongrLeft' K (fun i => parityPartForms (K := K) (d := d)
       (w ∘ v.symm) (p-e i)) j)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def parityEnumeratedCoefficients (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2) (p : ZMod 2) :
     ((i : I) → homogeneousParitySpace K σ d w (p-e i)) →ₗ[K]
       ((i : Fin r) → parityPartForms (K := K) (d := d) (w ∘ v.symm) (p-e (j.symm i))) :=
   (parityEnumeratedCoefficientsEquiv v j w e p).toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityEnumeratedCoefficients_surjective (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2) (p : ZMod 2) :
     Function.Surjective (parityEnumeratedCoefficients (K := K) (d := d) v j w e p) :=
   (parityEnumeratedCoefficientsEquiv v j w e p).surjective
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityPolynomialEndpoint_transport (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (p : ZMod 2)
@@ -102,6 +113,7 @@ theorem parityPolynomialEndpoint_transport (v : σ ≃ Fin n) (j : I ≃ Fin r)
     ∑ i,rename v (g (j.symm i)).val*rename v (a (j.symm i)).val
   exact (j.symm.sum_comp (fun i => rename v (g i).val*rename v (a i).val)).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem parityPolynomialEndpoint_range_transport (v : σ ≃ Fin n) (j : I ≃ Fin r)
     (w : σ → ZMod 2) (e : I → ZMod 2)
     (g : (i : I) → homogeneousParitySpace K σ d w (e i)) (p : ZMod 2) :
@@ -121,6 +133,7 @@ theorem parityPolynomialEndpoint_range_transport (v : σ ≃ Fin n) (j : I ≃ F
     exact ⟨parityPolynomialEndpoint w e g p b,⟨b,rfl⟩,
       parityPolynomialEndpoint_transport v j w e g p b⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Quotient by the literal parity-restricted polynomial products agrees
 with the odd subspace of the actual degree-`2d` endpoint quotient. -/
 def parityPolynomialEndpointQuotientEquiv (v : σ ≃ Fin n) (j : I ≃ Fin r)

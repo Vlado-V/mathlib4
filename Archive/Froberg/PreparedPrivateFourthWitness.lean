@@ -17,13 +17,14 @@ common prepared space, including the adjoined private scalar variables. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem exists_fourth_private_row_parameter {w v z d q b t : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}

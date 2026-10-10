@@ -14,17 +14,19 @@ quotient is the literal full-background multiplication. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def tensorScalarParityProduct : (Forms K h 0 ⊗[K] Forms K m d) →ₗ[K]
     biformParitySpace K h m d 1 →ₗ[K] biformParitySpace K h m (2*d) 1 :=
   evenOddBiformProduct.comp (evenBiformEmbedding (Nat.zero_le d) (by decide))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem tensorScalarParityProduct_private_mem
     (G : Fin u → biformParitySpace K h m d 1)
     (p : Forms K h 0 ⊗[K] Forms K m d) (i : Fin u) :
@@ -44,6 +46,7 @@ theorem tensorScalarParityProduct_private_mem
     simp
   · simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem tensorScalarParityProduct_relations
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -61,6 +64,7 @@ theorem tensorScalarParityProduct_relations
     exact (show (privateScalarRelations G).range ≤ ambientOddRelations Q F G from le_sup_right)
       (tensorScalarParityProduct_private_mem G p i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddAmbientScalarProduct
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -87,6 +91,7 @@ def oddAmbientScalarProduct
       c • (ambientOddRelations Q F G).mkQ (tensorScalarParityProduct p v)
     rw [map_smul,LinearMap.smul_apply,map_smul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddAmbientScalarProduct_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -94,6 +99,7 @@ def oddAmbientScalarProduct
     oddAmbientScalarProduct Q F G p ((oddBackgroundCoefficientRelations F G).mkQ v)=
       (ambientOddRelations Q F G).mkQ (tensorScalarParityProduct p v) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem ambientOddRelations_le_full
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -101,6 +107,7 @@ theorem ambientOddRelations_le_full
   apply sup_le_sup_left
   exact LinearMap.range_comp_le_range _ _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def oddAmbientToFull
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -109,6 +116,7 @@ def oddAmbientToFull
   Submodule.mapQ _ _ LinearMap.id (by
     simpa only [Submodule.comap_id] using ambientOddRelations_le_full Q F G)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem oddAmbientToFull_mk
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -116,6 +124,7 @@ def oddAmbientToFull
     oddAmbientToFull Q F G ((ambientOddRelations Q F G).mkQ v)=
       (fullOddRelations Q F G).mkQ v := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddAmbientToFull_surjective
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1) :
@@ -124,6 +133,7 @@ theorem oddAmbientToFull_surjective
   obtain ⟨v,rfl⟩ := (fullOddRelations Q F G).mkQ_surjective x
   exact ⟨(ambientOddRelations Q F G).mkQ v,rfl⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem oddAmbientScalarProduct_toFull
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

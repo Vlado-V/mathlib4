@@ -20,7 +20,7 @@ endpoint and thin-slice certificates belong to its retained restriction. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters BilinearScalarFamily VectorExpansionOpen
@@ -30,6 +30,7 @@ variable {O : ℕ → Submodule K (Poly K h)}
 
 variable [IsAlgClosed K]
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem exists_critical_comparison_of_prepared_odd
     {r : ℕ} {c c' : ℕ → ℕ}
     (hd : 1 < d) (ho : d%2=1) (hm : 0 < m) (upper : Bool)

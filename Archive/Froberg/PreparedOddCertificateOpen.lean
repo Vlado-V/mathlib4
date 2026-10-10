@@ -15,12 +15,13 @@ principal open inside any supplied nonempty prepared-parameter open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 100000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
 theorem exists_prepared_independent_odd_certificate_open (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (hi : HasIndependentOpen (m := m) (q := q) (f := f) (u := u)

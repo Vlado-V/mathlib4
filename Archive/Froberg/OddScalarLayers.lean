@@ -14,19 +14,23 @@ to the actual generator count. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module TensorProduct MvPolynomial Filter
 open scoped Topology
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 abbrev OddLayerParameters (K : Type*) [Field K] (h n d qO qS : ℕ) :=
   (Fin qO → Forms K h 1 ⊗[K] Forms K n (d-1)) ×
   (Fin qS → Forms K h 0 ⊗[K] Forms K n d)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def OddLayerCount (h n d qS qO t b : ℕ) : Prop :=
   (qS+t+(h+b-1).choose b*(n+(d-b)-1).choose (d-b))*
     ((h+b-1).choose b*(n+(d-b)-1).choose (d-b))+
@@ -34,6 +38,8 @@ def OddLayerCount (h n d qS qO t b : ℕ) : Prop :=
     ((h+(b-1)-1).choose (b-1)*(n+(d-b+1)-1).choose (d-b+1)) ≤
   (h+b-1).choose b*(n+(2*d-b)-1).choose (2*d-b)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def OddScalarLayerProperty {h n d qO qS b : ℕ} (t : ℕ) (hb : 1≤b) (hbd : b≤d)
     (p : OddLayerParameters K h n d qO qS) : Prop :=
   Function.Injective (twoFamilyMultiplication (K := K)
@@ -60,12 +66,16 @@ def OddScalarLayerProperty {h n d qO qS b : ℕ} (t : ℕ) (hb : 1≤b) (hbd : b
         (oddRowLinearAction (K := K) (h := h) (n := n) hb hbd) (oddRowScalarAction (K := K) (h := h) (n := n) hbd) p)
         (oddRowScalarAction (K := K) (h := h) (n := n) hbd)) L)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def HasOddScalarLayersOpen (K : Type*) [Field K] (h n d qO qS t : ℕ) : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (OddLayerParameters K h n d qO qS))) K,
     (∃ p : OddLayerParameters K h n d qO qS,eval ((Module.finBasis K _).equivFun p) D≠0) ∧
     ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 →
       ∀ (b : ℕ) (hb : 3≤b) (hbd : b≤d),OddScalarLayerProperty t (by omega) hbd p
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem odd_scalar_layers_open {h n d qO qS t : ℕ}
     (hh : 0<h) (hn : 0<n)
     (hcount : ∀ b,3≤b → b≤d → OddLayerCount h n d qS qO t b) :
@@ -94,6 +104,8 @@ theorem odd_scalar_layers_open {h n d qO qS t : ℕ}
     rw [map_prod] at hp
     exact Finset.prod_ne_zero_iff.mp hp i (Finset.mem_univ i)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem eventually_odd_scalar_layers_open {h d : ℕ}
     (hd : 3≤d) (hh : 0<h) (qS qO : ℕ → ℕ)
     (hS : Tendsto (fun n : ℕ => (qS n : ℝ)/(n : ℝ)^d) atTop

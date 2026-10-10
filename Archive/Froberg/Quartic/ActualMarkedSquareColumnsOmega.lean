@@ -21,17 +21,20 @@ open Module MvPolynomial ActualSplitCokernel ActualDeformationColumnsOmega
 open ActualDeformationResponseOmega
 variable {K : Type*} [Field K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 2000000
+
 set_option backward.isDefEq.respectTransparency false
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def square (ζ : MiddleCoordinates.Mixed K m) : Forms K (3+m) 4 :=
   mulQuadratic (SplitBlock22.mixedEmbedding ζ) (SplitBlock22.mixedEmbedding ζ)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem square_eq_target (ζ : MiddleCoordinates.Mixed K m) :
     square ζ = SplitBlock22.targetEmbedding (SplitBlock22.mixedProduct ζ ζ) := by
   apply Subtype.ext
   exact (SplitBlock22.mixedProduct_polynomial ζ ζ).symm
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem square_mem_split_range (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (ζ : MiddleCoordinates.Mixed K m)
     (hs : Function.Surjective (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))) :
@@ -40,6 +43,7 @@ theorem square_mem_split_range (g : Fin c → MiddleCoordinates.Mixed K m)
   refine ⟨SplitBlock22.sourceEmbedding b,?_⟩
   rw [SplitBlock22.full_multiplication_commutes,hb,←square_eq_target]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Decompose an actual enlarged correction preimage into its square,
 pure-cycle, and marked old-child-cycle contributions. -/
 theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K m)
@@ -71,6 +75,7 @@ theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K 
   apply Prod.ext <;>
     simp only [MovingMiddleCorrectionOmega.traceMap_apply,Prod.fst_add,Prod.snd_add] <;> abel
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The square coordinate absorbs precisely the extra retained target term.
 The remaining corrected source is an actual pure/child cycle. -/
 theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
@@ -139,6 +144,7 @@ theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
         (SplitBlock22.sourceEmbedding b))) = _
     rw [firstVariation_middle,hb,ActualMarkedSquareResponseOmega.correctionResponse_mk]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem correction_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)
@@ -158,6 +164,7 @@ theorem correction_class_realized (g : Fin c → MiddleCoordinates.Mixed K m)
   induction ξ using Submodule.Quotient.induction_on with | H z =>
   exact correction_response_realized ω g h p r k ζ U hmarked z
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Exact realizations of the full enlarged response, in the source of the
 literal multiplication pencil with its one fixed square column. -/
 theorem response_realized (g : Fin c → MiddleCoordinates.Mixed K m)

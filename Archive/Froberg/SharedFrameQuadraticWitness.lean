@@ -15,12 +15,13 @@ the typed private-power witness with no additional choice of detector. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K] {h a z d r f u c : ℕ}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem quadraticPolynomialDetector_supported
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
     (quadraticPolynomialDetector L).comp (homogeneousComponent 2)=quadraticPolynomialDetector L := by
@@ -31,6 +32,7 @@ theorem quadraticPolynomialDetector_supported
   congr 1
   exact Subtype.ext (homogeneousComponent_eq_self (homogeneousComponent_isHomogeneous 2 p))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem exists_shared_frame_quadratic_witness {I : Type*} [Fintype I] [DecidableEq I]
     (hd : 3≤d) (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))

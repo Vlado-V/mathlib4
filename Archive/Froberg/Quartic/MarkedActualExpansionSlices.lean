@@ -21,21 +21,25 @@ open UniformEndpoint ProfileCertificate PolynomialBilinearCoordinates
 open BilinearCovectorCharts BilinearCoefficientKernel ConvolutionClosedSlices
 open ActualExpansionSlices
 variable {K : Type*} [Field K] {m c : ℕ}
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def correctionCount (m : ℕ) (upper : Bool) : ℕ :=
   (Counts.H m (upperEndpoint m) (mixedCount m upper)+4+Counts.delta m (upperEndpoint m)).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def slices (m : ℕ) (upper : Bool) : ℕ → ℕ :=
   ExpansionClosedSlices.sliceCount (2*m+2*mixedCount m upper) (correctionCount m upper)
     (mixedCount m upper) (Counts.j m (upperEndpoint m) (mixedCount m upper)).toNat
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem correctionCount_cast (m : ℕ) (hm : 28 ≤ m) (upper : Bool) :
     (correctionCount m upper:ℤ)=Counts.H m (upperEndpoint m) (mixedCount m upper)+4+
       Counts.delta m (upperEndpoint m) := by
   have h := dimension_signs m hm upper
   exact Int.toNat_of_nonneg (by omega)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The attained ambient expansion bounds become the scalar incidence
 bounds for every actual quotient subspace. -/
 theorem actual_scalar_bounds (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
@@ -92,6 +96,7 @@ theorem actual_scalar_bounds (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
         (Counts.delta m (upperEndpoint m):ℝ) := by ring
   simpa only [hmark] using hs
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- On an actual expanded mixed presentation, one genuine principal open
 chooses a shared child tuple and all closed-threshold slices. -/
 theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
@@ -129,6 +134,7 @@ theorem principal_open_actual_slices [Infinite K] (m : ℕ) (hm : 28 ≤ m) (upp
         actual_scalar_bounds m hm upper g hg E hE hexp eV eW S hlo hhi) ell hell
   simpa only [hsurN,slices] using h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- An arbitrary additional child-coefficient principal open can be
 intersected without changing the fixed mixed presentation or any threshold. -/
 theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (upper : Bool)
@@ -188,6 +194,7 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
     simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using hh
   · simpa only [LinearEquiv.apply_symm_apply] using hZ
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The slice budget is exactly the motion budget with an integer target
 surplus; this is the form consumed by the actual ambient motion matrices. -/
 theorem slices_eq (m : ℕ) (upper : Bool) (d : ℕ) :

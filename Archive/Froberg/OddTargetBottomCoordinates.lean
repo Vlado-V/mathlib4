@@ -13,13 +13,14 @@ public import Archive.Froberg.OddBackgroundProduct
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 700000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddTargetBaseMap_weighted_higher_zero (hd : 1≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -43,6 +44,7 @@ theorem oddTargetBaseMap_weighted_higher_zero (hd : 1≤d)
   rw [hc,map_zero]
   rfl
 
+set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddTargetBaseMap_bottom_product (hd : 1≤d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

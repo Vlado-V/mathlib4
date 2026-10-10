@@ -14,27 +14,31 @@ actual bottom tensor source and target, with literal product compatibility. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def bottomTensorFamily (g : Fin f → Rows K h m (d-1)) :
     Fin f → Forms K h 1 ⊗[K] Forms K m (d-1) := fun i => linearOutputTensorEquiv (g i)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def bottomVectorSourceEquiv (g : Fin f → Rows K h m (d-1)) :
     VectorExpansionOpen.Source g ≃ₗ[K] OddBottomQuotient (bottomTensorFamily g) :=
   Submodule.Quotient.equiv _ _ linearOutputTensorEquiv (by
     rw [Submodule.map_span,←Set.range_comp']
     rfl)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem bottomVectorSourceEquiv_mk (g : Fin f → Rows K h m (d-1))
     (v : Rows K h m (d-1)) :
     bottomVectorSourceEquiv g ((Submodule.span K (Set.range g)).mkQ v)=
       (Submodule.span K (Set.range (bottomTensorFamily g))).mkQ (linearOutputTensorEquiv v) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def bottomVectorTargetEquiv (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
     BilinearScalarFamily.ScalarQuotient (VectorExpansionOpen.quotientMultiplication g d) Q ≃ₗ[K]
@@ -45,6 +49,7 @@ def bottomVectorTargetEquiv (hd : 1 ≤ d)
     (Submodule.Quotient.equiv _ _ (bottomOutputTargetEquiv hd)
       (bottomRow_range_comparison hd Q g).symm)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem bottomVectorTargetEquiv_mk (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
     (v : Rows K h m ((d-1)+d)) :
@@ -54,6 +59,7 @@ def bottomVectorTargetEquiv (hd : 1 ≤ d)
       (tensorOddRowRelations (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
         (bottomTensorFamily g)).mkQ (bottomOutputTargetEquiv hd v) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def bottomTensorScalarAction (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
     Forms K m d →ₗ[K] OddBottomQuotient (bottomTensorFamily g) →ₗ[K]
@@ -63,6 +69,7 @@ def bottomTensorScalarAction (hd : 1 ≤ d)
   ((BilinearScalarFamily.scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d) Q).compl₂
     (bottomVectorSourceEquiv g).symm.toLinearMap).compr₂ₛₗ (bottomVectorTargetEquiv hd Q g).toLinearMap
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem bottomTensorScalarAction_mk (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
     (p : Forms K m d) (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -80,6 +87,7 @@ def bottomTensorScalarAction (hd : 1 ≤ d)
       ((BilinearImage.image multiplication (Submodule.span K (Set.range g))).mkQ (multiplication p x)))=_
   rw [bottomVectorTargetEquiv_mk,bottom_vector_scalar_action]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem bottomTensorScalarAction_compatible (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
     (p : Forms K m d) (v : VectorExpansionOpen.Source g) :

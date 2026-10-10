@@ -15,7 +15,7 @@ biform coefficient spaces, ready for a common-parameter rank open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial AttachedMultiplication
@@ -23,7 +23,8 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {a z s d R m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
- theorem extended_sparse_intrinsic_exact (hs : 1 ≤ s) (hsd : s ≤ d)
+ set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+theorem extended_sparse_intrinsic_exact (hs : 1 ≤ s) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i,(o i).IsHomogeneous R)
     (e : Fin m → Fin a →₀ ℕ)

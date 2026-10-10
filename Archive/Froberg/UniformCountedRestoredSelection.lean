@@ -16,11 +16,12 @@ public import Archive.Froberg.FieldUniformFrameEvenData
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem eventually_uniform_counted_restored_frame_ready {d : ℕ} (hd : 3≤d) (heven : d%2=0)
     (N₂ : ℕ) (hquad : ∀ h,N₂≤h → ∀ (K : Type) [Field K] [Infinite K],
       GenericEndpoint K h 2 (upperCount h 2)) :

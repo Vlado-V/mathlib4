@@ -17,12 +17,13 @@ of scalar variables. All counts remain the counts of the final space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
     (hd : 5≤d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)
@@ -78,6 +79,7 @@ theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
     exact (rename_injective _ (Function.Injective.sumMap Function.injective_id
       (Fin.castAdd_injective (v+v) z))).comp hp
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem small_extended_reduction_open {w v z d q : ℕ} {counts : ℕ → ℕ}
     [LinearOrder (Label q (allEvenIndices d) counts)] (hd : 5≤d)
     (T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X)

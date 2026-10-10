@@ -15,11 +15,12 @@ Its exactness is a polynomial open condition on the actual two families. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def evenOddProduct : biformParitySpace K h m d 0 →ₗ[K]
     biformParitySpace K h m d 1 →ₗ[K] biformParitySpace K h m (2*d) 1 :=
   LinearMap.mk₂ K (fun a b => ⟨a.val*b.val,by
@@ -33,6 +34,7 @@ def evenOddProduct : biformParitySpace K h m d 0 →ₗ[K]
     (fun _ _ _ => Subtype.ext (mul_add _ _ _))
     (fun _ _ _ => Subtype.ext (mul_smul_comm _ _ _))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def OddSplitExact (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin f → biformParitySpace K h m d 1) : Prop :=
   ∀ (u : Fin q → biformParitySpace K h m d 1)
@@ -42,6 +44,7 @@ def OddSplitExact (Q : Fin q → biformParitySpace K h m d 0)
       (∀ i,(u i).val=∑ j,C i j • (E j).val) ∧
       (∀ j,(v j).val = -∑ i,C i j • (Q i).val)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_exact_iff_kernel
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin f → biformParitySpace K h m d 1) :
@@ -87,6 +90,7 @@ theorem odd_split_exact_iff_kernel
     · intro j
       simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_neg] using (congrArg (fun x => (x.1.2 j).val) hC).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_exact_principal_open {ι : Type*}
     (Q : Fin q → (ι → K) → biformParitySpace K h m d 0)
     (E : Fin f → (ι → K) → biformParitySpace K h m d 1)

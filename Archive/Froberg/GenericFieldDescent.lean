@@ -20,9 +20,10 @@ noncomputable section
 namespace Froberg.GenericFieldDescent
 open Module Matrix MvPolynomial
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 400000
+
 variable {K L : Type*} [Field K] [Field L] {n d r : ℕ}
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 private theorem basis_transport_repr {V I : Type*} [AddCommGroup V] [Module K V]
     (P Q : Submodule K V) (h : P = Q) (b : Basis I K Q) (T : I → V → K)
     (hb : ∀ p i, b.repr p i = T i p.val) (p : P) (i : I) :
@@ -30,6 +31,7 @@ private theorem basis_transport_repr {V I : Type*} [AddCommGroup V] [Module K V]
   subst Q
   exact hb p i
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem formsBasis_equivFun_coeff (p : Forms K n d) (s : Sym (Fin n) d) :
     (formsBasis K n d).equivFun p s = p.val.coeff (exponentEquiv n d s).val := by
   rw [Basis.equivFun_apply]
@@ -40,15 +42,18 @@ theorem formsBasis_equivFun_coeff (p : Forms K n d) (s : Sym (Fin n) d) :
         (exponentEquiv n d).symm)
       (fun s p => p.coeff (exponentEquiv n d s).val) (fun _ _ => rfl) p s
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def mapForm (f : K →+* L) (p : Forms K n d) : Forms L n d :=
   ⟨MvPolynomial.map f p.val, p.property.map f⟩
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem mapForm_coordinates (f : K →+* L) (p : Forms K n d)
     (s : Sym (Fin n) d) :
     (formsBasis L n d).equivFun (mapForm f p) s =
       f ((formsBasis K n d).equivFun p s) := by
   simp only [formsBasis_equivFun_coeff, mapForm, coeff_map]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem coefficientForms_map (f : K →+* L) (a : CoefficientIndex n d r → K)
     (i : Fin r) : mapForm f (coefficientForms K n d r a i) =
       coefficientForms L n d r (fun j => f (a j)) i := by
@@ -57,9 +62,11 @@ theorem coefficientForms_map (f : K →+* L) (a : CoefficientIndex n d r → K)
   rw [mapForm_coordinates]
   simp only [coefficientForms, LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def multiplierBasis : Basis (CoefficientIndex n d r) K (Fin r → Forms K n d) :=
   Basis.ofEquivFun coefficientCoordinates
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem multiplierBasis_apply (j : CoefficientIndex n d r) :
     multiplierBasis (K := K) j = coefficientForms K n d r (Pi.single j 1) := by
   apply coefficientCoordinates.injective
@@ -72,6 +79,7 @@ theorem multiplierBasis_apply (j : CoefficientIndex n d r) :
   simp only [LinearEquiv.apply_symm_apply, Pi.single_apply]
   split_ifs <;> simp_all
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem multiplierBasis_map (f : K →+* L) (j : CoefficientIndex n d r) (i : Fin r) :
     mapForm f (multiplierBasis (K := K) j i) = multiplierBasis (K := L) j i := by
   classical
@@ -80,17 +88,20 @@ theorem multiplierBasis_map (f : K →+* L) (j : CoefficientIndex n d r) (i : Fi
   funext x
   simp [Pi.single_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem endpointMultiplication_map (f : K →+* L) (q a : Fin r → Forms K n d) :
     mapForm f (endpointMultiplication q a) =
       endpointMultiplication (fun i => mapForm f (q i)) (fun i => mapForm f (a i)) := by
   apply Subtype.ext
   simp only [mapForm, endpointMultiplication_val, map_sum, map_mul]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def multiplicationMatrixLinear : (CoefficientIndex n d r → K) →ₗ[K]
     Matrix (Sym (Fin n) (2 * d)) (CoefficientIndex n d r) K :=
   (LinearMap.toMatrix multiplierBasis (formsBasis K n (2 * d))).toLinearMap.comp
     coefficientMultiplicationLinear
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem multiplicationMatrix_map (f : K →+* L) (a : CoefficientIndex n d r → K) :
     (multiplicationMatrixLinear a).map f =
       multiplicationMatrixLinear (fun j => f (a j)) := by
@@ -106,21 +117,25 @@ theorem multiplicationMatrix_map (f : K →+* L) (a : CoefficientIndex n d r →
   have ha := funext (multiplierBasis_map f col)
   rw [hq, ha]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def multiplicationEntryLinear (row : Sym (Fin n) (2 * d)) (col : CoefficientIndex n d r) :
     (CoefficientIndex n d r → K) →ₗ[K] K where
   toFun a := multiplicationMatrixLinear a row col
   map_add' a b := by simp
   map_smul' c a := by simp
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def monomialMultiplicationMatrix : Matrix (Sym (Fin n) (2 * d)) (CoefficientIndex n d r)
     (MvPolynomial (CoefficientIndex n d r) K) :=
   fun row col => polynomialOfLinear (multiplicationEntryLinear row col)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem monomialMultiplicationMatrix_eval (a : CoefficientIndex n d r → K) :
     (monomialMultiplicationMatrix (K := K)).map (eval a) = multiplicationMatrixLinear a := by
   ext row col
   exact eval_polynomialOfLinear (multiplicationEntryLinear row col) a
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem multiplicationMatrix_rank (a : CoefficientIndex n d r → K) :
     (multiplicationMatrixLinear a).rank =
       finrank K (LinearMap.range (endpointMultiplication (coefficientForms K n d r a))) := by
@@ -132,6 +147,7 @@ theorem multiplicationMatrix_rank (a : CoefficientIndex n d r → K) :
         (endpointMultiplication (coefficientForms K n d r a))))) = _
   rw [Matrix.toLin_toMatrix]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem monomialMultiplicationMatrix_map (f : K →+* L) :
     (monomialMultiplicationMatrix (K := K) (n := n) (d := d) (r := r)).map
       (MvPolynomial.map f) = monomialMultiplicationMatrix (K := L) := by
@@ -151,6 +167,7 @@ theorem monomialMultiplicationMatrix_map (f : K →+* L) :
   rw [he] at h
   exact h
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem genericCokernel_add_monomial_fraction_rank [Infinite K] (hn : 0 < n) :
     genericCokernel K n d r +
       ((monomialMultiplicationMatrix (K := K) (n := n) (d := d) (r := r)).map
@@ -177,6 +194,7 @@ theorem genericCokernel_add_monomial_fraction_rank [Infinite K] (hn : 0 < n) :
   dsimp only [F] at *
   omega
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The monomial-coordinate generic rank is unchanged by extending the field. -/
 theorem monomial_fraction_rank_map (f : K →+* L) :
     ((monomialMultiplicationMatrix (K := K) (n := n) (d := d) (r := r)).map
@@ -208,6 +226,7 @@ theorem monomial_fraction_rank_map (f : K →+* L) :
   rw [heq] at hr
   exact hr.symm
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The attained generic cokernel dimension descends along any field
 extension between infinite fields. -/
 theorem genericCokernel_baseChange [Infinite K] [Infinite L]
@@ -218,6 +237,7 @@ theorem genericCokernel_baseChange [Infinite K] [Infinite L]
   have hr := monomial_fraction_rank_map (n := n) (d := d) (r := r) f
   omega
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The actual generic homology defect has the same field-extension
 invariance, by its defining Euler relation. -/
 theorem genericHomology_baseChange [Infinite K] [Infinite L]

@@ -18,18 +18,20 @@ and outer F are fixed, while every positive even column is E_i+a_i. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredBaseBiform (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (p : RestoredSpace m d q J counts O) : Fin q → biformParitySpace K h m d 0 :=
   fun i => restoredBiformFamily hd hO hJ heven idx slot p (idx.symm (Sum.inl i))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredPositiveBiform (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -38,6 +40,7 @@ def restoredPositiveBiform (hd : d%2=0)
   fun i => restoredBiformFamily hd hO hJ heven idx slot p
     (idx.symm (Sum.inr ((Fintype.equivFin _).symm i)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredBaseBiform_eq_scalar (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -56,6 +59,7 @@ theorem restoredBaseBiform_eq_scalar (hd : d%2=0)
   rw [pureShift_eq_zero_away _ _ _ _ haway,Submodule.coe_zero,add_zero,Equiv.apply_symm_apply]
   simp [generator,scalar,high]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredScalarFiber_positive (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -78,10 +82,12 @@ theorem restoredScalarFiber_positive (hd : d%2=0)
     scalar,high,Sum.elim_inr,Pi.zero_apply,Equiv.apply_symm_apply,Submodule.coe_zero,map_zero,add_zero,scalarEvenBiform_val]
   abel
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredEvenIndex (idx : Fin r ≃ Label q J counts) :
     Fin r ≃ Fin (q+Fintype.card (ProductRows.LayerLabel J counts)) :=
   idx.trans ((Equiv.sumCongr (Equiv.refl (Fin q)) (Fintype.equivFin _)).trans finSumFinEquiv)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_split_value (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -92,6 +98,7 @@ theorem restored_split_value (hd : d%2=0)
   obtain ⟨j,rfl⟩ := idx.symm.surjective i
   cases j <;> simp [restoredEvenIndex,restoredBaseBiform,restoredPositiveBiform]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_split_odd_exact (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -119,6 +126,7 @@ theorem restored_split_odd_exact (hd : d%2=0)
   exact ⟨B,by simpa only [Equiv.symm_symm,hT] using hB,
     by simpa only [Equiv.symm_symm,hS] using hB'⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_scalar_fiber_relative_injective (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -137,10 +145,12 @@ theorem restored_scalar_fiber_relative_injective (hdp : 1≤d) (hd : d%2=0)
   rw [restoredBaseBiform_eq_scalar hd hO hJ heven idx slot hslot,restoredScalarFiber_positive] at hi
   exact hi
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredBackgroundIndex (idx : Fin r ≃ Label q J counts) :
     (Fin r ⊕ Fin f) ≃ BackgroundLabel (q+Fintype.card (ProductRows.LayerLabel J counts)) f 0 :=
   Equiv.sumCongr (restoredEvenIndex idx) (Equiv.sumEmpty (Fin f) (Fin 0)).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_background_value (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -163,6 +173,7 @@ theorem restored_background_value (hdp : 1≤d) (hd : d%2=0)
     change sumBiformMap (linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm (p.2 i)))=(p.2 i).val
     rw [←PreparedTarget.outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_background_upper (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -184,6 +195,7 @@ theorem restored_background_upper (hdp : 1≤d) (hd : d%2=0)
     obtain ⟨j,rfl⟩ := (restoredBackgroundIndex idx).surjective i
     exact ⟨finSumFinEquiv j,(restored_background_value hdp hd hO hJ heven idx slot p j).symm⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_scalar_fiber_upper (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

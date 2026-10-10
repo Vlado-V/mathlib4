@@ -18,14 +18,16 @@ odd target rows, including rows not present in the coefficient source. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
-set_option synthInstance.maxHeartbeats 200000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p) :
     biformParitySpace K h m d e →ₗ[K] biformParitySpace K h m d (p : ZMod 2) where
   toFun v := ⟨weightedHomogeneousComponent (blockWeight h m) t v.val,⟨
@@ -36,11 +38,15 @@ def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p) :
   map_add' v z := Subtype.ext ((weightedHomogeneousComponent (blockWeight h m) t).map_add v.val z.val)
   map_smul' c v := Subtype.ext ((weightedHomogeneousComponent (blockWeight h m) t).map_smul c v.val)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 @[simp] theorem biformParityComponent_val (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p)
     (v : biformParitySpace K h m d e) :
     (biformParityComponent e t p hp ht v).val=
       weightedHomogeneousComponent (blockWeight h m) t v.val := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem odd_background_component_preserves
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -78,6 +84,8 @@ theorem odd_background_component_preserves
     simpa only [Nat.sub_add_cancel htpos,mul_comm] using he.symm
   simpa only [oddBackgroundRelations,Submodule.map_sup] using sup_le_sup hq hf
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 /-- The coordinate singleton is precisely the actual weighted component. -/
 theorem oddBiformCoordinates_component_single
     (v : biformParitySpace K h m d 1) (r : Fin ((d+1)/2)) :
@@ -93,11 +101,15 @@ theorem oddBiformCoordinates_component_single
     rw [Pi.single_eq_of_ne hsr,map_zero]
   · simp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddBackgroundBlockRelations
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) : Submodule K (OddBiformCoordinates K h m (2*d)) :=
   (oddBackgroundRelations Q F).map oddBiformCoordinatesEquiv.toLinearMap
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 theorem oddBackgroundBlockRelations_single
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -109,17 +121,25 @@ theorem oddBackgroundBlockRelations_single
   · exact odd_background_component_preserves Q F hQ hF _ (by omega) ⟨v,hv,rfl⟩
   · exact oddBiformCoordinates_component_single v r
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 abbrev OddTargetBlock (K : Type) [Field K] (h m d : ℕ) (r : Fin ((2*d+1)/2)) :=
   Forms K h (2*r.val+1) ⊗[K] Forms K m (2*d-(2*r.val+1))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 instance oddTargetBlockGroup (K : Type) [Field K] (h m d : ℕ)
     (r : Fin ((2*d+1)/2)) : AddCommGroup (OddTargetBlock K h m d r) :=
   tensorFormGroup
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 instance oddTargetBlockModule (K : Type) [Field K] (h m d : ℕ)
     (r : Fin ((2*d+1)/2)) : Module K (OddTargetBlock K h m d r) :=
   TensorProduct.leftModule
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 def oddBackgroundBlocksEquiv
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

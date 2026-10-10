@@ -26,8 +26,9 @@ noncomputable section
 namespace Quartic.ActualDeformationRank
 open Module MvPolynomial ActualDeformationColumns
 variable {K : Type*} [Field K] [Infinite K] {m c q : ℕ}
-set_option maxHeartbeats 2000000
 
+
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The retained cokernel projection kills every actual split multiplication column. -/
 theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     (projectionRawJ g h).comp (quadraticMultiplication (SplitBlock22.fullGenerators g h)) = 0 := by
@@ -38,6 +39,7 @@ theorem projection_annihilates (g : Fin c → MiddleCoordinates.Mixed K m) (h : 
   rw [ActualSplitCokernel.projection13_multiplication]
   exact (Submodule.Quotient.mk_eq_zero _).mpr ⟨_,rfl⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Multiplying a trace column by the parameter puts both response summands at order two. -/
 theorem response_realized (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)
@@ -57,6 +59,7 @@ theorem response_realized (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q
   · rw [map_add,map_add,hr,hr₃]
     exact add_comm _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A concrete principal open gives the actual split-rank plus response-rank bound. -/
 theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2)
     (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)
@@ -75,6 +78,7 @@ theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin
     (projection_annihilates g h) (response_realized g h p r k U hmarked)
   exact ⟨D,hD,fun ε he hDε => by rw [deformed_multiplication]; exact h ε he hDε⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The same concrete nonempty open enforces independence and the full actual deformation rank gain. -/
 theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)
@@ -96,6 +100,7 @@ theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K
     simpa only [map_mul] using hDE
   exact ⟨he ε hne.2,hRank ε hε hne.1⟩
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Some actual nonzero perturbation has independent generators and the proved full rank gain. -/
 theorem exists_independent_rank_gain (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2) (k : Fin q)

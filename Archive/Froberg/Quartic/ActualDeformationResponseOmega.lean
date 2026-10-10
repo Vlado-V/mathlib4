@@ -27,13 +27,17 @@ open Module MvPolynomial RowMultiplicationCoordinates MovingMiddleCorrectionOmeg
 open ActualTraceMotion
 variable {K : Type*} [Field K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev Relations (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2) :=
   (GeneralF13.combined g h).range
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev J (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2) := ActualSplitCokernel.RawJ g h
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev MixedSpace (g : Fin c → Rows K m 1) := Submodule.span K (Set.range g)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- An actual product of any quadratic with a mixed generator is already
 a relation in the retained target quotient. -/
 theorem product_generator_mem (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -48,6 +52,7 @@ theorem product_generator_mem (g : Fin c → Rows K m 1) (h : Fin q → Forms K 
     apply_ite,ZeroMemClass.coe_zero,mul_zero,Finset.sum_ite_eq',Finset.mem_univ,ite_true]
   exact mul_comm _ _
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Every product of a child quadric with an actual mixed row is also a
 relation in the retained target quotient. -/
 theorem child_product_mem (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -64,6 +69,7 @@ theorem child_product_mem (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     ite_true,multiplication_val]
   exact mul_comm _ _
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Multiplication into J kills the complete mixed generator subspace. -/
 theorem mixedSpace_le_product_kernel (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (f : Forms K m 2) :
@@ -72,17 +78,20 @@ theorem mixedSpace_le_product_kernel (g : Fin c → Rows K m 1) (h : Fin q → F
   rintro _ ⟨j,rfl⟩
   exact (Submodule.Quotient.mk_eq_zero _).mpr (product_generator_mem g h f j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual quadratic multiplication on one mixed coefficient quotient. -/
 def coefficientResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (f : Forms K m 2) : (Rows K m 1 ⧸ MixedSpace g) →ₗ[K] J g h :=
   (MixedSpace g).liftQ ((Relations g h).mkQ.comp (multiplication f))
     (mixedSpace_le_product_kernel g h f)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (f : Forms K m 2) (a : Rows K m 1) :
     coefficientResponse g h f ((MixedSpace g).mkQ a)=
       (Relations g h).mkQ (multiplication f a) := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Reorienting mixed rows transports exactly their actual relation span. -/
 theorem traceSpace_map_rows (g : Fin c → Rows K m 1) :
     (SplitMiddle31.mixedSpace (rowMixed g)).map rowTraceEquiv.symm.toLinearMap=MixedSpace g := by
@@ -92,15 +101,18 @@ theorem traceSpace_map_rows (g : Fin c → Rows K m 1) :
   change rowTraceEquiv.symm (rowTraceEquiv (g j))=g j
   exact rowTraceEquiv.symm_apply_apply _
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def traceQuotientEquiv (g : Fin c → Rows K m 1) :
     ((Fin m → Forms K 3 1) ⧸ SplitMiddle31.mixedSpace (rowMixed g)) ≃ₗ[K]
       (Rows K m 1 ⧸ MixedSpace g) :=
   Submodule.Quotient.equiv _ _ rowTraceEquiv.symm (traceSpace_map_rows g)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem traceQuotientEquiv_mk (g : Fin c → Rows K m 1) (a : Fin m → Forms K 3 1) :
     traceQuotientEquiv g ((SplitMiddle31.mixedSpace (rowMixed g)).mkQ a)=
       (MixedSpace g).mkQ (rowTraceEquiv.symm a) := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The first response on actual (3,1) homology. -/
 def traceResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2) : SplitMiddle31.Homology (rowMixed g) →ₗ[K] J g h :=
@@ -108,6 +120,7 @@ def traceResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     ((traceQuotientEquiv g).toLinearMap.comp
       ((LinearMap.proj i).comp (SplitMiddle31.trace (rowMixed g))))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Evaluation on an actual cycle, with its actual four pure coefficients. -/
 theorem traceResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2) (a : LinearMap.ker (SplitMiddle31.multiplication (rowMixed g))) :
@@ -117,6 +130,7 @@ theorem traceResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (traceQuotientEquiv g ((SplitMiddle31.mixedSpace (rowMixed g)).mkQ (a.val.2 i)))) = _
   simp only [traceQuotientEquiv_mk,coefficientResponse_mk,map_sum]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The same first response on the fixed cycle parametrization used by the
 actual first-stage polynomial matrix. -/
 theorem traceResponse_homologyParameter (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -125,6 +139,7 @@ theorem traceResponse_homologyParameter (g : Fin c → Rows K m 1) (h : Fin q �
       (Relations g h).mkQ (∑ i : Fin 4,multiplication (r i) (rawRows g p i)) := by
   exact traceResponse_mk g h r (cycleLift (rowMixed g) p)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The second response on the actual correction quotient. -/
 def correctionResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
@@ -133,6 +148,7 @@ def correctionResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
   ∑ i : Fin c, (coefficientResponse g h (s i)).comp
     ((LinearMap.proj i).comp (coefficientMap ω g h r markedU))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Evaluation on actual moving-preimage coefficients; changing the
 representative by a mixed Koszul boundary leaves this value unchanged. -/
 theorem correctionResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -147,11 +163,13 @@ theorem correctionResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K 
     LinearMap.proj_apply,coefficientMap_mk,coefficientProjection_apply,
     coefficientResponse_mk,map_sum]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 abbrev Source (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :=
   SplitMiddle31.Homology (rowMixed g) × Correction ω g h r markedU
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The actual response N, ordered as trace homology then correction homology. -/
 def response (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
@@ -159,6 +177,7 @@ def response (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (s : Fin c → Forms K m 2) : Source ω g h r markedU →ₗ[K] J g h :=
   (traceResponse g h r).coprod (correctionResponse ω g h r markedU s)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem response_apply (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
@@ -166,6 +185,7 @@ def response (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (b : Correction ω g h r markedU) :
     response ω g h r markedU s (a,b)=traceResponse g h r a+correctionResponse ω g h r markedU s b := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The exact response domain dimension, using actual correction and trace
 homology dimensions on the explicit augmented Good locus. -/
 theorem source_finrank (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -184,6 +204,7 @@ theorem source_finrank (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
   push_cast
   omega
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Literal common-covector exclusion in the fixed ambient cubic rows gives
 maximal rank of N after the auxiliary columns are discarded. The columns
 and the exclusion are explicit inputs supplied by the motion incidence step. -/

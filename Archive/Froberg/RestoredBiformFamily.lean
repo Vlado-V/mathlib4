@@ -15,12 +15,13 @@ scalar component remains exactly the original scalar parameter. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredBiformFamily (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -31,6 +32,7 @@ def restoredBiformFamily (hd : d%2=0)
       ((mem_weightedParitySpace_iff _ _ _).mp
         (restoredFamilyLinear hd hO hJ heven idx slot p i).property.2)⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem pureShift_weight (hd : d%2=0)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d) (i : Fin r) :
@@ -50,6 +52,7 @@ theorem pureShift_weight (hd : d%2=0)
   · simp only [LinearMap.single_apply,Pi.single_eq_of_ne hk,Submodule.coe_zero]
     exact (weightedHomogeneousSubmodule K (blockWeight h m) d).zero_mem
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredBiformFamily_scalar_component (hdp : 0<d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (hpos : ∀ j∈J,0<j)

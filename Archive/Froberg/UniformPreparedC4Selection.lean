@@ -17,7 +17,7 @@ introduced only after the resulting cutoff. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial VectorExpansionOpen Quartic
@@ -25,6 +25,7 @@ open scoped Topology
 attribute [local instance] tensorFormGroup
 attribute [local irreducible] PreparedEndpointThin BaseC4GrowthProperty
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     {h n d f u : ℕ} {G C : ℝ} (hnpos : 0 < n)
     (houter : StrictThinCoefficientOpen K h n d f G C) :
@@ -73,6 +74,7 @@ theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     rw [LinearEquiv.apply_symm_apply]
     exact hchild
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def PreparedGrowthFiberAt (K : Type) [Field K] [Infinite K]
     {h d b : ℕ} (hd : 1 ≤ d) (n f u : ℕ)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (G C : ℝ) : Prop :=
@@ -108,6 +110,7 @@ def PreparedGrowthFiberAt (K : Type) [Field K] [Infinite K]
               (outerScalarDeficit (fun i => outerVectorEquiv.symm (p'.2.2 i))) C
               (coefficientCoordinates (fun i => p'.2.1.1 (Sum.inl i)))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     {h n d f u b : ℕ} (hd : 1 ≤ d) {G C : ℝ} (hnpos : 0 < n)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
@@ -154,6 +157,7 @@ theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite
         simpa only [map_mul] using hED')
   exact ⟨hboth.2,(hEgood _ hboth.1).1,(hEgood _ hboth.1).2,hm,hchild'⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def PreparedC4SelectionAt (K : Type) [Field K] [Infinite K] [IsAlgClosed K]
     {d h u b : ℕ} (hd : 3 ≤ d) (hdodd : d%2=1) (n f e extra : ℕ)
     (U : Fin u → Forms K h d)
@@ -192,6 +196,7 @@ def PreparedC4SelectionAt (K : Type) [Field K] [Infinite K] [IsAlgClosed K]
             (outerScalarDeficit (fun i => outerVectorEquiv.symm (p.2.2 i))) (C*(n : ℝ)^d)
             (coefficientCoordinates (fun i => p.2.1.1 (Sum.inl i)))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem field_uniform_prepared_c4_selection {d k h lo u b : ℕ}
     (hd : 3 ≤ d) (hdodd : d%2=1) (hhpos : 0 < h) (hb : 0 < b)
     (hratio : (h : ℝ)/(2*((1+(d-1) : ℕ) : ℝ)) ≤
@@ -262,6 +267,7 @@ theorem field_uniform_prepared_c4_selection {d k h lo u b : ℕ}
   rw [fullCountScalarFiberLinear_restrict]
   exact hs
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- Exact counts supply the outer open as well. All three constants and
 all scalar-variable thresholds precede the field and pure-family choices. -/
 theorem uniform_exact_counts_prepared_c4_selection {d k h lo u b : ℕ}

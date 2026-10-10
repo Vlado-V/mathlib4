@@ -17,12 +17,14 @@ public import Mathlib.Data.List.Sort
 namespace Quartic.FiniteEndpointCheckerPolynomial
 open Matrix Module MvPolynomial
 open Quartic.FiniteEndpointChecker
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Integral lift keeps repeated sparse entries, so no distinctness assumption is hidden. -/
 def integerMatrix {n : ℕ} (A : Fin n → List (Fin n)) : Matrix (Fin n) (Fin n) ℤ :=
   Matrix.of (fun i => ((A i).map (fun j => Pi.single j (1 : ℤ))).sum)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem sparse_cast {n : ℕ} {K : Type*} [CommRing K] (s : List (Fin n)) :
     (fun j => (((s.map (fun i => Pi.single i (1 : ℤ))).sum j : ℤ) : K)) =
       (s.map (fun i => Pi.single i (1 : K))).sum := by
@@ -35,6 +37,7 @@ theorem sparse_cast {n : ℕ} {K : Type*} [CommRing K] (s : List (Fin n)) :
     rw [congrFun ih j]
     simp [Pi.single_apply]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem integerMatrix_binary {n : ℕ} (A : Fin n → List (Fin n)) :
     (integerMatrix A).map (Int.castRingHom (ZMod 2)) = sparseMatrix A := by
   ext i j
@@ -43,6 +46,7 @@ theorem integerMatrix_binary {n : ℕ} (A : Fin n → List (Fin n)) :
 noncomputable section
 variable {K : Type*} [Field K] [CharZero K] {n v : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem integral_rows_independent (A : Fin n → List (Fin n)) (B : Fin n → ℕ)
     (h : checkInverse A B = true) :
     LinearIndependent K (fun i => (((A i).map (fun j => Pi.single j (1 : K))).sum)) := by
@@ -58,10 +62,12 @@ theorem integral_rows_independent (A : Fin n → List (Fin n)) (B : Fin n → �
     exact sparse_cast (A i)
   rwa [he] at hi
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Actual sparse sums of monomials, over any characteristic-zero field. -/
 def rowPolynomial (E : Fin n → Fin v →₀ ℕ) (s : List (Fin n)) : Poly K v :=
   (s.map (fun j => monomial (E j) (1 : K))).sum
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem coefficients_rowPolynomial (E : Fin n → Fin v →₀ ℕ) (hE : Function.Injective E)
     (s : List (Fin n)) :
     (fun j => (rowPolynomial (K := K) E s).coeff (E j)) =
@@ -78,6 +84,7 @@ theorem coefficients_rowPolynomial (E : Fin n → Fin v →₀ ℕ) (hE : Functi
     rw [hij]
     simp [Pi.single_apply,eq_comm]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A checked binary inverse establishes independence of actual characteristic-zero
 polynomials, via the integral minor and literal coefficient functionals. -/
 theorem rowPolynomials_independent (E : Fin n → Fin v →₀ ℕ) (hE : Function.Injective E)
@@ -92,22 +99,27 @@ theorem rowPolynomials_independent (E : Fin n → Fin v →₀ ℕ) (hE : Functi
   rw [he]
   exact integral_rows_independent A B h
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- An explicit variable list represents its exponent multiset. -/
 def listExponent (xs : List (Fin v)) : Fin v →₀ ℕ :=
   Multiset.toFinsupp (xs : Multiset (Fin v))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem listExponent_degree (xs : List (Fin v)) : (listExponent xs).degree = xs.length := by
   exact Multiset.toFinsupp_sum_eq (xs : Multiset (Fin v))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem listExponent_append (xs ys : List (Fin v)) :
     listExponent (xs ++ ys) = listExponent xs + listExponent ys := by
   exact Multiset.toFinsupp_add (xs : Multiset (Fin v)) (ys : Multiset (Fin v))
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem listExponent_sort (xs : List (Fin v)) :
     listExponent (xs.insertionSort (· ≤ ·)) = listExponent xs := by
   apply congrArg Multiset.toFinsupp
   exact Multiset.coe_eq_coe.mpr (List.perm_insertionSort (· ≤ ·) _)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A cheap candidate decoder for lexicographically ordered nondecreasing variable lists.
 Only its checked left-inverse equations are used; no enumeration correctness is assumed. -/
 def tupleRank (v lo : ℕ) : List (Fin v) → ℕ
@@ -115,6 +127,7 @@ def tupleRank (v lo : ℕ) : List (Fin v) → ℕ
   | x :: xs => (v - lo + xs.length).choose (xs.length + 1) -
       (v - x.val + xs.length).choose (xs.length + 1) + tupleRank v x.val xs
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem injective_of_tupleRank {b : ℕ} (V : Fin b → List (Fin v))
     (h : ∀ i, tupleRank v 0 (V i) = i.val) : Function.Injective V := by
   intro i j he
@@ -124,6 +137,7 @@ theorem injective_of_tupleRank {b : ℕ} (V : Fin b → List (Fin v))
     _ = tupleRank v 0 (V j) := congrArg (tupleRank v 0) he
     _ = j.val := h j
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem listExponent_injective_of_sorted {b : ℕ} (V : Fin b → List (Fin v))
     (hV : Function.Injective V) (hs : ∀ i, (V i).Pairwise (· ≤ ·)) :
     Function.Injective (fun i => listExponent (V i)) := by
@@ -133,6 +147,7 @@ theorem listExponent_injective_of_sorted {b : ℕ} (V : Fin b → List (Fin v))
   apply Multiset.coe_eq_coe.mp
   exact Multiset.toFinsupp.injective h
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem support_identity_of_lists {b : ℕ} (V : Fin n → List (Fin v))
     (Q : Fin b → List (Fin v)) (e : List (Fin v)) (A : List (Fin n))
     (s : List (Fin b))
@@ -142,6 +157,7 @@ theorem support_identity_of_lists {b : ℕ} (V : Fin n → List (Fin v))
   have hh := congrArg (List.map (listExponent (v := v))) h
   simpa only [List.map_map,Function.comp_def,listExponent_sort,listExponent_append] using hh
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem rowPolynomial_mul_monomial (E : Fin n → Fin v →₀ ℕ) (s : List (Fin n))
     (e : Fin v →₀ ℕ) :
     rowPolynomial (K := K) E s * monomial e 1 =
@@ -152,6 +168,7 @@ theorem rowPolynomial_mul_monomial (E : Fin n → Fin v →₀ ℕ) (s : List (F
     simp only [rowPolynomial,List.map_cons,List.sum_cons,add_mul,monomial_mul_monomial,one_mul]
     exact congrArg (fun z => monomial (E i + e) (1 : K) + z) ih
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A finite list-of-exponents equality certifies the product-polynomial identity.
 This separates cheap combinatorial data checking from all field reasoning. -/
 theorem product_identity (E : Fin n → Fin v →₀ ℕ) {b : ℕ}
@@ -163,6 +180,7 @@ theorem product_identity (E : Fin n → Fin v →₀ ℕ) {b : ℕ}
   have hh := congrArg (fun xs => (xs.map (fun z => monomial z (1 : K))).sum) h
   simpa only [List.map_map,Function.comp_def,rowPolynomial] using hh.symm
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Coefficient minors can also certify families with terms outside that minor. -/
 theorem polynomials_independent_of_coefficients
     (p : Fin n → Poly K v) (E : Fin n → Fin v →₀ ℕ)
@@ -176,6 +194,7 @@ theorem polynomials_independent_of_coefficients
       (fun i => ((A i).map (fun j => Pi.single j (1 : K))).sum) from funext hcoeff]
   exact integral_rows_independent A B h
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem sparse_count (s : List (Fin n)) (j : Fin n) :
     (s.map (fun i => Pi.single i (1 : K))).sum j = (s.count j : K) := by
   classical
@@ -191,11 +210,13 @@ theorem sparse_count (s : List (Fin n)) (j : Fin n) :
     · rw [List.count_cons_of_ne h]
       simp [Pi.single_apply,h,Ne.symm h]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem rowPolynomial_coeff_count (E : Fin n → Fin v →₀ ℕ) (hE : Function.Injective E)
     (s : List (Fin n)) (j : Fin n) :
     (rowPolynomial (K := K) E s).coeff (E j) = (s.count j : K) := by
   rw [congrFun (coefficients_rowPolynomial E hE s) j,sparse_count]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Sparse sums are homogeneous from their individual listed exponents. -/
 def rowForm {d : ℕ} (E : Fin n → Fin v →₀ ℕ) (hE : ∀ i, (E i).degree = d)
     (s : List (Fin n)) : Forms K v d :=
@@ -205,12 +226,14 @@ def rowForm {d : ℕ} (E : Fin n → Fin v →₀ ℕ) (hE : ∀ i, (E i).degree
     | cons i s ih =>
       exact (isHomogeneous_monomial (1 : K) (hE i)).add ih⟩
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem rowForms_independent {d : ℕ} (E : Fin n → Fin v →₀ ℕ)
     (hdeg : ∀ i, (E i).degree = d) (hE : Function.Injective E)
     (A : Fin n → List (Fin n)) (B : Fin n → ℕ) (h : checkInverse A B = true) :
     LinearIndependent K (fun i => rowForm (K := K) E hdeg (A i)) :=
   LinearIndependent.of_comp (Forms K v d).subtype (rowPolynomials_independent E hE A B h)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem product_mem_range {r : ℕ} (q : Fin r → Forms K v 2) (i : Fin r)
     (a : Forms K v 2) : mulQuadratic (q i) a ∈ LinearMap.range (quadraticMultiplication q) := by
   classical
@@ -223,6 +246,7 @@ theorem product_mem_range {r : ℕ} (q : Fin r → Forms K v 2) (i : Fin r)
     simp [hji]
   · simp
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem rank_lower_bound {r s : ℕ} (q : Fin r → Forms K v 2)
     (f : Fin s → Forms K v 4) (hf : LinearIndependent K f)
     (hmem : ∀ i, f i ∈ LinearMap.range (quadraticMultiplication q)) :

@@ -14,12 +14,13 @@ coefficient space, so successful upper-target generation is rank-open. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K] {h m d q r f : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restoredOuterEndpoint_back (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -34,6 +35,7 @@ theorem restoredOuterEndpoint_back (hdp : 1≤d) (hd : d%2=0)
     change sumBiformMap (linearOutputTensorEquiv (PreparedTarget.outerVectorEquiv.symm (p.2 i)))=(p.2 i).val
     rw [←PreparedTarget.outerVectorEquiv_val,LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredOuterEndpointLinear (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r) :
@@ -65,6 +67,7 @@ def restoredOuterEndpointLinear (hdp : 1≤d) (hd : d%2=0)
     | inl i => exact congrArg Subtype.val (congrFun (map_smul (restoredFamilyLinear hd hO hJ heven idx slot) a p.1) i)
     | inr i => rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem restored_upper_open_of_witness (hdp : 1≤d) (hd : d%2=0)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

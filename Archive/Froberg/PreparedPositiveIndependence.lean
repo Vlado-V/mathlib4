@@ -14,17 +14,19 @@ scalar polynomial subspace. Pure top-degree perturbations are arbitrary. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 250000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 def positivePerturbedFamily (p : Space m d q J counts O)
     (U : ProductRows.LayerLabel J counts → MvPolynomial (Fin h ⊕ Fin m) K)
     (i : ProductRows.LayerLabel J counts) : MvPolynomial (Fin h ⊕ Fin m) K :=
   generator p (Sum.inr i)+U i
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positivePerturbedFamily_component
     (hO : ∀ j∈J,O j≤Forms K h j) (hpos : ∀ j∈J,0<j) (hJ : ∀ j∈J,0<counts j → j<d)
     (p : Space m d q J counts O)
@@ -47,6 +49,7 @@ theorem positivePerturbedFamily_component
     rfl
   · rw [if_neg (fun h => hk (Subtype.ext h.symm)),if_neg hk]
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positivePerturbedFamily_scalar_independent
     (hO : ∀ j∈J,O j≤Forms K h j) (hpos : ∀ j∈J,0<j) (hJ : ∀ j∈J,0<counts j → j<d)
     (p : Space m d q J counts O)
@@ -63,6 +66,7 @@ theorem positivePerturbedFamily_scalar_independent
     exact (hp j).map' (biformImage (O j.val) (Forms K m (d-j.val))).subtype
       (Submodule.ker_subtype (biformImage (O j.val) (Forms K m (d-j.val))))
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positivePerturbedFamily_component_one (hd : 1<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j)
     (p : Space m d q J counts O)
@@ -77,6 +81,7 @@ theorem positivePerturbedFamily_component_one (hd : 1<d)
     weightedHomogeneousComponent_of_mem he,if_neg (by have := hmin _ i.1.property;omega),
     weightedHomogeneousComponent_of_mem (hU _),if_neg (by omega),zero_add,zero_add]
 
+set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positive_private_scalar_independent (hd : 1<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hmin : ∀ j∈J,2≤j) (hJ : ∀ j∈J,0<counts j → j<d)
     (p : Space m d q J counts O) (hp : ∀ j,LinearIndependent K (p.2 j))

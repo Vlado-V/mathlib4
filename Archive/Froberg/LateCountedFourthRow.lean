@@ -17,13 +17,14 @@ public import Archive.Froberg.SingleProfileScalar
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 open Quartic.PolynomialBilinearCoordinates
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem eventually_counted_fourth_row_capacity_shift_late_output {d : ℕ}
     (hd : 5 ≤ d) (hd8 : d ≤ 8) :
     ∀ᶠ w : ℕ in atTop,

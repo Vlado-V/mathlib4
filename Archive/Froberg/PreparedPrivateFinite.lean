@@ -17,13 +17,14 @@ open for one prescribed private tuple and its actual quadratic detector. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2400000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_product_extension {σ : Type*} [Fintype σ]
     {a z d q R : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
@@ -34,6 +35,7 @@ theorem private_product_extension {σ : Type*} [Fintype σ]
   exact (rename_injective (Sum.map id (Fin.castAdd z))
     (Function.Injective.sumMap (fun _ _ h => h) (Fin.castAdd_injective a z))).comp hp
 
+set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 theorem private_finite_reduction_open {w v z d q t c b₂ H : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ}
     {T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X}

@@ -13,13 +13,14 @@ public import Archive.Froberg.ActualRestoredSlots
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def RestoredFramePairOpen {d h : ℕ} (hd : 3≤d) (he : d%2=0) (n f e : ℕ)
     (frame : Fin (quadraticOutputDimension d h) → Forms K h 2) : Prop :=
   HasRestoredCertificateOpen (m := n) (f := f) (by omega : 1≤d) he

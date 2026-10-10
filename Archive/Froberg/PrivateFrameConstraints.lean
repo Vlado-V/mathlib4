@@ -14,13 +14,14 @@ output spaces used by the finite private-row construction. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns PreparedParameters
 variable {K : Type} [Field K] [Infinite K]
 variable {w h H c : ℕ}
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem quadratic_detector_homogeneous_kernel
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -41,25 +42,30 @@ theorem quadratic_detector_homogeneous_kernel
     exact hp.2
   · exact le_inf (outputFrameSpace_homogeneous frame) (quadraticPolynomialDetector_frame frame L hL)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 def pairedFrameConstraint (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) (j : ℕ) :
     MvPolynomial (Fin w × Bool) K →ₗ[K] (Fin c → K) :=
   if j=2 then (quadraticPolynomialDetector L).comp (rename f).toLinearMap else 0
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 @[simp] theorem pairedFrameConstraint_two (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
     pairedFrameConstraint f L 2=(quadraticPolynomialDetector L).comp (rename f).toLinearMap := by
   simp only [pairedFrameConstraint,ite_true]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_ne_two (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j≠2) :
     pairedFrameConstraint f L j=0 := by
   simp only [pairedFrameConstraint,if_neg hj]
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_ge_four (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : 4≤j) :
     pairedFrameConstraint f L j=0 := pairedFrameConstraint_ne_two f L (by omega)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -81,6 +87,7 @@ theorem pairedFrameConstraint_space (f : (Fin w × Bool) ≃ Fin h)
     have hh := hp.rename_isHomogeneous (f := f.symm)
     simpa only [rename_rename,Equiv.symm_comp_self,rename_id_apply] using hh
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_map (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -90,6 +97,7 @@ theorem pairedFrameConstraint_space_map (f : (Fin w × Bool) ≃ Fin h)
   rw [pairedFrameConstraint_space f frame L hL]
   exact Submodule.map_comap_eq_of_surjective ((renameEquiv K f).surjective) _
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_map_ne_two (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j≠2) :
     (constrainedOutputs (pairedFrameConstraint f L) j).map (rename f).toLinearMap=
@@ -102,6 +110,7 @@ theorem pairedFrameConstraint_space_map_ne_two (f : (Fin w × Bool) ≃ Fin h)
     refine ⟨rename f.symm p,hp.rename_isHomogeneous,?_⟩
     exact (renameEquiv K f).right_inv p
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_spaces_map (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -113,6 +122,7 @@ theorem pairedFrameConstraint_spaces_map (f : (Fin w × Bool) ≃ Fin h)
     simpa only [ite_true] using pairedFrameConstraint_space_map f frame L hL
   · simpa only [if_neg hj] using pairedFrameConstraint_space_map_ne_two f L hj
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_finrank (f : (Fin w × Bool) ≃ Fin h)
     (frame : Fin H → Forms K h 2) (hframe : LinearIndependent K frame)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
@@ -125,6 +135,7 @@ theorem pairedFrameConstraint_space_finrank (f : (Fin w × Bool) ≃ Fin h)
   rw [pairedFrameConstraint_space_map f frame L hL] at hh
   exact hh.symm.trans (outputFrameSpace_finrank frame hframe)
 
+set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem quadratic_frame_quotient_finrank
     (frame : Fin H → Forms K h 2) (hframe : LinearIndependent K frame) :
     finrank K (Forms K h 2 ⧸ Submodule.span K (Set.range frame))=

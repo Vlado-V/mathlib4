@@ -14,7 +14,7 @@ open of the complete restored parameter space. Every scalar tail is used. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K]
@@ -24,6 +24,7 @@ namespace PreparedParameters
 variable {q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def QuadraticSeparated (T : Poly K h →ₗ[K] (Fin c → K))
     (p : QuadraticParameters K h m d r f) : Prop :=
   ∀ (x : Fin r → Fin c → Forms K m (d-2)) (z : Sym2 (Fin f) → K),
@@ -31,6 +32,7 @@ def QuadraticSeparated (T : Poly K h →ₗ[K] (Fin c → K))
       detectedSymmetricProductRow (FullBiform K (Fin h) m 1 (d-1)).subtype
         (biformVectorDetector T) p.2 z=0 → z=0
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem quadratic_separated_principal_open
     (T : Poly K h →ₗ[K] (Fin c → K))
     (Q₀ : Fin r → Forms K m d) (F₀ : Fin f → FullBiform K (Fin h) m 1 (d-1))
@@ -84,6 +86,7 @@ theorem quadratic_separated_principal_open
     simpa only [A,addRow_apply,LinearEquiv.symm_apply_apply,map_zero] using hxz
   exact congrArg Prod.snd (hinj hzero)
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem restored_quadratic_separation_open
     (hO : ∀ j∈J,O j≤Forms K h j) (idx : Fin r ≃ Label q J counts)
     (T : Poly K h →ₗ[K] (Fin c → K))
@@ -100,6 +103,7 @@ theorem restored_quadratic_separation_open
   obtain ⟨D,hD,hgood⟩ := quadratic_separated_principal_open T Q₀ F₀ hQ₀ hsep
   exact restored_c2_principal_pullback hO idx D ⟨(Q₀,F₀),hD⟩ (QuadraticSeparated T) hgood
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Actual paired scalar and output spaces supply the separation witness;
 all remaining restored coefficients are free parameters of the open. -/
 theorem restored_quadratic_separation_open_of_scalar_space

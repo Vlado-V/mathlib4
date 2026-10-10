@@ -21,29 +21,34 @@ noncomputable section
 namespace Quartic.SplitBlock22
 open Module MvPolynomial ThreeBlockModel
 open scoped TensorProduct
-set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K] {m c q : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The existing full split family, written using middle coefficient coordinates. -/
 def fullGenerators (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) :
     Fin (4+(c+q)) → Forms K (3+m) 2 :=
   SplitBlock31.generators (fun j => traceCoordinates (g j)) h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem fullGenerators_pure (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (i : Fin 4) :
     fullGenerators g h (Fin.castAdd (c+q) i) = SplitBlock31.coreEmbed (blockQuadrics i) := by
   simp [fullGenerators]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem fullGenerators_mixed (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (i : Fin c) :
     fullGenerators g h (Fin.natAdd 4 (Fin.castAdd q i)) = mixedEmbedding (g i) := by
   simp [fullGenerators]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem fullGenerators_child (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (i : Fin q) :
     fullGenerators g h (Fin.natAdd 4 (Fin.natAdd c i)) = SplitBlock31.childEmbed (h i) := by
   simp [fullGenerators]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Insert exactly the coefficients of bidegree (2,2) into the full indexed source. -/
 def sourceEmbedding : Source K m c q →ₗ[K] (Fin (4+(c+q)) → Forms K (3+m) 2) where
   toFun a := Fin.addCases (fun i => SplitBlock31.childEmbed (a.1 i))
@@ -59,18 +64,22 @@ def sourceEmbedding : Source K m c q →ₗ[K] (Fin (4+(c+q)) → Forms K (3+m) 
     · intro j; simp
     · intro j; refine Fin.addCases ?_ ?_ j <;> intro k <;> simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceEmbedding_pure (a : Source K m c q) (i : Fin 4) :
     sourceEmbedding a (Fin.castAdd (c+q) i) = SplitBlock31.childEmbed (a.1 i) := by
   simp [sourceEmbedding]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceEmbedding_mixed (a : Source K m c q) (j : Fin c) :
     sourceEmbedding a (Fin.natAdd 4 (Fin.castAdd q j)) = mixedEmbedding (a.2.1 j) := by
   simp [sourceEmbedding]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceEmbedding_child (a : Source K m c q) (k : Fin q) :
     sourceEmbedding a (Fin.natAdd 4 (Fin.natAdd c k)) = SplitBlock31.coreEmbed (a.2.2 k) := by
   simp [sourceEmbedding]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Read the child, mixed, and pure components on their corresponding generator slots. -/
 def sourceProjection : (Fin (4+(c+q)) → Forms K (3+m) 2) →ₗ[K] Source K m c q :=
   (LinearMap.pi fun i : Fin 4 => childProjection.comp (LinearMap.proj (Fin.castAdd (c+q) i))).prod
@@ -79,6 +88,7 @@ def sourceProjection : (Fin (4+(c+q)) → Forms K (3+m) 2) →ₗ[K] Source K m 
     (LinearMap.pi fun k : Fin q => SplitBlock31.coreProjection.comp
       (LinearMap.proj (Fin.natAdd 4 (Fin.natAdd c k)))))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem sourceProjection_sourceEmbedding (a : Source K m c q) :
     sourceProjection (sourceEmbedding a) = a := by
   apply Prod.ext
@@ -93,9 +103,11 @@ def sourceProjection : (Fin (4+(c+q)) → Forms K (3+m) 2) →ₗ[K] Source K m 
       change SplitBlock31.coreProjection (sourceEmbedding a (Fin.natAdd 4 (Fin.natAdd c k))) = a.2.2 k
       simp
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem sourceEmbedding_injective : Function.Injective (sourceEmbedding (K := K) (m := m) (c := c) (q := q)) :=
   Function.LeftInverse.injective sourceProjection_sourceEmbedding
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual full polynomial multiplication restricts to the constructed (2,2) map. -/
 theorem full_multiplication_commutes (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Source K m c q) :
@@ -116,6 +128,7 @@ theorem full_multiplication_commutes (g : Fin c → MiddleCoordinates.Mixed K m)
   intro i _
   exact mul_comm _ _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The embedded block has exactly its own multiplication kernel. -/
 theorem sourceEmbedding_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Source K m c q) :

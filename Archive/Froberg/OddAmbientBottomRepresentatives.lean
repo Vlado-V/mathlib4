@@ -16,7 +16,7 @@ higher part of the corrected ambient coordinates. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
@@ -28,6 +28,7 @@ variable (hd : 1 ≤ d)
   (hQ : ∀ i,(Q i).val.IsWeightedHomogeneous (blockWeight h m) 0)
   (hF : ∀ i,(F i).val.IsWeightedHomogeneous (blockWeight h m) 1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_odd_target_bottom_representative
     (x : OddTargetRowQuotient Q F (oddTargetBottomIndex hd)) :
     ∃ p : biformParitySpace K h m (2*d) 1,
@@ -50,6 +51,7 @@ variable
   (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
     oddAmbientBottomRelationMap hd Q F hQ hF G)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exists_odd_ambient_bottom_representative
     (x : OddTargetRowQuotient Q F (oddTargetBottomIndex hd)) :
     ∃ p : biformParitySpace K h m (2*d) 1,
@@ -61,6 +63,7 @@ theorem exists_odd_ambient_bottom_representative
   apply (oddAmbientCoordinates hd Q F hQ hF G D hD).injective
   rw [LinearEquiv.apply_symm_apply,oddAmbientCoordinates_weighted_bottom hd Q F hQ hF G D hD p hp,hpx]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_ambient_projection_kills_bottom {Z : Type} [AddCommGroup Z] [Module K Z]
     (proj : (biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations Q F G) →ₗ[K] Z)
     (hproj : ∀ p : biformParitySpace K h m (2*d) 1,

@@ -14,12 +14,13 @@ one-dimensional overlaps after a projection injective on each pair space. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
 variable {K T : Type*} [Field K] [AddCommGroup T] [Module K T] {n : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The pair-output space has its precise dimension 2n−1. -/
 theorem linear_pair_output_finrank (hn : 0 < n)
     (q : Fin 2 → Forms K n 1) (hq : LinearIndependent K q) :
@@ -35,6 +36,7 @@ theorem linear_pair_output_finrank (hn : 0 < n)
     Fintype.card_fin,smul_eq_mul] at hr
   omega
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Detection cannot introduce an additional relation between two linear
 output columns when their whole pair space embeds in the quotient. -/
 theorem detected_linear_pair_relation (hn : 0 < n)

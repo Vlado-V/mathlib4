@@ -17,11 +17,12 @@ only a complementary subspace of the old pure-scalar target. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] {h m d r : ℕ}
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem lowTarget_even_weight_zero (p : Forms K (h+m) (2*d))
     (hp : p∈lowTargetSubspace (K := K) (h := h) (m := m) (d := d)) :
     (parityForm (coreParity h m) 0 p).val.IsWeightedHomogeneous (coreWeight h m) 0 := by
@@ -46,6 +47,7 @@ theorem lowTarget_even_weight_zero (p : Forms K (h+m) (2*d))
   simp only [coeff_weightedHomogeneousComponent,ite_true] at hc
   exact hcoeff hc
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem upperTarget_even_coverage
     (e : Fin r → ZMod 2) (q : Fin r → Forms K (h+m) d)
     (hq : ∀ i,(q i).val.IsWeightedHomogeneous (coreParity h m) (e i))
@@ -75,6 +77,7 @@ theorem upperTarget_even_coverage
 
 variable [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h+m) k)
     (hp : p.val.IsWeightedHomogeneous (coreWeight h m) 0) :
     p∈(renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h+m))).range := by
@@ -92,6 +95,7 @@ theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h+m) k)
   change rename (Fin.natAdd h) b.val=p.val
   simpa only [rename_id,AlgHom.id_apply] using hh
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem scalar_range_odd_zero {k : ℕ}
     (p : Forms K (h+m) k)
     (hp : p∈(renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h+m))).range) :
@@ -100,6 +104,7 @@ theorem scalar_range_odd_zero {k : ℕ}
   apply parityForm_other (coreParity h m) 1 0 _ _ (by decide)
   exact weighted_homogeneous_has_parity (coreWeight h m) _ (scalar_rename_core_weight_zero b)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The exact supported deletion used by transfer automatically has no odd
 part and fills every pure scalar target modulo the embedded old products. -/
 theorem supported_scalar_deletion_properties {s : ℕ}

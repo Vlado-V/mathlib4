@@ -15,7 +15,7 @@ in the common parameter space even when the quadratic layer is nonempty. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
@@ -23,6 +23,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_diagonal_row_profile_parameter (j : ℕ)
     (honly : ∀ r : ProductRows.Row J (2*j),ProductRows.Columns counts r → r.val.val=j)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
@@ -46,6 +47,7 @@ theorem exists_diagonal_row_profile_parameter (j : ℕ)
 
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_strong_fourth_profile_parameter {h : ℕ}
     (hh : 144≤h) (hfour : 4∣h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4=0)
     (hz : ∀ k∈J,k≠2 → k≠4 → counts k=0)

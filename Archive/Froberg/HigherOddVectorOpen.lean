@@ -16,21 +16,24 @@ higher odd coefficient row, including the final scalar-free row. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev ScalarVectorParameters (K : Type) [Field K] (h m d f q : ℕ) :=
   (Fin f → Rows K h m (d-1)) × (Fin q → Forms K m d)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def scalarVectorParametersEquiv : ScalarVectorParameters K h m d f q ≃ₗ[K]
     OddScalarParameters K h m d f q :=
   LinearEquiv.prodCongr (LinearEquiv.piCongrRight (fun _ => linearOutputTensorEquiv))
     (LinearEquiv.refl K _)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HigherOddRows (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) : Prop :=
   ∀ r,3≤r → r≤d+1 → r%2=1 →
     ∀ (u : Fin q → MvPolynomial (Fin h ⊕ Fin m) K)
@@ -40,6 +43,7 @@ def HigherOddRows (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
       (∑ i,rename Sum.inr (Q i).val*u i)+
         (∑ j,sumBiformMap (linearOutputTensorEquiv (g j))*v j)=0 → u=0 ∧ v=0
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_scalar_layer_polynomial_row {b : ℕ} (hb : 1≤b) (hbd : b≤d)
     (p : OddScalarParameters K h m d f q)
     (hp : OddScalarLayerProperty t hb hbd (oddScalarBiformParameters p))
@@ -76,6 +80,7 @@ theorem odd_scalar_layer_polynomial_row {b : ℕ} (hb : 1≤b) (hbd : b≤d)
     exact Prod.ext (congrArg Prod.snd hh) (congrArg Prod.fst hh)
   · simpa only [sumBiformMap_scalarBiform] using hrow
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem higher_odd_vector_open (hh : 0<h) (hm : 0 < m) (hd : 1≤d)
     (hscalar : HasOddScalarLayersOpen K h m d f q t)
     (hupper : (f+(h+d-1).choose d)*(h+d-1).choose d≤

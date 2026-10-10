@@ -18,16 +18,19 @@ namespace Quartic.ExtraCorrectionOmega
 open Module HomologyCoordinates AugmentedGenericOmega MovingMiddleCorrectionOmega
 variable {K : Type*} [Field K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 1600000
 
+
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 abbrev ChildQuotient (h : Fin q → Forms K m 2) :=
   Forms K m 2 ⧸ Submodule.span K (Set.range h)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def extraSpace (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h)) :=
   (ExtraTraceOmega.extraTrace ω z
     (fun i => (Submodule.span K (Set.range h)).mkQ (r i)) U).range
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def augmented (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) :=
@@ -35,6 +38,7 @@ def augmented (g : Fin c → MiddleCoordinates.Mixed K m)
     (ExtraTraceOmega.withColumn (quotientProduct g (Submodule.span K (Set.range h))) z)
     (fun i => (Submodule.span K (Set.range h)).mkQ (r i))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem extraSpace_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h)
@@ -42,6 +46,7 @@ theorem extraSpace_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     finrank K (extraSpace ω h r z U) = finrank K U + 4 :=
   ExtraTraceOmega.extraTrace_finrank ω (quotientProduct g _) z _ ha U
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem discarded_image_disjoint (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h)
@@ -52,6 +57,7 @@ theorem discarded_image_disjoint (g : Fin c → MiddleCoordinates.Mixed K m)
   rw [discarded_quotient_image]
   exact ExtraTraceOmega.product_disjoint_extraTrace ω (quotientProduct g _) z _ ha U
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem discarded_inter_correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (hg : LinearIndependent K g)
@@ -64,6 +70,7 @@ theorem discarded_inter_correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (discarded_inter_kernel g _ hg
       (ExtraTraceOmega.product_injective ω (quotientProduct g _) z _ ha))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 abbrev Correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h)) :=
@@ -71,6 +78,7 @@ abbrev Correction (g : Fin c → MiddleCoordinates.Mixed K m)
     (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))
     (SplitBlock22.mixedKoszulSpace g) (extraSpace ω h r z U)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def coefficientMap (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h)) :
@@ -79,6 +87,7 @@ def coefficientMap (g : Fin c → MiddleCoordinates.Mixed K m)
   (coefficientQuotientEquiv g).toLinearMap.comp
     (CorrectionSpace.correctionCoefficientMap _ _ _ _ (boundary_le_discarded g))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 @[simp] theorem coefficientMap_mk (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h))
@@ -86,6 +95,7 @@ def coefficientMap (g : Fin c → MiddleCoordinates.Mixed K m)
       (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))) :
     coefficientMap ω g h r z U (Submodule.Quotient.mk a) = coefficientProjection g a.val := rfl
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coefficientMap_injective (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (hg : LinearIndependent K g)
@@ -95,6 +105,7 @@ theorem coefficientMap_injective (g : Fin c → MiddleCoordinates.Mixed K m)
     (CorrectionSpace.correctionCoefficientMap_injective _ _ _ _
       (boundary_le_discarded g) (discarded_inter_correction ω g h r z hg ha U))
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem correction_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h)
@@ -109,12 +120,14 @@ theorem correction_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
   change finrank K (SplitBlock22.MiddleHomology g h) + (finrank K U + 4) = _
   omega
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 def coefficientImage (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h)) :=
   ((extraSpace ω h r z U).comap
     (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection g)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h) (U : Submodule K (ChildQuotient h)) :
@@ -127,6 +140,7 @@ theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)
     intro a
     exact ⟨a.val, a.property, (coefficientMap_mk ω g h r z U a).symm⟩
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem coefficientImage_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (z : ChildQuotient h × ChildQuotient h)
@@ -142,12 +156,14 @@ theorem coefficientImage_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
   push_cast
   rw [SplitBlock22.homology_finrank_eq_H g h hg hh hs]
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The actual quotient class of the retained mixed square. -/
 def squareClass (h : Fin q → Forms K m 2) (ζ : MiddleCoordinates.Mixed K m) :
     ChildQuotient h × ChildQuotient h :=
   ((Submodule.span K (Set.range h)).mkQ.prodMap
     (Submodule.span K (Set.range h)).mkQ) (MiddleCoordinates.projectedProduct ζ ζ)
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The D.12 open is exactly the augmented hypothesis of this correction space. -/
 theorem augmented_square_eq (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)

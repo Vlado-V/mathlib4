@@ -14,7 +14,7 @@ mixed multiplication map gives actual quotient growth. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
@@ -26,6 +26,7 @@ variable {K P₁ P₂ V₁ V₂ W : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable {q₁ q₂ t : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem twoFamily_append_coprod_injective
     (mu₁ : P₁ →ₗ[K] V₁ →ₗ[K] W) (mu₂ : P₂ →ₗ[K] V₂ →ₗ[K] W)
     (F : Fin q₁ → P₁) (Q : Fin q₂ → P₂) (A : Fin t → P₂)
@@ -34,6 +35,7 @@ theorem twoFamily_append_coprod_injective
       (BilinearScalarFamily.multiplication mu₂ A)) := by
   exact scalar_append_coprod_injective (BilinearScalarFamily.multiplication mu₁ F) mu₂ Q A h
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The auxiliary forms are witnesses for a uniform shadow estimate and do
 not change the old generator count or its actual quotient. -/
 theorem twoFamily_augmented_quotient_growth

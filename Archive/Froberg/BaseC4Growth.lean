@@ -15,13 +15,14 @@ ordinary odd-row growth condition used by C.4. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f b t : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topScalarParametersEquiv (hd : 1 ≤ d) :
     OddScalarParameters K h m d f q ≃ₗ[K] ProjectedTopParameters K h m (d-1) f q where
   toFun p := topGrowthParameters hd p.2 p.1
@@ -49,6 +50,7 @@ def topScalarParametersEquiv (hd : 1 ≤ d) :
 
 attribute [local irreducible] OddScalarLayerProperty
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem top_scalar_growth_open (hd : 1 ≤ d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (htop : ProjectedTopGrowthOpen R m f q t) :
@@ -80,6 +82,7 @@ theorem top_scalar_growth_open (hd : 1 ≤ d)
     rw [heval] at hp
     exact hp
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem base_c4_growth_open (hd : 1 ≤ d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (htop : ProjectedTopGrowthOpen R m f q t)

@@ -17,7 +17,7 @@ only the actual scalar family remains as the final open parameter. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 2500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic Quartic.BilinearCovectorCharts Quartic.BilinearCoefficientKernel
@@ -26,6 +26,7 @@ variable {K X U : Type*} [Field K] [Infinite K] [IsAlgClosed K]
   [AddCommGroup U] [Module K U] [FiniteDimensional K U]
 variable {q₀ N s₀ nf r a b T q s k : ℕ}
 
+set_option maxHeartbeats 2500000 in -- Preserve the budget during this port.
 /-- On each normalized closed bottom chart, a first-stage rank bound and
 the exact shared-scalar budget give fixed cuts and a nonempty scalar-only
 open. The first vector and all graph coordinates remain universal. -/
@@ -94,6 +95,7 @@ theorem affine_layered_covectors_joint
   exact hgood₁' y hy x t hf ht u hr hne hk hzero
     ((affineSharedConstraint_kernel_iff mu B _ y).mpr hjoint)
 
+set_option maxHeartbeats 2500000 in -- Preserve the budget during this port.
 /-- Fix the auxiliary cuts only after the desired joint parameter open is formed. -/
 theorem affine_layered_covectors_avoid
     (degrees : Fin nf → ℕ) (f : ∀ i,Forms K q₀ (degrees i))

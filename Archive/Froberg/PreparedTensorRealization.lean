@@ -15,13 +15,14 @@ space. Every scalar coordinate remains free. -/
 
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 800000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 attribute [local instance] tensorGroup
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 theorem preparedLayerTensor_eq_of_values
     (p : PreparedParameters.Space m d q J counts O)
     (a : J) (hO : O a.val≤Forms K h a.val)
@@ -32,6 +33,7 @@ theorem preparedLayerTensor_eq_of_values
   apply sumBiform_injective
   exact (preparedLayerTensor_sum a hO p i).trans (hg i)
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- The tensor parameters and the literal polynomial parameter family have
 exactly the same prescribed high coefficients. -/
 def preparedTargetTensorParameters

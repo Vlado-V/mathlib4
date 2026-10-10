@@ -14,7 +14,7 @@ uses image lifts and cycle lifts, so no matrix-factorization premise remains. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial Quartic
 
@@ -24,10 +24,12 @@ variable {K V W J : Type*} [Field K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   [AddCommGroup J] [Module K J]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The first derivative, restricted to the old kernel and then projected. -/
 def firstResponse (M₀ M₁ : V →ₗ[K] W) (π : W →ₗ[K] J) : M₀.ker →ₗ[K] J :=
   π.comp (M₁.comp M₀.ker.subtype)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- A nonzero first-normal minor forces the corresponding rank gain on an
 explicit principal open of nonzero parameters. -/
 theorem firstResponse_rank_gain_principal_open
@@ -95,12 +97,14 @@ variable {K E T J : Type*} [Field K]
   [AddCommGroup E] [Module K E] [AddCommGroup T] [Module K T]
   [AddCommGroup J] [Module K J]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Descent to a kernel modulo its boundary, elaborated before specializing
 to the polynomial complex. -/
 def descendCycleMap (M : E →ₗ[K] T) (B : Submodule K E)
     (N : M.ker →ₗ[K] J) (hN : kernelBoundary M B ≤ N.ker) :
     KernelModulo M B →ₗ[K] J := (kernelBoundary M B).liftQ N hN
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem range_descendCycleMap (M : E →ₗ[K] T) (B : Submodule K E)
     (N : M.ker →ₗ[K] J) (hN : kernelBoundary M B ≤ N.ker) :
     (descendCycleMap M B N hN).range = N.range :=
@@ -111,14 +115,17 @@ end Descent
 section PolynomialNormalMap
 variable {K : Type*} [Field K] {n d r : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev EndpointCokernel (q : Fin r → Forms K n d) :=
   Forms K n (2 * d) ⧸ (endpointMultiplication q).range
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def endpointNormalCycles (q p : Fin r → Forms K n d) :
     (endpointMultiplication q).ker →ₗ[K] EndpointCokernel q :=
   (endpointMultiplication q).range.mkQ.comp
     ((endpointMultiplication p).comp (endpointMultiplication q).ker.subtype)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem endpointMultiplication_cross_koszul (q p : Fin r → Forms K n d)
     (ij : GeneratorPair r) :
     endpointMultiplication p (koszulVector q ij) =
@@ -133,6 +140,7 @@ theorem endpointMultiplication_cross_koszul (q p : Fin r → Forms K n d)
     Finset.sum_sub_distrib, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Constant Koszul boundaries disappear from the first derivative in the cokernel. -/
 theorem incoming_le_ker_endpointNormalCycles (q p : Fin r → Forms K n d) :
     incomingInKernel q ≤ (endpointNormalCycles q p).ker := by
@@ -150,16 +158,19 @@ theorem incoming_le_ker_endpointNormalCycles (q p : Fin r → Forms K n d) :
   intro a ha
   exact hspan ha
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The manuscript's first normal map on actual Koszul homology classes. -/
 def endpointNormalMap (q p : Fin r → Forms K n d) :
     EndpointHomology q →ₗ[K] EndpointCokernel q :=
   descendCycleMap (endpointMultiplication q) (koszulSpace q) (endpointNormalCycles q p)
     (incoming_le_ker_endpointNormalCycles q p)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem range_endpointNormalMap (q p : Fin r → Forms K n d) :
     (endpointNormalMap q p).range = (endpointNormalCycles q p).range := by
   exact range_descendCycleMap _ _ _ _
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem endpoint_normal_rank_gain_principal_open [Infinite K] (q p : Fin r → Forms K n d) :
     ∃ D : MvPolynomial (Fin 1) K, eval 0 D ≠ 0 ∧
       ∀ ε : K, ε ≠ 0 → eval (fun _ => ε) D ≠ 0 →
@@ -175,6 +186,7 @@ theorem endpoint_normal_rank_gain_principal_open [Infinite K] (q p : Fin r → F
   rw [range_endpointNormalMap]
   exact hprop ε hε hDε
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem endpointMultiplication_motion (q p : Fin r → Forms K n d) (ε : K) :
     endpointMultiplication (q + ε • p) = endpointMultiplication q + ε • endpointMultiplication p := by
   apply LinearMap.ext
@@ -182,6 +194,7 @@ theorem endpointMultiplication_motion (q p : Fin r → Forms K n d) (ε : K) :
   apply Subtype.ext
   simp [endpointMultiplication_val, add_mul, Finset.sum_add_distrib, ← Finset.smul_sum]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem independent_motion_principal_open [Infinite K] (q p : Fin r → Forms K n d)
     (hq : LinearIndependent K q) :
     ∃ D : MvPolynomial (Fin 1) K, eval 0 D ≠ 0 ∧ ∀ ε : K,
@@ -194,6 +207,7 @@ theorem independent_motion_principal_open [Infinite K] (q p : Fin r → Forms K 
     (by simpa [family] using hq)
   exact ⟨D, hD, fun ε hε => hprop (fun _ => ε) hε⟩
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Lemma C.5 for the actual polynomial Koszul complex: a normal map of
 rank `s` gives a nonzero motion parameter lowering first homology by at least `s`. -/
 theorem exists_endpoint_normal_homology_drop [Infinite K] (q p : Fin r → Forms K n d)

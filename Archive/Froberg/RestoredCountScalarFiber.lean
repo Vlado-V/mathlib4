@@ -14,12 +14,13 @@ temporary slots, every high term, the pure tuple, and the outer family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 150000
+
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f : ℕ}
 variable {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 def restoredCountScalarFiberLinear (hc : ∀ j ∈ J, c j ≤ c' j) :
     PositiveScalars (K := K) m d J c × RestoredOuterSpace m d q f J c' O →ₗ[K]
       RestoredOuterSpace m d q f J c' O where
@@ -37,14 +38,17 @@ def restoredCountScalarFiberLinear (hc : ∀ j ∈ J, c j ≤ c' j) :
       · rfl
     · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 @[simp] theorem restoredCountScalarFiberLinear_pure (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O) :
     (restoredCountScalarFiberLinear hc (a,p)).1.2=p.1.2 := rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 @[simp] theorem restoredCountScalarFiberLinear_outer (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O) :
     (restoredCountScalarFiberLinear hc (a,p)).2=p.2 := rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem restoredCountScalarFiberLinear_extra_generator (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :
@@ -52,6 +56,7 @@ theorem restoredCountScalarFiberLinear_extra_generator (hc : ∀ j ∈ J, c j �
       generator p.1.1 (Sum.inr ⟨j,i⟩) :=
   countScalarFiberLinear_extra_generator hc a p.1.1 j i hi
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem restoredCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O) :
     restoredRestrictCounts hc (restoredCountScalarFiberLinear hc (a,p))=
@@ -63,6 +68,7 @@ theorem restoredCountScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
     · rfl
   · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem restoredCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : RestoredOuterSpace m d q f J c' O) :
     restoredCountScalarFiberLinear hc
@@ -73,6 +79,7 @@ theorem restoredCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     · rfl
   · rfl
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem principal_open_restored_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (Space m d q J c' O) := finite_space hO

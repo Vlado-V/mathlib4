@@ -13,7 +13,7 @@ the scalar and outer-linear background relations have been removed. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
@@ -28,6 +28,7 @@ variable (hd : 1≤d)
 
 attribute [local irreducible] oddAmbientBottomRelationMap oddAmbientHigherRelationMap
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def oddAmbientCoordinates
     (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
     (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
@@ -46,6 +47,7 @@ def oddAmbientCoordinates
       (oddAmbientHigherRelationMap hd Q F hQ hF G) D hD
   exact (oddAmbientGraphQuotientEquiv hd Q F hQ hF G).trans e
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem oddAmbientCoordinates_mk
     (D : HigherOddTargetRows hd Q F →ₗ[K] OddTargetRowQuotient Q F (oddTargetBottomIndex hd))
     (hD : D.comp (oddAmbientHigherRelationMap hd Q F hQ hF G)=
@@ -56,6 +58,7 @@ def oddAmbientCoordinates
         (oddAmbientHigherRelationMap hd Q F hQ hF G).range.mkQ
           (oddTargetBaseMap hd Q F hQ hF p).2) := rfl
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem exists_odd_ambient_correction
     (hk : (oddAmbientHigherRelationMap hd Q F hQ hF G).ker≤
       (oddAmbientBottomRelationMap hd Q F hQ hF G).ker) :

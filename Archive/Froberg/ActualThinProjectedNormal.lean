@@ -15,7 +15,7 @@ normal-rank engine returns the required local comparison data directly. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module Quartic PolynomialBilinearCoordinates BilinearScalarFamily
@@ -27,6 +27,7 @@ variable {F V W Z : Type*}
   [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable {n d r t B : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def actualProjectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V) :
@@ -34,6 +35,7 @@ def actualProjectedMappedCoefficients (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fi
   (vmap.compLeft (Fin t)).comp
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V) :
@@ -52,6 +54,7 @@ theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2*d) →ₗ[
   apply (coordinates K V).injective
   exact congrFun hxy i
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_local_comparison_of_actual_thin_slices (D : Submodule K (Forms K n (2*d))) (q : Fin r → Forms K n d)
     (hq : LinearIndependent K q) (dual : Fin t → Forms K n d →ₗ[K] K)
     (vmap : (Forms K n d ⧸ Submodule.span K (Set.range q)) →ₗ[K] V)

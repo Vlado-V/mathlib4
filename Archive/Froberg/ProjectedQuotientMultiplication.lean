@@ -13,7 +13,7 @@ into the actual projected endpoint cokernel. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module
@@ -21,6 +21,7 @@ variable {K : Type} [Field K]
 variable {Z : Type*} [AddCommGroup Z] [Module K Z]
 variable {n d r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual multiplication followed by the fixed target projection and quotient. -/
 def projectedProduct (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) :
     Forms K n d →ₗ[K] Forms K n d →ₗ[K] ProjectedEndpointCokernel pi q where
@@ -38,6 +39,7 @@ def projectedProduct (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n
       Subtype.ext (smul_mul_assoc c z.val a.val)
     simp only [LinearMap.comp_apply,LinearMap.smul_apply,RingHom.id_apply,hm,map_smul]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Every degree-d generator relation vanishes in the projected product. -/
 theorem span_generators_le_projectedProduct_kernel
     (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (z : Forms K n d) :
@@ -55,6 +57,7 @@ theorem span_generators_le_projectedProduct_kernel
     mul_ite,mul_zero,Finset.sum_ite_eq',Finset.mem_univ,ite_true]
   exact mul_comm _ _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The canonical quotient multiplication; no compatibility hypothesis is used. -/
 def projectedQuotientProduct (pi : Forms K n (2*d) →ₗ[K] Z)
     (q : Fin r → Forms K n d) :
@@ -73,11 +76,13 @@ def projectedQuotientProduct (pi : Forms K n (2*d) →ₗ[K] Z)
     obtain ⟨a,rfl⟩ := (Submodule.span K (Set.range q)).mkQ_surjective a
     exact LinearMap.congr_fun ((projectedProduct pi q).map_smul c z) a
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem projectedQuotientProduct_mk (pi : Forms K n (2*d) →ₗ[K] Z)
     (q : Fin r → Forms K n d) (z a : Forms K n d) :
     projectedQuotientProduct pi q z ((Submodule.span K (Set.range q)).mkQ a) =
       (projectedEndpointMultiplication pi q).range.mkQ (pi (mulForm z a)) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The first normal map is the canonical quotient multiplication of its
 faithfully extracted coefficients. -/
 theorem projectedNormalMap_canonical_coefficient_formula

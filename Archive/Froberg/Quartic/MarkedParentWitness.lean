@@ -18,8 +18,9 @@ namespace Quartic.MarkedParentWitness
 open Module ActualDeformationColumnsOmega
 variable {K : Type*} [Field K] [Infinite K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 1500000
 
+
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem of_response_rank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)
@@ -41,6 +42,7 @@ theorem of_response_rank (g : Fin c → MiddleCoordinates.Mixed K m)
   exact MarkedSquareRankCount.marked_of_gain f hi (SplitBlock22.mixedEmbedding ζ)
     _ _ hsplit hresponse hgain
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem of_response_formula (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (k : Fin q) (ζ : MiddleCoordinates.Mixed K m)

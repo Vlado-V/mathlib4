@@ -12,13 +12,14 @@ public import Archive.Froberg.ActualPreparedComparison
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedTarget
 open Froberg PreparedParameters FullPreparedParameters Filter Module MvPolynomial
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 structure PreparedFrameReady {d h u : ℕ} (hd : 3≤d) (ho : d%2=1) (n f e : ℕ)
     (U : Fin u → Forms K h d)
     (frame : Fin (quadraticOutputDimension d h) → Forms K h 2) : Prop where

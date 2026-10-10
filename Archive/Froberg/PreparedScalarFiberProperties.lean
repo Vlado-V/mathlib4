@@ -14,12 +14,13 @@ public import Archive.Froberg.PreparedScalarFiberAt
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 100000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial PreparedParameters
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
 theorem prepared_scalar_fiber_relative_injective
     (hd : 0 < d) (hdodd : d%2=1)
     (hO : ∀ j ∈ J,O j ≤ Forms K h j) (hJ : ∀ j ∈ J,j ≤ d) (heven : ∀ j ∈ J,j%2=0)
@@ -38,6 +39,7 @@ theorem prepared_scalar_fiber_relative_injective
     scalarFiber_positive hO hJ heven a rest.2.1] at hi
   exact hi
 
+set_option maxHeartbeats 100000 in -- Preserve the budget during this port.
 theorem prepared_scalar_fiber_upper
     (hd : 0 < d) (hdodd : d%2=1)
     (hO : ∀ j ∈ J,O j ≤ Forms K h j) (hJ : ∀ j ∈ J,j ≤ d) (heven : ∀ j ∈ J,j%2=0)

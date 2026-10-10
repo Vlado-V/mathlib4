@@ -12,11 +12,12 @@ public import Archive.Froberg.OddSplitElimination
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open MvPolynomial Finset
 variable {K σ : Type*} [Field K] {d : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem even_homogeneous_components (w : σ → ℕ) (hw : ∀ x,w x≤1)
     (hd : Odd d) (f : MvPolynomial σ K) (hf : f.IsHomogeneous d)
     (heven : ∀ a,f.coeff a≠0 → Finsupp.weight w a%2=0) :

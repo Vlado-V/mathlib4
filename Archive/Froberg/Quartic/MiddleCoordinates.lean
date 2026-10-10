@@ -21,23 +21,30 @@ proved witnesses; no rank or genericity hypothesis replaces their construction.
 noncomputable section
 namespace Quartic.MiddleCoordinates
 open Module MvPolynomial
-set_option maxHeartbeats 2000000
+
 
 variable (K : Type*) [Field K] (m c q : ℕ)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Mixed := Fin 3 → Forms K m 1
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Target := Forms K m 2 × Forms K m 2
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Parameters := (Fin c → Mixed K m) × (Fin q → Forms K m 2)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 abbrev Domain := (Fin c → Mixed K m) × (Fin q → K × K)
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Monomial coefficients of all mixed generators and all child quadrics. -/
 abbrev CoefficientIndex :=
   (Fin c × Fin 3 × Sym (Fin m) 1) ⊕ (Fin q × Sym (Fin m) 2)
 variable {K m c q}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def mulLinear (g : Forms K m 1) : Forms K m 1 →ₗ[K] Forms K m 2 where
   toFun a := ⟨g.val * a.val, g.property.mul a.property⟩
   map_add' _ _ := Subtype.ext (mul_add _ _ _)
   map_smul' _ _ := Subtype.ext (mul_smul_comm _ _ _)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Product reduced in the fixed pure-block coordinates `(u,v)`. -/
 def projectedProduct (g : Mixed K m) : Mixed K m →ₗ[K] Target K m :=
   (((mulLinear (g 0)).comp (LinearMap.proj (0 : Fin 3))) -
@@ -45,22 +52,27 @@ def projectedProduct (g : Mixed K m) : Mixed K m →ₗ[K] Target K m :=
   (((mulLinear (g 1)).comp (LinearMap.proj (1 : Fin 3))) -
     ((mulLinear (g 2)).comp (LinearMap.proj (2 : Fin 3))))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def multiplication (g : Fin c → Mixed K m) : (Fin c → Mixed K m) →ₗ[K] Target K m :=
   ∑ i : Fin c, (projectedProduct (g i)).comp (LinearMap.proj i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def childMap (h : Fin q → Forms K m 2) : (Fin q → K × K) →ₗ[K] Target K m where
   toFun a := (∑ i, (a i).1 • h i, ∑ i, (a i).2 • h i)
   map_add' a b := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' s a := by simp [smul_smul, Finset.smul_sum]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def combined (p : Parameters K m c q) : Domain K m c q →ₗ[K] Target K m :=
   (multiplication p.1).coprod (childMap p.2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual quotient middle map for an arbitrary child quadratic subspace. -/
 def quotientMap (g : Fin c → Mixed K m) (Q : Submodule K (Forms K m 2)) :
     (Fin c → Mixed K m) →ₗ[K] (Forms K m 2 ⧸ Q) × (Forms K m 2 ⧸ Q) :=
   (Q.mkQ.prodMap Q.mkQ).comp (multiplication g)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def decodeWithBases {U V I J : Type*}
     [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
     (e₁ : U ≃ₗ[K] (I → K)) (e₂ : V ≃ₗ[K] (J → K)) :
@@ -94,10 +106,12 @@ def decodeWithBases {U V I J : Type*}
     · funext i
       exact e₂.symm.map_smul s _
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Explicit monomial coordinates parametrize every ordered polynomial family. -/
 def decode : (CoefficientIndex m c q → K) ≃ₗ[K] Parameters K m c q :=
   decodeWithBases (formsBasis K m 1).equivFun (formsBasis K m 2).equivFun
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The generic statement is on actual `Fin m` coefficients and child quotients. -/
 def GenericMiddle (K : Type*) [Field K] (m c q : ℕ) : Prop :=
   ∃ D : MvPolynomial (CoefficientIndex m c q) K,
@@ -105,6 +119,7 @@ def GenericMiddle (K : Type*) [Field K] (m c q : ℕ) : Prop :=
       LinearIndependent K (decode a).1 ∧ LinearIndependent K (decode a).2 ∧
       Function.Surjective (quotientMap (decode a).1 (Submodule.span K (Set.range (decode a).2)))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem childMap_quotient_zero (h : Fin q → Forms K m 2) (b : Fin q → K × K) :
     let Q := Submodule.span K (Set.range h)
     (Q.mkQ.prodMap Q.mkQ) (childMap h b) = 0 := by
@@ -118,6 +133,7 @@ theorem childMap_quotient_zero (h : Fin q → Forms K m 2) (b : Fin q → K × K
     change (∑ i, (b i).2 • h i) ∈ Q
     exact Q.sum_mem (fun i _ => Q.smul_mem _ (hmem i))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A full-rank combined map surjects onto both actual child quotients. -/
 theorem combined_quotient_surjective (p : Parameters K m c q)
     (hs : Function.Surjective (combined p)) :
@@ -133,6 +149,7 @@ theorem combined_quotient_surjective (p : Parameters K m c q)
   rw [map_add, childMap_quotient_zero, add_zero] at h
   exact h
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Surjectivity before taking quotients works for every child subspace. -/
 theorem quotient_surjective_of_multiplication (g : Fin c → Mixed K m)
     (hs : Function.Surjective (multiplication g)) (Q : Submodule K (Forms K m 2)) :
@@ -146,11 +163,13 @@ theorem quotient_surjective_of_multiplication (g : Fin c → Mixed K m)
   rw [hs]
   rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Substitute the coordinate linear forms of an actual parameter map. -/
 def substituteLinear {ι τ : Type*} [Fintype τ] [DecidableEq τ]
     (F : (τ → K) →ₗ[K] (ι → K)) : MvPolynomial ι K →ₐ[K] MvPolynomial τ K :=
   MvPolynomial.aeval (fun i => Quartic.polynomialOfLinear ((LinearMap.proj i).comp F))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem eval_substituteLinear {ι τ : Type*} [Fintype τ] [DecidableEq τ]
     (F : (τ → K) →ₗ[K] (ι → K)) (a : τ → K) (D : MvPolynomial ι K) :
     eval a (substituteLinear F D) = eval (F a) D := by
@@ -164,10 +183,12 @@ theorem eval_substituteLinear {ι τ : Type*} [Fintype τ] [DecidableEq τ]
 section Rename
 variable {a w : ℕ}
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The split variable labels have the required number of actual child variables. -/
 def variableEquiv (h : 2*a+w=m) : SplitMiddle22.Vars a w ≃ Fin m :=
   (Fintype.equivFin _).trans (finCongr (by simp [SplitMiddle22.Vars]; omega))
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Renaming variables restricts to the actual homogeneous polynomial components. -/
 def formsRename (e : SplitMiddle22.Vars a w ≃ Fin m) (d : ℕ) :
     homogeneousSubmodule (SplitMiddle22.Vars a w) K d ≃ₗ[K] Forms K m d where
@@ -182,34 +203,42 @@ def formsRename (e : SplitMiddle22.Vars a w ≃ Fin m) (d : ℕ) :
   map_add' f g := Subtype.ext (map_add _ _ _)
   map_smul' s f := Subtype.ext (by simp)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 @[simp] theorem formsRename_val (e : SplitMiddle22.Vars a w ≃ Fin m) (d : ℕ)
     (f : homogeneousSubmodule (SplitMiddle22.Vars a w) K d) :
     (formsRename e d f).val = MvPolynomial.rename e f.val := rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def mixedRename (e : SplitMiddle22.Vars a w ≃ Fin m) :
     MiddleGeneric.Mixed K a w ≃ₗ[K] Mixed K m :=
   LinearEquiv.piCongrRight (fun _ : Fin 3 => formsRename e 1)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def familyRename (e : SplitMiddle22.Vars a w ≃ Fin m) :
     (Fin c → MiddleGeneric.Mixed K a w) ≃ₗ[K] (Fin c → Mixed K m) :=
   LinearEquiv.piCongrRight (fun _ : Fin c => mixedRename e)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def childRename (e : SplitMiddle22.Vars a w ≃ Fin m) :
     (Fin q → SplitMiddle22.Quad K a w) ≃ₗ[K] (Fin q → Forms K m 2) :=
   LinearEquiv.piCongrRight (fun _ : Fin q => formsRename e 2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def parameterRename (e : SplitMiddle22.Vars a w ≃ Fin m) :
     MiddleGeneric.Parameters K a w c q ≃ₗ[K] Parameters K m c q :=
   (familyRename e).prodCongr (childRename e)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def domainRename (e : SplitMiddle22.Vars a w ≃ Fin m) :
     MiddleGeneric.Domain K a w c q ≃ₗ[K] Domain K m c q :=
   (familyRename e).prodCongr (LinearEquiv.refl K _)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 def targetRename (e : SplitMiddle22.Vars a w ≃ Fin m) :
     SplitMiddle22.Target K a w ≃ₗ[K] Target K m :=
   (formsRename e 2).prodCongr (formsRename e 2)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Polynomial renaming intertwines actual reduced products. -/
 theorem projectedProduct_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (g b : MiddleGeneric.Mixed K a w) :
@@ -219,6 +248,7 @@ theorem projectedProduct_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     simp [targetRename, mixedRename, formsRename, projectedProduct, mulLinear,
       SplitMiddle22.projectedProduct, SplitMiddle22.mulLinear]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem multiplication_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (g b : Fin c → MiddleGeneric.Mixed K a w) :
     targetRename e (MiddleGeneric.multiplication g b) =
@@ -229,12 +259,14 @@ theorem multiplication_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
   intro i _
   exact projectedProduct_rename e (g i) (b i)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem childMap_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (h : Fin q → SplitMiddle22.Quad K a w) (b : Fin q → K × K) :
     targetRename e (MiddleGeneric.childMap h b) = childMap (childRename e h) b := by
   apply Prod.ext <;>
     simp [targetRename, childRename, MiddleGeneric.childMap, childMap]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem combined_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (p : MiddleGeneric.Parameters K a w c q) (b : MiddleGeneric.Domain K a w c q) :
     targetRename e (MiddleGeneric.combined p b) = combined (parameterRename e p) (domainRename e b) := by
@@ -242,6 +274,7 @@ theorem combined_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
   rw [map_add, multiplication_rename, childMap_rename]
   rfl
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The transported polynomial map retains its proved surjectivity. -/
 theorem combined_surjective_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (p : MiddleGeneric.Parameters K a w c q) (hp : Function.Surjective (MiddleGeneric.combined p)) :
@@ -251,17 +284,20 @@ theorem combined_surjective_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
   refine ⟨domainRename e b, ?_⟩
   rw [← combined_rename, hb, LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The parameter change maps explicit actual-variable coefficients to the
 finite coordinates of the already constructed determinant certificate. -/
 def coordinateChange (e : SplitMiddle22.Vars a w ≃ Fin m) :
     (CoefficientIndex m c q → K) ≃ₗ[K] (MiddleGeneric.ParameterIndex K a w c q → K) :=
   decode.trans ((parameterRename e).symm.trans MiddleGeneric.decode.symm)
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coordinateChange_decode (e : SplitMiddle22.Vars a w ≃ Fin m)
     (x : CoefficientIndex m c q → K) :
     parameterRename e (MiddleGeneric.decode (coordinateChange e x)) = decode x := by
   simp only [coordinateChange, LinearEquiv.trans_apply, LinearEquiv.apply_symm_apply]
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Nonempty determinant opens transport to the actual monomial coefficients. -/
 theorem genericMiddle_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (hg : MiddleGeneric.GenericMiddle K a w c q) : GenericMiddle K m c q := by
@@ -289,6 +325,7 @@ theorem genericMiddle_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     · rw [← he]
       exact hi₂
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Actual multiplication retains surjectivity under variable renaming. -/
 theorem multiplication_surjective_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
     (g : Fin c → MiddleGeneric.Mixed K a w)
@@ -301,6 +338,7 @@ theorem multiplication_surjective_rename (e : SplitMiddle22.Vars a w ≃ Fin m)
 
 end Rename
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- First numerical regime of the source middle lemma, on actual `Fin m`
 variables. The certificate includes independence of both ordered families. -/
 theorem genericMiddle_of_first_regime
@@ -313,6 +351,7 @@ theorem genericMiddle_of_first_regime
   · simpa only [he] using hc_hi
   · simpa only [he] using hq
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Second numerical regime, including the exact residual repair budget. -/
 theorem genericMiddle_of_second_regime
     (hc : 2 * c ≤ m)
@@ -323,6 +362,7 @@ theorem genericMiddle_of_second_regime
   apply MiddleGeneric.genericMiddle_of_repair_budget hq_lo
   simpa only [he] using hq_hi
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- A nonempty determinant open for either complete numerical budget regime. -/
 theorem genericMiddle_of_budgets (hq : q ≤ (m + 1).choose 2)
     (hbudget : ((m + 1) / 2 ≤ c ∧ c ≤ 3*m) ∨
@@ -331,6 +371,7 @@ theorem genericMiddle_of_budgets (hq : q ≤ (m + 1).choose 2)
   · exact genericMiddle_of_first_regime hlo hhi hq
   · exact genericMiddle_of_second_regime hc hqlo hq
 
+set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- In the first regime a single independent mixed family works for every
 child quadratic subspace; it already surjects before taking the quotient. -/
 theorem first_regime_witness_for_every_quotient

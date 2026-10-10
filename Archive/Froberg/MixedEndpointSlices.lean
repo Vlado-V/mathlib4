@@ -16,7 +16,7 @@ quotient, with its true target dimension as the thin-slice index. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic Quartic.SplitTensor VectorMultiplicationCoordinates
@@ -39,6 +39,7 @@ local notation "nV" => mixedActualSourceDimension hd hd3 g U P
 local notation "nW" => mixedActualTargetDimension hd hd3 Q g U P
 local notation "j" => nW-e*nV
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixed_actual_thin_open (hh : 0 < h) (hm : 0 < m)
     (hU : LinearIndependent K U)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)

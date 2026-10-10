@@ -14,13 +14,14 @@ its nonempty principal open, including kernel-constrained output spaces. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1800000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open MvPolynomial Module
 variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*} [Fintype σ] [Fintype τ] {n : ℕ}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem homogeneous_kernel_rename_eq {X : Type*} [AddCommGroup X] [Module K X]
     (e : σ ≃ τ) (T : MvPolynomial τ K →ₗ[K] X) (j : ℕ) :
     (homogeneousSubmodule σ K j ⊓ (T.comp (rename e).toLinearMap).ker).map
@@ -36,6 +37,7 @@ theorem homogeneous_kernel_rename_eq {X : Type*} [AddCommGroup X] [Module K X]
     rw [he]
     exact hp.2
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem homogeneous_kernel_rename_finrank {X : Type*} [AddCommGroup X] [Module K X]
     (e : σ ≃ τ) (T : MvPolynomial τ K →ₗ[K] X) (j : ℕ) :
     finrank K ↥(homogeneousSubmodule σ K j ⊓ (T.comp (rename e).toLinearMap).ker)=
@@ -51,6 +53,7 @@ namespace PreparedParameters
 variable {d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem even_positive_reduction_output_rename
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (hJ : ∀ j∈J,j≤d) (e : σ ≃ τ)
@@ -107,6 +110,7 @@ theorem even_positive_reduction_output_rename
   · intro i
     exact ⟨(hzw i).1.rename_isHomogeneous,output_rename_weighted e 1 0 0 (z i) (hzw i).2⟩
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem even_positive_reduction_open_output_rename
     [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
@@ -129,6 +133,7 @@ theorem even_positive_reduction_open_output_rename
   change EvenPositiveReduction (F (F.symm p)) at H
   simpa only [LinearEquiv.apply_symm_apply] using H
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 def EvenReductionOpen (O : ℕ → Submodule K (MvPolynomial σ K))
     [Module.Finite K (Space n d q J counts O)] : Prop :=
   ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
@@ -136,6 +141,7 @@ def EvenReductionOpen (O : ℕ → Submodule K (MvPolynomial σ K))
     ∀ p : Space n d q J counts O,eval ((Module.finBasis K _).equivFun p) D≠0 →
       EvenPositiveReduction p
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem evenReductionOpen_congr_outputs
     {O O' : ℕ → Submodule K (MvPolynomial σ K)}
     [Module.Finite K (Space n d q J counts O)]
@@ -146,6 +152,7 @@ theorem evenReductionOpen_congr_outputs
   subst O'
   rfl
 
+set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem even_positive_reduction_open_constraint_rename
     {X : Type*} [AddCommGroup X] [Module K X]
     (T : ℕ → MvPolynomial τ K →ₗ[K] X) (e : σ ≃ τ)

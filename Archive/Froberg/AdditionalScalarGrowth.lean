@@ -14,7 +14,7 @@ subspace in the actual quotient. This is the C.19 augmentation argument. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module
@@ -25,6 +25,7 @@ variable {K P V W U : Type*} [Field K]
   [AddCommGroup U] [Module K U]
 variable {q : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem scalar_growth_of_injective_family (mu : P →ₗ[K] V →ₗ[K] W)
     (Q : Fin q → P) (hQ : Function.Injective (BilinearScalarFamily.multiplication mu Q))
     (L : Submodule K V) :
@@ -48,14 +49,17 @@ theorem scalar_growth_of_injective_family (mu : P →ₗ[K] V →ₗ[K] W)
     _=finrank K F.range := (LinearMap.finrank_range_of_inj hF).symm
     _≤_ := Submodule.finrank_mono hle
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Literal multiplication followed by the quotient by the old relation image. -/
 def scalarModulo (old : U →ₗ[K] W) (mu : P →ₗ[K] V →ₗ[K] W) :
     P →ₗ[K] V →ₗ[K] (W ⧸ old.range) :=
   (LinearMap.llcomp K V W (W ⧸ old.range) old.range.mkQ).comp mu
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 @[simp] theorem scalarModulo_apply (old : U →ₗ[K] W) (mu : P →ₗ[K] V →ₗ[K] W)
     (p : P) (v : V) : scalarModulo old mu p v=old.range.mkQ (mu p v) := rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Injectivity before quotienting gives actual scalar-family injectivity
 in the old quotient; no rank equality is assumed. -/
 theorem scalarModulo_family_injective (old : U →ₗ[K] W)
@@ -78,6 +82,7 @@ theorem scalarModulo_family_injective (old : U →ₗ[K] W)
   have hp : (-u,v)=(0,0) := h (he.trans (map_zero _).symm)
   exact congrArg Prod.snd hp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A successful additional q-tuple gives the full C.19 bound uniformly
 for every source subspace in the actual old quotient. -/
 theorem additional_scalar_quotient_growth (old : U →ₗ[K] W)

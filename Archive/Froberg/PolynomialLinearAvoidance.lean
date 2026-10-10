@@ -13,7 +13,7 @@ public import Archive.Froberg.Quartic.PolynomialRankOpen
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial Quartic
@@ -21,6 +21,7 @@ variable {K I V W : Type*} [Field K] [Infinite K] [Fintype I]
   [AddCommGroup V] [Module K V] [FiniteDimensional K V]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A polynomial family of linear equations with more independent equations
 than parameters has a common nonempty principal open of avoiding vectors. -/
 theorem polynomial_linear_kernel_avoidance (A : (I → K) → (V →ₗ[K] W))

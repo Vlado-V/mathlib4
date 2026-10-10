@@ -13,12 +13,13 @@ chosen inside any nonempty open of the full actual prepared family. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedParameters
 open Froberg Filter Module MvPolynomial VectorMultiplicationCoordinates VectorExpansionOpen
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem exact_counts_prepared_joint {d k h lo u : ℕ}
     (hd : 3≤d) (hk : 0<k) (hh : h=k*centralHalfBinomial d) (hhpos : 0<h)
     (upper : Bool) (a f e : ℕ → ℕ) (ha : ∀ n,a n ≤ n)

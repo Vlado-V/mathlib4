@@ -15,12 +15,13 @@ certificates on their base restriction, then freeze all temporary slots. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 150000
+
 namespace Froberg.PreparedParameters
 open Froberg PreparedTarget Filter Module MvPolynomial VectorExpansionOpen
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem restored_count_joint_scalar_fiber_at {h m d q f : ℕ}
     {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
     (hc : ∀ j ∈ J, c j ≤ c' j) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (G C : ℝ) :
@@ -48,6 +49,7 @@ theorem restored_count_joint_scalar_fiber_at {h m d q f : ℕ}
   obtain ⟨P₀,hP₀,hgood⟩ := principal_open_restored_count_scalar_fiber_at hc hO D p hp
   exact ⟨P₀,hP₀,fun a ha => ⟨hgood a ha,hmodel,hchild⟩⟩
 
+set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 /-- The temporary extra columns remain fixed, while the final base family
 keeps its supplied certificate and the enlarged family keeps its own open. -/
 theorem exact_counts_restored_restricted_certified_fiber {d k h lo : ℕ}

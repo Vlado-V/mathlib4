@@ -18,8 +18,9 @@ open Module MvPolynomial MovingMiddleCorrectionOmega RowMultiplicationCoordinate
 open ActualTraceMotion ActualDeformationResponseOmega
 variable {K : Type*} [Field K] {m c q : ℕ}
 variable (ω : K)
-set_option maxHeartbeats 1200000
 
+
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The second response on the actual correction quotient. -/
 def correctionResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
@@ -29,6 +30,7 @@ def correctionResponse (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
   ∑ i : Fin c, (coefficientResponse g h (s i)).comp
     ((LinearMap.proj i).comp (ExtraCorrectionOmega.coefficientMap ω g h r z markedU))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Evaluation on actual moving-preimage coefficients; changing the
 representative by a mixed Koszul boundary leaves this value unchanged. -/
 theorem correctionResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -44,12 +46,14 @@ theorem correctionResponse_mk (g : Fin c → Rows K m 1) (h : Fin q → Forms K 
     LinearMap.proj_apply,ExtraCorrectionOmega.coefficientMap_mk,coefficientProjection_apply,
     coefficientResponse_mk,map_sum]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev Source (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
     (z : ExtraCorrectionOmega.ChildQuotient h × ExtraCorrectionOmega.ChildQuotient h)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :=
   SplitMiddle31.Homology (rowMixed g) × ExtraCorrectionOmega.Correction ω g h r z markedU
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The actual response N, ordered as trace homology then correction homology. -/
 def response (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
@@ -58,6 +62,7 @@ def response (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (s : Fin c → Forms K m 2) : Source ω g h r z markedU →ₗ[K] J g h :=
   (traceResponse g h r).coprod (correctionResponse ω g h r z markedU s)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem response_apply (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (r : Fin 4 → Forms K m 2)
     (z : ExtraCorrectionOmega.ChildQuotient h × ExtraCorrectionOmega.ChildQuotient h)
@@ -66,6 +71,7 @@ def response (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
     (b : ExtraCorrectionOmega.Correction ω g h r z markedU) :
     response ω g h r z markedU s (a,b)=traceResponse g h r a+correctionResponse ω g h r z markedU s b := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The exact response domain dimension, using actual correction and trace
 homology dimensions on the explicit augmented Good locus. -/
 theorem source_finrank (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
@@ -85,6 +91,7 @@ theorem source_finrank (g : Fin c → Rows K m 1) (h : Fin q → Forms K m 2)
   rw [SplitBlock22.homology_finrank_eq_H g h hg hh hs]
   ring
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Literal common-covector exclusion in the fixed ambient cubic rows gives
 maximal rank of N after the auxiliary columns are discarded. The columns
 and the exclusion are explicit inputs supplied by the motion incidence step. -/

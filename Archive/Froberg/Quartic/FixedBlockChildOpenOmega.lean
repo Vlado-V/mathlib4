@@ -18,8 +18,9 @@ namespace Quartic.FixedBlockChildOpenOmega
 open Module MvPolynomial RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 open UniformEndpoint AugmentedGeneric FixedBlockChildOpen
 variable {K : Type*} [Field K]
-set_option maxHeartbeats 1000000
 
+
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Fix one mixed presentation on the common expansion locus. One child-only principal open
 then preserves all block conditions and imposes the actual upper-child flag. -/
 theorem exists_fixed_open [IsAlgClosed K] (ω : K) (m : ℕ) (hm : 41 ≤ m) (upper : Bool)

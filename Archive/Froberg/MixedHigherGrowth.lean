@@ -12,13 +12,14 @@ public import Archive.Froberg.MixedHigherRowData
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module Quartic TensorProduct
 attribute [local instance] tensorFormGroup
 
- theorem bilinear_growth_injective_postcompose
+ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+theorem bilinear_growth_injective_postcompose
     {K P V W Z : Type*} [Field K]
     [AddCommGroup P] [Module K P] [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] [AddCommGroup Z] [Module K Z]
@@ -32,6 +33,7 @@ attribute [local instance] tensorFormGroup
 
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem mixedHigherAction_growth (hd : Odd d) (hd3 : 3≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))

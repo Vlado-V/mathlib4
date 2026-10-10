@@ -12,10 +12,11 @@ public import Archive.Froberg.CountedJointSelection
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial VectorExpansionOpen BilinearScalarFamily
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- A full outer-coefficient open carrying the strict model and thin quotient. -/
 def StrictThinCoefficientOpen (K : Type) [Field K] (h n d f : ℕ) (G C : ℝ) : Prop :=
   ∃ D : MvPolynomial (VectorParameters.Index h n (d-1) f) K,
@@ -24,6 +25,7 @@ def StrictThinCoefficientOpen (K : Type) [Field K] (h n d f : ℕ) (G C : ℝ) :
       HasThinQuotientOpen (quotientMultiplication (VectorParameters.generators p) d)
         (upperCount n d) (outerScalarDeficit (VectorParameters.generators p)) C
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem strictThinCoefficientOpen_joint {K : Type} [Field K] [Infinite K]
     {h n d f : ℕ} {G C : ℝ} (hnpos : 0 < n)
     (houter : StrictThinCoefficientOpen K h n d f G C) :

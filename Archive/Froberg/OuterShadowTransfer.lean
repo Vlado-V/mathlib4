@@ -14,11 +14,12 @@ of the attached polynomial quotient. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module Finset MonomialExpansion OuterInjection
 open Quartic.HomogeneousCoefficientCoordinates
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The two degree conventions used by the geometric and counting files agree. -/
 def outerTargetExponentEquiv (n s : ℕ) : Degree n (2*s+1) ≃ Exponent n (s+(s+1)) where
   toFun β := ⟨β.val, by have h := degree_val β; omega⟩
@@ -26,6 +27,7 @@ def outerTargetExponentEquiv (n s : ℕ) : Degree n (2*s+1) ≃ Exponent n (s+(s
   left_inv _ := rfl
   right_inv _ := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem actual_outer_growth_of_exponent_shadow {K : Type*} [Field K]
     {k a z s h : ℕ} (hh : h=k*(2*s+1).choose s) (hn : 0 < a+z)
     (v : Labels k a s → Fin h → K)

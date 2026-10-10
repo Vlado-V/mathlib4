@@ -14,19 +14,21 @@ public import Archive.Froberg.TensorScalarGrowth
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module TensorProduct Quartic MvPolynomial
 attribute [local instance] tensorFormGroup
 variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def projectedTopLinearAction (P : Forms K h (1+e) →ₗ[K] (Fin b → K)) :
     (Forms K h 1 ⊗[K] Forms K m e) →ₗ[K]
       (Forms K h e ⊗[K] Forms K m 1) →ₗ[K]
         ((Fin b → K) ⊗[K] Forms K m (1+e)) :=
   tensorFormProduct ((gradedMultiplication (d := 1) (e := e)).compr₂ₛₗ P)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_top_linear_growth (hh : 0 < h) (hm : 0 < m)
     (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤
@@ -44,6 +46,7 @@ theorem projected_top_linear_growth (hh : 0 < h) (hm : 0 < m)
     ((gradedMultiplication (d := 1) (e := e)).compr₂ₛₗ P) hm ((h+e-1).choose e) b hg L
   simpa only [projectedTopLinearAction,Nat.add_assoc,Nat.add_sub_cancel,Nat.choose_one_right] using ht
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_top_two_family_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
     (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (hP : ∀ L : Submodule K (Forms K h e),b*finrank K L≤

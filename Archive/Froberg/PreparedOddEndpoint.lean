@@ -15,14 +15,16 @@ the opposite-parity Koszul space in the ordinary enumerated endpoint ring. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg.PreparedTarget
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def splitParity : Label q f u J counts → ZMod 2 := Sum.elim (fun _ => 0) (fun _ => 1)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def zeroScalarEndpointFamily (hd : 0<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
@@ -31,9 +33,11 @@ def zeroScalarEndpointFamily (hd : 0<d)
   enumerateForms (forms hd hO hJ U (fun i => (P i).val)
     (FullPreparedParameters.private_homogeneous hd P) (zeroPrivateScalar p))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def endpointSplitParity : Fin (Fintype.card (Label q f u J counts)) → ZMod 2 :=
   splitParity ∘ (Fintype.equivFin _).symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem zeroScalarEndpointFamily_back (hd : 0<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
@@ -56,6 +60,7 @@ theorem zeroScalarEndpointFamily_back (hd : 0<d)
   · simp [forms_val,generator_outer,zeroPrivateScalar,oddGenerator,combinedLinear,combinedPure]
   · simp [forms_val,zeroPrivateScalar_generator_private,oddGenerator,combinedLinear,combinedPure,add_comm]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_cycles_endpoint (hd : 0<d)
     (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

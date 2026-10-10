@@ -15,18 +15,22 @@ Only a projection is needed for its scalar image lower bound. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic.SplitTensor
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev RawOddTopTensor (K : Type) [Field K] (h m d : ℕ) := Forms K h d ⊗[K] Forms K m d
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 instance rawOddTopTensorGroup : AddCommGroup (RawOddTopTensor K h m d) := tensorFormGroup
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 instance rawOddTopTensorModule : Module K (RawOddTopTensor K h m d) := TensorProduct.leftModule
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def ambientTopRelations (hdp : 1≤d) (Q : Fin q → Forms K m d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) (U : Fin u → Forms K h d) :
     Submodule K (RawOddTopTensor K h m d) :=
@@ -34,9 +38,11 @@ def ambientTopRelations (hdp : 1≤d) (Q : Fin q → Forms K m d)
     (rightRelations (Submodule.span K (Set.range Q)) ⊔
       (rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def ambientTopMap : biformParitySpace K h m (2*d) 1 →ₗ[K] RawOddTopTensor K h m d :=
   topRowTarget.toLinearMap.comp (biformTensorComponent (by omega : d≤2*d))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem ambientTopMap_background (hdp : 1≤d) (hd : Odd d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
     (oddBackgroundRelations (fun i => scalarEvenBiform (h := h) (Q i))
@@ -51,6 +57,7 @@ theorem ambientTopMap_background (hdp : 1≤d) (hd : Odd d)
   rw [oddBackground_tensor_row_range hdp le_rfl (Nat.odd_iff.mp hd)]
   exact topRow_range_comparison hdp Q F
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem ambientTopMap_private_mem (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -64,6 +71,7 @@ theorem ambientTopMap_private_mem (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
   rw [←sumTensorLeft_range U]
   exact ⟨fun i => (scalarBiformEquiv (h := h)).symm (v i),sumTensorLeft_apply _ _⟩
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem ambientTopMap_relations (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -77,6 +85,7 @@ theorem ambientTopMap_relations (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
   · rintro _ ⟨v,rfl⟩
     exact ambientTopMap_private_mem hdp hd hd1 Q F U P v
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def ambientTopProjection (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -87,6 +96,7 @@ def ambientTopProjection (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
       RawOddTopTensor K h m d ⧸ ambientTopRelations hdp Q F U :=
   Submodule.mapQ _ _ ambientTopMap (ambientTopMap_relations hdp hd hd1 Q F U P)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem ambientTopProjection_mk (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -97,6 +107,7 @@ def ambientTopProjection (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
         (fun i => mixedPureOddGenerator hd (U i) (P i))).mkQ v)=
       (ambientTopRelations hdp Q F U).mkQ (ambientTopMap v) := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem ambientTopMap_scalar_product (p : Forms K m d)
     (v : biformParitySpace K h m d 1) :
     ambientTopMap (evenScalarOddProduct (scalarEvenBiform (h := h) p) v)=

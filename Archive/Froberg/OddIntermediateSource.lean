@@ -13,13 +13,14 @@ relations and commute with scalar multiplication in the ambient quotient. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d b q f u : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem biformTensorComponent_weight_ne {j : ℕ} (hb : b ≤ d)
     (v : biformParitySpace K h m d 1)
     (hv : v.val.IsWeightedHomogeneous (blockWeight h m) j) (hj : b≠j) :
@@ -28,6 +29,7 @@ theorem biformTensorComponent_weight_ne {j : ℕ} (hb : b ≤ d)
   rw [biformTensorComponent_spec,map_zero]
   exact hv.weightedHomogeneousComponent_ne b hj
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
@@ -48,6 +50,7 @@ def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
       rw [biformTensorComponent_spec,map_zero]
       exact mixedPureOddGenerator_other hd (by omega) (by omega) (U i) (P i))
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem oddIntermediateSourceProjection_mk (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
@@ -55,6 +58,7 @@ def oddIntermediateSourceProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d)
     oddIntermediateSourceProjection hd hb hbd F U P
       ((oddBackgroundCoefficientRelations _ _).mkQ v)=biformTensorComponent (by omega) v := rfl
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem oddIntermediateSourceProjection_scalar (hd : Odd d)
     (hb : 3 ≤ b) (hbd : b<d) (ho : b%2=1)
     (Q : Fin q → Forms K h 0 ⊗[K] Forms K m d)

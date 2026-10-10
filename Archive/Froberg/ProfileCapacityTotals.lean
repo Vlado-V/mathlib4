@@ -14,10 +14,11 @@ profile totals used to normalize the transport. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg
 open Finset MonomialExpansion OuterInjection
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 lemma source_capacity_at_exponent (H : ℝ) {a z s : ℕ}
     (α : Σ i, SourceMonomialFiber a z s i) :
     (H - if (corePart (sourceExponent α).val).degree = s then 1 else 0) =
@@ -28,6 +29,7 @@ lemma source_capacity_at_exponent (H : ℝ) {a z s : ℕ}
   | none => simp [profileSourceIndex, profileSourceCapacity]
   | some i => simp [profileSourceIndex, profileSourceCapacity, ne_of_lt i.isLt]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 lemma source_capacity_total (H : ℝ) (a z s : ℕ) :
     (∑ α : Degree (a + z) s, (H - if (corePart α.val).degree = s then 1 else 0)) =
       ∑ i, finiteSourceProfile H s a z i := by
@@ -42,12 +44,14 @@ lemma source_capacity_total (H : ℝ) (a z s : ℕ) :
   intro i _
   ring
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 lemma target_capacity_at_exponent {a z s : ℕ}
     (β : Σ j, TargetMonomialFiber a z s j) :
     ((((2 * s + 1).choose s : ℕ) : ℝ) - ((corePart (targetExponent β).val.val).degree.choose s : ℝ)) =
       profileTargetCapacity s β.1 := by
   simp only [targetExponent, corePart_joinParts, degree_val, profileTargetCapacity]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 lemma target_capacity_total (a z s : ℕ) :
     (∑ β : Degree (a + z) (2 * s + 1),
       ((((2 * s + 1).choose s : ℕ) : ℝ) - ((corePart β.val).degree.choose s : ℝ))) =

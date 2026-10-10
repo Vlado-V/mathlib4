@@ -14,11 +14,12 @@ of the presentation, in one fixed ambient target. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial Quartic BilinearCovectorCharts BilinearCoefficientKernel
 variable {K I : Type*} [Field K] [IsAlgClosed K] {a b T c : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem presentation_threshold_principal_open
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (A : (I → K) → Fin c → Fin T → K)
@@ -68,6 +69,7 @@ theorem presentation_threshold_principal_open
   exact ⟨P,hP,fun p hp ell hr hA hZ => hgood p hp ell
     ((heq ell).mpr hr) ((hsplit p ell).mpr ⟨hA,hZ⟩)⟩
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem presentation_slices_principal_open
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (A : (I → K) → Fin c → Fin T → K)

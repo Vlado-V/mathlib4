@@ -14,11 +14,12 @@ disjoint-variable cross products, and assembly in distinct half-degrees. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 800000
+
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K]
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Independent polynomial fibers in distinct weight degrees have an
 independent union. No dimensions are discarded in assembling product rows. -/
 theorem linearIndependent_weighted_fibers {σ M δ : Type*} [AddCommMonoid M]
@@ -43,6 +44,7 @@ theorem linearIndependent_weighted_fibers {σ M δ : Type*} [AddCommMonoid M]
   simp_rw [he] at h
   simpa using h
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Tensor products of two independent finite families are independent. -/
 theorem linearIndependent_cross_tensors {A B α β : Type*}
     [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
@@ -58,6 +60,7 @@ theorem linearIndependent_cross_tensors {A B α β : Type*}
     exact Prod.ext h1 h2
   exact h.comp f hf
 
+set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
 /-- Cross products of independent families supported in disjoint variables
 are independent in the actual polynomial ring. -/
 theorem linearIndependent_cross_products_disjoint {σ τ α β : Type*}

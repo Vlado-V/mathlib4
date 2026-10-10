@@ -15,22 +15,25 @@ chosen after the scalar-size threshold. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1000000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.FullPreparedParameters
 open Froberg Module MvPolynomial Filter PreparedParameters
 variable {K : Type} [Field K] [Infinite K]
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 local instance allOddPrivatePreparedFrameFinite {h H m d q f u : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts (privateFrameOutputs frame)) :=
   finite_fixedPureZeroScalarSpace (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 local instance allOddPrivatePreparedWitnessFinite {h H m d q : ℕ}
     {J : Finset ℕ} {counts : ℕ → ℕ} (frame : Fin H → Forms K h 2) :
     Module.Finite K (PreparedParameters.Space m d q J counts (privateFrameOutputs frame)) :=
   PreparedParameters.finite_space (fun j _ => privateFrameOutputs_homogeneous frame j)
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 def CountedPrivatePreparedAt {d : ℕ} (hd : 0<d) (hodd : d%2=1) (w : ℕ) : Prop :=
   ∀ (z extra : ℕ) (err : ℕ → ℕ),
     (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
@@ -58,6 +61,7 @@ def CountedPrivatePreparedAt {d : ℕ} (hd : 0<d) (hodd : d%2=1) (w : ℕ) : Pro
                 (fun j hj => (mem_allEvenIndices.mp hj).2.1)
                 (fun j hj => (mem_allEvenIndices.mp hj).2.2) label U p
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_small_private_prepared_open {d : ℕ}
     (hd : 3≤d) (hd8 : d≤8) (hodd : d%2=1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → CountedPrivatePreparedAt (K := K) (by omega) hodd w := by
@@ -78,6 +82,7 @@ theorem eventually_counted_small_private_prepared_open {d : ℕ}
     label p₀ (privatePowerBiform (a := v+v) (d := d) (fun i => e (columns i)) ι)
     (hreduction p₀ hp₀) U
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_counted_all_odd_private_prepared_open {d : ℕ}
     (hd : 3≤d) (hodd : d%2=1) :
     ∀ᶠ w : ℕ in atTop,4∣2*w → CountedPrivatePreparedAt (K := K) (by omega) hodd w := by
@@ -87,6 +92,7 @@ theorem eventually_counted_all_odd_private_prepared_open {d : ℕ}
     exact hw
   · exact eventually_counted_small_private_prepared_open hd (by omega) hodd
 
+set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- Here the paired half-size is `2*k`, so the actual output dimension is
 `4*k`; no divisibility premise remains. -/
 theorem eventually_counted_all_odd_private_prepared_cofinal {d : ℕ}

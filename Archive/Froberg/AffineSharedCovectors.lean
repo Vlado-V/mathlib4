@@ -15,15 +15,17 @@ independent-equation rank includes every auxiliary covector slice. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module Quartic Quartic.BilinearCovectorCharts Quartic.BilinearCoefficientKernel
 variable {K : Type*} [Field K] [Infinite K] {a b T q s : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def fixedCovectorTerms (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K))
     (ell : Fin T → K) : SharedCovectorPolynomial.Output K a q s :=
   (fun i j => covector ell (B i (Pi.single j 1)),0)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def affineSharedConstraint
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (B : Fin q → (Fin a → K) →ₗ[K] (Fin T → K)) (ell : Fin T → K) :
@@ -31,6 +33,7 @@ def affineSharedConstraint
       SharedCovectorPolynomial.Output K a q s :=
   affineHomogenization (SharedCovectorConstraints.constraint mu ell) (fixedCovectorTerms B ell)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Fixed positive components cannot reduce the independent conditions
 from the shared scalar family and the auxiliary slices. -/
 theorem affineSharedConstraint_rank
@@ -41,6 +44,7 @@ theorem affineSharedConstraint_rank
   rw [← SharedCovectorConstraints.rank mu ell hell]
   exact affineHomogenization_rank _ _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- At homogenizing coordinate one these are precisely annihilation of the
 actual shifted generators, with the common scalar tuple unchanged. -/
 theorem affineSharedConstraint_kernel_iff

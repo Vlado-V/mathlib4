@@ -22,27 +22,33 @@ columns. Its four coefficients descend to the full injective trace.
 noncomputable section
 namespace Quartic.ActualTraceMotion
 open Module MvPolynomial Matrix SplitMiddle31 BilinearCoefficientKernel BilinearCovectorCharts
-set_option maxHeartbeats 400000
+
 set_option backward.isDefEq.respectTransparency false
 variable {K : Type*} [Field K] {m c : ℕ}
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 abbrev PureCoefficients (K : Type*) [Field K] (m : ℕ) := Fin 4 → Fin m → Forms K 3 1
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 abbrev CycleParameters (K : Type*) [Field K] (m c : ℕ) :=
   (Fin c → Forms K 3 2) × LinearMap.ker (pureMultiplication (K := K) (m := m))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 instance cycleParametersFree : Module.Free K (CycleParameters K m c) :=
   Module.Free.of_divisionRing K (CycleParameters K m c)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem pureMultiplication_surjective :
     Function.Surjective (pureMultiplication (K := K) (m := m)) := by
   intro y
   choose b hb using fun l => pureCubic_surjective (K := K) (y l)
   exact ⟨fun i l => b l i, funext hb⟩
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def pureSection : Target K m →ₗ[K] PureCoefficients K m :=
   Classical.choose ((pureMultiplication (K := K) (m := m)).exists_rightInverse_of_surjective
     (LinearMap.range_eq_top.mpr pureMultiplication_surjective))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem pureSection_apply (y : Target K m) :
     pureMultiplication (pureSection y) = y := by
   have h := Classical.choose_spec
@@ -50,12 +56,14 @@ def pureSection : Target K m →ₗ[K] PureCoefficients K m :=
       (LinearMap.range_eq_top.mpr pureMultiplication_surjective))
   exact LinearMap.congr_fun h y
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- A fixed-domain linear parametrization of all actual cycles. -/
 def cycleParameter (g : Mixed K m c) : CycleParameters K m c →ₗ[K] Source K m c where
   toFun x := (x.1, x.2.val - pureSection (mixedMultiplication g x.1))
   map_add' x y := by ext <;> simp [sub_add_sub_comm]
   map_smul' t x := by ext <;> simp [smul_sub]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem cycleParameter_mem (g : Mixed K m c) (x : CycleParameters K m c) :
     multiplication g (cycleParameter g x) = 0 := by
   change mixedMultiplication g x.1 + pureMultiplication
@@ -63,9 +71,11 @@ def cycleParameter (g : Mixed K m c) : CycleParameters K m c →ₗ[K] Source K 
   rw [map_sub, x.2.property, pureSection_apply]
   simp only [zero_sub,add_neg_cancel]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def cycleLift (g : Mixed K m c) : CycleParameters K m c →ₗ[K] LinearMap.ker (multiplication g) :=
   (cycleParameter g).codRestrict _ (cycleParameter_mem g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem cycleLift_surjective (g : Mixed K m c) : Function.Surjective (cycleLift g) := by
   intro a
   let z : LinearMap.ker (pureMultiplication (K := K) (m := m)) :=
@@ -83,25 +93,31 @@ theorem cycleLift_surjective (g : Mixed K m c) : Function.Surjective (cycleLift 
       pureSection (mixedMultiplication g a.val.1) = a.val.2
     exact add_sub_cancel_right _ _
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The four actual pure-motion coefficients of a cycle. -/
 def rawCoefficients (g : Mixed K m c) : CycleParameters K m c →ₗ[K] PureCoefficients K m :=
   (LinearMap.snd K _ _).comp (cycleParameter g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def cycleClassProjection {V W : Type*} [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] (f : V →ₗ[K] W) (D : Submodule K V) :
     f.ker →ₗ[K] KernelModulo f D := (kernelBoundary f D).mkQ
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 private theorem cycleClassProjection_surjective {V W : Type*} [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] (f : V →ₗ[K] W) (D : Submodule K V) :
     Function.Surjective (cycleClassProjection f D) := Submodule.mkQ_surjective _
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Every homology class has an actual cycle in the fixed parametrization. -/
 def homologyParameter (g : Mixed K m c) : CycleParameters K m c →ₗ[K] Homology g :=
   (cycleClassProjection (multiplication g) (LinearMap.range (boundary g))).comp (cycleLift g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem homologyParameter_surjective (g : Mixed K m c) : Function.Surjective (homologyParameter g) :=
   (cycleClassProjection_surjective _ _).comp (cycleLift_surjective g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem trace_homologyParameter (g : Mixed K m c) (x : CycleParameters K m c) :
     trace g (homologyParameter g x) =
       CoefficientConstraintRank.repeated (mixedSpace g).mkQ (rawCoefficients g x) := rfl
@@ -110,18 +126,22 @@ section Coordinates
 variable {a b T : ℕ}
 variable (e : (Fin m → Forms K 3 1) ≃ₗ[K] (Fin a → K))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def coordinateMixedSpace (g : Mixed K m c) : Submodule K (Fin a → K) :=
   (mixedSpace g).map e.toLinearMap
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def quotientCoordinates (g : Mixed K m c) :
     ((Fin m → Forms K 3 1) ⧸ mixedSpace g) ≃ₗ[K]
       ((Fin a → K) ⧸ coordinateMixedSpace e g) :=
   Submodule.Quotient.equiv _ _ e rfl
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def coordinateTrace (g : Mixed K m c) :
     Homology g →ₗ[K] (Fin 4 → ((Fin a → K) ⧸ coordinateMixedSpace e g)) :=
   (CoefficientConstraintRank.repeated (quotientCoordinates e g).toLinearMap).comp (trace g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem coordinateTrace_injective (g : Mixed K m c)
     (hg : Function.Injective (mixedMultiplication g)) : Function.Injective (coordinateTrace e g) := by
   intro x y h
@@ -130,13 +150,16 @@ theorem coordinateTrace_injective (g : Mixed K m c)
   apply (quotientCoordinates e g).injective
   exact congrFun h i
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def coordinateRaw (g : Mixed K m c) : CycleParameters K m c →ₗ[K] (Fin 4 → Fin a → K) :=
   (CoefficientConstraintRank.repeated e.toLinearMap).comp (rawCoefficients g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem coordinateTrace_homologyParameter (g : Mixed K m c) (x : CycleParameters K m c) :
     coordinateTrace e g (homologyParameter g x) =
       CoefficientConstraintRank.repeated (coordinateMixedSpace e g).mkQ (coordinateRaw e g x) := rfl
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Quotient coefficients of the actual raw cycles are exactly the full trace image. -/
 theorem quotient_raw_range (g : Mixed K m c) :
     (LinearMap.range (coordinateRaw e g)).map
@@ -149,16 +172,19 @@ theorem quotient_raw_range (g : Mixed K m c) :
     obtain ⟨p,rfl⟩ := homologyParameter_surjective g x
     exact ⟨coordinateRaw e g p,⟨p,rfl⟩,(coordinateTrace_homologyParameter e g p).symm⟩
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Fixed, finite spanning columns; they may have redundant quotient images. -/
 def columns (g : Mixed K m c) :
     Fin (finrank K (CycleParameters K m c)) → Fin 4 → Fin a → K :=
   fun j => coordinateRaw e g (Module.finBasis K (CycleParameters K m c) j)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem span_columns (g : Mixed K m c) :
     Submodule.span K (Set.range (columns e g)) = LinearMap.range (coordinateRaw e g) := by
   change Submodule.span K (Set.range ((coordinateRaw e g) ∘ Module.finBasis K (CycleParameters K m c))) = _
   rw [Set.range_comp, ← Submodule.map_span, Basis.span_eq, Submodule.map_top]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem quotient_columns_finrank (g : Mixed K m c)
     (hg : Function.Injective (mixedMultiplication g)) :
     finrank K ((Submodule.span K (Set.range (columns e g))).map
@@ -168,17 +194,20 @@ theorem quotient_columns_finrank (g : Mixed K m c)
 
 variable (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The literal first-stage matrix on the four child-quadratic motions. -/
 def constraint (g : Mixed K m c) (ell : Fin T → K) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (Fin 4 × Fin b) K :=
   BilinearMotionConstraints.constraint mu ell (columns e g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem constraint_smul (g : Mixed K m c) (ell : Fin T → K) (t : K) :
     constraint e mu g (t • ell) = t • constraint e mu g ell := by
   ext j z
   simp only [constraint,BilinearMotionConstraints.constraint,covector_smul,
     LinearMap.smul_apply,Matrix.smul_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The rank loses four times the true quotient kernel dimension, with no
 additional presentation-dimension penalty. -/
 theorem constraint_rank_bound (g : Mixed K m c)
@@ -192,6 +221,7 @@ theorem constraint_rank_bound (g : Mixed K m c)
   rw [quotient_columns_finrank e g hg] at h
   exact h
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Presentation annihilation is precisely enough for the actual relation
 map to descend to the mixed quotient. -/
 theorem presentation_le_relation_kernel (g : Mixed K m c) (ell : Fin T → K)
@@ -202,12 +232,14 @@ theorem presentation_le_relation_kernel (g : Mixed K m c) (ell : Fin T → K)
   rintro _ ⟨j,rfl⟩
   exact (relationMap_kernel_iff mu ell (e (g j))).mpr (hE j)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def descendedRelation (g : Mixed K m c) (ell : Fin T → K)
     (hE : ∀ j f, covector ell (mu f (e (g j))) = 0) :
     ((Fin a → K) ⧸ coordinateMixedSpace e g) →ₗ[K] (Fin b → K) :=
   (coordinateMixedSpace e g).liftQ (relationMap mu ell)
     (presentation_le_relation_kernel e mu g ell hE)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Canonical quotient-aware first-stage rank, using the actual descended
 covector relation and the actual trace-injectivity hypothesis. -/
 theorem actual_rank_bound (g : Mixed K m c)
@@ -219,6 +251,7 @@ theorem actual_rank_bound (g : Mixed K m c)
   ext v
   rfl
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The matrix tests all actual cycle coefficients, not just a selected
 family of homology representatives. -/
 theorem constraint_kernel_iff (g : Mixed K m c) (ell : Fin T → K)
@@ -237,6 +270,7 @@ theorem constraint_kernel_iff (g : Mixed K m c) (ell : Fin T → K)
 section Polynomial
 variable {I : Type*} (g : (I → K) → Mixed K m c) (hg : IsPolynomialFamily g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 include hg in
 theorem rawCoefficients_polynomial (x : CycleParameters K m c) :
     IsPolynomialFamily (fun p => rawCoefficients (g p) x) := by
@@ -247,6 +281,7 @@ theorem rawCoefficients_polynomial (x : CycleParameters K m c) :
     LinearMap.coe_mk,AddHom.coe_mk,LinearMap.neg_apply,sub_eq_add_neg,L,
     LinearMap.applyₗ,LinearMap.applyₗ',TraceGeneric.mixedMultiplicationLinear] using h
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 include hg in
 theorem columns_polynomial (j : Fin (finrank K (CycleParameters K m c))) (i : Fin 4) (v : Fin a) :
     IsPolynomialFamily (fun p => columns e (g p) j i v) := by
@@ -254,20 +289,24 @@ theorem columns_polynomial (j : Fin (finrank K (CycleParameters K m c))) (i : Fi
     (CoefficientConstraintRank.repeated e.toLinearMap)).linear_comp
       (LinearMap.proj i)).linear_comp (LinearMap.proj v)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Literal polynomial entries of the fixed spanning coefficient columns. -/
 def polynomialColumns (j : Fin (finrank K (CycleParameters K m c))) (i : Fin 4) (v : Fin a) :
     MvPolynomial I K :=
   Classical.choose (columns_polynomial e g hg j i v LinearMap.id)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem eval_polynomialColumns (p : I → K)
     (j : Fin (finrank K (CycleParameters K m c))) (i : Fin 4) (v : Fin a) :
     eval p (polynomialColumns e g hg j i v) = columns e (g p) j i v :=
   Classical.choose_spec (columns_polynomial e g hg j i v LinearMap.id) p
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def polynomialConstraint (ell : Fin T → MvPolynomial I K) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (Fin 4 × Fin b) (MvPolynomial I K) :=
   BilinearMotionConstraints.polynomialConstraint mu ell (polynomialColumns e g hg)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Evaluation gives exactly the actual first-stage motion matrix. -/
 theorem eval_polynomialConstraint (ell : Fin T → MvPolynomial I K) (p : I → K) :
     (polynomialConstraint e mu g hg ell).map (eval p) =
@@ -277,27 +316,33 @@ theorem eval_polynomialConstraint (ell : Fin T → MvPolynomial I K) (p : I → 
 
 end Polynomial
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Finite motion indexing shared with the second-stage correction matrix. -/
 abbrev MotionIndex (b : ℕ) := Fin (Fintype.card (Fin 4 × Fin b))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def motionUnflatten (x : MotionIndex b → K) : Fin 4 → Fin b → K :=
   fun i f => x (Fintype.equivFin (Fin 4 × Fin b) (i,f))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Reindexing makes both matrix index types literal `Fin` types. -/
 def finiteConstraint (g : Mixed K m c) (ell : Fin T → K) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (MotionIndex b) K :=
   (constraint e mu g ell).reindex (Equiv.refl _) (Fintype.equivFin (Fin 4 × Fin b))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem finiteConstraint_rank (g : Mixed K m c) (ell : Fin T → K) :
     (finiteConstraint e mu g ell).rank = (constraint e mu g ell).rank :=
   Matrix.rank_reindex _ _ _
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem finiteConstraint_smul (g : Mixed K m c) (ell : Fin T → K) (t : K) :
     finiteConstraint e mu g (t • ell) = t • finiteConstraint e mu g ell := by
   ext j z
   exact congrFun (congrFun (constraint_smul e mu g ell t) j)
     ((Fintype.equivFin (Fin 4 × Fin b)).symm z)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem finiteConstraint_mulVec (g : Mixed K m c) (ell : Fin T → K) (x : MotionIndex b → K) :
     finiteConstraint e mu g ell *ᵥ x =
       constraint e mu g ell *ᵥ (fun z => motionUnflatten x z.1 z.2) := by
@@ -307,6 +352,7 @@ theorem finiteConstraint_mulVec (g : Mixed K m c) (ell : Fin T → K) (x : Motio
   intro f
   simp [finiteConstraint,motionUnflatten,Matrix.reindex_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The canonical quotient-aware estimate in the finite motion indexing. -/
 theorem finiteConstraint_rank_bound (g : Mixed K m c)
     (hg : Function.Injective (mixedMultiplication g)) (ell : Fin T → K)
@@ -316,6 +362,7 @@ theorem finiteConstraint_rank_bound (g : Mixed K m c)
   rw [finiteConstraint_rank]
   exact actual_rank_bound e mu g hg ell hE hker
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Exact ambient-to-quotient kernel shift for the canonical descended map. -/
 theorem descendedRelation_kernel_finrank (g : Mixed K m c) (ell : Fin T → K)
     (hE : ∀ j f, covector ell (mu f (e (g j))) = 0) :
@@ -329,11 +376,13 @@ theorem descendedRelation_kernel_finrank (g : Mixed K m c) (ell : Fin T → K)
   rw [heq]
   exact QuotientBilinearImage.finrank_preimage _ _
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem coordinateMixedSpace_finrank (g : Mixed K m c) (hg : LinearIndependent K g) :
     finrank K (coordinateMixedSpace e g) = c := by
   rw [coordinateMixedSpace,LinearEquiv.finrank_map_eq,mixedSpace,finrank_span_eq_card hg]
   exact Fintype.card_fin c
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- An ambient kernel upper bound shifts by the actual presentation dimension;
 the resulting motion rank still loses only 4*d. -/
 theorem finiteConstraint_rank_bound_of_ambient (g : Mixed K m c)
@@ -349,10 +398,12 @@ theorem finiteConstraint_rank_bound_of_ambient (g : Mixed K m c)
 section PolynomialFinite
 variable {I : Type*} (g : (I → K) → Mixed K m c) (hg : IsPolynomialFamily g)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 def finitePolynomialConstraint (ell : Fin T → MvPolynomial I K) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (MotionIndex b) (MvPolynomial I K) :=
   (polynomialConstraint e mu g hg ell).reindex (Equiv.refl _) (Fintype.equivFin (Fin 4 × Fin b))
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem eval_finitePolynomialConstraint (ell : Fin T → MvPolynomial I K) (p : I → K) :
     (finitePolynomialConstraint e mu g hg ell).map (eval p) =
       finiteConstraint e mu (g p) (fun k => eval p (ell k)) := by
@@ -367,12 +418,14 @@ end Coordinates
 section ActualRows
 open RowMultiplicationCoordinates HomogeneousCoefficientCoordinates
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The two orientations encode exactly the same mixed polynomial. -/
 theorem traceCoordinates_injective : Function.Injective (SplitBlock22.traceCoordinates (K := K) (m := m)) := by
   intro x y h
   apply SplitBlock22.mixedEmbedding_injective
   rw [← SplitBlock22.linearYEmbed_traceCoordinates x,← SplitBlock22.linearYEmbed_traceCoordinates y,h]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Reorienting the actual mixed coefficients is a linear equivalence. -/
 def rowTraceEquiv : Rows K m 1 ≃ₗ[K] (Fin m → Forms K 3 1) :=
   LinearMap.linearEquivOfInjective SplitBlock22.traceCoordinates traceCoordinates_injective (by
@@ -381,25 +434,30 @@ def rowTraceEquiv : Rows K m 1 ≃ₗ[K] (Fin m → Forms K 3 1) :=
     simp only [Nat.choose_one_right]
     omega)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Trace coefficients in the fixed monomial row coordinates of multiplication. -/
 def rowCoordinates : (Fin m → Forms K 3 1) ≃ₗ[K] (Fin (RowCount m 1) → K) :=
   rowTraceEquiv.symm.trans rowFiniteEquiv
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem rowCoordinates_traceCoordinates (v : Rows K m 1) :
     rowCoordinates (SplitBlock22.traceCoordinates v) = rowFiniteEquiv v := by
   change rowFiniteEquiv (rowTraceEquiv.symm (rowTraceEquiv v)) = rowFiniteEquiv v
   rw [LinearEquiv.symm_apply_apply]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The actual family in the orientation used by the (3,1) trace theorem. -/
 def rowMixed (g : Fin c → Rows K m 1) : SplitMiddle31.Mixed K m c :=
   fun j => SplitBlock22.traceCoordinates (g j)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Actual coefficient extraction equals the transposition used by the common open. -/
 theorem rowMixed_eq_transpose (g : Fin c → Rows K m 1) :
     rowMixed g = SimultaneousBlockConditions.transposeMixed g := by
   funext j
   exact TraceTranspose.traceCoordinates_eq_transpose g j
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The existing simultaneous block conditions supply the exact trace
 injectivity hypothesis used by the actual first-stage motion matrix. -/
 theorem mixedMultiplication_injective_of_blockConditions {q : ℕ}
@@ -409,6 +467,7 @@ theorem mixedMultiplication_injective_of_blockConditions {q : ℕ}
   rw [rowMixed_eq_transpose]
   exact hp.2.2.1
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem coordinateMixedSpace_rows (g : Fin c → Rows K m 1) :
     coordinateMixedSpace rowCoordinates (rowMixed g) =
       Submodule.span K (Set.range (fun j => rowFiniteEquiv (g j))) := by
@@ -417,29 +476,35 @@ theorem coordinateMixedSpace_rows (g : Fin c → Rows K m 1) :
   funext j
   exact rowCoordinates_traceCoordinates (g j)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The literal four-motion matrix for actual row multiplication. -/
 def rowConstraint (g : Fin c → Rows K m 1) (ell : Fin (RowCount m 3) → K) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (Fin 4 × Fin (FormCount m 2)) K :=
   constraint rowCoordinates coordinate (rowMixed g) ell
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Decode the common finite pure-motion parameters into four actual child quadrics. -/
 def motionDecode (x : MotionIndex (FormCount m 2) → K) : Fin 4 → Forms K m 2 :=
   fun i => finiteEquiv.symm (motionUnflatten x i)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Raw cycle coefficients returned to the actual row orientation. -/
 def rawRows (g : Fin c → Rows K m 1) (x : CycleParameters K m c) : Fin 4 → Rows K m 1 :=
   fun i => rowTraceEquiv.symm (rawCoefficients (rowMixed g) x i)
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The first-stage matrix in finite indices shared by the correction stage. -/
 def finiteRowConstraint (g : Fin c → Rows K m 1) (ell : Fin (RowCount m 3) → K) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (MotionIndex (FormCount m 2)) K :=
   finiteConstraint rowCoordinates coordinate (rowMixed g) ell
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem finiteRowConstraint_smul (g : Fin c → Rows K m 1)
     (ell : Fin (RowCount m 3) → K) (t : K) :
     finiteRowConstraint g (t • ell) = t • finiteRowConstraint g ell :=
   finiteConstraint_smul rowCoordinates coordinate (rowMixed g) ell t
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Vanishing of the finite matrix means vanishing on the literal row products
 of the four actual pure-motion quadrics with all actual cycle coefficients. -/
 theorem finiteRowConstraint_kernel_iff (g : Fin c → Rows K m 1)
@@ -468,6 +533,7 @@ theorem finiteRowConstraint_kernel_iff (g : Fin c → Rows K m 1)
     (coordinateRaw rowCoordinates (rowMixed g) z i)) = 0) ↔ _
   rw [hs]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Actual first-stage quotient rank in fixed row coordinates. -/
 theorem finiteRowConstraint_rank_bound (g : Fin c → Rows K m 1)
     (hg : Function.Injective (mixedMultiplication (rowMixed g)))
@@ -478,6 +544,7 @@ theorem finiteRowConstraint_rank_bound (g : Fin c → Rows K m 1)
     2*m+2*c-4*d ≤ (finiteRowConstraint g ell).rank :=
   finiteConstraint_rank_bound rowCoordinates coordinate (rowMixed g) hg ell hE hker
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- Polynomial first-stage motion matrix in the actual ambient covector variables. -/
 def covectorMatrix (g : Fin c → Rows K m 1) :
     Matrix (Fin (finrank K (CycleParameters K m c))) (MotionIndex (FormCount m 2))
@@ -485,12 +552,14 @@ def covectorMatrix (g : Fin c → Rows K m 1) :
   finitePolynomialConstraint rowCoordinates coordinate (fun _ => rowMixed g)
     (isPolynomialFamily_const _) X
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 @[simp] theorem eval_covectorMatrix (g : Fin c → Rows K m 1)
     (ell : Fin (RowCount m 3) → K) :
     (covectorMatrix g).map (eval ell) = finiteRowConstraint g ell := by
   rw [covectorMatrix,eval_finitePolynomialConstraint]
   simp only [eval_X,finiteRowConstraint]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The literal polynomial matrix obeys the λ-scaling required by the
 projective slice-motion avoidance theorem. -/
 theorem eval_covectorMatrix_smul (g : Fin c → Rows K m 1)
@@ -498,6 +567,7 @@ theorem eval_covectorMatrix_smul (g : Fin c → Rows K m 1)
     (covectorMatrix g).map (eval (t • ell)) = t • (covectorMatrix g).map (eval ell) := by
   rw [eval_covectorMatrix,eval_covectorMatrix,finiteRowConstraint_smul]
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The evaluated polynomial matrix has the actual quotient-aware rank bound. -/
 theorem eval_covectorMatrix_rank_bound (g : Fin c → Rows K m 1)
     (hg : Function.Injective (mixedMultiplication (rowMixed g)))
@@ -509,6 +579,7 @@ theorem eval_covectorMatrix_rank_bound (g : Fin c → Rows K m 1)
   rw [eval_covectorMatrix]
   exact finiteRowConstraint_rank_bound g hg ell hE hker
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- On an actual ambient kernel stratum, presentation independence removes
 exactly c relation directions before the fourfold rank loss is measured. -/
 theorem eval_covectorMatrix_rank_bound_of_ambient (g : Fin c → Rows K m 1)
@@ -526,6 +597,7 @@ theorem eval_covectorMatrix_rank_bound_of_ambient (g : Fin c → Rows K m 1)
       LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm f)
   · exact hker
 
+set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 /-- The polynomial first-stage equations test the actual pure-motion products. -/
 theorem eval_covectorMatrix_kernel_iff (g : Fin c → Rows K m 1)
     (ell : Fin (RowCount m 3) → K) (x : MotionIndex (FormCount m 2) → K) :

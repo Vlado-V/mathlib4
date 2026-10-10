@@ -14,7 +14,7 @@ construction. The resulting bound also applies to the original polynomial ideal.
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1200000
+
 namespace Froberg
 open Module MvPolynomial
 
@@ -22,15 +22,18 @@ variable {K W : Type*} [Field K] [Infinite K]
   [AddCommGroup W] [Module K W] [FiniteDimensional K W]
   {n d r : ℕ}
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 abbrev ProjectedEndpointCokernel (π : Forms K n (2 * d) →ₗ[K] W)
     (q : Fin r → Forms K n d) := W ⧸ (projectedEndpointMultiplication π q).range
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def projectedNormalCycles (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) :
     (projectedEndpointMultiplication π q).ker →ₗ[K] ProjectedEndpointCokernel π q :=
   (projectedEndpointMultiplication π q).range.mkQ.comp
     ((projectedEndpointMultiplication π p).comp (projectedEndpointMultiplication π q).ker.subtype)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem incoming_le_ker_projectedNormalCycles (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) :
     kernelBoundary (projectedEndpointMultiplication π q) (koszulSpace q) ≤
@@ -50,17 +53,20 @@ theorem incoming_le_ker_projectedNormalCycles (π : Forms K n (2 * d) →ₗ[K] 
   intro a ha
   exact hspan ha
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def projectedNormalMap (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) :
     ProjectedEndpointHomology π q →ₗ[K] ProjectedEndpointCokernel π q :=
   descendCycleMap (projectedEndpointMultiplication π q) (koszulSpace q)
     (projectedNormalCycles π q p) (incoming_le_ker_projectedNormalCycles π q p)
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem range_projectedNormalMap (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) :
     (projectedNormalMap π q p).range = (projectedNormalCycles π q p).range := by
   exact range_descendCycleMap _ _ _ _
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem projectedEndpointMultiplication_motion (π : Forms K n (2 * d) →ₗ[K] W)
     (q p : Fin r → Forms K n d) (ε : K) :
     projectedEndpointMultiplication π (q + ε • p) =
@@ -68,6 +74,7 @@ theorem projectedEndpointMultiplication_motion (π : Forms K n (2 * d) →ₗ[K]
   simp only [projectedEndpointMultiplication, endpointMultiplication_motion,
     LinearMap.comp_add, LinearMap.comp_smul]
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- The first-order rank gain for the actual projected polynomial complex. -/
 theorem projected_normal_rank_gain_principal_open
     (π : Forms K n (2 * d) →ₗ[K] W) (q p : Fin r → Forms K n d) :
@@ -87,6 +94,7 @@ theorem projected_normal_rank_gain_principal_open
   rw [range_projectedNormalMap, projectedEndpointMultiplication_motion]
   exact hprop ε hε hDε
 
+set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 /-- Projection-compatible version of Lemma C.5, with an unprojected conclusion. -/
 theorem exists_projected_normal_homology_drop
     (π : Forms K n (2 * d) →ₗ[K] W) (q p : Fin r → Forms K n d)

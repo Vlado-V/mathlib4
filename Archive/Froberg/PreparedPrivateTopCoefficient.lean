@@ -14,7 +14,7 @@ coefficient separation at output degree d+1. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1600000
+
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
@@ -23,6 +23,7 @@ variable {σ : Type*} [Fintype σ] {n d q b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem private_top_coefficient_separation
     (hJ : ∀ j∈J,j≤d) (hpos : ∀ j∈J,0<j)
     (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)

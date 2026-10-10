@@ -13,14 +13,16 @@ under any literal variable and generator enumeration. -/
 @[expose] public section
 
 noncomputable section
-set_option maxHeartbeats 1500000
+
 namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u r : ℕ}
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def indexedSplitParity (idx : Fin q ⊕ Fin f ≃ Fin r) : Fin r → ZMod 2 :=
   biformSplitParity ∘ idx.symm
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_endpoint_of_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -71,9 +73,11 @@ theorem odd_split_endpoint_of_back
     simpa only [Submodule.coe_neg,Submodule.coe_sum,Submodule.coe_smul,map_neg,map_sum,map_smul,
       hback,Sum.elim_inl] using hB' j
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def backgroundSplitIndex : Fin q ⊕ Fin (f+u) ≃ Fin (Fintype.card (BackgroundLabel q f u)) :=
   (Equiv.sumCongr (Equiv.refl _) finSumFinEquiv.symm).trans (Fintype.equivFin _)
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundEnumeratedForms_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -86,6 +90,7 @@ theorem backgroundEnumeratedForms_back
   rw [Equiv.symm_apply_apply]
   exact (renameEquiv K finSumFinEquiv).left_inv _
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundSplitIndex_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -112,6 +117,7 @@ theorem backgroundSplitIndex_back
         rw [finSumFinEquiv_symm_apply_natAdd,Fin.append_right]
         rfl
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_background_endpoint
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -125,6 +131,7 @@ theorem odd_split_background_endpoint
   odd_split_endpoint_of_back Q (Fin.append F G) backgroundSplitIndex
     (backgroundEnumeratedForms Q F G) (backgroundSplitIndex_back Q F G) H a ha
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem background_split_parity_eq :
     indexedSplitParity (backgroundSplitIndex (q := q) (f := f) (u := u))=
       backgroundParity ∘ (Fintype.equivFin (BackgroundLabel q f u)).symm := by
@@ -133,6 +140,7 @@ theorem background_split_parity_eq :
   rcases i with i | (i | i) <;>
     simp [indexedSplitParity,backgroundSplitIndex,biformSplitParity,backgroundParity]
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem backgroundEnumeratedForms_split_parity
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

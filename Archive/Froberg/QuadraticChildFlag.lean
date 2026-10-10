@@ -18,12 +18,14 @@ namespace Froberg.QuadraticChildFlag
 open Module MvPolynomial Quartic EndpointHomology SharedChildFlag
 open FixedBlockChildOpen
 variable {K : Type*} [Field K] [Infinite K] {n r : ℕ}
-set_option maxHeartbeats 1500000
+
 set_option backward.isDefEq.respectTransparency false
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Coker (q : Fin r → Forms K n 2) :=
   Quartic.QuarticQuotient K n (Submodule.span K (Set.range (fun i => (q i).val)))
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- The complete generic flag is selected on the actual child coefficient space. -/
 theorem generic_flag_open (hn : 0<n) (hr : r+1≤(n+1).choose 2) :
     ∃ D : MvPolynomial (ChildIndex n (r+1)) K,
@@ -58,6 +60,7 @@ theorem generic_flag_open (hn : 0<n) (hr : r+1≤(n+1).choose 2) :
       (hi.comp _ (Fin.castSucc_injective r))]
     exact hp
 
+set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Generic ranks and a surviving distinguished square hold for the same flag. -/
 theorem principal_open (hn : 0<n) (hr : r+1≤(n+1).choose 2)
     (hchi : 0<Quartic.Counts.chi n r) (h2 : (2 : K)≠0) :
