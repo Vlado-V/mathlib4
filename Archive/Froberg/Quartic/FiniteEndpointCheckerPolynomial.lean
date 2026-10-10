@@ -174,6 +174,7 @@ theorem rowPolynomial_mul_monomial (E : Fin n → Fin v →₀ ℕ) (s : List (F
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- A finite list-of-exponents equality certifies the product-polynomial identity.
 This separates cheap combinatorial data checking from all field reasoning. -/
+omit [CharZero K] in
 theorem product_identity (E : Fin n → Fin v →₀ ℕ) {b : ℕ}
     (Q : Fin b → Fin v →₀ ℕ) (s : List (Fin b)) (e : Fin v →₀ ℕ)
     (A : List (Fin n))

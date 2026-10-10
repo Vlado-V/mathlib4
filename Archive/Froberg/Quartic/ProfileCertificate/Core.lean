@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.Quartic.FiniteCounts
+public import Mathlib.Data.Rat.Floor
 
 /-!
 # Integral profile inequalities in dimensions 28 through 40
