@@ -147,7 +147,7 @@ theorem eventually_field_uniform_actual_quartic_extended_reduction_open :
     (by simpa only [show 4-4=0 by omega] using hgood Q hQ)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem eventually_field_uniform_actual_small_leading_shift {d : ℕ} (hd : d=3 ∨ d=4) :
+theorem eventually_field_uniform_actual_small_leading_shift {d : ℕ} (hd : d = 3 ∨ d = 4) :
     ∀ᶠ h : ℕ in atTop,∀ (z extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       ∀ᶠ v : ℕ in atTop,
@@ -191,7 +191,7 @@ theorem eventually_field_uniform_actual_small_leading_shift {d : ℕ} (hd : d=3 
     (fun j _ hj => allEvenCount_off_two_small hd _ _ _ hj) ⟨_,hcap⟩ ell hell
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem eventually_field_uniform_actual_small_leading_all_scalars {d : ℕ} (hd : d=3 ∨ d=4) :
+theorem eventually_field_uniform_actual_small_leading_all_scalars {d : ℕ} (hd : d = 3 ∨ d = 4) :
     ∀ᶠ h : ℕ in atTop,∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(e n : ℝ)<countBeta d*(h : ℝ)^2*(n : ℝ)^(d-2)) →
       ∀ᶠ n : ℕ in atTop,

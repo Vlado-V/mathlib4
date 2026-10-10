@@ -74,17 +74,17 @@ one common motion and auxiliary family excluding every nonzero covector.
 The strata may be the determinantal kernel thresholds from C.4. -/
 theorem exists_motion_excluding_covectors [Infinite K] [IsAlgClosed K]
     (hE : Function.Injective E)
-    (count slices : Fin (a+1) → ℕ)
+    (count slices : Fin (a + 1) → ℕ)
     (degrees : ∀ k, Fin (count k) → ℕ)
     (eqs : ∀ k, (i : Fin (count k)) → Forms K T (degrees k i))
     (cuts : ∀ k, Fin (slices k) → Forms K T 1)
     (hempty : ∀ k (ell : Fin T → K),
       (∀ i, aeval ell (eqs k i).val = 0) →
       (∀ j, aeval ell (cuts k j).val = 0) → ell = 0)
-    (hcover : ∀ (ell : Fin T → K) (k : Fin (a+1)),
+    (hcover : ∀ (ell : Fin T → K) (k : Fin (a + 1)),
       finrank K (LinearMap.ker (relationMap mu ell)) = k.val →
       ∀ i, eval ell (eqs k i).val = 0)
-    (hcount : ∀ k, slices k ≤ (finrank K H-f*k.val)+e) :
+    (hcount : ∀ k, slices k ≤ (finrank K H - f * k.val) + e) :
     ∃ z : AugmentedInput K f b T e,
       ∀ ell : Fin T → K,
         (covector ell).comp (motion mu E (unflatten z.1)) = 0 →
@@ -133,17 +133,17 @@ theorem exists_motion_excluding_covectors [Infinite K] [IsAlgClosed K]
 actual coefficient motion has maximal rank. -/
 theorem exists_maximal_motion [Infinite K] [IsAlgClosed K]
     (hE : Function.Injective E)
-    (count slices : Fin (a+1) → ℕ)
+    (count slices : Fin (a + 1) → ℕ)
     (degrees : ∀ k, Fin (count k) → ℕ)
     (eqs : ∀ k, (i : Fin (count k)) → Forms K T (degrees k i))
     (cuts : ∀ k, Fin (slices k) → Forms K T 1)
     (hempty : ∀ k (ell : Fin T → K),
       (∀ i, aeval ell (eqs k i).val = 0) →
       (∀ j, aeval ell (cuts k j).val = 0) → ell = 0)
-    (hcover : ∀ (ell : Fin T → K) (k : Fin (a+1)),
+    (hcover : ∀ (ell : Fin T → K) (k : Fin (a + 1)),
       finrank K (LinearMap.ker (relationMap mu ell)) = k.val →
       ∀ i, eval ell (eqs k i).val = 0)
-    (hcount : ∀ k, slices k ≤ (finrank K H-f*k.val)+(T-finrank K H)) :
+    (hcount : ∀ k, slices k ≤ (finrank K H - f * k.val) + (T - finrank K H)) :
     ∃ z : Fin f → Fin b → K,
       finrank K (motion mu E z).range = min (finrank K H) T := by
   obtain ⟨z,hz⟩ := exists_motion_excluding_covectors (e := T-finrank K H)

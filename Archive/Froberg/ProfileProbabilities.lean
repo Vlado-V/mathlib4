@@ -30,7 +30,7 @@ lemma finiteSourceProfile_pos {H : ℝ} {a z s : ℕ} (hH : 1 < H)
     (by exact_mod_cast sourceMonomialFiber_card_pos ha hz i)
 
 lemma finiteTargetProfile_pos {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (hs : 0 < s)
-    (j : Fin (2*s+1)) : 0 < finiteTargetProfile s a z j := by
+    (j : Fin (2 * s + 1)) : 0 < finiteTargetProfile s a z j := by
   rw [finiteTargetProfile_eq_card]
   exact mul_pos (profileTargetCapacity_pos hs j)
     (by exact_mod_cast targetMonomialFiber_card_pos ha hz j)
@@ -77,7 +77,7 @@ lemma normalized_source_atom {H : ℝ} {a z s : ℕ} (ha : 0 < a) (hz : 0 < z)
   unfold sourceAtomMass
   field_simp
 
-lemma normalized_target_atom {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (j : Fin (2*s+1)) :
+lemma normalized_target_atom {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (j : Fin (2 * s + 1)) :
     (finiteTargetProfile s a z j / (∑ k, finiteTargetProfile s a z k)) /
       (Fintype.card (TargetMonomialFiber a z s j) : ℝ) = targetAtomMass s a z j := by
   have hj : (Fintype.card (TargetMonomialFiber a z s j) : ℝ) ≠ 0 := by
@@ -87,7 +87,7 @@ lemma normalized_target_atom {a z s : ℕ} (ha : 0 < a) (hz : 0 < z) (j : Fin (2
   field_simp
 
 lemma monomialProfileJoint_pos_allowed {a z s : ℕ}
-    (P : Option (Fin s) → Fin (2*s+1) → ℝ)
+    (P : Option (Fin s) → Fin (2 * s + 1) → ℝ)
     (hPzero : ∀ i j, ¬profileAllowed i j → P i j = 0)
     (α : Σ i, SourceMonomialFiber a z s i) (β : Σ j, TargetMonomialFiber a z s j)
     (hp : 0 < monomialProfileJoint P α β) : profileAllowed α.1 β.1 := by
