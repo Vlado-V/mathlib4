@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Graded
 public import Mathlib.LinearAlgebra.Quotient.Basic
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-! The exact mixed-row quotient sequence after an independent projected
 family is adjoined. All terms are actual subspace quotients. -/

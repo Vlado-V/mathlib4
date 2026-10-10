@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Graded
 public import Mathlib.RingTheory.MvPolynomial.MonomialOrder
+public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 
 /-! Initial monomials of finite homogeneous subspaces. These are extracted
 from the actual polynomial subspace, with their cardinality proved by linear algebra. -/

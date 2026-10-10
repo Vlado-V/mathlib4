@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Quartic.BilinearImage
 public import Mathlib.LinearAlgebra.Quotient.Basic
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-!
 # Ambient incidence for quotient multiplication images

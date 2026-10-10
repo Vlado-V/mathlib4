@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.DeletedBidegree
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-! The coordinate-retention formulation of Appendix C.1 equals the dimension
 of the image in the quotient by the deleted homogeneous bidegree summand. -/

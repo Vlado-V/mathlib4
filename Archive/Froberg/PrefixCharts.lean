@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.Graded
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-!
 # Normalized last-row elimination for the prefix incidence charts
