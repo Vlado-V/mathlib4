@@ -19,7 +19,10 @@ set_option Elab.async false
 set_option maxRecDepth 1000000
 set_option maxHeartbeats 64000000
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9216 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9216 row_count 64
 
 theorem chunk_144 (i : Fin 64) (hi : 9216+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9216+i.val)).map
@@ -90,7 +93,10 @@ theorem chunk_144 (i : Fin 64) (hi : 9216+i.val < 35960) :
   · exact certificate.row_9278
   · exact certificate.row_9279
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9280 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9280 row_count 64
 
 theorem chunk_145 (i : Fin 64) (hi : 9280+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9280+i.val)).map
@@ -161,7 +167,10 @@ theorem chunk_145 (i : Fin 64) (hi : 9280+i.val < 35960) :
   · exact certificate.row_9342
   · exact certificate.row_9343
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9344 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9344 row_count 64
 
 theorem chunk_146 (i : Fin 64) (hi : 9344+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9344+i.val)).map
@@ -232,7 +241,10 @@ theorem chunk_146 (i : Fin 64) (hi : 9344+i.val < 35960) :
   · exact certificate.row_9406
   · exact certificate.row_9407
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9408 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9408 row_count 64
 
 theorem chunk_147 (i : Fin 64) (hi : 9408+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9408+i.val)).map
@@ -303,7 +315,10 @@ theorem chunk_147 (i : Fin 64) (hi : 9408+i.val < 35960) :
   · exact certificate.row_9470
   · exact certificate.row_9471
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9472 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9472 row_count 64
 
 theorem chunk_148 (i : Fin 64) (hi : 9472+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9472+i.val)).map
@@ -374,7 +389,10 @@ theorem chunk_148 (i : Fin 64) (hi : 9472+i.val < 35960) :
   · exact certificate.row_9534
   · exact certificate.row_9535
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9536 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9536 row_count 64
 
 theorem chunk_149 (i : Fin 64) (hi : 9536+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9536+i.val)).map
@@ -445,7 +463,10 @@ theorem chunk_149 (i : Fin 64) (hi : 9536+i.val < 35960) :
   · exact certificate.row_9598
   · exact certificate.row_9599
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9600 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9600 row_count 64
 
 theorem chunk_150 (i : Fin 64) (hi : 9600+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9600+i.val)).map
@@ -516,7 +537,10 @@ theorem chunk_150 (i : Fin 64) (hi : 9600+i.val < 35960) :
   · exact certificate.row_9662
   · exact certificate.row_9663
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9664 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9664 row_count 64
 
 theorem chunk_151 (i : Fin 64) (hi : 9664+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9664+i.val)).map
@@ -587,7 +611,10 @@ theorem chunk_151 (i : Fin 64) (hi : 9664+i.val < 35960) :
   · exact certificate.row_9726
   · exact certificate.row_9727
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9728 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9728 row_count 64
 
 theorem chunk_152 (i : Fin 64) (hi : 9728+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9728+i.val)).map
@@ -658,7 +685,10 @@ theorem chunk_152 (i : Fin 64) (hi : 9728+i.val < 35960) :
   · exact certificate.row_9790
   · exact certificate.row_9791
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9792 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9792 row_count 64
 
 theorem chunk_153 (i : Fin 64) (hi : 9792+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9792+i.val)).map
@@ -729,7 +759,10 @@ theorem chunk_153 (i : Fin 64) (hi : 9792+i.val < 35960) :
   · exact certificate.row_9854
   · exact certificate.row_9855
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9856 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9856 row_count 64
 
 theorem chunk_154 (i : Fin 64) (hi : 9856+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9856+i.val)).map
@@ -800,7 +833,10 @@ theorem chunk_154 (i : Fin 64) (hi : 9856+i.val < 35960) :
   · exact certificate.row_9918
   · exact certificate.row_9919
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9920 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9920 row_count 64
 
 theorem chunk_155 (i : Fin 64) (hi : 9920+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9920+i.val)).map
@@ -871,7 +907,10 @@ theorem chunk_155 (i : Fin 64) (hi : 9920+i.val < 35960) :
   · exact certificate.row_9982
   · exact certificate.row_9983
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9984 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 9984 row_count 64
 
 theorem chunk_156 (i : Fin 64) (hi : 9984+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (9984+i.val)).map
@@ -942,7 +981,10 @@ theorem chunk_156 (i : Fin 64) (hi : 9984+i.val < 35960) :
   · exact certificate.row_10046
   · exact certificate.row_10047
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 10048 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 10048 row_count 64
 
 theorem chunk_157 (i : Fin 64) (hi : 10048+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (10048+i.val)).map
@@ -1013,7 +1055,10 @@ theorem chunk_157 (i : Fin 64) (hi : 10048+i.val < 35960) :
   · exact certificate.row_10110
   · exact certificate.row_10111
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 10112 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 10112 row_count 64
 
 theorem chunk_158 (i : Fin 64) (hi : 10112+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (10112+i.val)).map
@@ -1084,7 +1129,10 @@ theorem chunk_158 (i : Fin 64) (hi : 10112+i.val < 35960) :
   · exact certificate.row_10174
   · exact certificate.row_10175
 
-certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin" inverse_file "certificates/finite/n29/inverse.bin" inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 10176 row_count 64
+certify_sparse_rows certificate from "certificates/finite/n29/sparse.bin"
+  inverse_file "certificates/finite/n29/inverse.bin"
+  inverse_fn Quartic.FiniteEndpointInverse29.binaryInverse
+  row_fn Quartic.FiniteEndpointMetadata29Data.naturalRow nwords 562 start_index 10176 row_count 64
 
 theorem chunk_159 (i : Fin 64) (hi : 10176+i.val < 35960) :
     xorSum ((FiniteEndpointMetadata29Data.naturalRow (10176+i.val)).map
