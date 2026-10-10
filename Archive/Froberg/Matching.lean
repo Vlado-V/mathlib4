@@ -67,6 +67,7 @@ theorem exists_matching_of_biregular [Fintype B] (t : A → Finset B)
   exact exists_matching_of_degree_bounds t leftDegree hleft
     (fun a => (hl a).ge) (fun b => (hr b).le.trans hdeg)
 
+omit [DecidableEq B] in
 /-- The symmetry criterion used in the product-monomial fibers: transitivity on
 both sides makes the graph biregular, so one edge and the cardinality inequality suffice. -/
 theorem exists_matching_of_two_sided_symmetry [Fintype B] (t : A → Finset B)

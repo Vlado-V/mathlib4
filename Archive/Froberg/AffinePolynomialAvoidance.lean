@@ -27,10 +27,12 @@ def affineHomogenization (A : V →ₗ[K] W) (b : W) : V × K →ₗ[K] W :=
   (A.comp (LinearMap.fst K V K)) + (LinearMap.smulRight (LinearMap.snd K V K) b)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K V] [FiniteDimensional K W] in
 @[simp] lemma affineHomogenization_apply (A : V →ₗ[K] W) (b : W) (x : V × K) :
     affineHomogenization A b x=A x.1+x.2 • b := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K W] in
 lemma affineHomogenization_rank (A : V →ₗ[K] W) (b : W) :
     finrank K A.range ≤ finrank K (affineHomogenization A b).range := by
   apply Submodule.finrank_mono
@@ -38,6 +40,7 @@ lemma affineHomogenization_rank (A : V →ₗ[K] W) (b : W) :
   exact ⟨(v,0),by simp⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype I] [FiniteDimensional K W] in
 lemma affineHomogenization_polynomial (A : (I → K) → V →ₗ[K] W) (b : (I → K) → W)
     (hA : IsPolynomialFamily A) (hb : IsPolynomialFamily b) :
     IsPolynomialFamily (fun t => affineHomogenization (A t) (b t)) := by
@@ -58,9 +61,9 @@ theorem exists_affine_polynomial_avoidance (A : (I → K) → V →ₗ[K] W)
   obtain ⟨D,⟨xD,hD⟩,havoid⟩ := polynomial_linear_kernel_avoidance
     (fun t => affineHomogenization (A t) (b t)) (affineHomogenization_polynomial A b hA hb) hr
   let C : MvPolynomial (Fin (finrank K (V × K))) K :=
-    polynomialOfLinear ((LinearMap.snd K V K).comp e.symm.toLinearMap)
+    MvPolynomial.polynomialOfLinear ((LinearMap.snd K V K).comp e.symm.toLinearMap)
   have hC : eval (e (0,1)) C=1 := by
-    rw [eval_polynomialOfLinear]
+    rw [MvPolynomial.eval_polynomialOfLinear]
     simp only [LinearMap.comp_apply,LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply,
       LinearMap.snd_apply]
   let P : Fin 2 → MvPolynomial (Fin (finrank K (V × K))) K := ![D,C]
@@ -77,7 +80,7 @@ theorem exists_affine_polynomial_avoidance (A : (I → K) → V →ₗ[K] W)
   have hz : z.2 ≠ 0 := by
     have hh := hx 1
     change eval x C ≠ 0 at hh
-    rwa [eval_polynomialOfLinear] at hh
+    rwa [MvPolynomial.eval_polynomialOfLinear] at hh
   refine ⟨z.2⁻¹ • z.1,?_⟩
   intro t ht he
   have hd : eval x D ≠ 0 := hx 0

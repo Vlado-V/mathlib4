@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.QuarticBlockData
+public import Mathlib.Tactic.IntervalCases
 
 /-! Every quartic product fiber can be relabeled so that its doubled indices
 come first, followed by its single indices. -/
@@ -20,6 +21,7 @@ variable {X : Type*} [Fintype X] [DecidableEq X]
 theorem card_initialSet {k : ℕ} (hk : k ≤ 8) : (initialSet k).card = k := by
   interval_cases k <;> decide +kernel
 
+omit [DecidableEq X] in
 /-- The relabeling is an embedding into the fixed eight-vertex certificate,
 with both relevant finite subsets mapped exactly, not merely cardinalities. -/
 theorem exists_normalizing_embedding (I : Finset X) (r : Fin 5)
@@ -40,17 +42,18 @@ theorem exists_normalizing_embedding (I : Finset X) (r : Fin 5)
     intro x y h
     have hv := congrArg Fin.val h
     by_cases hx : x ∈ I <;> by_cases hy : y ∈ I
-    · have he : ei ⟨x,hx⟩ = ei ⟨y,hy⟩ := Fin.ext (by simpa only [f,dif_pos hx,dif_pos hy] using hv)
+    · have he : ei ⟨x,hx⟩ = ei ⟨y,hy⟩ :=
+        Fin.ext (by simpa only [f,dite_eq_left hx,dite_eq_left hy] using hv)
       exact congrArg Subtype.val (ei.injective he)
     · have hl := (ei ⟨x,hx⟩).isLt
-      simp only [f,dif_pos hx,dif_neg hy] at hv
+      simp only [f,dite_eq_left hx,dite_eq_right hy] at hv
       omega
     · have hl := (ei ⟨y,hy⟩).isLt
-      simp only [f,dif_neg hx,dif_pos hy] at hv
+      simp only [f,dite_eq_right hx,dite_eq_left hy] at hv
       omega
     · have he : er ⟨x,mem_compl.mpr hx⟩ = er ⟨y,mem_compl.mpr hy⟩ := by
         apply Fin.ext
-        simp only [f,dif_neg hx,dif_neg hy] at hv
+        simp only [f,dite_eq_right hx,dite_eq_right hy] at hv
         omega
       exact congrArg Subtype.val (er.injective he)
   let e : X ↪ Fin 8 := ⟨f,hf⟩
@@ -60,7 +63,7 @@ theorem exists_normalizing_embedding (I : Finset X) (r : Fin 5)
       obtain ⟨x,hx,rfl⟩ := mem_map.mp hy
       simp only [initialSet, mem_filter, mem_univ, true_and]
       change (f x).val < r.val
-      simpa only [f,dif_pos hx] using (ei ⟨x,hx⟩).isLt
+      simpa only [f,dite_eq_left hx] using (ei ⟨x,hx⟩).isLt
     · rw [card_map,hI,card_initialSet (by omega)]
   · apply eq_of_subset_of_card_le
     · intro y hy
@@ -69,10 +72,10 @@ theorem exists_normalizing_embedding (I : Finset X) (r : Fin 5)
       change (f x).val < 8-r.val
       by_cases hx : x ∈ I
       · have hl := (ei ⟨x,hx⟩).isLt
-        simp only [f,dif_pos hx]
+        simp only [f,dite_eq_left hx]
         omega
       · have hl := (er ⟨x,mem_compl.mpr hx⟩).isLt
-        simp only [f,dif_neg hx]
+        simp only [f,dite_eq_right hx]
         omega
     · rw [card_map,card_univ,hcard,card_initialSet (by omega)]
 

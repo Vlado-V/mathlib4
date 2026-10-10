@@ -118,7 +118,7 @@ theorem conditional_variance_mixing (ν : J → ℝ) (C : J → I → ℝ) (p q 
     apply sum_le_sum
     intro k _
     have hh := mul_le_mul_of_nonneg_right (hminor i k) (sq_nonneg (u i - u k))
-    convert hh using 1 <;> ring
+    convert hh using 1; ring
   rw [conditional_variance_pairwise ν C u hC] at hpoint
   have hlow := mul_le_mul_of_nonneg_left (averaged_center_lower_bound p q u hp hq hqpos) hκ
   nlinarith

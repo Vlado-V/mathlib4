@@ -22,11 +22,14 @@ variable {V : I → Type*} [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
 def coordinateSubmodule (R : Submodule K ((i : I) → V i)) (i : I) : Submodule K (V i) :=
   R.comap (LinearMap.single K _ i)
 
+omit [Fintype I] in
 /-- A subspace closed under taking individual coordinates is the product of
 its actual coordinate subspaces. -/
-theorem eq_pi_coordinateSubmodule (R : Submodule K ((i : I) → V i))
+theorem eq_pi_coordinateSubmodule [Finite I] (R : Submodule K ((i : I) → V i))
     (hclosed : ∀ x ∈ R, ∀ i, Pi.single i (x i) ∈ R) :
     R = Submodule.pi Set.univ (coordinateSubmodule R) := by
+  classical
+  let := Fintype.ofFinite I
   apply le_antisymm
   · intro x hx
     exact Submodule.mem_pi.mpr (fun i _ => hclosed x hx i)
@@ -34,12 +37,14 @@ theorem eq_pi_coordinateSubmodule (R : Submodule K ((i : I) → V i))
     rw [← Finset.univ_sum_single x]
     exact Submodule.sum_mem _ (fun i _ => Submodule.mem_pi.mp hx i (Set.mem_univ i))
 
+omit [Fintype I] in
 /-- Coordinate separation is preserved by every re-enumeration of the index set. -/
-theorem eq_pi_of_reindex_eq_pi (q : J ≃ I) (R : Submodule K ((i : I) → V i))
+theorem eq_pi_of_reindex_eq_pi [Finite I] (q : J ≃ I) (R : Submodule K ((i : I) → V i))
     (D : (j : J) → Submodule K (V (q j)))
     (hR : R.map (LinearEquiv.piCongrLeft' K V q.symm).toLinearMap = Submodule.pi Set.univ D) :
     R = Submodule.pi Set.univ (coordinateSubmodule R) := by
   classical
+  let := Fintype.ofFinite I
   let e := LinearEquiv.piCongrLeft' K V q.symm
   apply eq_pi_coordinateSubmodule R
   intro x hx i
@@ -70,6 +75,7 @@ def coordinatePiEquiv (C : (i : I) → Submodule K (V i)) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+omit [DecidableEq I] in
 theorem finrank_coordinate_pi [∀ i, FiniteDimensional K (V i)]
     (C : (i : I) → Submodule K (V i)) :
     finrank K (Submodule.pi Set.univ C) = ∑ i, finrank K (C i) := by

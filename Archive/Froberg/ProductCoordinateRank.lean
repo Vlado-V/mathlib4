@@ -53,6 +53,7 @@ theorem product_snd_finrank (L : Submodule K (X × Y)) :
   rw [hr,hk,LinearMap.finrank_range_of_inj hi] at h
   omega
 
+omit [FiniteDimensional K V] in
 theorem coordinates_higher_finrank (e : V ≃ₗ[K] X × Y) (L : Submodule K V) :
     finrank K (L.map ((LinearMap.snd K X Y).comp e.toLinearMap))=
       finrank K L-finrank K (L.comap (e.symm.toLinearMap.comp (LinearMap.inl K X Y))) := by

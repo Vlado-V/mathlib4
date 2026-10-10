@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.WeightedParitySpace
+public import Mathlib.Tactic.LinearCombination
 
 /-! The odd triangular elimination remains valid after adjoining arbitrary
 fixed top-output terms. Its induction only uses lower coefficient rows. -/
@@ -26,7 +27,7 @@ theorem delayed_odd_zero
     (ha : ∀ i, (a i).IsWeightedHomogeneous w 0)
     (hE : ∀ i, (E i).IsWeightedHomogeneous w (j i))
     (hEzero : ∀ i, j i = 0 → E i = 0)
-    (hj : ∀ i, j i % 2 = 0)
+    (_hj : ∀ i, j i % 2 = 0)
     (hO : ∀ k, (O k).IsWeightedHomogeneous w 1)
     (hU : ∀ k, (U k).IsWeightedHomogeneous w d)
     (hc : ∀ i, (c i).IsHomogeneous d) (hv : ∀ k, (v k).IsHomogeneous d)
@@ -55,26 +56,26 @@ theorem delayed_odd_zero
         have hEc (i : I) : weightedHomogeneousComponent w r (E i*c i)=0 := by
           rw [weightedComponent_homogeneous_left w (hE i)]
           by_cases hji : j i≤r
-          · rw [if_pos hji]
+          · rw [ite_eq_left hji]
             by_cases hj0 : j i=0
             · rw [hEzero i hj0,zero_mul]
             · rw [(ih (r-j i) (by omega) (by omega)).1 i,mul_zero]
-          · rw [if_neg hji]
+          · rw [ite_eq_right hji]
         have hUv (k : J) : weightedHomogeneousComponent w r (U k*v k)=0 := by
           rw [weightedComponent_homogeneous_left w (hU k)]
           by_cases hdr : d≤r
-          · rw [if_pos hdr]
+          · rw [ite_eq_left hdr]
             have hz := (ih (r-d+1) (by omega) (by omega)).2 (by omega) k
             rw [Nat.add_sub_cancel] at hz
             rw [hz,mul_zero]
-          · rw [if_neg hdr]
+          · rw [ite_eq_right hdr]
         have hrow : (∑ i,a i*weightedHomogeneousComponent w r (c i))+
             (∑ k,O k*weightedHomogeneousComponent w (r-1) (v k))=0 := by
           have h := congrArg (weightedHomogeneousComponent w r) hcycle
           simpa only [map_add,map_sum,map_zero,add_mul,hEc,hUv,
             weightedComponent_homogeneous_left w (ha _),Nat.zero_le,Nat.sub_zero,
-            if_true,weightedComponent_homogeneous_left w (hO _),
-            if_pos (show 1≤r by omega),add_zero] using h
+            ite_true,weightedComponent_homogeneous_left w (hO _),
+            ite_eq_left (show 1≤r by omega),add_zero] using h
         obtain ⟨hx,hy⟩ := hhigher r hr hrd hrp
           (fun i => weightedHomogeneousComponent w r (c i))
           (fun k => weightedHomogeneousComponent w (r-1) (v k))
@@ -137,16 +138,16 @@ theorem delayed_odd_cycles
     rw [weightedComponent_homogeneous_left w (hE i).2]
     by_cases hji : j i≤1
     · have hj0 : j i=0 := by have := hj i; omega
-      rw [if_pos hji,hEzero i hj0,zero_mul]
-    · rw [if_neg hji]
+      rw [ite_eq_left hji,hEzero i hj0,zero_mul]
+    · rw [ite_eq_right hji]
   have hUfirst (k : J) : weightedHomogeneousComponent w 1 (U k*v k)=0 := by
-    rw [weightedComponent_homogeneous_left w (hU k).2,if_neg (by omega : ¬d≤1)]
+    rw [weightedComponent_homogeneous_left w (hU k).2,ite_eq_right (by omega : ¬d≤1)]
   have hfirstrow : (∑ i,a i*weightedHomogeneousComponent w 1 (c i))+
       (∑ k,O k*weightedHomogeneousComponent w 0 (v k))=0 := by
     have h := congrArg (weightedHomogeneousComponent w 1) hcycle
     simpa only [map_add,map_sum,map_zero,add_mul,hEfirst,hUfirst,
       weightedComponent_homogeneous_left w (ha _).2,Nat.zero_le,Nat.sub_zero,
-      if_true,weightedComponent_homogeneous_left w (hO _).2,
+      ite_true,weightedComponent_homogeneous_left w (hO _).2,
       Nat.le_refl,Nat.sub_self,add_zero] using h
   obtain ⟨B,hB,hB'⟩ := hfirst
     (fun i => weightedHomogeneousComponent w 1 (c i))
@@ -191,11 +192,11 @@ theorem delayed_odd_cycles
     simp only [c',map_sub,map_sum,map_smul,map_add,
       weightedHomogeneousComponent_of_mem (hO _).2,
       weightedHomogeneousComponent_of_mem (hU _).2,ite_true,
-      if_neg (by omega : (1:ℕ)≠d),add_zero,hB i,sub_self]
+      ite_eq_right (by omega : (1:ℕ)≠d),add_zero,hB i,sub_self]
   have hEzeroComp (i : I) : weightedHomogeneousComponent w 0 (E i)=0 := by
     by_cases hi : j i=0
     · rw [hEzero i hi,map_zero]
-    · rw [weightedHomogeneousComponent_of_mem (hE i).2,if_neg (Ne.symm hi)]
+    · rw [weightedHomogeneousComponent_of_mem (hE i).2,ite_eq_right (Ne.symm hi)]
   have hv'first (k : J) : weightedHomogeneousComponent w 0 (v' k)=0 := by
     simp only [v',map_add,map_sum,map_smul,hEzeroComp,
       weightedHomogeneousComponent_of_mem (ha _).2,ite_true,add_zero,hB' k,neg_add_cancel]

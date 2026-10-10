@@ -30,9 +30,9 @@ theorem intrinsic_principal_open_affine_normalization
   let e := (Module.finBasis K (V × K)).equivFun
   let f := (Module.finBasis K V).equivFun
   let C : MvPolynomial (Fin (finrank K (V × K))) K :=
-    polynomialOfLinear ((LinearMap.snd K V K).comp e.symm.toLinearMap)
+    MvPolynomial.polynomialOfLinear ((LinearMap.snd K V K).comp e.symm.toLinearMap)
   have hC : eval (e (0,1)) C=1 := by
-    rw [eval_polynomialOfLinear]
+    rw [MvPolynomial.eval_polynomialOfLinear]
     simp
   let Ds : Fin 2 → MvPolynomial (Fin (finrank K (V × K))) K := ![D,C]
   have hDs (i : Fin 2) : Ds i≠0 := by
@@ -51,7 +51,7 @@ theorem intrinsic_principal_open_affine_normalization
   have hc : c≠0 := by
     have hh := hx 1
     change eval x C≠0 at hh
-    simpa only [C,eval_polynomialOfLinear,LinearMap.comp_apply,LinearEquiv.coe_coe,
+    simpa only [C,MvPolynomial.eval_polynomialOfLinear,LinearMap.comp_apply,LinearEquiv.coe_coe,
       LinearMap.snd_apply] using hh
   let F : (Fin (finrank K V) → K) →ₗ[K] (Fin (finrank K (V × K)) → K) :=
     c • (e.toLinearMap.comp ((LinearMap.inl K V K).comp f.symm.toLinearMap))

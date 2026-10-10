@@ -26,6 +26,7 @@ def divertedTransport (P D : I → J → ℝ) (t : ℝ) : Option I → J → ℝ
   | some i, j => P i j - t * D i j
   | none, j => t * ∑ i, D i j
 
+omit [Fintype J] in
 theorem divertedTransport_column (P D : I → J → ℝ) (t : ℝ) (j : J) :
     ∑ i, divertedTransport P D t i j = ∑ i, P i j := by
   simp only [Fintype.sum_option, divertedTransport, sum_sub_distrib, ← mul_sum]
@@ -44,6 +45,7 @@ theorem divertedTransport_new_row (P D : I → J → ℝ) (a : I → ℝ) (p t :
   rw [sum_comm]
   simp only [hD, ← mul_sum, ha, mul_one]
 
+omit [Fintype J] in
 theorem divertedTransport_nonneg (P D : I → J → ℝ) (t : ℝ)
     (ht : 0 ≤ t) (ht1 : t ≤ 1)
     (hD : ∀ i j, 0 ≤ D i j) (hDP : ∀ i j, D i j ≤ P i j) :
@@ -56,15 +58,17 @@ theorem divertedTransport_nonneg (P D : I → J → ℝ) (t : ℝ)
       dsimp only [divertedTransport]
       linarith [hDP i j]
 
+omit [Fintype J] in
 theorem divertedTransport_old_pos (P D : I → J → ℝ) (t : ℝ)
     (ht : 0 ≤ t) (ht1 : t < 1) (i : I) (j : J)
-    (hP : 0 < P i j) (hD : 0 ≤ D i j) (hDP : D i j ≤ P i j) :
+    (hP : 0 < P i j) (_hD : 0 ≤ D i j) (hDP : D i j ≤ P i j) :
     0 < divertedTransport P D t (some i) j := by
   have h₁ := mul_le_mul_of_nonneg_left hDP ht
   have h₂ := mul_lt_mul_of_pos_right ht1 hP
   dsimp only [divertedTransport]
   linarith
 
+omit [Fintype J] in
 theorem divertedTransport_new_pos (P D : I → J → ℝ) (t : ℝ)
     (ht : 0 < t) (hD : ∀ i j, 0 ≤ D i j) (j : J)
     (hj : ∃ i, 0 < D i j) :
@@ -73,6 +77,7 @@ theorem divertedTransport_new_pos (P D : I → J → ℝ) (t : ℝ)
   obtain ⟨i, hi⟩ := hj
   exact sum_pos' (fun k _ => hD k j) ⟨i, mem_univ i, hi⟩
 
+omit [Fintype J] in
 theorem divertedTransport_zero (P D : I → J → ℝ) (t : ℝ) (i : I) (j : J)
     (hP : P i j = 0) (hD : D i j = 0) :
     divertedTransport P D t (some i) j = 0 := by

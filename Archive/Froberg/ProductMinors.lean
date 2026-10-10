@@ -47,7 +47,7 @@ def productMinor (terms : α → Finset (τ →₀ ℕ)) (left right : ι → α
 /-- A consistent selection of factor monomials with pairwise distinct products
 certifies that the actual coefficient-polynomial determinant is nonzero. -/
 theorem productMinor_ne_zero [Nontrivial K] [Fintype ι] [DecidableEq ι]
-    [DecidableEq (τ →₀ ℕ)] (terms : α → Finset (τ →₀ ℕ))
+    (terms : α → Finset (τ →₀ ℕ))
     (left right : ι → α) (c : α → τ →₀ ℕ)
     (hl : ∀ i, c (left i) ∈ terms (left i))
     (hr : ∀ i, c (right i) ∈ terms (right i))
@@ -76,7 +76,7 @@ theorem exists_consistent_choices (labels : ι × Bool → α)
 The hypotheses refer only to permitted monomials, distinct matched products,
 and the fact that each form label is used at most once in the fiber. -/
 theorem disjoint_productMinor_ne_zero [Nontrivial K] [Fintype ι] [DecidableEq ι]
-    [DecidableEq (τ →₀ ℕ)] (terms : α → Finset (τ →₀ ℕ))
+    (terms : α → Finset (τ →₀ ℕ))
     (labels : ι × Bool → α) (hlabels : Function.Injective labels)
     (choices : ι × Bool → τ →₀ ℕ)
     (hchoices : ∀ p, choices p ∈ terms (labels p))
@@ -93,10 +93,11 @@ theorem disjoint_productMinor_ne_zero [Nontrivial K] [Fintype ι] [DecidableEq �
 
 /-- Over an infinite integral domain, finitely many nonzero coefficient
 polynomials can be made nonzero at one common assignment. -/
-theorem exists_common_specialization {σ δ : Type*} [Fintype δ] [IsDomain K] [Infinite K]
+theorem exists_common_specialization {σ δ : Type*} [Finite δ] [IsDomain K] [Infinite K]
     (p : δ → MvPolynomial σ K) (hp : ∀ i, p i ≠ 0) :
     ∃ values : σ → K, ∀ i, MvPolynomial.eval values (p i) ≠ 0 := by
   classical
+  let := Fintype.ofFinite δ
   have hprod : (∏ i, p i) ≠ 0 := Finset.prod_ne_zero_iff.mpr (fun i _ => hp i)
   have heval : ∃ values : σ → K, MvPolynomial.eval values (∏ i, p i) ≠ 0 := by
     by_contra hn
@@ -122,7 +123,7 @@ theorem linearIndependent_of_coeff_minor [IsDomain K] [Fintype ι] [DecidableEq 
 
 /-- Finitely many actual product-fiber minors can be realized simultaneously.
 This is the final generic-parameter step in the independent-product construction. -/
-theorem exists_simultaneous_independent_products {δ : Type*} [Fintype δ]
+theorem exists_simultaneous_independent_products {δ : Type*} [Finite δ]
     {I : δ → Type*} [∀ d, Fintype (I d)] [∀ d, DecidableEq (I d)]
     [IsDomain K] [Infinite K]
     (terms : α → Finset (τ →₀ ℕ)) (left right : (d : δ) → I d → α)
@@ -163,12 +164,11 @@ theorem linearIndependent_of_fiber_minors {δ : Type*} [DecidableEq δ]
   have hlocal := Matrix.linearIndependent_cols_of_det_ne_zero (hdet (key j))
   apply Fintype.linearIndependent_iff.mp hlocal (fun i => c i.1) _ ⟨j,rfl⟩
   ext i
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.col_apply,
-    Matrix.transpose_apply, Pi.zero_apply]
+  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply]
   change (∑ z : {z // key z = key j}, c z.1 * (p z.1).coeff (rows i.1)) = 0
   have hv := congrArg (fun q : MvPolynomial τ K => q.coeff (rows i.1)) hc
   simp only [MvPolynomial.coeff_sum, MvPolynomial.coeff_smul, smul_eq_mul,
-    MvPolynomial.coeff_zero] at hv
+    AddMonoidAlgebra.coeff_zero] at hv
   rw [← Finset.sum_subtype (Finset.univ.filter (fun z => key z = key j))
     (by simp) (fun z => c z * (p z).coeff (rows i.1))]
   refine Eq.trans ?_ hv
