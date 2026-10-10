@@ -329,3 +329,7 @@ please do not add new entries to these files. PRs removing (the need for) entrie
   appropriately tagged with the date on which the images were built.
   This should be re-run after breaking changes to `elan`, so that CI and Gitpod have access to
   updated versions of `elan`.
+
+* `froberg_certificate_manifest.py` generates and verifies the imported manifest of the
+  binary certificate inputs used by `Archive.Froberg`. The Archive build checks it before
+  accepting certificate-dependent build artifacts.

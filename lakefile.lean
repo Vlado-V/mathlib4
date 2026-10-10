@@ -92,8 +92,48 @@ lean_lib MathlibTest where
   leanOptions := mathlibTestOptions
   allowNonModules := true
 
+/-- Certificate data used only by the Fröberg development in `Archive`. -/
+def frobergCertificateDataRelative : System.FilePath :=
+  "Archive/Froberg/certificates/finite"
+
+input_dir frobergCertificateFiles where
+  path := frobergCertificateDataRelative
+  text := false
+
+input_file frobergCertificateManifestScript where
+  path := "scripts/froberg_certificate_manifest.py"
+  text := true
+
+input_file frobergCertificateJsonManifest where
+  path := "Archive/Froberg/CertificateManifest.json"
+  text := true
+
+input_file frobergCertificateLeanManifest where
+  path := "Archive/Froberg/Quartic/CertificateManifest.lean"
+  text := true
+
+/-- Track every external byte and reject an outdated source-cache manifest. -/
+target frobergCertificateInputs pkg : Unit := do
+  let data ← frobergCertificateFiles.fetch
+  let scriptJob ← frobergCertificateManifestScript.fetch
+  let json ← frobergCertificateJsonManifest.fetch
+  let lean ← frobergCertificateLeanManifest.fetch
+  let dependencies := ((data.mix scriptJob).mix json).mix lean
+  dependencies.mapM fun _ => do
+    proc {
+      cmd := "python3"
+      args := #["scripts/froberg_certificate_manifest.py", "--root", ".",
+        "--data-relative", frobergCertificateDataRelative.toString,
+        "--namespace", "Quartic.CertificateManifest",
+        "--json", "Archive/Froberg/CertificateManifest.json",
+        "--lean", "Archive/Froberg/Quartic/CertificateManifest.lean", "--check"]
+      cwd := some pkg.dir
+    }
+
+
 lean_lib Archive where
   leanOptions := mathlibLeanOptions
+  needs := #[frobergCertificateInputs]
 
 lean_lib Counterexamples where
   leanOptions := mathlibLeanOptions

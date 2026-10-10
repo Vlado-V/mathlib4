@@ -1,0 +1,144 @@
+{
+  "aggregate_sha256": "e71feb8f5be763a1bd9293a84ed206d609639cc9a733fc9d7cb83ff2edbbca15",
+  "data_directory": "Archive/Froberg/certificates/finite",
+  "file_count": 27,
+  "files": [
+    {
+      "bytes": 4872,
+      "path": "Archive/Froberg/certificates/finite/n28/coefficients.bin",
+      "sha256": "6893bc080fff302bb6c6f759b837c58aff89dede230a62fbeb55da5ec10c5755"
+    },
+    {
+      "bytes": 67108864,
+      "path": "Archive/Froberg/certificates/finite/n28/inverse.bin.parts/000",
+      "sha256": "5b5fa2275f8c76949d25f0b6fb2851cfa6c9feb7c3f88f68dea50342d4dd19b9"
+    },
+    {
+      "bytes": 56737376,
+      "path": "Archive/Froberg/certificates/finite/n28/inverse.bin.parts/001",
+      "sha256": "3df3520c81b135bbc30e904e175ef024526ee11eb773f47b6bad2267a36eaa80"
+    },
+    {
+      "bytes": 8,
+      "path": "Archive/Froberg/certificates/finite/n28/inverse.bin.parts/manifest",
+      "sha256": "e022e0cd9da3dede26dbfe42d4fa35606766124be918d39d6c3d9240900b4618"
+    },
+    {
+      "bytes": 1318688,
+      "path": "Archive/Froberg/certificates/finite/n28/products.bin",
+      "sha256": "df8499b0aad0d83afe2f274b926915a4047f54f2e5c410fb98eb05e0e0528953"
+    },
+    {
+      "bytes": 3248,
+      "path": "Archive/Froberg/certificates/finite/n28/quadCodes.bin",
+      "sha256": "43ebd77da545a1cdc6c856d69cc770a40aad8d392ca68a5f1e03e039b5b57ca8"
+    },
+    {
+      "bytes": 251720,
+      "path": "Archive/Froberg/certificates/finite/n28/quarticCodes.bin",
+      "sha256": "0f97fe339f325b7ffa0fd480124dbdbbfa06303979f3e933d47473b133056e7d"
+    },
+    {
+      "bytes": 251720,
+      "path": "Archive/Froberg/certificates/finite/n28/selected.bin",
+      "sha256": "0e2bfea0af2c93f41987867195692a19c18d1e98001e4de0d36219cd6f57b574"
+    },
+    {
+      "bytes": 5208,
+      "path": "Archive/Froberg/certificates/finite/n29/coefficients.bin",
+      "sha256": "50e5557cb54b76d8dd337cd7dba7f8e6711374aec2527dfb7785b6b22e6ab226"
+    },
+    {
+      "bytes": 67108864,
+      "path": "Archive/Froberg/certificates/finite/n29/inverse.bin.parts/000",
+      "sha256": "03c34d044997066f3dba24b1d4b45ca71c5e59136d4c06b8746bf90dad7bf098"
+    },
+    {
+      "bytes": 67108864,
+      "path": "Archive/Froberg/certificates/finite/n29/inverse.bin.parts/001",
+      "sha256": "e50245ab8bf5fa750ad1ef53b04cad7491a7e748a3e35472c056ec49a6563b0a"
+    },
+    {
+      "bytes": 27458432,
+      "path": "Archive/Froberg/certificates/finite/n29/inverse.bin.parts/002",
+      "sha256": "dbe2badf3c6ed00d3d8c462a7a3c737233ea7e9c030b5ecc19b92705683b3327"
+    },
+    {
+      "bytes": 12,
+      "path": "Archive/Froberg/certificates/finite/n29/inverse.bin.parts/manifest",
+      "sha256": "615b7cb089eb88e5b73f9eef062a9b1dd15fae0fcb027d34324e16d2d9a59090"
+    },
+    {
+      "bytes": 1513800,
+      "path": "Archive/Froberg/certificates/finite/n29/products.bin",
+      "sha256": "b948706a69eddab549cf2178d939bba33c8b86b3f13e0873e9c1ce479ec087d3"
+    },
+    {
+      "bytes": 3480,
+      "path": "Archive/Froberg/certificates/finite/n29/quadCodes.bin",
+      "sha256": "b9c2996165149df7720696b1dffef0de7aeae3069e4fe137d46d3d595109ecc4"
+    },
+    {
+      "bytes": 287680,
+      "path": "Archive/Froberg/certificates/finite/n29/quarticCodes.bin",
+      "sha256": "a5db554dde789d1da00eb9c8fc5fe97515e478986a19786310d7d4f09262097d"
+    },
+    {
+      "bytes": 287680,
+      "path": "Archive/Froberg/certificates/finite/n29/selected.bin",
+      "sha256": "0d6fa8f0547c089d0e063c69aec59f7b0bdc01dd3b73f9fe9577bf8738cbec26"
+    },
+    {
+      "bytes": 6336,
+      "path": "Archive/Froberg/certificates/finite/n30/coefficients.bin",
+      "sha256": "35c3cdcba02df9401a408874a9a0a8a824deab9a3446a89a5f0a7ab4fd20d5d2"
+    },
+    {
+      "bytes": 67108864,
+      "path": "Archive/Froberg/certificates/finite/n30/inverse.bin.parts/000",
+      "sha256": "5062f0f1297891ae8f7aa5b76ddefdf04a29d48db3aa7737cce92961808bc4fc"
+    },
+    {
+      "bytes": 67108864,
+      "path": "Archive/Froberg/certificates/finite/n30/inverse.bin.parts/001",
+      "sha256": "16e102890ecf498ba6b7ec591119418db0505a6dc0c4af68221fb6a38d3ac57e"
+    },
+    {
+      "bytes": 67108864,
+      "path": "Archive/Froberg/certificates/finite/n30/inverse.bin.parts/002",
+      "sha256": "aa81ae10736a07286e22c433ca6567189165b2274880cc7a95644c02a8deae1b"
+    },
+    {
+      "bytes": 8183808,
+      "path": "Archive/Froberg/certificates/finite/n30/inverse.bin.parts/003",
+      "sha256": "7720c198fbfb9977e4f30c8600cea4495f2909fb5578304f24aa1246bc2af0ae"
+    },
+    {
+      "bytes": 16,
+      "path": "Archive/Froberg/certificates/finite/n30/inverse.bin.parts/manifest",
+      "sha256": "72d2b5967edd80e8d53122723bc46aa371850a2f832ed731e5fd6e67053ee3ba"
+    },
+    {
+      "bytes": 1729800,
+      "path": "Archive/Froberg/certificates/finite/n30/products.bin",
+      "sha256": "097d1fa81c1b439b5aa6deeb2539938230689b79483c0d23d81dfbc86eb1e23c"
+    },
+    {
+      "bytes": 3720,
+      "path": "Archive/Froberg/certificates/finite/n30/quadCodes.bin",
+      "sha256": "159b2a6a655f5c894f19fdae26b372d9317a06881de7e90855608190758b9a1a"
+    },
+    {
+      "bytes": 327360,
+      "path": "Archive/Froberg/certificates/finite/n30/quarticCodes.bin",
+      "sha256": "df301a030597787fee6adc41ac29932f5d9607e0023b28c4ca2bdf0bca6e3621"
+    },
+    {
+      "bytes": 327360,
+      "path": "Archive/Froberg/certificates/finite/n30/selected.bin",
+      "sha256": "4d32e1cf81d3634b999ba2045b17bab60a76cc2c6e014fe9936437cb53970b14"
+    }
+  ],
+  "schema": "froberg-certificate-inputs-v1",
+  "total_bytes": 501355508
+}
