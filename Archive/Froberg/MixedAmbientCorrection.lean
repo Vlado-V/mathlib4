@@ -41,7 +41,8 @@ theorem exists_mixed_ambient_correction (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (hU : LinearIndependent K U)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
-      (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range Q)))) :
+      (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range
+        Q)))) :
     ∃ D : HigherOddTargetRows hdp (fun i => scalarEvenBiform (h := h) (Q i))
         (fun i => oddBiformEmbedding hdp (by decide) (F i)) →ₗ[K]
       OddTargetRowQuotient (fun i => scalarEvenBiform (h := h) (Q i))

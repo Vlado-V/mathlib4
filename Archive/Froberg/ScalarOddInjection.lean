@@ -80,7 +80,8 @@ theorem scalar_odd_relation_zero (hm : 0 < m) (Q : Fin r → Forms K m d)
     have hc : fullBiformScalarRow Q c=0 := by
       have he := congrArg (weightedHomogeneousComponent (blockWeight h m) t) hv
       simp only [map_sum,map_zero] at he
-      simp only [fullBiformScalarRow,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply,fullBiformScalarProduct_apply]
+      simp only [fullBiformScalarRow,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply,
+        fullBiformScalarProduct_apply]
       change (∑ i,rename Sum.inr (Q i).val*sumBiformMap (oddBiformCoordinatesEquiv (v i) a))=0
       convert he using 1
       apply Finset.sum_congr rfl

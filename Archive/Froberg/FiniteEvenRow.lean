@@ -79,7 +79,8 @@ theorem exists_finite_even_row
       (fun a => Finsupp.weight pairedHalfWeight a%2=0) (outputCombination o (L z))=0 := by
     intro z
     exact hOodd (hLO z)
-  obtain ⟨p,hp,hpi⟩ := ProductRows.exists_balanced_product_row hw hv J counts heven hdegree T hdiag hcross
+  obtain ⟨p,hp,hpi⟩ := ProductRows.exists_balanced_product_row hw hv J counts heven hdegree T hdiag
+    hcross
   obtain ⟨e,z,he,Q,hEz,hzero,hker⟩ := exists_even_polynomial_row (by omega) hodd
     pairedHalfWeight (balancedScalarHalf v) o ho hodeg L hL hLodd hm hcap hcount counts p J
     heven hdegree (fun j hj i => (hp j i).2.2.1) (fun j hj i => (hp j i).2.2.2.1) hpi hscalarOpen

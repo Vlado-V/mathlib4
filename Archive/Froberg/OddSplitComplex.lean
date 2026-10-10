@@ -68,10 +68,12 @@ theorem odd_split_exact_iff_kernel
       · apply Prod.ext
         · funext i
           apply Subtype.ext
-          simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_neg] using (hC i).symm
+          simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,
+            Submodule.coe_smul,Submodule.coe_neg] using (hC i).symm
         · funext j
           apply Subtype.ext
-          simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_neg] using (hC' j).symm
+          simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,
+            Submodule.coe_smul,Submodule.coe_neg] using (hC' j).symm
       · exact Subsingleton.elim _ _
     · rintro x ⟨C,rfl⟩
       exact LinearMap.congr_fun (bilinearKoszulRow_constants evenOddProduct Q E
@@ -88,9 +90,11 @@ theorem odd_split_exact_iff_kernel
     obtain ⟨C,hC⟩ := hw
     refine ⟨C,?_,?_⟩
     · intro i
-      simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_neg] using (congrArg (fun x => (x.1.1 i).val) hC).symm
+      simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,
+        Submodule.coe_smul,Submodule.coe_neg] using (congrArg (fun x => (x.1.1 i).val) hC).symm
     · intro j
-      simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_neg] using (congrArg (fun x => (x.1.2 j).val) hC).symm
+      simpa only [bilinearKoszulConstants,LinearMap.coe_mk,AddHom.coe_mk,Submodule.coe_sum,
+        Submodule.coe_smul,Submodule.coe_neg] using (congrArg (fun x => (x.1.2 j).val) hC).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_split_exact_principal_open {ι : Type*}

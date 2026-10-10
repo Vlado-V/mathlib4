@@ -137,7 +137,8 @@ theorem principal_open_excludes_profile_of_int_bound [Infinite K] {B T e q : ℕ
         e ≤ finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell))) →
         ∃ j : Fin q,∃ v : Fin (∑ i,b i) → K,covector ell (mu (fun k => Q (j,k)) v) ≠ 0 := by
   classical
-  obtain ⟨P,hP,hgood⟩ := PolynomialSubspaceCovectorCharts.principal_open_excludes_covered_stratum_of_int_bound
+  obtain ⟨P,hP,
+    hgood⟩ := PolynomialSubspaceCovectorCharts.principal_open_excludes_covered_stratum_of_int_bound
     (d := ∑ i,r i) (e := e) mu (fun j : Selectors b r => graphPolynomial j) g
     (by intro j; rw [parameter_count]; exact hg) hcount
   refine ⟨P,hP,?_⟩

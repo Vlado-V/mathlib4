@@ -247,7 +247,8 @@ theorem sharp_prefix_edge_inequalities (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤
       ((v.val : ℚ) - (u.val : ℚ)) * z = (d : ℚ)) :
     let p := parameters m (mixedCount m upper) i
     ImageBounds (scalars m (upperEndpoint m) (mixedCount m upper))
-      (sharpProfile p (edgeLayer p.w z u v 1) (edgeLayer p.w z u v 2) (edgeLayer p.w z u v 3)) d := by
+      (sharpProfile p (edgeLayer p.w z u v 1) (edgeLayer p.w z u v 2) (edgeLayer p.w z u v
+        3)) d := by
   obtain ⟨edge, hu, hv⟩ := edge_complete u v huv
   have hKq : (edgeWidth edge : ℚ) = (v.val : ℚ) - (u.val : ℚ) := by
     have h := edgeWidth_eq_difference edge

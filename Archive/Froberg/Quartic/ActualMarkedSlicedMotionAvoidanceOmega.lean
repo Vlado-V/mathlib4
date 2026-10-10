@@ -112,7 +112,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q)
     intro s ell x
     apply AuxiliaryMotionMatrix.polynomialMatrix_scaling B
     intro s ell x
-    exact ActualMarkedCorrectionMotionOmega.finitePolynomialConstraint_scaling ω g h extra U sectionMap s ell x
+    exact ActualMarkedCorrectionMotionOmega.finitePolynomialConstraint_scaling ω g h extra U
+      sectionMap s ell x
   have hcount (d : AmbientSliceMotion.Threshold (RowCount m 1) c) :
       sliceCount (c := c) h U d.val ≤ (2*m+2*c-4*d.val)+
         ((correctionCount (c := c) h U-c*d.val)+auxiliaryCount (c := c) h U) := by
@@ -148,11 +149,13 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q)
       rintro _ ⟨j,rfl⟩
       change relationMap RowMultiplicationCoordinates.coordinate ell (rowFiniteEquiv (g j))=0
       exact (AmbientCovectorTransport.mem_relationMap_ker_iff _ _ _).mpr (hE j)
-    have hraw := ActualMarkedCorrectionMotionOmega.constraint_rank_bound_ambient ω g h extra U sectionMap hsection
+    have hraw := ActualMarkedCorrectionMotionOmega.constraint_rank_bound_ambient ω g h extra U
+      sectionMap hsection
       (ActualMarkedCorrectionMotionOmega.pureCoordinates.symm (fun i => z (Sum.inl
         i))) ell d.val hE'
       (by omega) hg hh hGood hs
-    have hfinite := ActualMarkedCorrectionMotionOmega.finitePolynomialConstraint_rank ω g h extra U sectionMap
+    have hfinite := ActualMarkedCorrectionMotionOmega.finitePolynomialConstraint_rank ω g h extra U
+      sectionMap
       ell (fun i => z (Sum.inl i))
     have hbase : correctionCount (c := c) h U-c*d.val ≤
         (evaluated B (Sum.elim ell (fun i => z (Sum.inl i)))).rank := by
@@ -245,16 +248,19 @@ theorem exists_actual_motions (g : Mixed K m c) (h : Child K m q)
   apply (AmbientCovectorTransport.dualCoordinates_eq_zero_iff rowFiniteEquiv ell).mp
   apply havoid lam
   · intro j f
-    rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
+    rw [RowMultiplicationCoordinates.coordinate_apply,
+      AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
     simpa only [LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm f)
   · intro i v
-    rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
+    rw [RowMultiplicationCoordinates.coordinate_apply,
+      AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
     simpa only [LinearEquiv.symm_apply_apply] using hQ i (rowFiniteEquiv.symm v)
   · apply (ActualTraceMotion.eval_covectorMatrix_kernel_iff g lam x).mpr
     intro z
-    simpa only [hr,lam,AmbientCovectorTransport.covector_dualCoordinates,LinearEquiv.symm_apply_apply]
+    simpa only [hr,lam,AmbientCovectorTransport.covector_dualCoordinates,
+      LinearEquiv.symm_apply_apply]
       using hfirst z
   · change (ActualMarkedCorrectionMotionOmega.finitePolynomialConstraint ω g h extra U
     sectionMap).map

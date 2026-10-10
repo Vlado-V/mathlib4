@@ -61,7 +61,8 @@ theorem transverse_tuple_replacement_independent (Q : I → V) (hQ : LinearIndep
   have hnew : LinearIndependent K (Function.update F (some i) (Q i+ε • M)) := by
     apply hF.update (some i) (Q i+ε • M)
     refine ⟨1,by simp,Finsupp.single (some i) 1+Finsupp.single none ε,by simp,?_⟩
-    simp only [one_smul,map_add,Finsupp.linearCombination_single,F,Option.elim_some,Option.elim_none]
+    simp only [one_smul,map_add,Finsupp.linearCombination_single,F,Option.elim_some,
+      Option.elim_none]
   have hh := hnew.comp (@Option.some I) (Option.some_injective I)
   have heq : (Function.update F (some i) (Q i+ε • M)) ∘ Option.some=
       Function.update Q i (Q i+ε • M) := by

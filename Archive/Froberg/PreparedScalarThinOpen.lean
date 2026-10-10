@@ -48,7 +48,8 @@ theorem prepared_scalar_thin_open (hh : 0 < h) (hm : 0 < m)
       eval ((Module.finBasis K _).equivFun a) P₀≠0)
     (hgood : ∀ a,eval ((Module.finBasis K _).equivFun a) P₀≠0 →
       OddCyclesExact U rest.1 (scalarFiberCoordinates.symm (a,rest.2.1),rest.2.2) ∧
-      Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0 < d) hO hJ U rest.1
+      Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0 < d) hO hJ U
+        rest.1
         (scalarFiberCoordinates.symm (a,rest.2.1),rest.2.2))))
     (L : ℕ) (hLC : L ≤ ⌊C⌋₊) (hLM : L ≤ M)
     (hloss : ∀ r : ℕ,⌈S*(r : ℝ)⌉₊ ≤ L*r/2)

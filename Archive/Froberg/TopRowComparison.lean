@@ -74,7 +74,8 @@ theorem sumBiformMap_topRowScalarCoefficient
     rename Sum.inl (topRowScalarCoefficient v).val=sumBiformMap v := by
   let z := biformDegreeTransport (K := K) (h := h) (m := m) (a := d)
     rfl (Nat.sub_self d) v
-  have he := sumBiformMap_rightScalar (m := m) ((rightScalarBiformEquiv (K := K) (h := h) (m := m) (a := d)).symm z)
+  have he := sumBiformMap_rightScalar (m := m) ((rightScalarBiformEquiv (K := K) (h := h) (m := m)
+    (a := d)).symm z)
   rw [LinearEquiv.apply_symm_apply] at he
   change rename Sum.inl ((rightScalarBiformEquiv (m := m)).symm z).val=_
   rw [←he]
@@ -160,7 +161,8 @@ theorem topRow_map_comparison (hd : 1 ≤ d)
     (topRowTarget (K := K) (h := h) (m := m) (d := d)).toLinearMap.comp
       (oddTensorRowMap hd le_rfl (fun i => scalarBiformEquiv (h := h) (Q i)) F)=
     (((rawTopTarget hd).toLinearMap.comp (rawTopFamily F)).coprod
-      (sumTensorRight (K := K) (X := Forms K h d) Q)).comp (topRowCoefficients (K := K) (h := h) (m := m) (d := d) (f := f) (q := q)).toLinearMap := by
+      (sumTensorRight (K := K) (X := Forms K h d) Q)).comp (topRowCoefficients (K := K) (h := h) (m
+        := m) (d := d) (f := f) (q := q)).toLinearMap := by
   apply LinearMap.ext
   rintro ⟨a,c⟩
   change (topRowTarget (K := K) (h := h) (m := m) (d := d)) (oddTensorRowMap hd le_rfl _ F (a,c))=

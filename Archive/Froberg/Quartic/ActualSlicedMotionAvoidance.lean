@@ -242,16 +242,19 @@ theorem exists_actual_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
   apply (AmbientCovectorTransport.dualCoordinates_eq_zero_iff rowFiniteEquiv ell).mp
   apply havoid lam
   · intro j f
-    rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
+    rw [RowMultiplicationCoordinates.coordinate_apply,
+      AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
     simpa only [LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm f)
   · intro i v
-    rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
+    rw [RowMultiplicationCoordinates.coordinate_apply,
+      AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
     simpa only [LinearEquiv.symm_apply_apply] using hQ i (rowFiniteEquiv.symm v)
   · apply (ActualTraceMotion.eval_covectorMatrix_kernel_iff g lam x).mpr
     intro z
-    simpa only [hr,lam,AmbientCovectorTransport.covector_dualCoordinates,LinearEquiv.symm_apply_apply]
+    simpa only [hr,lam,AmbientCovectorTransport.covector_dualCoordinates,
+      LinearEquiv.symm_apply_apply]
       using hfirst z
   · change (ActualCorrectionMotion.finitePolynomialConstraint g h U sectionMap).map
       (eval (Sum.elim lam x)) *ᵥ y.1=0

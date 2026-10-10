@@ -133,7 +133,8 @@ set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 theorem fiberSubset_subset (I : Finset (Fin 4)) (l : CanonicalLabel) :
     fiberSubset I l ⊆ edgeSupport l.1 := by
   unfold fiberSubset
-  split_ifs <;> first | exact choiceSubset_subset l | exact sdiff_subset | rfl | exact empty_subset _
+  split_ifs <;>
+    first | exact choiceSubset_subset l | exact sdiff_subset | rfl | exact empty_subset _
 
 set_option maxHeartbeats 0 in -- Preserve the budget during this port.
 /-- The finite certificate includes all three four-vertex matchings with their

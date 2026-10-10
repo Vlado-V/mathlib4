@@ -20,7 +20,8 @@ namespace Froberg
 open Module MvPolynomial TensorProduct Quartic Quartic.SplitTensor VectorMultiplicationCoordinates
 open BilinearScalarFamily
 attribute [local instance] tensorFormGroup
-attribute [local irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
+attribute [local
+  irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f u e b : ℕ}
 variable (hd : Odd d) (hd3 : 3 ≤ d)
   (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
@@ -53,7 +54,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem mixed_actual_affine_slices (hh : 0 < h) (hm : 0 < m)
     (hU : LinearIndependent K U)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
-      (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range Q))))
+      (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range
+        Q))))
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (hker : R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap)
     (s₀ : ℕ → ℕ) (hs₀ : HasClosedKernelSlices ν s₀) (M : ℕ)
@@ -90,7 +92,8 @@ theorem mixed_actual_affine_slices (hh : 0 < h) (hm : 0 < m)
   obtain ⟨D,hD⟩ := exists_mixed_ambient_correction hdp hd (by omega) Q F U P hU hE
   let ec := oddAmbientCoordinates hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
   apply actual_odd_affine_slices Q₀ F₁ G₁ E hh hm hd ec
-    (fun v hv => congrArg Prod.snd (oddAmbientCoordinates_weighted_bottom hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD v hv))
+    (fun v hv => congrArg Prod.snd (oddAmbientCoordinates_weighted_bottom hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
+      v hv))
     ν s₀ hs₀ M _ _ P₀ hP₀ hinj hupper slices hslices0 C L loss
     hbase hslices hC hM hloss hsmall
   · intro ell _

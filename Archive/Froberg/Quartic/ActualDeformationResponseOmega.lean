@@ -183,7 +183,8 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h)))
     (s : Fin c → Forms K m 2) (a : SplitMiddle31.Homology (rowMixed g))
     (b : Correction ω g h r markedU) :
-    response ω g h r markedU s (a,b)=traceResponse g h r a+correctionResponse ω g h r markedU s b := rfl
+    response ω g h r markedU s (a,b)=traceResponse g h r a+correctionResponse ω g h r markedU s b
+      := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 /-- The exact response domain dimension, using actual correction and trace
@@ -246,7 +247,8 @@ theorem maximal_rank_of_ambient_exclusion
     intro a
     dsimp only [ambientEll,LinearMap.comp_apply]
     have hp := LinearMap.congr_fun hN (0,Submodule.Quotient.mk a)
-    simpa only [LinearMap.comp_apply,LinearMap.zero_apply,response_apply,map_zero,zero_add,correctionResponse_mk] using hp
+    simpa only [LinearMap.comp_apply,LinearMap.zero_apply,response_apply,map_zero,zero_add,
+      correctionResponse_mk] using hp
   have hzero := hexclude ambientEll hrel ht hc hZ
   apply LinearMap.ext
   intro a

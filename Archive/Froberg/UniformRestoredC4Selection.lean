@@ -41,7 +41,8 @@ theorem restored_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
         ∃ p : RestoredOuterSpace n d (upperCount n d) f J counts O,
           eval ((Module.finBasis K _).equivFun p) D≠0 ∧
           StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d G ∧
-          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i)) d)
+          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm
+            (p.2 i)) d)
             (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))) C
             (coefficientCoordinates (fun i => p.1.1.1 (Sum.inl i))) := by
   have hn := strictThinCoefficientOpen_joint hnpos houter
@@ -49,11 +50,13 @@ theorem restored_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
   letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
   letI : Module.Finite K (RestoredJointRest n d J counts O) := finite_restoredJointRest hO
   intro D hD
-  let L := restoredJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f) (counts := counts) hO
+  let L := restoredJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f) (counts :=
+    counts) hO
   let coord := (Module.finBasis K (RestoredOuterSpace n d (upperCount n d) f J counts O)).equivFun
   let P := substituteAffine (coord.toLinearMap.comp L) 0 D
   have heval (x) : eval x P=eval (coord (L x)) D := by
-    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from rfl,eval_substituteAffine,add_zero]
+    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from
+      rfl,eval_substituteAffine,add_zero]
     rfl
   have hP : ∃ x,eval x P≠0 := by
     obtain ⟨p,hp⟩ := hD
@@ -62,7 +65,8 @@ theorem restored_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
   obtain ⟨pF,pQ,pR,hp,hmodel,hchild⟩ := hn _ P hP
   let p := L (Sum.elim pF (Sum.elim pQ pR))
   have hcoords := restoredJointFromCoordinates_eval hO pF pQ pR
-  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2 i))=VectorParameters.generators pF :=
+  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2
+    i))=VectorParameters.generators pF :=
     congrArg Prod.fst hcoords
   have hQ : (fun i => p.1.1.1 (Sum.inl i))=coefficientForms K n d (upperCount n d) pQ :=
     congrArg (fun x => x.2.1) hcoords
@@ -161,8 +165,10 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
       letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
       ∀ (Good : RestoredOuterSpace n d (upperCount n d) (f n) J counts O → Prop)
-        (A : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts O))) K)
-        (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts' O))) K),
+        (A : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts
+          O))) K)
+        (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts'
+          O))) K),
         (∃ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
           eval ((Module.finBasis K _).equivFun p) A ≠ 0) →
         (∀ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
@@ -233,7 +239,8 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
     (outerScalarDeficit (fun i => outerVectorEquiv.symm (p.2 i))) (C*(n : ℝ)^d) hstart.2.2.2
   have hgood₀ : ∀ z, eval ((Module.finBasis K _).equivFun z) P₀ ≠ 0 →
       OddSplitExact
-        (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (z,rest)).1)
+        (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+          (z,rest)).1)
         (fun i => linearOddForm (by omega : 1 ≤ d) (outerVectorEquiv.symm (rest.2.2 i))) ∧
       Function.Surjective (upperTargetMap (restoredOuterEndpoint (by omega : 1 ≤ d)
         hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (z,rest)))) := by
@@ -241,7 +248,8 @@ theorem field_uniform_restored_c4_selection {d h : ℕ}
     have hv := (hfiber z hz).2.1.1.2
     rw [restoredCountScalarFiberLinear_restrict] at hv
     exact hv
-  have hsmall : 2*(oddCoefficientCount d h n+Fintype.card (ProductRows.LayerLabel J counts))+1 ≤ L n := by
+  have hsmall : 2*(oddCoefficientCount d h n+Fintype.card (ProductRows.LayerLabel J
+    counts))+1 ≤ L n := by
     have hb := hbgt.2.2.2.1
     omega
   obtain ⟨P₁,hP₁,hthin⟩ := restored_scalar_thin_open hd hdeven hO hJ heven idx slot hslot rest
@@ -279,8 +287,10 @@ theorem uniform_exact_counts_restored_c4_selection {d k h lo : ℕ}
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
       letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
       ∀ (Good : RestoredOuterSpace n d (upperCount n d) (f n) J counts O → Prop)
-        (A : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts O))) K)
-        (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts' O))) K),
+        (A : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts
+          O))) K)
+        (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts'
+          O))) K),
         (∃ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
           eval ((Module.finBasis K _).equivFun p) A ≠ 0) →
         (∀ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,

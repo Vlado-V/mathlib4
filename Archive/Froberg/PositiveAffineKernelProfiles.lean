@@ -51,7 +51,8 @@ variable
     (hcount : ∀ k : Fin (a+1),∀ k₀ : Fin (a₀+1),threshold≤k.val → k₀.val≤k.val → 0<s₀ k₀ →
       s₀ k₀+a*k.val+H<M*(k.val-k₀.val)+q*(a-k.val)+s)
 
-include nu mu₀ muH higher res hres hcompat s₀ nf degrees f cuts hempty hpresentation hmono hgrowth hcount
+include nu mu₀ muH higher res hres hcompat s₀ nf degrees f cuts hempty hpresentation hmono hgrowth
+  hcount
 
 set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 /-- A single joint principal open works for every full and bottom kernel
@@ -108,7 +109,8 @@ theorem affine_kernel_profiles_avoid_positive :
       ∀ Q,eval ((Module.finBasis K _).equivFun Q) D≠0 →
       ∀ ell : Fin T → K,bottom ell≠0 → threshold≤finrank K (relationMap mu ell).ker →
         KernelCovectorExcluded mu B (Q,Z) ell := by
-  obtain ⟨P,hP,hgood⟩ := affine_kernel_profiles_joint_positive mu nu mu₀ muH bottom higher res hres hcompat
+  obtain ⟨P,hP,hgood⟩ := affine_kernel_profiles_joint_positive mu nu mu₀ muH bottom higher res hres
+    hcompat
     s₀ nf degrees f cuts hempty hpresentation hmono hgrowth B hcount
   exact principal_open_freeze_right P hP _ hgood
 

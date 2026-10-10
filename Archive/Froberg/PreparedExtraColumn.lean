@@ -221,7 +221,8 @@ theorem prepared_extra_background_span
       (fun j => preparedOddBiform hd ho U P F (Sum.inr j)))
     (countBackgroundIndex hc) (Sum.inl (Fintype.equivFin _ extra)) hc'
   rw [preparedBackground_restrictCounts hd ho hO hJ heven hc p U P F] at hh
-  simpa only [backgroundPositiveForms,Sum.elim_inl,preparedPositiveBiform,Equiv.symm_apply_apply] using hh
+  simpa only [backgroundPositiveForms,Sum.elim_inl,preparedPositiveBiform,Equiv.symm_apply_apply]
+    using hh
 
 end PreparedTarget
 end Froberg

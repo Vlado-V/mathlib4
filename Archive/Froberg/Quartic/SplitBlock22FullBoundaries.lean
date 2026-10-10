@@ -44,7 +44,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem sourceEmbedding_crossBoundary (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (b : CrossCoefficients K q) :
     sourceEmbedding (crossBoundary (c := c) h b) =
-      ∑ i : Fin 4, ∑ j : Fin q, b (i,j) • koszulVector (fullGenerators g h) (fullCrossPair i j) := by
+      ∑ i : Fin 4, ∑ j : Fin q, b (i,j) • koszulVector (fullGenerators g h) (fullCrossPair i
+        j) := by
   classical
   funext k
   refine Fin.addCases ?_ ?_ k
@@ -58,7 +59,8 @@ theorem sourceEmbedding_crossBoundary (g : Fin c → MiddleCoordinates.Mixed K m
       simp [crossBoundary, koszulVector, fullCrossPair, Finset.sum_apply]
     · intro j
       rw [sourceEmbedding_child]
-      simp [crossBoundary, koszulVector, fullCrossPair, Finset.sum_apply, map_sum, map_smul, smul_ite]
+      simp [crossBoundary, koszulVector, fullCrossPair, Finset.sum_apply, map_sum, map_smul,
+        smul_ite]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- Each mixed–mixed array is its actual full Koszul vector. -/
@@ -102,7 +104,8 @@ theorem sourceEmbedding_boundary_mem (g : Fin c → MiddleCoordinates.Mixed K m)
       (sourceEmbedding.comp mixedSourceEmbedding) := by
     apply Submodule.span_le.mpr
     rintro _ ⟨p,rfl⟩
-    change sourceEmbedding (mixedSourceEmbedding (koszulVector g p)) ∈ koszulSpace (fullGenerators g h)
+    change sourceEmbedding (mixedSourceEmbedding (koszulVector g p)) ∈ koszulSpace (fullGenerators g
+      h)
     rw [sourceEmbedding_mixedBoundary]
     exact Submodule.subset_span ⟨fullMixedPair p,rfl⟩
   have hle : blockBoundarySpace g h ≤ (koszulSpace (fullGenerators g h)).comap sourceEmbedding := by
@@ -155,7 +158,8 @@ private theorem projection_cross_mem (g : Fin c → MiddleCoordinates.Mixed K m)
       pairVector (fullGenerators g h) (Fin.castAdd (c+q) i) (Fin.natAdd 4 (Fin.natAdd c j)) := by
     change sourceEmbedding (crossBoundary (c := c) h b) =
       koszulVector (fullGenerators g h) (fullCrossPair i j)
-    simpa [b, Pi.single_apply, Prod.mk.injEq, ite_smul, ite_and] using sourceEmbedding_crossBoundary g h b
+    simpa [b, Pi.single_apply, Prod.mk.injEq, ite_smul,
+      ite_and] using sourceEmbedding_crossBoundary g h b
   have hp := congrArg (sourceProjection (K := K) (m := m) (c := c) (q := q)) he
   rw [sourceProjection_sourceEmbedding] at hp
   rw [← hp]
@@ -200,14 +204,16 @@ theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     · intro j
       have hz : sourceProjection (pairVector (fullGenerators g h)
           (Fin.castAdd (c+q) i) (Fin.castAdd (c+q) j)) = 0 := by
-        refine Prod.ext (funext fun k => ?_) (Prod.ext (funext fun k => ?_) (funext fun k => ?_)) <;> simp
+        refine Prod.ext (funext fun k => ?_) (Prod.ext (funext fun k => ?_) (funext fun k =>
+          ?_)) <;> simp
       rw [hz]; exact Submodule.zero_mem _
     · intro j
       refine Fin.addCases ?_ ?_ j
       · intro k
         have hz : sourceProjection (pairVector (fullGenerators g h)
             (Fin.castAdd (c+q) i) (Fin.natAdd 4 (Fin.castAdd q k))) = 0 := by
-          refine Prod.ext (funext fun l => ?_) (Prod.ext (funext fun l => ?_) (funext fun l => ?_)) <;> simp
+          refine Prod.ext (funext fun l => ?_) (Prod.ext (funext fun l => ?_) (funext fun l =>
+            ?_)) <;> simp
         rw [hz]; exact Submodule.zero_mem _
       · intro k
         exact projection_cross_mem g h i k
@@ -218,7 +224,8 @@ theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
       · intro k
         have hz : sourceProjection (pairVector (fullGenerators g h)
             (Fin.natAdd 4 (Fin.castAdd q j)) (Fin.castAdd (c+q) k)) = 0 := by
-          refine Prod.ext (funext fun l => ?_) (Prod.ext (funext fun l => ?_) (funext fun l => ?_)) <;> simp
+          refine Prod.ext (funext fun l => ?_) (Prod.ext (funext fun l => ?_) (funext fun l =>
+            ?_)) <;> simp
         rw [hz]; exact Submodule.zero_mem _
       · intro k
         refine Fin.addCases ?_ ?_ k
@@ -227,7 +234,8 @@ theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
         · intro l
           have hz : sourceProjection (pairVector (fullGenerators g h)
               (Fin.natAdd 4 (Fin.castAdd q j)) (Fin.natAdd 4 (Fin.natAdd c l))) = 0 := by
-            refine Prod.ext (funext fun k => ?_) (Prod.ext (funext fun k => ?_) (funext fun k => ?_)) <;> simp
+            refine Prod.ext (funext fun k => ?_) (Prod.ext (funext fun k => ?_) (funext fun k =>
+              ?_)) <;> simp
           rw [hz]; exact Submodule.zero_mem _
     · intro j
       refine Fin.addCases ?_ ?_ v
@@ -239,7 +247,8 @@ theorem sourceProjection_pair_mem (g : Fin c → MiddleCoordinates.Mixed K m)
             (Fin.natAdd 4 (Fin.natAdd c j)) (Fin.natAdd 4 k)) = 0 := by
           refine Fin.addCases ?_ ?_ k <;> intro l
           all_goals
-            refine Prod.ext (funext fun s => ?_) (Prod.ext (funext fun s => ?_) (funext fun s => ?_)) <;> simp
+            refine Prod.ext (funext fun s => ?_) (Prod.ext (funext fun s => ?_) (funext fun s =>
+              ?_)) <;> simp
         rw [hz]; exact Submodule.zero_mem _
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
@@ -247,7 +256,8 @@ set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem sourceProjection_koszul_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (a : Fin (4+(c+q)) → Forms K (3+m) 2)
     (ha : a ∈ koszulSpace (fullGenerators g h)) : sourceProjection a ∈ blockBoundarySpace g h := by
-  have hle : koszulSpace (fullGenerators g h) ≤ (blockBoundarySpace g h).comap sourceProjection := by
+  have hle : koszulSpace (fullGenerators g h) ≤ (blockBoundarySpace g
+    h).comap sourceProjection := by
     apply Submodule.span_le.mpr
     rintro _ ⟨p,rfl⟩
     exact sourceProjection_pair_mem g h p.val.1 p.val.2
@@ -338,7 +348,8 @@ theorem fullHomologyMap_range_finrank_eq_H (g : Fin c → MiddleCoordinates.Mixe
   exact homology_finrank_eq_H g h hg hh hs
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Under the actual middle surjectivity condition, the whole (2,2) target lies in the full image. -/
+/-- Under the actual middle surjectivity condition, the whole (2,2) target lies in the full
+image. -/
 theorem full_target_le_range (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2)
     (hs : Function.Surjective

@@ -40,7 +40,8 @@ theorem bottom_polynomial_constants (hd : 1≤d)
   classical
   have hu' (i) : ∃ x : Rows K h m (d-1),sumBiformMap (linearOutputTensorEquiv x)=u i := by
     obtain ⟨z,hz⟩ := exists_sumBiformMap_of_homogeneous (a := 1) (c := d-1)
-      (by simpa only [show 1+(d-1)=d by omega] using (show (u i).IsHomogeneous d from (hu i).1)) (hu i).2
+      (by simpa only [show 1+(d-1)=d by omega] using (show (u i).IsHomogeneous d from (hu i).1)) (hu
+        i).2
     exact ⟨linearOutputTensorEquiv.symm z,by simpa using hz⟩
   have hv' (j) : ∃ y : Forms K m d,rename Sum.inr y.val=v j := by
     obtain ⟨z,hz⟩ := exists_sumBiformMap_of_homogeneous (a := 0) (c := d)

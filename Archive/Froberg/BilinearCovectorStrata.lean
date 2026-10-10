@@ -39,7 +39,8 @@ theorem graph_covers (L : Submodule K (Fin a → K)) (hL : finrank K L = r) :
 /-- The graph chart has exactly r(a-r) affine parameters. -/
 theorem graph_parameter_count (j : Fin r ↪ Fin a) :
     Fintype.card (GraphParameters j) = r*(a-r) := by
-  simp only [GraphParameters,Fintype.card_prod,SubspaceCharts.card_outside,Fintype.card_fin,Nat.mul_comm]
+  simp only [GraphParameters,Fintype.card_prod,SubspaceCharts.card_outside,Fintype.card_fin,
+    Nat.mul_comm]
 
 /-- An actual image-rank lower bound excludes the whole r-kernel stratum
 when its exact conditioned projective parameter count is negative. -/
@@ -52,7 +53,8 @@ theorem generic_excludes_stratum [Infinite K]
       (∃ Q, eval Q P ≠ 0) ∧ ∀ Q, eval Q P ≠ 0 →
       ∀ ell : Fin T → K, ell ≠ 0 → finrank K (LinearMap.ker (relationMap mu ell)) = r →
       ∃ i : Fin q, ∃ x : Fin a → K, covector ell (mu (fun k => Q (i,k)) x) ≠ 0 := by
-  obtain ⟨P,hP,hgood⟩ := PolynomialSubspaceCovectorCharts.principal_open_excludes_covered_stratum_of_int_bound
+  obtain ⟨P,hP,
+    hgood⟩ := PolynomialSubspaceCovectorCharts.principal_open_excludes_covered_stratum_of_int_bound
     (d := r) (e := e) (q := q) mu (fun j : Fin r ↪ Fin a => graphPolynomial (K := K) j)
     (r*(a-r) : ℕ) (fun j => by rw [graph_parameter_count]) hcount
   exact ⟨P,hP,fun Q hQ ell hell hr =>
@@ -110,7 +112,8 @@ theorem surjective_of_covectors
   have hh := LinearMap.congr_fun hell (Pi.single i x)
   change ell (BilinearScalarFamily.multiplication mu Q (Pi.single i x)) = 0 at hh
   rw [BilinearScalarFamily.multiplication_apply] at hh
-  simpa only [Pi.single_apply,apply_ite,map_zero,Finset.sum_ite_eq',Finset.mem_univ,if_true] using hh
+  simpa only [Pi.single_apply,apply_ite,map_zero,Finset.sum_ite_eq',Finset.mem_univ,
+    if_true] using hh
 
 /-- Intersecting all kernel-dimension strata produces an actual nonempty open
 of surjective scalar-family maps. -/

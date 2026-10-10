@@ -51,7 +51,8 @@ variable
     (hcount : ∀ k : Fin (a+1),∀ k₀ : Fin (a₀+1),threshold≤k.val → k₀.val≤k.val →
       s₀ k₀+a*k.val+H<M*(k.val-k₀.val)+q*(a-k.val)+s)
 
-include nu mu₀ muH higher res hres hcompat s₀ nf degrees f cuts hempty hpresentation hmono hgrowth hcount
+include nu mu₀ muH higher res hres hcompat s₀ nf degrees f cuts hempty hpresentation hmono hgrowth
+  hcount
 
 set_option maxHeartbeats 2600000 in -- Preserve the budget during this port.
 /-- A single joint principal open works for every full and bottom kernel

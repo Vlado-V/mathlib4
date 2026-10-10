@@ -184,7 +184,8 @@ theorem quotient_injective_of_lifted (F : S →ₗ[K] A × A)
   simp [hb, ha₀, hξ]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-/-- The fixed-space lifted matrix is polynomial whenever its product and coefficient families are. -/
+/-- The fixed-space lifted matrix is polynomial whenever its product and coefficient families
+are. -/
 theorem lifted_polynomial {ι : Type*} [FiniteDimensional K S] [FiniteDimensional K A]
     (F : (ι → K) → (S →ₗ[K] A × A)) (h : (ι → K) → Fin q → A)
     (r : (ι → K) → Fin 4 → A) (hF : IsPolynomialFamily F)
@@ -228,7 +229,8 @@ theorem liftedFamily_polynomial : IsPolynomialFamily (liftedFamily ω (K := K) (
     exact isPolynomialFamily_linear ((LinearMap.proj i).comp coefficientMotions)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-/-- The concrete parameterized augmented witness gives an actual full-coefficient injective point. -/
+/-- The concrete parameterized augmented witness gives an actual full-coefficient injective
+point. -/
 theorem exists_injective_parameter (hc : c ≤ m)
     (hbudget : q + (c + 1).choose 2 + 3 ≤ (m + 1).choose 2) (hω : ω ≠ 0) (hω1 : ω ≠ -1) :
     ∃ a : ParameterIndex m c q → K,

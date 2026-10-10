@@ -27,7 +27,8 @@ def rawTopFamily (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
     (Fin qF → Forms K h e ⊗[K] Forms K m 1) →ₗ[K]
       (Forms K h (1+e) ⊗[K] Forms K m (1+e)) :=
   BilinearScalarFamily.multiplication
-    (tensorFormProduct (d := e) (e := 1) (gradedMultiplication (K := K) (n := h) (d := 1) (e := e))) F
+    (tensorFormProduct (d := e) (e := 1) (gradedMultiplication (K := K) (n := h) (d := 1) (e :=
+      e))) F
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projectedTopFamily_eq (P : Forms K h (1+e) →ₗ[K] (Fin b → K))

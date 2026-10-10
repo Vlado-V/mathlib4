@@ -46,7 +46,8 @@ theorem finite_sharp_profile_bounds (m : ℕ) (hmlo : 41 ≤ m) (hmhi : m ≤ 12
       m false):ℝ) := by
       linarith [he.2]
     exact_mod_cast hr
-  have h := MarkedSharpCertificate.sharp_edge_inequalities m hmlo hmhi hm88 i hi e d ⟨hdlo,hdhi,hlo,hhi⟩
+  have h := MarkedSharpCertificate.sharp_edge_inequalities m hmlo hmhi hm88 i hi e d ⟨hdlo,hdhi,
+    hlo,hhi⟩
   exact (imageBounds_cast h).mono hle
 
 end

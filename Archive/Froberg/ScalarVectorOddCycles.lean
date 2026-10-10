@@ -61,8 +61,10 @@ theorem scalar_vector_odd_exact (hd : 1≤d)
     hS hO (bottom_polynomial_constants hd Q g hg hQ) hhigher
     (fun i => (u i).val) (fun j => (v j).val)
     (fun i => (u i).property.1) (fun j => (v j).property.1)
-    (fun i => (parity_homogeneous_iff (blockWeight h m) (u i).val 1 (by decide)).mp (u i).property.2)
-    (fun j => (parity_homogeneous_iff (blockWeight h m) (v j).val 0 (by decide)).mp (v j).property.2)
+    (fun i => (parity_homogeneous_iff (blockWeight h m) (u i).val 1 (by decide)).mp (u
+      i).property.2)
+    (fun j => (parity_homogeneous_iff (blockWeight h m) (v j).val 0 (by decide)).mp (v
+      j).property.2)
     (by simpa only [scalarEvenForm_val,linearOddForm_val] using hr)
   exact ⟨C,by simpa only [linearOddForm_val] using hC,by simpa only [scalarEvenForm_val] using hC'⟩
 

@@ -146,7 +146,8 @@ theorem exists_matrix_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
       rintro _ ⟨j,rfl⟩
       change relationMap RowMultiplicationCoordinates.coordinate ell (rowFiniteEquiv (g j))=0
       exact (AmbientCovectorTransport.mem_relationMap_ker_iff _ _ _).mpr (hE j)
-    have hraw := ActualCorrectionMotionOmega.constraint_rank_bound_ambient ω g h U sectionMap hsection
+    have hraw := ActualCorrectionMotionOmega.constraint_rank_bound_ambient ω g h U sectionMap
+      hsection
       (ActualCorrectionMotionOmega.pureCoordinates.symm (fun i => z (Sum.inl i))) ell d.val hE'
       (by omega) hg hh hGood hs
     have hfinite := ActualCorrectionMotionOmega.finitePolynomialConstraint_rank ω g h U sectionMap
@@ -243,16 +244,19 @@ theorem exists_actual_motions (g : Mixed K m c) (h : Child K m q) (U : Marked h)
   apply (AmbientCovectorTransport.dualCoordinates_eq_zero_iff rowFiniteEquiv ell).mp
   apply havoid lam
   · intro j f
-    rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
+    rw [RowMultiplicationCoordinates.coordinate_apply,
+      AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
     simpa only [LinearEquiv.symm_apply_apply] using hE j (finiteEquiv.symm f)
   · intro i v
-    rw [RowMultiplicationCoordinates.coordinate_apply,AmbientCovectorTransport.covector_dualCoordinates,
+    rw [RowMultiplicationCoordinates.coordinate_apply,
+      AmbientCovectorTransport.covector_dualCoordinates,
       LinearEquiv.symm_apply_apply]
     simpa only [LinearEquiv.symm_apply_apply] using hQ i (rowFiniteEquiv.symm v)
   · apply (ActualTraceMotion.eval_covectorMatrix_kernel_iff g lam x).mpr
     intro z
-    simpa only [hr,lam,AmbientCovectorTransport.covector_dualCoordinates,LinearEquiv.symm_apply_apply]
+    simpa only [hr,lam,AmbientCovectorTransport.covector_dualCoordinates,
+      LinearEquiv.symm_apply_apply]
       using hfirst z
   · change (ActualCorrectionMotionOmega.finitePolynomialConstraint ω g h U sectionMap).map
       (eval (Sum.elim lam x)) *ᵥ y.1=0

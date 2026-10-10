@@ -31,7 +31,8 @@ theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
     (houter : StrictThinCoefficientOpen K h n d f G C) :
       ∀ (J : Finset ℕ) (counts : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈J,O j≤Forms K h j),
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f
+        u J counts O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
       ∀ D : MvPolynomial (Fin (finrank K
         (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O))) K,
@@ -40,19 +41,24 @@ theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
         ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
           eval ((Module.finBasis K _).equivFun p) D≠0 ∧
           StrictModel (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i)) d G ∧
-          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i)) d)
+          ChildFlagCondition (quotientMultiplication (fun i => PreparedTarget.outerVectorEquiv.symm
+            (p.2.2 i)) d)
             (outerScalarDeficit (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i))) C
             (coefficientCoordinates (fun i => p.2.1.1 (Sum.inl i))) := by
   intro J counts O hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
+    counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   letI : Module.Finite K (JointRest n d (upperCount n d) f u J counts O) := finite_jointRest hO
   intro D hD
-  let L := preparedJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f) (u := u) (counts := counts) hO
-  let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O)).equivFun
+  let L := preparedJointFromCoordinates (m := n) (d := d) (q := upperCount n d) (f := f) (u :=
+    u) (counts := counts) hO
+  let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
+    d) f u J counts O)).equivFun
   let P := substituteAffine (coord.toLinearMap.comp L) 0 D
   have heval (x) : eval x P=eval (coord (L x)) D := by
-    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from rfl,eval_substituteAffine,add_zero]
+    rw [show P=substituteAffine (coord.toLinearMap.comp L) 0 D from
+      rfl,eval_substituteAffine,add_zero]
     rfl
   have hP : ∃ x,eval x P≠0 := by
     obtain ⟨p,hp⟩ := hD
@@ -61,7 +67,8 @@ theorem prepared_joint_of_strict_thin_open {K : Type} [Field K] [Infinite K]
   obtain ⟨pF,pQ,pR,hp,hmodel,hchild⟩ := strictThinCoefficientOpen_joint hnpos houter _ P hP
   let p := L (Sum.elim pF (Sum.elim pQ pR))
   have hcoords := preparedJointFromCoordinates_eval hO pF pQ pR
-  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2 i))=VectorParameters.generators pF :=
+  have hF : (fun i => PreparedTarget.outerVectorEquiv.symm (p.2.2
+    i))=VectorParameters.generators pF :=
     congrArg Prod.fst hcoords
   have hQ : (fun i => p.2.1.1 (Sum.inl i))=coefficientForms K n d (upperCount n d) pQ :=
     congrArg (fun x => x.2.1) hcoords
@@ -80,15 +87,19 @@ def PreparedGrowthFiberAt (K : Type) [Field K] [Infinite K]
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K)) (G C : ℝ) : Prop :=
       ∀ (J : Finset ℕ) (counts counts' : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hcounts : ∀ j ∈ J, counts j ≤ counts' j),
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f
+        u J counts O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f
+        u J counts' O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-      ∀ (Good : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O → Prop)
+      ∀ (Good : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O
+        → Prop)
         (A : MvPolynomial (Fin (finrank K
           (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O))) K)
         (D : MvPolynomial (Fin (finrank K
-          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O))) K),
+          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O)))
+            K),
         (∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
           eval ((Module.finBasis K _).equivFun v) A ≠ 0) →
         (∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
@@ -106,7 +117,8 @@ def PreparedGrowthFiberAt (K : Type) [Field K] [Infinite K]
             BaseC4GrowthProperty hd R (scalarReserveCount d n)
               (preparedBaseProjection (fullRestrictCounts hcounts p')) ∧
             StrictModel (fun i => outerVectorEquiv.symm (p'.2.2 i)) d G ∧
-            ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p'.2.2 i)) d)
+            ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p'.2.2 i))
+              d)
               (outerScalarDeficit (fun i => outerVectorEquiv.symm (p'.2.2 i))) C
               (coefficientCoordinates (fun i => p'.2.1.1 (Sum.inl i)))
 
@@ -118,21 +130,25 @@ theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite
     (hgrowth : HasBaseC4GrowthOpen (m := n) (f := f) (q := upperCount n d)
       hd R (scalarReserveCount d n)) : PreparedGrowthFiberAt K hd n f u R G C := by
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
+    counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J
+    counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgrowth⟩ := prepared_base_growth_open (u := u) (counts := counts) hd hO R hgrowth
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection
     (V := FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O)
     ![A,B] (by intro i; fin_cases i; exact hA; exact hB)
-  have hAB : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
+  have hAB : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
+    d) f u J counts O,
       eval ((Module.finBasis K _).equivFun v) (A*B) ≠ 0 :=
     ⟨v,by simpa [map_mul] using mul_ne_zero (hv 0) (hv 1)⟩
   let GoodPlus := fun v => Good v ∧ BaseC4GrowthProperty hd R (scalarReserveCount d n)
       (preparedBaseProjection v)
-  have hABgood : ∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
+  have hABgood : ∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
+    d) f u J counts O,
       eval ((Module.finBasis K _).equivFun v) (A*B) ≠ 0 → GoodPlus v := by
     intro v hv
     have hboth := mul_ne_zero_iff.mp (show eval ((Module.finBasis K _).equivFun v) A *
@@ -143,11 +159,14 @@ theorem prepared_growth_fiber_of_strict_thin_open {K : Type} [Field K] [Infinite
   obtain ⟨v,hv⟩ := finite_basis_principal_intersection
     (V := FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O)
     ![E,D] (by intro i; fin_cases i; exact hE; exact hD)
-  have hED : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O,
+  have hED : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n
+    d) f u J counts' O,
       eval ((Module.finBasis K _).equivFun v) (E*D) ≠ 0 :=
     ⟨v,by simpa [map_mul] using mul_ne_zero (hv 0) (hv 1)⟩
-  obtain ⟨p,hp,hmodel,hchild⟩ := prepared_joint_of_strict_thin_open hnpos houter J counts' O hO (E*D) hED
-  obtain ⟨P₀,hP₀,hfiber⟩ := prepared_count_joint_scalar_fiber_at hcounts hO G C (E*D) p hp hmodel hchild
+  obtain ⟨p,hp,hmodel,hchild⟩ := prepared_joint_of_strict_thin_open hnpos houter J counts' O hO
+    (E*D) hED
+  obtain ⟨P₀,hP₀,hfiber⟩ := prepared_count_joint_scalar_fiber_at hcounts hO G C (E*D) p hp hmodel
+    hchild
   refine ⟨p,P₀,hP₀,?_⟩
   intro a' ha'
   obtain ⟨hED',hm,hchild'⟩ := hfiber a' ha'
@@ -167,30 +186,37 @@ def PreparedC4SelectionAt (K : Type) [Field K] [Infinite K] [IsAlgClosed K]
         (heven : ∀ j∈J,j%2=0) (hcounts : ∀ j∈J,counts j≤counts' j),
       Fintype.card (ProductRows.LayerLabel J counts) ≤
         Fintype.card (ProductRows.LayerLabel (allEvenIndices d) (allEvenCount d h n (e+extra))) →
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f
+        u J counts O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f
+        u J counts' O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-      ∀ (Good : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O → Prop)
+      ∀ (Good : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O
+        → Prop)
         (A : MvPolynomial (Fin (finrank K
           (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O))) K)
         (D : MvPolynomial (Fin (finrank K
-          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O))) K),
+          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O)))
+            K),
         (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
           eval ((Module.finBasis K _).equivFun p) A≠0) →
         (∀ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts O,
           eval ((Module.finBasis K _).equivFun p) A≠0 →
             Good p ∧ OddCyclesExact U p.1 p.2 ∧
-              Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d) hO hJ U p.1 p.2))) →
+              Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d) hO hJ U
+                p.1 p.2))) →
         (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O,
           eval ((Module.finBasis K _).equivFun p) D≠0) →
         ∃ p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) f u J counts' O,
           eval ((Module.finBasis K _).equivFun p) D≠0 ∧
           let p₀ := fullRestrictCounts hcounts p
           Good p₀ ∧ OddCyclesExact U p₀.1 p₀.2 ∧
-          Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d) hO hJ U p₀.1 p₀.2)) ∧
+          Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d) hO hJ U
+            p₀.1 p₀.2)) ∧
           PreparedEndpointThin (by omega : 0<d) hdodd hO hJ heven U (ξ*(n : ℝ)^d) p₀ ∧
-          BaseC4GrowthProperty (by omega : 1≤d) R (scalarReserveCount d n) (preparedBaseProjection p₀) ∧
+          BaseC4GrowthProperty (by omega : 1≤d) R (scalarReserveCount d n) (preparedBaseProjection
+            p₀) ∧
           StrictModel (fun i => outerVectorEquiv.symm (p.2.2 i)) d (G*(n : ℝ)^d) ∧
           ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p.2.2 i)) d)
             (outerScalarDeficit (fun i => outerVectorEquiv.symm (p.2.2 i))) (C*(n : ℝ)^d)
@@ -210,7 +236,8 @@ theorem field_uniform_prepared_c4_selection {d k h lo u b : ℕ}
       ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],
       ∀ U : Fin u → Forms K h d, LinearIndependent K U →
       ∀ R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K), Function.Surjective R →
-      R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1≤d) h).symm.toLinearMap →
+      R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1≤d)
+        h).symm.toLinearMap →
       (∀ L : Submodule K (Forms K h (d-1)),b*finrank K L ≤
         finrank K (Forms K h (d-1))*
           finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := d-1)) L).map R)) →
@@ -222,19 +249,23 @@ theorem field_uniform_prepared_c4_selection {d k h lo u b : ℕ}
     (Eventually.of_forall fun _ => by simp only [Nat.add_zero]; exact le_rfl)
   simp only [Nat.add_zero] at hbudget
   refine ⟨ξ,hξ,?_⟩
-  filter_upwards [houter,hgrowth,hbudget,eventually_gt_atTop (0 : ℕ)] with n houterN hgrowthN hbgt hnpos
+  filter_upwards [houter,hgrowth,hbudget,eventually_gt_atTop (0 :
+    ℕ)] with n houterN hgrowthN hbgt hnpos
   intro K _ _ _ U hU R hR hker hP
   have hn := prepared_growth_fiber_of_strict_thin_open (u := u) (by omega : 1≤d)
     hnpos R (houterN K) (hgrowthN K R hP)
   intro J counts counts' O hO hJ heven hcounts hcard
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+    u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts' O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+    u J counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD
   obtain ⟨p,P₀,hP₀,hfiber⟩ := hn J counts counts' O hO hcounts
     (fun p => Good p ∧ OddCyclesExact U p.1 p.2 ∧
-      Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d) hO hJ U p.1 p.2)))
+      Function.Surjective (upperTargetMap (zeroScalarEndpointFamily (by omega : 0<d) hO hJ U p.1
+        p.2)))
     A D hA hGood hD
   let rest := (fullScalarFiberCoordinates (fullRestrictCounts hcounts p)).2
   let a₀ := (fullScalarFiberCoordinates (fullRestrictCounts hcounts p)).1
@@ -284,7 +315,8 @@ theorem uniform_exact_counts_prepared_c4_selection {d k h lo u b : ℕ}
       ∀ (K : Type) [Field K] [Infinite K] [IsAlgClosed K],
       ∀ U : Fin u → Forms K h d, LinearIndependent K U →
       ∀ R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K), Function.Surjective R →
-      R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1≤d) h).symm.toLinearMap →
+      R.ker=(Submodule.span K (Set.range U)).map (topGrowthDegree (by omega : 1≤d)
+        h).symm.toLinearMap →
       (∀ L : Submodule K (Forms K h (d-1)),b*finrank K L ≤
         finrank K (Forms K h (d-1))*
           finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := d-1)) L).map R)) →

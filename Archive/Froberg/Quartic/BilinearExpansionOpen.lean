@@ -129,7 +129,8 @@ theorem principal_open_containing [NeZero d] [IsAlgClosed L]
     intro x
     obtain ⟨j,rfl⟩ := ix.surjective x
     exact hq j
-  obtain ⟨D,hD,hgood⟩ := HomogeneousEmptyFiberOpen.principal_open_empty_fiber deg fam hpoly p₀ hempty
+  obtain ⟨D,hD,hgood⟩ := HomogeneousEmptyFiberOpen.principal_open_empty_fiber deg fam hpoly p₀
+    hempty
   refine ⟨D,hD,?_⟩
   intro p hp
   apply (empty_iff_expands (E p) (mu p)).mp

@@ -81,9 +81,11 @@ theorem low_rows_shared_frame_open (he : e+y=s+s)
       finrank K W=H ∧ Function.Surjective ((biformFamilyMap (x := 1) (y := s) o f).coprod
         (vectorFormFamilyToDegree he (fun i => (O i).val) g)))
     (h₃ : ∃ (W : Submodule K (Forms K h 2)) (o : Fin q → W) (f : Fin q → Forms K m e),
-      finrank K W=H ∧ Function.Surjective (biformFamilyMap (x := 1) (y := s) (fun i => (o i).val) f))
+      finrank K W=H ∧ Function.Surjective (biformFamilyMap (x := 1) (y := s) (fun i => (o i).val)
+        f))
     (h₄ : ∃ (W : Submodule K (Forms K h 2)) (o : Fin q → W) (f : Fin q → Forms K m e),
-      finrank K W=H ∧ Function.Surjective (biformFamilyMap (x := 2) (y := e) (fun i => (o i).val) f)) :
+      finrank K W=H ∧ Function.Surjective (biformFamilyMap (x := 2) (y := e) (fun i => (o i).val)
+        f)) :
     ∃ D : MvPolynomial (Fin (finrank K (Fin H → Forms K h 2))) K,
       (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 →
         LinearIndependent K ((Module.finBasis K (Fin H → Forms K h 2)).equivFun.symm a) ∧

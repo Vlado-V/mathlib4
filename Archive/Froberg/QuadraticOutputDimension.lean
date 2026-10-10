@@ -58,7 +58,8 @@ theorem upperCount_fits_quadraticOutputDimension {d : ℕ} (hd : 3 ≤ d) :
   have hρ := quadratic_critical_ratio_lt
   have hδ := quadraticOutputDensity_lower hd
   have hgap : criticalRatio 2/((2 : ℕ).factorial : ℝ) < quadraticOutputDensity d := by
-    norm_num only [Nat.factorial_succ,Nat.factorial_zero,Nat.cast_mul,Nat.cast_one,Nat.cast_ofNat,mul_one]
+    norm_num only [Nat.factorial_succ,Nat.factorial_zero,Nat.cast_mul,Nat.cast_one,Nat.cast_ofNat,
+      mul_one]
     linarith
   filter_upwards [eventually_lt_of_normalized_limits _ _ 2 _ _
     (upperCount_normalized_limit (by omega)) (quadraticOutputDimension_limit hd) hgap] with h hh

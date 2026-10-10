@@ -189,7 +189,8 @@ def chartSubspace (j : Fin r ↪ Fin n) (A : Parameters K j) : Submodule K (Fin 
     x ∈ chartSubspace j A ↔ ∀ k : Outside j, x k.val=∑ i,A k i*x (j i) := by
   change outsideProjection j x-parameterMap A (selectedProjection j x)=0 ↔ _
   rw [sub_eq_zero,funext_iff]
-  simp only [outsideProjection,selectedProjection,LinearMap.pi_apply,LinearMap.proj_apply,parameterMap_apply]
+  simp only [outsideProjection,selectedProjection,LinearMap.pi_apply,LinearMap.proj_apply,
+    parameterMap_apply]
 
 /-- The coefficient array reconstructs the original subspace exactly. -/
 theorem chartSubspace_coefficients {S : Submodule K (Fin n → K)} (j : Fin r ↪ Fin n)
@@ -211,7 +212,8 @@ theorem coefficients_determine_subspace {S T : Submodule K (Fin n → K)} (j : F
     (h : coefficients j e=coefficients j f) : S=T := by
   rw [← chartSubspace_coefficients j e he,← chartSubspace_coefficients j f hf,h]
 
-/-- Fill the selected coordinates with u and the remaining coordinates with the chart's linear forms. -/
+/-- Fill the selected coordinates with u and the remaining coordinates with the chart's linear
+forms. -/
 def chartLift (j : Fin r ↪ Fin n) (A : Parameters K j) :
     (Fin r → K) →ₗ[K] (Fin n → K) := by
   classical
@@ -237,7 +239,8 @@ def chartLift (j : Fin r ↪ Fin n) (A : Parameters K j) :
   intro k
   simp only [chartLift_outside,parameterMap_apply,chartLift_selected]
 
-/-- Every coefficient array defines an r-dimensional graph, with precisely the selected coordinates. -/
+/-- Every coefficient array defines an r-dimensional graph, with precisely the selected
+coordinates. -/
 def chartEquiv (j : Fin r ↪ Fin n) (A : Parameters K j) :
     chartSubspace j A ≃ₗ[K] (Fin r → K) where
   toFun x:=selectedProjection j x.val

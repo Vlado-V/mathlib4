@@ -29,7 +29,8 @@ def outputCombination {J σ : Type*} [Fintype J] (o : J → MvPolynomial σ K) :
     (J → K) →ₗ[K] MvPolynomial σ K where
   toFun v := ∑ j,v j • o j
   map_add' v v' := by simp only [Pi.add_apply,add_smul,Finset.sum_add_distrib]
-  map_smul' c v := by simp only [Pi.smul_apply,smul_smul,Finset.smul_sum,RingHom.id_apply,smul_eq_mul]
+  map_smul' c v := by simp only [Pi.smul_apply,smul_smul,Finset.smul_sum,RingHom.id_apply,
+    smul_eq_mul]
 
 /-- A complete homogeneous output basis can be chosen together with an
 injective coordinate inclusion of every specified homogeneous subspace. -/

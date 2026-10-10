@@ -131,7 +131,8 @@ theorem exists_response_rank_formula (g : Mixed K m c) (h : Child K m q)
         min (((2*m+2*c : ℕ):ℤ)+
           Counts.H m q c+4+finrank K U)
           (Counts.j m q c) := by
-  obtain ⟨r,s,ha,hrank⟩ := exists_maximal_response ω g h extra U Z hclosed hg hh hs htrace hcubic h13 r₀ hr₀
+  obtain ⟨r,s,ha,hrank⟩ := exists_maximal_response ω g h extra U Z hclosed hg hh hs htrace hcubic
+    h13 r₀ hr₀
   refine ⟨r,s,ha,?_⟩
   have hs' := ActualMarkedSquareResponseOmega.source_finrank ω g h r extra U hg hh ha hs
   have hj := ActualSplitCokernel.rawJ_finrank_eq_j g h hh hcubic h13

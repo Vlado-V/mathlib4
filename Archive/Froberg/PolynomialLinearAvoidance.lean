@@ -39,7 +39,8 @@ theorem polynomial_linear_kernel_avoidance (A : (I → K) → (V →ₗ[K] W))
   choose M hM using hentry
   have heval (t : I → K) : KernelPolynomialCharts.evaluated M t = LinearMap.toMatrix v w (A t) := by
     ext i j
-    simpa only [KernelPolynomialCharts.evaluated,Matrix.map_apply,LinearMap.toMatrix_apply] using hM i j t
+    simpa only [KernelPolynomialCharts.evaluated,Matrix.map_apply,LinearMap.toMatrix_apply] using
+      hM i j t
   obtain ⟨P,hP,havoid⟩ := PolynomialKernelAvoidance.principal_open_avoids_kernels M hr
   refine ⟨P,hP,?_⟩
   intro x hx t ht hz

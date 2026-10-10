@@ -36,7 +36,9 @@ theorem projected_top_linear_growth (hh : 0 < h) (hm : 0 < m)
         finrank K ((BilinearImage.image (gradedMultiplication (d := 1) (e := e)) L).map P))
     (L : Submodule K (Forms K h e ⊗[K] Forms K m 1)) :
     b*(m+(1+e)-1).choose (1+e)*finrank K L≤
-      ((h+e-1).choose e*m)*finrank K (BilinearImage.image (K := K) (F := Forms K h 1 ⊗[K] Forms K m e) (V := Forms K h e ⊗[K] Forms K m 1) (W := (Fin b → K) ⊗[K] Forms K m (1+e)) (projectedTopLinearAction (K := K) (h := h) (m := m) (e := e) (b := b) P) L) := by
+      ((h+e-1).choose e*m)*finrank K (BilinearImage.image (K := K) (F := Forms K h 1 ⊗[K] Forms K m
+        e) (V := Forms K h e ⊗[K] Forms K m 1) (W := (Fin b → K) ⊗[K] Forms K m (1+e))
+        (projectedTopLinearAction (K := K) (h := h) (m := m) (e := e) (b := b) P) L) := by
   have hg (S : Submodule K (Forms K h e)) : b*finrank K S≤
       (h+e-1).choose e*finrank K
         (BilinearImage.image ((gradedMultiplication (d := 1) (e := e)).compr₂ₛₗ P) S) := by
@@ -44,7 +46,8 @@ theorem projected_top_linear_growth (hh : 0 < h) (hm : 0 < m)
     simpa only [finrank_forms K h e hh] using hP S
   have ht := tensorized_bilinear_growth (d := e)
     ((gradedMultiplication (d := 1) (e := e)).compr₂ₛₗ P) hm ((h+e-1).choose e) b hg L
-  simpa only [projectedTopLinearAction,Nat.add_assoc,Nat.add_sub_cancel,Nat.choose_one_right] using ht
+  simpa only [projectedTopLinearAction,Nat.add_assoc,Nat.add_sub_cancel,Nat.choose_one_right] using
+    ht
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem projected_top_two_family_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
@@ -60,7 +63,9 @@ theorem projected_top_two_family_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
         eval ((Module.finBasis K _).equivFun p) D≠0) ∧
       ∀ p : (Fin qF → Forms K h 1 ⊗[K] Forms K m e) × (Fin qS → Forms K m (1+e)),
         eval ((Module.finBasis K _).equivFun p) D≠0 →
-        Function.Injective (twoFamilyMultiplication (K := K) (V₁ := Forms K h e ⊗[K] Forms K m 1) (V₂ := Fin b → K) (projectedTopLinearAction (K := K) (h := h) (m := m) (e := e) (b := b) P) (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) p) := by
+        Function.Injective (twoFamilyMultiplication (K := K) (V₁ := Forms K h e ⊗[K] Forms K m 1)
+          (V₂ := Fin b → K) (projectedTopLinearAction (K := K) (h := h) (m := m) (e := e) (b := b)
+          P) (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) p) := by
   have hdim : finrank K (Forms K h e ⊗[K] Forms K m 1)=(h+e-1).choose e*m := by
     rw [Module.finrank_tensorProduct,finrank_forms K h e hh,finrank_forms K m 1 hm]
     simp
@@ -69,7 +74,8 @@ theorem projected_top_two_family_open (hh : 0 < h) (hm : 0 < m) (hb : 0 < b)
     (V₁ := Forms K h e ⊗[K] Forms K m 1) (V₂ := Fin b → K)
     (W := (Fin b → K) ⊗[K] Forms K m (1+e))
     (q₁ := qF) (q₂ := qS) (T := b*(m+(1+e)-1).choose (1+e))
-    (projectedTopLinearAction (K := K) (h := h) (m := m) (e := e) (b := b) P) (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e)))
+    (projectedTopLinearAction (K := K) (h := h) (m := m) (e := e) (b := b) P) (tensorScalarProduct
+      (K := K) (V := Fin b → K) (P := Forms K m (1+e)))
   · rw [hdim]
     exact Nat.mul_pos (Nat.choose_pos (by omega)) hm
   · simpa using hb

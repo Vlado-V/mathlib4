@@ -20,7 +20,8 @@ set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
-attribute [local irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
+attribute [local
+  irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 attribute [local irreducible] oddMixedSourceBlockCoordinates mixedAmbientScalar
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable (hd : Odd d) (hd3 : 3≤d)
@@ -42,7 +43,8 @@ theorem mixedAmbientScalar_bottom
     (D : HigherOddTargetRows hdp Q₀ F₁ →ₗ[K] OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp))
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) (p : Forms K m d) (x : OddBottomQuotient F) :
-    oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
+    oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u :=
+      u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
       (mixedAmbientScalar hd hd3 Q F U P p
         ((oddMixedSourceBlockCoordinates hd hd3 F U P B hB).symm (x,0)))=
       (bottomCoordinateScalarAction hdp Q g p x,0) := by

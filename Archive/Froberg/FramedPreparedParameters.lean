@@ -107,12 +107,14 @@ theorem sumBiform_framed (frame : Fin H → Forms K h j)
     (c : Fin r → Fin H → Forms K m e) (i : Fin r) :
     sumBiform (framedBiformFamily frame c i)=
       polynomialFormVector (n := m) (fun a => (frame a).val) e (c i) := by
-  simp only [framedBiformFamily_apply,map_sum,sumBiform_tmul,polynomialFormVector_apply,polynomialVector_apply]
+  simp only [framedBiformFamily_apply,map_sum,sumBiform_tmul,polynomialFormVector_apply,
+    polynomialVector_apply]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem framed_coefficients_mem_prepared (frame : Fin H → Forms K h j)
     (c : Fin r → Fin H → Forms K m e) (i : Fin r) :
-    sumBiform (framedBiformFamily frame c i)∈biformImage (outputFrameSpace frame) (Forms K m e) := by
+    sumBiform (framedBiformFamily frame c i)∈biformImage (outputFrameSpace frame) (Forms K m
+      e) := by
   rw [sumBiform_framed]
   apply polynomialFormVector_mem_biform
   · intro a

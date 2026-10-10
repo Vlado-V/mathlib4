@@ -31,9 +31,11 @@ theorem mixed_ambient_higher_kernel (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (hU : LinearIndependent K U)
     (hQ : ∀ i,(scalarEvenBiform (h := h) (Q i)).val.IsWeightedHomogeneous (blockWeight h m) 0)
-    (hF : ∀ i,(oddBiformEmbedding hdp (by decide) (F i)).val.IsWeightedHomogeneous (blockWeight h m) 1)
+    (hF : ∀ i,(oddBiformEmbedding hdp (by decide) (F i)).val.IsWeightedHomogeneous (blockWeight h m)
+      1)
     (hE : Disjoint ((rawTopFamily F).range.map (rawTopTarget hdp).toLinearMap)
-      (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range Q)))) :
+      (leftRelations (Submodule.span K (Set.range U)) ⊔ rightRelations (Submodule.span K (Set.range
+        Q)))) :
     (oddAmbientHigherRelationMap hdp (fun i => scalarEvenBiform (h := h) (Q i))
       (fun i => oddBiformEmbedding hdp (by decide) (F i)) hQ hF
       (fun i => mixedPureOddGenerator hd (U i) (P i))).ker ≤

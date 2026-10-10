@@ -16,7 +16,8 @@ public import Archive.Froberg.BottomVectorQuotient
 noncomputable section
 
 namespace Froberg.PreparedParameters
-open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily BilinearCovectorStrata
+open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily
+  BilinearCovectorStrata
 variable {K : Type} [Field K] [Infinite K] {h m d q f r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 

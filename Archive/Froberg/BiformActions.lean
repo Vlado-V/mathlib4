@@ -44,7 +44,9 @@ theorem biformAction_growth (hh : 0<h) (hn : 0<n)
     (L : Submodule K (Forms K h b ⊗[K] Forms K n e)) :
     (h+r-1).choose r*(n+t-1).choose t*finrank K L ≤
       (h+b-1).choose b*(n+e-1).choose e*
-        finrank K (BilinearImage.image (K := K) (F := Forms K h a ⊗[K] Forms K n c) (V := Forms K h b ⊗[K] Forms K n e) (W := Forms K h r ⊗[K] Forms K n t) (biformAction (K := K) (h := h) (n := n) (a := a) (b := b) (c := c) (e := e) (r := r) (t := t) hx hy) L) := by
+        finrank K (BilinearImage.image (K := K) (F := Forms K h a ⊗[K] Forms K n c) (V := Forms K h
+          b ⊗[K] Forms K n e) (W := Forms K h r ⊗[K] Forms K n t) (biformAction (K := K) (h := h) (n
+          := n) (a := a) (b := b) (c := c) (e := e) (r := r) (t := t) hx hy) L) := by
   rw [biformAction]
   rw [bilinearImage_postcompose
     (P := Forms K h a ⊗[K] Forms K n c)
@@ -54,7 +56,8 @@ theorem biformAction_growth (hh : 0<h) (hn : 0<n)
   rw [(tensorDegreeEquiv (K := K) (h := h) (n := n) hx hy).finrank_map_eq]
   subst r
   subst t
-  simpa only [Nat.add_comm a b,Nat.add_assoc] using biform_normalized_growth (a := a) (c := c) hh hn L
+  simpa only [Nat.add_comm a b,Nat.add_assoc] using biform_normalized_growth (a := a) (c :=
+    c) hh hn L
 
 /-- Scalar and linear-output parameter actions have the same degree-b target. -/
 def oddRowScalarAction {d b : ℕ} (hb : b≤d) :

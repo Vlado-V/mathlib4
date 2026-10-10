@@ -50,7 +50,8 @@ theorem evenGenerator_scalar (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)
     (p : Space n d q J counts O) (i : Label q J counts) (hi : degree i=0) :
     (evenGenerator hO hJ heven p i).val.IsWeightedHomogeneous outputWeight 0 := by
   cases i with
-  | inl i => simpa only [evenGenerator,generator,high_scalar_label,add_zero] using scalar_weight p (Sum.inl i)
+  | inl i => simpa only [evenGenerator,generator,high_scalar_label,
+      add_zero] using scalar_weight p (Sum.inl i)
   | inr a => have := hpos _ a.1.property; change a.1.val=0 at hi; omega
 
 theorem evenGenerator_reduction (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

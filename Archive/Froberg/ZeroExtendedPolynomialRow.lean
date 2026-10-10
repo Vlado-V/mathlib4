@@ -72,7 +72,8 @@ theorem extended_polynomial_row_relation_constants_zero (hs : s=0) (hsd : s ≤ 
               rename Sum.inr (B k).val)+rename (Sum.map id (Fin.castAdd z)) p := by
           simp only [←hx,←hpc,polynomialFormVector_apply,attachedPolynomialFamily,
             polynomialVector_core_extension,polynomialVector_apply,map_sum,map_mul,
-            Finset.sum_mul,Finset.mul_sum,Finset.sum_add_distrib,map_add,mul_add,rename_rename,Function.comp_def,Sum.map_inl,Sum.map_inr,id_eq]
+            Finset.sum_mul,Finset.mul_sum,Finset.sum_add_distrib,map_add,mul_add,rename_rename,
+              Function.comp_def,Sum.map_inl,Sum.map_inr,id_eq]
           apply congrArg₂ (·+·)
           · apply congrArg₂ (·+·)
             · rw [Finset.sum_comm]

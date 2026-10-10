@@ -28,7 +28,8 @@ def sumBiformMap : (Forms K h a ⊗[K] Forms K n c) →ₗ[K] MvPolynomial (Fin 
     sumBiformMap (x ⊗ₜ[K] y)=rename Sum.inl x.val*rename Sum.inr y.val := by
   simp [sumBiformMap,tensorEquivSum_tmul]
 
-theorem sumBiformMap_injective : Function.Injective (sumBiformMap (K := K) (h := h) (n := n) (a := a) (c := c)) :=
+theorem sumBiformMap_injective : Function.Injective (sumBiformMap (K := K) (h := h) (n := n) (a :=
+  a) (c := c)) :=
   (tensorEquivSum K (Fin h) (Fin n) K).injective.comp
     (TensorProduct.map_injective_of_flat_flat _ _
       (Forms K h a).injective_subtype (Forms K n c).injective_subtype)
@@ -52,7 +53,8 @@ theorem sumBiformMap_degree_equiv (hx : a+b=r) (hy : e+c=t)
 theorem sumBiformMap_action (hx : a+b=r) (hy : e+c=t)
     (p : Forms K h a ⊗[K] Forms K n c) (v : Forms K h b ⊗[K] Forms K n e) :
     sumBiformMap (biformAction hx hy p v)=sumBiformMap p*sumBiformMap v := by
-  change sumBiformMap (tensorDegreeEquiv hx hy (tensorFormProduct (gradedMultiplication (d := a) (e := b)) p v))=_
+  change sumBiformMap (tensorDegreeEquiv hx hy (tensorFormProduct (gradedMultiplication (d := a) (e
+    := b)) p v))=_
   rw [sumBiformMap_degree_equiv]
   induction p using TensorProduct.inductionOn with
   | tmul x y =>

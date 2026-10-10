@@ -49,7 +49,8 @@ theorem biformTensorComponent_privateScalar_zero
     (hd : Odd d) (hb : b ≤ 2*d) (hb1 : b≠1) (hbd : b≠d)
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (z : Fin u → Forms K h 0 ⊗[K] Forms K m d) :
-    biformTensorComponent hb (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i)) z)=0 := by
+    biformTensorComponent hb (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i))
+      z)=0 := by
   apply sumBiformMap_injective
   rw [biformTensorComponent_spec,map_zero]
   rw [privateScalarRelations,LinearMap.comp_apply,privateEvenCoefficientMap_val,map_sum]
@@ -93,7 +94,8 @@ def oddAmbientRowProjection (hd : Odd d) (hb : 3 ≤ b) (hbd : b<d) (ho : b%2=1)
         · rintro _ ⟨z,rfl⟩
           change (tensorOddRowRelations (b := b) (by omega) (by omega) Q F).mkQ
             (biformTensorComponent (by omega) (privateScalarRelations _ z))=0
-          rw [biformTensorComponent_privateScalar_zero hd (by omega) (by omega) (by omega),map_zero])
+          rw [biformTensorComponent_privateScalar_zero hd (by omega) (by omega) (by
+            omega),map_zero])
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
@@ -104,7 +106,8 @@ set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during t
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1))
     (v : biformParitySpace K h m (2*d) 1) :
     oddAmbientRowProjection hd hb hbd ho Q F U P ((tensorOddAmbientRelations hd Q F U P).mkQ v)=
-      (tensorOddRowRelations (b := b) (by omega) (by omega) Q F).mkQ (biformTensorComponent (by omega) v) := rfl
+      (tensorOddRowRelations (b := b) (by omega) (by omega) Q F).mkQ (biformTensorComponent (by
+        omega) v) := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.

@@ -20,7 +20,8 @@ one common coefficient point before any response motion is selected. -/
 noncomputable section
 namespace Quartic.MarkedSmallTransfer
 open Module MvPolynomial UniformEndpoint SmallCovectorCommonOpen
-open ActualMarkedSmallMotionAvoidanceOmega ActualDeformationResponseOmega ActualDeformationColumnsOmega
+open ActualMarkedSmallMotionAvoidanceOmega ActualDeformationResponseOmega
+  ActualDeformationColumnsOmega
 variable {K : Type*} [Field K] [Infinite K] [IsAlgClosed K]
 variable (ω : K)
 

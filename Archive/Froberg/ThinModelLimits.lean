@@ -14,7 +14,8 @@ public import Archive.Froberg.ThinShadowLimits
 
 noncomputable section
 namespace Froberg.VectorExpansionOpen
-open Filter Module MvPolynomial Quartic PolynomialBilinearCoordinates VectorMultiplicationCoordinates
+open Filter Module MvPolynomial Quartic PolynomialBilinearCoordinates
+  VectorMultiplicationCoordinates
 open BilinearScalarFamily
 open scoped Topology
 variable {K : Type*} [Field K] [Infinite K] {h s : ℕ}

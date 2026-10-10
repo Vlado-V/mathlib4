@@ -66,7 +66,8 @@ theorem exact_count_generic_flag_joint {K : Type*} [Field K] [Infinite K]
     intro pF hpF
     exact thin_generic_flag_principal_open _ hnpos (Nat.sub_le _ 1)
       (upperCount_le_monomial_count hnpos d) (hmodel pF hpF).2
-  obtain ⟨pF,pQ,pI,hF,hQ,hjoint⟩ := fiberwise_principal_meets_joint_open_with_extra D hD Phi hfiber P hP
+  obtain ⟨pF,pQ,pI,hF,hQ,hjoint⟩ := fiberwise_principal_meets_joint_open_with_extra D hD Phi hfiber
+    P hP
   exact ⟨pF,pQ,pI,hjoint,(hmodel pF hF).1,hQ⟩
 
 end Froberg

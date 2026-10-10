@@ -34,7 +34,8 @@ theorem mem_scalarCoefficientRow_range
   choose x hx using hx
   refine ⟨fun i k => x k i,?_⟩
   funext k
-  simpa only [scalarCoefficientRow,LinearMap.coe_mk,AddHom.coe_mk,prefixMultiplication_val] using hx k
+  simpa only [scalarCoefficientRow,LinearMap.coe_mk,AddHom.coe_mk,prefixMultiplication_val] using
+    hx k
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem polynomialTensorSpace_product_scalar_range

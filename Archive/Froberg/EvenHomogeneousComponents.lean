@@ -25,7 +25,8 @@ theorem even_homogeneous_components (w : σ → ℕ) (hw : ∀ x,w x≤1)
       ∑ r : Fin ((d-1)/2),weightedHomogeneousComponent w (2*(r.val+1)) f := by
   classical
   ext a
-  simp only [AddMonoidAlgebra.coeff_add,Finsupp.add_apply,coeff_sum,coeff_weightedHomogeneousComponent]
+  simp only [AddMonoidAlgebra.coeff_add,Finsupp.add_apply,coeff_sum,
+    coeff_weightedHomogeneousComponent]
   by_cases ha : f.coeff a=0
   · simp [ha]
   have hdeg : a.degree=d := by

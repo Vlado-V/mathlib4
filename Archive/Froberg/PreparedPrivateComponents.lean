@@ -59,7 +59,8 @@ theorem lower_biform_components {e s : ℕ} (hed : e<d)
     (k : ℕ) (hk : d≤k) : coreComponent h m k (rename finSumFinEquiv P)=0 := by
   let g := sumBiformEquiv.symm (⟨P,hP⟩ : biformImage (Forms K h e) (Forms K m s))
   have hg : sumBiform g=P := by
-    change (sumBiformEquiv (sumBiformEquiv.symm (⟨P,hP⟩ : biformImage (Forms K h e) (Forms K m s)))).val=P
+    change (sumBiformEquiv (sumBiformEquiv.symm (⟨P,hP⟩ : biformImage (Forms K h e) (Forms K m
+      s)))).val=P
     rw [LinearEquiv.apply_symm_apply]
   rw [←hg,rename_sumBiform]
   exact (ambientBiform_weighted g).weightedHomogeneousComponent_ne k (by omega)

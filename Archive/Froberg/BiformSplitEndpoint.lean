@@ -95,7 +95,8 @@ theorem odd_split_endpoint (Q : Fin q → biformParitySpace K h m d 0)
     simp only [map_sum,map_mul,Submodule.coe_zero,map_zero] at hz
     rw [←idx.sum_comp (fun k => rename finSumFinEquiv.symm (biformSplitEndpoint Q F k).val*
       rename finSumFinEquiv.symm (a.val k).val)] at hz
-    simpa only [idx,biformSplitEndpoint_back,Fintype.sum_sum_type,Sum.elim_inl,Sum.elim_inr] using hz
+    simpa only [idx,biformSplitEndpoint_back,Fintype.sum_sum_type,Sum.elim_inl,Sum.elim_inr] using
+      hz
   obtain ⟨B,hB,hB'⟩ := H c v hcycle
   apply split_constants_mem_cross idx.symm (biformSplitEndpoint Q F) a.val B
   · intro i

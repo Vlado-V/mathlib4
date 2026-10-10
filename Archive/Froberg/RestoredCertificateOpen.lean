@@ -46,7 +46,8 @@ theorem restored_certificate_principal_open (hdp : 1≤d) (hd : d%2=0)
   let out := PreparedTarget.OuterSpace K (Fin h) m d f
   let π : V →ₗ[K] S := LinearMap.fst K S out
   have hπ : Function.Surjective π := fun p => ⟨(p,0),rfl⟩
-  obtain ⟨P,hP,hred⟩ := even_prepared_restoration_principal_open hd hO hJ heven hpos idx slot hslot p₀ hp₀
+  obtain ⟨P,hP,hred⟩ := even_prepared_restoration_principal_open hd hO hJ heven hpos idx slot hslot
+    p₀ hp₀
   obtain ⟨R,hR,hRgood⟩ := principal_open_linear_pullback π hπ P ⟨(p₀,0),hP⟩ _ hred
   obtain ⟨D',hD',hDgood⟩ := principal_open_linear_pullback π hπ D hD _ hodd
   let U := Fin (finrank K (Forms K h d)) → Forms K h d

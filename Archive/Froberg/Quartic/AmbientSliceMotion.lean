@@ -68,7 +68,8 @@ theorem principal_open_two_stage
       (by simpa only [aeval_eq_eval] using hf)
     apply hempty ell h.1 h.2.1 h.2.2
     intro j
-    simpa only [aeval_eq_eval,AmbientCovectorSpreading.slices,ClosedCovectorEquations.eval_linearForm] using hZ j
+    simpa only [aeval_eq_eval,AmbientCovectorSpreading.slices,
+      ClosedCovectorEquations.eval_linearForm] using hZ j
   obtain ⟨P,hP,hgood⟩ := SliceMotionAvoidance.principal_open_projective (L := K)
     (AmbientCovectorSpreading.finiteDegree a b c q d)
     (AmbientCovectorSpreading.finiteOriginalEquations mu E Q)

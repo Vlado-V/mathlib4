@@ -37,22 +37,31 @@ theorem exact_counts_prepared_restricted_growth_fiber {d k h lo u b : ℕ}
     ∃ G C : ℝ, 0 < G ∧ 0 < C ∧ ∀ᶠ n : ℕ in atTop,
       ∀ (J : Finset ℕ) (counts counts' : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hcounts : ∀ j ∈ J, counts j ≤ counts' j),
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
+        (f n) u J counts O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts' O) :=
+      letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
+        (f n) u J counts' O) :=
         FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-      ∀ (Good : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O → Prop)
+      ∀ (Good : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J
+        counts O → Prop)
         (A : MvPolynomial (Fin (finrank K
-          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O))) K)
+          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts
+            O))) K)
         (D : MvPolynomial (Fin (finrank K
-          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts' O))) K),
-        (∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O,
+          (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts'
+            O))) K),
+        (∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts
+          O,
           eval ((Module.finBasis K _).equivFun v) A ≠ 0) →
-        (∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O,
+        (∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts
+          O,
           eval ((Module.finBasis K _).equivFun v) A ≠ 0 → Good v) →
-        (∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts' O,
+        (∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J
+          counts' O,
           eval ((Module.finBasis K _).equivFun v) D ≠ 0) →
-        ∃ (p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts' O)
+        ∃ (p : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J
+          counts' O)
           (P₀ : MvPolynomial (Fin (finrank K (PositiveScalars (K := K) n d J counts))) K),
           eval ((Module.finBasis K _).equivFun
             (fullScalarFiberCoordinates (fullRestrictCounts hcounts p)).1) P₀ ≠ 0 ∧
@@ -63,7 +72,8 @@ theorem exact_counts_prepared_restricted_growth_fiber {d k h lo u b : ℕ}
             BaseC4GrowthProperty (by omega : 1 ≤ d) R (scalarReserveCount d n)
               (preparedBaseProjection (fullRestrictCounts hcounts p')) ∧
             StrictModel (fun i => outerVectorEquiv.symm (p'.2.2 i)) d (G*(n : ℝ)^d) ∧
-            ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p'.2.2 i)) d)
+            ChildFlagCondition (quotientMultiplication (fun i => outerVectorEquiv.symm (p'.2.2 i))
+              d)
               (outerScalarDeficit (fun i => outerVectorEquiv.symm (p'.2.2 i))) (C*(n : ℝ)^d)
               (coefficientCoordinates (fun i => p'.2.1.1 (Sum.inl i))) := by
   obtain ⟨G,C,hG,hC,hselect⟩ := exact_counts_prepared_restricted_certified_fiber (K := K) (u := u)
@@ -73,9 +83,11 @@ theorem exact_counts_prepared_restricted_growth_fiber {d k h lo u b : ℕ}
   refine ⟨G,C,hG,hC,?_⟩
   filter_upwards [hselect,hgrowth] with n hn hgrowth
   intro J counts counts' O hO hcounts
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+    u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts' O) :=
+  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n)
+    u J counts' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro Good A D hA hGood hD
   obtain ⟨B,hB,hBgrowth⟩ := prepared_base_growth_open (u := u) (counts := counts)
@@ -87,10 +99,12 @@ theorem exact_counts_prepared_restricted_growth_fiber {d k h lo u b : ℕ}
       fin_cases i
       · exact hA
       · exact hB)
-  have hAB : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O,
+  have hAB : ∃ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f
+    n) u J counts O,
       eval ((Module.finBasis K _).equivFun v) (A*B) ≠ 0 :=
     ⟨v,by simpa [map_mul] using mul_ne_zero (hv 0) (hv 1)⟩
-  have hABgood : ∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f n) u J counts O,
+  have hABgood : ∀ v : FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d) (f
+    n) u J counts O,
       eval ((Module.finBasis K _).equivFun v) (A*B) ≠ 0 →
       Good v ∧ BaseC4GrowthProperty (by omega : 1 ≤ d) R (scalarReserveCount d n)
         (preparedBaseProjection v) := by

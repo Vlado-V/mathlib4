@@ -58,7 +58,8 @@ theorem oddActualRowScalarAction_growth (hb : 1 ≤ b) (hbd : b ≤ d)
         tensorOddRowRelations hb hbd (fun i => scalarBiformEquiv (h := h) (Q i)) F)
       (oddActualRowScalarAction hb hbd Q F) L) := by
   unfold oddActualRowScalarAction
-  rw [bilinearImage_parameter_surjective _ scalarBiformEquiv.toLinearMap scalarBiformEquiv.surjective]
+  rw [bilinearImage_parameter_surjective _ scalarBiformEquiv.toLinearMap
+    scalarBiformEquiv.surjective]
   exact hg.2 L
 
 end Froberg

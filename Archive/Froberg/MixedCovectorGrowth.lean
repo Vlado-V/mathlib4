@@ -22,7 +22,8 @@ set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic VectorMultiplicationCoordinates
 attribute [local instance] tensorFormGroup
-attribute [local irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
+attribute [local
+  irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 attribute [local irreducible] oddMixedSourceBlockCoordinates mixedAmbientScalar
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable (hd : Odd d) (hd3 : 3≤d)
@@ -53,7 +54,8 @@ theorem mixed_full_bottom_compat
     (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K)
     (p : Forms K m d) (x : OddBottomQuotient F) :
     ell (μ p ((eV).symm (x,0)))=
-      quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell (ν p x) := by
+      quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f :=
+        f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell (ν p x) := by
   have he : oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d)
       (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
       (mixedAmbientScalar hd hd3 Q F U P p ((eV).symm (x,0))) = (ν p x,0) :=
@@ -68,7 +70,8 @@ theorem mixed_full_bottom_compat
     exact hgen _
   rw [←hmu]
   change ell (π (mixedAmbientScalar hd hd3 Q F U P p ((eV).symm (x,0))))=
-    ell (π (((oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD)).symm (ν p x,0)))
+    ell (π (((oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u)
+      hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD)).symm (ν p x,0)))
   rw [←he,LinearEquiv.symm_apply_apply]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
@@ -81,8 +84,10 @@ theorem mixed_full_bottom_kernel
     (QuotientCovectorKernel.relation μ ell).ker.comap
       ((eV).symm.toLinearMap.comp (LinearMap.inl K (OddBottomQuotient F)
         (OddMixedBlockCoordinates hd hd3 F U P)))=
-      (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)).ker :=
-  pi_bottom_kernel_eq eV μ ν ell (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)
+      (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K := K) (h :=
+        h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)).ker :=
+  pi_bottom_kernel_eq eV μ ν ell (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m :=
+    m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)
     (mixed_full_bottom_compat hd hd3 Q g U P B hB D hD ell)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
@@ -92,9 +97,12 @@ theorem mixed_full_bottom_kernel_finrank_le
   (hD : D.comp (oddAmbientHigherRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)=
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁)
     (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K) :
-    finrank K (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)).ker≤
+    finrank K (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K :=
+      K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π
+      ell)).ker≤
       finrank K (QuotientCovectorKernel.relation μ ell).ker :=
-  pi_bottom_kernel_finrank_le eV μ ν ell (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)
+  pi_bottom_kernel_finrank_le eV μ ν ell (quotientSplitBottom (oddAmbientCoordinates (K := K) (h :=
+    h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)
     (mixed_full_bottom_compat hd hd3 Q g U P B hB D hD ell)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
@@ -114,8 +122,12 @@ theorem mixed_full_higher_kernel_growth
         (F,fun i => scalarBiformEquiv (h := h) (Q i)))
     (ell : (biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q₀ F₁ G₁) →ₗ[K] K) :
     t*(finrank K (QuotientCovectorKernel.relation μ ell).ker-
-      finrank K (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π ell)).ker)≤
-      finrank K (BilinearImage.image (splitTargetHigherAction (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) (mixedAmbientScalar hd hd3 Q F U P)) (QuotientCovectorKernel.relation μ ell).ker) := by
+      finrank K (QuotientCovectorKernel.relation ν (quotientSplitBottom (oddAmbientCoordinates (K :=
+        K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD) π
+        ell)).ker)≤
+      finrank K (BilinearImage.image (splitTargetHigherAction (oddAmbientCoordinates (K := K) (h :=
+        h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD)
+        (mixedAmbientScalar hd hd3 Q F U P)) (QuotientCovectorKernel.relation μ ell).ker) := by
   have hg : t*(finrank K (QuotientCovectorKernel.relation μ ell).ker-
       finrank K ((QuotientCovectorKernel.relation μ ell).ker.comap
         ((eV).symm.toLinearMap.comp (LinearMap.inl K (OddBottomQuotient F)

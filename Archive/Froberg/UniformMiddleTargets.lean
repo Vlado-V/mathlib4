@@ -41,7 +41,8 @@ theorem eventually_higher_target_row_uniform {d b : ℕ} (hd : 3 ≤ d) (hb : 5 
           Function.Surjective (biformFamilyMap (x := b-j) (y := d+j-b) o f) := by
   obtain ⟨j,hj,hjb,hbj,hcost⟩ := higher_layers_cover_targets hd hb hbd hcut
   refine ⟨j,hj,hjb,hbj,?_⟩
-  exact eventually_target_row_from_prefix_uniform (by omega) (by omega) hjb.le hbj (by omega) _ hcost
+  exact eventually_target_row_from_prefix_uniform (by omega) (by omega) hjb.le hbj (by
+    omega) _ hcost
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 theorem eventually_middle_rows_common_open_uniform {d : ℕ} (hd : 3≤d) :

@@ -57,7 +57,8 @@ theorem private_kernel_on_frame_open_nonzero (hh : 2≤h)
   · have hA : ∀ i,Function.Injective ((L.comp (mulForm (e (w i)))).comp e.toLinearMap) := by
       intro i
       have hi := coord.injective.comp ((hg.1 i).comp e.injective)
-      simpa only [D,L,w,LinearEquiv.apply_symm_apply,LinearMap.coe_comp,LinearEquiv.coe_coe,Function.comp_def] using hi
+      simpa only [D,L,w,LinearEquiv.apply_symm_apply,LinearMap.coe_comp,LinearEquiv.coe_coe,
+        Function.comp_def] using hi
     apply privatePolynomialMap_kernel_eq_koszul hs ι _ hA w dual hdual
     · intro i j
       change L (mulForm (e (w i)) (e (w j)))=L (mulForm (e (w j)) (e (w i)))

@@ -65,9 +65,11 @@ theorem ambientTopMap_private_mem (hdp : 1≤d) (hd : Odd d) (hd1 : 1<d)
     ambientTopMap (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i)) v)∈
       ambientTopRelations hdp Q F U := by
   have he := mixedScalarRelations_top hd hd1 U P v
-  change ambientTopMap (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i)) v)=_ at he
+  change ambientTopMap (privateScalarRelations (fun i => mixedPureOddGenerator hd (U i) (P i))
+    v)=_ at he
   rw [he]
-  apply (show leftRelations (Submodule.span K (Set.range U))≤ambientTopRelations hdp Q F U from le_sup_left)
+  apply (show leftRelations (Submodule.span K (Set.range U))≤ambientTopRelations hdp Q F U from
+    le_sup_left)
   rw [←sumTensorLeft_range U]
   exact ⟨fun i => (scalarBiformEquiv (h := h)).symm (v i),sumTensorLeft_apply _ _⟩
 

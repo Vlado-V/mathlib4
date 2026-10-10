@@ -74,7 +74,8 @@ theorem oddIntermediateSourceProjection_scalar (hd : Odd d)
         (fun i => oddBiformEmbedding (by have := hd.pos; omega) (by decide) (F i))
         (fun i => mixedPureOddGenerator hd (U i) (P i)) p v)=
       (tensorOddRowRelations (b := b) (by omega) (by omega) Q F).mkQ
-        (oddRowScalarAction (b := b) (by omega) p (oddIntermediateSourceProjection hd hb hbd F U P v)) := by
+        (oddRowScalarAction (b := b) (by omega) p (oddIntermediateSourceProjection hd hb hbd F U P
+          v)) := by
   induction v using Submodule.Quotient.induction_on with
   | _ v => exact oddAmbientRowProjection_scalar hd hb hbd ho Q F U P p v
 

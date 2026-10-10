@@ -158,7 +158,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
         c.val).val).IsWeightedHomogeneous (blockWeight h m) 0 := by
     rw [←hs]
     apply weighted_homogeneous_rename finSumFinEquiv.symm.toEmbedding
-    simpa only [←coreWeight_eq_blockWeight,Equiv.coe_toEmbedding,renameForm,LinearMap.coe_mk,AddHom.coe_mk] using scalar_rename_core_weight_zero (h := h) s
+    simpa only [←coreWeight_eq_blockWeight,Equiv.coe_toEmbedding,renameForm,LinearMap.coe_mk,
+      AddHom.coe_mk] using scalar_rename_core_weight_zero (h := h) s
   have hrow : SplitRestoration.row (evenRestorationSpace (blockWeight h m) d).subtype
       (oddRestorationSpace (blockWeight h m) d).subtype (positiveWeightProjection (blockWeight h m)
         d)
@@ -231,7 +232,8 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
       change (rename finSumFinEquiv (z.val i).val).IsWeightedHomogeneous (coreWeight h m) 0
       rw [coreWeight_eq_blockWeight]
       apply weighted_homogeneous_rename finSumFinEquiv.toEmbedding
-      simpa only [Function.comp_def,Equiv.coe_toEmbedding,Equiv.symm_apply_apply] using z.property.2 i
+      simpa only [Function.comp_def,Equiv.coe_toEmbedding,Equiv.symm_apply_apply] using
+        z.property.2 i
     | inr i =>
       rw [hzO]
       exact Submodule.zero_mem _

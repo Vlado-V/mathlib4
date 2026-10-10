@@ -32,7 +32,8 @@ open scoped TensorProduct
 variable {K : Type*} [Field K] {m c q : ℕ}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Actual quadratic motions: child quadrics on pure/mixed slots and pure quadrics on child slots. -/
+/-- Actual quadratic motions: child quadrics on pure/mixed slots and pure quadrics on child
+slots. -/
 def motionFamily (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) : Fin (4+(c+q)) → Forms K (3+m) 2 :=
   Fin.addCases (fun i => SplitBlock31.childEmbed (r i))
@@ -85,7 +86,8 @@ theorem rowProduct_eq_multiplication (a : MiddleCoordinates.Mixed K m) (p : Form
   exact mul_comm _ _
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Actual first variation on every complete middle-block source, including its pure/child corrections. -/
+/-- Actual first variation on every complete middle-block source, including its pure/child
+corrections. -/
 theorem firstVariation_middle (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) (a : SplitBlock22.Source K m c q) :
     projection13 (quadraticMultiplication (motionFamily p r s) (SplitBlock22.sourceEmbedding a)) =
@@ -189,7 +191,8 @@ theorem firstVariation_child (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K 
     SplitBlock31.coreEmbed_val, childFirstResponse, SplitBlock22.targetEmbedding_tmul_val]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Complete any prescribed mixed coefficient vector whose actual quotient product matches the target. -/
+/-- Complete any prescribed mixed coefficient vector whose actual quotient product matches the
+target. -/
 theorem prescribed_middle_completion (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (t : SplitBlock22.Target K m)
     (z : Fin c → MiddleCoordinates.Mixed K m)
@@ -214,7 +217,8 @@ theorem prescribed_middle_completion (g : Fin c → MiddleCoordinates.Mixed K m)
     _ = _ := he'
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Actual corrected polynomial source columns, with prescribed mixed coefficients and their response. -/
+/-- Actual corrected polynomial source columns, with prescribed mixed coefficients and their
+response. -/
 theorem corrected_column (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (p : Fin c → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (s : Fin q → Forms K 3 2) (a : Fin (4+(c+q)) → Forms K (3+m) 2)
@@ -348,7 +352,8 @@ theorem trace_preimage_representatives (g : Fin c → MiddleCoordinates.Mixed K 
   obtain ⟨byCycle,hby⟩ := hmarked u
   refine ⟨bx,byCycle,?_⟩
   rw [map_add,pureFirstResponse_elimination,marked_child_elimination,hbx,hby,← he]
-  apply Prod.ext <;> simp only [MovingMiddleCorrection.traceMap_apply,Prod.fst_add,Prod.snd_add] <;> abel
+  apply Prod.ext <;> simp only [MovingMiddleCorrection.traceMap_apply,Prod.fst_add,
+    Prod.snd_add] <;> abel
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 /-- The actual marked child coefficient on the actual child cycle space. -/

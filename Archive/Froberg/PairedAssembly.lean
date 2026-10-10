@@ -40,7 +40,8 @@ namespace ProductFiber
 variable {K : Type*} [CommRing K] [Nontrivial K]
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
-/-- A genuine coefficient minor, with the selected rows also realized as products of allowed terms. -/
+/-- A genuine coefficient minor, with the selected rows also realized as products of allowed
+terms. -/
 structure MinorCertificate (K : Type*) [CommRing K] (F : ProductFiber X s) where
   rows : F.Columns → (X × Bool) →₀ ℕ
   nonzero : (productMinor (K := K) (formTerms s)

@@ -148,7 +148,8 @@ def mixedHigherAction (hd : Odd d) (hd3 : 3≤d)
       (oddHigherTopProjectionEquiv hd hd3 R hR F U P hker r ht).toLinearMap).compr₂ₛₗ
         (LinearMap.inl K (MixedTopTarget hd3 R Q F) (MixedMiddleTarget hd3 Q F r))
   else
-    ((oddActualRowScalarAction (b := 2*r.val.val+1) (by omega) (by have := r.val.isLt; omega) Q F).compl₂
+    ((oddActualRowScalarAction (b := 2*r.val.val+1) (by omega) (by have := r.val.isLt; omega) Q
+      F).compl₂
       (oddHigherNonTopQuotientEquiv hd hd3 F U P r ht).toLinearMap).compr₂ₛₗ
         (LinearMap.inr K (MixedTopTarget hd3 R Q F) (MixedMiddleTarget hd3 Q F r))
 

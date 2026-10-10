@@ -111,7 +111,8 @@ def detectedSymmetricProductRow (j : V →ₗ[K] MvPolynomial σ K)
     (Sym2 (Fin f) → K) →ₗ[K] Y where
   toFun a := ∑ p,a p • T (pairProducts (fun i => j (F i)) p)
   map_add' a b := by simp only [Pi.add_apply,add_smul,Finset.sum_add_distrib]
-  map_smul' a b := by simp only [Pi.smul_apply,smul_eq_mul,mul_smul,Finset.smul_sum,RingHom.id_apply]
+  map_smul' a b := by simp only [Pi.smul_apply,smul_eq_mul,mul_smul,Finset.smul_sum,
+    RingHom.id_apply]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 private def detectedProductBilinear (j : V →ₗ[K] MvPolynomial σ K)

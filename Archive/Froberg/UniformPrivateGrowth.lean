@@ -47,7 +47,8 @@ lemma uniform_private_outer_growth {K : Type*} [Field K]
   have hv n := MixedExterior.full_spark_comp (u n) (hu n)
     (Function.Embedding.inl : Labels k (a n) s ↪ _)
   have hmv n := (hm n).comp (Function.Embedding.inl : Labels k (a n) s ↪ _)
-  obtain ⟨gc,hgc,hcore⟩ := uniform_core_outer_growth hk hs0 hh hσ.1 hσ.2 a z ha hz har hzr haz v hv hmv
+  obtain ⟨gc,hgc,hcore⟩ := uniform_core_outer_growth hk hs0 hh hσ.1 hσ.2 a z ha hz har hzr haz v hv
+    hmv
   obtain ⟨c,hc,hbase⟩ := uniform_exponent_shadow hσ.1 hσ.2 hs0 a z ha hz har hzr haz (k : ℝ) hkR
   let A := fun n => (finrank K (CoreSourceSpace (z := z n) (v n)) : ℝ)
   let T := fun n => (finrank K (CoreTargetSpace (z := z n) (v n)) : ℝ)

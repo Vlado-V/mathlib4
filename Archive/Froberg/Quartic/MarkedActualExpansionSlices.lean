@@ -197,8 +197,10 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
   obtain ⟨Z,hZ⟩ := lift_closed_slices_coordinates g hg eV eW (slices m upper) x (hgood x hx)
   refine ⟨fun i => finiteEquiv.symm (x.1 i),?_,Z,?_⟩
   · have hh : eval (childProjection x) D ≠ 0 := by
-      simpa only [D',MiddleCoordinates.eval_substituteLinear,f,LinearMap.comp_apply,LinearEquiv.coe_coe,x] using hz.2
-    simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using hh
+      simpa only [D',MiddleCoordinates.eval_substituteLinear,f,LinearMap.comp_apply,
+        LinearEquiv.coe_coe,x] using hz.2
+    simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using
+      hh
   · simpa only [LinearEquiv.apply_symm_apply] using hZ
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

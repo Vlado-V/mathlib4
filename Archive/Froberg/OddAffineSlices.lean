@@ -33,7 +33,8 @@ local notation "V" => biformParitySpace K h m d 1 ⧸ oddBackgroundCoefficientRe
 local notation "W" => biformParitySpace K h m (2*d) 1 ⧸ fullOddRelations Q F G
 local notation "WA" => biformParitySpace K h m (2*d) 1 ⧸ ambientOddRelations Q F G
 local notation "μ" => oddBackgroundScalarProduct Q F G
-local notation "μA" => LinearMap.comp (oddAmbientScalarProduct Q F G) (LinearEquiv.toLinearMap (scalarBiformEquiv (K := K) (h := h) (n := m) (d := d)))
+local notation "μA" => LinearMap.comp (oddAmbientScalarProduct Q F G) (LinearEquiv.toLinearMap
+  (scalarBiformEquiv (K := K) (h := h) (n := m) (d := d)))
 local notation "π" => oddAmbientToFull Q F G
 local notation "j" => finrank K W-e*finrank K V
 
@@ -48,14 +49,16 @@ theorem actual_odd_affine_slices (hh : 0  <  h) (hm : 0  <  m) (hd : Odd d)
     (hmono : ∀ ell : W →ₗ[K] K,quotientSplitBottom ec π ell ≠ 0 →
       finrank K (relation nu (quotientSplitBottom ec π ell)).ker ≤ finrank K (relation μ ell).ker)
     (hgrowth : ∀ ell : W →ₗ[K] K,quotientSplitBottom ec π ell ≠ 0 →
-      M*(finrank K (relation μ ell).ker-finrank K (relation nu (quotientSplitBottom ec π ell)).ker) ≤
+      M*(finrank K (relation μ ell).ker-finrank K (relation nu (quotientSplitBottom ec π ell)).ker)
+        ≤
         finrank K (BilinearImage.image (splitTargetHigherAction ec μA) (relation μ ell).ker))
     (P₀ : MvPolynomial (Fin (finrank K (Fin e → Forms K m d))) K)
     (hP₀ : ∃ a : Fin e → Forms K m d,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)
     (hinj : ∀ a,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
       Function.Injective (oddEvenRelativeMap Q F G (oddEvenAffineFamily E a)))
     (hupper : ∀ a,eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
-      Function.Surjective (upperTargetMap (backgroundEnumeratedForms (Fin.append Q (oddEvenAffineFamily E a)) F G)))
+      Function.Surjective (upperTargetMap (backgroundEnumeratedForms (Fin.append Q
+        (oddEvenAffineFamily E a)) F G)))
     (slices : ℕ → ℕ) (hslices0 : j ≤ slices 0)
     (C L : ℕ) (loss : ℕ → ℕ)
     (hbase : ∀ k₀ : Fin (finrank K V₀+1),0 < s₀ k₀.val → s₀ k₀.val+C*k₀.val ≤ finrank K W₀)
@@ -67,7 +70,8 @@ theorem actual_odd_affine_slices (hh : 0  <  h) (hm : 0  <  m) (hd : Odd d)
       (∃ a : Fin e → Forms K m d,eval ((Module.finBasis K _).equivFun a) P₁ ≠ 0) ∧
       ∀ a,eval ((Module.finBasis K _).equivFun a) P₁ ≠ 0 →
         eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 ∧
-        HasClosedKernelSlices (targetPostcompose μ (oddEvenAffineRelations Q F G E a).mkQ) slices := by
+        HasClosedKernelSlices (targetPostcompose μ (oddEvenAffineRelations Q F G E
+          a).mkQ) slices := by
   have hprod : ∀ p v,π (μA p v)=μ p v := by
     intro p v
     exact oddAmbientScalarProduct_toFull Q F G (scalarBiformEquiv p) v

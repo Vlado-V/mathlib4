@@ -71,7 +71,8 @@ theorem bottom_vector_scalar_action (hd : 1 ≤ d) (p : Forms K m d) (v : Rows K
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def bottomVectorRow (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
     ((Fin f → Forms K m d) × (Fin q → Rows K h m (d-1))) →ₗ[K] Rows K h m ((d-1)+d) :=
-  (BilinearImage.tupleMap multiplication g).coprod (BilinearScalarFamily.multiplication multiplication Q)
+  (BilinearImage.tupleMap multiplication g).coprod (BilinearScalarFamily.multiplication
+    multiplication Q)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def bottomRowCoefficients (hd : 1 ≤ d) :
@@ -87,7 +88,8 @@ set_option backward.isDefEq.respectTransparency true in
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1)) :
     (oddTensorRowMap (b := 1) (by decide) hd (fun i => scalarBiformEquiv (h := h) (Q i))
       (fun i => linearOutputTensorEquiv (g i))).comp
-        (bottomRowCoefficients (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) hd).toLinearMap=
+        (bottomRowCoefficients (K := K) (h := h) (m := m) (d := d) (q := q) (f := f)
+          hd).toLinearMap=
       (bottomOutputTargetEquiv hd).toLinearMap.comp (bottomVectorRow Q g) := by
   apply LinearMap.ext
   rintro ⟨a,v⟩

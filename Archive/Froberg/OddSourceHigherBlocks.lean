@@ -52,7 +52,8 @@ theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3≤d)
     omega
   apply sumBiformMap_injective
   change sumBiformMap (oddBiformCoordinatesEquiv
-    (Fintype.linearCombination K (fun i => mixedPureOddGenerator hd (U i) (P i)) c) r.val)=sumBiformMap 0
+    (Fintype.linearCombination K (fun i => mixedPureOddGenerator hd (U i) (P i)) c)
+      r.val)=sumBiformMap 0
   rw [oddBiformCoordinatesEquiv_component,map_zero]
   simp only [Fintype.linearCombination_apply,Submodule.coe_sum,Submodule.coe_smul,
     map_sum,map_smul,mixedPureOddGenerator_other hd hr1 hr,smul_zero,Finset.sum_const_zero]
@@ -61,9 +62,11 @@ set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
 theorem oddHigherRelationMap_mixed_range_single (hd : Odd d) (hd3 : 3≤d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d-1)) :
-    ∀ x : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3),x∈(oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
+    ∀ x : HigherOddCoordinates K h m d (Nat.le_trans (by decide : 1≤3) hd3),x∈(oddHigherRelationMap
+      (Nat.le_trans (by decide : 1≤3) hd3) F
       (fun i => mixedPureOddGenerator hd (U i) (P i))).range →
-      ∀ r : {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3) hd3)},Pi.single r (x r)∈(oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
+      ∀ r : {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3)
+        hd3)},Pi.single r (x r)∈(oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range := by
   classical
   rintro _ ⟨c,rfl⟩ r

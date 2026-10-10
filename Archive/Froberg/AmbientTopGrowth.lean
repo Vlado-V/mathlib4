@@ -58,24 +58,30 @@ theorem topGrowthTensorMap_relations (hdp : 1≤d)
     (U : Fin u → Forms K h d)
     (hU : ∀ i,R ((topGrowthDegree hdp h).symm (U i))=0) :
     ambientTopRelations hdp Q F U ≤
-      (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range.comap
+      (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R
+        (rawTopFamily F) (topGrowthParameters hdp Q F).2).range.comap
         (topGrowthTensorMap hdp R) := by
   apply sup_le
   · rw [←sumTensorLeft_range U]
     rintro _ ⟨v,rfl⟩
-    change topGrowthTensorMap hdp R (sumTensorLeft U v)∈(projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range
+    change topGrowthTensorMap hdp R (sumTensorLeft U v)∈(projectedTensorFamily (K := K) (A := Fin f
+      → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range
     simp only [sumTensorLeft_apply,map_sum,topGrowthTensorMap_tmul,hU,zero_tmul,
       Finset.sum_const_zero]
     exact Submodule.zero_mem _
   · apply sup_le
     · rw [←sumTensorRight_range Q]
       rintro _ ⟨v,rfl⟩
-      change topGrowthTensorMap hdp R (sumTensorRight Q v)∈(projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range
+      change topGrowthTensorMap hdp R (sumTensorRight Q v)∈(projectedTensorFamily (K := K) (A := Fin
+        f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q
+        F).2).range
       refine ⟨(0,fun i => R ((topGrowthDegree hdp h).symm (v i))),?_⟩
       simp only [projectedTensorFamily,LinearMap.coprod_apply,map_zero,zero_add,
         sumTensorRight_apply,map_sum,topGrowthTensorMap_tmul,topGrowthParameters]
     · rintro _ ⟨w,⟨a,rfl⟩,rfl⟩
-      change topGrowthTensorMap hdp R (rawTopTarget hdp (rawTopFamily F a))∈(projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range
+      change topGrowthTensorMap hdp R (rawTopTarget hdp (rawTopFamily F a))∈(projectedTensorFamily
+        (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F)
+        (topGrowthParameters hdp Q F).2).range
       refine ⟨(a,0),?_⟩
       simp only [projectedTensorFamily,LinearMap.coprod_apply,map_zero,add_zero,
         topGrowthTensorMap,LinearMap.comp_apply,LinearEquiv.coe_coe,
@@ -89,7 +95,8 @@ def topGrowthQuotientProjection (hdp : 1≤d)
     (hU : ∀ i,R ((topGrowthDegree hdp h).symm (U i))=0) :
     (RawOddTopTensor K h m d ⧸ ambientTopRelations hdp Q F U) →ₗ[K]
       ((Fin b → K) ⊗[K] Forms K m (1+(d-1))) ⧸
-        (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range :=
+        (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R
+          (rawTopFamily F) (topGrowthParameters hdp Q F).2).range :=
   Submodule.mapQ _ _ (topGrowthTensorMap hdp R)
     (topGrowthTensorMap_relations hdp R Q F U hU)
 
@@ -102,9 +109,12 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
     (x : Forms K h d) (y : Forms K m d) :
     topGrowthQuotientProjection hdp R Q F U hU
       ((ambientTopRelations hdp Q F U).mkQ (x ⊗ₜ[K] y))=
-    projectedTensorScalarAction (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2
+    projectedTensorScalarAction (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m
+      1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2
       ((topGrowthDegree hdp m).symm y) (R ((topGrowthDegree hdp h).symm x)) := by
-  change (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).range.mkQ (topGrowthTensorMap hdp R (x ⊗ₜ[K] y))=_
+  change (projectedTensorFamily (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R
+    (rawTopFamily F) (topGrowthParameters hdp Q F).2).range.mkQ (topGrowthTensorMap hdp R (x ⊗ₜ[K]
+    y))=_
   rw [topGrowthTensorMap_tmul]
   rfl
 
@@ -121,7 +131,8 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def topGrowthScalarAction (hdp : 1≤d)
     (R : Forms K h (1+(d-1)) →ₗ[K] (Fin b → K))
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :=
-  (projectedTensorScalarAction (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R (rawTopFamily F) (topGrowthParameters hdp Q F).2).comp
+  (projectedTensorScalarAction (K := K) (A := Fin f → Forms K h (d-1) ⊗[K] Forms K m 1) R
+    (rawTopFamily F) (topGrowthParameters hdp Q F).2).comp
     (topGrowthDegree hdp m).symm.toLinearMap
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.

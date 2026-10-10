@@ -42,7 +42,8 @@ def restoredOddRowLinear :
     apply LinearMap.ext
     intro c
     change (∑ i,((a • g) i).val*(c i).val)=a • (∑ i,(g i).val*(c i).val)
-    simp only [Pi.smul_apply,Submodule.coe_smul,smul_mul_assoc,Finset.smul_sum,LinearMap.smul_apply,RingHom.id_apply]
+    simp only [Pi.smul_apply,Submodule.coe_smul,smul_mul_assoc,Finset.smul_sum,
+      LinearMap.smul_apply,RingHom.id_apply]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def scalarRestoredPoint (idx : Fin r ≃ Label q J counts) (Q : Fin r → Forms K m d) :

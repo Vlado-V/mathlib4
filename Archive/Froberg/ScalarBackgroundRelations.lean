@@ -38,12 +38,14 @@ theorem scalar_span_private_product_mem
     (v : Forms K h 0 ⊗[K] Forms K m d)
     (hv : v∈Submodule.span K (Set.range Q)) :
     oddPrivateProduct g (evenBiformEmbedding (Nat.zero_le d) (by decide) v)∈
-      (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i))).range := by
+      (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q
+        i))).range := by
   classical
   let L := (oddPrivateProduct g).comp
     (evenBiformEmbedding (K := K) (h := h) (m := m) (Nat.zero_le d) (by decide))
   have hs : Submodule.span K (Set.range Q)≤
-      (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i))).range.comap L := by
+      (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q
+        i))).range.comap L := by
     apply Submodule.span_le.mpr
     rintro _ ⟨j,rfl⟩
     refine ⟨Pi.single j g,?_⟩
@@ -67,7 +69,8 @@ theorem privateScalarRelations_mem_scalar_background
     (v : Fin u → Forms K h 0 ⊗[K] Forms K m d)
     (hv : ∀ i,v i∈Submodule.span K (Set.range Q)) :
     privateScalarRelations G v∈
-      (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q i))).range := by
+      (evenScalarOddFamily (fun i => evenBiformEmbedding (Nat.zero_le d) (by decide) (Q
+        i))).range := by
   have he : privateScalarRelations G v=
       ∑ i,oddPrivateProduct (G i) (evenBiformEmbedding (Nat.zero_le d) (by decide) (v i)) := by
     apply Subtype.ext
@@ -82,7 +85,8 @@ theorem scalarBiform_span_iff (Q : Fin q → Forms K m d)
     v∈Submodule.span K (Set.range (fun i => scalarBiformEquiv (h := h) (Q i))) ↔
       (scalarBiformEquiv (h := h)).symm v∈Submodule.span K (Set.range Q) := by
   rw [Set.range_comp']
-  change v∈Submodule.span K ((scalarBiformEquiv (K := K) (h := h) (n := m) (d := d)).toLinearMap '' Set.range Q) ↔ _
+  change v∈Submodule.span K ((scalarBiformEquiv (K := K) (h := h) (n := m) (d := d)).toLinearMap ''
+    Set.range Q) ↔ _
   rw [←Submodule.map_span]
   constructor
   · rintro ⟨a,ha,rfl⟩

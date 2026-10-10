@@ -30,20 +30,23 @@ theorem odd_split_exact_restrict_right
       (∑ j,(Fin.append F G j).val*(Fin.append (fun _ : Fin f => (0 : biformParitySpace K h m d 0)) v
         j).val)=0 := by
     rw [Fin.sum_univ_add]
-    simpa only [Fin.append_left,Fin.append_right,Submodule.coe_zero,mul_zero,Finset.sum_const_zero,zero_add] using hr
+    simpa only [Fin.append_left,Fin.append_right,Submodule.coe_zero,mul_zero,Finset.sum_const_zero,
+      zero_add] using hr
   obtain ⟨B,hB,hB'⟩ := H c (Fin.append (fun _ : Fin f => 0) v) hrel
   have hzero (i : Fin q) (j : Fin f) : B i (Fin.castAdd u j)=0 := by
     have hh := hB' (Fin.castAdd u j)
     simp only [Fin.append_left,Submodule.coe_zero] at hh
     have hs : (∑ k,B k (Fin.castAdd u j) • Q k)=0 := by
       apply Subtype.ext
-      simpa only [Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_zero] using neg_eq_zero.mp hh.symm
+      simpa only [Submodule.coe_sum,Submodule.coe_smul,Submodule.coe_zero] using neg_eq_zero.mp
+        hh.symm
     exact Fintype.linearIndependent_iff.mp hQ _ hs i
   refine ⟨fun i j => B i (Fin.natAdd f j),?_,?_⟩
   · intro i
     have hh := hB i
     rw [Fin.sum_univ_add] at hh
-    simpa only [Fin.append_left,Fin.append_right,hzero,zero_smul,Finset.sum_const_zero,zero_add] using hh
+    simpa only [Fin.append_left,Fin.append_right,hzero,zero_smul,Finset.sum_const_zero,
+      zero_add] using hh
   · intro j
     simpa only [Fin.append_right] using hB' (Fin.natAdd f j)
 

@@ -61,7 +61,8 @@ theorem exists_affine_polynomial_avoidance (A : (I → K) → V →ₗ[K] W)
     polynomialOfLinear ((LinearMap.snd K V K).comp e.symm.toLinearMap)
   have hC : eval (e (0,1)) C=1 := by
     rw [eval_polynomialOfLinear]
-    simp only [LinearMap.comp_apply,LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply,LinearMap.snd_apply]
+    simp only [LinearMap.comp_apply,LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply,
+      LinearMap.snd_apply]
   let P : Fin 2 → MvPolynomial (Fin (finrank K (V × K))) K := ![D,C]
   have hP (i : Fin 2) : P i ≠ 0 := by
     fin_cases i

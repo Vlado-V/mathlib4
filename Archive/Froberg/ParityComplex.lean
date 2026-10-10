@@ -58,7 +58,8 @@ theorem parityForm_decomposition (w : Fin n → ZMod 2) (p : ZMod 2) (f : Forms 
   classical
   apply Subtype.ext
   ext a
-  simp only [Submodule.coe_add,parityForm_val,AddMonoidAlgebra.coeff_add,Finsupp.add_apply,coeff_weightedHomogeneousComponent]
+  simp only [Submodule.coe_add,parityForm_val,AddMonoidAlgebra.coeff_add,Finsupp.add_apply,
+    coeff_weightedHomogeneousComponent]
   have ha : Finsupp.weight w a = p ∨ Finsupp.weight w a = p+1 := by
     generalize Finsupp.weight w a = u
     fin_cases p <;> fin_cases u <;> first | exact Or.inl rfl | exact Or.inr rfl

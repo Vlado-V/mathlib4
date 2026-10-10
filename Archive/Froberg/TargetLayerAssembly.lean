@@ -53,7 +53,8 @@ def targetLayerFamily (hd : 3≤d) (frame : Fin H → Forms K h 2)
     (c : Fin r → Fin H → Forms K m (d-2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
       (fun j => d-j.val) (fun j => higherGeneratorCount d h m j.val)) (i : Fin r) :
-    targetLayerFamily hd frame c G ⟨2,two_mem_activeEvenIndices hd⟩ i=framedBiformFamily frame c i := by
+    targetLayerFamily hd frame c G ⟨2,two_mem_activeEvenIndices
+      hd⟩ i=framedBiformFamily frame c i := by
   simp [targetLayerFamily]
 
 theorem targetLayerFamily_higher_surjective (hd : 3≤d) (frame : Fin H → Forms K h 2)
@@ -67,7 +68,8 @@ theorem targetLayerFamily_higher_surjective (hd : 3≤d) (frame : Fin H → Form
   have ha : a.val≠2 := by have := (Finset.mem_filter.mp a.property).2;omega
   have hcast (n : ℕ) (hn : higherGeneratorCount d h m a.val=n) :
       Function.Surjective (biformTensorFamilyMap (x := x) (y := y)
-        (cast (congrArg (fun t => Fin t → Forms K h a.val ⊗[K] Forms K m (d-a.val)) hn) (G a))) := by
+        (cast (congrArg (fun t => Fin t → Forms K h a.val ⊗[K] Forms K m (d-a.val)) hn) (G
+          a))) := by
     subst n
     exact hG
   have hN : higherGeneratorCount d h m a.val=targetLayerCount d h m r a.val := by

@@ -46,7 +46,8 @@ theorem background_appended_slot_polynomial
   have hpoly := background_pencil_polynomial (Fin.append Q E) B F G
   have hfun : (fun p : Fin 1 → K => backgroundEnumeratedForms
       (fun j => Fin.append Q E j+p 0 • B j) F G)=
-      fun p => backgroundEnumeratedForms (Fin.append Q (Function.update E i (E i+p 0 • M))) F G := by
+      fun p => backgroundEnumeratedForms (Fin.append Q (Function.update E i (E i+p 0 •
+        M))) F G := by
     funext p
     rw [he]
   rwa [hfun] at hpoly

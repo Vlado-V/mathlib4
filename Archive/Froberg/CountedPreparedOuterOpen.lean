@@ -20,7 +20,8 @@ noncomputable section
 
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
-open Module Filter MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters PrivateColumns
+open Module Filter MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters
+  PrivateColumns
 open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 

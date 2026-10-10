@@ -42,7 +42,8 @@ def readU32 (buf : ByteArray) (offset : Nat) : Nat :=
     65536*(buf.get! (offset+2)).toNat + 16777216*(buf.get! (offset+3)).toNat
 
 def addData (name : Name) (type value : Expr) : MetaM Unit := do
-  addDecl (forceExpose := true) <| .defnDecl {name,levelParams := [],type,value,hints := .regular 0,safety := .safe}
+  addDecl (forceExpose := true) <| .defnDecl
+    {name,levelParams := [],type,value,hints := .regular 0,safety := .safe}
   modifyEnv (addNoncomputable · name)
 
 partial def buildTree (xs : Array Expr) (lo hi : Nat) : Expr :=
@@ -51,10 +52,12 @@ partial def buildTree (xs : Array Expr) (lo hi : Nat) : Expr :=
     let mid := (lo+hi)/2
     mkApp3 (mkConst ``NatTree.node) (mkNatLit mid) (buildTree xs lo mid) (buildTree xs mid hi)
 
-syntax (name := packedRows) "load_packed_rows " ident " from " str " nrows " num " nwords " num : command
+syntax (name := packedRows) "load_packed_rows " ident " from " str " nrows " num
+  " nwords " num : command
 
 @[command_elab packedRows] def elabPackedRows : CommandElab := fun stx => do
-  let `(load_packed_rows $name:ident from $path:str nrows $nr:num nwords $nw:num) := stx | throwUnsupportedSyntax
+  let `(load_packed_rows $name:ident from $path:str nrows $nr:num nwords
+    $nw:num) := stx | throwUnsupportedSyntax
   let resolved ← Quartic.CertificateBinaryIO.resolveCertificatePath
     (← getFileName) path.getString
   let buf ← Quartic.CertificateBinaryIO.readBinaryOrPartsCached resolved
@@ -74,16 +77,19 @@ syntax (name := packedRows) "load_packed_rows " ident " from " str " nrows " num
     addData fullname (mkApp (mkConst ``Array [.zero]) (mkConst ``Nat)) value
   logInfo m!"Reified {rowCount} packed Nat rows ({rowCount*wordCount*8} bytes); no rank assertion."
 
-syntax (name := packedTree) "load_packed_tree " ident " from " str " nrows " num " nwords " num : command
+syntax (name := packedTree) "load_packed_tree " ident " from " str " nrows " num
+  " nwords " num : command
 
 @[command_elab packedTree] def elabPackedTree : CommandElab := fun stx => do
-  let `(load_packed_tree $name:ident from $path:str nrows $nr:num nwords $nw:num) := stx | throwUnsupportedSyntax
+  let `(load_packed_tree $name:ident from $path:str nrows $nr:num nwords
+    $nw:num) := stx | throwUnsupportedSyntax
   let resolved ← Quartic.CertificateBinaryIO.resolveCertificatePath
     (← getFileName) path.getString
   let buf ← Quartic.CertificateBinaryIO.readBinaryOrPartsCached resolved
   let rowCount := nr.getNat
   let wordCount := nw.getNat
-  if rowCount == 0 || rowCount*wordCount*8 > buf.size then throwError "invalid packed file dimensions"
+  if rowCount == 0 || rowCount*wordCount*8 > buf.size then throwError
+    "invalid packed file dimensions"
   let mut exprs : Array Expr := #[]
   for i in [:rowCount] do
     let mut val : Nat := 0

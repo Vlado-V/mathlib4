@@ -96,7 +96,8 @@ theorem exists_separated_homogeneous_family
     funext p
     induction p using Sym2.inductionOn with
     | _ i k =>
-      simp only [Function.comp_apply,pairProducts_mk,formalPair_mk,formalPolynomialMultiplication_symProd]
+      simp only [Function.comp_apply,pairProducts_mk,formalPair_mk,
+        formalPolynomialMultiplication_symProd]
       rfl
   have hfi : LinearIndependent K f := by
     apply LinearIndependent.of_comp (Forms K (h+n) (j+t)).subtype

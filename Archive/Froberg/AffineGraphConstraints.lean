@@ -52,7 +52,8 @@ def tupleProductConstraintLinear
     apply LinearMap.ext
     intro ell
     funext l
-    simp only [tupleProductConstraint_apply,LinearMap.smul_apply,Pi.smul_apply,map_smul,RingHom.id_apply]
+    simp only [tupleProductConstraint_apply,LinearMap.smul_apply,Pi.smul_apply,map_smul,
+      RingHom.id_apply]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 theorem tupleProductConstraint_rank

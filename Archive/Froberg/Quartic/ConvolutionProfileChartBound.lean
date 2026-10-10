@@ -163,7 +163,8 @@ theorem profile_parameter_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
         (levelCount (fun i => ranks ht S i.succ) 3) ≤ totalA m (mixedCount m upper) := by omega
     simp only [mixedCount_eq_table m (by omega),upperEndpoint_eq_table m (by
       omega)] at hi hn hdhi' ⊢
-    exact ProfileOuterFinite.profile_outer_bound m hmlo hmhi upper _ _ _ _ hi hn.2.2 hn.2.1 hn.1 hdlo' hdhi'
+    exact ProfileOuterFinite.profile_outer_bound m hmlo hmhi upper _ _ _ _ hi hn.2.2 hn.2.1 hn.1
+      hdlo' hdhi'
   have himage := profile_Phi_le_image m (mixedCount m upper) hc ht S
   have hchart := parameterCount_le_profile_Cell m (mixedCount m upper) ht S
   have h : ((IteratedBlockCharts.parameterCount

@@ -59,7 +59,8 @@ theorem top_scalar_growth_open (hd : 1 ≤ d)
       ∀ p : OddScalarParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) D≠0 →
         Function.Injective (projectedTopMap R (topGrowthParameters hd p.2 p.1)) ∧
         ∀ L : Submodule K (Fin b → K),t*finrank K L ≤
-          finrank K (BilinearImage.image (projectedTopScalarAction R (topGrowthParameters hd p.2 p.1)) L) := by
+          finrank K (BilinearImage.image (projectedTopScalarAction R (topGrowthParameters hd p.2
+            p.1)) L) := by
   obtain ⟨D,hD,hgood⟩ := htop
   let ec := topScalarParametersEquiv (K := K) (h := h) (m := m) (q := q) (f := f) hd
   let eU := (Module.finBasis K (OddScalarParameters K h m d f q)).equivFun
@@ -92,11 +93,14 @@ theorem base_c4_growth_open (hd : 1 ≤ d)
       ∀ p : OddScalarParameters K h m d f q,eval ((Module.finBasis K _).equivFun p) D≠0 →
         Function.Injective (projectedTopMap R (topGrowthParameters hd p.2 p.1)) ∧
         (∀ L : Submodule K (Fin b → K),t*finrank K L ≤
-          finrank K (BilinearImage.image (projectedTopScalarAction R (topGrowthParameters hd p.2 p.1)) L)) ∧
+          finrank K (BilinearImage.image (projectedTopScalarAction R (topGrowthParameters hd p.2
+            p.1)) L)) ∧
         ∀ (k : ℕ) (hk : 3 ≤ k) (hkd : k ≤ d),
           OddScalarLayerProperty t (by omega) hkd (oddScalarBiformParameters p) := by
-  obtain ⟨A,hA,hAtop⟩ := top_scalar_growth_open (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (b := b) (t := t) hd R htop
-  obtain ⟨B,hB,hBmid⟩ := odd_scalar_forms_open (K := K) (h := h) (n := m) (d := d) (qO := f) (qS := q) (t := t) hmid
+  obtain ⟨A,hA,hAtop⟩ := top_scalar_growth_open (K := K) (h := h) (m := m) (d := d) (q := q) (f :=
+    f) (b := b) (t := t) hd R htop
+  obtain ⟨B,hB,hBmid⟩ := odd_scalar_forms_open (K := K) (h := h) (n := m) (d := d) (qO := f) (qS :=
+    q) (t := t) hmid
   have hnz : ∀ i : Fin 2,(![A,B] i)≠0 := by
     intro i
     fin_cases i

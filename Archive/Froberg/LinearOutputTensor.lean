@@ -54,7 +54,8 @@ def linearOutputTensorEquiv : Rows K h m s ≃ₗ[K] (Forms K h 1 ⊗[K] Forms K
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
 @[simp] theorem linearOutputTensorEquiv_single (i : Fin h) (p : Forms K m s) :
     linearOutputTensorEquiv (Pi.single i p)=linearCutEquiv (Pi.single i (1 : K)) ⊗ₜ[K] p := by
-  simp only [linearOutputTensorEquiv,LinearEquiv.trans_apply,TensorProduct.piScalarRight_symm_single,
+  simp only [linearOutputTensorEquiv,LinearEquiv.trans_apply,
+    TensorProduct.piScalarRight_symm_single,
     TensorProduct.comm_tmul,TensorProduct.congr_tmul,LinearEquiv.refl_apply]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
@@ -64,7 +65,8 @@ theorem linearOutputTensorEquiv_sum (v : Rows K h m s) :
   have he : v=∑ i,Pi.single i (v i) := by ext i; simp
   calc
     linearOutputTensorEquiv v=linearOutputTensorEquiv (∑ i,Pi.single i (v i)) := congrArg _ he
-    _=∑ i,linearOutputTensorEquiv (Pi.single i (v i)) := map_sum (linearOutputTensorEquiv (K := K) (h := h) (m := m) (s := s)) (fun i => Pi.single i (v i)) Finset.univ
+    _=∑ i,linearOutputTensorEquiv (Pi.single i (v i)) := map_sum (linearOutputTensorEquiv (K := K)
+      (h := h) (m := m) (s := s)) (fun i => Pi.single i (v i)) Finset.univ
     _=_ := by simp only [linearOutputTensorEquiv_single]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.

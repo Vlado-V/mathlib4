@@ -68,7 +68,8 @@ theorem all_prepared_target_lifts (hd : 3≤d)
   let pE : Fin (counts 2) → Poly K (h+m) := fun i => Q (Sum.inl (Sum.inr ⟨⟨2,h2⟩,i⟩))
   let pU : Fin u → Poly K (h+m) := fun i => Q (Sum.inr (Sum.inr i))
   have hpQ (i) : (Q i).IsHomogeneous d :=
-    (generator_homogeneous (by omega) hO (fun j hj => (hJ j hj).2) U P hPdeg p i).rename_isHomogeneous
+    (generator_homogeneous (by omega) hO (fun j hj => (hJ j hj).2) U P hPdeg p
+      i).rename_isHomogeneous
   have htF (i) : coreComponent h m 1 (pF i)=ambientBiform (outerTensorFamily p i) := by
     dsimp [pF,Q]
     rw [renamedGenerator_outer]
@@ -78,7 +79,8 @@ theorem all_prepared_target_lifts (hd : 3≤d)
     rw [renamedGenerator_outer]
     exact (ambientBiform_weighted _).weightedHomogeneousComponent_ne k (by omega)
   have hEc (i) := prepared_layer_components p.1 ⟨2,h2⟩ (by norm_num) (hO 2 h2) i
-  have htE (i) : coreComponent h m 2 (pE i)=ambientBiform (quadraticTensorFamily h2 (hO 2 h2) p i) := by
+  have htE (i) : coreComponent h m 2 (pE i)=ambientBiform (quadraticTensorFamily h2 (hO 2 h2) p
+    i) := by
     simpa only [pE,Q,renamedGenerator_prepared,quadraticTensorFamily] using (hEc i).1
   have huE (i k) (hk : 2<k) : coreComponent h m k (pE i)=0 := by
     simpa only [pE,Q,renamedGenerator_prepared] using (hEc i).2 k hk
@@ -97,9 +99,11 @@ theorem all_prepared_target_lifts (hd : 3≤d)
   · exact row_two_deformed_target_lift (by omega) pF pE
       (fun i => hpQ _) (fun i => hpQ _) (outerTensorFamily p)
       (quadraticTensorFamily h2 (hO 2 h2) p) htF htE huF huE hrow2 I hIF hIE
-  · exact targetLift_of_biform_degrees (j := 2) (e := d-2) (x := 1) (y := d-1) (by omega) (by omega) (by norm_num)
+  · exact targetLift_of_biform_degrees (j := 2) (e := d-2) (x := 1) (y := d-1) (by omega) (by
+    omega) (by norm_num)
       pE (fun i => hpQ _) _ htE huE hrow3 I hIE
-  · exact targetLift_of_biform_degrees (j := 2) (e := d-2) (x := 2) (y := d-2) (by omega) (by omega) (by norm_num)
+  · exact targetLift_of_biform_degrees (j := 2) (e := d-2) (x := 2) (y := d-2) (by omega) (by
+    omega) (by norm_num)
       pE (fun i => hpQ _) _ htE huE hrow4 I hIE
   · intro b hb hbd hodd
     obtain ⟨a,hab,hba,ha⟩ := hmid b hb hbd hodd

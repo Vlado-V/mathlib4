@@ -91,7 +91,8 @@ theorem full_profile_outer (m:ℕ) (hmlo:130 ≤ m) (hmhi:m ≤ 319) (upper:Bool
     (freeW m c) (freeW m c) (freeW m c) ⟨by positivity,le_rfl,le_rfl,le_rfl⟩
   have hfull:=HullCertificate.full_vertex_outer m hmlo hmhi upper
   apply hfull.trans
-  simp only [weakAverage,div_self hA,div_self hw,weighted,sub_self,zero_mul,zero_add,one_mul] at hweak
+  simp only [weakAverage,div_self hA,div_self
+    hw,weighted,sub_self,zero_mul,zero_add,one_mul] at hweak
   change weakImage (coreA c) (coreB c) (freeW m c) (Counts.b2 (freeW m c))
     (Counts.b3 (freeW m c)) 1 3 ≤ _ at hweak
   exact hweak

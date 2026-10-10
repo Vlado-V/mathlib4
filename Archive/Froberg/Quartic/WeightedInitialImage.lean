@@ -205,7 +205,8 @@ theorem multiplicationImage_initial_finrank_le [∀ i, FiniteDimensional K (T i)
   (Submodule.finrank_mono (multiplicationImage_initial_le μ shift hshift hgrade L)).trans_eq
     (initialSubspace_finrank T (multiplicationImage μ L))
 
-/-- The replacement preserves source dimension and weakly decreases the actual multiplication image. -/
+/-- The replacement preserves source dimension and weakly decreases the actual multiplication
+image. -/
 theorem initial_dimension_and_image_bound
     [∀ i, FiniteDimensional K (E i)] [∀ i, FiniteDimensional K (T i)]
     (μ : ((a : I) → A a) →ₗ[K] ((i : Fin n) → E i) →ₗ[K] ((k : Fin q) → T k))

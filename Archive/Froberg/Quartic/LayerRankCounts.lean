@@ -99,7 +99,8 @@ theorem linear_rank_sum {w : ℕ} (r R : Fin w → ℕ) (B b : ℤ)
     · simpa using hbase ν
   have h := Finset.sum_le_sum (fun ν (_ : ν ∈ Finset.univ) => hp ν)
   rw [Finset.sum_add_distrib,sum_indicator] at h
-  simpa only [Finset.sum_const,Finset.card_univ,Fintype.card_fin,nsmul_eq_mul,levelCount,mul_comm] using h
+  simpa only [Finset.sum_const,Finset.card_univ,Fintype.card_fin,nsmul_eq_mul,levelCount,
+    mul_comm] using h
 
 /-- The nested quadratic thresholds combine into the two source coefficients. -/
 theorem quadratic_pointwise (p i R : ℕ) (_hi : i ≤ 2*p) (P₁ P₂ : Prop)

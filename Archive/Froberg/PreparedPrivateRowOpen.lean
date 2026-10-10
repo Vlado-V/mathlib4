@@ -64,7 +64,8 @@ def privateRowMap (P : Fin b → MvPolynomial (σ ⊕ Fin n) K) (R : ℕ) :
       MvPolynomial (σ ⊕ Fin n) K where
   toFun v := ∑ i,P i*(v i).val
   map_add' v w := by simp only [Pi.add_apply,Submodule.coe_add,mul_add,Finset.sum_add_distrib]
-  map_smul' c v := by simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,RingHom.id_apply]
+  map_smul' c v := by simp only [Pi.smul_apply,Submodule.coe_smul,mul_smul_comm,Finset.smul_sum,
+    RingHom.id_apply]
 
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
 def privateAugmentedRow (hO : ∀ j∈J,O j≤homogeneousSubmodule σ K j)

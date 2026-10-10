@@ -37,7 +37,8 @@ def assemble (L : Submodule K (Piece K t 0 1))
     (∑b:ExactExponent w 2,insertAt b (x.2.1 b).val)+
     (∑b:ExactExponent w 3,insertAt b (x.2.2 b).val)
   map_add' x y := by
-    simp only [Prod.fst_add,Prod.snd_add,Pi.add_apply,Submodule.coe_add,map_add,Finset.sum_add_distrib]
+    simp only [Prod.fst_add,Prod.snd_add,Pi.add_apply,Submodule.coe_add,map_add,
+      Finset.sum_add_distrib]
     abel
   map_smul' a x := by
     simp only [Prod.smul_fst,Prod.smul_snd,Pi.smul_apply,Submodule.coe_smul,

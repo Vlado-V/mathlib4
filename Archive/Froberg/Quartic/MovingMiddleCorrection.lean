@@ -127,7 +127,8 @@ set_option backward.isDefEq.respectTransparency false in
 theorem discarded_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (hg : LinearIndependent K g) : finrank K (discarded g) = c*c := by
   rw [(discardedEquiv g).finrank_eq]
-  let : Module.Free K (Submodule.span K (Set.range g)) := Module.Free.of_basis (Module.Basis.span hg)
+  let : Module.Free K (Submodule.span K (Set.range g)) := Module.Free.of_basis (Module.Basis.span
+    hg)
   rw [Module.finrank_pi_fintype]
   simp [finrank_span_eq_card hg]
 
@@ -147,7 +148,8 @@ theorem boundary_le_discarded (g : Fin c → MiddleCoordinates.Mixed K m) :
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem multiplication_single (g : Fin c → MiddleCoordinates.Mixed K m)
     (i : Fin c) (a : MiddleCoordinates.Mixed K m) :
-    MiddleCoordinates.multiplication g (Pi.single i a) = MiddleCoordinates.projectedProduct (g i) a := by
+    MiddleCoordinates.multiplication g (Pi.single i a) = MiddleCoordinates.projectedProduct (g
+      i) a := by
   classical
   simp only [MiddleCoordinates.multiplication, LinearMap.sum_apply, LinearMap.comp_apply,
     LinearMap.proj_apply, Pi.single_apply]
@@ -358,7 +360,8 @@ def coefficientImage (g : Fin c → MiddleCoordinates.Mixed K m)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :
     Submodule K (Fin c → MiddleCoordinates.Mixed K m ⧸ Submodule.span K (Set.range g)) :=
   ((traceSpace h r markedU).comap
-    (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection g)
+    (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection
+      g)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)

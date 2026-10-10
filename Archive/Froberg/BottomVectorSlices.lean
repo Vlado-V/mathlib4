@@ -51,7 +51,8 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 @[simp] theorem bottomCoordinateScalarAction_mk (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
     (p : Forms K m d) (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
-    bottomCoordinateScalarAction hd Q g p ((Submodule.span K (Set.range (bottomTensorFamily g))).mkQ v)=
+    bottomCoordinateScalarAction hd Q g p ((Submodule.span K (Set.range (bottomTensorFamily g))).mkQ
+      v)=
       (coordinateRelation (oddBackgroundBlockRelations
         (fun i => scalarEvenBiform (h := h) (Q i))
         (fun i => oddBiformEmbedding hd (by decide) (bottomTensorFamily g i)))
@@ -65,7 +66,8 @@ theorem bottomCoordinateScalarAction_closed_slices (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d-1))
     (s : ℕ → ℕ)
     (hs : BilinearScalarFamily.HasClosedKernelSlices
-      (BilinearScalarFamily.scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d) Q) s) :
+      (BilinearScalarFamily.scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d)
+        Q) s) :
     BilinearScalarFamily.HasClosedKernelSlices (bottomCoordinateScalarAction hd Q g) s := by
   apply BilinearScalarFamily.HasClosedKernelSlices.equiv
     (LinearEquiv.refl K (Forms K m d)) (bottomVectorSourceEquiv g)
@@ -74,8 +76,10 @@ theorem bottomCoordinateScalarAction_closed_slices (hd : 1 ≤ d)
   intro p v
   change bottomCoordinateTargetEquiv hd Q g
     (bottomVectorTargetEquiv hd Q g
-      (BilinearScalarFamily.scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d) Q p v))=
-    bottomCoordinateTargetEquiv hd Q g (bottomTensorScalarAction hd Q g p (bottomVectorSourceEquiv g v))
+      (BilinearScalarFamily.scalarQuotientBilinear (VectorExpansionOpen.quotientMultiplication g d)
+        Q p v))=
+    bottomCoordinateTargetEquiv hd Q g (bottomTensorScalarAction hd Q g p (bottomVectorSourceEquiv g
+      v))
   rw [bottomTensorScalarAction_compatible]
 
 end Froberg

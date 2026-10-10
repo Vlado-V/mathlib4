@@ -79,7 +79,8 @@ theorem extendedCorePolynomialMatrix_injective (q : J → I → Poly K a)
     have hrel : corePolynomialMatrix q pβ=0 := by
       funext j
       have hh := congrArg (freeCoeff β) (congrFun hp j)
-      simpa only [extendedCorePolynomialMatrix,corePolynomialMatrix,pβ,LinearMap.coe_mk,AddHom.coe_mk,
+      simpa only [extendedCorePolynomialMatrix,corePolynomialMatrix,pβ,LinearMap.coe_mk,
+        AddHom.coe_mk,
         map_sum,freeCoeff_rename_mul,Pi.zero_apply,map_zero] using hh
     have hz : pβ=0 := (hq (t-β.degree) (Nat.sub_le _ _)) (hrel.trans (map_zero _).symm)
     exact congrArg Subtype.val (congrFun hz i)

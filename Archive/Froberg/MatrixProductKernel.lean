@@ -55,7 +55,8 @@ theorem matrix_product_pair_coefficient_zero
       (LinearMap.ker_eq_bot.mpr hP)
   have hLp (p : {p : Sym2 I // P p}) : L (pairProducts q p.val)=Finsupp.single p 1 := by
     have h := LinearMap.congr_fun hL (Finsupp.single p 1)
-    simpa only [LinearMap.comp_apply,Finsupp.linearCombination_single,one_smul,LinearMap.id_apply] using h
+    simpa only [LinearMap.comp_apply,Finsupp.linearCombination_single,one_smul,LinearMap.id_apply]
+      using h
   have hterm (i j : I) : B i j • L (q i*q j) p =
       if s(i,j)=p.val then B i j else 0 := by
     by_cases hij : P s(i,j)
@@ -65,7 +66,8 @@ theorem matrix_product_pair_coefficient_zero
     · have hne : s(i,j)≠p.val := fun h => hij (h.symm ▸ p.property)
       simp [hB i j hij,hne]
   have h := congrArg (fun x => L x p) hzero
-  simpa only [map_sum,map_smul,Finsupp.coe_finsetSum,Finset.sum_apply,Finsupp.smul_apply,map_zero,Finsupp.zero_apply,hterm] using h
+  simpa only [map_sum,map_smul,Finsupp.coe_finsetSum,Finset.sum_apply,Finsupp.smul_apply,map_zero,
+    Finsupp.zero_apply,hterm] using h
 
 /-- A zero product matrix is alternating on every selected pair. -/
 theorem matrix_product_alternating

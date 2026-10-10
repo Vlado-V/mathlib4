@@ -39,13 +39,15 @@ theorem exists_prepared_target_witness (hd : 3≤d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
     (hPdeg : ∀ i,(P i).IsHomogeneous d)
     (hPlow : ∀ i k,d≤k → coreComponent h m k (rename finSumFinEquiv (P i))=0) :
-    ∃ p : Space m d q f u (activeEvenIndices d) (targetLayerCount d h m r) (targetLayerOutput frame),
+    ∃ p : Space m d q f u (activeEvenIndices d) (targetLayerCount d h m r) (targetLayerOutput
+      frame),
       p.2.2=0 ∧ ∀ b,2≤b → b≤2*d → TargetLift
         ((Submodule.span K (Set.range (renamedGenerator
           (fun i => homogeneousInclusion S hS (u₀ i)) P p)))*Forms K (h+m) d) d b := by
   let T := targetLayerFamily hd frame low.2 G
   have hTmem := targetLayerFamily_mem hd frame low.2 G
-  let p : Space m d q f u (activeEvenIndices d) (targetLayerCount d h m r) (targetLayerOutput frame) :=
+  let p : Space m d q f u (activeEvenIndices d) (targetLayerCount d h m r) (targetLayerOutput
+    frame) :=
     preparedTargetTensorParameters T hTmem low.1 0 0
   have hO (j) (_hj : j∈activeEvenIndices d) : targetLayerOutput frame j≤Forms K h j :=
     targetLayerOutput_homogeneous frame j

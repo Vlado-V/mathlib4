@@ -149,7 +149,8 @@ theorem privateEndpointFamily_flag_reindex {f : ℕ} (hd : 0<d) (ho : d%2=1)
     rw [privateSplitEndpoint_back]
     have hG : (PreparedTarget.preparedOddBiform hd ho U P F (Sum.inr j)).val=
         (P j).val+rename Sum.inl (U j).val := rfl
-    simp only [Sum.elim_inr,backgroundPositiveForms,oddPolynomialToForms_val,privateOddFamily_val,hG]
+    simp only [Sum.elim_inr,backgroundPositiveForms,oddPolynomialToForms_val,privateOddFamily_val,
+      hG]
     exact ((renameEquiv K finSumFinEquiv).left_inv _).symm
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.

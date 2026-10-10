@@ -60,7 +60,8 @@ theorem polynomialScalarRow_range (o : J → MvPolynomial σ K)
   rintro x ⟨p,rfl⟩
   apply polynomialFormVector_mem_biform o O _ ho
   intro j
-  simp only [BilinearScalarFamily.multiplication_apply,Finset.sum_apply,Submodule.coe_sum,vectorMultiply_val]
+  simp only [BilinearScalarFamily.multiplication_apply,Finset.sum_apply,Submodule.coe_sum,
+    vectorMultiply_val]
   apply Submodule.sum_mem
   intro i hi
   exact Submodule.mul_mem_mul (Submodule.subset_span ⟨i,rfl⟩) (p i j).property

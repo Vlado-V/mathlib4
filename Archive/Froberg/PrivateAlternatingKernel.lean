@@ -27,7 +27,8 @@ def privateSourceCoefficientMap (i : Fin b) (α : Fin (a+z) →₀ ℕ) :
   toFun v := privateSourceCoefficient v i α
   map_add' v w := by
     funext j
-    simp only [privateSourceCoefficient,Pi.add_apply,Submodule.coe_add,AddMonoidAlgebra.coeff_add,Finsupp.add_apply]
+    simp only [privateSourceCoefficient,Pi.add_apply,Submodule.coe_add,AddMonoidAlgebra.coeff_add,
+      Finsupp.add_apply]
   map_smul' k v := by
     funext j
     simp only [privateSourceCoefficient,Pi.smul_apply,Submodule.coe_smul,MvPolynomial.coeff_smul,

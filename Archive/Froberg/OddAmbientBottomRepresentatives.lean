@@ -61,7 +61,8 @@ theorem exists_odd_ambient_bottom_representative
   obtain ⟨p,hp,hpx⟩ := exists_odd_target_bottom_representative hd Q F hQ hF x
   refine ⟨p,hp,?_⟩
   apply (oddAmbientCoordinates hd Q F hQ hF G D hD).injective
-  rw [LinearEquiv.apply_symm_apply,oddAmbientCoordinates_weighted_bottom hd Q F hQ hF G D hD p hp,hpx]
+  rw [LinearEquiv.apply_symm_apply,oddAmbientCoordinates_weighted_bottom hd Q F hQ hF G D hD p
+    hp,hpx]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_ambient_projection_kills_bottom {Z : Type} [AddCommGroup Z] [Module K Z]

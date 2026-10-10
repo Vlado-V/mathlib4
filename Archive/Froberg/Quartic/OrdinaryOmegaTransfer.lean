@@ -84,7 +84,8 @@ theorem large_parent_witness (m : ℕ) (hm : 41 ≤ m) (upper : Bool) (hω : ω 
     simpa only [AugmentedGeneric.coefficientMixed_encode,
       SimultaneousBlockConditionsOmega.transposeMixed,
       SimultaneousBlockConditions.transposeMixed] using hblock.2.2.1
-  obtain ⟨r,s,_,hresponse⟩ := ActualSlicedResponseRankOmega.exists_response_rank_formula ω g h U Z' hclosed
+  obtain ⟨r,s,_,hresponse⟩ := ActualSlicedResponseRankOmega.exists_response_rank_formula ω g h U Z'
+    hclosed
     hg hh hs htrace hf13.2.1 hf13.2.2 r₀ hr₀
   have hresponse' : (finrank K (response ω g h r U s).range:ℤ)=
       min (Counts.hTotal m (upperEndpoint m) (mixedCount m upper))

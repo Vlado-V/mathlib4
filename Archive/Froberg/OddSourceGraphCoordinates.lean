@@ -121,7 +121,8 @@ def oddSourceGraphQuotientEquiv (hd : 1≤d)
       ((oddBottomRelationMap hd F G).prod (oddHigherRelationMap hd F G)).range := by
     rw [oddSourceRelationMap_prod,oddSourceRelationMap,LinearMap.range_comp,
       Fintype.range_linearCombination]
-  exact (Submodule.quotEquivOfEq _ _ (congrArg (fun S => S ⊔ Submodule.span K (Set.range G)) hker.symm)).trans
+  exact (Submodule.quotEquivOfEq _ _ (congrArg (fun S => S ⊔ Submodule.span K (Set.range G))
+    hker.symm)).trans
     ((projectedQuotientEquiv (oddSourceBaseMap hd F) (oddSourceBaseMap_surjective hd F)
       (Submodule.span K (Set.range G))).trans (Submodule.quotEquivOfEq _ _ hrange))
 

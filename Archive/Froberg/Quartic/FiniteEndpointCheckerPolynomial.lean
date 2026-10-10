@@ -77,7 +77,8 @@ theorem coefficients_rowPolynomial (E : Fin n → Fin v →₀ ℕ) (hE : Functi
   | nil => ext j; simp [rowPolynomial]
   | cons i s ih =>
     ext j
-    simp only [rowPolynomial,List.map_cons,List.sum_cons,AddMonoidAlgebra.coeff_add,Finsupp.add_apply,coeff_monomial,Pi.add_apply]
+    simp only [rowPolynomial,List.map_cons,List.sum_cons,AddMonoidAlgebra.coeff_add,
+      Finsupp.add_apply,coeff_monomial,Pi.add_apply]
     simp only [hE.eq_iff]
     have hij := congrFun ih j
     change ((s.map (fun i => monomial (E i) (1 : K))).sum).coeff (E j) = _ at hij

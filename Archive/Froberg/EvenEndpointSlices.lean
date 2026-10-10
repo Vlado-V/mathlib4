@@ -64,10 +64,12 @@ theorem even_actual_thin_open
       (∃ a : Fin e → Forms K m d,eval ((Module.finBasis K _).equivFun a) P₁ ≠ 0) ∧
       ∀ a,eval ((Module.finBasis K _).equivFun a) P₁ ≠ 0 →
         eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 ∧
-        HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁ emptyOddFamily)
+        HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁
+          emptyOddFamily)
           (thinSlices (finrank K (oddTargetSpace
             ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
-            (backgroundEnumeratedForms (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁ emptyOddFamily))) S) := by
+            (backgroundEnumeratedForms (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁
+              emptyOddFamily))) S) := by
   have hz : j ≤ thinSlices j S 0 := by simp [thinSlices]
   have hbase : ∀ k₀ : Fin (finrank K (OddBottomQuotient F)+1),0 < thinSlices T₀ C k₀.val →
       thinSlices T₀ C k₀.val+⌊C⌋₊*k₀.val ≤ T₀ := by

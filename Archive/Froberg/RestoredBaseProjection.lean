@@ -19,7 +19,8 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
-def restoredBaseProjection : RestoredOuterSpace m d q f J counts O →ₗ[K] OddScalarParameters K h m d f q :=
+def restoredBaseProjection :
+    RestoredOuterSpace m d q f J counts O →ₗ[K] OddScalarParameters K h m d f q :=
   scalarVectorParametersEquiv.toLinearMap.comp
     (((LinearMap.fst K _ _).prod ((LinearMap.fst K _ _).comp (LinearMap.snd K _ _))).comp
       restoredJointCoordinates.toLinearMap)
@@ -54,6 +55,7 @@ theorem restored_base_principal_pullback (hO : ∀ j∈J,O j≤Forms K h j)
       ∀ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun
         p) P≠0 → Good (restoredBaseProjection p) := by
   letI : Module.Finite K (Space m d q J counts O) := finite_space hO
-  exact principal_open_linear_pullback restoredBaseProjection restoredBaseProjection_surjective D hD Good hGood
+  exact principal_open_linear_pullback restoredBaseProjection restoredBaseProjection_surjective D
+    hD Good hGood
 
 end Froberg.PreparedParameters

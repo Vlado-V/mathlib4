@@ -84,7 +84,8 @@ theorem generic_surjective_actual_of_strict_shadow [Infinite K] {q : ℕ}
     change _ ≤ (finrank K (Quartic.BilinearImage.image (transportBilinear eF eV eW mu) L) : ℝ)
     rw [image_transportBilinear,eW.finrank_map_eq]
     exact hh
-  obtain ⟨P,hP,hSurj⟩ := BilinearCovectorStrata.generic_surjective_of_strict_shadow mu' R D hT hq hD hG
+  obtain ⟨P,hP,hSurj⟩ := BilinearCovectorStrata.generic_surjective_of_strict_shadow mu' R D hT hq
+    hD hG
   refine ⟨P,?_,?_⟩
   · obtain ⟨Q,hQ⟩ := hP
     refine ⟨fun i => eF.symm (fun j => Q (i,j)),?_⟩

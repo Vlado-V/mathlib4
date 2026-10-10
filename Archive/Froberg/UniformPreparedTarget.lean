@@ -30,7 +30,8 @@ theorem eventually_prepared_target_witness_uniform {d : ℕ} (hd : 3≤d) (N₂ 
         countAlpha d*(h : ℝ)^2*(m : ℝ)^(d-2)≤(r : ℝ) →
         ∃ D : MvPolynomial (Fin (finrank K (Fin (quadraticOutputDimension d h) → Forms K h 2))) K,
           (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 →
-            LinearIndependent K ((Module.finBasis K (Fin (quadraticOutputDimension d h) → Forms K h 2)).equivFun.symm a) ∧
+            LinearIndependent K ((Module.finBasis K (Fin (quadraticOutputDimension d h) → Forms K h
+              2)).equivFun.symm a) ∧
             ∀ (u q : ℕ) (S : Submodule K (Poly K h)) (hS : S≤Forms K h d)
               (u₀ : Fin u → S),Submodule.span K (Set.range u₀)=⊤ →
               S*Forms K h 1=Forms K h (d+1) → (¬Odd d → S=Forms K h d) →

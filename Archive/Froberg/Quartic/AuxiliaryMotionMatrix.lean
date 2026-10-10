@@ -39,7 +39,8 @@ def family : (EntryIndex a n T → K) →ₗ[K] Input K n T e →ₗ[K] Output K
         (∑ j,p (.inl (i,j))*y j)+(∑ j,q (.inl (i,j))*y j)
       simp only [add_mul,Finset.sum_add_distrib]
     · funext j
-      simp [augmented,CoefficientConstraintRank.repeated,covector_apply,add_mul,Finset.sum_add_distrib]
+      simp [augmented,CoefficientConstraintRank.repeated,covector_apply,add_mul,
+        Finset.sum_add_distrib]
   map_smul' c p := by
     apply LinearMap.ext
     rintro ⟨y,Z⟩

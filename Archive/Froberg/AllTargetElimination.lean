@@ -78,14 +78,16 @@ theorem all_target_lifts_eliminate (I : Submodule K (Poly K (h+m)))
       ∀ b,2≤b → b≤2*d → coreComponent h m b q.val=0 := by
   have hs : (2*d-1)+1=2*d := by omega
   let weight : Fin ((2*d-1)+1) → ℕ := fun i => i.val+1
-  obtain ⟨q,hq,hzero⟩ := polynomial_ideal_elimination (D := 2*d) (n := 2*d-1) I weight (fun (i : Fin ((2*d-1)+1)) (hi : i≠0) v => by
+  obtain ⟨q,hq,hzero⟩ := polynomial_ideal_elimination (D := 2*d) (n := 2*d-1) I weight (fun (i : Fin
+    ((2*d-1)+1)) (hi : i≠0) v => by
     have hi0 : (0 : ℕ) < (i : ℕ) := by
       by_contra hn
       apply hi
       exact Fin.ext (by simp only [Fin.val_zero];omega)
     obtain ⟨q,hq,ht,hu⟩ := hlift (weight i) (by dsimp [weight];omega)
       (by dsimp [weight];have := i.isLt;omega) v
-    exact ⟨q,hq,ht,fun k hik => hu (weight k) (by change i.val<k.val at hik;dsimp [weight];omega)⟩) p
+    exact ⟨q,hq,ht,fun k hik => hu (weight k)
+      (by change i.val<k.val at hik;dsimp [weight];omega)⟩) p
   refine ⟨q,hq,?_⟩
   intro b hb hbd
   let i : Fin (2*d-1) := ⟨b-2,by omega⟩

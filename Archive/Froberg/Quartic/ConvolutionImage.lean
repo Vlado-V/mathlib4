@@ -90,7 +90,8 @@ theorem source_annihilator_dimension (ht : 2 ≤ t) (L : Submodule K (Cokernel K
     Module.finrank K L + Module.finrank K L.dualAnnihilator = 2 * (t - 1) := by
   rw [Subspace.finrank_add_finrank_dualAnnihilator_eq, cokernel_degreeOne_finrank (by omega)]
 
-/-- The image annihilator dimension is exactly the codimension of the actual multiplication image. -/
+/-- The image annihilator dimension is exactly the codimension of the actual multiplication
+image. -/
 theorem image_annihilator_dimension (ht : 2 ≤ t) (L : Submodule K (Cokernel K t 0)) :
     Module.finrank K (imageSpace L) +
       Module.finrank K (imageSpace L).dualAnnihilator = t.choose 2 := by

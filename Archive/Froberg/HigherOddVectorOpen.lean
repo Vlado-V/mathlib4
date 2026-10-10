@@ -108,7 +108,8 @@ theorem higher_odd_vector_open (hh : 0<h) (hm : 0 < m) (hd : 1≤d)
   · simpa only [V,LinearEquiv.apply_symm_apply,map_mul] using mul_ne_zero hx hx'
   intro p hp r hr hrd hodd u v hu hv hrow
   have hps : eval ((Module.finBasis K V).equivFun p) P≠0 ∧
-      eval ((Module.finBasis K V).equivFun p) P'≠0 := by simpa only [map_mul,mul_ne_zero_iff] using hp
+      eval ((Module.finBasis K V).equivFun
+        p) P'≠0 := by simpa only [map_mul,mul_ne_zero_iff] using hp
   by_cases hrd' : r≤d
   · exact odd_scalar_layer_polynomial_row (by omega) hrd' (e p)
       (hPgood p hps.1 r hr hrd') u v hu hv hrow

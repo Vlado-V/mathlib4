@@ -89,7 +89,8 @@ theorem oddHigherRelationMap_mixed_top (hd : Odd d) (hd3 : 3≤d)
     (hr : 2*r.val.val+1=d) (c : Fin u → K) :
     oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
       (fun i => mixedPureOddGenerator hd (U i) (P i)) c r=
-        oddHigherPureEquiv (m := m) (Nat.le_trans (by decide : 1≤3) hd3) r hr (Fintype.linearCombination K U c) := by
+        oddHigherPureEquiv (m := m) (Nat.le_trans (by decide : 1≤3)
+          hd3) r hr (Fintype.linearCombination K U c) := by
   apply sumBiformMap_injective
   change sumBiformMap (oddBiformCoordinatesEquiv
     (Fintype.linearCombination K (fun i => mixedPureOddGenerator hd (U i) (P i)) c) r.val)=_
@@ -127,7 +128,8 @@ def oddHigherTopQuotientEquiv (hd : Odd d) (hd3 : 3≤d)
       coordinateRelation (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r) ≃ₗ[K]
       (Forms K h d ⧸ Submodule.span K (Set.range U)) :=
-  (Submodule.Quotient.equiv _ _ (oddHigherPureEquiv (m := m) (Nat.le_trans (by decide : 1≤3) hd3) r hr)
+  (Submodule.Quotient.equiv _ _ (oddHigherPureEquiv (m := m) (Nat.le_trans (by decide : 1≤3) hd3) r
+    hr)
     (oddHigherCoordinateRelation_top hd hd3 F U P r hr).symm).symm
 
 end Froberg

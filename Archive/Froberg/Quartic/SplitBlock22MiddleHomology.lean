@@ -110,7 +110,8 @@ theorem blockBoundarySpace_le_kernel (g : Fin c → MiddleCoordinates.Mixed K m)
   exact mixedKoszulSpace_le_kernel g ha
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- An actual block cycle is a boundary exactly when its mixed coefficient is a remaining boundary. -/
+/-- An actual block cycle is a boundary exactly when its mixed coefficient is a remaining
+boundary. -/
 theorem boundary_iff_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h)
     (a : (multiplication g h).ker) :
@@ -137,7 +138,8 @@ theorem boundary_iff_mixed_mem (g : Fin c → MiddleCoordinates.Mixed K m)
     exact sub_add_cancel _ _
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Pulling the remaining boundaries back along the canonical projection gives exactly all block boundaries. -/
+/-- Pulling the remaining boundaries back along the canonical projection gives exactly all block
+boundaries. -/
 theorem blockBoundary_comap (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (hh : LinearIndependent K h) :
     kernelBoundary (W := Target K m) (multiplication g h) (blockBoundarySpace g h) =

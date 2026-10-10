@@ -68,7 +68,8 @@ theorem encode_recover (a : ParameterIndex m c q → K) :
     rw [LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-/-- With mixed coefficients and motions fixed, every original coefficient is polynomial in child coordinates. -/
+/-- With mixed coefficients and motions fixed, every original coefficient is polynomial in child
+coordinates. -/
 theorem coordinate_polynomial (g : Fin c → MiddleCoordinates.Mixed K m)
     (r : Fin 4 → Forms K m 2) (j : ParameterIndex m c q) :
     ∃ P : MvPolynomial (ChildIndex m q) K,

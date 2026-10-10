@@ -40,14 +40,16 @@ def variableGenerator : Space n d q f u J counts O →ₗ[K]
     funext i
     rcases i with i | (i | i)
     · rcases i with i | ⟨j,i⟩ <;>
-        simp [PreparedParameters.generator,PreparedParameters.scalar,PreparedParameters.high,add_add_add_comm]
+        simp [PreparedParameters.generator,PreparedParameters.scalar,PreparedParameters.high,
+          add_add_add_comm]
     · simp
     · simp
   map_smul' a p := by
     funext i
     rcases i with i | (i | i)
     · rcases i with i | ⟨j,i⟩ <;>
-        simp [PreparedParameters.generator,PreparedParameters.scalar,PreparedParameters.high,add_add_add_comm]
+        simp [PreparedParameters.generator,PreparedParameters.scalar,PreparedParameters.high,
+          add_add_add_comm]
     · simp
     · simp
 

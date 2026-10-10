@@ -63,7 +63,8 @@ theorem blockQuadrics_independent : LinearIndependent K (blockQuadrics (K := K))
   intro c hc i
   have h := congrArg (fun p : Quartic.Forms K 3 2 => p.val.coeff (separatingExponents i)) hc
   simpa [Submodule.coe_sum, Submodule.coe_smul, coeff_sum, coeff_smul,
-    blockQuadrics_val, separating_coefficients, Submodule.coe_zero, AddMonoidAlgebra.coeff_zero, Pi.zero_apply,
+    blockQuadrics_val, separating_coefficients, Submodule.coe_zero, AddMonoidAlgebra.coeff_zero,
+      Pi.zero_apply,
     smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ,
     ite_true] using h
 
@@ -215,7 +216,8 @@ has the dimension asserted in `tb:pure`. -/
 theorem blockHomology_finrank :
     Module.finrank K (Quartic.QuarticHomology (blockQuadrics (K := K))) = 3 := by
   have hhom := Quartic.homology_add_pairs (blockQuadrics (K := K)) blockQuadrics_independent
-  have hrank := (Quartic.quadraticMultiplication (blockQuadrics (K := K))).finrank_range_add_finrank_ker
+  have hrank := (Quartic.quadraticMultiplication (blockQuadrics (K :=
+    K))).finrank_range_add_finrank_ker
   rw [LinearMap.range_eq_top.mpr blockMultiplication_surjective, finrank_top,
     Quartic.finrank_quartics] at hrank
   have hsource : Module.finrank K (Fin 4 → Quartic.Forms K 3 2) = 24 := by

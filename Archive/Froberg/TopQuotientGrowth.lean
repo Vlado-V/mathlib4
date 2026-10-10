@@ -25,7 +25,8 @@ variable {K : Type*} [Field K] [Infinite K] {h m e b qF qS t : ℕ}
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
 theorem projectedTopMap_eq_tensorFamily (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
     (p : ProjectedTopParameters K h m e qF qS) :
-    projectedTopMap P p=projectedTensorFamily (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P (rawTopFamily p.1) p.2 := by
+    projectedTopMap P p=projectedTensorFamily (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m
+      1) P (rawTopFamily p.1) p.2 := by
   have hQ : BilinearScalarFamily.multiplication (K := K)
       (F := Forms K m (1+e)) (V := Fin b → K) (W := (Fin b → K) ⊗[K] Forms K m (1+e))
       (tensorScalarProduct (K := K) (V := Fin b → K) (P := Forms K m (1+e))) p.2=
@@ -44,7 +45,8 @@ theorem top_tensor_scalar_growth (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
       t*finrank K L≤finrank K (BilinearImage.image (projectedTopScalarAction P p) L))
     (L : Submodule K (Fin b → K)) :
     t*finrank K L≤finrank K (BilinearImage.image
-      (tensorFamilyScalarAction (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P hP (rawTopFamily p.1) p.2) L) := by
+      (tensorFamilyScalarAction (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P hP
+        (rawTopFamily p.1) p.2) L) := by
   apply tensorFamily_scalar_growth (K := K)
     (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P hP (rawTopFamily p.1) p.2 t _ L
   intro M
@@ -71,7 +73,8 @@ theorem top_tensor_growth_open (P : Forms K h (1+e) →ₗ[K] (Fin b → K))
           (leftRelations P.ker ⊔ rightRelations (Submodule.span K (Set.range p.2))) ∧
         ∀ L : Submodule K (Fin b → K),
           t*finrank K L≤finrank K (BilinearImage.image
-            (tensorFamilyScalarAction (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P hP (rawTopFamily p.1) p.2) L) := by
+            (tensorFamilyScalarAction (K := K) (A := Fin qF → Forms K h e ⊗[K] Forms K m 1) P hP
+              (rawTopFamily p.1) p.2) L) := by
   obtain ⟨D,hD,hgood⟩ := hopen
   refine ⟨D,hD,?_⟩
   intro p hp

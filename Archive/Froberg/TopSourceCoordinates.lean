@@ -80,7 +80,8 @@ theorem oddMixedSourceBlockCoordinates_top_projection (hd : Odd d) (hd3 : 3≤d)
       ((oddMixedSourceBlockCoordinates hd hd3 F U P B hB
         (((Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1)
           (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i)))) ⊔
-          Submodule.span K (Set.range (fun i => mixedPureOddGenerator hd (U i) (P i)))).mkQ v)).2 r)=
+          Submodule.span K (Set.range (fun i => mixedPureOddGenerator hd (U i) (P i)))).mkQ v)).2
+            r)=
       R ((topGrowthDegree (Nat.le_trans (by decide : 1≤3) hd3) h).symm
         (topRowScalarCoefficient (biformTensorComponent le_rfl v))) := by
   rw [oddMixedSourceBlockCoordinates_higher,oddHigherTopProjectionEquiv_mk,

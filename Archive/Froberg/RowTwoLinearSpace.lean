@@ -31,7 +31,8 @@ theorem exists_linear_space_with_quadratic_quotient {h p : ℕ} (hh : 0 < h) (hp
   refine ⟨A,hA,?_,?_⟩
   · have hi := hq.map' (Forms K h 1).subtype
       (LinearMap.ker_eq_bot.mpr (Submodule.injective_subtype _))
-    simpa only [A,Function.comp_def,Fintype.card_fin,Submodule.subtype_apply] using finrank_span_eq_card hi
+    simpa only [A,Function.comp_def,Fintype.card_fin,Submodule.subtype_apply] using
+      finrank_span_eq_card hi
   · have he := endpoint_quotient_linear hh q hq
     simpa only [A,expectedEndpoint,euler_linear hp,Int.toNat_natCast] using he
 

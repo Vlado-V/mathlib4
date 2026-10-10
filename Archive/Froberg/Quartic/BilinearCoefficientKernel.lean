@@ -206,7 +206,8 @@ theorem eval_covector_eq_smul_rationalMap (N : Fin T → MvPolynomial I K)
   simp only [Pi.smul_apply, smul_eq_mul, RationalImageAvoidance.rationalMap]
   field_simp
 
-/-- The polynomial coefficient matrix and rational covector have identical rank off the denominator. -/
+/-- The polynomial coefficient matrix and rational covector have identical rank off the
+denominator. -/
 theorem evaluated_polynomialMatrix_rank (N : Fin T → MvPolynomial I K)
     (G : MvPolynomial I K) (p : I → K) (hG : eval p G ≠ 0) :
     (evaluated (polynomialMatrix mu N) p).rank =

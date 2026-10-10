@@ -48,6 +48,7 @@ theorem row_two_full_surjective
   obtain ⟨⟨a,b⟩,hab⟩ := hs z
   refine ⟨(a,fun i => constantOneForm K h ⊗ₜ[K] b i),?_⟩
   simpa only [LinearMap.coprod_apply,biformTensorFamilyMap_pure,biformTensorFamilyToDegree,
-    LinearMap.comp_apply,LinearMap.llcomp_apply,vectorFormFamilyToDegree,biform_zero_coefficients] using hab
+    LinearMap.comp_apply,LinearMap.llcomp_apply,vectorFormFamilyToDegree,biform_zero_coefficients]
+      using hab
 
 end Froberg

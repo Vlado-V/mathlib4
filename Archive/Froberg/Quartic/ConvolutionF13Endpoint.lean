@@ -81,7 +81,8 @@ theorem cokernel_finrank_eq_j (m : ℕ) (hm : 41 ≤ m) (upper : Bool)
   unfold Counts.j
   omega
 
-/-- The common actual outer/cubic conditions together with the full fixed-presentation F₁₃ result. -/
+/-- The common actual outer/cubic conditions together with the full fixed-presentation F₁₃
+result. -/
 def Conditions (m : ℕ) (upper : Bool) (Q : EndpointCoefficients K m upper) : Prop :=
   CommonConditions m upper Q ∧ Function.Injective (f13Map Q) ∧
     (finrank K (ConvolutionF13.Source Q) : ℤ) =

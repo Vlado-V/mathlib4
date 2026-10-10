@@ -19,7 +19,8 @@ noncomputable section
 
 set_option backward.isDefEq.respectTransparency true
 namespace Froberg.PreparedParameters
-open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily BilinearCovectorStrata
+open Froberg Module MvPolynomial VectorMultiplicationCoordinates BilinearScalarFamily
+  BilinearCovectorStrata
 attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] [IsAlgClosed K] {h m d q f r : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
@@ -53,7 +54,8 @@ theorem restored_scalar_thin_open (hh : 0 < h) (hm : 0 < m)
       eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0)
     (hgood : ∀ a, eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 →
       OddSplitExact
-        (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (a,rest)).1)
+        (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+          (a,rest)).1)
         (fun i => linearOddForm hdp (PreparedTarget.outerVectorEquiv.symm (rest.2.2 i))) ∧
       Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hdeven hO hJ heven idx slot
         (restoredScalarFiberCoordinates.symm (a,rest)))))

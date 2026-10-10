@@ -72,7 +72,8 @@ def privateCoefficientAssembly :
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem privateCoefficientAssembly_surjective (hd : Odd d) :
-    Function.Surjective (privateCoefficientAssembly (K := K) (h := h) (m := m) (d := d) (u := u)) := by
+    Function.Surjective (privateCoefficientAssembly (K := K) (h := h) (m := m) (d := d) (u :=
+      u)) := by
   intro v
   choose z hz using fun i => evenCoefficientAssembly_surjective hd (v i)
   refine ⟨(fun i => (z i).1,fun i => (z i).2),?_⟩

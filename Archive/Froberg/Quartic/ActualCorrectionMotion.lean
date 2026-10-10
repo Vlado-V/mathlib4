@@ -407,7 +407,8 @@ theorem constraintLinear_apply (g : Fin c → MiddleCoordinates.Mixed K m)
           (rawMap g h markedU sectionMap r ((coordinates K _).symm (Pi.single j 1)) i))) := by
   change (constraint g h markedU sectionMap r ell *ᵥ motionEncode p) j=_
   rw [constraint,BilinearMotionConstraints.mulVec_apply]
-  simp only [motionEncode,LinearMap.coe_mk,AddHom.coe_mk,RowMultiplicationCoordinates.coordinate_apply,columns,
+  simp only [motionEncode,LinearMap.coe_mk,AddHom.coe_mk,
+    RowMultiplicationCoordinates.coordinate_apply,columns,
     LinearEquiv.symm_apply_apply,← map_sum]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.

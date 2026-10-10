@@ -65,7 +65,8 @@ theorem prepared_quadratic_formal_separation
         rw [formalPair_mk,formalPolynomialMultiplication_symProd]
         change preparedQuadraticDetector T ((qF i).val*(qF j).val)=_
         rw [hqF,hqF,←map_mul,preparedQuadraticDetector_rename,pairProducts_mk]
-    simpa only [hp,detectedSymmetricProductRow,LinearMap.coe_mk,AddHom.coe_mk,Submodule.subtype_apply,A] using ha
+    simpa only [hp,detectedSymmetricProductRow,LinearMap.coe_mk,AddHom.coe_mk,
+      Submodule.subtype_apply,A] using ha
   · have hker := formalMixed_polynomial_map_le_ker W
       (A.range.mkQ.comp (preparedQuadraticDetector T)) (by
         intro w hw a

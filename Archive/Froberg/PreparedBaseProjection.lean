@@ -19,7 +19,9 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
-def preparedBaseProjection : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K] OddScalarParameters K h m d f q :=
+def preparedBaseProjection :
+    FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
+      OddScalarParameters K h m d f q :=
   scalarVectorParametersEquiv.toLinearMap.comp
     (((LinearMap.fst K _ _).prod ((LinearMap.fst K _ _).comp (LinearMap.snd K _ _))).comp
       preparedJointCoordinates.toLinearMap)
@@ -55,9 +57,11 @@ theorem prepared_base_principal_pullback (hO : ∀ j∈J,O j≤Forms K h j)
       counts O))) K,
       (∃ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval
         ((Module.finBasis K _).equivFun p) P≠0) ∧
-      ∀ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,eval ((Module.finBasis K _).equivFun p) P≠0 → Good (preparedBaseProjection p) := by
+      ∀ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
+        eval ((Module.finBasis K _).equivFun p) P≠0 → Good (preparedBaseProjection p) := by
   letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  exact principal_open_linear_pullback preparedBaseProjection preparedBaseProjection_surjective D hD Good hGood
+  exact principal_open_linear_pullback preparedBaseProjection preparedBaseProjection_surjective D
+    hD Good hGood
 
 end Froberg.PreparedParameters

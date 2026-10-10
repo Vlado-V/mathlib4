@@ -59,15 +59,18 @@ theorem generic_parameter_inequality
           eval (PolynomialBilinearCoordinates.coordinates K _ x) P ≠ 0 →
           ∀ ell : Fin T → K,ell ≠ 0 →
           (∀ i,finrank K (FilteredImage.initialPiece (fun i => Fin (b i) → K)
-            ((LinearMap.ker (relationMap mu ell)).comap (coordinates K b).toLinearMap) i)=(c.1 i).val) →
+            ((LinearMap.ker (relationMap mu ell)).comap (coordinates K b).toLinearMap) i)=(c.1
+              i).val) →
           finrank K (BilinearImage.image mu (LinearMap.ker (relationMap mu ell)))=c.2.val →
           (parameterCount b (fun i => (c.1 i).val):ℤ)+(T:ℤ)-(c.2.val:ℤ)-1 <
             (q*((∑ i,b i)-(∑ i,(c.1 i).val))+s:ℕ) →
           ¬((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 j)=0)) := by
     by_cases hcount : (parameterCount b (fun i => (c.1 i).val):ℤ)+(T:ℤ)-(c.2.val:ℤ)-1 <
         (q*((∑ i,b i)-(∑ i,(c.1 i).val))+s:ℕ)
-    · obtain ⟨P,hP,hgood⟩ := IteratedSlicedCovectorCharts.principal_open_excludes_profile_of_int_bound
-        (e := c.2.val) (q := q) (s := s) mu (parameterCount b (fun i => (c.1 i).val):ℤ) le_rfl hcount
+    · obtain ⟨P,hP,
+      hgood⟩ := IteratedSlicedCovectorCharts.principal_open_excludes_profile_of_int_bound
+        (e := c.2.val) (q := q) (s := s) mu (parameterCount b (fun i => (c.1
+          i).val):ℤ) le_rfl hcount
       exact ⟨P,hP,fun x hx ell hell hr he _ => hgood x hx ell hell hr (by omega)⟩
     · refine ⟨1,⟨0,by simp⟩,?_⟩
       intro x hx ell hell hr he hbad
@@ -157,7 +160,8 @@ def actualMu (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1) 
         (Fin (finrank K (Tgt K m upper)) → K) :=
   (conjugate (sourceCoordinates m upper ht) (PolynomialBilinearCoordinates.coordinates K _)
     (ConvolutionInitialImage.pieceBilinear (K := K)
-      (t := coreP (mixedCount m upper)+1) (w := freeW m (mixedCount m upper)) (d := 1) (k := 2))).comp
+      (t := coreP (mixedCount m upper)+1) (w := freeW m (mixedCount m upper)) (d := 1) (k :=
+        2))).comp
       (PolynomialBilinearCoordinates.coordinates K (Coeff K m upper)).symm.toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -174,7 +178,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem actual_image (m : ℕ) (upper : Bool) (ht : 2 ≤ coreP (mixedCount m upper)+1)
     (S : Submodule K (Fin (∑ i,blocks m upper i) → K)) :
     BilinearImage.image (actualMu m upper ht) S =
-      (ConvolutionProfileImage.quadraticImage (S.map (sourceCoordinates m upper ht).symm.toLinearMap)).map
+      (ConvolutionProfileImage.quadraticImage (S.map (sourceCoordinates m upper
+        ht).symm.toLinearMap)).map
         (PolynomialBilinearCoordinates.coordinates K (Tgt K m upper)).toLinearMap := by
   rw [actualMu,image_precompose,image_conjugate]
   rfl
@@ -289,9 +294,11 @@ theorem actual_profile_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
   have hd : finrank K L=finrank K S := (sourceCoordinates m upper ht).symm.finrank_map_eq S
   have hdloL : 0 < finrank K L := by rw [hd]; exact hdlo
   have hdhiL : finrank K L < totalA m (mixedCount m upper) := by rw [hd]; exact hdhi
-  have hb := ConvolutionProfileChartBound.profile_integral_cell_image_bound (K := K) m hmlo hmhi upper ht L
+  have hb := ConvolutionProfileChartBound.profile_integral_cell_image_bound (K :=
+    K) m hmlo hmhi upper ht L
     hdloL hdhiL
-  have hc := ConvolutionProfileChartBound.parameterCount_le_profile_Cell (K := K) m (mixedCount m upper) ht L
+  have hc := ConvolutionProfileChartBound.parameterCount_le_profile_Cell (K := K) m (mixedCount m
+    upper) ht L
   rw [actual_profile,actual_image_finrank]
   change _ ≤ (finrank K (ConvolutionProfileImage.quadraticImage L):ℤ)
   rw [hd] at hb
@@ -401,7 +408,8 @@ theorem principal_open_closed_sliced_empty [Infinite K] (m : ℕ) (hmlo : 28 ≤
       omega
     have hg : IteratedBlockCharts.parameterCount (blocks m upper)
         (fun i => (IteratedChartGeneric.profile S i).val)=0 := by
-      simp only [IteratedBlockCharts.parameterCount,hr,zero_mul,ite_self,Finset.sum_const_zero,add_zero]
+      simp only [IteratedBlockCharts.parameterCount,hr,zero_mul,ite_self,Finset.sum_const_zero,
+        add_zero]
     have hj : 0 ≤ Counts.j m (upperEndpoint m) (mixedCount m upper) := by
       have h := (FiniteCounts.structural_dimension_signs m hmlo (by omega) upper).1
       simpa only [←mixedCount_eq_table m (by omega),←upperEndpoint_eq_table m (by omega)] using h.le
@@ -488,7 +496,8 @@ theorem equations_iff (mu : (Fin B → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin
         ((coefficientMatrix mu ell).submatrix u v).det=0 := by
       intro u v
       simpa only [eval_minor] using h (.inl (u,v))
-    have hlt := (BilinearImageMinors.rank_lt_iff_minors_zero (coefficientMatrix mu ell) (a-d+1)).mpr hmin
+    have hlt := (BilinearImageMinors.rank_lt_iff_minors_zero (coefficientMatrix mu ell)
+      (a-d+1)).mpr hmin
     refine ⟨by omega,⟨?_,?_⟩⟩
     · intro i v
       rw [←(Pi.basisFun K (Fin a)).sum_equivFun v]

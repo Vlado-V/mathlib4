@@ -11,7 +11,8 @@ public import Archive.Froberg.Quartic.ActualMarkedSlicedMotionAvoidanceOmega
 
 /-! The strong slice construction uses the dimension of the actual marked
 subspace. It transports directly to the literal two-stage motion budget,
-without an expected-dimension assumption. The extra marked target vector adds one to the correction budget. -/
+without an expected-dimension assumption. The extra marked target vector adds one to the
+correction budget. -/
 
 @[expose] public section
 

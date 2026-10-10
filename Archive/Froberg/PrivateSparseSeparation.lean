@@ -126,9 +126,11 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
               map_sum,freeCoeff_rename_mul,AttachedMultiplication.multiplication_apply,u]
           change (freeCoeff β (H k+P k+res k)).coeff α=(freeCoeff β 0).coeff α at hh
           rw [map_add,map_add,hE] at hh
-          simp only [MvPolynomial.coeff_add,AttachedMultiplication.coefficient_formula,freeCoeff_coeff,map_zero,MvPolynomial.coeff_zero,
+          simp only [MvPolynomial.coeff_add,AttachedMultiplication.coefficient_formula,
+            freeCoeff_coeff,map_zero,MvPolynomial.coeff_zero,
             Finsupp.zero_apply,hzero,add_zero] at hh
-          simpa only [sparseOutputCoefficient,Finset.sum_apply,Pi.smul_apply,smul_eq_mul,Pi.neg_apply]
+          simpa only [sparseOutputCoefficient,Finset.sum_apply,Pi.smul_apply,smul_eq_mul,
+            Pi.neg_apply]
             using eq_neg_of_add_eq_zero_left hh
         rw [hcoeff]
         exact (A j).range.neg_mem hP
@@ -145,7 +147,8 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
       simp only [H,extendedCorePolynomialMatrix,LinearMap.coe_mk,AddHom.coe_mk,
         map_sum,freeCoeff_rename_mul,hpβ β j hj',mul_zero,Finset.sum_const_zero]
     have hh := congrArg (fun f : Poly K a => f.coeff (coreExponent δ)) hz
-    simpa only [β,freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,Finsupp.zero_apply] using hh
+    simpa only [β,freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,Finsupp.zero_apply] using
+      hh
   funext k
   apply MvPolynomial.ext
   intro δ

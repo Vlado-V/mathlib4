@@ -244,7 +244,8 @@ theorem mixedProduct_polynomial (g a : MiddleCoordinates.Mixed K m) :
   rw [map_mul]
   ring
 
-/-- A middle coefficient tuple lifts to a true bidegree cycle exactly when its quotient product vanishes. -/
+/-- A middle coefficient tuple lifts to a true bidegree cycle exactly when its quotient product
+vanishes. -/
 theorem cycle_completion_iff (h : Fin q → Forms K m 2)
     (g : Fin c → MiddleCoordinates.Mixed K m) (a : Fin c → MiddleCoordinates.Mixed K m) :
     (∃ b : Fin 4 → Forms K m 2, ∃ d : Fin q → Forms K 3 2,

@@ -10,7 +10,8 @@ public import Archive.Froberg.Quartic.CertificateBinaryIO
 public import Archive.Froberg.Quartic.FiniteEndpointCheckerLoad
 public import Archive.Froberg.Quartic.FiniteEndpointShapeMemo
 
-/-! A proof-producing sparse-row elaborator using one scalar XOR fold. Every generated equality is submitted
+/-! A proof-producing sparse-row elaborator using one scalar XOR fold. Every generated equality
+is submitted
 as an ordinary theorem to `addDecl`; no evaluator result is trusted as a proof. -/
 
 @[expose] public section
@@ -67,7 +68,8 @@ def u32 (a : ByteArray) (o : Nat) : Nat :=
   (a.get! o).toNat + 256*(a.get! (o+1)).toNat +
   65536*(a.get! (o+2)).toNat + 16777216*(a.get! (o+3)).toNat
 
-def ensureLookup (stem fn : Name) (loadBytes : IO ByteArray) (nw j : Nat) : MetaM (Expr × Expr) := do
+def ensureLookup (stem fn : Name) (loadBytes : IO ByteArray) (nw j : Nat) : MetaM (Expr ×
+  Expr) := do
   let valName := stem ++ Name.mkSimple ("value_" ++ toString j)
   let eqName := stem ++ Name.mkSimple ("lookup_" ++ toString j)
   if !(← getEnv).contains valName then
@@ -207,7 +209,8 @@ syntax (name := memoRows) "certify_sparse_rows " ident " from " str
     let values := rows[offset]!
     liftTermElabM do
       certifyRow stem invFn.getId rowFn.getId loadInvBytes nw.getNat i values metadata
-  logInfo m!"Kernel checked {count.getNat} sparse rows from index {start.getNat}, with memoized lookup equalities."
+  logInfo m!"Kernel checked {count.getNat} sparse rows from index {
+    start.getNat}, with memoized lookup equalities."
 
 end
 end Quartic.FiniteEndpointCheckerMemo

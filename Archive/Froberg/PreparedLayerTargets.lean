@@ -35,7 +35,8 @@ theorem renamedPreparedGenerator_layer (p : PreparedParameters.Space m d q J cou
     renamedPreparedGenerator p (Sum.inr ⟨a,i⟩)=
       rename (Fin.natAdd h) (p.1 (Sum.inr ⟨a,i⟩)).val+
         ambientBiform (preparedLayerTensor a hO p i) := by
-  unfold renamedPreparedGenerator PreparedParameters.generator PreparedParameters.scalar PreparedParameters.high
+  unfold renamedPreparedGenerator PreparedParameters.generator PreparedParameters.scalar
+    PreparedParameters.high
   rw [map_add,rename_rename,←rename_sumBiform,preparedLayerTensor_sum]
   rfl
 
@@ -58,7 +59,8 @@ theorem prepared_layer_target_lift (p : PreparedParameters.Space m d q J counts 
     (a : J) (ha : 0<a.val) (hab : a.val≤b) (hbd : b≤d+a.val)
     (hg : Function.Surjective (biformTensorFamilyMap
       (x := b-a.val) (y := d+a.val-b) (preparedLayerTensor a (hO _ a.property) p))) :
-    TargetLift ((Submodule.span K (Set.range (renamedPreparedGenerator p)))*Forms K (h+m) d) d b := by
+    TargetLift ((Submodule.span K (Set.range (renamedPreparedGenerator p)))*Forms K (h+m)
+      d) d b := by
   refine targetLift_of_biform (hJ _ a.property) hab hbd
     (fun i => renamedPreparedGenerator p (Sum.inr ⟨a,i⟩)) ?_
     (preparedLayerTensor a (hO _ a.property) p) ?_ ?_ hg

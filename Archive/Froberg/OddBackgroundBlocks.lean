@@ -35,7 +35,8 @@ def biformParityComponent (e : ZMod 2) (t p : ℕ) (hp : p<2) (ht : t%2=p) :
       apply (parity_homogeneous_iff (blockWeight h m) _ p hp).2
       intro a ha
       rw [(weightedHomogeneousComponent_isWeightedHomogeneous t v.val) ha,ht]⟩⟩
-  map_add' v z := Subtype.ext ((weightedHomogeneousComponent (blockWeight h m) t).map_add v.val z.val)
+  map_add' v z := Subtype.ext ((weightedHomogeneousComponent (blockWeight h m) t).map_add v.val
+    z.val)
   map_smul' c v := Subtype.ext ((weightedHomogeneousComponent (blockWeight h m) t).map_smul c v.val)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -76,11 +77,13 @@ theorem odd_background_component_preserves
     rintro _ ⟨_,⟨a,rfl⟩,rfl⟩
     refine ⟨fun i => biformParityComponent 0 (t-1) 0 (by omega) hteven (a i),?_⟩
     apply Subtype.ext
-    rw [privateEvenCoefficientMap_val,biformParityComponent_val,privateEvenCoefficientMap_val,map_sum]
+    rw [privateEvenCoefficientMap_val,biformParityComponent_val,privateEvenCoefficientMap_val,
+      map_sum]
     apply Finset.sum_congr rfl
     intro i _
     change (F i).val*weightedHomogeneousComponent (blockWeight h m) (t-1) (a i).val=_
-    have he := weighted_component_mul_homogeneous (blockWeight h m) (a i).val (F i).val (t-1) 1 (hF i)
+    have he := weighted_component_mul_homogeneous (blockWeight h m) (a i).val (F i).val (t-1) 1 (hF
+      i)
     simpa only [Nat.sub_add_cancel htpos,mul_comm] using he.symm
   simpa only [oddBackgroundRelations,Submodule.map_sup] using sup_le_sup hq hf
 
@@ -149,7 +152,8 @@ def oddBackgroundBlocksEquiv
       ((r : Fin ((2*d+1)/2)) →
         (OddTargetBlock K h m d r ⧸
           coordinateRelation (oddBackgroundBlockRelations Q F) r)) :=
-  (Submodule.Quotient.equiv _ _ (oddBiformCoordinatesEquiv (K := K) (h := h) (m := m) (d := 2*d)) rfl).trans
+  (Submodule.Quotient.equiv _ _ (oddBiformCoordinatesEquiv (K := K) (h := h) (m := m) (d := 2*d))
+    rfl).trans
     (coordinateQuotientEquiv _ (oddBackgroundBlockRelations_single Q F hQ hF))
 
 end Froberg

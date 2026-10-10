@@ -58,7 +58,8 @@ theorem coordinateProjection_polynomial (b : ℕ) :
       map_smul' := by
         intro c x
         ext w i
-        simp only [coordinateProjection,map_smul,LinearMap.smul_comp,LinearMap.smul_apply,Pi.smul_apply,RingHom.id_apply] }
+        simp only [coordinateProjection,map_smul,LinearMap.smul_comp,LinearMap.smul_apply,
+          Pi.smul_apply,RingHom.id_apply] }
   exact isPolynomialFamily_linear L
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

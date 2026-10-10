@@ -109,7 +109,8 @@ theorem exists_finite_even_projected_row
   have hLodd : ∀ z,retainMonomials
       (fun a => Finsupp.weight pairedHalfWeight a%2=0) (outputCombination o (L z))=0 :=
     fun z => hOodd (hLO z)
-  obtain ⟨p,hp,hpi⟩ := ProductRows.exists_balanced_product_row hw hv J counts heven hdegree T hdiag hcross
+  obtain ⟨p,hp,hpi⟩ := ProductRows.exists_balanced_product_row hw hv J counts heven hdegree T hdiag
+    hcross
   obtain ⟨e,v₀,he,hdiv,hrest⟩ := exists_exact_sparse_intermediate (K := K) (by
     omega) hodd hm hcap hcount
   obtain ⟨z,Q,hproj,hEz,hzero,hfull,hker⟩ := exists_even_polynomial_row_with_relations

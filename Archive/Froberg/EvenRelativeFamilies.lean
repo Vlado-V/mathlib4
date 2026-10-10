@@ -23,13 +23,16 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f e : ℕ}
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 def evenBackgroundProduct (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d-1)) :
-    biformParitySpace K h m d 0 →ₗ[K] EvenBackgroundSource hdp F →ₗ[K] EvenBackgroundTarget hdp Q F where
+    biformParitySpace K h m d 0 →ₗ[K] EvenBackgroundSource hdp F →ₗ[K] EvenBackgroundTarget hdp Q F
+      where
   toFun p := (evenBackgroundTargetEquiv hdp Q F).symm.toLinearMap.comp
     ((oddBackgroundQuotientProduct (fun i => scalarEvenBiform (h := h) (Q i))
       (fun i => oddBiformEmbedding hdp (by decide) (F i)) emptyOddFamily p).comp
         (evenBackgroundSourceEquiv hdp F).toLinearMap)
-  map_add' p z := by ext v; simp only [map_add,LinearMap.add_apply,LinearMap.comp_apply,LinearEquiv.map_add]
-  map_smul' c p := by ext v; simp only [map_smul,LinearMap.smul_apply,LinearMap.comp_apply,LinearEquiv.map_smul,RingHom.id_apply]
+  map_add' p z := by ext v; simp only [map_add,LinearMap.add_apply,LinearMap.comp_apply,
+    LinearEquiv.map_add]
+  map_smul' c p := by ext v; simp only [map_smul,LinearMap.smul_apply,LinearMap.comp_apply,
+    LinearEquiv.map_smul,RingHom.id_apply]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundProduct_scalar (hdp : 1 ≤ d)

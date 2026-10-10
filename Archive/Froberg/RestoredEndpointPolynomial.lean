@@ -96,6 +96,7 @@ theorem restored_upper_open_of_witness (hdp : 1≤d) (hd : d%2=0)
       using hp₀)
   refine ⟨P,hP,?_⟩
   intro p hp
-  simpa only [LinearEquiv.symm_apply_apply,L,restoredOuterEndpointLinear,LinearMap.coe_mk,AddHom.coe_mk] using hgood (coord p) hp
+  simpa only [LinearEquiv.symm_apply_apply,L,restoredOuterEndpointLinear,LinearMap.coe_mk,
+    AddHom.coe_mk] using hgood (coord p) hp
 
 end Froberg.PreparedParameters

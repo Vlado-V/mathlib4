@@ -74,7 +74,8 @@ theorem ChildFlagCondition.bottom_thin_slices_coordinates (hd : 1 ≤ d)
   let ec := coefficientCoordinates (K := K) (n := m) (d := d) (r := q)
   obtain ⟨a,rfl⟩ := ec.symm.surjective Q
   have ha' : ChildFlagCondition (VectorExpansionOpen.quotientMultiplication g d) j C a := by
-    change ChildFlagCondition (VectorExpansionOpen.quotientMultiplication g d) j C (ec (ec.symm a)) at ha
+    change ChildFlagCondition (VectorExpansionOpen.quotientMultiplication g d) j C (ec (ec.symm
+      a)) at ha
     rw [ec.apply_symm_apply] at ha
     exact ha
   exact ChildFlagCondition.bottom_thin_slices hd g j C a ha'

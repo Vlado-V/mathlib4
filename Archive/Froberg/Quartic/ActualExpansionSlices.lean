@@ -302,7 +302,8 @@ theorem lift_closed_slices {a T q : ℕ} (g : Fin c → Rows K m 1) (hg : Linear
   let lam := AmbientCovectorTransport.dualCoordinates eW ellQ
   have hcomm : ∀ f v,actualMu g eV eW (finiteEquiv f) (eV v)=eW (quotientMul g f v) := by
     intro f v
-    simp only [actualMu,LinearMap.comp_apply,conjugate_apply,LinearEquiv.coe_coe,LinearEquiv.symm_apply_apply]
+    simp only [actualMu,LinearMap.comp_apply,conjugate_apply,LinearEquiv.coe_coe,
+      LinearEquiv.symm_apply_apply]
   have hk := AmbientCovectorTransport.kernel_coordinates_finrank finiteEquiv eV eW
     (quotientMul g) (actualMu g eV eW) hcomm ellQ
   have hshift := AmbientCovectorTransport.kernel_finrank_of_comm multiplication (MixedSpace g)
@@ -363,7 +364,8 @@ theorem lift_closed_slices_coordinates {a T q : ℕ} (g : Fin c → Rows K m 1)
       rowFiniteEquiv (multiplication f v) := by
     intro f v
     simp only [RowMultiplicationCoordinates.coordinate_apply,LinearEquiv.symm_apply_apply]
-  have hker := AmbientCovectorTransport.kernel_coordinates_finrank finiteEquiv rowFiniteEquiv rowFiniteEquiv
+  have hker := AmbientCovectorTransport.kernel_coordinates_finrank finiteEquiv rowFiniteEquiv
+    rowFiniteEquiv
     multiplication RowMultiplicationCoordinates.coordinate hcoord ell
   have hdual : AmbientCovectorTransport.dualCoordinates rowFiniteEquiv ell=lam :=
     AmbientCovectorTransport.dualCoordinates_comp_covector rowFiniteEquiv lam
@@ -442,8 +444,10 @@ theorem exists_ambient_slices_in_open [Infinite K] (m : ℕ) (hm : 28 ≤ m) (up
   obtain ⟨Z,hZ⟩ := lift_closed_slices_coordinates g hg eV eW (slices m upper) x (hgood x hx)
   refine ⟨fun i => finiteEquiv.symm (x.1 i),?_,Z,?_⟩
   · have hh : eval (childProjection x) D ≠ 0 := by
-      simpa only [D',MiddleCoordinates.eval_substituteLinear,f,LinearMap.comp_apply,LinearEquiv.coe_coe,x] using hz.2
-    simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using hh
+      simpa only [D',MiddleCoordinates.eval_substituteLinear,f,LinearMap.comp_apply,
+        LinearEquiv.coe_coe,x] using hz.2
+    simpa only [LinearEquiv.apply_symm_apply,childProjection,LinearMap.coe_mk,AddHom.coe_mk] using
+      hh
   · simpa only [LinearEquiv.apply_symm_apply] using hZ
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

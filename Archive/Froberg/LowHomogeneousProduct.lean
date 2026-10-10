@@ -28,7 +28,8 @@ theorem weightedHomogeneousComponent_product (w : σ → ℕ)
   letI : GradedAlgebra (weightedHomogeneousSubmodule K w) := MvPolynomial.weightedGradedAlgebra K w
   have he (r : MvPolynomial σ K) (j : ℕ) :
       (DirectSum.decompose (weightedHomogeneousSubmodule K w) r j : MvPolynomial σ K) =
-        weightedHomogeneousComponent w j r := MvPolynomial.weightedDecomposition.decompose'_apply K w r j
+        weightedHomogeneousComponent w j r := MvPolynomial.weightedDecomposition.decompose'_apply K
+          w r j
   rw [← he,DirectSum.decompose_mul,DirectSum.coe_mul_apply_eq_sum_antidiagonal]
   apply Finset.sum_congr rfl
   intro ij _

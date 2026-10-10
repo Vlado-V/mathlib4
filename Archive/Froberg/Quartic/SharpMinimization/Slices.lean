@@ -50,7 +50,8 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
     refine ⟨![1,0,0],![0,0,0],?_,?_,?_,?_⟩
     · intro j; fin_cases j <;> norm_num
     · norm_num [Fin.sum_univ_succ]
-    · intro j; fin_cases j <;> simpa [EdgeFeasible,SharpCertificate.edgeLeft,SharpCertificate.edgeRight] using hw
+    · intro j; fin_cases j <;> simpa [EdgeFeasible,SharpCertificate.edgeLeft,
+      SharpCertificate.edgeRight] using hw
     · ext j; fin_cases j <;> norm_num [Fin.sum_univ_succ,edgePoint]
   have hspos : 0 < s := lt_of_le_of_ne hs0 (Ne.symm hzero)
   by_cases hlow : s ≤ w
@@ -64,7 +65,8 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
     · norm_num [v,Fin.sum_univ_succ]
       field_simp
       linarith
-    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,SharpCertificate.edgeRight] <;> constructor <;> linarith
+    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,
+      SharpCertificate.edgeRight] <;> constructor <;> linarith
     · ext j; fin_cases j <;> norm_num [v,e,Fin.sum_univ_succ,edgePoint]
       all_goals field_simp
       all_goals ring
@@ -76,7 +78,8 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
     refine ⟨![1,0,0],![5,5,5],?_,?_,?_,?_⟩
     · intro j; fin_cases j <;> norm_num
     · norm_num [Fin.sum_univ_succ]
-    · intro j; fin_cases j <;> norm_num [EdgeFeasible,SharpCertificate.edgeLeft,SharpCertificate.edgeRight] <;> linarith
+    · intro j; fin_cases j <;> norm_num [EdgeFeasible,SharpCertificate.edgeLeft,
+      SharpCertificate.edgeRight] <;> linarith
     · ext j
       fin_cases j <;> norm_num [Fin.sum_univ_succ,edgePoint]
       ring
@@ -92,7 +95,8 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
     · norm_num [v,Fin.sum_univ_succ]
       field_simp
       linarith
-    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,SharpCertificate.edgeRight] <;> constructor <;> linarith
+    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,
+      SharpCertificate.edgeRight] <;> constructor <;> linarith
     · ext j; fin_cases j <;> norm_num [v,e,Fin.sum_univ_succ,edgePoint]
       all_goals field_simp
       all_goals rw [←hs]
@@ -113,7 +117,8 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
       field_simp
       rw [←hs]
       ring
-    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,SharpCertificate.edgeRight] <;> constructor <;> linarith
+    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,
+      SharpCertificate.edgeRight] <;> constructor <;> linarith
     · ext j; fin_cases j <;> norm_num [v,e,Fin.sum_univ_succ,edgePoint]
       all_goals field_simp
       all_goals rw [←hs]
@@ -130,7 +135,8 @@ theorem slice_triangle (w s n₁ n₂ n₃ : ℝ) (hw : 0 ≤ w)
       field_simp
       rw [←hs]
       ring
-    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,SharpCertificate.edgeRight] <;> constructor <;> linarith
+    · intro j; fin_cases j <;> norm_num [e,EdgeFeasible,SharpCertificate.edgeLeft,
+      SharpCertificate.edgeRight] <;> constructor <;> linarith
     · ext j; fin_cases j <;> norm_num [v,e,Fin.sum_univ_succ,edgePoint]
       all_goals field_simp
       all_goals rw [←hs]

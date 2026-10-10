@@ -24,7 +24,8 @@ theorem correctionCount_eq (h : Fin (upperEndpoint m) → Forms K m 2)
     (hU : (finrank K U:ℤ)=Counts.delta m (upperEndpoint m)) :
     MarkedActualExpansionSlices.correctionCount m upper =
       ActualMarkedSlicedMotionAvoidanceOmega.correctionCount (c := mixedCount m upper) h U := by
-  simp only [MarkedActualExpansionSlices.correctionCount,ActualMarkedSlicedMotionAvoidanceOmega.correctionCount,hU]
+  simp only [MarkedActualExpansionSlices.correctionCount,
+    ActualMarkedSlicedMotionAvoidanceOmega.correctionCount,hU]
 
 /-- No inequality is needed: the two clipped budgets are equal term by term. -/
 theorem budget_eq (h : Fin (upperEndpoint m) → Forms K m 2)

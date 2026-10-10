@@ -43,10 +43,12 @@ theorem higher_odd_polynomial_row (hb : 1≤b) (hbd : b≤d)
     u=0 ∧ v=0 := by
   have hU (i) : ∃ z : Forms K h b ⊗[K] Forms K n (d-b),sumBiformMap z=u i :=
     exists_sumBiformMap_of_homogeneous
-      (by simpa only [Nat.add_sub_of_le hbd] using (show (u i).IsHomogeneous d from (hu i).1)) (hu i).2
+      (by simpa only [Nat.add_sub_of_le hbd] using (show (u i).IsHomogeneous d from (hu i).1)) (hu
+        i).2
   have hV (i) : ∃ z : Forms K h (b-1) ⊗[K] Forms K n (d-b+1),sumBiformMap z=v i :=
     exists_sumBiformMap_of_homogeneous
-      (by simpa only [show (b-1)+(d-b+1)=d by omega] using (show (v i).IsHomogeneous d from (hv i).1)) (hv i).2
+      (by simpa only [show (b-1)+(d-b+1)=d by omega] using (show (v i).IsHomogeneous d from (hv
+        i).1)) (hv i).2
   choose U hU using hU
   choose V hV using hV
   have hzero : twoFamilyMultiplication (K := K)
@@ -55,7 +57,8 @@ theorem higher_odd_polynomial_row (hb : 1≤b) (hbd : b≤d)
       (V₁ := Forms K h b ⊗[K] Forms K n (d-b))
       (V₂ := Forms K h (b-1) ⊗[K] Forms K n (d-b+1))
       (W := Forms K h b ⊗[K] Forms K n (2*d-b))
-      (oddRowScalarAction (K := K) (h := h) (n := n) hbd) (oddRowLinearAction (K := K) (h := h) (n := n) hb hbd) p (U,V)=0 := by
+      (oddRowScalarAction (K := K) (h := h) (n := n) hbd) (oddRowLinearAction (K := K) (h := h) (n
+        := n) hb hbd) p (U,V)=0 := by
     apply sumBiformMap_injective
     rw [map_zero,twoFamilyMultiplication_apply,map_add,map_sum,map_sum]
     simpa only [oddRowScalarAction,oddRowLinearAction,sumBiformMap_action,hU,hV] using hrel
@@ -83,7 +86,8 @@ theorem upper_odd_polynomial_row (hd : 1≤d)
     (hv : ∀ i,v i∈coefficientComponentSpace (Sum.elim (fun _ => 1) (fun _ => 0)) d d)
     (hrel : (∑ i,sumBiformMap (p i)*v i)=0) : v=0 := by
   have hV (i) : ∃ z : Forms K h d ⊗[K] Forms K n 0,sumBiformMap z=v i :=
-    exists_sumBiformMap_of_homogeneous (by simpa only [add_zero] using (show (v i).IsHomogeneous d from (hv i).1)) (hv i).2
+    exists_sumBiformMap_of_homogeneous (by simpa only [add_zero] using (show (v i).IsHomogeneous d
+      from (hv i).1)) (hv i).2
   choose V hV using hV
   have hzero : BilinearScalarFamily.multiplication (K := K)
       (F := Forms K h 1 ⊗[K] Forms K n (d-1))

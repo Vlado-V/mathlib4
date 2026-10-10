@@ -46,8 +46,10 @@ theorem exact_counts_restored_c4_selection {d k h lo : ℕ}
       letI : Module.Finite K (Space n d (upperCount n d) J counts O) := finite_space hO
       letI : Module.Finite K (Space n d (upperCount n d) J counts' O) := finite_space hO
       ∀ (Good : RestoredOuterSpace n d (upperCount n d) (f n) J counts O → Prop)
-        (A : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts O))) K)
-        (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts' O))) K),
+        (A : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts
+          O))) K)
+        (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace n d (upperCount n d) (f n) J counts'
+          O))) K),
         (∃ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
           eval ((Module.finBasis K _).equivFun p) A ≠ 0) →
         (∀ p : RestoredOuterSpace n d (upperCount n d) (f n) J counts O,
@@ -119,7 +121,8 @@ theorem exact_counts_restored_c4_selection {d k h lo : ℕ}
     (outerScalarDeficit (fun i => outerVectorEquiv.symm (p.2 i))) (C*(n : ℝ)^d) hstart.2.2.2
   have hgood₀ : ∀ z, eval ((Module.finBasis K _).equivFun z) P₀ ≠ 0 →
       OddSplitExact
-        (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (z,rest)).1)
+        (restoredBiformFamily hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm
+          (z,rest)).1)
         (fun i => linearOddForm (by omega : 1 ≤ d) (outerVectorEquiv.symm (rest.2.2 i))) ∧
       Function.Surjective (upperTargetMap (restoredOuterEndpoint (by omega : 1 ≤ d)
         hdeven hO hJ heven idx slot (restoredScalarFiberCoordinates.symm (z,rest)))) := by
@@ -127,7 +130,8 @@ theorem exact_counts_restored_c4_selection {d k h lo : ℕ}
     have hv := (hfiber z hz).2.1.1.2
     rw [restoredCountScalarFiberLinear_restrict] at hv
     exact hv
-  have hsmall : 2*(oddCoefficientCount d h n+Fintype.card (ProductRows.LayerLabel J counts))+1 ≤ L n := by
+  have hsmall : 2*(oddCoefficientCount d h n+Fintype.card (ProductRows.LayerLabel J
+    counts))+1 ≤ L n := by
     have hb := hbgt.2.2.2.1
     omega
   obtain ⟨P₁,hP₁,hthin⟩ := restored_scalar_thin_open hd hdeven hO hJ heven idx slot hslot rest

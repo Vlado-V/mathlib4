@@ -20,7 +20,8 @@ set_option backward.isDefEq.respectTransparency true
 namespace Froberg
 open Module MvPolynomial TensorProduct Quartic
 attribute [local instance] tensorFormGroup
-attribute [local irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
+attribute [local
+  irreducible] oddAmbientCoordinates oddAmbientHigherRelationMap oddAmbientBottomRelationMap
 attribute [local irreducible] oddMixedSourceBlockCoordinates mixedAmbientScalar
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b : ℕ}
 variable (hd : Odd d) (hd3 : 3≤d)
@@ -47,7 +48,8 @@ theorem mixedHigherProjection_kills_bottom
     oddAmbientBottomRelationMap hdp Q₀ F₁ hQ₀ hF₁ G₁) (r : MixedHigherIndex d hd3)
     (x : OddTargetRowQuotient Q₀ F₁ (oddTargetBottomIndex hdp)) :
     mixedHigherProjection hd hd3 R Q F U P hker r
-      ((oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD).symm (x,0))=0 := by
+      ((oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀
+        F₁ hQ₀ hF₁ G₁ D hD).symm (x,0))=0 := by
   apply odd_ambient_projection_kills_bottom
   intro v hv
   exact mixedHigherProjection_weighted_bottom hd hd3 R Q F U P hker r v hv
@@ -70,9 +72,11 @@ include hR hker in
         (LinearMap.inl K (OddBottomQuotient F)
           ((r : MixedHigherIndex d hd3) → MixedHigherSource hd hd3 F U P r))))) ≤
       finrank K (BilinearImage.image
-        (splitTargetHigherAction (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD)
+        (splitTargetHigherAction (oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q)
+          (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD)
           (mixedAmbientScalar hd hd3 Q F U P)) L) := by
-  let e := oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u := u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
+  let e := oddAmbientCoordinates (K := K) (h := h) (m := m) (d := d) (q := q) (f := f) (u :=
+    u) hdp Q₀ F₁ hQ₀ hF₁ G₁ D hD
   let mu := mixedAmbientScalar hd hd3 Q F U P
   let pi := LinearMap.pi (fun r : MixedHigherIndex d hd3 =>
     splitHigherProjection e (mixedHigherProjection hd hd3 R Q F U P hker r))

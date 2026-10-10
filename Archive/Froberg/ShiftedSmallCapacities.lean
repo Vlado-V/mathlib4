@@ -115,7 +115,8 @@ theorem eventually_small_quartic_cross_capacity_shift {d : ℕ} (hd : 5≤d) (hd
       ((1/2 : ℝ)^(d-4)/((d-4).factorial : ℝ)) := by
     have hc := small_fourth_cross_capacity hd hd8
     convert hc using 1
-    norm_num only [Nat.factorial_succ,Nat.factorial_zero,Nat.cast_mul,Nat.cast_one,Nat.cast_ofNat,mul_one]
+    norm_num only [Nat.factorial_succ,Nat.factorial_zero,Nat.cast_mul,Nat.cast_one,Nat.cast_ofNat,
+      mul_one]
     rw [div_pow,one_pow]
     ring
   simpa only [higherGeneratorCount,smallGamma] using

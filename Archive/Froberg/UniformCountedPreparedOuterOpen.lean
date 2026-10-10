@@ -17,7 +17,8 @@ noncomputable section
 
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
-open Module Filter MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters PrivateColumns
+open Module Filter MvPolynomial PreparedParameters PreparedTarget FullPreparedParameters
+  PrivateColumns
 open scoped Topology
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.

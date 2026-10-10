@@ -127,7 +127,8 @@ theorem correction_response_realized (g : Fin c → MiddleCoordinates.Mixed K m)
     rw [sub_add_cancel] at he'
     change SplitBlock22.pureMap u + (SplitBlock22.mixedMap g z.val + SplitBlock22.childMap h d) = _
     calc
-      _ = SplitBlock22.pureMap u + SplitBlock22.childMap h d + SplitBlock22.mixedMap g z.val := by abel
+      _ = SplitBlock22.pureMap u + SplitBlock22.childMap h d + SplitBlock22.mixedMap g z.val :=
+        by abel
       _ = _ := he'
   have hfull : quadraticMultiplication (SplitBlock22.fullGenerators g h)
       (SplitBlock22.sourceEmbedding b) = t • (square ζ) + SplitBlock22.targetEmbedding tr := by

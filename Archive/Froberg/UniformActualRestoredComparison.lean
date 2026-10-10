@@ -84,7 +84,8 @@ theorem eventually_uniform_actual_restored_comparison {d k h lo : ℕ}
     (actualRestoredBaseSlot hd) (actualRestoredBaseSlot_positive hd) hcard
     (RestoredCertificate (by omega : 1≤d) he hO hJ hev
       (actualRestoredIndex K d h n (e n) 0) (actualRestoredBaseSlot hd))
-    A (B*L*T) hA (fun p hp => ⟨hAgood p hp,(hAgood p hp).odd_exact,(hAgood p hp).upper_surjective⟩) hD
+    A (B*L*T) hA (fun p hp => ⟨hAgood p hp,(hAgood p hp).odd_exact,(hAgood p
+      hp).upper_surjective⟩) hD
   have hparts : eval ((Module.finBasis K _).equivFun p) B≠0 ∧
       eval ((Module.finBasis K _).equivFun p) L≠0 ∧
       eval ((Module.finBasis K _).equivFun p) T≠0 := by

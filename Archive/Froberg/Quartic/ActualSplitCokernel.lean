@@ -642,7 +642,8 @@ def rawJEquivJ (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms 
     (f13TargetProjection_surjective h)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- Canonical actual full split cokernel identification; no source homology exhaustion is assumed. -/
+/-- Canonical actual full split cokernel identification; no source homology exhaustion is
+assumed. -/
 def cokernelEquivJ (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2)
     (h22 : Function.Surjective (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h))))

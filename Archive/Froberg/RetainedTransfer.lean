@@ -27,13 +27,15 @@ variable {m n d r t : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
-theorem projected_retained_old_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq : LinearIndependent K q)
+theorem projected_retained_old_finrank (pi : Forms K n (2*d) →ₗ[K] Z) (q : Fin r → Forms K n d) (hq
+  : LinearIndependent K q)
     (W : Submodule K (Forms K n d)) (hW : W ≤ Submodule.span K (Set.range q))
     (old : Fin t → Forms K m d) (hold : LinearIndependent K old) (f : Fin m ↪ Fin n)
     (hinj : Set.InjOn (pi.comp (renameForm f)) (endpointMultiplication old).range)
     (hrel : (pi.comp formalPolynomialMultiplication).ker ⊓ formalMixed W=
       (pi.comp formalPolynomialMultiplication).ker ⊓
-        formalProducts ((Submodule.span K (Set.range old)).map (renameForm f)) (renameForm f).range) :
+        formalProducts ((Submodule.span K (Set.range old)).map (renameForm f)) (renameForm
+          f).range) :
     finrank K (projectedRetainedHomology pi q hq W)=finrank K (EndpointHomology old) := by
   rw [projectedRetainedHomology_finrank pi q hq W hW,hrel]
   exact renamed_old_homology_finrank old hold f pi hinj

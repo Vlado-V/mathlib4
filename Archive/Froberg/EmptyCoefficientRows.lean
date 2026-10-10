@@ -50,7 +50,8 @@ theorem coefficient_row_above_degree (w : σ → ℕ) (hw : ∀ x,w x≤1)
     rw [coefficientComponentSpace_above w hw hr] at h
     exact h
   have hne (i : I) : j i≠r := by have := hj i; omega
-  have hp0 : p=0 := by simpa only [hu0,mul_zero,Finset.sum_const_zero,hne,ite_false,zero_add] using hrel
+  have hp0 : p=0 := by simpa only [hu0,mul_zero,Finset.sum_const_zero,hne,ite_false,
+    zero_add] using hrel
   refine ⟨0,?_,?_,?_,hp0⟩
   · intros; rfl
   · intro i

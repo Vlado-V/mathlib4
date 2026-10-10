@@ -37,7 +37,8 @@ lemma product_span_dimension (g : Fin c → Rows K h m s)
     calc
       finrank K (Forms K m t)=finrank K (Fin (FormCount m t) → K) := finiteEquiv.finrank_eq
       _=FormCount m t := by simp
-  simp only [Module.finrank_pi_fintype,hf,Finset.sum_const,Finset.card_univ,Fintype.card_fin,nsmul_eq_mul,Nat.cast_id]
+  simp only [Module.finrank_pi_fintype,hf,Finset.sum_const,Finset.card_univ,Fintype.card_fin,
+    nsmul_eq_mul,Nat.cast_id]
 
 /-- All finitely many quotient growth bounds persist in one polynomial
 neighborhood of a geometric witness, together with the exact source and

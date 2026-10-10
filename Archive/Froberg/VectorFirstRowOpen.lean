@@ -53,7 +53,8 @@ theorem firstVectorRowExact_of_quotient (Q : Fin q → Forms K m d) (g : Fin f �
     have hr : (∑ i,multiplication (Q i) (x i))+(∑ j,multiplication (y j) (g j))=0 := by
       change (∑ i,multiplication (Q i) (x i))+(∑ j,multiplication (y j) (g j))+0=0 at hw
       simpa only [add_zero] using hw
-    obtain ⟨C,hC,hC'⟩ := scalar_layer_constants_of_quotient_injective multiplication Q g hg hQ x y hr
+    obtain ⟨C,hC,hC'⟩ := scalar_layer_constants_of_quotient_injective multiplication Q g hg hQ x y
+      hr
     refine ⟨C,Prod.ext (Prod.ext (funext (fun i => (hC i).symm)) (funext (fun j => (hC' j).symm)))
       (Subsingleton.elim _ _)⟩
   · rintro z ⟨C,rfl⟩

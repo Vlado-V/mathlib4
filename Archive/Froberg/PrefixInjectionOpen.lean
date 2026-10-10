@@ -30,7 +30,8 @@ theorem prefix_injective_principal_open (hn : 0<n) (hed : e<d)
   let c := (Module.finBasis K (Fin r → Forms K n d)).equivFun
   let A := fun x => (prefixBilinear (K := K) (n := n) (d := d) (e := e) (r := r)).flip (c.symm x)
   have hA : IsPolynomialFamily A := by
-    simpa only [A,LinearMap.coe_comp,Function.comp_def,LinearMap.comp_apply,LinearEquiv.coe_coe] using
+    simpa only [A,LinearMap.coe_comp,Function.comp_def,LinearMap.comp_apply,LinearEquiv.coe_coe]
+      using
       isPolynomialFamily_linear (K := K)
         (V := (Fin r → Forms K n e) →ₗ[K] Forms K n (d+e)) ((prefixBilinear (K := K) (n := n) (d :=
           d) (e := e) (r := r)).flip.comp

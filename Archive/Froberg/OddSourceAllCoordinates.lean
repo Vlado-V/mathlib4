@@ -50,7 +50,8 @@ def oddMixedSourceBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
     (hB : B.comp (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
       (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id) :
     (biformParitySpace K h m d 1 ⧸
-      (Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i))) ⊔
+      (Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide :
+        1≤3) hd3) (by decide) (F i))) ⊔
         Submodule.span K (Set.range (fun i => mixedPureOddGenerator hd (U i) (P i))))) ≃ₗ[K]
       OddBottomQuotient F × OddMixedBlockCoordinates hd hd3 F U P :=
   (oddSourceCoordinates (Nat.le_trans (by decide : 1≤3) hd3) F
@@ -67,7 +68,8 @@ theorem oddMixedSourceBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
       (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id)
     (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
     oddMixedSourceBlockCoordinates hd hd3 F U P B hB
-      (((Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i)))) ⊔
+      (((Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide
+        : 1≤3) hd3) (by decide) (F i)))) ⊔
         Submodule.span K (Set.range (fun i => mixedPureOddGenerator hd (U i) (P i)))).mkQ
           (oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) v))=
       ((Submodule.span K (Set.range F)).mkQ v,0) := by
@@ -96,7 +98,8 @@ def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3≤d)
       (fun i => mixedPureOddGenerator hd (U i) (P i)))=LinearMap.id) :
     oddCoefficientSpace ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
       (backgroundEnumeratedForms Q
-        (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i))
+        (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F
+          i))
         (fun i => mixedPureOddGenerator hd (U i) (P i))) ≃ₗ[K]
       OddBottomQuotient F × OddMixedBlockCoordinates hd hd3 F U P :=
   (oddBackgroundSourceEquiv Q
@@ -115,9 +118,11 @@ theorem oddEndpointBlockCoordinates_bottom (hd : Odd d) (hd3 : 3≤d)
     (v : Forms K h 1 ⊗[K] Forms K m (d-1)) :
     oddEndpointBlockCoordinates hd hd3 Q F U P B hB
       (oddBackgroundSourceEquiv Q
-        (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i))
+        (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F
+          i))
         (fun i => mixedPureOddGenerator hd (U i) (P i))
-        (((Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i)))) ⊔
+        (((Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by
+          decide : 1≤3) hd3) (by decide) (F i)))) ⊔
           Submodule.span K (Set.range (fun i => mixedPureOddGenerator hd (U i) (P i)))).mkQ
             (oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) v)))=
       ((Submodule.span K (Set.range F)).mkQ v,0) := by

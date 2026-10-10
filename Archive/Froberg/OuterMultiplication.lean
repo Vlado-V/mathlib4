@@ -24,8 +24,10 @@ def vectorMultiply : Forms K n d →ₗ[K] (J → Forms K n s) →ₗ[K] (J → 
         simpa only [Forms,mem_homogeneousSubmodule,add_comm] using f.property.mul (p j).property⟩
       map_add' := by intro p q; funext j; apply Subtype.ext; exact mul_add _ _ _
       map_smul' := by intro c p; funext j; apply Subtype.ext; exact mul_smul_comm _ _ _ }
-  map_add' := by intro f g; apply LinearMap.ext; intro p; funext j; apply Subtype.ext; exact add_mul _ _ _
-  map_smul' := by intro c f; apply LinearMap.ext; intro p; funext j; apply Subtype.ext; exact smul_mul_assoc _ _ _
+  map_add' := by
+    intro f g; apply LinearMap.ext; intro p; funext j; apply Subtype.ext; exact add_mul _ _ _
+  map_smul' := by
+    intro c f; apply LinearMap.ext; intro p; funext j; apply Subtype.ext; exact smul_mul_assoc _ _ _
 
 @[simp] theorem vectorMultiply_val (f : Forms K n d) (p : J → Forms K n s) (j : J) :
     (vectorMultiply f p j).val = f.val * (p j).val := rfl

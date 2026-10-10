@@ -31,7 +31,8 @@ theorem biformDegreeTransport_disjoint
       (leftRelations P ⊔ rightRelations Q) := by
   subst b
   subst e
-  have ht : (biformDegreeTransport (K := K) (h := h) (m := m) (a := a) (c := c) rfl rfl).toLinearMap=LinearMap.id := by
+  have ht : (biformDegreeTransport (K := K) (h := h) (m := m) (a := a) (c := c) rfl
+    rfl).toLinearMap=LinearMap.id := by
     ext x y
     rfl
   have hx : (formDegreeEquiv (K := K) (n := h) (a := a) rfl).symm.toLinearMap=LinearMap.id := rfl

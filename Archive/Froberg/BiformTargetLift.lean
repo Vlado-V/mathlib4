@@ -22,12 +22,14 @@ attribute [local instance] tensorGroup
 
 theorem ambientBiform_degree_map {j' e' : ℕ} (hj : j=j') (he : e=e')
     (u : Forms K h j ⊗[K] Forms K m e) :
-    ambientBiform (TensorProduct.map (formsDegreeEquiv hj).toLinearMap (formsDegreeEquiv he).toLinearMap u)=
+    ambientBiform (TensorProduct.map (formsDegreeEquiv hj).toLinearMap (formsDegreeEquiv
+      he).toLinearMap u)=
       ambientBiform u := by
   induction u using TensorProduct.induction_on with
   | zero => simp
   | add u v hu hv => simp only [map_add,hu,hv]
-  | tmul u v => simp only [TensorProduct.map_tmul,ambientBiform_tmul,LinearEquiv.coe_coe,formsDegreeEquiv_val]
+  | tmul u v => simp only [TensorProduct.map_tmul,ambientBiform_tmul,LinearEquiv.coe_coe,
+    formsDegreeEquiv_val]
 
 theorem biform_deformed_target_lift (p : ι → Poly K (h+m))
     (hp : ∀ i,(p i).IsHomogeneous (j+e))

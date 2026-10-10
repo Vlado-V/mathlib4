@@ -59,7 +59,8 @@ theorem generic_parameter_inequality
           (c.1.val*(a-c.1.val):ℕ)+(T:ℤ)-(c.2.val:ℤ)-1 < (q*(a-c.1.val)+s:ℕ) →
           ¬((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 j)=0)) := by
     by_cases hcount : (c.1.val*(a-c.1.val):ℕ)+(T:ℤ)-(c.2.val:ℤ)-1 < (q*(a-c.1.val)+s:ℕ)
-    · obtain ⟨P,hP,hgood⟩ := SlicedCovectorAvoidance.principal_open_excludes_sliced_stratum_of_int_bound
+    · obtain ⟨P,hP,
+      hgood⟩ := SlicedCovectorAvoidance.principal_open_excludes_sliced_stratum_of_int_bound
         (d := c.1.val) (e := c.2.val) (q := q) (s := s) mu
         (fun j : Fin c.1.val ↪ Fin a => graphPolynomial j) (c.1.val*(a-c.1.val):ℕ)
         (by intro j; simp only [GraphParameters,Fintype.card_prod,SubspaceCharts.card_outside,
@@ -207,7 +208,8 @@ theorem principal_open_all_thresholds
           d.val ≤ finrank K (LinearMap.ker (relationMap mu ell)) →
           ((∀ i v,covector ell (mu (x.1 i) v)=0) ∧ (∀ j,covector ell (x.2 d j)=0)) → ell=0 := by
   classical
-  choose P hP hgood using fun d : Fin (a+1) => principal_open_closed_threshold mu slices hmono d.val hcount
+  choose P hP hgood using fun d : Fin (a+1) => principal_open_closed_threshold mu slices hmono
+    d.val hcount
   let pi (d : Fin (a+1)) := (coordinates K _).toLinearMap.comp
     ((projection (K := K) (b := b) (T := T) (q := q) slices d).comp (coordinates K
       _).symm.toLinearMap)

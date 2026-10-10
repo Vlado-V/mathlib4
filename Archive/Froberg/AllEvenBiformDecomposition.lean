@@ -105,7 +105,8 @@ theorem evenBiformCoordinatesEquiv_component (v : biformParitySpace K h m d 0)
       weightedHomogeneousComponent (blockWeight h m) (2*r.val) v.val := by
   have hv : allEvenCoefficientAssembly (evenBiformCoordinatesEquiv v)=v :=
     (LinearEquiv.ofBijective allEvenCoefficientAssembly
-      ⟨allEvenCoefficientAssembly_injective,allEvenCoefficientAssembly_surjective⟩).apply_symm_apply v
+      ⟨allEvenCoefficientAssembly_injective,
+        allEvenCoefficientAssembly_surjective⟩).apply_symm_apply v
   have hc := allEvenCoefficientAssembly_component (evenBiformCoordinatesEquiv v) r
   rw [hv] at hc
   exact hc.symm

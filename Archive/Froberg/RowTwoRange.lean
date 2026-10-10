@@ -43,7 +43,8 @@ theorem row_two_coprod_surjective
       rTensor_mkQ (Forms K m (s+s)) U
     rw [hker]
     exact himage
-  · change Function.Surjective ((TensorProduct.map U.mkQ (LinearMap.id : Forms K m (s+s) →ₗ[K] _)).comp _)
+  · change Function.Surjective ((TensorProduct.map U.mkQ (LinearMap.id : Forms K m (s+s) →ₗ[K]
+    _)).comp _)
     rw [vectorFormFamilyToDegree_project]
     exact vectorFormFamilyToDegree_surjective he _ g hG
 

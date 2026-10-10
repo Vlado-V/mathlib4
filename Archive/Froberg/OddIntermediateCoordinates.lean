@@ -32,7 +32,8 @@ theorem oddMixedSourceBlockCoordinates_higher_mk (hd : Odd d) (hd3 : 3≤d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex (Nat.le_trans (by decide : 1≤3) hd3)}) :
     (oddMixedSourceBlockCoordinates hd hd3 F U P B hB
       ((oddBackgroundCoefficientRelations
-        (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F i))
+        (fun i => oddBiformEmbedding (t := 1) (Nat.le_trans (by decide : 1≤3) hd3) (by decide) (F
+          i))
         (fun i => mixedPureOddGenerator hd (U i) (P i))).mkQ v)).2 r=
       (coordinateRelation (oddHigherRelationMap (Nat.le_trans (by decide : 1≤3) hd3) F
         (fun i => mixedPureOddGenerator hd (U i) (P i))).range r).mkQ

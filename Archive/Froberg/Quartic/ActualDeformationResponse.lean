@@ -245,7 +245,8 @@ theorem maximal_rank_of_ambient_exclusion
     intro a
     dsimp only [ambientEll,LinearMap.comp_apply]
     have hp := LinearMap.congr_fun hN (0,Submodule.Quotient.mk a)
-    simpa only [LinearMap.comp_apply,LinearMap.zero_apply,response_apply,map_zero,zero_add,correctionResponse_mk] using hp
+    simpa only [LinearMap.comp_apply,LinearMap.zero_apply,response_apply,map_zero,zero_add,
+      correctionResponse_mk] using hp
   have hzero := hexclude ambientEll hrel ht hc hZ
   apply LinearMap.ext
   intro a

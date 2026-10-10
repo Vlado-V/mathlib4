@@ -68,7 +68,8 @@ theorem mixed_actual_thin_open (hh : 0 < h) (hm : 0 < m)
       (∃ a : Fin e → Forms K m d,eval ((Module.finBasis K _).equivFun a) P₁ ≠ 0) ∧
       ∀ a,eval ((Module.finBasis K _).equivFun a) P₁ ≠ 0 →
         eval ((Module.finBasis K _).equivFun a) P₀ ≠ 0 ∧
-        HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁ G₁)
+        HasClosedKernelSlices (oddEndpointScalarAction (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁
+          G₁)
           (thinSlices (finrank K (oddTargetSpace
             ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm)
             (backgroundEnumeratedForms (Fin.append Q₀ (oddEvenAffineFamily E a)) F₁ G₁))) S) := by

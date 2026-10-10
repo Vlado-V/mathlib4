@@ -37,7 +37,8 @@ theorem exists_matrixBoundary_of_mem_koszul (q : Fin r → A) (u : Fin r → A)
     funext k
     have hpne : p.val.1≠p.val.2 := ne_of_lt p.property
     by_cases h1 : k=p.val.1 <;> by_cases h2 : k=p.val.2 <;>
-      simp [matrixBoundary,matrixCombination,koszulVector,Pi.single_apply,ite_apply,h1,h2,hpne,eq_comm]
+      simp [matrixBoundary,matrixCombination,koszulVector,Pi.single_apply,ite_apply,h1,h2,hpne,
+        eq_comm]
   | zero => exact ⟨0,by ext i; simp [matrixBoundary,matrixCombination]⟩
   | add x y hx hy ihx ihy =>
     obtain ⟨C,hC⟩ := ihx

@@ -77,7 +77,8 @@ theorem constraint_rank (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (F
     · rintro ⟨⟨i,h⟩,rfl⟩
       refine ⟨finProdFinEquiv (i,h),?_⟩
       funext k
-      simpa only [Equiv.symm_apply_apply,Pi.basisFun_apply,Matrix.col_apply,Matrix.transpose_apply] using
+      simpa only [Equiv.symm_apply_apply,Pi.basisFun_apply,Matrix.col_apply,Matrix.transpose_apply]
+        using
         eval_constraint mu H t (finProdFinEquiv (i,h)) k
   rw [hset]
 

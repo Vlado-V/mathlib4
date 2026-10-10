@@ -227,7 +227,8 @@ theorem initial_core_finrank (S : Submodule K (Piece K t w 1)) :
     apply LinearMap.ext
     intro x
     exact cast_coefficient_core x
-  exact (e.finrank_map_eq _).symm.trans (congrArg (fun T : Submodule K (Piece K t 0 1) => finrank K T) he)
+  exact (e.finrank_map_eq _).symm.trans (congrArg (fun T : Submodule K (Piece K t 0 1) => finrank K
+    T) he)
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -243,7 +244,8 @@ theorem initial_free_finrank (S : Submodule K (Piece K t w 1)) (i : Fin w) :
     apply LinearMap.ext
     intro x
     exact cast_coefficient_free x i
-  exact (e.finrank_map_eq _).symm.trans (congrArg (fun T : Submodule K (Piece K t 0 0) => finrank K T) he)
+  exact (e.finrank_map_eq _).symm.trans (congrArg (fun T : Submodule K (Piece K t 0 0) => finrank K
+    T) he)
 
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

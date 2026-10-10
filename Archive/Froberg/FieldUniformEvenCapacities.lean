@@ -195,7 +195,8 @@ theorem eventually_field_uniform_actual_even_capacities_shift {d : ℕ} (hd : 9�
               output_positive := hsparse.1
               enough_generators := by
                 simpa only [counts,allEvenCount_active _ _ _ ha,targetLayerCount,if_neg hR2,
-                  higherGeneratorCount,Nat.cast_mul,Nat.cast_ofNat,Nat.add_zero,two_mul,Nat.cast_add] using hc
+                  higherGeneratorCount,Nat.cast_mul,Nat.cast_ofNat,Nat.add_zero,two_mul,
+                    Nat.cast_add] using hc
               divisor_capacity := hsparse.2.1
               incidence := by simpa only [r,two_mul] using hb.2
               scalar_open := ⟨D,hD,fun Q hQ => (hgood Q hQ).1⟩ }

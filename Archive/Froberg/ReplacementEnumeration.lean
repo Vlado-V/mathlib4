@@ -48,7 +48,8 @@ theorem backgroundEnumeratedForms_update
   rcases j with j | (j | j)
   · by_cases hj : j=i
     · subst j
-      rw [←backgroundEvenIndex,Function.update_self,backgroundEnumeratedForms_even,Function.update_self]
+      rw [←backgroundEvenIndex,Function.update_self,backgroundEnumeratedForms_even,
+        Function.update_self]
     · have hij : (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inl j)≠backgroundEvenIndex (f :=
       f) (u := u) i := by
         intro he

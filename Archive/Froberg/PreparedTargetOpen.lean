@@ -88,7 +88,8 @@ theorem HasUpperWitness.exists_zero_private_rank_open (hd : 3≤d)
       · rfl
       · exact hzero.symm
   have hlift' : ∀ b,2≤b → b≤2*d → TargetLift
-      ((Submodule.span K (Set.range (renamedGenerator U P (zeroPrivateScalar v₀))))*Forms K (h+m) d) d b := by
+      ((Submodule.span K (Set.range (renamedGenerator U P (zeroPrivateScalar v₀))))*Forms K (h+m)
+        d) d b := by
     simpa only [hv] using hlift
   obtain ⟨D,hD,hgood⟩ := upper_target_open_linear_of_literal_witness zeroPrivateScalar
     (by omega : 0<d) (fun j _ => targetLayerOutput_homogeneous frame j)

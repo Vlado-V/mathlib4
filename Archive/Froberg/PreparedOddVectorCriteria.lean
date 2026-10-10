@@ -75,7 +75,8 @@ theorem odd_cycles_of_vector_criteria (hd : 3≤d) (hdodd : d%2=1)
     intro x y hx hy hr
     obtain ⟨C,hC,hC'⟩ := bottom_polynomial_constants (by omega) (scalarEnumeration p.1)
       (combinedVectorEnumeration P p.2) hg hQ x y hx hy
-      (by simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar] using hr)
+      (by simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar]
+        using hr)
     exact ⟨C,by simpa only [combinedVectorEnumeration_val] using hC,hC'⟩
   · intro r hr hrd hodd
     apply injective_pair_kernel_reindex (Fintype.equivFin (PreparedParameters.Label q J counts))
@@ -84,7 +85,8 @@ theorem odd_cycles_of_vector_criteria (hd : 3≤d) (hdodd : d%2=1)
       (coefficientComponentSpace (blockWeight h m) d (r-1))
     intro x y hx hy hrel
     apply hhigher r hr hrd hodd x y hx hy
-    simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar] using hrel
+    simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar] using
+      hrel
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_cycles_of_first_higher_rows (hd : 3≤d) (hdodd : d%2=1)
@@ -103,7 +105,8 @@ theorem odd_cycles_of_first_higher_rows (hd : 3≤d) (hdodd : d%2=1)
     intro x y hx hy hr
     obtain ⟨C,hC,hC'⟩ := bottom_polynomial_constants_of_exact (by omega) (scalarEnumeration p.1)
       (combinedVectorEnumeration P p.2) hfirst x y hx hy
-      (by simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar] using hr)
+      (by simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar]
+        using hr)
     exact ⟨C,by simpa only [combinedVectorEnumeration_val] using hC,hC'⟩
   · intro r hr hrd hodd
     apply injective_pair_kernel_reindex (Fintype.equivFin (PreparedParameters.Label q J counts))
@@ -112,6 +115,7 @@ theorem odd_cycles_of_first_higher_rows (hd : 3≤d) (hdodd : d%2=1)
       (coefficientComponentSpace (blockWeight h m) d (r-1))
     intro x y hx hy hrel
     apply hhigher r hr hrd hodd x y hx hy
-    simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar] using hrel
+    simpa only [combinedVectorEnumeration_val,scalarEnumeration,PreparedParameters.scalar] using
+      hrel
 
 end Froberg.PreparedTarget

@@ -61,7 +61,8 @@ theorem product_injective (F : S →ₗ[K] A × A) (r : Fin 4 → A)
     (ha : Function.Injective (augmented ω F r)) : Function.Injective F := by
   intro b b' h
   have he : augmented ω F r (b,0,0) = augmented ω F r (b',0,0) := by
-    simp only [AugmentedGenericOmega.augmented_apply, smul_zero, map_zero, Prod.fst_zero, Prod.snd_zero, add_zero, sub_zero]
+    simp only [AugmentedGenericOmega.augmented_apply, smul_zero, map_zero, Prod.fst_zero,
+      Prod.snd_zero, add_zero, sub_zero]
     exact Prod.ext (congrArg Prod.fst h) (congrArg Prod.snd h)
   exact congrArg Prod.fst (ha he)
 
@@ -85,7 +86,8 @@ theorem product_disjoint_trace (F : S →ₗ[K] A × A) (r : Fin 4 → A)
   rintro z ⟨b,hb⟩ ⟨⟨a,ξ⟩,ht⟩
   have he : augmented ω F r (b,0,0) = augmented ω F r (0,a.val,ξ) := by
     rw [augmented_decomposition ω F r U]
-    simpa only [AugmentedGenericOmega.augmented_apply, map_zero, smul_zero, Prod.fst_zero, Prod.snd_zero,
+    simpa only [AugmentedGenericOmega.augmented_apply, map_zero, smul_zero, Prod.fst_zero,
+      Prod.snd_zero,
       add_zero, sub_zero, zero_add, Prod.mk.eta] using hb.trans ht.symm
   have hb0 : b = 0 := congrArg Prod.fst (ha he)
   simpa only [hb0, map_zero] using hb.symm
@@ -129,7 +131,8 @@ set_option backward.isDefEq.respectTransparency false in
 theorem discarded_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (hg : LinearIndependent K g) : finrank K (discarded g) = c*c := by
   rw [(discardedEquiv g).finrank_eq]
-  let : Module.Free K (Submodule.span K (Set.range g)) := Module.Free.of_basis (Module.Basis.span hg)
+  let : Module.Free K (Submodule.span K (Set.range g)) := Module.Free.of_basis (Module.Basis.span
+    hg)
   rw [Module.finrank_pi_fintype]
   simp [finrank_span_eq_card hg]
 
@@ -149,7 +152,8 @@ theorem boundary_le_discarded (g : Fin c → MiddleCoordinates.Mixed K m) :
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem multiplication_single (g : Fin c → MiddleCoordinates.Mixed K m)
     (i : Fin c) (a : MiddleCoordinates.Mixed K m) :
-    MiddleCoordinates.multiplication g (Pi.single i a) = MiddleCoordinates.projectedProduct (g i) a := by
+    MiddleCoordinates.multiplication g (Pi.single i a) = MiddleCoordinates.projectedProduct (g
+      i) a := by
   classical
   simp only [MiddleCoordinates.multiplication, LinearMap.sum_apply, LinearMap.comp_apply,
     LinearMap.proj_apply, Pi.single_apply]
@@ -255,7 +259,8 @@ def traceSpace (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
   (traceMap ω (fun i => (Submodule.span K (Set.range h)).mkQ (r i)) markedU).range
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
-/-- No quotient-rank assumption: the actual parameterized augmented map supplies trace independence. -/
+/-- No quotient-rank assumption: the actual parameterized augmented map supplies trace
+independence. -/
 theorem traceSpace_finrank (g : Fin c → MiddleCoordinates.Mixed K m)
     (h : Fin q → Forms K m 2) (r : Fin 4 → Forms K m 2)
     (ha : Function.Injective (quotientAugmented ω (productMap g) h r))
@@ -360,7 +365,8 @@ def coefficientImage (g : Fin c → MiddleCoordinates.Mixed K m)
     (markedU : Submodule K (Forms K m 2 ⧸ Submodule.span K (Set.range h))) :
     Submodule K (Fin c → MiddleCoordinates.Mixed K m ⧸ Submodule.span K (Set.range g)) :=
   ((traceSpace ω h r markedU).comap
-    (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection g)
+    (MiddleCoordinates.quotientMap g (Submodule.span K (Set.range h)))).map (coefficientProjection
+      g)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem coefficientImage_eq_range (g : Fin c → MiddleCoordinates.Mixed K m)

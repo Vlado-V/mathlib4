@@ -29,7 +29,8 @@ def bilinearKoszulRow (μ : V →ₗ[K] U →ₗ[K] A) (Q : I → V) (E : J → 
     (P : W →ₗ[K] A) : (((I → U) × (J → V)) × W) →ₗ[K] A where
   toFun x := (∑ i,μ (Q i) (x.1.1 i))+(∑ j,μ (x.1.2 j) (E j))+P x.2
   map_add' x y := by
-    simp only [Prod.fst_add,Prod.snd_add,Pi.add_apply,map_add,LinearMap.add_apply,Finset.sum_add_distrib]
+    simp only [Prod.fst_add,Prod.snd_add,Pi.add_apply,map_add,LinearMap.add_apply,
+      Finset.sum_add_distrib]
     abel
   map_smul' c x := by
     change (∑ i,μ (Q i) (c • x.1.1 i))+(∑ j,μ (c • x.1.2 j) (E j))+P (c • x.2)=_

@@ -80,7 +80,8 @@ theorem restoredScalarFiber_positive (hd : d%2=0)
         (idx.symm (Sum.inr ((Fintype.equivFin _).symm i)))).val)+
       (scalarEvenBiform (h := h) (a i)).val
   simp only [Equiv.apply_symm_apply,generator,scalarFiberCoordinates,LinearEquiv.coe_symm_mk,
-    scalar,high,Sum.elim_inr,Pi.zero_apply,Equiv.apply_symm_apply,Submodule.coe_zero,map_zero,add_zero,scalarEvenBiform_val]
+    scalar,high,Sum.elim_inr,Pi.zero_apply,Equiv.apply_symm_apply,Submodule.coe_zero,map_zero,
+      add_zero,scalarEvenBiform_val]
   abel
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.

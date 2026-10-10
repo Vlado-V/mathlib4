@@ -50,7 +50,8 @@ theorem odd_scalar_layer_growth_open (hh : 0<h) (hn : 0<n)
       (V₁ := Forms K h (b-1) ⊗[K] Forms K n (d-b+1))
       (V₂ := Forms K h b ⊗[K] Forms K n (d-b))
       (W := Forms K h b ⊗[K] Forms K n (2*d-b))
-          (oddRowLinearAction (K := K) (h := h) (n := n) hb hbd) (oddRowScalarAction (K := K) (h := h) (n := n) hbd) p) ∧
+          (oddRowLinearAction (K := K) (h := h) (n := n) hb hbd) (oddRowScalarAction (K := K) (h :=
+            h) (n := n) hbd) p) ∧
         ∀ L : Submodule K (Forms K h b ⊗[K] Forms K n (d-b)),
           t*finrank K L ≤ finrank K (Quartic.BilinearImage.image
             (scalarModulo (K := K)
@@ -65,7 +66,8 @@ theorem odd_scalar_layer_growth_open (hh : 0<h) (hn : 0<n)
       (V₁ := Forms K h (b-1) ⊗[K] Forms K n (d-b+1))
       (V₂ := Forms K h b ⊗[K] Forms K n (d-b))
       (W := Forms K h b ⊗[K] Forms K n (2*d-b))
-              (oddRowLinearAction (K := K) (h := h) (n := n) hb hbd) (oddRowScalarAction (K := K) (h := h) (n := n) hbd) p)
+              (oddRowLinearAction (K := K) (h := h) (n := n) hb hbd) (oddRowScalarAction (K := K) (h
+                := h) (n := n) hbd) p)
               (oddRowScalarAction (K := K) (h := h) (n := n) hbd)) L) := by
   apply two_family_augmentation_open (K := K)
     (P₁ := Forms K h 1 ⊗[K] Forms K n (d-1))

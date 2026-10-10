@@ -136,7 +136,8 @@ theorem exists_response_rank_formula (hm : 28 ≤ m) (p : Parameters K m upper)
         min (((2*m+2*mixedCount m upper : ℕ):ℤ)+
           Counts.H m (upperEndpoint m) (mixedCount m upper)+4+finrank K U)
           (Counts.j m (upperEndpoint m) (mixedCount m upper)) := by
-  obtain ⟨r,s,ha,hrank⟩ := exists_maximal_response ω hm p extra hp U hg hh hs htrace hcubic h13 r₀ hr₀
+  obtain ⟨r,s,ha,hrank⟩ := exists_maximal_response ω hm p extra hp U hg hh hs htrace hcubic h13 r₀
+    hr₀
   refine ⟨r,s,ha,?_⟩
   have hs' := ActualMarkedSquareResponseOmega.source_finrank ω (G p) (Q p) r extra U hg hh ha hs
   have hj := ActualSplitCokernel.rawJ_finrank_eq_j (G p) (Q p) hh hcubic h13

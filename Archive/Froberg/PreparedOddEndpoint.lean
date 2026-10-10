@@ -58,7 +58,8 @@ theorem zeroScalarEndpointFamily_back (hd : 0<d)
   rcases i with i | (i | i)
   · simp only [forms_val,generator_prepared,zeroPrivateScalar_apply,Sum.elim_inl]
   · simp [forms_val,generator_outer,zeroPrivateScalar,oddGenerator,combinedLinear,combinedPure]
-  · simp [forms_val,zeroPrivateScalar_generator_private,oddGenerator,combinedLinear,combinedPure,add_comm]
+  · simp [forms_val,zeroPrivateScalar_generator_private,oddGenerator,combinedLinear,combinedPure,
+    add_comm]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem odd_cycles_endpoint (hd : 0<d)
@@ -104,7 +105,8 @@ theorem odd_cycles_endpoint (hd : 0<d)
     simp only [map_sum,map_mul,Submodule.coe_zero,map_zero] at hz
     rw [←idx.sum_comp (fun k => rename finSumFinEquiv.symm (Q k).val*
       rename finSumFinEquiv.symm (a.val k).val)] at hz
-    simpa only [Q,idx,zeroScalarEndpointFamily_back,Fintype.sum_sum_type,Sum.elim_inl,Sum.elim_inr] using hz
+    simpa only [Q,idx,zeroScalarEndpointFamily_back,Fintype.sum_sum_type,Sum.elim_inl,
+      Sum.elim_inr] using hz
   obtain ⟨B,hB,hB'⟩ := H c v hc hv hcp hvp hcycle
   apply split_constants_mem_cross idx.symm Q a.val B
   · intro i
@@ -117,7 +119,8 @@ theorem odd_cycles_endpoint (hd : 0<d)
     apply Subtype.ext
     apply (renameEquiv K finSumFinEquiv.symm).injective
     change v j=rename finSumFinEquiv.symm (-∑ i,B i j • Q (idx (Sum.inl i))).val
-    simpa only [Submodule.coe_neg,Submodule.coe_sum,Submodule.coe_smul,map_neg,map_sum,map_smul,Q,idx,
+    simpa only [Submodule.coe_neg,Submodule.coe_sum,Submodule.coe_smul,map_neg,map_sum,map_smul,Q,
+      idx,
       zeroScalarEndpointFamily_back,Sum.elim_inl] using hB' j
 
 end Froberg.PreparedTarget

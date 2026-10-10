@@ -67,9 +67,11 @@ theorem intrinsic_second_stage_with_parameters
   have heb (t : Fin (q+N) → K) (x : X) :
       evaluated MB (Sum.elim t (bx.equivFun x))=LinearMap.toMatrix bY bv (B t x) := by
     ext i j
-    simpa only [evaluated,Matrix.map_apply,LinearMap.toMatrix_apply,Sum.elim_inl,Sum.elim_inr,LinearEquiv.symm_apply_apply] using
+    simpa only [evaluated,Matrix.map_apply,LinearMap.toMatrix_apply,Sum.elim_inl,Sum.elim_inr,
+      LinearEquiv.symm_apply_apply] using
       hMB i j (Sum.elim t (bx.equivFun x))
-  obtain ⟨P,hP,hgood⟩ := principal_open_second_dehom_with_parameters degrees f ell hempty MA MB hcount
+  obtain ⟨P,hP,hgood⟩ := principal_open_second_dehom_with_parameters degrees f ell hempty MA MB
+    hcount
   refine ⟨P,hP,?_⟩
   intro z hz x t hf hell u hr hs
   have hr' : r₁≤(evaluated MA (Fin.append t u)).rank := by

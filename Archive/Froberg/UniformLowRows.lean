@@ -34,12 +34,14 @@ theorem eventually_low_rows_shared_frames_uniform {d : ℕ} (hd : 3≤d) (N₂ :
         countAlpha d*(h : ℝ)^2*(m : ℝ)^(d-2) ≤ (rE : ℝ) →
         ∃ D : MvPolynomial (Fin (finrank K (Fin (quadraticOutputDimension d h) → Forms K h 2))) K,
           (∃ a,eval a D≠0) ∧ ∀ a,eval a D≠0 →
-            LinearIndependent K ((Module.finBasis K (Fin (quadraticOutputDimension d h) → Forms K h 2)).equivFun.symm a) ∧
+            LinearIndependent K ((Module.finBasis K (Fin (quadraticOutputDimension d h) → Forms K h
+              2)).equivFun.symm a) ∧
             ∃ E : MvPolynomial (Fin (finrank K
               (LowRowCoefficients K h m (d-1) (d-2) (quadraticOutputDimension d h) (F m) rE))) K,
               (∃ c,eval c E≠0) ∧ ∀ c,eval c E≠0 →
                 LowRowsSurjective (by omega : (d-2)+d=(d-1)+(d-1))
-                  ((Module.finBasis K _).equivFun.symm a) ((Module.finBasis K _).equivFun.symm c) := by
+                  ((Module.finBasis K _).equivFun.symm a) ((Module.finBasis K _).equivFun.symm
+                    c) := by
   obtain ⟨k,rfl⟩ : ∃ k,d=k+3 := ⟨d-3,by omega⟩
   filter_upwards [eventually_row_two_exact_uniform hd,
     eventually_quadratic_row_three_exact_uniform hd,

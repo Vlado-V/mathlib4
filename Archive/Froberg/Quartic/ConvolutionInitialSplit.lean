@@ -64,7 +64,8 @@ theorem projection_core (x : Piece K t w 1) :
   apply congrArg (relations K t w 1).mkQ
   funext r
   apply Subtype.ext
-  simp only [targetCast_apply_val,ConvolutionFreeMultiplication.rowLift_apply_val,targetPiecesEquiv_apply_val]
+  simp only [targetCast_apply_val,ConvolutionFreeMultiplication.rowLift_apply_val,
+    targetPiecesEquiv_apply_val]
   rfl
 
 theorem projection_free (x : Piece K t w 1) (i : Fin w) :
@@ -76,7 +77,8 @@ theorem projection_free (x : Piece K t w 1) (i : Fin w) :
   apply congrArg (relations K t w 1).mkQ
   funext r
   apply Subtype.ext
-  simp only [targetCast_apply_val,ConvolutionFreeMultiplication.rowLift_apply_val,targetPiecesEquiv_apply_val]
+  simp only [targetCast_apply_val,ConvolutionFreeMultiplication.rowLift_apply_val,
+    targetPiecesEquiv_apply_val]
   rfl
 
 /-- Core coordinate extraction in the actual degree-one decomposition. -/

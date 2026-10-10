@@ -78,7 +78,8 @@ theorem extended_sparse_intrinsic_exact (hs : 1 ≤ s) (hsd : s ≤ d)
           rename Sum.inr (b k).val)+rename (Sum.map id (Fin.castAdd z)) (P t)=0 := by
       have hh := LinearMap.mem_ker.mp ht
       simpa only [bilinearKoszulRow,LinearMap.coe_mk,AddHom.coe_mk,
-        fullBiformScalarProduct_apply,Q',E',P',LinearMap.comp_apply,AlgHom.toLinearMap_apply,mul_comm] using hh
+        fullBiformScalarProduct_apply,Q',E',P',LinearMap.comp_apply,AlgHom.toLinearMap_apply,
+          mul_comm] using hh
     obtain ⟨C,hCu,hCb,hPt⟩ := extended_polynomial_row_relation_constants hs hsd o ho hdeg
       e v he Q P hfull hker ell hell (fun i => (u i).val) (fun i => (u i).property)
       b (P t) ⟨t,rfl⟩ (hP ⟨t,rfl⟩) hrel
