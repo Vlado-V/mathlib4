@@ -54,10 +54,12 @@ theorem biformOutputEndomorphism_retain (P : (σ →₀ ℕ) → Prop) :
     rw [monomial_sumElim,biformOutputEndomorphism_tmul,retainMonomials_monomial]
     split_ifs <;> simp
 
-@[simp] theorem outputExponent_weight [Fintype σ] [Fintype τ]
+@[simp] theorem outputExponent_weight [Finite σ] [Finite τ]
     (w : σ → ℕ) (a : (σ ⊕ τ) →₀ ℕ) :
     Finsupp.weight w (outputExponent a) =
       Finsupp.weight (Sum.elim w (fun _ : τ => 0)) a := by
+  let := Fintype.ofFinite σ
+  let := Fintype.ofFinite τ
   simp [Finsupp.weight_eq_sum,Fintype.sum_sum_type,outputExponent]
 
 theorem biformOutputEndomorphism_preserves [Infinite K]

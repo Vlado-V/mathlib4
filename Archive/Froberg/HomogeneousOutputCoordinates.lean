@@ -34,16 +34,17 @@ def outputCombination {J σ : Type*} [Fintype J] (o : J → MvPolynomial σ K) :
 
 /-- A complete homogeneous output basis can be chosen together with an
 injective coordinate inclusion of every specified homogeneous subspace. -/
-theorem homogeneous_output_coordinate_embedding {σ : Type*} [Fintype σ] {R : ℕ}
+theorem homogeneous_output_coordinate_embedding {σ : Type*} [Finite σ] {R : ℕ}
     (O : Submodule K (MvPolynomial σ K)) (hO : O ≤ homogeneousSubmodule σ K R) :
     ∃ (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
       (L : (Fin (finrank K O) → K) →ₗ[K]
         (Fin (finrank K (homogeneousSubmodule σ K R)) → K)),
       LinearIndependent K o ∧ (∀ j,(o j).IsHomogeneous R) ∧
       Function.Injective L ∧ ∀ z,outputCombination o (L z)∈O := by
+  let := Fintype.ofFinite σ
   let F := homogeneousSubmodule σ K R
-  letI : Module.Finite K F := Module.Finite.of_basis (finiteVariableFormsBasis (K := K) σ R)
-  letI : FiniteDimensional K O := Submodule.finiteDimensional_of_le hO
+  let : Module.Finite K F := Module.Finite.of_basis (finiteVariableFormsBasis (K := K) σ R)
+  let : FiniteDimensional K O := Submodule.finiteDimensional_of_le hO
   let b := Module.finBasis K F
   let a := Module.finBasis K O
   let f : O →ₗ[K] F := O.subtype.codRestrict F (fun x => hO x.property)

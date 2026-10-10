@@ -39,19 +39,19 @@ def biformScalarMap (L : MvPolynomial τ K →ₗ[K] MvPolynomial τ K) :
 theorem monomial_sumElim (a : σ →₀ ℕ) (b : τ →₀ ℕ) (c : K) :
     (monomial (a.sumElim b) c : MvPolynomial (σ ⊕ τ) K) =
       rename Sum.inl (monomial a c) * rename Sum.inr (monomial b 1) := by
-  rw [rename_monomial,rename_monomial,monomial_mul, mul_one,Finsupp.sumElim_eq_add]
+  rw [rename_monomial,rename_monomial,monomial_mul_monomial, mul_one,Finsupp.sumElim_eq_add]
 
 open scoped Classical in
 theorem retainMonomials_monomial (P : (τ →₀ ℕ) → Prop) (a : τ →₀ ℕ) (c : K) :
     retainMonomials P (monomial a c) = if P a then monomial a c else 0 := by
   classical
   by_cases hP : P a
-  · rw [if_pos hP]
+  · rw [ite_eq_left hP]
     ext b
     by_cases hab : a=b
     · subst b; simp [coeff_retainMonomials,hP]
     · simp [coeff_retainMonomials,coeff_monomial,hab]
-  · rw [if_neg hP]
+  · rw [ite_eq_right hP]
     ext b
     by_cases hab : a=b
     · subst b; simp [coeff_retainMonomials,hP]
