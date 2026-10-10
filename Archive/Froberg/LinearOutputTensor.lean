@@ -74,6 +74,7 @@ theorem linearOutputTensorEquiv_sum (v : Rows K h m s) :
     _=_ := by simp only [linearOutputTensorEquiv_single]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem sumBiformMap_linearOutput (v : Rows K h m s) :
     sumBiformMap (linearOutputTensorEquiv v)=∑ i,rename Sum.inl (X i)*rename Sum.inr (v i).val := by
   rw [linearOutputTensorEquiv_sum,map_sum]

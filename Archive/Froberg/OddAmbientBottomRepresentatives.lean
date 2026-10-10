@@ -53,6 +53,7 @@ variable
     oddAmbientBottomRelationMap hd Q F hQ hF G)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_odd_ambient_bottom_representative
     (x : OddTargetRowQuotient Q F (oddTargetBottomIndex hd)) :
     ∃ p : biformParitySpace K h m (2*d) 1,

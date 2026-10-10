@@ -99,6 +99,7 @@ theorem prepared_odd_split_exact (hd : 0 < d) (hdodd : d % 2 = 1)
     by simpa only [Equiv.symm_symm,hS] using hB'⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_odd_relative_injective (hd : 0 < d) (hdodd : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

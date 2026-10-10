@@ -76,6 +76,8 @@ omit [Infinite K] [Fintype σ] in
     (privateOddFamily hd ho P U i).val=(P i).val+rename Sum.inl (U i).val := rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
+omit [Fintype σ] in
 theorem private_typed_reduction
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)

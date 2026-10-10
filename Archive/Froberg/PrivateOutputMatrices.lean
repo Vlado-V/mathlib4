@@ -62,6 +62,7 @@ theorem privateOutputMatrix_column
   rw [hsingle]
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateOutputMatrix_injective
     (hi : Basis (Fin L) K (homogeneousSubmodule σ K R))
     (ho : Basis (Fin H) K (homogeneousSubmodule σ K (R + 1)))

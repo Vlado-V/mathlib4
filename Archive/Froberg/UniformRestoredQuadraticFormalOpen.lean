@@ -41,7 +41,7 @@ theorem uniform_exact_counts_restored_formal_quadratic_open {d k h lo : ℕ}
     with n hn
   intro K _ _ O hO slot c T hT hO₂ o ho
   obtain ⟨D,hD,hgood⟩  := hn K O hO c T o ho
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
     (actualRestoredCounts K d h n (e n) extra) O) := finite_space hO
   refine ⟨D,hD,?_⟩
   intro p hp

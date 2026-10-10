@@ -1908,3 +1908,5 @@ public import Archive.Wiedijk100Theorems.PerfectNumbers
 public import Archive.Wiedijk100Theorems.SolutionOfCubicQuartic
 public import Archive.Wiedijk100Theorems.SumOfPrimeReciprocalsDiverges
 public import Archive.ZagierTwoSquares
+
+set_option linter.style.longFile 2100

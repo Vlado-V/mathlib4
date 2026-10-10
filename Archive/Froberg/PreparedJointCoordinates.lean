@@ -115,6 +115,7 @@ theorem preparedJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedJointFromCoordinates_surjective (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Function.Surjective (preparedJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (u := u) (counts := counts) hO) := by

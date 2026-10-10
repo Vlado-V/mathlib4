@@ -33,6 +33,7 @@ def QuadraticSeparated (T : Poly K h →ₗ[K] (Fin c → K))
         (biformVectorDetector T) p.2 z=0 → z=0
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quadratic_separated_principal_open
     (T : Poly K h →ₗ[K] (Fin c → K))
     (Q₀ : Fin r → Forms K m d) (F₀ : Fin f → FullBiform K (Fin h) m 1 (d - 1))
@@ -108,7 +109,7 @@ set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 /-- Actual paired scalar and output spaces supply the separation witness;
 all remaining restored coefficients are free parameters of the open. -/
 theorem restored_quadratic_separation_open_of_scalar_space
-    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    {ι : Type*} [Fintype ι]
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (idx : Fin r ≃ Label q J counts)
     (T : Poly K h →ₗ[K] (Fin c → K))
     (Q₀ : Fin r → Forms K m d)
@@ -126,6 +127,7 @@ theorem restored_quadratic_separation_open_of_scalar_space
       ∀ p : RestoredOuterSpace m d q f J counts O,
         eval ((Module.finBasis K _).equivFun p) D≠0 →
           QuadraticSeparated T (restoredC2Projection idx p) := by
+  classical
   obtain ⟨F,hF,hsep⟩ := exists_scalar_separated_biform_family Q₀ o T ho C hCdeg hC hCQ hf
   exact restored_quadratic_separation_open hO idx T Q₀ F hQ₀ hsep
 

@@ -52,6 +52,7 @@ theorem canonicalFrameConstraint_ge_four (frame : Fin H → Forms K h 2)
     {j : ℕ} (hj : 4 ≤ j) : canonicalFrameConstraint frame j=0 := by
   simp only [canonicalFrameConstraint,ite_eq_right (show j≠2 by omega)]
 
+omit [Infinite K] in
 theorem canonicalFrameConstraint_dimension {d : ℕ} (hh : 0 < h)
     (hcolumn : outerColumnCount d h ≤ h)
     (frame : Fin (quadraticOutputDimension d h) → Forms K h 2)

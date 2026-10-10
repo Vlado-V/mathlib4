@@ -68,6 +68,7 @@ theorem restoredFamilyLinear_restrictCounts (hd : d % 2 = 0)
     pureShift_injective_index _ _ _ (countIndexMap_injective hc idx idx')]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredEndpointFamily_restrictCounts (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (hc : ∀ j ∈ J, c j ≤ c' j)

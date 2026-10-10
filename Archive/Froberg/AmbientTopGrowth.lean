@@ -158,6 +158,7 @@ theorem ambientTopGrowthProjection_product (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1
   rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem topGrowthScalarAction_growth (hdp : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

@@ -41,6 +41,7 @@ theorem oddAmbientCoordinates_weighted_bottom
   simp only [map_zero,sub_zero]
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddAmbientCoordinates_bottom_product
     (s : biformParitySpace K h m d 0)
     (hs : s.val.IsWeightedHomogeneous (blockWeight h m) 0)

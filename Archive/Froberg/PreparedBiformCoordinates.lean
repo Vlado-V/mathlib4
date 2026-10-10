@@ -44,6 +44,7 @@ omit [Infinite K] in
   rw [LinearEquiv.apply_symm_apply]
   rfl
 
+omit [Infinite K] in
 theorem constrainedBiformCoordinates_framed {H r : ℕ}
     (frame : Fin H → Forms K h j) (c : Fin r → Fin H → Forms K m e) (i : Fin r) :
     constrainedBiformCoordinates (outputFrameSpace frame) (outputFrameSpace_homogeneous frame)

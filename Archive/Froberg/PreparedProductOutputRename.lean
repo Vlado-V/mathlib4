@@ -49,6 +49,7 @@ theorem products_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial
         R) := by
   rw [layers_renameOutputParameter,ProductRows.multiplication_rename]
 
+omit [Infinite K] in
 theorem renameOutputParameter_injective_products (e : σ ≃ τ)
     (T : ℕ → MvPolynomial τ K →ₗ[K] X)
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j ⊓
@@ -59,6 +60,7 @@ theorem renameOutputParameter_injective_products (e : σ ≃ τ)
   rw [products_renameOutputParameter]
   exact (rename_injective _ (Sum.map_injective.mpr ⟨e.injective,Function.injective_id⟩)).comp hp
 
+omit [Infinite K] in
 theorem renameOutputParameter_profile (e : σ ≃ τ) (T : ℕ → MvPolynomial τ K →ₗ[K] X)
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j ⊓
       ((T j).comp (rename e).toLinearMap).ker)) {R k : ℕ} (S : Finset (Fin n))

@@ -104,6 +104,7 @@ theorem restored_split_value (hd : d % 2 = 0)
   cases j <;> simp [restoredEvenIndex,restoredBaseBiform,restoredPositiveBiform]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_split_odd_exact (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
@@ -159,6 +160,7 @@ def restoredBackgroundIndex (idx : Fin r ≃ Label q J counts) :
   Equiv.sumCongr (restoredEvenIndex idx) (Equiv.sumEmpty (Fin f) (Fin 0)).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restored_background_value (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

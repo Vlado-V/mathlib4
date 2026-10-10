@@ -67,6 +67,7 @@ def restoredFamilyLinear (hd : d % 2 = 0)
     (PolynomialRestoration.pureShift (pureEvenEmbed hd) slot).comp (LinearMap.snd K _ _)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem even_prepared_restoration_principal_open (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)

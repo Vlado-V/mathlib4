@@ -52,6 +52,7 @@ def supportedProjectedOddTargetEquiv
     (upperTarget_even_coverage e q hq hupper D
       (supported_scalar_deletion_properties Q q D hD hfill hold).2)
 
+omit [Infinite K] in
 @[simp] theorem supportedProjectedOddTargetEquiv_class
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K (h + m) d)
@@ -67,6 +68,7 @@ def supportedProjectedOddTargetEquiv
     supportedProjectedOddTargetEquiv Q e q hq hupper D hD hfill hold (projectedTargetClass D q p)=
       oddTargetClass (coreParity h m) q p := rfl
 
+omit [Infinite K] in
 theorem exists_supported_odd_target_equiv
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K (h + m) d)
@@ -88,6 +90,7 @@ theorem exists_supported_odd_target_equiv
 
 variable {P : Type*} [AddCommGroup P] [Module K P]
 
+omit [Infinite K] in
 theorem supportedProjectedOddTargetEquiv_product
     (Q : Fin s → Forms K m d) (e : Fin r → ZMod 2)
     (q : Fin r → Forms K (h + m) d)

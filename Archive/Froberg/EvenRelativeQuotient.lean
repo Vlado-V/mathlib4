@@ -20,6 +20,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f e : ℕ}
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenRelativeFamily_range (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0) :

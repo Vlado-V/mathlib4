@@ -19,6 +19,7 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d r : ℕ}
 
+omit [Infinite K] in
 theorem restored_supported_formal_relations
     (g : Fin r → evenRestorationSpace (K := K) (coreWeight h m) d)
     (hi : LinearIndependent K (restorationForms (coreWeight h m) g))

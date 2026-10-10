@@ -50,9 +50,9 @@ theorem eventually_uniform_actual_restored_comparison {d k h lo : ℕ}
     fun j _ => targetLayerOutput_homogeneous frame j
   let hJ : ∀ j∈allEvenIndices d,j≤d := fun j hj => (mem_allEvenIndices.mp hj).2.1
   let hev : ∀ j∈allEvenIndices d,j%2=0 := fun j hj => (mem_allEvenIndices.mp hj).2.2
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (actualRestoredCounts K d h n (e n) 0) (targetLayerOutput frame)) := finite_space hO
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (actualRestoredCounts K d h n (e n) 1) (targetLayerOutput frame)) := finite_space hO
   obtain ⟨A,hA,hAgood⟩ := hframe.certificates.1
   obtain ⟨B,hB,hBgood⟩ := hframe.certificates.2

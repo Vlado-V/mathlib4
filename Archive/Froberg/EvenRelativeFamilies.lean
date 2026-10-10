@@ -76,6 +76,7 @@ theorem evenRelativeFamily_compatible (hdp : 1 ≤ d)
   exact (evenBackgroundTargetEquiv hdp Q F).apply_symm_apply _
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenRelativeFamily_injective (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (E : Fin e → biformParitySpace K h m d 0)

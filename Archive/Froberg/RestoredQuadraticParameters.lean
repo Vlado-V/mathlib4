@@ -45,6 +45,7 @@ theorem restoredC2Projection_surjective (idx : Fin r ≃ Label q J counts) :
     Function.Surjective (restoredC2Projection (m := m) (d := d) (f := f) (O := O) idx) :=
   fun p => ⟨restoredC2Point idx p,restoredC2Projection_point idx p⟩
 
+omit [Infinite K] in
 theorem restored_c2_principal_pullback
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (idx : Fin r ≃ Label q J counts)
     (D : MvPolynomial (Fin (finrank K (QuadraticParameters K h m d r f))) K)

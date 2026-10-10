@@ -21,6 +21,7 @@ variable {h m d q r f c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- Empty private columns contribute no nuisance row. -/
 theorem quadraticSeparated_empty_private
     (T : Poly K h →ₗ[K] (Fin c → K))

@@ -44,7 +44,7 @@ theorem hasEnlargedPreparedOpen_of_opens
       (counts := counts) hd ho hO hJ heven) :
     HasEnlargedPreparedOpen (m := m) (f := f) hd ho hO hJ heven idx U := by
   classical
-  letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   obtain ⟨B,hB,hBg⟩ := hbasic
   obtain ⟨L,hL,hLg⟩ := hlead

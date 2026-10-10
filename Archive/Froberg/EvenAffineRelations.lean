@@ -36,6 +36,7 @@ def evenAffineRelations (E : Fin e → biformParitySpace K h m d 0)
   (evenRelativeFamily hdp Q F (oddEvenAffineFamily E a)).range
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenAffineRelations_generator_mem (E : Fin e → biformParitySpace K h m d 0)
     (a : Fin e → Forms K m d) (i : Fin e) (v : V) :
     evenBackgroundScalar hdp Q F (a i) v+evenBackgroundProduct hdp Q F (E i) v ∈

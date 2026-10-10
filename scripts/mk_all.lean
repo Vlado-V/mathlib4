@@ -80,6 +80,10 @@ def mkAllCLI (args : Parsed) : IO UInt32 := do
     let fileContent := (if useModule then "module  -- shake: keep-all --deprecated_module: ignore\n\n" else "") ++
       ("\n".intercalate (allFiles.map ((if useModule then "public " else "") ++ "import " ++ ·)).toList) ++
       (if d == "Mathlib" then "\n\nset_option linter.style.longLine false" else "") ++
+      -- Archive is also a generated import index; retain the bounded length check.
+      (if d == "Archive" && 1500 < allFiles.size + 3 then
+        s!"\n\nset_option linter.style.longFile {(allFiles.size + 3) / 100 * 100 + 200}"
+       else "") ++
       "\n"
     if !fileExists then
       if check then

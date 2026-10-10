@@ -84,6 +84,7 @@ theorem rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin
   exact ⟨D,hD,fun ε he hDε => by rw [deformed_multiplication]; exact h ε he hDε⟩
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The same concrete nonempty open enforces independence and the full actual deformation rank
 gain. -/
 theorem independent_rank_principal_open (g : Fin c → MiddleCoordinates.Mixed K m)

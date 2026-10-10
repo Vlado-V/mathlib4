@@ -20,6 +20,7 @@ open Module MvPolynomial BilinearScalarFamily
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEndpointScalarAction_target_finrank
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

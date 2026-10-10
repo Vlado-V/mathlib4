@@ -86,6 +86,7 @@ theorem polynomialTensorSpace_rename_back
     simpa only [map_add] using (biformImage A B).add_mem hx hy
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_product_mem_quadratic_row
     (T : Poly K h →ₗ[K] (Fin c → K))
     (P : Fin b → FullBiform K (Fin h) m 1 (d - 1)) :

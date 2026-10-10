@@ -31,6 +31,7 @@ def renamedPreparedGenerator (p : PreparedParameters.Space m d q J counts O)
     (i : PreparedParameters.Label q J counts) : Poly K (h+m) :=
   rename finSumFinEquiv (PreparedParameters.generator p i)
 
+omit [Infinite K] in
 theorem renamedPreparedGenerator_layer (p : PreparedParameters.Space m d q J counts O)
     (a : J) (hO : O a.val ≤ Forms K h a.val) (i : Fin (counts a.val)) :
     renamedPreparedGenerator p (Sum.inr ⟨a,i⟩)=

@@ -87,6 +87,7 @@ theorem targetLayerOutput_homogeneous (frame : Fin H → Forms K h 2) (a : ℕ) 
     exact outputFrameSpace_homogeneous frame
   · exact le_rfl
 
+omit [Infinite K] in
 theorem targetLayerFamily_mem (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
     (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)

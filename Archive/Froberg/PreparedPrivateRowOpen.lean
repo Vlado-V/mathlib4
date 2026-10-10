@@ -82,6 +82,7 @@ def privateAugmentedConstants (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ
       p)
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_augmented_exact
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)

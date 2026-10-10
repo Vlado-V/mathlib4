@@ -81,6 +81,7 @@ def privateSplitEndpoint
   biformSplitEndpoint (fun i => evenRestorationBiform (g i)) (fun i => oddRestorationBiform (p i))
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateSplitEndpoint_back
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (p : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d) (i : Fin r ⊕ Fin b) :

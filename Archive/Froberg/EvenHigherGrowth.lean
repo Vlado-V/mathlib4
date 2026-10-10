@@ -78,6 +78,7 @@ theorem evenHigherProjection_kills_bottom (r : MixedHigherIndex d hd3)
     omega),map_zero]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenAmbientHigher_growth
     (t : ℕ)
     (hmid : ∀ (j : ℕ) (hj : 3 ≤ j) (hjd : j ≤ d), j % 2 = 1 →

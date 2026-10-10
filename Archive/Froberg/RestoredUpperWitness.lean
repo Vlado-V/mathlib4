@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q r f e : ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredOuterEndpoint_renamed (hdp : 1 ≤ d) (hd : d % 2 = 0)
     {J : Finset ℕ} {counts : ℕ → ℕ}
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)

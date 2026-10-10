@@ -57,6 +57,7 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
 omit [Fintype σ] [Fintype τ] in
+omit [Infinite K] in
 theorem even_positive_reduction_output_rename [Finite σ] [Finite τ]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)

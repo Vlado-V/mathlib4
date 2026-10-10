@@ -63,6 +63,7 @@ theorem top_tensor_scalar_growth (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
   exact hg
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem top_tensor_growth_open (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (hP : Function.Surjective P) (hopen : ProjectedTopGrowthOpen P m qF qS t) :
     ∃ D : MvPolynomial (Fin (finrank K (ProjectedTopParameters K h m e qF qS))) K,

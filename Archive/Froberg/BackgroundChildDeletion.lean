@@ -21,6 +21,7 @@ open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q e f u : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_background_child_deletion
     (Q : Fin q → Forms K m d)
     (E : Fin e → biformParitySpace K h m d 0)

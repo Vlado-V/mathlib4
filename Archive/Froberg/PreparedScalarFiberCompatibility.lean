@@ -20,6 +20,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarFiber_base (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :
@@ -29,6 +30,7 @@ theorem scalarFiber_base (hO : ∀ j ∈ J, O j ≤ Forms K h j)
   rw [preparedBaseBiform_eq_scalar,scalarFiberCoordinates_symm_base]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarFiber_high (hO : ∀ j ∈ J, O j ≤ Forms K h j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (a : PositiveScalars (K := K) m d J counts) (rest : ScalarFiberRest m d q J counts O) :

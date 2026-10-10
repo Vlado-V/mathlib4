@@ -21,6 +21,7 @@ variable {h m d q f u : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_background_independent (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)

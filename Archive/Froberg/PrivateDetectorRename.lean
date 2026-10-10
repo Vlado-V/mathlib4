@@ -45,6 +45,7 @@ omit [Infinite K] in
   rw [LinearEquiv.apply_symm_apply,LinearEquiv.symm_apply_apply]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) {w : Fin h → K} (hw : w ≠ 0) :
     renamedPrivateColumn f e w≠0 := by
@@ -66,6 +67,7 @@ omit [Infinite K] in
   rw [LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem rename_renamedPrivateBasis (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (j : Fin h) :
     rename f ((renamedPrivateBasis f e) j).val=(e (Pi.single j 1)).val := by

@@ -112,6 +112,7 @@ theorem restoredJointFromCoordinates_eval (hO : ∀ j ∈ J, O j ≤ Forms K h j
   rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredJointFromCoordinates_surjective (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Function.Surjective (restoredJointFromCoordinates (m := m) (d := d) (q := q)
       (f := f) (counts := counts) hO) := by

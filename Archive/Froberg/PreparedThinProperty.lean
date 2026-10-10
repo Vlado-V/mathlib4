@@ -35,6 +35,7 @@ def PreparedEndpointThin (hd : 0 < d) (hdodd : d % 2 = 1)
       (backgroundEnumeratedForms Q F G))) C)
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedOddBiform_outer_family (hd : 0 < d) (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) :

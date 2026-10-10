@@ -63,6 +63,7 @@ theorem pairedFrameConstraint_ne_two (f : (Fin w × Bool) ≃ Fin h)
   simp only [pairedFrameConstraint,ite_eq_right hj]
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_ge_four (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : 4 ≤ j) :
     pairedFrameConstraint f L j=0 := pairedFrameConstraint_ne_two f L (by omega)
@@ -100,6 +101,7 @@ theorem pairedFrameConstraint_space_map (f : (Fin w × Bool) ≃ Fin h)
   exact Submodule.map_comap_eq_of_surjective ((renameEquiv K f).surjective) _
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_space_map_ne_two (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j ≠ 2) :
     (constrainedOutputs (pairedFrameConstraint f L) j).map (rename f).toLinearMap=

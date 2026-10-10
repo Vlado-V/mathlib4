@@ -29,6 +29,7 @@ def restoredOuterCountIndexMap (hc : ∀ j ∈ J, c j ≤ c' j)
   finSumFinEquiv (Sum.map (countIndexMap hc idx idx') id (finSumFinEquiv.symm i))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredOuterEndpoint_restrictCounts
     (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)

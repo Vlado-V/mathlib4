@@ -35,6 +35,7 @@ omit [Infinite K] in
     TensorProduct.piScalarRight_apply,TensorProduct.piScalarRightHom_tmul]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem outputTensorVectorEquiv_biform_quotient
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (Q : Submodule K (Poly K n)) (p : MvPolynomial (σ ⊕ Fin n) K) :

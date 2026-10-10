@@ -31,6 +31,7 @@ theorem restoredC2Projection_familySpace
   rw [idx.surjective.range_comp]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredEndpointFamily_lowComponents (hd : 3 ≤ d) (he : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (heven : ∀ j ∈ J, j % 2 = 0) (hmin : ∀ j ∈ J, 2 ≤ j)

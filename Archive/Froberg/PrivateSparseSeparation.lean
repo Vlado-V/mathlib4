@@ -173,6 +173,7 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
     rfl
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- In every later row there is no private coefficient at all; only row
 two can reach the first pairwise private-power overlap. -/
 theorem private_sparse_lower_zero (hs : 2 ≤ s) (hr : r < s) (ι : Fin b ↪ Fin z)

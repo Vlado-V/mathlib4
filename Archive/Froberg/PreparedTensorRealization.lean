@@ -23,6 +23,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly 
 attribute [local instance] tensorGroup
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedLayerTensor_eq_of_values
     (p : PreparedParameters.Space m d q J counts O)
     (a : J) (hO : O a.val ≤ Forms K h a.val)

@@ -50,6 +50,7 @@ theorem fullBiformCoreExtension_injective :
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 omit [Fintype σ] in
+omit [Infinite K] in
 /-- Scalar renaming commutes with any output detector. -/
 theorem biformVectorDetector_scalar_rename
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K)) (g : Fin a → Fin n)

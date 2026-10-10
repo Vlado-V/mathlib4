@@ -53,6 +53,7 @@ theorem injective_pi_quotient_finrank {V W : Type} [AddCommGroup V] [Module K V]
   simpa only [Finset.sum_const,Finset.card_univ,Fintype.card_fin,smul_eq_mul] using hq.symm
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_even_relative_dimension
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

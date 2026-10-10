@@ -97,6 +97,7 @@ theorem extended_matrix_output_transport {m : ℕ}
   intro k _
   ring
 
+omit [Infinite K] in
 /-- Literal polynomial form of the later private-row separation. All sparse
 and private coefficient tuples are unchanged by the coordinate transport. -/
 theorem private_polynomial_row_image_zero {m r : ℕ}

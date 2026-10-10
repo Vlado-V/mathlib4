@@ -23,6 +23,7 @@ variable {K : Type} {I U V Z W : Type*} [Field K] [Infinite K]
   [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
   [AddCommGroup W] [Module K W]
 
+omit [Infinite K] in
 theorem separated_complex_principal_open
     (A : (I → K) → V →ₗ[K] W) (B : (I → K) → U →ₗ[K] V)
     (C : (I → K) → Z →ₗ[K] W)

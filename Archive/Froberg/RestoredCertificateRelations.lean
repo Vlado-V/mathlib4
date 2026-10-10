@@ -80,6 +80,7 @@ theorem restoredOuterEndpoint_castAdd (hdp : 1 ≤ d) (hd : d % 2 = 0)
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem RestoredCertificate.background_independent (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)

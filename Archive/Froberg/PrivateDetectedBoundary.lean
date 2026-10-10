@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z s b h c q t : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformVectorDetector_private
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (o : Fin h → MvPolynomial σ K) (w : Fin b → MvPolynomial σ K)

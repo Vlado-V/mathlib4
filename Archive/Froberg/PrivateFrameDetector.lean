@@ -46,6 +46,7 @@ theorem outputCombination_equiv_basis
         outputCombination,LinearMap.coe_mk,AddHom.coe_mk]
     _ = (e v).val := by rw [←hv]
 
+omit [Infinite K] in
 theorem quadraticPolynomialDetector_private_column
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) (w : Fin h → K) (j : Fin h) :
@@ -55,6 +56,7 @@ theorem quadraticPolynomialDetector_private_column
   rw [outputCombination_equiv_basis]
   exact quadraticPolynomialDetector_form L (mulForm (e w) (e (Pi.single j 1)))
 
+omit [Infinite K] in
 theorem quadraticPolynomialDetector_frame
     (frame : Fin H → Forms K h 2)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))

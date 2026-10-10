@@ -31,6 +31,7 @@ theorem allEvenLabel_count_limit_shift {d : ℕ} (hd : 3 ≤ d) (h extra z : ℕ
       atTop (𝓝 (criticalRatio d/(d.factorial : ℝ))) :=
   normalized_limit_shift (allEvenLabel_count_limit hd h extra e he) z
 
+omit [Module.Finite K X] in
 /-- The block count is fixed before the scalar-variable shift is chosen. -/
 theorem eventually_actual_even_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,

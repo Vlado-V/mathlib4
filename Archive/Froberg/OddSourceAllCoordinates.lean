@@ -109,6 +109,7 @@ def oddEndpointBlockCoordinates (hd : Odd d) (hd3 : 3 ≤ d)
       (oddMixedSourceBlockCoordinates hd hd3 F U P B hB)
 
 set_option maxHeartbeats 1400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddEndpointBlockCoordinates_bottom (hd : Odd d) (hd3 : 3 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

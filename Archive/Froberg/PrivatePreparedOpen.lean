@@ -55,7 +55,8 @@ def PrivateSplitReduction (hd : 0 < d) (ho : d % 2 = 1)
       v=coefficientBoundary (privateOddFamily hd ho p.1 U) C
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem private_split_reduction_principal_open
+omit [Fintype σ] in
+theorem private_split_reduction_principal_open [Finite σ]
     (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0) (hpos : ∀ j ∈ J, 0 < j)
@@ -71,6 +72,7 @@ theorem private_split_reduction_principal_open
       (∃ p : S,eval ((Module.finBasis K S).equivFun p) D≠0) ∧
       ∀ p : S,eval ((Module.finBasis K S).equivFun p) D≠0 →
         PrivateSplitReduction hd ho hO hJ heven e U p := by
+  let := Fintype.ofFinite σ
   classical
   have : Module.Finite K (PreparedParameters.Space m d q J counts O) :=
     PreparedParameters.finite_space hO

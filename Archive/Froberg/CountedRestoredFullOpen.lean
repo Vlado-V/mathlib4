@@ -67,7 +67,7 @@ theorem eventually_counted_restored_full_open {d : ℕ} (hd : 3 ≤ d) (heven : 
   filter_upwards [hred,hback,hi,ho] with n hnred hnback hni hno
   intro frame hframe slot hslot hu
   let hO := fun j (_ : j∈allEvenIndices d) => targetLayerOutput_homogeneous frame j
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (allEvenCount d h n (e n+added)) (targetLayerOutput frame)) := finite_space hO
   obtain ⟨_,P,⟨p,hp⟩,hgood⟩ := hnred frame hframe
   obtain ⟨D,hD,hodd⟩ := hnback _ hO (Fintype.equivFin _).symm slot

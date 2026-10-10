@@ -36,6 +36,7 @@ omit [Infinite K] in
   exact congrArg (biformVectorDetector T) ((renameEquiv K finSumFinEquiv).left_inv p)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem preparedQuadraticDetector_tmul
     (T : Poly K h →ₗ[K] (Fin c → K)) (a : Poly K h) (b : Poly K m) (k : Fin c) :
     preparedQuadraticDetector T (splitPolynomialEquiv (K := K) h m (a ⊗ₜ[K] b)) k=

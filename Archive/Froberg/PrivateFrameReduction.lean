@@ -28,6 +28,7 @@ def privateFrameOutputs (frame : Fin H → Forms K h 2) (j : ℕ) :
   if j=2 then outputFrameSpace frame else Forms K h j
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateFrameOutputs_homogeneous (frame : Fin H → Forms K h 2) (j : ℕ) :
     privateFrameOutputs frame j≤Forms K h j := by
   by_cases hj : j=2

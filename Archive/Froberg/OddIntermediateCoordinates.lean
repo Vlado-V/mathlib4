@@ -41,6 +41,7 @@ theorem oddMixedSourceBlockCoordinates_higher_mk (hd : Odd d) (hd3 : 3 ≤ d)
           (oddBiformCoordinatesEquiv v r.val) := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddIntermediateSourceProjection_coordinates (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

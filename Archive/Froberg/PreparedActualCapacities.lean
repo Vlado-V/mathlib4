@@ -32,6 +32,7 @@ theorem oddOutputDimension_eventually_positive {R : ℕ} (hR : 0 < R) :
   intro hz
   simp only [hz,Nat.cast_zero,zero_div,lt_self_iff_false] at hw
 
+omit [Module.Finite K X] in
 theorem eventually_actual_even_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,
       ∀ T : ℕ → MvPolynomial (Fin w × Bool) K →ₗ[K] X,

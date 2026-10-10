@@ -23,6 +23,7 @@ def biformRestorationForms
   restorationForms (blockWeight h m ∘ finSumFinEquiv.symm)
     (fun i => evenRestorationRenameEquiv finSumFinEquiv (blockWeight h m) d (g i))
 
+omit [Infinite K] in
 theorem biform_restored_supported_relations
     (g : Fin r → evenRestorationSpace (K := K) (blockWeight h m) d)
     (hi : LinearIndependent K (biformRestorationForms g))

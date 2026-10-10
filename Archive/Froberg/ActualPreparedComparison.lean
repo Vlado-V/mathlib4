@@ -61,6 +61,7 @@ def HasEnlargedPreparedOpen {h m d q f u r : ℕ} {J : Finset ℕ}
 variable [CharZero K] [IsAlgClosed K]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [CharZero K] in
 /-- Once the finite geometric opens are available, exact counts produce the
 actual critical comparison for every sufficiently large scalar block. -/
 theorem eventually_actual_prepared_comparison {d k h lo : ℕ}
@@ -91,10 +92,10 @@ theorem eventually_actual_prepared_comparison {d k h lo : ℕ}
   intro O hO hbase r idx hlarge
   let hJ : ∀ j∈allEvenIndices d,j≤d := fun j hj => (mem_allEvenIndices.mp hj).2.1
   let heven : ∀ j∈allEvenIndices d,j%2=0 := fun j hj => (mem_allEvenIndices.mp hj).2.2
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
       (f n) (tailGeneratorCount d h) (allEvenIndices d) (allEvenCount d h n (e n)) O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace n d (upperCount n d)
       (f n) (tailGeneratorCount d h) (allEvenIndices d) (allEvenCount d h n (e n+1)) O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   obtain ⟨A,hA,hAgood⟩ := hbase

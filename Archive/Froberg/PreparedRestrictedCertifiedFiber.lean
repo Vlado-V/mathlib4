@@ -22,6 +22,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_count_joint_scalar_fiber_at {h m d q f u : ℕ}
     {J : Finset ℕ} {c c' : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
     (hc : ∀ j ∈ J, c j ≤ c' j) (hO : ∀ j ∈ J, O j ≤ Forms K h j) (G C : ℝ) :

@@ -78,6 +78,7 @@ def oddHigherTopProjectionEquiv (hd : Odd d) (hd3 : 3 ≤ d)
     (topSourceQuotientEquiv (Nat.le_trans (by decide : 1≤3) hd3) R hR U hker)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddHigherTopProjectionEquiv_mk (hd : Odd d) (hd3 : 3 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (hR : Function.Surjective R)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

@@ -23,6 +23,7 @@ variable {h m d q r f b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_even_independent_of_full (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (p : Space m d q J counts O) (P : OuterSpace K (Fin h) m d b)
@@ -46,6 +47,7 @@ theorem prepared_even_independent_of_full (hd : 0 < d)
   exact (renameEquiv K finSumFinEquiv).left_inv _
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prepared_private_odd_split (hd : 0 < d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (e : Fin r ≃ PreparedParameters.Label q J counts) (p : Space m d q J counts O)

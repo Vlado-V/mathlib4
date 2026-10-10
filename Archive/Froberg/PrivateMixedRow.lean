@@ -20,6 +20,7 @@ open Module MvPolynomial PrivateColumns Quartic.FreeCoefficients
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z s b h c m q r t : ℕ}
 
+omit [Infinite K] in
 /-- Core scalar products with lower-degree arbitrary private coefficients,
 and arbitrary core-only products, cannot contain a private power. -/
 theorem mixed_residual_avoids_private_powers (hs : 0 < s) (ht : t < s)

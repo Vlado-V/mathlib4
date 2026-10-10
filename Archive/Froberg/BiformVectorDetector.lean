@@ -32,12 +32,14 @@ omit [Infinite K] in
     biformOutputMap_tmul,TensorProduct.map_tmul,LinearMap.proj_apply,
     LinearMap.id_apply,LinearEquiv.coe_coe,TensorProduct.lid_tmul]
 
+omit [Infinite K] in
 theorem biformVectorDetector_polynomialVector
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (o : Fin h → MvPolynomial σ K) (p : Fin h → Poly K n) (k : Fin c) :
     biformVectorDetector T (polynomialVector o p) k=∑ j,T (o j) k • p j := by
   simp only [polynomialVector_apply,map_sum,Finset.sum_apply,biformVectorDetector_tmul]
 
+omit [Infinite K] in
 theorem biformVectorDetector_homogeneous
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (O : Submodule K (MvPolynomial σ K))
@@ -66,6 +68,7 @@ theorem biformVectorDetector_eq_zero
       (biformOutputMap T p))=0
   rw [hz,map_zero,map_zero]
 
+omit [Infinite K] in
 /-- Scalar multiplication in the second variable block commutes with an
 arbitrary linear output detector. -/
 theorem biformVectorDetector_scalar_mul

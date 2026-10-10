@@ -262,6 +262,7 @@ theorem renamed_restored_low_components (hd : 3 ≤ d) (he : d % 2 = 0)
     hu.weightedHomogeneousComponent_ne 2 (by omega),add_zero] using hh
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The restored even background has no linear piece and retains its original
 scalar and constrained quadratic pieces. The outer family remains separate. -/
 theorem restored_background_lowComponents (hd : 3 ≤ d) (he : d % 2 = 0)

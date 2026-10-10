@@ -87,6 +87,7 @@ theorem positivePerturbedFamily_component_one (hd : 1 < d)
     weightedHomogeneousComponent_of_mem (hU _),ite_eq_right (by omega),zero_add,zero_add]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem positive_private_scalar_independent (hd : 1 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hmin : ∀ j ∈ J, 2 ≤ j) (hJ : ∀ j ∈ J, 0 < counts j → j < d)
     (p : Space m d q J counts O) (hp : ∀ j, LinearIndependent K (p.2 j))

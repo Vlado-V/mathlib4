@@ -184,6 +184,7 @@ theorem topRow_map_comparison (hd : 1 ≤ d)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 set_option synthInstance.maxHeartbeats 200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem topRow_range_comparison (hd : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (oddTensorRowMap hd le_rfl (fun i => scalarBiformEquiv (h := h) (Q i)) F).range.map

@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem combined_linear_independent (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f)
     (hg : LinearIndependent K (combinedVectorEnumeration P F)) :
