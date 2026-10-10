@@ -115,7 +115,6 @@ def certifyRow (stem invFn rowFn : Name) (loadInvBytes : IO ByteArray)
   let d := metadata.dimension
   let dExpr := mkNatLit d
   let gExpr := mkNatLit metadata.supports.size
-  let nat := mkConst ``Nat
   let finType := mkApp (mkConst ``Fin) dExpr
   let owner := rowFn.getPrefix
   let select := mkConst (owner ++ `selectedRaw)

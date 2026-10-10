@@ -121,7 +121,7 @@ theorem eq_single_of_support (w : (i : Fin q) → T i) (k : Fin q)
 end LinearSupport
 
 section Multiplication
-variable {I : Type*} [Fintype I] [DecidableEq I] {n q : ℕ}
+variable {I : Type*} [Finite I] [DecidableEq I] {n q : ℕ}
   {A : I → Type*} {E : Fin n → Type*} {T : Fin q → Type*}
   [∀ i, AddCommGroup (A i)] [∀ i, Module K (A i)]
   [∀ i, AddCommGroup (E i)] [∀ i, Module K (E i)]
@@ -133,7 +133,7 @@ def multiplicationImage
     (L : Submodule K ((i : Fin n) → E i)) : Submodule K ((k : Fin q) → T k) :=
   ⨆ a : (i : I) → A i, L.map (μ a)
 
-omit [Fintype I] [DecidableEq I] in
+omit [Finite I] [DecidableEq I] in
 /-- Every actual product lies in the full multiplication image. -/
 theorem product_mem_image
     (μ : ((a : I) → A a) →ₗ[K] ((i : Fin n) → E i) →ₗ[K] ((k : Fin q) → T k))
@@ -141,7 +141,7 @@ theorem product_mem_image
     (v : (i : Fin n) → E i) (hv : v ∈ L) : μ a v ∈ multiplicationImage μ L :=
   (le_iSup (fun a => L.map (μ a)) a) ⟨v, hv, rfl⟩
 
-omit [Fintype I] in
+omit [Finite I] in
 /-- A homogeneous product of an initial component lifts to the leading
 coordinate of an actual product of the original subspace. -/
 theorem homogeneous_initial_product_mem
@@ -176,6 +176,7 @@ theorem multiplicationImage_initial_le
     (L : Submodule K ((i : Fin n) → E i)) :
     multiplicationImage μ (initialSubspace E L) ≤ initialSubspace T (multiplicationImage μ L) := by
   classical
+  let := Fintype.ofFinite I
   apply iSup_le
   intro a
   rintro _ ⟨v, hv, rfl⟩

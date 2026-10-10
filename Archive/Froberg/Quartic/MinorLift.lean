@@ -70,7 +70,7 @@ rank lower bound after mapping all coefficients to a characteristic-zero field.
 The index maps may be arbitrary: a nonzero minor already forces the necessary
 row and column independence. -/
 theorem charZero_rank_lower_bound_of_binary_minor
-    {K m n : Type*} [Field K] [CharZero K] [Fintype m] [Fintype n]
+    {K m n : Type*} [Field K] [CharZero K] [Fintype n]
     (M : Matrix m n ℤ) (rows : ι → m) (cols : ι → n)
     (hbinary : ((M.submatrix rows cols).map
       (Int.castRingHom (ZMod 2))).det ≠ 0) :

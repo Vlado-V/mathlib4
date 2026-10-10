@@ -34,8 +34,10 @@ theorem isPolynomialFamily_const (v : V) : IsPolynomialFamily (fun _ : ι → K 
   intro ell
   exact ⟨C (ell v), by simp⟩
 
-theorem isPolynomialFamily_linear [Fintype ι] [DecidableEq ι] (f : (ι → K) →ₗ[K]
-  V) : IsPolynomialFamily f := by
+theorem isPolynomialFamily_linear [Finite ι] (f : (ι → K) →ₗ[K] V) :
+    IsPolynomialFamily f := by
+  classical
+  let : Fintype ι := Fintype.ofFinite ι
   intro ell
   exact ⟨polynomialOfLinear (ell.comp f), fun a => eval_polynomialOfLinear _ a⟩
 
@@ -189,10 +191,11 @@ theorem injective_polynomial_principal_open [FiniteDimensional K V] [FiniteDimen
   exact Submodule.finrank_eq_zero.mp (by omega)
 
 /-- Nonzero determinant polynomials have a simultaneous nonvanishing parameter. -/
-theorem nonempty_principal_intersection [Infinite K] {J : Type*} [Fintype J]
+theorem nonempty_principal_intersection [Infinite K] {J : Type*} [Finite J]
     (D : J → MvPolynomial ι K) (hD : ∀ j, D j ≠ 0) :
     ∃ a : ι → K, ∀ j, eval a (D j) ≠ 0 := by
   classical
+  let : Fintype J := Fintype.ofFinite J
   have hp : (∏ j, D j) ≠ 0 := Finset.prod_ne_zero_iff.mpr (fun j _ => hD j)
   by_contra h
   push Not at h
@@ -205,7 +208,7 @@ theorem nonempty_principal_intersection [Infinite K] {J : Type*} [Fintype J]
 
 /-- Finitely many principal-open conditions, possibly witnessed at different
 points, can be imposed simultaneously over an infinite field. -/
-theorem simultaneous_principal_properties [Infinite K] {J : Type*} [Fintype J]
+theorem simultaneous_principal_properties [Infinite K] {J : Type*} [Finite J]
     (P : J → (ι → K) → Prop)
     (hP : ∀ j, ∃ D : MvPolynomial ι K, (∃ a, eval a D ≠ 0) ∧
       ∀ a, eval a D ≠ 0 → P j a) :

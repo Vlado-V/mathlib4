@@ -114,7 +114,7 @@ theorem exists_equation_for_rational_image [Fintype I] [Fintype J]
   exact ⟨P, hP, fun a ha => by rw [eval_rationalMap F G a ha, hF, map_zero]⟩
 
 section FiniteCharts
-variable {C : Type*} [Fintype C] (Param : C → Type*) [∀ c, Fintype (Param c)] [Fintype J]
+variable {C : Type*} [Finite C] (Param : C → Type*) [∀ c, Fintype (Param c)] [Fintype J]
 
 /-- A finite union of lower-dimensional rational charts has a common nonzero
 polynomial equation on all of their actual domains. -/
@@ -125,6 +125,7 @@ theorem exists_equation_for_finite_union
     ∃ P : MvPolynomial J K, P ≠ 0 ∧
       ∀ c a, eval a (G c) ≠ 0 → eval (rationalMap (F c) (G c) a) P = 0 := by
   classical
+  let := Fintype.ofFinite C
   choose P hP hF using fun c => exists_equation_for_rational_image (F c) (G c) (hcard c)
   refine ⟨∏ c, P c, Finset.prod_ne_zero_iff.mpr (fun c _ => hP c), ?_⟩
   intro c a ha

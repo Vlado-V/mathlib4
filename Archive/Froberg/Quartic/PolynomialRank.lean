@@ -25,8 +25,7 @@ namespace Quartic.PolynomialRank
 open Module Filter Polynomial
 
 variable {K V W ι : Type*} [Field K] [AddCommGroup V] [Module K V]
-  [AddCommGroup W] [Module K W] [FiniteDimensional K V] [FiniteDimensional K W]
-  [Fintype ι] [DecidableEq ι]
+  [AddCommGroup W] [Module K W] [FiniteDimensional K V] [Finite ι]
 
 theorem rank_eventually_ge (A : (ι → K) →ₗ[K] (V →ₗ[K] W))
     (γ : ι → K[X]) (t₀ : K) :

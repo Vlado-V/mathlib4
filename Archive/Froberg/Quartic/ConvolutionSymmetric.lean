@@ -6,7 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.Quartic.Homogeneous
-public import Mathlib.Data.Sym.Sym2.Order
+public import Mathlib.Order.Sym2
 public import Mathlib.Data.Sym.Card
 public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 

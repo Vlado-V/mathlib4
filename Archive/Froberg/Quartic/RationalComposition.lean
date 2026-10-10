@@ -48,11 +48,12 @@ theorem polynomial_numerator (F : J → MvPolynomial I K) (G : MvPolynomial I K)
     exact div_mul_div_comm _ _ _ _
 
 /-- A finite polynomial family has one common denominator exponent. -/
-theorem family_numerators [Fintype L] (F : J → MvPolynomial I K) (G : MvPolynomial I K)
+theorem family_numerators [Finite L] (F : J → MvPolynomial I K) (G : MvPolynomial I K)
     (f : L → MvPolynomial J K) :
     ∃ A : L → MvPolynomial I K, ∃ d : ℕ, ∀ a : I → K, eval a G ≠ 0 →
       ∀ j, eval (rationalMap F G a) (f j) = eval a (A j) / (eval a G)^d := by
   classical
+  let := Fintype.ofFinite L
   choose A d hA using fun j => polynomial_numerator F G (f j)
   let N := ∑ j, d j
   have hle (j : L) : d j ≤ N := Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
@@ -67,7 +68,7 @@ theorem family_numerators [Fintype L] (F : J → MvPolynomial I K) (G : MvPolyno
 /-- Compose actual rational charts without adding parameters. The new
 principal-open domain is exactly the original domain followed by the second
 chart's nonzero denominator condition. -/
-theorem compose [Fintype L] (F : J → MvPolynomial I K) (G : MvPolynomial I K)
+theorem compose [Finite L] (F : J → MvPolynomial I K) (G : MvPolynomial I K)
     (P : L → MvPolynomial J K) (Q : MvPolynomial J K) :
     ∃ H : L → MvPolynomial I K, ∃ D : MvPolynomial I K,
       (∀ a : I → K, eval a D ≠ 0 ↔

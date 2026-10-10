@@ -58,12 +58,15 @@ theorem range_tupleMap (mu : F →ₗ[K] V →ₗ[K] W) (v : ι → V) :
     refine ⟨fun i => s i • f, ?_⟩
     simp only [tupleMap_apply, map_sum, map_smul, LinearMap.smul_apply]
 
+omit [Fintype ι] in
 /-- Scalar basis products span the actual full bilinear image. -/
-theorem image_span_basis {κ : Type*} [Fintype κ] (b : Basis κ K F)
+theorem image_span_basis [Finite ι] {κ : Type*} [Finite κ] (b : Basis κ K F)
     (mu : F →ₗ[K] V →ₗ[K] W) (v : ι → V) :
     image mu (Submodule.span K (Set.range v)) =
       Submodule.span K (Set.range (fun p : ι × κ => mu (b p.2) (v p.1))) := by
   classical
+  let : Fintype ι := Fintype.ofFinite ι
+  let : Fintype κ := Fintype.ofFinite κ
   rw [← range_tupleMap]
   apply le_antisymm
   · rintro _ ⟨f, rfl⟩

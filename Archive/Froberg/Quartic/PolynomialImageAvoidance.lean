@@ -92,7 +92,7 @@ theorem exists_outside_image [Infinite K] [Fintype I] [Fintype J]
   exact hx (hF a)
 
 section FiniteCharts
-variable {C : Type*} [Fintype C] (Param : C → Type*) [∀ c, Fintype (Param c)]
+variable {C : Type*} [Finite C] (Param : C → Type*) [∀ c, Fintype (Param c)]
 variable [Fintype J]
 
 /-- A finite family of lower-dimensional polynomial charts has one common
@@ -102,6 +102,7 @@ theorem exists_common_annihilator
     (hcard : ∀ c, Fintype.card (Param c) < Fintype.card J) :
     ∃ P : MvPolynomial J K, P ≠ 0 ∧ ∀ c, aeval (F c) P = 0 := by
   classical
+  let := Fintype.ofFinite C
   choose P hP hF using fun c => exists_annihilator_of_card_lt (F c) (hcard c)
   refine ⟨∏ c, P c, Finset.prod_ne_zero_iff.mpr (fun c _ => hP c), ?_⟩
   intro c

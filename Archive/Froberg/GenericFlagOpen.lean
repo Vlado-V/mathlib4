@@ -22,6 +22,7 @@ def prefixCoefficients (hrs : r ≤ s) (a : CoefficientIndex n d s → K) :
     CoefficientIndex n d r → K := fun im => a (Fin.castLE hrs im.1,im.2)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem prefix_coefficientForms (hrs : r ≤ s) (a : CoefficientIndex n d s → K) :
     coefficientForms K n d r (prefixCoefficients hrs a)=
       coefficientForms K n d s a ∘ Fin.castLE hrs := rfl
