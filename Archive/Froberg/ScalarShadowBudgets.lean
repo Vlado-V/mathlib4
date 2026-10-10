@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.BilinearCovectorStrata
+public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 /-! The strict-shadow inequality implies every scalar-surjectivity incidence
 budget, including the zero and full kernel strata. -/
