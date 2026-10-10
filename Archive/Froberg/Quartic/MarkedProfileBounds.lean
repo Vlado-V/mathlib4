@@ -61,6 +61,8 @@ theorem profile_marked_inequality (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m ≤ 40)
     (Cell m (mixedCount m false) i n₁ n₂ n₃)
     (Phi m (mixedCount m false) i n₁ n₂ n₃) h
   dsimp only
-  convert hh using 1 <;> unfold markedCodimension hTotal <;> ring
+  convert hh using 1
+  unfold markedCodimension hTotal
+  ring_nf
 
 end Quartic.MarkedProfileBounds

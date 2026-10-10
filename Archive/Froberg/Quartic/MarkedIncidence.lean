@@ -30,7 +30,7 @@ def markedScalars (s : Scalars) : Scalars :=
 theorem target_markedScalars (s : Scalars) :
     target (markedScalars s) = max (s.j - s.total - 1) 0 - 1 := by
   change max (s.j - (s.total + 1)) 0 - 1 = max (s.j - s.total - 1) 0 - 1
-  congr 2 <;> omega
+  congr 2; omega
 
 /-- A positive unmarked surplus loses one dimension when a coefficient is
 marked, so the incidence target is the unmarked surplus minus two. -/
