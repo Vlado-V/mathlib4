@@ -33,7 +33,7 @@ theorem mixed_residual_avoids_private_powers (hs : 0 < s) (ht : t < s)
   have hx (i) : freeCoeff β (x i k).val=0 :=
     freeCoeff_eq_zero_of_degree_lt _ (x i k).property β (by omega)
   simp only [map_add,map_sum,freeCoeff_rename_mul,hx,mul_zero,Finset.sum_const_zero,
-    freeCoeff_rename_core,if_neg hbn,add_zero]
+    freeCoeff_rename_core,ite_eq_right hbn,add_zero]
 
 /-- Every later private coefficient is zero in the literal mixed row. The
 only rank hypothesis concerns the same chosen sparse E family modulo each

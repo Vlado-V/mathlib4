@@ -25,12 +25,14 @@ variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
-theorem private_product_extension {σ : Type*} [Fintype σ]
+omit [Infinite K] in
+theorem private_product_extension {σ : Type*} [Finite σ]
     {a z d q R : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     {O : ℕ → Submodule K (MvPolynomial σ K)}
     (p : Space a d q J counts O)
     (hp : Function.Injective (ProductRows.multiplication counts (layers p) J R)) :
     Function.Injective (ProductRows.multiplication counts (layers (coreExtension z p)) J R) := by
+  let := Fintype.ofFinite σ
   rw [coreExtension_products]
   exact (rename_injective (Sum.map id (Fin.castAdd z))
     (Function.Injective.sumMap (fun _ _ h => h) (Fin.castAdd_injective a z))).comp hp

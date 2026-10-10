@@ -88,7 +88,7 @@ theorem eventually_higher_row_capacity {d R : ℕ} (hd : 9 ≤ d)
            scalar_open := ⟨D,hD,fun Q hQ => (hgood Q hQ).1⟩ }
   · simpa only [two_mul] using hprod'.diagonal
   · simpa only [two_mul] using hprod'.cross
-  · simpa only [targetLayerCount,if_neg (show R≠2 by omega),two_mul] using hbudget.1
+  · simpa only [targetLayerCount,ite_eq_right (show R≠2 by omega),two_mul] using hbudget.1
   · simpa only [r,two_mul] using hbudget.2
 
 end Froberg.PreparedParameters

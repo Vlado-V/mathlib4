@@ -52,12 +52,14 @@ def restrictCounts (hc : ∀ j ∈ J, c j ≤ c' j) : Space m d q J c' O →ₗ[
   map_smul' _ _ := rfl
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem restrictCounts_generator (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : Space m d q J c' O) (i : Label q J c) :
     generator (restrictCounts hc p) i=generator p (countLabelMap hc i) := by
   cases i <;> rfl
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem restrictCounts_extendCounts (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : Space m d q J c O) : restrictCounts hc (extendCounts hc p)=p := by
   apply Prod.ext
@@ -67,12 +69,13 @@ set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
     | inr i =>
       rcases i with ⟨j,i⟩
       simp only [restrictCounts,LinearMap.coe_mk,AddHom.coe_mk,extendCounts,countLabelMap,
-        Sum.elim_inr,Fin.coe_castLE,dif_pos i.isLt]
+        Sum.elim_inr,Fin.val_castLE,dite_eq_left i.isLt]
   · funext j i
     simp only [restrictCounts,LinearMap.coe_mk,AddHom.coe_mk,extendCounts,
-      Fin.coe_castLE,dif_pos i.isLt]
+      Fin.val_castLE,dite_eq_left i.isLt]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem restrictCounts_surjective (hc : ∀ j ∈ J, c j ≤ c' j) :
     Function.Surjective (restrictCounts (m := m) (d := d) (q := q) (O := O) hc) :=
   fun p => ⟨extendCounts hc p,restrictCounts_extendCounts hc p⟩
@@ -86,6 +89,7 @@ def fullRestrictCounts (hc : ∀ j ∈ J, c j ≤ c' j) :
   map_smul' _ _ := rfl
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem fullRestrictCounts_surjective (hc : ∀ j ∈ J, c j ≤ c' j) :
     Function.Surjective (fullRestrictCounts (m := m) (d := d) (q := q) (f := f) (u := u) (O := O)
       hc) := by
@@ -105,6 +109,7 @@ def restoredRestrictCounts (hc : ∀ j ∈ J, c j ≤ c' j) :
   map_smul' _ _ := rfl
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem restoredRestrictCounts_surjective (hc : ∀ j ∈ J, c j ≤ c' j) :
     Function.Surjective (restoredRestrictCounts (m := m) (d := d) (q := q) (f := f) (O := O)
       hc) := by

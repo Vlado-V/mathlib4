@@ -22,6 +22,7 @@ open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K] {h a z d r f u c : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quadraticPolynomialDetector_supported
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
     (quadraticPolynomialDetector L).comp (homogeneousComponent
@@ -34,7 +35,7 @@ theorem quadraticPolynomialDetector_supported
   exact Subtype.ext (homogeneousComponent_eq_self (homogeneousComponent_isHomogeneous 2 p))
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem exists_shared_frame_quadratic_witness {I : Type*} [Fintype I] [DecidableEq I]
+theorem exists_shared_frame_quadratic_witness {I : Type*} [Fintype I]
     (hd : 3 ≤ d) (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
     (L : Forms K h 2 →ₗ[K] (Fin c → K))
     (w : Fin u → Fin h → K) (ι : Fin u ↪ Fin z)
@@ -62,6 +63,7 @@ theorem exists_shared_frame_quadratic_witness {I : Type*} [Fintype I] [Decidable
         (privatePowerBiform (a := a) (d := d) (fun i => e (w i)) ι) x+
         detectedSymmetricProductRow (FullBiform K (Fin h) (a+z) 1 (d-1)).subtype
           (biformVectorDetector (quadraticPolynomialDetector L)) F v=0 → v=0 := by
+  classical
   let bo : Basis (Fin h) K (Forms K h 1) := (Pi.basisFun K (Fin h)).map e
   have hb (j : Fin h) : bo j=e (Pi.single j 1) := by
     simp only [bo,Basis.map_apply,Pi.basisFun_apply]

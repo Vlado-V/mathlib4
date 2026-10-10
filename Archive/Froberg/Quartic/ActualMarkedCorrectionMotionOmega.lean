@@ -68,7 +68,7 @@ def middleMap (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K
   MiddleCoordinates.quotientMap g (ChildSpace h)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-abbrev ColumnSpace (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (extra :
+abbrev ColumnSpace (g : Fin c → MiddleCoordinates.Mixed K m) (h : Fin q → Forms K m 2) (_extra :
   MiddleTarget h)
     (markedU : Submodule K (ChildQuotient h)) :=
   LinearMap.ker (middleMap g h) × (K × (markedU × BlockHomology K))

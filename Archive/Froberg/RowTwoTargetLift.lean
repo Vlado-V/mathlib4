@@ -23,8 +23,7 @@ theorem ambientBiform_regrade_right {j e e' : ℕ} (he : e = e')
     (u : Forms K h j ⊗[K] Forms K m e) :
     ambientBiform (TensorProduct.map LinearMap.id (formsDegreeEquiv he).toLinearMap
       u)=ambientBiform u := by
-  induction u using TensorProduct.induction_on with
-  | zero => simp
+  induction u using TensorProduct.inductionOn with
   | add u v hu hv => simp only [map_add,hu,hv]
   | tmul u v => simp only [TensorProduct.map_tmul,LinearMap.id_apply,ambientBiform_tmul,
       LinearEquiv.coe_coe,formsDegreeEquiv_val]

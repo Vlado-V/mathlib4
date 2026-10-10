@@ -20,6 +20,7 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+omit [Infinite K] in
 theorem enumerateForms_range
     (g : Label q f u J counts → homogeneousSubmodule (Fin h ⊕ Fin m) K d) :
     Set.range (fun i => (enumerateForms g i).val)=

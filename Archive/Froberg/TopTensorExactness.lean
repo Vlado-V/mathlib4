@@ -31,6 +31,7 @@ def rawTopFamily (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
       e))) F
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem projectedTopFamily_eq (P : Forms K h (1 + e) →ₗ[K] (Fin b → K))
     (F : Fin qF → Forms K h 1 ⊗[K] Forms K m e) :
     BilinearScalarFamily.multiplication (K := K)

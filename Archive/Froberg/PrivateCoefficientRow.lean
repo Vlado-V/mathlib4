@@ -24,7 +24,8 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {a z b h c m q d R : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
-theorem private_coefficient_row_separation (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
+omit [Fintype σ] in
+theorem private_coefficient_row_separation [Finite σ] (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
     (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
@@ -46,6 +47,7 @@ theorem private_coefficient_row_separation (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : 
       (fun i => rename (Sum.map id (Fin.castAdd z)) (E i))
       (fun i => rename Sum.inl (w i).val *
         rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K))) j (R+1) := by
+  let := Fintype.ofFinite σ
   classical
   intro x f B u hx hf hu hB hrel
   have hxf (i : Fin q) : x i∈biformImage (homogeneousSubmodule σ K (R+1))
@@ -106,9 +108,9 @@ theorem private_coefficient_row_separation (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : 
       have hji : j i≠R+1 := by
         intro hji
         exact hi ⟨ρ.symm ⟨i,hji⟩,by simp⟩
-      simp only [if_neg hji]
+      simp only [ite_eq_right hji]
     · intro k
-      rw [if_pos (ρ k).property,hER k,polynomialVector_core_extension]
+      rw [ite_eq_left (ρ k).property,hER k,polynomialVector_core_extension]
       change _ * rename Sum.inr (ff (ρ k).val).val=_ * f (ρ k).val
       rw [hff]
   apply private_biform_row_zero (s := d-1) (r := d-R) (t := d-(R+1))
@@ -118,9 +120,10 @@ theorem private_coefficient_row_separation (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : 
   simpa only [C,map_sum,map_smul,map_mul] using hrel
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Fintype σ] in
 /-- The last possible private coefficient lies in pure output degree d.
 Its private variable support separates it from every core product. -/
-theorem private_coefficient_boundary_row (hd : 3 ≤ d)
+theorem private_coefficient_boundary_row [Finite σ] (hd : 3 ≤ d)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K d))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (d + 1)))
     (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
@@ -136,6 +139,7 @@ theorem private_coefficient_boundary_row (hd : 3 ≤ d)
       (fun i => rename (Sum.map id (Fin.castAdd z)) (E i))
       (fun i => rename Sum.inl (w i).val *
         rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K))) j (d+1) := by
+  let := Fintype.ofFinite σ
   classical
   intro x f B u hx hf hu hB hrel
   have hx0 (i) : x i=0 := by
@@ -184,6 +188,7 @@ theorem private_coefficient_boundary_row (hd : 3 ≤ d)
     map_sum,map_smul,map_mul] using hrel
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 /-- Above the last private coefficient degree the separation condition is
 vacuous, regardless of the other terms in the row. -/
 theorem private_coefficient_above_degree (hR : d + 1 < R)

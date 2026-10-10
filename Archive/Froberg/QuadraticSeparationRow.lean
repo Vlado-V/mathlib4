@@ -64,6 +64,7 @@ def quadraticNuisanceBoundary (P : Fin b → V) :
   (LinearMap.inr K _ _).comp (PolynomialRestoration.boundary P)
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] [FiniteDimensional K V] in
 theorem quadraticNuisanceRow_boundary
     (j : V →ₗ[K] MvPolynomial σ K)
     (T : MvPolynomial σ K →ₗ[K] (Fin c → Poly K n))
@@ -134,6 +135,7 @@ private def detectedProductBilinear (j : V →ₗ[K] MvPolynomial σ K)
       smul_mul_assoc,RingHom.id_apply]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem detectedSymmetricProductRow_polynomial
     (j : V →ₗ[K] MvPolynomial σ K) (T : MvPolynomial σ K →ₗ[K] Y)
     (F : (I → K) → Fin f → V) (hF : IsPolynomialFamily F) :

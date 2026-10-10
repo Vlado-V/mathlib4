@@ -24,7 +24,8 @@ variable {σ : Type*} [Fintype σ] {a z s d R m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
-theorem extended_sparse_intrinsic_exact_zero (hs : s = 0) (hsd : s ≤ d)
+omit [FiniteDimensional K W] [Fintype σ] in
+theorem extended_sparse_intrinsic_exact_zero [Finite σ] (hs : s = 0) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (e : Fin m → Fin a →₀ ℕ)
@@ -49,6 +50,8 @@ theorem extended_sparse_intrinsic_exact_zero (hs : s = 0) (hsd : s ≤ d)
     let P' := (rename (Sum.map id (Fin.castAdd z))).toLinearMap.comp P
     (bilinearKoszulRow fullBiformScalarProduct Q' E' P').ker=
       (bilinearKoszulConstants (K := K) (W := W) Q' E').range := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   dsimp only
   let Q' : Fin q → Forms K (a+z) d := fun i =>
     ⟨rename (Fin.castAdd z) (Q i).val,(Q i).property.rename_isHomogeneous⟩

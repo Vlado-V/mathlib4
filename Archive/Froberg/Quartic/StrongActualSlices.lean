@@ -273,7 +273,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- One child tuple works for every member of any finite family of correction
 counts and lies in the prescribed nonempty child-coordinate open. -/
 theorem exists_all_corrections_in_open [Infinite K]
-    {I : Type*} [Fintype I] (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
+    {I : Type*} [Finite I] (m : ℕ) (hm : 320 ≤ m) (upper : Bool)
     (correction : I → ℕ)
     (g : Fin (mixedCount m upper) → Rows K m 1) (hg : LinearIndependent K g)
     (E : StrongExpansionOpen.Dimensions m upper → ℕ)
@@ -286,6 +286,7 @@ theorem exists_all_corrections_in_open [Infinite K]
       eval (FixedBlockChildOpen.encodeChild Q) D ≠ 0 ∧
       ∀ i, HasAmbientSlices g (correction i) Q := by
   classical
+  let := Fintype.ofFinite I
   choose P hP hgood using fun i => child_slices_open m hm upper (correction i) g hg E hE hexp
   have hnz (i : I) : P i ≠ 0 := by
     obtain ⟨z,hz⟩ := hP i

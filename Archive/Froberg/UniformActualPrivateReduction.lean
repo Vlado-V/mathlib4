@@ -65,7 +65,7 @@ theorem eventually_actual_private_reduction_open_uniform {d : ℕ} (hd : 9 ≤ d
   intro Y _ _ _ T hY hO hT t c H bo l hl ι L hOL A hA hprivate
   let counts := allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)
   let I := Label (upperCount (v+v+z) d) (allEvenIndices d) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   have hdim : finrank K Y=finrank K X := hY.trans hX.symm
   have hq := hv.1.with_output_dimension (O' := constrainedOutputs T) (hO.trans hO₀.symm)
   have hhigh (R : allEvenIndices d) (hR : R.val≠2) :=

@@ -24,7 +24,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem exists_diagonal_row_profile_parameter (j : ℕ)
+omit [Infinite K] [Fintype σ] in
+theorem exists_diagonal_row_profile_parameter [Finite σ] (j : ℕ)
     (honly : ∀ r : ProductRows.Row J (2*j),ProductRows.Columns counts r → r.val.val=j)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hf : ∀ i,f i∈biformImage (O j) (Forms K n (d-j)))
@@ -34,6 +35,8 @@ theorem exists_diagonal_row_profile_parameter (j : ℕ)
     ∃ p : Space n d q J counts O,
       Function.Injective (ProductRows.multiplication counts (layers p) J (2*j)) ∧
       (ProductRows.multiplication counts (layers p) J (2*j)).range≤P := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   obtain ⟨E,hE,he⟩ := ProductRows.exists_diagonal_assignment counts j
     (fun k g => ∀ i,g i∈biformImage (O k) (Forms K n (d-k)))
     (fun k i => Submodule.zero_mem _) f hf
@@ -48,6 +51,7 @@ theorem exists_diagonal_row_profile_parameter (j : ℕ)
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Module.Finite K X] in
 theorem exists_strong_fourth_profile_parameter {h : ℕ}
     (hh : 144 ≤ h) (hfour : 4 ∣ h) (T : ℕ → Poly K h →ₗ[K] X) (hT : T 4 = 0)
     (hz : ∀ k ∈ J, k ≠ 2 → k ≠ 4 → counts k = 0)

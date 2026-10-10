@@ -39,7 +39,7 @@ theorem exists_empty_profile_row_parameter
       LinearIndependent K (fun i => intrinsicLayerMap hO R i p) ∧
       (row hO R p).ker=(rowConstants hO R p).range := by
   classical
-  letI : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
+  let : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
   let f := Fintype.equivFin (Label q J counts)
   let p : Space n d q J counts O := (Q ∘ f,p₀.2)
   have hpe : layers p=layers p₀ := rfl

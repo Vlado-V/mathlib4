@@ -33,7 +33,7 @@ theorem ambientBiform_weighted (g : Forms K h j ⊗[K] Forms K m e) :
     (ambientBiform g).IsWeightedHomogeneous (coreWeight h m) j := by
   have he : weightedHomogeneousComponent (coreWeight h m) j (ambientBiform g)=ambientBiform g := by
     change coreComponent h m j (ambientBiform g)=ambientBiform g
-    rw [ambientBiform_eq_block,LinearMap.comp_apply,coreComponent_blockPolynomial,if_pos rfl]
+    rw [ambientBiform_eq_block,LinearMap.comp_apply,coreComponent_blockPolynomial,ite_eq_left rfl]
   rw [←he]
   exact weightedHomogeneousComponent_isWeightedHomogeneous j _
 
@@ -42,12 +42,10 @@ embedding both biforms in the polynomial ring. -/
 theorem ambientBiform_product (g : Forms K h j ⊗[K] Forms K m e)
     (c : Forms K h x ⊗[K] Forms K m y) :
     ambientBiform (biformProduct g c)=ambientBiform g*ambientBiform c := by
-  induction g using TensorProduct.induction_on with
-  | zero => simp
+  induction g using TensorProduct.inductionOn with
   | add g g' hg hg' => simp only [map_add,LinearMap.add_apply,hg,hg',add_mul]
   | tmul u v =>
-    induction c using TensorProduct.induction_on with
-    | zero => simp
+    induction c using TensorProduct.inductionOn with
     | add c c' hc hc' => simp only [map_add,hc,hc',mul_add]
     | tmul a b =>
       rw [biformProduct_tmul,TensorProduct.map_tmul]

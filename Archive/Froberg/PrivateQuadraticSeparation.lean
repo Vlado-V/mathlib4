@@ -39,6 +39,7 @@ def coreVectorExtension : (Fin c → Poly K a) →ₗ[K] (Fin c → Poly K (a+z)
   LinearMap.pi fun k => (rename (Fin.castAdd z)).toLinearMap.comp (LinearMap.proj k)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quadraticScalarRow_injective
     (Q : Fin q → Poly K a)
     (hQ : ∀ r, r ≤ t → ∀ x : Fin q → Forms K a r,
@@ -63,7 +64,7 @@ theorem quadraticScalarRow_injective
       exact congrArg Subtype.val (congrFun (hQ _ (Nat.sub_le _ _) y hy) i)
     · exact freeCoeff_eq_zero_of_degree_lt _ (x i k).property β (by omega)
   have hh := congrArg (fun f : Poly K a => f.coeff (coreExponent δ)) hcoeff
-  simpa only [β,freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,
+  simpa only [β,freeCoeff_coeff,merge_core_free,AddMonoidAlgebra.coeff_zero,
     Finsupp.zero_apply,Pi.zero_apply,Submodule.coe_zero] using hh
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.

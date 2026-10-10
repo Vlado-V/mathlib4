@@ -16,7 +16,7 @@ noncomputable section
 set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open MvPolynomial Quartic.FreeCoefficients
-variable {K I J : Type*} [Field K] [Fintype I] [Fintype J]
+variable {K I J : Type*} [Field K] [Fintype I]
 variable {a z q s d : ℕ}
 
 theorem extended_mixed_relation_of_endpoint (hs : 1 ≤ s) (hsd : s ≤ d)

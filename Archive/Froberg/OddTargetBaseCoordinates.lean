@@ -101,6 +101,7 @@ def oddTargetBaseMap (hd : 1 ≤ d)
   (oddTargetBaseEquiv hd Q F hQ hF).toLinearMap.comp (oddBackgroundRelations Q F).mkQ
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddTargetBaseMap_surjective (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -110,6 +111,7 @@ theorem oddTargetBaseMap_surjective (hd : 1 ≤ d)
   (oddTargetBaseEquiv hd Q F hQ hF).surjective.comp (Submodule.mkQ_surjective _)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddTargetBaseMap_kernel (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -122,6 +124,7 @@ theorem oddTargetBaseMap_kernel (hd : 1 ≤ d)
   exact Submodule.Quotient.mk_eq_zero _
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddTargetBaseMap_bottom (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -133,6 +136,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
         (oddBiformCoordinatesEquiv p (oddTargetBottomIndex hd)) := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddTargetBaseMap_higher (hd : 1 ≤ d)
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

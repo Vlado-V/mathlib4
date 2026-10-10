@@ -77,6 +77,7 @@ theorem exists_maximal_motion_of_incidence_budget (hE : Function.Injective E)
   · intro k
     exact le_rfl
 
+omit [Infinite K] [IsAlgClosed K] [FiniteDimensional K H] in
 /-- A uniform shadow slope larger than the Grassmannian and coefficient
 costs supplies the literal integer budget, capped at the whole target. -/
 theorem incidence_budget_of_capped_shadow

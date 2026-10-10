@@ -18,6 +18,7 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+omit [Infinite K] in
 theorem principal_open_positive_scalar_fiber_at (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
       FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -30,7 +31,7 @@ theorem principal_open_positive_scalar_fiber_at (hO : ∀ j ∈ J, O j ≤ Forms
         ∀ a, eval ((Module.finBasis K _).equivFun a) E ≠ 0 →
           eval ((Module.finBasis K _).equivFun
             (fullScalarFiberCoordinates.symm (a,(fullScalarFiberCoordinates p).2))) D ≠ 0 := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro D p hp
   apply principal_open_freeze_at fullScalarFiberCoordinates.symm.toLinearMap

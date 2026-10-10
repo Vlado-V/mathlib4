@@ -81,8 +81,8 @@ theorem private_first_component_boundary
   have hprivate : weightedHomogeneousComponent w 2 (∑ k,((P k).val+U k)*v k)=
       ∑ k,(P k).val*weightedHomogeneousComponent w 1 (v k) := by
     simp only [map_sum,add_mul,map_add,weightedComponent_homogeneous_left w (hP _),
-      weightedComponent_homogeneous_left w (hU _),if_pos (by decide : 1≤2),
-      if_neg (by omega : ¬d≤2),add_zero]
+      weightedComponent_homogeneous_left w (hU _),ite_eq_left (by decide : 1≤2),
+      ite_eq_right (by omega : ¬d≤2),add_zero]
   have hnew (i : Label q J counts) :
       (if degree i≤2 then high p i*weightedHomogeneousComponent w (2-degree i) (c i) else 0)=
       if degree i=2 then high p i*weightedHomogeneousComponent w 0 (c i) else 0 := by
@@ -91,9 +91,9 @@ theorem private_first_component_boundary
     | inr a =>
       have hm := hmin _ a.1.property
       by_cases ha : a.1.val=2
-      · simp only [degree,Sum.elim_inr,ha,le_refl,if_true,Nat.sub_self]
+      · simp only [degree,Sum.elim_inr,ha,le_refl,ite_true,Nat.sub_self]
       · have hgt : ¬a.1.val≤2 := by omega
-        simp only [degree,Sum.elim_inr,if_neg ha,if_neg hgt]
+        simp only [degree,Sum.elim_inr,ite_eq_right ha,ite_eq_right hgt]
   have hh := hpositive
   change weightedHomogeneousComponent w 2 _=0 at hh
   rw [map_add,hprivate] at hh

@@ -84,7 +84,7 @@ theorem eventually_counted_fourth_row_capacity_shift_uniform {d : ℕ}
           output_positive := hsparse.1
           enough_generators := by
             simpa only [allEvenCount_active _ _ _ h4a,targetLayerCount,
-              if_neg (by decide : (4 : ℕ)≠2),Nat.add_zero,two_mul] using hb.1
+              ite_eq_right (by decide : (4 : ℕ)≠2),Nat.add_zero,two_mul] using hb.1
           divisor_capacity := hsparse.2.1
           incidence := by simpa only [r,q,counts,two_mul] using hb.2
           scalar_open := ⟨D,hD,hgood⟩ }

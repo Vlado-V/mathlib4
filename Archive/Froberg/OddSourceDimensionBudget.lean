@@ -20,6 +20,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {h m d q f u : ℕ}
 
+omit [Infinite K] in
 theorem odd_biform_quotient_finrank_le_count (hh : 0 < h) (hm : 0 < m)
     (S : Submodule K (biformParitySpace K h m d 1)) :
     finrank K (biformParitySpace K h m d 1 ⧸ S)≤oddCoefficientCount d h m := by

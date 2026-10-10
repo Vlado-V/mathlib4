@@ -22,10 +22,11 @@ variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 variable {h n q : ℕ} {counts : ℕ → ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-instance kernelOutputSpaceFinite {σ : Type*} [Fintype σ] {d : ℕ} {J : Finset ℕ}
+instance kernelOutputSpaceFinite {σ : Type*} [Finite σ] {d : ℕ} {J : Finset ℕ}
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) :
-    Module.Finite K (Space n d q J counts (fun j => homogeneousSubmodule σ K j⊓(T j).ker)) :=
-  finite_space (fun _ _ => inf_le_left)
+    Module.Finite K (Space n d q J counts (fun j => homogeneousSubmodule σ K j⊓(T j).ker)) := by
+  let : Fintype σ := Fintype.ofFinite σ
+  exact finite_space (fun _ _ => inf_le_left)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem finite_cubic_reduction_open

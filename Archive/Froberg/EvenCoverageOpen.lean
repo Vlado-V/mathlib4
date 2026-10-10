@@ -31,6 +31,7 @@ def evenCoverageMap (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
   (D.subtype.coprod (endpointMultiplication q)).coprod (parityForm w 1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenCoverageMap_surjective_of_coverage
     (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (q : Fin r → Forms K n d)
@@ -44,6 +45,7 @@ theorem evenCoverageMap_surjective_of_coverage
   exact parityForm_decomposition w 0 p
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenCoverageMap_coverage_of_surjective
     (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (e : Fin r → ZMod 2) (q : Fin r → Forms K n d)
@@ -66,6 +68,7 @@ theorem evenCoverageMap_coverage_of_surjective
   exact Submodule.add_mem_sup z.property ⟨paritySource w e 0 a,rfl⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenCoverageMap_polynomial {I : Type*}
     (D : Submodule K (Forms K n (2 * d))) (w : Fin n → ZMod 2)
     (q : (I → K) → Fin r → Forms K n d) (hq : IsPolynomialFamily q) :

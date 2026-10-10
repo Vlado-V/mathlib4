@@ -21,6 +21,7 @@ open Module MvPolynomial Quartic
 variable {K : Type} [Field K] [Infinite K]
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem addRow_exact_of_separated
     {A B U V : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
@@ -90,6 +91,7 @@ theorem private_augmented_exact
   addRow_exact_of_separated _ _ _ hrow hsep
 
  set_option maxHeartbeats 2400000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_row_principal_open [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (R : J) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)

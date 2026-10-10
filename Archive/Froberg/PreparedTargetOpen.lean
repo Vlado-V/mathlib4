@@ -5,6 +5,7 @@ Authors: Vlado Vojdanovski
 -/
 module
 
+public import Mathlib.Algebra.CharZero.Infinite
 public import Archive.Froberg.PreparedTargetCore
 public import Archive.Froberg.PreparedTargetEnumeration
 
@@ -27,10 +28,10 @@ local instance targetSpaceFinite (frame : Fin H → Forms K h 2) :
 local instance targetRestrictedSpaceFinite (frame : Fin H → Forms K h 2) :
     Module.Finite K (PreparedParameters.Space m d q (activeEvenIndices d)
       (targetLayerCount d h m r) (targetLayerOutput frame) × OuterSpace K (Fin h) m d f) := by
-  letI := PreparedParameters.finite_space (n := m) (d := d) (q := q)
+  let := PreparedParameters.finite_space (n := m) (d := d) (q := q)
     (J := activeEvenIndices d) (counts := targetLayerCount d h m r)
     (fun j _ => targetLayerOutput_homogeneous frame j)
-  letI : Module.Finite K (biformImage (Forms K h 1) (Forms K m (d-1))) :=
+  let : Module.Finite K (biformImage (Forms K h 1) (Forms K m (d-1))) :=
     Module.Finite.of_surjective sumBiformEquiv.toLinearMap sumBiformEquiv.surjective
   unfold OuterSpace
   infer_instance

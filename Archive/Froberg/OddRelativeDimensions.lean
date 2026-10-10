@@ -23,6 +23,7 @@ open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quotient_finrank_eq_annihilator {V : Type} [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (A : Submodule K V) :
     finrank K (V ⧸ A)=finrank K A.dualAnnihilator := by
@@ -41,6 +42,7 @@ theorem odd_ambient_quotient_dimension (hh : 0 < h) (hm : 0 < m) (hd : Odd d)
   exact odd_ambient_covector_dimension hh hm hd Q F G
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem injective_pi_quotient_finrank {V W : Type} [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] [AddCommGroup W] [Module K W] [FiniteDimensional K W]
     (f : (Fin e → V) →ₗ[K] W) (hf : Function.Injective f) :

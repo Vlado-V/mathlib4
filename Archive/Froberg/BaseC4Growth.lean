@@ -51,6 +51,7 @@ def topScalarParametersEquiv (hd : 1 ≤ d) :
 attribute [local irreducible] OddScalarLayerProperty
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem top_scalar_growth_open (hd : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (htop : ProjectedTopGrowthOpen R m f q t) :

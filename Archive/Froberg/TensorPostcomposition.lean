@@ -26,6 +26,10 @@ variable {K B V W Z : Type*} [Field K]
   [AddCommGroup Z] [Module K Z] [FiniteDimensional K Z]
 variable {m d e q : ℕ}
 
+omit [FiniteDimensional K B]
+  [FiniteDimensional K V]
+  [FiniteDimensional K W]
+  [FiniteDimensional K Z] in
 theorem bilinear_family_postcompose (mu : B →ₗ[K] V →ₗ[K] W)
     (P : W →ₗ[K] Z) (F : Fin q → B) :
     BilinearScalarFamily.multiplication (mu.compr₂ₛₗ P) F=
@@ -34,6 +38,10 @@ theorem bilinear_family_postcompose (mu : B →ₗ[K] V →ₗ[K] W)
   intro x
   simp [BilinearScalarFamily.multiplication_apply]
 
+omit [FiniteDimensional K B]
+  [FiniteDimensional K V]
+  [FiniteDimensional K W]
+  [FiniteDimensional K Z] in
 theorem tensorFormProduct_postcompose (mu : B →ₗ[K] V →ₗ[K] W) (P : W →ₗ[K] Z) :
     tensorFormProduct (m := m) (d := d) (e := e) (mu.compr₂ₛₗ P)=
       (tensorFormProduct mu).compr₂ₛₗ
@@ -41,6 +49,7 @@ theorem tensorFormProduct_postcompose (mu : B →ₗ[K] V →ₗ[K] W) (P : W �
   ext b f v g
   rfl
 
+omit [FiniteDimensional K V] in
 theorem tensorScalarFamily_eq_sumTensorRight {Y : Type*}
     [AddCommGroup Y] [Module K Y] [FiniteDimensional K Y] (Q : Fin q → Y) :
     BilinearScalarFamily.multiplication (tensorScalarProduct (K := K) (V := V) (P := Y)) Q=

@@ -23,15 +23,16 @@ variable {σ : Type*} {a z s d h m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W]
 
  set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem extended_sparse_relation_core_zero (hs : s = 0) (hsd : s ≤ d)
     (o : Fin h → MvPolynomial σ K)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)
     (Q : Fin q → Forms K a d) (P : W →ₗ[K] MvPolynomial (σ ⊕ Fin a) K)
     (hfull : ∀ c ≤ d, Function.Injective (homogeneousMultiplication (d := c) e v he))
-    (hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
+    (_hker : (addRow (polynomialIntermediateRow o e v he Q) P).ker =
       ((LinearMap.inl K ((Fin q → Fin h → Forms K a s) × (Fin m → Forms K a d)) W).comp
         (intermediateKoszul e v he Q)).range)
-    (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell)
+    (ell : Fin 2 → Forms K a 1) (_hell : LinearIndependent K ell)
     (C : Fin h → Poly K a)
     (x : Fin q → Fin h → Poly K (a + z)) (p : Fin m → Poly K (a + z))
     (hx : ∀ i j, (x i j).IsHomogeneous s) (hp : ∀ i, (p i).IsHomogeneous d)

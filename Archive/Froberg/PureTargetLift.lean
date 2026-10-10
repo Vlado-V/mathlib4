@@ -17,7 +17,7 @@ noncomputable section
 namespace Froberg
 open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] {h m d b : ℕ}
-variable {ι : Type*} [Fintype ι]
+variable {ι : Type*} [Finite ι]
 attribute [local instance] tensorGroup
 
 theorem targetLift_of_pure_full (hdb : d ≤ b) (hb : b ≤ 2 * d)
@@ -31,6 +31,8 @@ theorem targetLift_of_pure_full (hdb : d ≤ b) (hb : b ≤ 2 * d)
     (I : Submodule K (Poly K (h + m)))
     (hI : (Submodule.span K (Set.range p)) * Forms K (h + m) d ≤ I) :
     TargetLift I d b := by
+  classical
+  let := Fintype.ofFinite ι
   have hw : d+(b-d)=b := by omega
   have hcoef : (b-d)+(2*d-b)=d := by omega
   have hg : Function.Surjective (biformTensorFamilyMap (x := b-d) (y := 2*d-b)

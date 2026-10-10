@@ -46,10 +46,10 @@ theorem eventually_uniform_frame_even_data {d : ℕ} (hd : 3 ≤ d) :
   have H := hn K (Fin c → K) T hc hO hT
   have hOeq : (fun j => Forms K h j ⊓ (T j).ker)=targetLayerOutput frame :=
     funext (canonicalFrameConstraint_outputs frame)
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (allEvenCount d h n (e n+extra)) (fun j => Forms K h j ⊓ (T j).ker)) :=
     finite_space (fun _ _ => inf_le_left)
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (allEvenCount d h n (e n+extra)) (targetLayerOutput frame)) :=
     finite_space (fun j _ => targetLayerOutput_homogeneous frame j)
   exact ⟨(leading_witnesses_congr_outputs hOeq).mp H.1,

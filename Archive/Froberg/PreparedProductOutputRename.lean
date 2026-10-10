@@ -18,7 +18,7 @@ noncomputable section
 namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K]
-variable {σ τ : Type*} [Fintype σ] [Fintype τ]
+variable {σ τ : Type*}
 variable {n d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {X : Type*} [AddCommGroup X] [Module K X]
 
@@ -36,8 +36,8 @@ theorem layers_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial �
   classical
   funext j i
   by_cases hj : j∈J
-  · simp only [layers,dif_pos hj,renameOutputParameter]
-  · simp only [layers,dif_neg hj,map_zero]
+  · simp only [layers,dite_eq_left hj,renameOutputParameter]
+  · simp only [layers,dite_eq_right hj,map_zero]
 
 theorem products_renameOutputParameter (e : σ ≃ τ) (T : ℕ → MvPolynomial τ K →ₗ[K] X)
     (p : Space n d q J counts (fun j => homogeneousSubmodule σ K j ⊓

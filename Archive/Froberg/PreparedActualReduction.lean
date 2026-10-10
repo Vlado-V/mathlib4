@@ -56,7 +56,7 @@ theorem eventually_actual_even_reduction_open {d : ℕ} (hd : 9 ≤ d) :
   filter_upwards [hw T hX hO hT extra e he] with v hv
   let counts := allEvenCount d (2*w) (v+v) (e (v+v)+extra)
   let I := Label (upperCount (v+v) d) (allEvenIndices d) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   have hJ : ∀ j∈allEvenIndices d,2≤j := fun _ hj => (mem_allEvenIndices.mp hj).1
   have hdegree : ∀ j∈allEvenIndices d,j≤d := fun _ hj => (mem_allEvenIndices.mp hj).2.1
   have heven : ∀ j∈allEvenIndices d,j%2=0 := fun _ hj => (mem_allEvenIndices.mp hj).2.2

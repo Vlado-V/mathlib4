@@ -24,6 +24,7 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_coefficient_row_of_separated
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
@@ -75,9 +76,9 @@ theorem private_coefficient_row_of_separated
       have hne : degree i≠R.val := by
         intro heq
         exact hi ⟨e.symm ⟨i,heq⟩,congrArg Subtype.val (e.apply_symm_apply ⟨i,heq⟩)⟩
-      simp only [if_neg hne]
+      simp only [ite_eq_right hne]
     · intro k
-      rw [if_pos (e k).property,hf']
+      rw [ite_eq_left (e k).property,hf']
       congr 1
       exact layers_active p ⟨R,k⟩
   let u' : PrivateRowSource (K := K) (σ := σ) (n := n) (d := d) (b := b) R.val :=

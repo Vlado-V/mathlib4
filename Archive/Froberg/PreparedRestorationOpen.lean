@@ -50,8 +50,8 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def restoredCoordinates (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j) :
     RestoredSpace n d q J counts O ≃ₗ[K]
       (Fin (finrank K (RestoredSpace n d q J counts O)) → K) := by
-  letI : Module.Finite K (Space n d q J counts O) := finite_space hO
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let : Module.Finite K (Space n d q J counts O) := finite_space hO
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   exact (Module.finBasis K (RestoredSpace n d q J counts O)).equivFun
 
@@ -86,8 +86,8 @@ theorem even_prepared_restoration_principal_open (hd : d % 2 = 0)
             (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
             c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p) M=z.val := by
   classical
-  letI : Module.Finite K (Space n d q J counts O) := finite_space hO
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let : Module.Finite K (Space n d q J counts O) := finite_space hO
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   let S := RestoredSpace n d q J counts O
   let coord : S ≃ₗ[K] (Fin (finrank K S) → K) := restoredCoordinates hO
@@ -164,8 +164,8 @@ theorem exists_even_restored_basis_on_open (hd : d % 2 = 0)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
           c-coefficientBoundary (restoredFamilyLinear hd hO hJ heven idx slot p) M=z.val := by
   classical
-  letI : Module.Finite K (Space n d q J counts O) := finite_space hO
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let : Module.Finite K (Space n d q J counts O) := finite_space hO
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   let S := RestoredSpace n d q J counts O
   let coord : S ≃ₗ[K] (Fin (finrank K S) → K) := restoredCoordinates hO

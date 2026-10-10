@@ -24,6 +24,7 @@ def quadraticPolynomialDetector (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
   L.comp ((homogeneousComponent 2).codRestrict (Forms K h 2)
     (fun p => homogeneousComponent_isHomogeneous 2 p))
 
+omit [Infinite K] in
 @[simp] theorem quadraticPolynomialDetector_form
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) (f : Forms K h 2) :
     quadraticPolynomialDetector L f.val=L f := by
@@ -31,6 +32,7 @@ def quadraticPolynomialDetector (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
   congr 1
   exact Subtype.ext (homogeneousComponent_eq_self f.property)
 
+omit [Infinite K] in
 theorem outputCombination_equiv_basis
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (v : Fin h → K) :
     outputCombination (fun j => (e (Pi.single j 1)).val) v=(e v).val := by

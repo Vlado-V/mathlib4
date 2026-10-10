@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*} [Fintype σ] [Fintype τ] {n : ℕ}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem homogeneous_kernel_rename_eq {X : Type*} [AddCommGroup X] [Module K X]
     (e : σ ≃ τ) (T : MvPolynomial τ K →ₗ[K] X) (j : ℕ) :
     (homogeneousSubmodule σ K j ⊓ (T.comp (rename e).toLinearMap).ker).map
@@ -38,6 +39,7 @@ theorem homogeneous_kernel_rename_eq {X : Type*} [AddCommGroup X] [Module K X]
     exact hp.2
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem homogeneous_kernel_rename_finrank {X : Type*} [AddCommGroup X] [Module K X]
     (e : σ ≃ τ) (T : MvPolynomial τ K →ₗ[K] X) (j : ℕ) :
     finrank K ↥(homogeneousSubmodule σ K j ⊓ (T.comp (rename e).toLinearMap).ker)=
@@ -54,11 +56,14 @@ variable {d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem even_positive_reduction_output_rename
+omit [Fintype σ] [Fintype τ] in
+theorem even_positive_reduction_output_rename [Finite σ] [Finite τ]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
     (p : Space n d q J counts O) (hp : EvenPositiveReduction p) :
     EvenPositiveReduction (outputRename e p) := by
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Fintype τ := Fintype.ofFinite τ
   classical
   let E := e.sumCongr (Equiv.refl (Fin n))
   let F := renameEquiv K E
@@ -111,7 +116,8 @@ theorem even_positive_reduction_output_rename
     exact ⟨(hzw i).1.rename_isHomogeneous,output_rename_weighted e 1 0 0 (z i) (hzw i).2⟩
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem even_positive_reduction_open_output_rename
+omit [Fintype σ] [Fintype τ] in
+theorem even_positive_reduction_open_output_rename [Finite σ] [Finite τ]
     [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
@@ -124,6 +130,8 @@ theorem even_positive_reduction_open_output_rename
     ∃ D' : MvPolynomial (Fin (finrank K A)) K,
       (∃ p : A,eval ((Module.finBasis K A).equivFun p) D'≠0) ∧
       ∀ p : A,eval ((Module.finBasis K A).equivFun p) D'≠0 → EvenPositiveReduction p := by
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Fintype τ := Fintype.ofFinite τ
   let F := outputRenameEquiv (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O) e
   obtain ⟨D',hD',hgood'⟩ := principal_open_linear_pullback F.symm.toLinearMap
     F.symm.surjective D hD (fun p => EvenPositiveReduction p) hgood
@@ -142,6 +150,7 @@ def EvenReductionOpen (O : ℕ → Submodule K (MvPolynomial σ K))
       EvenPositiveReduction p
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem evenReductionOpen_congr_outputs
     {O O' : ℕ → Submodule K (MvPolynomial σ K)}
     [Module.Finite K (Space n d q J counts O)]
@@ -153,7 +162,8 @@ theorem evenReductionOpen_congr_outputs
   rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem even_positive_reduction_open_constraint_rename
+omit [Fintype σ] [Fintype τ] in
+theorem even_positive_reduction_open_constraint_rename [Finite σ] [Finite τ]
     {X : Type*} [AddCommGroup X] [Module K X]
     (T : ℕ → MvPolynomial τ K →ₗ[K] X) (e : σ ≃ τ)
     (hJ : ∀ j ∈ J, j ≤ d)
@@ -173,12 +183,14 @@ theorem even_positive_reduction_open_constraint_rename
     ∃ D' : MvPolynomial (Fin (finrank K A)) K,
       (∃ p : A,eval ((Module.finBasis K A).equivFun p) D'≠0) ∧
       ∀ p : A,eval ((Module.finBasis K A).equivFun p) D'≠0 → EvenPositiveReduction p := by
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Fintype τ := Fintype.ofFinite τ
   let O₀ := fun j => homogeneousSubmodule σ K j ⊓ ((T j).comp (rename e).toLinearMap).ker
   have hmap : (fun j => (O₀ j).map (rename e).toLinearMap)=
       (fun j => homogeneousSubmodule τ K j ⊓ (T j).ker) := by
     funext j
     exact homogeneous_kernel_rename_eq e (T j) j
-  letI : Module.Finite K (Space n d q J counts (fun j => (O₀ j).map (rename e).toLinearMap)) := by
+  let : Module.Finite K (Space n d q J counts (fun j => (O₀ j).map (rename e).toLinearMap)) := by
     rw [hmap]
     infer_instance
   have H := even_positive_reduction_open_output_rename (O := O₀)

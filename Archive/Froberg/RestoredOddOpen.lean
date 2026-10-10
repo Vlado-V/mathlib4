@@ -37,13 +37,12 @@ def restoredOddRowLinear :
     apply LinearMap.ext
     intro c
     change (∑ i,((g+g') i).val*(c i).val)=(∑ i,(g i).val*(c i).val)+(∑ i,(g' i).val*(c i).val)
-    simp only [Pi.add_apply,Submodule.coe_add,add_mul,Finset.sum_add_distrib,LinearMap.add_apply]
+    simp only [Pi.add_apply, Submodule.coe_add, add_mul, Finset.sum_add_distrib]
   map_smul' a g := by
     apply LinearMap.ext
     intro c
     change (∑ i,((a • g) i).val*(c i).val)=a • (∑ i,(g i).val*(c i).val)
-    simp only [Pi.smul_apply,Submodule.coe_smul,smul_mul_assoc,Finset.smul_sum,
-      LinearMap.smul_apply,RingHom.id_apply]
+    simp only [Pi.smul_apply, Submodule.coe_smul, smul_mul_assoc, Finset.smul_sum]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def scalarRestoredPoint (idx : Fin r ≃ Label q J counts) (Q : Fin r → Forms K m d) :
@@ -81,7 +80,7 @@ theorem restored_odd_injective_principal_open (hm : 0 < m) (hdp : 0 < d) (hd : d
       ∀ p : RestoredSpace m d q J counts O,eval (restoredCoordinates hO p) D≠0 →
         Function.Injective (restoredOddRowLinear (restoredFamilyLinear hd hO hJ heven idx slot
           p)) := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨Q,hQ⟩ := exists_prefix_injective_of_large_variables (K := K) hm
     (by omega : d-1<d) hlarge hr
   let coord : RestoredSpace m d q J counts O ≃ₗ[K]

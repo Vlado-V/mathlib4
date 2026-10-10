@@ -29,10 +29,11 @@ def evenBackgroundProduct (hdp : 1 ≤ d)
     ((oddBackgroundQuotientProduct (fun i => scalarEvenBiform (h := h) (Q i))
       (fun i => oddBiformEmbedding hdp (by decide) (F i)) emptyOddFamily p).comp
         (evenBackgroundSourceEquiv hdp F).toLinearMap)
-  map_add' p z := by ext v; simp only [map_add,LinearMap.add_apply,LinearMap.comp_apply,
-    LinearEquiv.map_add]
-  map_smul' c p := by ext v; simp only [map_smul,LinearMap.smul_apply,LinearMap.comp_apply,
-    LinearEquiv.map_smul,RingHom.id_apply]
+  map_add' p z := by ext v; simp only [map_add, LinearMap.add_apply, LinearMap.comp_apply]
+  map_smul' c p := by ext v; simp only [map_smul,
+      LinearMap.smul_apply,
+      LinearMap.comp_apply,
+      RingHom.id_apply]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem evenBackgroundProduct_scalar (hdp : 1 ≤ d)

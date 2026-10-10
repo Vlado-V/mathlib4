@@ -40,14 +40,15 @@ theorem positivePerturbedFamily_component
   have he : (high p (Sum.inr ⟨k,i⟩)).IsWeightedHomogeneous (blockWeight h m) k.val :=
     high_weight hO p _
   rw [positivePerturbedFamily,map_add,generator,map_add,
-    weightedHomogeneousComponent_of_mem hs,if_neg (by have := hpos _ j.property;omega),
+    weightedHomogeneousComponent_of_mem hs,ite_eq_right (by have := hpos _ j.property;omega),
     zero_add,weightedHomogeneousComponent_of_mem he,
-    weightedHomogeneousComponent_of_mem (hU _),if_neg (ne_of_lt (hJ _ j.property hj)),add_zero]
+    weightedHomogeneousComponent_of_mem (hU _),ite_eq_right (ne_of_lt (hJ _ j.property hj)),
+      add_zero]
   by_cases hk : k=j
   · subst k
     simp only [ite_true]
     rfl
-  · rw [if_neg (fun h => hk (Subtype.ext h.symm)),if_neg hk]
+  · rw [ite_eq_right (fun h => hk (Subtype.ext h.symm)),ite_eq_right hk]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positivePerturbedFamily_scalar_independent
@@ -60,7 +61,7 @@ theorem positivePerturbedFamily_scalar_independent
       (positivePerturbedFamily p U i)) := by
   apply component_quotient_family_independent _ (fun j i => (p.2 j i).val)
   · intro j _ a ha
-    rw [weightedHomogeneousComponent_of_mem ha,if_neg (by have := hpos _ j.property;omega)]
+    rw [weightedHomogeneousComponent_of_mem ha,ite_eq_right (by have := hpos _ j.property;omega)]
   · exact positivePerturbedFamily_component hO hpos hJ p U hU
   · intro j
     exact (hp j).map' (biformImage (O j.val) (Forms K m (d-j.val))).subtype
@@ -78,9 +79,9 @@ theorem positivePerturbedFamily_component_one (hd : 1 < d)
   have he : (high p (Sum.inr i)).IsWeightedHomogeneous (blockWeight h
     m) i.1.val := high_weight hO p _
   rw [positivePerturbedFamily,map_add,generator,map_add,
-    weightedHomogeneousComponent_of_mem hs,if_neg (by decide),
-    weightedHomogeneousComponent_of_mem he,if_neg (by have := hmin _ i.1.property;omega),
-    weightedHomogeneousComponent_of_mem (hU _),if_neg (by omega),zero_add,zero_add]
+    weightedHomogeneousComponent_of_mem hs,ite_eq_right (by decide),
+    weightedHomogeneousComponent_of_mem he,ite_eq_right (by have := hmin _ i.1.property;omega),
+    weightedHomogeneousComponent_of_mem (hU _),ite_eq_right (by omega),zero_add,zero_add]
 
 set_option maxHeartbeats 250000 in -- Preserve the budget during this port.
 theorem positive_private_scalar_independent (hd : 1 < d)
@@ -98,12 +99,12 @@ theorem positive_private_scalar_independent (hd : 1 < d)
   apply quotient_split_independent _ _ _ (weightedHomogeneousComponent (blockWeight h m) 1)
   · intro a ha
     change weightedHomogeneousComponent (blockWeight h m) 1 a=0
-    rw [weightedHomogeneousComponent_of_mem ha,if_neg (by decide)]
+    rw [weightedHomogeneousComponent_of_mem ha,ite_eq_right (by decide)]
   · exact positivePerturbedFamily_scalar_independent hO
       (fun j hj => by have := hmin j hj;omega) hJ p hp U hU
   · have hcomp (i) : weightedHomogeneousComponent (blockWeight h m) 1 (P i+W i)=P i := by
-      rw [map_add,weightedHomogeneousComponent_of_mem (hP i),if_pos rfl,
-        weightedHomogeneousComponent_of_mem (hW i),if_neg (by omega),add_zero]
+      rw [map_add,weightedHomogeneousComponent_of_mem (hP i),ite_eq_left rfl,
+        weightedHomogeneousComponent_of_mem (hW i),ite_eq_right (by omega),add_zero]
     simpa only [hcomp] using hPi
   · exact positivePerturbedFamily_component_one hd hO hmin p U hU
 

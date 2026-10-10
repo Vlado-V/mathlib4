@@ -44,7 +44,7 @@ theorem prepared_odd_cycles_open (hh : 0 < h) (hm : 0 < m) (hd : 3 ≤ d) (hdodd
       ∀ p : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O,
         eval ((Module.finBasis K _).equivFun p) P≠0 →
         ∀ U : Fin u → Forms K h d,OddCyclesExact U p.1 p.2 := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   obtain ⟨P,hP,hgood⟩ := scalar_vector_rows_open hh hm (by omega) D hD hmodel hscalar hupper
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback

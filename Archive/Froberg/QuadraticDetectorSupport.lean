@@ -16,6 +16,7 @@ namespace Froberg
 open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h c : ℕ}
 
+omit [Infinite K] in
 theorem quadraticPolynomialDetector_supported
     (T : Forms K h 2 →ₗ[K] (Fin c → K)) :
     (quadraticPolynomialDetector T).comp (homogeneousComponent 2)=

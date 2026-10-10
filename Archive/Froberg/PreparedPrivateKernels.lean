@@ -83,16 +83,19 @@ def privateBoundaryAt (P : Fin b → FullBiform K σ n 1 (d - 1)) (R : ℕ) :
   · exact 0
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem privateBoundaryAt_two (P : Fin b → FullBiform K σ n 1 (d - 1)) :
     privateBoundaryAt P 2=intrinsicPrivateBoundary P := by
   simp [privateBoundaryAt]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem privateBoundaryAt_ne (P : Fin b → FullBiform K σ n 1 (d - 1))
     {R : ℕ} (hR : R ≠ 2) : privateBoundaryAt P R=0 := by
-  simp only [privateBoundaryAt,dif_neg hR]
+  simp only [privateBoundaryAt,dite_eq_right hR]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem privateBoundaryAt_cycle (P : Fin b → FullBiform K σ n 1 (d - 1)) (R : ℕ) :
     (privateRowMap (d := d) (fun i => (P i).val) R).comp (privateBoundaryAt P R)=0 := by
   by_cases hR : R=2
@@ -102,6 +105,7 @@ theorem privateBoundaryAt_cycle (P : Fin b → FullBiform K σ n 1 (d - 1)) (R :
   · rw [privateBoundaryAt_ne P hR,LinearMap.comp_zero]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_row_ordinary_exact
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (p : Space n d q J counts O)
@@ -112,6 +116,7 @@ theorem private_row_ordinary_exact
   addRow_ordinary_exact _ _ _ _ h
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem private_row_separated
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (R : J) (hR : R.val ≠ 2) (p : Space n d q J counts O)

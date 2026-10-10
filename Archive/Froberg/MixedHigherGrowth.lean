@@ -52,7 +52,7 @@ theorem mixedHigherAction_growth (hd : Odd d) (hd3 : 3 ≤ d)
       (mixedHigherAction hd hd3 R hR Q F U P hker r) L) := by
   unfold mixedHigherAction
   by_cases ht : 2*r.val.val+1=d
-  · rw [dif_pos ht]
+  · rw [dite_eq_left ht]
     let e := oddHigherTopProjectionEquiv hd hd3 R hR F U P hker r ht
     let mu := topGrowthScalarAction (Nat.le_trans (by decide : 1≤3) hd3) R Q F
     have hg : ∀ S : Submodule K (Fin b → K),
@@ -63,7 +63,7 @@ theorem mixedHigherAction_growth (hd : Odd d) (hd3 : 3 ≤ d)
       (LinearMap.inl K (MixedTopTarget hd3 R Q F) (MixedMiddleTarget hd3 Q F r))
       (fun x y hxy => congrArg Prod.fst hxy) t hge L
     exact hh
-  · rw [dif_neg ht]
+  · rw [dite_eq_right ht]
     let e := oddHigherNonTopQuotientEquiv hd hd3 F U P r ht
     let mu := oddActualRowScalarAction (b := 2*r.val.val+1) (by omega)
       (by have := r.val.isLt; omega) Q F

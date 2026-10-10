@@ -21,6 +21,7 @@ open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddBackgroundSourceEquiv_mk_val
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
@@ -37,10 +38,12 @@ def evenPolynomialToForms : biformParitySpace K h m d 0 →ₗ[K] Forms K (h+m) 
       (fun i => (blockWeight h m i : ZMod 2)) 0).toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem evenPolynomialToForms_val (a : biformParitySpace K h m d 0) :
     (evenPolynomialToForms a).val=rename finSumFinEquiv a.val := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenPolynomialToForms_parity (a : biformParitySpace K h m d 0) :
     (evenPolynomialToForms a).val.IsWeightedHomogeneous
       ((fun i => (blockWeight h m i : ZMod 2)) ∘ finSumFinEquiv.symm) 0 :=

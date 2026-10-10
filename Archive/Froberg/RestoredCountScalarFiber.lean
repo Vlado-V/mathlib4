@@ -39,11 +39,13 @@ def restoredCountScalarFiberLinear (hc : ∀ j ∈ J, c j ≤ c' j) :
     · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem restoredCountScalarFiberLinear_pure (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O) :
     (restoredCountScalarFiberLinear hc (a,p)).1.2=p.1.2 := rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem restoredCountScalarFiberLinear_outer (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : RestoredOuterSpace m d q f J c' O) :
     (restoredCountScalarFiberLinear hc (a,p)).2=p.2 := rfl
@@ -82,7 +84,7 @@ theorem restoredCountScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
 theorem principal_open_restored_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
-    letI : Module.Finite K (Space m d q J c' O) := finite_space hO
+    let : Module.Finite K (Space m d q J c' O) := finite_space hO
     ∀ (D : MvPolynomial (Fin (finrank K (RestoredOuterSpace m d q f J c' O))) K)
       (p : RestoredOuterSpace m d q f J c' O),
       eval ((Module.finBasis K _).equivFun p) D ≠ 0 →
@@ -92,7 +94,7 @@ theorem principal_open_restored_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤
         ∀ a, eval ((Module.finBasis K _).equivFun a) A ≠ 0 →
           eval ((Module.finBasis K _).equivFun (restoredCountScalarFiberLinear hc
             (a,p))) D ≠ 0 := by
-  letI : Module.Finite K (Space m d q J c' O) := finite_space hO
+  let : Module.Finite K (Space m d q J c' O) := finite_space hO
   intro D p hp
   apply principal_open_freeze_at (restoredCountScalarFiberLinear hc)
     (restoredScalarFiberCoordinates (restoredRestrictCounts hc p)).1 p D

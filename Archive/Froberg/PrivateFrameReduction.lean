@@ -33,7 +33,7 @@ theorem privateFrameOutputs_homogeneous (frame : Fin H → Forms K h 2) (j : ℕ
   by_cases hj : j=2
   · subst j
     simpa only [privateFrameOutputs,ite_true] using outputFrameSpace_homogeneous frame
-  · simp only [privateFrameOutputs,if_neg hj,le_refl]
+  · simp only [privateFrameOutputs,ite_eq_right hj,le_refl]
 
 namespace PreparedParameters
 
@@ -48,6 +48,7 @@ def PrivateReductionOpen {σ : Type*} [Fintype σ] {n t : ℕ}
       PrivatePositiveReduction p P
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem privateReductionOpen_congr_outputs {σ : Type*} [Fintype σ] {n t : ℕ}
     {O O' : ℕ → Submodule K (MvPolynomial σ K)}
     [Module.Finite K (Space n d q J counts O)] [Module.Finite K (Space n d q J counts O')]
@@ -101,7 +102,7 @@ theorem private_frame_reduction_open_rename
   have hspaces : (fun j => (O j).map (rename f).toLinearMap)=privateFrameOutputs frame := by
     funext j
     exact pairedFrameConstraint_spaces_map f frame L hL j
-  letI : Module.Finite K (Space (a+z) d q J counts
+  let : Module.Finite K (Space (a+z) d q J counts
       (fun j => (O j).map (rename f).toLinearMap)) := by
     rw [hspaces]
     infer_instance

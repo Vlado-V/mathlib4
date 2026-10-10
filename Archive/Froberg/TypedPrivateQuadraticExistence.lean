@@ -29,14 +29,16 @@ def fullBiformCoreExtension (z : ℕ) :
     FullBiform K σ a R s →ₗ[K] FullBiform K σ (a+z) R s where
   toFun p := ⟨rename (Sum.map id (Fin.castAdd z)) p.val,
     biformImage_core_extension (homogeneousSubmodule σ K R) p.property⟩
-  map_add' p r := Subtype.ext (map_add _ _ _)
-  map_smul' c p := Subtype.ext (map_smul (rename (Sum.map id (Fin.castAdd z))).toLinearMap c _)
+  map_add' _p _r := Subtype.ext (map_add _ _ _)
+  map_smul' c _p := Subtype.ext (map_smul (rename (Sum.map id (Fin.castAdd z))).toLinearMap c _)
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem fullBiformCoreExtension_val (p : FullBiform K σ a R s) :
     (fullBiformCoreExtension z p).val=rename (Sum.map id (Fin.castAdd z)) p.val := rfl
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem fullBiformCoreExtension_injective :
     Function.Injective (fullBiformCoreExtension (K := K) (σ := σ) (a := a) (R := R) (s := s)
       z) := by
@@ -67,6 +69,7 @@ theorem biformVectorDetector_scalar_rename
     simpa only [map_add,Pi.add_apply] using congrArg₂ HAdd.hAdd hx hy
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Fintype σ] in
 /-- The extended outer product row is literally the renamed core row. -/
 theorem detectedSymmetricProductRow_core_extension
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
@@ -90,9 +93,10 @@ theorem detectedSymmetricProductRow_core_extension
     Submodule.subtype_apply,hpair,biformVectorDetector_scalar_rename]
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Fintype σ] in
 /-- Core scalar/outer separation survives the addition of private variables
 and the fixed private nuisance block. -/
-theorem typed_private_quadratic_extended_products_separation (hd : 3 ≤ d)
+theorem typed_private_quadratic_extended_products_separation [Finite σ] (hd : 3 ≤ d)
     (bo : Basis (Fin h) K (homogeneousSubmodule σ K 1))
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
@@ -113,6 +117,8 @@ theorem typed_private_quadratic_extended_products_separation (hd : 3 ≤ d)
       (fun i => renameForm (Fin.castAdd z) (Q i)) P x +
       detectedSymmetricProductRow (FullBiform K σ (a + z) 1 (d - 1)).subtype
         (biformVectorDetector T) (fun i => fullBiformCoreExtension z (F i)) v = 0) : v=0 := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   rw [detectedSymmetricProductRow_core_extension,LinearMap.comp_apply] at hrel
   exact (typed_private_quadratic_row_separation hd bo T w ι A hA P hP Q
     (detectedSymmetricProductRow (FullBiform K σ a 1 (d-1)).subtype
@@ -122,7 +128,7 @@ set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 /-- The finite C.2 witness uses the supplied scalar and private families and
 chooses its actual outer family internally from the paired coefficient space. -/
 theorem exists_typed_private_quadratic_witness {H : ℕ}
-    {I : Type*} [Fintype I] [DecidableEq I] (hd : 3 ≤ d)
+    {I : Type*} [Fintype I] (hd : 3 ≤ d)
     (bo : Basis (Fin h) K (Forms K H 1))
     (T : Poly K H →ₗ[K] (Fin c → K))
     (w : Fin b → Fin h → K) (ι : Fin b ↪ Fin z)
@@ -155,6 +161,7 @@ theorem exists_typed_private_quadratic_witness {H : ℕ}
           (fun i => renameForm (Fin.castAdd z) (Q i)) P x+
         detectedSymmetricProductRow (FullBiform K (Fin H) (a+z) 1 (d-1)).subtype
           (biformVectorDetector T) F v=0 → v=0 := by
+  classical
   obtain ⟨F,hFi,hF⟩ := exists_scalar_separated_biform_family Q o T ho C hCdeg hC hCQ hf
   refine ⟨fun i => fullBiformCoreExtension z (F i),?_,
     typed_private_quadratic_row_exact hd bo T w ι A hA hker P hP Q hQ,?_⟩

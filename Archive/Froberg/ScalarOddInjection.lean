@@ -32,6 +32,7 @@ def fullBiformScalarRow (Q : Fin r → Forms K m d) :
   ∑ i,(fullBiformScalarProduct (Q i)).comp (LinearMap.proj i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem fullBiform_scalar_injective (Q : Fin r → Forms K m d)
     (hQ : Function.Injective (prefixMultiplication Q s)) :
     Function.Injective (fullBiformScalarRow (h := h) (t := t) (s := s) Q) := by

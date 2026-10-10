@@ -36,6 +36,7 @@ def preparedQuadraticProjection (idx : Fin r ≃ PreparedParameters.Label q J co
   map_smul' _ _ := rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedQuadraticProjection_surjective (idx : Fin r ≃ PreparedParameters.Label q J counts) :
     Function.Surjective (preparedQuadraticProjection (K := K) (h := h) (m := m) (d := d)
       (f := f) (u := u) (O := O) idx) := by
@@ -77,7 +78,7 @@ theorem prepared_quadratic_separation_principal_open
         eval ((Module.finBasis K _).equivFun p) D≠0 →
           PreparedQuadraticRowSeparated (t := t) idx T p := by
   classical
-  letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   let b := Module.finBasis K (FixedPureZeroScalarSpace m d q f u J counts O)
   let L := (preparedQuadraticProjection (K := K) (h := h) (m := m) (d := d)

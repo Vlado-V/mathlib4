@@ -43,6 +43,7 @@ def oddAmbientHigherRelationMap :
   (LinearMap.snd K _ _).comp (oddAmbientRelationMap hd Q F hQ hF G)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddAmbientRelationMap_prod :
     (oddAmbientBottomRelationMap hd Q F hQ hF G).prod
       (oddAmbientHigherRelationMap hd Q F hQ hF G)=oddAmbientRelationMap hd Q F hQ hF G := by

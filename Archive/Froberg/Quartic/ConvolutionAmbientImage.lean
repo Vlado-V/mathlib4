@@ -56,7 +56,7 @@ theorem column_mem (k : Fin (t + 2)) : convolutionMixed K t w k ∈ relations K 
   intro i _
   by_cases h : ConvolutionPresentation.columnIndex r i = k
   · simp [h, Pi.single_apply, oneForm]
-  · simp [h, Ne.symm h, Pi.single_apply]
+  · simp [h]
 
 /-- The degree-one relation space has no additional generators. -/
 theorem relations_one_eq_span : relations K t w 1 = Submodule.span K (Set.range (convolutionMixed K
@@ -75,7 +75,7 @@ theorem relations_one_eq_span : relations K t w 1 = Submodule.span K (Set.range 
         i)).val) =
         ∑ k : Fin (t+2), C ((u k).val.coeff 0) * (convolutionMixed K t w k r).val
       simp only [convolutionMixed, AddSubmonoidClass.coe_finsetSum, apply_ite,
-        ZeroMemClass.coe_zero, Finset.mul_sum, mul_ite, mul_zero]
+        ZeroMemClass.coe_zero, Finset.mul_sum, mul_zero]
       rw [Finset.sum_comm]
       simp only [Finset.sum_ite_eq,Finset.mem_univ,ite_true]
       apply Finset.sum_congr rfl

@@ -18,6 +18,7 @@ namespace Froberg
 open Module MvPolynomial Quartic VectorMultiplicationCoordinates
 variable {K : Type} [Field K] [Infinite K]
 
+omit [Infinite K] in
 theorem finite_family_independence_open {V : Type*} [AddCommGroup V] [Module K V]
     [Module.Finite K V] {r : ℕ} (hr : r ≤ finrank K V) :
     ∃ P : MvPolynomial (Fin (finrank K (Fin r → V))) K,

@@ -18,6 +18,7 @@ namespace Froberg.PreparedParameters
 open Froberg Module MvPolynomial Filter
 variable {K : Type} [Field K] [Infinite K]
 
+omit [Infinite K] in
 theorem paired_output_finrank (w R : ℕ) :
     finrank K (homogeneousSubmodule (Fin w × Bool) K R)=(2*w+R-1).choose R := by
   rw [Module.finrank_eq_card_basis (finiteVariableFormsBasis (Fin w × Bool)
@@ -43,7 +44,7 @@ theorem eventually_all_private_projected_capacity {d : ℕ} (hd : 3 ≤ d) :
       have hm := mem_allEvenIndices.mp R.property
       omega
     filter_upwards [eventually_higher_sparse_projected_capacity hd hR] with w hw _
-    simpa only [if_pos ha,paired_output_finrank] using hw
-  · exact Eventually.of_forall fun _ _ => by simp only [if_neg ha,zero_mul,Nat.zero_le]
+    simpa only [ite_eq_left ha,paired_output_finrank] using hw
+  · exact Eventually.of_forall fun _ _ => by simp only [ite_eq_right ha,zero_mul,Nat.zero_le]
 
 end Froberg.PreparedParameters

@@ -30,6 +30,7 @@ def privateReductionProjection : FixedPureZeroScalarSpace m d q f u J counts O �
   map_smul' _ _ := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 theorem privateReductionProjection_surjective : Function.Surjective
     (privateReductionProjection (K := K) (m := m) (d := d) (q := q) (f := f)
       (u := u) (J := J) (counts := counts) (O := O)) := by
@@ -71,9 +72,9 @@ theorem private_split_reduction_principal_open
       ∀ p : S,eval ((Module.finBasis K S).equivFun p) D≠0 →
         PrivateSplitReduction hd ho hO hJ heven e U p := by
   classical
-  haveI : Module.Finite K (PreparedParameters.Space m d q J counts O) :=
+  have : Module.Finite K (PreparedParameters.Space m d q J counts O) :=
     PreparedParameters.finite_space hO
-  haveI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
+  have : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   obtain ⟨D,hD,hgood⟩ := private_full_parameter_principal_open
     hd ho hO hJ heven hpos e p₀ P₀ hp₀ U

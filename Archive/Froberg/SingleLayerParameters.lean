@@ -22,6 +22,7 @@ variable {σ : Type*} [Fintype σ] {n d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] [Fintype σ] in
 theorem exists_single_layer_product_parameter (j : ℕ)
     (hz : ∀ k ∈ J, k ≠ j → counts k = 0)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)

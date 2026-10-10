@@ -30,10 +30,12 @@ def oddPolynomialToForms : biformParitySpace K h m d 1 →ₗ[K] Forms K (h+m) d
       (fun i => (blockWeight h m i : ZMod 2)) 1).toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddPolynomialToForms_val (a : biformParitySpace K h m d 1) :
     (oddPolynomialToForms a).val=rename finSumFinEquiv a.val := rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_reindex
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -99,6 +101,7 @@ section GeneralFlag
 variable {U V : Type*} [AddCommGroup U] [Module K U] [AddCommGroup V] [Module K V]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [AddCommGroup V] in
 theorem scalarFlagPrefix_update_last (Q : Fin q → V) (hq : 0 < q) (M : V) :
     scalarFlagPrefix (Function.update Q (lastScalarSlot hq) M)=scalarFlagPrefix Q := by
   classical
@@ -111,6 +114,7 @@ theorem scalarFlagPrefix_update_last (Q : Fin q → V) (hq : 0 < q) (M : V) :
   omega
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem mapped_scalar_flag_update_span (j : U →ₗ[K] V) (Q : Fin q → U)
     (hq : 0 < q) (M : V) :
     Submodule.span K (Set.range (Function.update (fun i => j (Q i)) (lastScalarSlot hq) M))=

@@ -299,7 +299,7 @@ theorem actual_profile_image_bound [Infinite K] (m : ℕ) (hmlo : 28 ≤ m)
     hdloL hdhiL
   have hc := ConvolutionProfileChartBound.parameterCount_le_profile_Cell (K := K) m (mixedCount m
     upper) ht L
-  rw [actual_profile,actual_image_finrank]
+  rw [actual_profile m upper ht S, actual_image_finrank m upper ht S]
   change _ ≤ (finrank K (ConvolutionProfileImage.quadraticImage L):ℤ)
   rw [hd] at hb
   have hfirst := add_le_add (le_refl ((upperEndpoint m:ℤ)*(finrank K S:ℤ))) hc

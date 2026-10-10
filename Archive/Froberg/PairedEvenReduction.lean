@@ -21,16 +21,18 @@ universe u
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-instance homogeneousKernelSpaceFinite {σ : Type*} [Fintype σ]
+instance homogeneousKernelSpaceFinite {σ : Type*} [Finite σ]
     {X : Type*} [AddCommGroup X] [Module K X]
     {n d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     (T : ℕ → MvPolynomial σ K →ₗ[K] X) :
     Module.Finite K (Space n d q J counts
-      (fun j => homogeneousSubmodule σ K j⊓(T j).ker)) :=
-  finite_space (fun _ _ => inf_le_left)
+      (fun j => homogeneousSubmodule σ K j⊓(T j).ker)) := by
+  let := Fintype.ofFinite σ
+  exact finite_space (fun _ _ => inf_le_left)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem evenReductionOpen_congr_counts {σ : Type*} [Fintype σ]
+omit [Infinite K] in
+theorem evenReductionOpen_congr_counts {σ : Type*}
     {n d q : ℕ} {J : Finset ℕ} {counts counts' : ℕ → ℕ}
     (O : ℕ → Submodule K (MvPolynomial σ K))
     [Module.Finite K (Space n d q J counts O)]
@@ -42,7 +44,7 @@ theorem evenReductionOpen_congr_counts {σ : Type*} [Fintype σ]
   rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem eventually_even_reduction_from_paired {d : ℕ} (hd : 3 ≤ d)
+theorem eventually_even_reduction_from_paired {d : ℕ} (_hd : 3 ≤ d)
     (hp : ∀ᶠ w : ℕ in atTop, 4 ∣ 2 * w → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (2 * (w : ℝ)) ^ 2 * (n : ℝ) ^ (d - 2)) →
       ∀ᶠ n : ℕ in atTop,
@@ -93,7 +95,7 @@ theorem eventually_even_reduction_from_paired {d : ℕ} (hd : 3 ≤ d)
     intro R hR
     simp only [T₀,hT R hR,LinearMap.zero_comp]
   obtain ⟨D,hD,hgood⟩ := hn X T₀ hX₀ hO₀ hT₀
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (allEvenCount d (2*w) n (e n+extra))
       (fun j => Forms K h j⊓(T j).ker)) := finite_space (fun _ _ => inf_le_left)
   have H := even_positive_reduction_open_constraint_rename T f

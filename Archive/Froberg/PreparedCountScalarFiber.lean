@@ -50,16 +50,19 @@ def countScalarFiberLinear (_hc : ∀ j ∈ J, c j ≤ c' j) :
     · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem countScalarFiberLinear_base (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O) (i : Fin q) :
     (countScalarFiberLinear hc (a,p)).1 (Sum.inl i)=p.1 (Sum.inl i) := rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem countScalarFiberLinear_high (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O) :
     (countScalarFiberLinear hc (a,p)).2=p.2 := rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem countScalarFiberLinear_old (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O)
     (i : ProductRows.LayerLabel J c) :
@@ -70,6 +73,7 @@ theorem countScalarFiberLinear_old (hc : ∀ j ∈ J, c j ≤ c' j)
     Sum.elim_inr,Fin.val_castLE,dite_eq_left i.isLt]
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem countScalarFiberLinear_extra (hc : ∀ j ∈ J, c j ≤ c' j)
     (a : PositiveScalars (K := K) m d J c) (p : Space m d q J c' O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :
@@ -100,6 +104,7 @@ theorem countScalarFiberLinear_restrict (hc : ∀ j ∈ J, c j ≤ c' j)
   · rfl
 
 set_option maxHeartbeats 150000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem countScalarFiberLinear_at (hc : ∀ j ∈ J, c j ≤ c' j)
     (p : Space m d q J c' O) :
     countScalarFiberLinear hc ((scalarFiberCoordinates (restrictCounts hc p)).1,p)=p := by
@@ -177,7 +182,7 @@ theorem principal_open_full_count_scalar_fiber_at (hc : ∀ j ∈ J, c j ≤ c' 
           (fullScalarFiberCoordinates (fullRestrictCounts hc p)).1) A ≠ 0 ∧
         ∀ a, eval ((Module.finBasis K _).equivFun a) A ≠ 0 →
           eval ((Module.finBasis K _).equivFun (fullCountScalarFiberLinear hc (a,p))) D ≠ 0 := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J c' O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro D p hp
   apply principal_open_freeze_at (fullCountScalarFiberLinear hc)

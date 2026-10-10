@@ -24,7 +24,7 @@ variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
 theorem prepared_outer_open_of_detected_scalar_witness
-    {I : Type*} [Fintype I] [DecidableEq I]
+    {I : Type*} [Fintype I]
     (hd : 3 ≤ d) (ho : d % 2 = 1)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d) (heven : ∀ j ∈ J, j % 2 = 0)
     (hmin : ∀ j ∈ J, 2 ≤ j) (idx : Fin r ≃ PreparedParameters.Label q J counts)
@@ -43,7 +43,7 @@ theorem prepared_outer_open_of_detected_scalar_witness
     (hC : Function.Injective (subspaceSymmetricMultiplication C))
     (hCQ : Disjoint (C * C) (familySpace Q * Forms K a (d - 2)))
     (hf : f ≤ Fintype.card I * (finrank K C / 2)) :
-    letI : Module.Finite K (FixedPureZeroScalarSpace (a+z) d q f u J counts O) :=
+    let : Module.Finite K (FixedPureZeroScalarSpace (a+z) d q f u J counts O) :=
       finite_fixedPureZeroScalarSpace hO
     ∃ D : MvPolynomial (Fin (finrank K (FixedPureZeroScalarSpace (a+z) d q f u J counts O))) K,
       (∃ p : FixedPureZeroScalarSpace (a+z) d q f u J counts O,
@@ -51,7 +51,7 @@ theorem prepared_outer_open_of_detected_scalar_witness
       ∀ (U : Fin u → Forms K h d) (p : FixedPureZeroScalarSpace (a+z) d q f u J counts O),
         eval ((Module.finBasis K _).equivFun p) D≠0 →
           PreparedOuterSeparation (by omega) ho hO hJ heven U p := by
-  letI : Module.Finite K (FixedPureZeroScalarSpace (a+z) d q f u J counts O) :=
+  let : Module.Finite K (FixedPureZeroScalarSpace (a+z) d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   let P := privatePowerBiform (a := a) (d := d) (fun i => e (w i)) ι
   obtain ⟨F,_,hexact,hsep⟩ := exists_shared_frame_quadratic_witness

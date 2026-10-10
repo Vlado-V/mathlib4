@@ -22,6 +22,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m d q f u b w : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientTopMap_weighted_zero (hdw : d ≠ w)
     (v : biformParitySpace K h m (2 * d) 1)
     (hv : v.val.IsWeightedHomogeneous (blockWeight h m) w) :

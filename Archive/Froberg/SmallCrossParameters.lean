@@ -25,7 +25,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem exists_cross_row_profile_parameter
+omit [Infinite K] [Fintype σ] in
+theorem exists_cross_row_profile_parameter [Finite σ]
     (R j : ℕ) (hj : j ≠ R - j)
     (honly : ∀ r : ProductRows.Row J R,ProductRows.Columns counts r → r.val.val=j)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)

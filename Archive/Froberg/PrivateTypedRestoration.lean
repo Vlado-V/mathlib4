@@ -26,9 +26,11 @@ def oddRestorationSpace (w : σ → ℕ) (d : ℕ) : Submodule K (MvPolynomial �
   homogeneousSubmodule σ K d⊓weightedParitySpace w 1
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-instance oddRestorationSpace_finite (w : σ → ℕ) (d : ℕ) :
+omit [Fintype σ] in
+instance oddRestorationSpace_finite [Finite σ] (w : σ → ℕ) (d : ℕ) :
     Module.Finite K (oddRestorationSpace (K := K) w d) := by
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let := Fintype.ofFinite σ
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   exact Submodule.finiteDimensional_of_le inf_le_left
 
@@ -67,6 +69,7 @@ def privateOddFamily (hd : 0 < d) (ho : d % 2 = 1)
   fun i => privateOddEmbed hd (P i)+pureOddEmbed ho (U i)
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem privateOddFamily_val (hd : 0 < d) (ho : d % 2 = 1)
     (P : Fin b → FullBiform K σ n 1 (d - 1))
     (U : Fin b → homogeneousSubmodule σ K d) (i : Fin b) :

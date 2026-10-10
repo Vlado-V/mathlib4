@@ -40,7 +40,7 @@ theorem strong_quadratic_diagonal_exists {h n m : ℕ}
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) C) ∧
       LinearIndependent K (pairProducts f) := by
   obtain ⟨O,hO,hOd,hOi⟩ := strong_quadratic_space_exists (K := K) h
-  letI : Module.Finite K O := Submodule.finiteDimensional_of_le hO
+  let : Module.Finite K O := Submodule.finiteDimensional_of_le hO
   obtain ⟨f,hf,hfi⟩ := exists_constrained_diagonal_biforms O C hOi hC T
     (by simpa only [hOd] using hm)
   exact ⟨f,fun i => biformImage_mono (inf_le_inf_right T.ker hO) le_rfl (hf i),hfi⟩
@@ -52,7 +52,7 @@ theorem strong_quadratic_linear_diagonal_exists {h n m : ℕ}
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) (Forms K n 1)) ∧
       LinearIndependent K (pairProducts f) := by
   obtain ⟨C,hC,hCd,hCi⟩ := linear_scalar_space_exists (K := K) n
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hC
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hC
   obtain ⟨f,hf,hfi⟩ := strong_quadratic_diagonal_exists C hCi T
     (by simpa only [hCd] using hm)
   exact ⟨f,fun i => biformImage_mono le_rfl hC (hf i),hfi⟩
@@ -65,7 +65,7 @@ theorem strong_quadratic_paired_diagonal_exists {h n m t : ℕ}
       (∀ i,f i∈biformImage (Forms K h 2⊓T.ker) C) ∧
       LinearIndependent K (pairProducts f) := by
   obtain ⟨C,hC,hCd,hCi,hprofile⟩ := paired_scalar_space_exists (K := K) S hS t
-  letI : Module.Finite K C := Submodule.finiteDimensional_of_le hC
+  let : Module.Finite K C := Submodule.finiteDimensional_of_le hC
   obtain ⟨f,hf,hfi⟩ := strong_quadratic_diagonal_exists C hCi T
     (by simpa only [hCd] using hm)
   exact ⟨C,f,hC,hprofile,hf,hfi⟩

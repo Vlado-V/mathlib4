@@ -76,7 +76,7 @@ theorem eventually_field_uniform_actual_cubic_extended_reduction_open :
     simpa only [hX] using hpv
   obtain ⟨ell,hell⟩ := exists_two_core_linear_forms (K := K) (by omega : 2≤v+v)
   let I := Label (q (v+v)) (allEvenIndices 3) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact finite_cubic_extended_reduction_open T ell hell
     (fun j _ hj => allEvenCount_off_two_small (Or.inl rfl) _ _ _ hj) hpv' ⟨_,hqv'⟩
 
@@ -136,7 +136,7 @@ theorem eventually_field_uniform_actual_quartic_extended_reduction_open :
     simpa only [hX] using hpv
   obtain ⟨ell,hell⟩ := exists_two_core_linear_forms (K := K) (by omega : 2≤v+v)
   let I := Label (q (v+v)) (allEvenIndices 4) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   have hbal : (balancedScalarHalf v).card≤(balancedScalarHalf v)ᶜ.card := by
     simp only [balancedScalarHalf_card,balancedScalarHalf_compl_card,le_refl]
   obtain ⟨D,⟨Q,hQ⟩,hgood⟩ := hn₀ (v+v) (by omega) K (balancedScalarHalf v) hbal

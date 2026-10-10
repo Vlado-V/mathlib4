@@ -59,6 +59,7 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
           (oddTargetBaseMap hd Q F hQ hF p).2) := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_odd_ambient_correction
     (hk : (oddAmbientHigherRelationMap hd Q F hQ hF G).ker ≤
       (oddAmbientBottomRelationMap hd Q F hQ hF G).ker) :

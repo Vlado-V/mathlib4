@@ -23,7 +23,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 800000 in -- Preserve the budget during this port.
-theorem exists_single_layer_profile_parameter (j : ℕ)
+omit [Infinite K] [Fintype σ] in
+theorem exists_single_layer_profile_parameter [Finite σ] (j : ℕ)
     (hz : ∀ k ∈ J, k ≠ j → counts k = 0)
     (f : Fin (counts j) → MvPolynomial (σ ⊕ Fin n) K)
     (hf : ∀ i, f i ∈ biformImage (O j) (Forms K n (d - j)))

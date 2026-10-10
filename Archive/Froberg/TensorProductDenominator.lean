@@ -67,11 +67,9 @@ theorem polynomialTensorSpace_product_killed {X : Type*} [AddCommGroup X] [Modul
   apply Submodule.mul_le.mpr
   rintro _ ⟨v,rfl⟩ _ ⟨w,rfl⟩
   change splitPolynomialDetector T Q (polynomialTensorMap A B v * polynomialTensorMap C D w) = 0
-  induction v using TensorProduct.induction_on with
-  | zero => simp
+  induction v using TensorProduct.inductionOn with
   | tmul a b =>
-    induction w using TensorProduct.induction_on with
-    | zero => simp
+    induction w using TensorProduct.inductionOn with
     | tmul c e =>
       rw [polynomialTensorMap_tmul,polynomialTensorMap_tmul,splitPolynomialDetector_product]
       exact hzero a b c e

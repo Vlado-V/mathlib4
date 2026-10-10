@@ -64,13 +64,13 @@ theorem eventually_field_uniform_middle_private_reduction {d : ℕ}
     eventually_gt_atTop (0 : ℕ)] with v hmv hfv hqv hv
   intro K _ _ X _ _ _ T hX hO hT t c H bo l hl ι L hOL A hA hprivate
   have hproj := hprojected K ⟨4,h4⟩ (by change (4 : ℕ)≠2; omega)
-  simp only [if_pos h4a] at hproj
+  simp only [ite_eq_left h4a] at hproj
   have hmv := hmv K X T hX hO hT
   have hfv := hfv K X T hX hT
   have hqv := hqv K X T hO
   let counts := allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)
   let I := Label (upperCount (v+v+z) d) (allEvenIndices d) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact private_small_reduction_open_of_core_witnesses (by omega) hodd hv
     (fun _ hj => (mem_allEvenIndices.mp hj).1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)

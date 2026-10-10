@@ -24,7 +24,7 @@ theorem even_tail_eq_finrank (hh : 0 < h) (he : d % 2 = 0) :
     intro ho
     have hp := Nat.odd_iff.mp ho
     omega
-  rw [tailGeneratorCount,if_neg hodd,finrank_forms K h d hh]
+  rw [tailGeneratorCount,ite_eq_right hodd,finrank_forms K h d hh]
 
 def countedRestorationSlot (hd : 3 ≤ d) (hh : 0 < h) (he : d % 2 = 0)
     (idx : Fin r ≃ Label q (allEvenIndices d)

@@ -27,6 +27,7 @@ def FirstVectorRowExact (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d
     (bilinearKoszulConstants (W := Fin 0 → K) Q g).range
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem firstVectorRow_constants (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hex : FirstVectorRowExact Q g)
     (x : Fin q → Rows K h m (d - 1)) (y : Fin f → Forms K m d)
@@ -43,6 +44,7 @@ theorem firstVectorRow_constants (Q : Fin q → Forms K m d) (g : Fin f → Rows
     fun j => (congrArg (fun z => z.1.2 j) hC).symm⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem firstVectorRowExact_of_quotient (Q : Fin q → Forms K m d) (g : Fin f → Rows K h m (d - 1))
     (hg : Function.Injective (BilinearImage.tupleMap (multiplication (d := d)) g))
     (hQ : Function.Injective (BilinearScalarFamily.multiplication
@@ -62,6 +64,7 @@ theorem firstVectorRowExact_of_quotient (Q : Fin q → Forms K m d) (g : Fin f �
       (0 : (Fin 0 → K) →ₗ[K] Rows K h m ((d-1)+d))) C
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem first_vector_row_open (p₀ : ScalarVectorParameters K h m d f q)
     (hex : FirstVectorRowExact p₀.2 p₀.1) :
     ∃ D : MvPolynomial (Fin (finrank K (ScalarVectorParameters K h m d f q))) K,

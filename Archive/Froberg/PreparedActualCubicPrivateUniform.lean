@@ -61,7 +61,7 @@ theorem eventually_actual_cubic_private_reduction_open_uniform :
   intro X _ _ _ T hX hO t c H bo l hl ι L hOL A hA hprivate
   let counts := allEvenCount 3 (2*w) (v+v+z) (e (v+v+z)+extra)
   let I := Label (upperCount (v+v+z) 3) (allEvenIndices 3) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   have hb : e (2*v+z)≤⌈countBeta 3*((2*w : ℕ):ℝ)^2*((2*v+z : ℕ):ℝ)⌉₊ := by
     have he' : (e (2*v+z) : ℝ)<countBeta 3*((2*w : ℕ):ℝ)^2*((2*v+z : ℕ):ℝ) := by
       simpa only [show 3-2=1 by omega,pow_one] using hev

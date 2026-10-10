@@ -24,6 +24,7 @@ variable {K V W : Type*} [Field K] [Infinite K]
 variable {n d r q j : ℕ} {C : ℝ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem thin_quotient_coefficient_open (mu : Forms K n d →ₗ[K] V →ₗ[K] W)
     (hthin : HasThinQuotientOpen mu q j C) :
     ∃ P : MvPolynomial (CoefficientIndex n d q) K,

@@ -42,6 +42,7 @@ def topGrowthTensorMap (hdp : 1 ≤ d)
     (rawTopTarget hdp).symm.toLinearMap
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem topGrowthTensorMap_tmul (hdp : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K))
     (x : Forms K h d) (y : Forms K m d) :

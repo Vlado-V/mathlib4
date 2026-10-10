@@ -18,14 +18,16 @@ namespace Froberg.PrivateColumns
 open MvPolynomial Quartic.FreeCoefficients
 variable {K : Type*} [Field K] [Infinite K] {a z s b c r : ℕ}
 
+omit [Infinite K] in
 theorem avoidsPrivatePowers_add (ι : Fin b ↪ Fin z)
     (f g : Fin c → Poly K (a + z))
     (hf : avoidsPrivatePowers (s := s) ι f)
     (hg : avoidsPrivatePowers (s := s) ι g) :
     avoidsPrivatePowers (s := s) ι (f+g) := by
   intro k δ i hi
-  simp only [Pi.add_apply,MvPolynomial.coeff_add,hf k δ i hi,hg k δ i hi,add_zero]
+  simp only [Pi.add_apply,AddMonoidAlgebra.coeff_add,hf k δ i hi,hg k δ i hi,add_zero]
 
+omit [Infinite K] in
 theorem avoidsPrivatePowers_sum {I : Type*} [Fintype I] (ι : Fin b ↪ Fin z)
     (f : I → Fin c → Poly K (a + z))
     (hf : ∀ i, avoidsPrivatePowers (s := s) ι (f i)) :

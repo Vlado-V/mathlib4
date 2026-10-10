@@ -23,24 +23,26 @@ def countLabelMap (hc : ∀ j ∈ J, c j ≤ c' j) : Label q J c → Label q J c
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 variable {n d : ℕ} {O : ℕ → Submodule K (MvPolynomial σ K)}
 
-def extendCounts (hc : ∀ j ∈ J, c j ≤ c' j) (p : Space n d q J c O) : Space n d q J c' O :=
+def extendCounts (_hc : ∀ j ∈ J, c j ≤ c' j) (p : Space n d q J c O) : Space n d q J c' O :=
   (Sum.elim (fun i => p.1 (Sum.inl i)) (fun a =>
     if hi : a.2.val<c a.1.val then p.1 (Sum.inr ⟨a.1,⟨a.2.val,hi⟩⟩) else 0),
     fun j i => if hi : i.val<c j.val then p.2 j ⟨i.val,hi⟩ else 0)
 
+omit [Infinite K] [Fintype σ] in
 theorem extendCounts_generator_old (hc : ∀ j ∈ J, c j ≤ c' j) (p : Space n d q J c O)
     (i : Label q J c) : generator (extendCounts hc p) (countLabelMap hc i)=generator p i := by
   cases i with
   | inl i => rfl
   | inr a =>
     rcases a with ⟨j,i⟩
-    simp only [generator,scalar,high,extendCounts,countLabelMap,Sum.elim_inr,Fin.coe_castLE,dif_pos
-      i.isLt]
+    simp only [generator,scalar,high,extendCounts,countLabelMap,Sum.elim_inr,
+      Fin.val_castLE,dite_eq_left i.isLt]
 
+omit [Infinite K] [Fintype σ] in
 theorem extendCounts_generator_new (hc : ∀ j ∈ J, c j ≤ c' j) (p : Space n d q J c O)
     (j : J) (i : Fin (c' j.val)) (hi : c j.val ≤ i.val) :
     generator (extendCounts hc p) (Sum.inr ⟨j,i⟩)=0 := by
-  simp only [generator,scalar,high,extendCounts,Sum.elim_inr,dif_neg (not_lt.mpr hi),
+  simp only [generator,scalar,high,extendCounts,Sum.elim_inr,dite_eq_right (not_lt.mpr hi),
     Submodule.coe_zero,map_zero,zero_add]
 
 theorem allEvenCount_le_append {d : ℕ} (hd : 3 ≤ d) (h n e u : ℕ) (j : ℕ)
@@ -53,6 +55,7 @@ def extendQuadratic {d : ℕ} (hd : 3 ≤ d) (h n e u : ℕ)
     Space n d q (allEvenIndices d) (allEvenCount d h n (e+u)) O :=
   extendCounts (allEvenCount_le_append hd h n e u) p
 
+omit [Infinite K] [Fintype σ] in
 theorem extendQuadratic_tail_zero {d : ℕ} (hd : 3 ≤ d) (h n e u : ℕ)
     (p : Space n d q (allEvenIndices d) (allEvenCount d h n e) O) (i : Fin u) :
     generator (extendQuadratic hd h n e u p) (quadraticTailSlot hd q h n e u i)=0 := by

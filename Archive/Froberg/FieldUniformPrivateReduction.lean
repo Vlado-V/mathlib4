@@ -64,7 +64,7 @@ theorem eventually_field_uniform_private_reduction {d : ℕ} (hd : 9 ≤ d) (hod
   obtain ⟨hq,hhigh,hproduct⟩ := hv K Y T hY hO hT
   let counts := allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)
   let I := Label (upperCount (v+v+z) d) (allEvenIndices d) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact private_finite_reduction_open (by omega) hodd hvpos
     (fun _ hj => (mem_allEvenIndices.mp hj).1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)

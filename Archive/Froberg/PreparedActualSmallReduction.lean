@@ -78,7 +78,7 @@ theorem eventually_actual_cubic_reduction_open_shift :
     simpa only [two_mul,hX] using hb
   filter_upwards [hq,hp] with v hqv hpv
   let I := Label (q (v+v)) (allEvenIndices 3) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact finite_cubic_reduction_open T
     (fun j _ hj => allEvenCount_off_two_small (Or.inl rfl) _ _ _ hj) hpv ⟨_,hqv⟩
 
@@ -131,7 +131,7 @@ theorem eventually_actual_quartic_reduction_open_shift :
     (d := 4) (R := 4) (by omega) (by omega) (Or.inl rfl) le_rfl r hcount
   filter_upwards [hq,hp,eventually_ge_atTop n₀] with v hqv hpv hv
   let I := Label (q (v+v)) (allEvenIndices 4) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   have hbal : (balancedScalarHalf v).card≤(balancedScalarHalf v)ᶜ.card := by
     simp only [balancedScalarHalf_card,balancedScalarHalf_compl_card,le_refl]
   obtain ⟨D,⟨Q,hQ⟩,hgood⟩ := hn₀ (v+v) (by omega) (balancedScalarHalf v) hbal

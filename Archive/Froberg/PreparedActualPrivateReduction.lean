@@ -62,7 +62,7 @@ theorem eventually_actual_private_reduction_open {d : ℕ} (hd : 9 ≤ d) (hodd 
   intro t c H bo l hl ι L hOL A hA hprivate
   let counts := allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)
   let I := Label (upperCount (v+v+z) d) (allEvenIndices d) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact private_finite_reduction_open (by omega) hodd hvpos
     (fun _ hj => (mem_allEvenIndices.mp hj).1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)

@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 def backgroundEvenIndex (i : Fin q) : Fin (Fintype.card (BackgroundLabel q f u)) :=
   (Fintype.equivFin (BackgroundLabel q f u)) (Sum.inl i)
 
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_even
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

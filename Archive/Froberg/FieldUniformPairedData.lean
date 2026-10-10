@@ -21,7 +21,7 @@ open Froberg Module MvPolynomial Filter
 universe u
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem eventually_field_uniform_even_data_from_paired {d : ℕ} (hd : 3 ≤ d)
+theorem eventually_field_uniform_even_data_from_paired {d : ℕ} (_hd : 3 ≤ d)
     (hp : ∀ᶠ w : ℕ in atTop, 4 ∣ 2 * w → ∀ (extra : ℕ) (e : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop, (e n : ℝ) < countBeta d * (2 * (w : ℝ)) ^ 2 * (n : ℝ) ^ (d - 2)) →
       ∀ᶠ n : ℕ in atTop,
@@ -76,7 +76,7 @@ theorem eventually_field_uniform_even_data_from_paired {d : ℕ} (hd : 3 ≤ d)
     intro R hR
     simp only [T₀,hT R hR,LinearMap.zero_comp]
   obtain ⟨hlead,D,hD,hgood⟩ := hn K X T₀ hX₀ hO₀ hT₀
-  letI : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
+  let : Module.Finite K (Space n d (upperCount n d) (allEvenIndices d)
       (allEvenCount d (2*w) n (e n+extra))
       (fun j => Forms K h j⊓(T j).ker)) := finite_space (fun _ _ => inf_le_left)
   have H := even_positive_reduction_open_constraint_rename T f

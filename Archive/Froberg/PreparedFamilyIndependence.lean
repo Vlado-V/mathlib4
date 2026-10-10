@@ -28,7 +28,7 @@ theorem prepared_generator_component_zero
       PreparedParameters.scalar p i := by
   have hs : (PreparedParameters.scalar p i).IsWeightedHomogeneous (blockWeight h m) 0 :=
     PreparedParameters.scalar_weight p i
-  rw [PreparedParameters.generator,map_add,weightedHomogeneousComponent_of_mem hs,if_pos rfl]
+  rw [PreparedParameters.generator,map_add,weightedHomogeneousComponent_of_mem hs,ite_eq_left rfl]
   suffices weightedHomogeneousComponent (blockWeight h m) 0 (PreparedParameters.high p i)=0 by
     rw [this,add_zero]
   cases i with
@@ -38,9 +38,10 @@ theorem prepared_generator_component_zero
       m) i.1.val :=
       PreparedParameters.high_weight hO p (Sum.inr i)
     rw [weightedHomogeneousComponent_of_mem hh]
-    exact if_neg (by have := hpos _ i.1.property; change ¬0=i.1.val; omega)
+    exact ite_eq_right (by have := hpos _ i.1.property; change ¬0=i.1.val; omega)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem combinedLinear_weight (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f)
     (k : Fin f ⊕ Fin u) : (combinedLinear P F k).IsWeightedHomogeneous (blockWeight h m) 1 := by
   cases k with
@@ -48,6 +49,7 @@ theorem combinedLinear_weight (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K
   | inr i => exact biformImage_output_weight _ _ le_rfl (P i).property
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem combinedPure_weight (U : Fin u → Forms K h d) (k : Fin f ⊕ Fin u) :
     (combinedPure U k).IsWeightedHomogeneous (blockWeight h m) d := by
   cases k with
@@ -58,23 +60,25 @@ theorem combinedPure_weight (U : Fin u → Forms K h d) (k : Fin f ⊕ Fin u) :
       (fun _ => 1) (blockWeight h m) (fun _ => rfl) (U i).property
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddGenerator_component_zero (hd : 0 < d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     weightedHomogeneousComponent (blockWeight h m) 0 (oddGenerator U P F k)=0 := by
   change weightedHomogeneousComponent (blockWeight h m) 0 (combinedLinear P F k+combinedPure U k)=0
   rw [map_add,weightedHomogeneousComponent_of_mem (combinedLinear_weight P F k),
-    weightedHomogeneousComponent_of_mem (combinedPure_weight U k),if_neg (by omega),
-    if_neg (by omega),zero_add]
+    weightedHomogeneousComponent_of_mem (combinedPure_weight U k),ite_eq_right (by omega),
+    ite_eq_right (by omega),zero_add]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddGenerator_component_one (hd : 1 < d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     weightedHomogeneousComponent (blockWeight h m) 1 (oddGenerator U P F
       k)=combinedLinear P F k := by
   change weightedHomogeneousComponent (blockWeight h m) 1 (combinedLinear P F k+combinedPure U k)=_
   rw [map_add,weightedHomogeneousComponent_of_mem (combinedLinear_weight P F k),
-    weightedHomogeneousComponent_of_mem (combinedPure_weight U k),if_pos rfl,
-    if_neg (by omega),add_zero]
+    weightedHomogeneousComponent_of_mem (combinedPure_weight U k),ite_eq_left rfl,
+    ite_eq_right (by omega),add_zero]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 theorem prepared_family_independent (hd : 1 < d)

@@ -37,6 +37,7 @@ instance oddHigherBlockModule (hd : 1 ≤ d)
     Module K (OddHigherBlock K h m d hd r) := TensorProduct.leftModule
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddHigherRelationMap_mixed_component_zero (hd : Odd d) (hd3 : 3 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

@@ -24,7 +24,8 @@ set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem allEvenCount_off_two_four_small {d : ℕ} (hd8 : d ≤ 8)
     (h n e : ℕ) {j : ℕ} (hj2 : j ≠ 2) (hj4 : j ≠ 4) : allEvenCount d h n e j=0 := by
   apply allEvenCount_inactive
-  simp only [activeEvenIndices,if_pos hd8,Finset.mem_filter,Finset.mem_insert,Finset.mem_singleton]
+  simp only [activeEvenIndices,ite_eq_left hd8,Finset.mem_filter,
+    Finset.mem_insert,Finset.mem_singleton]
   tauto
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
@@ -36,10 +37,10 @@ theorem eventually_middle_quartic_diagonal_capacity_shift {d : ℕ} (hd : 5 ≤ 
   · subst d
     filter_upwards [eventually_quintic_quartic_diagonal_capacity_shift] with h hh
     intro z
-    simpa only [if_pos rfl,ite_true,Nat.add_zero] using hh z 0
+    simpa only [ite_eq_left rfl,ite_true,Nat.add_zero] using hh z 0
   · filter_upwards [eventually_small_quartic_diagonal_capacity_shift (by omega) hd8] with h hh
     intro z
-    simpa only [if_neg hd5,Nat.add_zero] using hh z 0
+    simpa only [ite_eq_right hd5,Nat.add_zero] using hh z 0
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
 theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
@@ -80,14 +81,15 @@ theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
   have h4a : 4∈activeEvenIndices d := by
     simp [activeEvenIndices,hd8,show 4<d by omega]
   have hcount4 (n : ℕ) : counts n 4=higherGeneratorCount d (2*w) (n+z) 4 := by
-    simp only [counts,allEvenCount_active _ _ _ h4a,targetLayerCount,if_neg (by decide : (4 : ℕ)≠2)]
+    simp only [counts,allEvenCount_active _ _ _ h4a,targetLayerCount,
+      ite_eq_right (by decide : (4 : ℕ)≠2)]
   have hc₂ : ∀ᶠ n : ℕ in atTop,counts n 2≤
       ⌈countBeta d*((2*w : ℕ) : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊+extra := by
     filter_upwards [(tendsto_add_atTop_nat z).eventually hecast] with n hn
     have hceil : e (n+z)≤⌈countBeta d*((2*w : ℕ) : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊ := by
       exact_mod_cast hn.le.trans (Nat.le_ceil _)
     simpa only [counts,allEvenCount_active _ _ _ (two_mem_activeEvenIndices (d := d) (by omega)),
-      targetLayerCount,if_pos rfl,ite_true] using Nat.add_le_add_right hceil extra
+      targetLayerCount,ite_eq_left rfl,ite_true] using Nat.add_le_add_right hceil extra
   have hq : ∀ᶠ v : ℕ in atTop,QuadraticRowCapacity (v+v) d (q (v+v))
       (fullSparseBlockCount (countBeta d) 2 (d-2) (2*w)) (allEvenIndices d)
       (counts (v+v)) (constrainedOutputs T) := by
@@ -117,7 +119,7 @@ theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
     tendsto_twice_nat.eventually hc₂,hscalar 6 (Or.inl rfl),hscalar 8 (Or.inr rfl),
     eventually_gt_atTop (0 : ℕ)] with v hqv hfv hc2v hc4v hdv hcv hs6 hs8 hv
   let I := Label (q (v+v)) (allEvenIndices d) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   apply finite_middle_small_witnesses (a := 2*(2*w)/5) (b := 2*w-2*(2*w)/5)
     hd hd8 (by omega) (by simpa only [two_mul] using hfour)
     (by omega) (by omega) hv (by omega) T hT
@@ -125,12 +127,12 @@ theorem eventually_actual_middle_small_witnesses_shift_uniform {d : ℕ}
     ⟨_,hqv⟩ ⟨_,hfv⟩
   · simpa only [counts,two_mul,hX,show (v+v)/2=v by omega] using hcv.trans hc2v
   · simpa only [allEvenCount_active _ _ _ h4a,targetLayerCount,
-      if_neg (by decide : (4 : ℕ)≠2),Nat.add_zero,two_mul,show (v+v)/2=v by omega] using hc4v
+      ite_eq_right (by decide : (4 : ℕ)≠2),Nat.add_zero,two_mul,show (v+v)/2=v by omega] using hc4v
   · by_cases hd5 : d=5
-    · simpa only [if_pos hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
-        if_neg (by decide : (4 : ℕ)≠2),two_mul] using hdv
-    · simpa only [if_neg hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
-        if_neg (by decide : (4 : ℕ)≠2),two_mul,show (v+v)/2=v by omega] using hdv
+    · simpa only [ite_eq_left hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
+        ite_eq_right (by decide : (4 : ℕ)≠2),two_mul] using hdv
+    · simpa only [ite_eq_right hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
+        ite_eq_right (by decide : (4 : ℕ)≠2),two_mul,show (v+v)/2=v by omega] using hdv
   · exact fun h => hs6 h (d-2)
   · exact fun h => hs8 h (2*((d-4)/2))
 
@@ -156,7 +158,7 @@ theorem eventually_actual_middle_small_reduction_open_shift_uniform {d : ℕ}
   filter_upwards [hw hfour X T hX hO hT z extra e he] with v hv
   let I := Label (upperCount (v+v+z) d) (allEvenIndices d)
     (allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact even_reduction_open_of_witnesses (fun _ _ => inf_le_left)
     (fun _ hj => (mem_allEvenIndices.mp hj).1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)

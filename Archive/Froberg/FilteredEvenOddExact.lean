@@ -44,7 +44,7 @@ theorem filtered_even_odd_exact (hd : 3 ≤ d)
     · exact IsWeightedHomogeneous.mem_parity (ha i).2 rfl
   have hEzero (i) : weightedHomogeneousComponent (blockWeight h m) 0 (E i)=0 := by
     rw [show E i=(A i).val-a i from rfl,map_sub,hzero,
-      weightedHomogeneousComponent_of_mem (ha i).2,if_pos rfl,sub_self]
+      weightedHomogeneousComponent_of_mem (ha i).2,ite_eq_left rfl,sub_self]
   have hO (k) : (O k).IsHomogeneous d ∧ (O k).IsWeightedHomogeneous (blockWeight h m) 1 := by
     refine ⟨(linearOddForm (by omega : 1≤d) (g k)).property.1,?_⟩
     exact biformImage_output_weight (Forms K h 1) (Forms K m (d-1)) le_rfl

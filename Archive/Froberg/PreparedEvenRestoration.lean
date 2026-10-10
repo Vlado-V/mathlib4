@@ -24,11 +24,13 @@ variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 def outputWeight : σ ⊕ Fin n → ℕ :=
   Sum.elim (fun _ => 1) (fun _ => 0)
 
+omit [Infinite K] [Fintype σ] in
 theorem scalar_weight (p : Space n d q J counts O) (i : Label q J counts) :
     (scalar p i).IsWeightedHomogeneous outputWeight 0 :=
   rename_weightedHomogeneous (⟨Sum.inr,Sum.inr_injective⟩ : Fin n ↪ σ ⊕ Fin n)
     (fun _ => 0) outputWeight (fun _ => rfl) (weightedHomogeneous_zero_weight (p.1 i).val)
 
+omit [Fintype σ] in
 theorem generator_even (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (heven : ∀ j ∈ J, j % 2 = 0) (p : Space n d q J counts O) (i : Label q J counts) :
     generator p i∈weightedParitySpace outputWeight 0 := by
@@ -127,7 +129,7 @@ theorem restore_even_prepared_basis (hd : d % 2 = 0)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (e i))),
           c-coefficientBoundary g M=z.val := by
   classical
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   apply PolynomialRestoration.restoration_with_pure_basis
     (B := retainedScalarCoefficients (K := K) (outputWeight (σ := σ) (n := n)) d

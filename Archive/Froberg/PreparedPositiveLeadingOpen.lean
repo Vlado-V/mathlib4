@@ -52,7 +52,7 @@ theorem positive_leading_principal_open
         eval ((Module.finBasis K _).equivFun p) D≠0 →
         (∀ j,LinearIndependent K (p.2.1.2 j)) ∧ LinearIndependent K p.1 := by
   classical
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   let coord := (Module.finBasis K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J
     counts O)).equivFun

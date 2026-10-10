@@ -20,6 +20,7 @@ open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {σ : Type*} {R H L : ℕ}
 
 set_option maxHeartbeats 600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 lemma outputCombination_basis (O : Submodule K (MvPolynomial σ K))
     (b : Basis (Fin H) K O) (x : O) :
     outputCombination (fun i => (b i).val) (b.equivFun x)=x.val := by

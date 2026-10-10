@@ -51,11 +51,13 @@ def scalarFiberCoordinates : Space m d q J counts O ≃ₗ[K]
   map_smul' c p := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem scalarFiberCoordinates_symm_base
     (a : PositiveScalars (K := K) m d J counts) (p : ScalarFiberRest m d q J counts O) (i : Fin q) :
     (scalarFiberCoordinates.symm (a,p)).1 (Sum.inl i)=p.1 i := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem scalarFiberCoordinates_symm_positive
     (a : PositiveScalars (K := K) m d J counts) (p : ScalarFiberRest m d q J counts O)
     (i : Fin (Fintype.card (ProductRows.LayerLabel J counts))) :
@@ -63,6 +65,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
   simp [scalarFiberCoordinates]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem scalarFiberCoordinates_symm_high
     (a : PositiveScalars (K := K) m d J counts) (p : ScalarFiberRest m d q J counts O) :
     (scalarFiberCoordinates.symm (a,p)).2=p.2 := rfl
@@ -94,9 +97,10 @@ def fullScalarFiberCoordinates :
   map_smul' c p := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem finite_fullScalarFiberRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     Module.Finite K (FullScalarFiberRest m d q f u J counts O) := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   let pr : FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O →ₗ[K]
       FullScalarFiberRest m d q f u J counts O :=
@@ -108,6 +112,7 @@ theorem finite_fullScalarFiberRest (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
   rw [LinearEquiv.apply_symm_apply]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem principal_open_positive_scalar_fiber (hO : ∀ j ∈ J, O j ≤ Forms K h j) :
     letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
       FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
@@ -122,7 +127,7 @@ theorem principal_open_positive_scalar_fiber (hO : ∀ j ∈ J, O j ≤ Forms K 
           ∀ a,eval ((Module.finBasis K _).equivFun a) E≠0 →
             eval ((Module.finBasis K _).equivFun (fullScalarFiberCoordinates.symm
               (a,rest))) D≠0 := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   intro D hD
   exact principal_open_freeze_parameters fullScalarFiberCoordinates.symm.toLinearMap

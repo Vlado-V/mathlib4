@@ -22,6 +22,7 @@ open Filter Module Quartic
 variable {K : Type} [Field K] [Infinite K]
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_indexed_submodule_basis {V : Type*} [AddCommGroup V] [Module K V]
     [Module.Finite K V] (W : Submodule K V) {u : ℕ} (hu : finrank K W = u) :
     ∃ v : Fin u → V,LinearIndependent K v ∧ Submodule.span K (Set.range v)=W := by
@@ -33,6 +34,7 @@ theorem exists_indexed_submodule_basis {V : Type*} [AddCommGroup V] [Module K V]
     using hs
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem formDegreeEquiv_cutoff {h a b : ℕ} (hab : a = b)
     (W : Submodule K (Forms K h a))
     (hW : BilinearImage.image (gradedMultiplication (K := K) (n := h)

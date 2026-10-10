@@ -27,9 +27,11 @@ def targetPostcompose (mu : F →ₗ[K] V →ₗ[K] W) (p : W →ₗ[K] W') :
   map_add' f g := by ext v; simp
   map_smul' c f := by ext v; simp
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 @[simp] lemma targetPostcompose_apply (mu : F →ₗ[K] V →ₗ[K] W)
     (p : W →ₗ[K] W') (f : F) (v : V) : targetPostcompose mu p f v=p (mu f v) := rfl
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 lemma relation_targetPostcompose (mu : F →ₗ[K] V →ₗ[K] W)
     (p : W →ₗ[K] W') (ell : W' →ₗ[K] K) :
     relation (targetPostcompose mu p) ell=relation mu (ell.comp p) := by
@@ -43,16 +45,19 @@ def scalarQuotientBilinear (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F) :
     F →ₗ[K] V →ₗ[K] ScalarQuotient mu Q :=
   targetPostcompose mu (multiplication mu Q).range.mkQ
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 lemma scalar_product_mem_range (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
     (i : Fin q) (v : V) : mu (Q i) v ∈ (multiplication mu Q).range := by
   classical
   refine ⟨Pi.single i v,?_⟩
   simp [multiplication_apply,Pi.single_apply,apply_ite]
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 lemma scalarQuotient_product_zero (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
     (i : Fin q) (v : V) : scalarQuotientBilinear mu Q (Q i) v=0 := by
   exact (Submodule.Quotient.mk_eq_zero _).mpr (scalar_product_mem_range mu Q i v)
 
+omit [FiniteDimensional K F] [FiniteDimensional K V] [FiniteDimensional K W] in
 theorem transport_scalar_quotient_slices (mu : F →ₗ[K] V →ₗ[K] W) (Q : Fin q → F)
     (s : ℕ → ℕ) (Z : (r : Fin (finrank K V + 1)) → Fin (s r.val) → W)
     (hZ : ∀ r : Fin (finrank K V+1),∀ ell : W →ₗ[K] K,

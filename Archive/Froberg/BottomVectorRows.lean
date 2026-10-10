@@ -39,6 +39,7 @@ def bottomLinearCoefficientEquiv (hd : 1 ≤ d) :
   (scalarBiformEquiv (h := h)).trans (biformDegreeTransport rfl (by omega))
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem sumBiformMap_scalarBiform (p : Forms K m d) :
     sumBiformMap (scalarBiformEquiv (h := h) p)=rename Sum.inr p.val := by
   rw [scalarBiformEquiv_apply,sumBiformMap_tmul]

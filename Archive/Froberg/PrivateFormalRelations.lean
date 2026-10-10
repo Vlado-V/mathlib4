@@ -33,6 +33,7 @@ def splitDiagonalMatrix (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) 
   | _,_ => 0
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem coefficientBoundary_split_left (q : Fin (r + b) → V)
     (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (i : Fin r) :
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inl i))=
@@ -45,6 +46,7 @@ theorem coefficientBoundary_split_left (q : Fin (r + b) → V)
   simp [Fintype.sum_sum_type,splitDiagonalMatrix]
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem coefficientBoundary_split_right (q : Fin (r + b) → V)
     (M : Fin r → Fin r → K) (C : Fin b → Fin b → K) (i : Fin b) :
     coefficientBoundary q (splitDiagonalMatrix M C) (finSumFinEquiv (Sum.inr i))=
@@ -134,13 +136,16 @@ theorem private_split_supported_relations (g : Fin r → evenRestorationSpace (K
       (c.val (idx (Sum.inl i))).property.rename_isHomogeneous,by
         apply (mem_weightedParitySpace_iff _ _ _).mpr
         apply (parity_homogeneous_iff _ _ 0 (by decide)).mp
-        convert hpar (Sum.inl i) using 1 <;> norm_num [biformSplitParity] <;> decide⟩
+        convert hpar (Sum.inl i) using 1
+        norm_num [biformSplitParity]⟩
   let cO : Fin b → oddRestorationSpace (K := K) (blockWeight h m) d := fun i =>
     ⟨rename finSumFinEquiv.symm (c.val (idx (Sum.inr i))).val,
       (c.val (idx (Sum.inr i))).property.rename_isHomogeneous,by
         apply (mem_weightedParitySpace_iff _ _ _).mpr
         apply (parity_homogeneous_iff _ _ 1 (by decide)).mp
-        convert hpar (Sum.inr i) using 1 <;> norm_num [biformSplitParity] <;> decide⟩
+        convert hpar (Sum.inr i) using 1
+        norm_num [biformSplitParity]
+        decide⟩
   have hsum : rename finSumFinEquiv.symm (endpointMultiplication (privateSplitEndpoint g p)
     c.val).val=
       (∑ i,(g i).val*(cE i).val)+(∑ j,(p j).val*(cO j).val) := by

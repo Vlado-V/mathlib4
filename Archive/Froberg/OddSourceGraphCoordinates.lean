@@ -53,6 +53,7 @@ def oddSourceBaseMap (hd : 1 ≤ d)
     (Submodule.span K (Set.range (fun i => oddBiformEmbedding (t := 1) hd (by decide) (F i)))).mkQ
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddSourceBaseMap_apply (hd : 1 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) (p : biformParitySpace K h m d 1) :
     oddSourceBaseMap hd F p=
@@ -60,12 +61,14 @@ set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
         (oddSplitCoordinates hd p).2) := rfl
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddSourceBaseMap_surjective (hd : 1 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     Function.Surjective (oddSourceBaseMap hd F) :=
   (oddSourceBaseEquiv hd F).surjective.comp (Submodule.mkQ_surjective _)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddSourceBaseMap_kernel (hd : 1 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1)) :
     (oddSourceBaseMap hd F).ker=Submodule.span K
@@ -98,6 +101,7 @@ def oddHigherRelationMap (hd : 1 ≤ d)
   (LinearMap.snd K _ _).comp (oddSourceRelationMap hd F G)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddSourceRelationMap_prod (hd : 1 ≤ d)
     (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (G : Fin u → biformParitySpace K h m d 1) :

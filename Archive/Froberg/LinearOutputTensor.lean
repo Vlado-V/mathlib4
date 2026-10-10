@@ -25,6 +25,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m s d : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem linearCutMap_injective : Function.Injective (linearCutMap (K := K) (n := h)) := by
   classical
   intro x y he

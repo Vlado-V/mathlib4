@@ -20,6 +20,7 @@ open MvPolynomial
 variable {K I J : Type*} [Field K] [Fintype I] [Fintype J]
 variable {n q s d : ℕ}
 
+omit [Fintype J] in
 /-- Compare two independent linear lifts to the endpoint. Only the actual
 constant-column part of endpoint exactness is needed. -/
 theorem lower_mixed_row_zero (hs : 1 ≤ s) (hd : 1 ≤ d)
@@ -72,6 +73,7 @@ theorem lower_mixed_row_zero (hs : 1 ≤ s) (hd : 1 ≤ d)
   funext i
   exact congrArg Subtype.val (congrFun hp' i)
 
+omit [Fintype J] in
 /-- Vanishing at a fixed lower row implies vanishing in every still lower
 row by multiplication with one nonzero linear form. -/
 theorem mixed_row_lower_zero {A B a b : ℕ}

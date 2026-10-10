@@ -63,15 +63,18 @@ def zeroLayerParameters (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
   (fun i => p.1 ((zeroLabelEquiv hJ hc hz).symm i),
     fun j i => if hj : j.val∈J then p.2 ⟨j.val,hj⟩ (Fin.cast (hc _ hj).symm i) else 0)
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem zeroLayerParameters_scalar (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
     (hz : ∀ j ∈ J', j ∉ J → c' j = 0) (p : Space n d q J c O) (i : Label q J c) :
     (zeroLayerParameters hJ hc hz p).1 (zeroLabelEquiv hJ hc hz i)=p.1 i := by
   change p.1 ((zeroLabelEquiv hJ hc hz).symm (zeroLabelEquiv hJ hc hz i))=p.1 i
   rw [Equiv.symm_apply_apply]
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem zeroLayerParameters_generator (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
     (hz : ∀ j ∈ J', j ∉ J → c' j = 0) (p : Space n d q J c O) (i : Label q J c) :
     generator (zeroLayerParameters hJ hc hz p) (zeroLabelEquiv hJ hc hz i)=generator p i := by
+  classical
   unfold generator scalar
   rw [zeroLayerParameters_scalar]
   congr 1
@@ -79,7 +82,7 @@ def zeroLayerParameters (hJ : J ⊆ J') (hc : ∀ j ∈ J, c j = c' j)
   · rfl
   · change ((zeroLayerParameters hJ hc hz p).2
       ⟨j.val,hJ j.property⟩ (Fin.cast (hc _ j.property) i)).val=(p.2 j i).val
-    simp only [zeroLayerParameters,dif_pos j.property]
+    simp only [zeroLayerParameters,dite_eq_left j.property]
     have hcast : Fin.cast (hc _ j.property).symm (Fin.cast (hc _ j.property) i)=i := Fin.ext rfl
     rw [hcast]
 

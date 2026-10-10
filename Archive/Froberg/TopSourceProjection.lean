@@ -27,6 +27,7 @@ def topSourceMap (hdp : 1 ≤ d)
   R.comp (topGrowthDegree hdp h).symm.toLinearMap
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem topSourceMap_kernel (hdp : 1 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (U : Fin u → Forms K h d)
     (hker : R.ker = (Submodule.span K (Set.range U)).map (topGrowthDegree hdp h).symm.toLinearMap) :

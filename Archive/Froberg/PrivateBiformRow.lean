@@ -20,6 +20,7 @@ open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} [Fintype σ] {a z s b h c m q r t g R : ℕ}
 
+omit [Infinite K] [Fintype σ] in
 lemma polynomialVector_core_extension (o : Fin c → MvPolynomial σ K)
     (p : Fin c → Poly K a) :
     rename (Sum.map id (Fin.castAdd z)) (polynomialVector o p)=
@@ -27,7 +28,8 @@ lemma polynomialVector_core_extension (o : Fin c → MvPolynomial σ K)
   simp only [polynomialVector_apply,map_sum,map_mul,rename_rename]
   rfl
 
-theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
+omit [Fintype σ] in
+theorem private_biform_row_zero [Finite σ] (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
     (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
@@ -50,6 +52,8 @@ theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
       (∑ i,(rename Sum.inl (w i).val*rename Sum.inr (monomial (privateExponent a s ι i) (1:K)))*u
         i)=0) :
     u=0 := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   have hx' (i : Fin q) : x i∈(polynomialFormVector (fun k => (bo k).val) t).range := by
     rw [polynomialFormVector_range_basis]
     exact hx i
@@ -93,13 +97,14 @@ theorem private_biform_row_zero (hs : 2 ≤ s) (hr : r < s) (ht : t < s)
       rw [hres]
       have hup' (i) : polynomialVector (fun k => (bi k).val) (fun k => (up i k).val)=u i := hup i
       simp_rw [hup']
-      convert hrel using 1 <;> abel)
+      convert hrel using 1; abel)
   funext i
   rw [←hup i,hz]
   exact map_zero _
 
+omit [Fintype σ] in
 /-- A core-only term cannot cancel a private-power row below its endpoint. -/
-theorem private_biform_core_zero (hs : 2 ≤ s) (hr : r < s)
+theorem private_biform_core_zero [Finite σ] (hs : 2 ≤ s) (hr : r < s)
     (bi : Basis (Fin h) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin c) K (homogeneousSubmodule σ K (R + 1)))
     (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
@@ -111,6 +116,8 @@ theorem private_biform_core_zero (hs : 2 ≤ s) (hr : r < s)
     (hrel : rename (Sum.map id (Fin.castAdd z)) C +
       (∑ i, (rename Sum.inl (w i).val * rename Sum.inr
         (monomial (privateExponent a s ι i) (1 : K))) * u i) = 0) : u=0 := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   apply private_biform_row_zero (m := 0) (q := 0) (t := 0) hs hr (by omega)
     bi bo w hw ι Fin.elim0 Fin.elim0
     (fun _ _ _ p _ => Subsingleton.elim p 0) Fin.elim0 Fin.elim0

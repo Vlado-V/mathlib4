@@ -95,7 +95,7 @@ theorem eventually_small_quartic_diagonal_capacity_shift {d : ℕ} (hd : 6 ≤ d
   have hA := natural_monomial_div_limit 1 (by omega : 0<256) (by omega : 0<4)
   have hB := paired_monomial_capacity_limit (by omega : 0<d-4)
   have hc := small_fourth_symmetric_capacity (by omega : 5≤d) hd8
-  rw [if_neg (by omega : d≠5)] at hc
+  rw [ite_eq_right (by omega : d≠5)] at hc
   have hgap : smallGamma d < (1/256 : ℝ)*(1/(2^(d-4+1)*((d-4).factorial : ℝ))) := by
     convert hc using 1
     rw [pow_succ]

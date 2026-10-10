@@ -20,6 +20,7 @@ open Module MvPolynomial PrivateColumns AttachedMultiplication
 variable {K : Type} [Field K] [Infinite K]
 variable {σ : Type*} {a z s b h c t : ℕ}
 
+omit [Infinite K] in
 /-- Exact transport of every private column, with the same coefficient tuple
 and private variable as in the coordinate separation theorem. -/
 theorem private_output_transport
@@ -48,6 +49,7 @@ theorem private_output_transport
   intro j _
   ring
 
+omit [Infinite K] in
 /-- The output map is injective whenever multiplication by the chosen
 nonzero output form is injective and the lower output basis is independent. -/
 theorem private_output_map_injective
@@ -77,6 +79,7 @@ theorem private_output_map_injective
   funext i
   exact Fintype.linearIndependent_iff.mp hu v hz i
 
+omit [Infinite K] in
 /-- Core polynomial matrices commute with faithful output transport even
 after adjoining private variables. -/
 theorem extended_matrix_output_transport {m : ℕ}

@@ -24,7 +24,8 @@ variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem private_top_coefficient_separation
+omit [Infinite K] [Fintype σ] in
+theorem private_top_coefficient_separation [Finite σ]
     (hJ : ∀ j ∈ J, j ≤ d) (hpos : ∀ j ∈ J, 0 < j)
     (p : Space n d q J counts O) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (htop : Function.Injective (privateTopRow p P)) :
@@ -32,6 +33,7 @@ theorem private_top_coefficient_separation
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
       (coefficientComponentSpace (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) d)
       (scalar p) (high p) P degree (d+1) := by
+  let : Fintype σ := Fintype.ofFinite σ
   classical
   intro x f B u hx hf hu hB hrel
   have hdeg (i : Label q J counts) : degree i≤d := by
@@ -74,7 +76,7 @@ theorem private_top_coefficient_separation
     rw [map_zero]
     simp only [privateTopRow,addRow,LinearMap.add_apply,LinearMap.comp_apply,
       LinearMap.fst_apply,LinearMap.snd_apply,LinearMap.coe_mk,AddHom.coe_mk,privateRowMap,u',hc]
-    simpa only [hx0,mul_zero,Finset.sum_const_zero,zero_add,if_neg (hne _)] using hrel
+    simpa only [hx0,mul_zero,Finset.sum_const_zero,zero_add,ite_eq_right (hne _)] using hrel
   have hh := congrArg Prod.snd (htop hz)
   funext i
   exact congrArg Subtype.val (congrFun hh i)

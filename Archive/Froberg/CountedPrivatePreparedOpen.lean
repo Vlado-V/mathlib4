@@ -42,8 +42,8 @@ theorem eventually_counted_private_prepared_open {d : ℕ}
       ∀ (z extra : ℕ) (err : ℕ → ℕ),
       (∀ᶠ n : ℕ in atTop,(err n : ℝ)<countBeta d*(2*(w : ℝ))^2*(n : ℝ)^(d-2)) →
       ∀ᶠ v : ℕ in atTop,
-        ∀ (t : ℕ) (ι : Fin t ↪ Fin z),
-        ∃ (e : (Fin (2*w) → K) ≃ₗ[K] Forms K (2*w) 1)
+        ∀ (t : ℕ) (_ι : Fin t ↪ Fin z),
+        ∃ (_e : (Fin (2*w) → K) ≃ₗ[K] Forms K (2*w) 1)
           (columns : Fin t → Fin (2*w) → K)
           (P : MvPolynomial (Fin (finrank K
             (Fin (quadraticOutputDimension d (2*w)) → Forms K (2*w) 2))) K),

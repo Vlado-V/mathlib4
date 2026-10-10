@@ -48,6 +48,7 @@ theorem koszul_span_linear_map {V W : Type*}
 namespace PrivateColumns
 variable [Infinite K] {σ : Type*} {a z s b h c : ℕ}
 
+omit [Infinite K] in
 theorem privateGenerator_polynomial (o : Fin h → MvPolynomial σ K)
     (ι : Fin b ↪ Fin z) (w : Fin b → Fin h → K) (i : Fin b) :
     polynomialFormVector o s (privateGenerator (a := a) (s := s) ι w i)=

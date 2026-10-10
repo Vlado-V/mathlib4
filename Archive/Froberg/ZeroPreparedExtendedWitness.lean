@@ -65,7 +65,7 @@ theorem sparse_core_extended_parameter_exact_zero
         change (E j i).IsHomogeneous (j+(d-j)) at hh
         simpa only [Nat.add_sub_of_le (hJ j hj)] using hh)
       (fun j hj i => biformImage_output_weight _ _ (hO j hj) (hE j hj i))
-    convert hh using 1 <;> congr 2 <;> omega
+    convert hh using 1; congr 2; omega
   have hext := extended_sparse_intrinsic_exact_zero (z := z) (by omega : d-R.val=0) (by omega :
     d-R.val≤d)
     o ho hdeg e v he Q (ProductRows.multiplication counts E J R.val) hproducts hfull hker ell hell

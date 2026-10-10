@@ -34,10 +34,11 @@ lemma eq_rename_freeCoeff_zero (f : Poly K (a + z))
   · simp [hβ]
   · simp [hβ,hf _ hβ]
 
+omit [Fintype J] in
 /-- The private-variable extension introduces no new lower coefficients.
 The returned relation is literally the original core relation, not an
 abstractly isomorphic kernel. -/
-theorem extended_mixed_relation_core (hsd : s ≤ d)
+theorem extended_mixed_relation_core (_hsd : s ≤ d)
     (E : I → J → Poly K a) (Q : Fin q → Poly K a) (C : J → Poly K a)
     (hbelow : ∀ t, 0 < t → t ≤ s →
       ∀ (x : Fin q → J → Poly K a) (p : I → Poly K a),
@@ -65,7 +66,7 @@ theorem extended_mixed_relation_core (hsd : s ≤ d)
       β).mp h))
     have hrow (j : J) : (∑ i,Q i*freeCoeff β (x i j))+
         (∑ k,E k j*freeCoeff β (p k))=0 := by
-      simpa only [if_neg hβ,add_zero] using hcoeff β j
+      simpa only [ite_eq_right hβ,add_zero] using hcoeff β j
     by_cases hbs : β.degree ≤ s
     · obtain ⟨hxx,hpp⟩ := hbelow β.degree hbpos hbs
         (fun i j => freeCoeff β (x i j)) (fun k => freeCoeff β (p k))

@@ -93,6 +93,7 @@ theorem odd_even_pencil_slices_open [IsAlgClosed K]
   exact hgood c hc
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_even_pencil_exact_open
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

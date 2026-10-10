@@ -79,6 +79,7 @@ theorem upperTarget_even_coverage
 variable [Infinite K]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem core_weight_zero_mem_scalar_range {k : ℕ} (p : Forms K (h + m) k)
     (hp : p.val.IsWeightedHomogeneous (coreWeight h m) 0) :
     p∈(renameForm (K := K) (d := k) (Fin.natAdd h : Fin m → Fin (h+m))).range := by

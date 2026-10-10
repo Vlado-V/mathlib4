@@ -25,11 +25,13 @@ def privatePowerBiform (l : Fin b → homogeneousSubmodule σ K 1) (ι : Fin b �
     mul_mem_biformImage _ _ (l i).property
       (isHomogeneous_monomial _ (privateExponent_degree ι i))⟩
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem privatePowerBiform_val
     (l : Fin b → homogeneousSubmodule σ K 1) (ι : Fin b ↪ Fin z) (i : Fin b) :
     (privatePowerBiform (a := a) (d := d) l ι i).val=
       rename Sum.inl (l i).val*rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)) := rfl
 
+omit [Infinite K] in
 theorem exists_two_core_linear_forms (ha : 2 ≤ a) :
     ∃ ell : Fin 2 → Forms K a 1,LinearIndependent K ell := by
   let e : (Fin a → K) ≃ₗ[K] Forms K a 1 := LinearEquiv.ofFinrankEq _ _ (by

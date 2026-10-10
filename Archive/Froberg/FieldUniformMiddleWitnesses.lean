@@ -62,14 +62,15 @@ theorem eventually_field_uniform_actual_middle_small_witnesses_shift {d : ℕ}
   have h4a : 4∈activeEvenIndices d := by
     simp [activeEvenIndices,hd8,show 4<d by omega]
   have hcount4 (n : ℕ) : counts n 4=higherGeneratorCount d (2*w) (n+z) 4 := by
-    simp only [counts,allEvenCount_active _ _ _ h4a,targetLayerCount,if_neg (by decide : (4 : ℕ)≠2)]
+    simp only [counts,allEvenCount_active _ _ _ h4a,targetLayerCount,
+      ite_eq_right (by decide : (4 : ℕ)≠2)]
   have hc₂ : ∀ᶠ n : ℕ in atTop,counts n 2≤
       ⌈countBeta d*((2*w : ℕ) : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊+extra := by
     filter_upwards [(tendsto_add_atTop_nat z).eventually hecast] with n hn
     have hceil : e (n+z)≤⌈countBeta d*((2*w : ℕ) : ℝ)^2*((n+z : ℕ) : ℝ)^(d-2)⌉₊ := by
       exact_mod_cast hn.le.trans (Nat.le_ceil _)
     simpa only [counts,allEvenCount_active _ _ _ (two_mem_activeEvenIndices (d := d) (by omega)),
-      targetLayerCount,if_pos rfl,ite_true] using Nat.add_le_add_right hceil extra
+      targetLayerCount,ite_eq_left rfl,ite_true] using Nat.add_le_add_right hceil extra
   have hq := tendsto_twice_nat.eventually
     (hquad (allEvenIndices d) q counts hcount z extra)
   have hscalar (R : ℕ) (hR : R=6 ∨ R=8) :
@@ -100,7 +101,7 @@ theorem eventually_field_uniform_actual_middle_small_witnesses_shift {d : ℕ}
     simpa only [two_mul] using hq0 K (Fin w × Bool) (constrainedOutputs T) hO hcv
   have hfv' := hfv K X T hX hT
   let I := Label (q (v+v)) (allEvenIndices d) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   apply finite_middle_small_witnesses (a := 2*(2*w)/5) (b := 2*w-2*(2*w)/5)
     hd hd8 (by omega) (by simpa only [two_mul] using hfour)
     (by omega) (by omega) hv (by omega) T hT
@@ -108,12 +109,12 @@ theorem eventually_field_uniform_actual_middle_small_witnesses_shift {d : ℕ}
     ⟨_,hqv⟩ ⟨_,hfv'⟩
   · simpa only [counts,two_mul,hX,show (v+v)/2=v by omega] using hcv.trans hc2v
   · simpa only [allEvenCount_active _ _ _ h4a,targetLayerCount,
-      if_neg (by decide : (4 : ℕ)≠2),Nat.add_zero,two_mul,show (v+v)/2=v by omega] using hc4v
+      ite_eq_right (by decide : (4 : ℕ)≠2),Nat.add_zero,two_mul,show (v+v)/2=v by omega] using hc4v
   · by_cases hd5 : d=5
-    · simpa only [if_pos hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
-        if_neg (by decide : (4 : ℕ)≠2),two_mul] using hdv
-    · simpa only [if_neg hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
-        if_neg (by decide : (4 : ℕ)≠2),two_mul,show (v+v)/2=v by omega] using hdv
+    · simpa only [ite_eq_left hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
+        ite_eq_right (by decide : (4 : ℕ)≠2),two_mul] using hdv
+    · simpa only [ite_eq_right hd5,allEvenCount_active _ _ _ h4a,targetLayerCount,
+        ite_eq_right (by decide : (4 : ℕ)≠2),two_mul,show (v+v)/2=v by omega] using hdv
   · exact fun h => hs6 K h (d-2)
   · exact fun h => hs8 K h (2*((d-4)/2))
 

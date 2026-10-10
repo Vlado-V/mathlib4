@@ -52,11 +52,13 @@ theorem scalarFiber_positive (hO : ∀ j ∈ J, O j ≤ Forms K h j)
   exact scalarFiberCoordinates_symm_positive a rest i
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem fullScalarFiber_private
     (a : PositiveScalars (K := K) m d J counts) (rest : FullScalarFiberRest m d q f u J counts O) :
     (fullScalarFiberCoordinates.symm (a,rest)).1=rest.1 := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem fullScalarFiber_outer
     (a : PositiveScalars (K := K) m d J counts) (rest : FullScalarFiberRest m d q f u J counts O) :
     (fullScalarFiberCoordinates.symm (a,rest)).2.2=rest.2.2 := rfl

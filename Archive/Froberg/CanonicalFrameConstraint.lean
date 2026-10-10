@@ -27,6 +27,7 @@ def canonicalFrameDetector (frame : Fin H → Forms K h 2) :
   (Module.finBasis K (Forms K h 2 ⧸ Submodule.span K (Set.range frame))).equivFun.toLinearMap.comp
     (Submodule.span K (Set.range frame)).mkQ
 
+omit [Infinite K] in
 theorem canonicalFrameDetector_kernel (frame : Fin H → Forms K h 2) :
     (canonicalFrameDetector frame).ker=Submodule.span K (Set.range frame) := by
   ext x
@@ -43,11 +44,13 @@ theorem canonicalFrameConstraint_outputs (frame : Fin H → Forms K h 2) (j : �
   · subst j
     simpa only [canonicalFrameConstraint,targetLayerOutput,ite_true] using
       quadratic_detector_homogeneous_kernel frame _ (canonicalFrameDetector_kernel frame)
-  · simp only [canonicalFrameConstraint,targetLayerOutput,if_neg hj,LinearMap.ker_zero,inf_top_eq]
+  · simp only [canonicalFrameConstraint,targetLayerOutput,ite_eq_right hj,LinearMap.ker_zero,
+    inf_top_eq]
 
+omit [Infinite K] in
 theorem canonicalFrameConstraint_ge_four (frame : Fin H → Forms K h 2)
     {j : ℕ} (hj : 4 ≤ j) : canonicalFrameConstraint frame j=0 := by
-  simp only [canonicalFrameConstraint,if_neg (show j≠2 by omega)]
+  simp only [canonicalFrameConstraint,ite_eq_right (show j≠2 by omega)]
 
 theorem canonicalFrameConstraint_dimension {d : ℕ} (hh : 0 < h)
     (hcolumn : outerColumnCount d h ≤ h)

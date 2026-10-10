@@ -64,7 +64,7 @@ theorem private_full_parameter_principal_open
             c-coefficientBoundary (fun i => evenGenerator hO hJ heven p.1 (e i)) M=z.val ∧
             v=coefficientBoundary (privateOddFamily hd ho p.2 U) C := by
   classical
-  haveI : Module.Finite K (Space n d q J counts O) := finite_space hO
+  have : Module.Finite K (Space n d q J counts O) := finite_space hO
   let S := PrivateParameterSpace n d q b J counts O
   let G : S →ₗ[K] (Fin r → evenRestorationSpace (K := K) (outputWeight (σ := σ) (n := n)) d) :=
     (evenGeneratorLinear hO hJ heven e).comp (LinearMap.fst K _ _)

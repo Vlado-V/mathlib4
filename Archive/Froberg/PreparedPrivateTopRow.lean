@@ -30,7 +30,8 @@ def privateTopRow (p : Space n d q J counts O)
   addRow (ProductRows.multiplication counts (layers p) J (d+1)) (privateRowMap (d := d) P (d+1))
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
-theorem private_top_core_injective
+omit [Fintype σ] in
+theorem private_top_core_injective [Finite σ]
     (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d)
     (bi : Basis (Fin hi) K (homogeneousSubmodule σ K d))
@@ -41,6 +42,7 @@ theorem private_top_core_injective
     Function.Injective (privateTopRow (coreExtension z p₀)
       (fun i => rename Sum.inl (l i).val*
         rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))) := by
+  let : Fintype σ := Fintype.ofFinite σ
   apply LinearMap.ker_eq_bot.mp
   apply le_antisymm ?_ bot_le
   rintro ⟨x,u⟩ hxu
@@ -55,7 +57,7 @@ theorem private_top_core_injective
     have hh := ProductRows.multiplication_range_full_biform (layers p₀) (by omega : d+1≤2*d)
       (fun j hj i => (homogeneousLayerMap hO hJ j i p₀).property)
       (fun j hj i => biformImage_output_weight _ _ (hO j hj) (by
-        simpa only [layers,dif_pos hj] using (p₀.2 ⟨j,hj⟩ i).property))
+        simpa only [layers,dite_eq_left hj] using (p₀.2 ⟨j,hj⟩ i).property))
     have hc := hh (show C∈(ProductRows.multiplication counts (layers p₀) J (d+1)).range from
       ⟨x,rfl⟩)
     simpa only [show 2*d-(d+1)=d-1 by omega] using hc
@@ -74,13 +76,15 @@ theorem private_top_core_injective
   exact Prod.ext hx hu'
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
-theorem private_top_principal_open [Module.Finite K (Space n d q J counts O)]
+omit [Infinite K] [Fintype σ] in
+theorem private_top_principal_open [Finite σ] [Module.Finite K (Space n d q J counts O)]
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (P : Fin b → MvPolynomial (σ ⊕ Fin n) K)
     (p₀ : Space n d q J counts O) (hp₀ : Function.Injective (privateTopRow p₀ P)) :
     ∃ D : MvPolynomial (Fin (finrank K (Space n d q J counts O))) K,
       eval ((Module.finBasis K _).equivFun p₀) D≠0 ∧
       ∀ p,eval ((Module.finBasis K _).equivFun p) D≠0 → Function.Injective (privateTopRow p P) := by
+  let : Fintype σ := Fintype.ofFinite σ
   let e := (Module.finBasis K (Space n d q J counts O)).equivFun
   have hp := product_polynomial (n := n) (d := d) (q := q) (J := J) (counts := counts) hO hJ (d+1)
   have hpoly : IsPolynomialFamily (fun a => privateTopRow (e.symm a) P) := by

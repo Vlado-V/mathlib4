@@ -18,6 +18,7 @@ open Froberg Module Filter
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+omit [Infinite K] [Module.Finite K X] in
 theorem product_capacities_individual {w v d : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
     (h2 : 2 ∈ J) (h4 : 4 ∈ J) (hJ : ∀ j ∈ J, 2 ≤ j)
     (h : ∀ R, ProductRowCapacity (K := K) (X := X) w v d R J counts) :
@@ -49,7 +50,8 @@ theorem allEven_product_capacities {d w v h n e : ℕ} (hd : 9 ≤ d)
       (targetLayerCount d h n e)) :
     ∀ R,ProductRowCapacity (K := K) (X := X) w v d R (allEvenIndices d) (allEvenCount d h n e) := by
   have h4 : 4∈activeEvenIndices d := by
-    simp only [activeEvenIndices,if_neg (show ¬d≤8 by omega),Finset.mem_filter,Finset.mem_range]
+    simp only [activeEvenIndices,ite_eq_right (show ¬d≤8 by omega),
+      Finset.mem_filter,Finset.mem_range]
     exact ⟨by omega,by decide,by decide⟩
   have hi := product_capacities_individual (two_mem_activeEvenIndices (by omega)) h4
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).1) hcap

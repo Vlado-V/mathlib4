@@ -60,7 +60,7 @@ theorem eventually_field_uniform_even_all_scalar_data {d : ℕ} (hd : 9 ≤ d) :
     obtain ⟨hq,hh,hp⟩ := hv K X T hX hO hT
     let counts := allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)
     let I := Label (upperCount (v+v+z) d) (allEvenIndices d) counts
-    letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+    let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
     have hJ : ∀ j∈allEvenIndices d,2≤j := fun _ hj => (mem_allEvenIndices.mp hj).1
     have hdegree : ∀ j∈allEvenIndices d,j≤d := fun _ hj => (mem_allEvenIndices.mp hj).2.1
     have heven : ∀ j∈allEvenIndices d,j%2=0 := fun _ hj => (mem_allEvenIndices.mp hj).2.2

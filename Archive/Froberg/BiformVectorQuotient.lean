@@ -27,6 +27,7 @@ def outputTensorVectorEquiv (V : Type*) [AddCommGroup V] [Module K V] :
   (TensorProduct.comm K (Fin c → K) V).trans (TensorProduct.piScalarRight K K V (Fin c))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem outputTensorVectorEquiv_tmul
     {V : Type*} [AddCommGroup V] [Module K V] (a : Fin c → K) (v : V) :
     outputTensorVectorEquiv (K := K) V (a ⊗ₜ[K] v)=fun k => a k • v := by

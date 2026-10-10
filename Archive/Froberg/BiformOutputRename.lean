@@ -22,6 +22,7 @@ variable {σ τ : Type*} {n j s : ℕ}
 variable {X : Type*} [AddCommGroup X] [Module K X]
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformImage_mono_types
     {A : Type*} {B : Type*} {O O' : Submodule K (MvPolynomial A K)}
     {C C' : Submodule K (MvPolynomial B K)} (hO : O ≤ O') (hC : C ≤ C') :
@@ -35,6 +36,7 @@ theorem biformImage_mono_types
   | add a b ha hb => simpa only [map_add] using Submodule.add_mem _ ha hb
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biform_output_rename_mem (e : σ ≃ τ)
     (T : MvPolynomial τ K →ₗ[K] X)
     {f : MvPolynomial (σ ⊕ Fin n) K}
@@ -52,6 +54,7 @@ theorem biform_output_rename_mem (e : σ ≃ τ)
     exact hp.rename_isHomogeneous
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biform_output_rename_profile (e : σ ≃ τ) (S : Finset (Fin n))
     {f : MvPolynomial (σ ⊕ Fin n) K}
     (hf : f.IsWeightedHomogeneous

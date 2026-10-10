@@ -33,6 +33,7 @@ theorem coreParity_eq_blockParity :
   exact congrArg (fun n : ℕ => (n : ZMod 2)) (congrFun coreWeight_eq_blockWeight i)
 
 set_option maxHeartbeats 700000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddBackgroundEndpointEquiv_mk (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)
     (a : biformParitySpace K h m (2 * d) 1) :

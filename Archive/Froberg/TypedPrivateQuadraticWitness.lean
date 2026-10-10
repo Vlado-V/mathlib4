@@ -23,7 +23,7 @@ set_option backward.isDefEq.respectTransparency false
 namespace Froberg
 open Module MvPolynomial PrivateColumns
 variable {K : Type} [Field K] [Infinite K]
-variable {σ : Type*} [Fintype σ]
+variable {σ : Type*}
 variable {a z d b q h c : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.

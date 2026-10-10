@@ -89,6 +89,7 @@ theorem mixedHigherIndex_ge_three (hd3 : 3 ≤ d) (r : MixedHigherIndex d hd3) :
   omega
 
  set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem mixedProjectionKillsU (hd3 : 3 ≤ d)
     (R : Forms K h (1 + (d - 1)) →ₗ[K] (Fin b → K)) (U : Fin u → Forms K h d)
     (hker : R.ker = (Submodule.span K (Set.range U)).map
@@ -110,6 +111,7 @@ def mixedAmbientScalar (hd : Odd d) (hd3 : 3 ≤ d)
     (fun i => mixedPureOddGenerator hd (U i) (P i))).comp scalarBiformEquiv.toLinearMap
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem mixedAmbientScalar_mk (hd : Odd d) (hd3 : 3 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))

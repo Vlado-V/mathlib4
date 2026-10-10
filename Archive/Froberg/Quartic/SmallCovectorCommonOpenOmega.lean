@@ -76,12 +76,12 @@ theorem common_open_with [IsAlgClosed K] (m : ℕ) (hmlo : 28 ≤ m) (hmhi : m �
   obtain ⟨b,hb⟩ := hP
   let P' : MvPolynomial (ParameterIndex m upper m (mixedCount m upper) (upperEndpoint m)) K :=
     rename Sum.inl P
-  have hA0 : A≠0 := by intro h;simpa [h] using ha
+  have hA0 : A≠0 := by intro h;simp [h] at ha
   have hP0 : P'≠0 := by
     have he : eval (encode b 0) P'≠0 := by
       simpa [P',eval_rename,encode,Function.comp_def] using hb
     intro h
-    simpa only [h,map_zero,ne_eq,not_true_eq_false] using he
+    simp only [h,map_zero,ne_eq,not_true_eq_false] at he
   obtain ⟨p₀,hp₀⟩ := PolynomialImageAvoidance.exists_eval_ne_zero (mul_ne_zero hA0 hP0)
   refine ⟨A*P',⟨p₀,hp₀⟩,?_⟩
   intro p hp

@@ -73,7 +73,7 @@ theorem small_extended_witnesses {w v z d q : ℕ} {counts : ℕ → ℕ}
       obtain ⟨b,hb⟩ := hfour
       exact exists_fourth_extended_row_parameter h4 hb (by omega) ell hell
     have hzero := hz R.val R.property hR2 hR4
-    letI : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
+    let : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
     obtain ⟨p,hpLI,hp⟩ := hcore R
     refine ⟨coreExtension z p,linearIndependent_empty_type,?_⟩
     by_cases hlt : R.val<d

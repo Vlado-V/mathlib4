@@ -47,7 +47,7 @@ theorem restored_outer_independent (hdp : 1 ≤ d) (hd : d % 2 = 0)
       slot] using hs
   · simpa only [linearOddForm_component,ite_true] using linearOddForm_independent hdp _ hlinear
   · intro i
-    rw [linearOddForm_component,if_neg (by decide)]
+    rw [linearOddForm_component,ite_eq_right (by decide)]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def HasRestoredIndependentOpen (hdp : 1 ≤ d) (hd : d % 2 = 0)
@@ -66,7 +66,7 @@ theorem restored_outer_independent_open (hdp : 1 ≤ d) (hd : d % 2 = 0)
     (idx : Fin r ≃ Label q J counts) (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (hq : r ≤ finrank K (Forms K m d)) (hf : f ≤ finrank K (Rows K h m (d - 1))) :
     HasRestoredIndependentOpen (m := m) (f := f) hdp hd hO hJ heven idx slot := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨P,hP,hgood⟩ := scalar_vector_independence_open hq hf
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O)
     idx)

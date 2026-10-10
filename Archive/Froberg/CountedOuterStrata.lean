@@ -20,7 +20,7 @@ open BilinearScalarFamily
 open scoped Topology
 variable {K : Type*} [Field K] [Infinite K] {d h b : ℕ}
 
-def outerScalarDeficit {c : ℕ} (g : Fin c → Rows K h n (d - 1)) : ℕ :=
+def outerScalarDeficit {n c : ℕ} (g : Fin c → Rows K h n (d - 1)) : ℕ :=
   finrank K (Target g d)-upperCount n d*finrank K (Source g)
 
 theorem eventually_counted_outer_strata (hd : 3 ≤ d) (hh : 0 < h)

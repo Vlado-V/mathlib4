@@ -36,6 +36,7 @@ def actualProjectedMappedCoefficients (pi : Forms K n (2 * d) →ₗ[K] Z) (q : 
     (projectedHomologyCoefficients pi q hq (Submodule.span K (Set.range q)) dual)
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] [IsAlgClosed K] [FiniteDimensional K Z] in
 theorem projectedMappedCoefficients_coordinate_ker (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r →
   Forms
   K n d)

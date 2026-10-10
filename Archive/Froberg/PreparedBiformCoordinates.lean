@@ -18,6 +18,7 @@ open Module MvPolynomial TensorProduct
 variable {K : Type} [Field K] [Infinite K] {h m d q j e : ℕ}
 attribute [local instance] tensorGroup
 
+omit [Infinite K] in
 theorem biformImage_mono {O O' : Submodule K (Poly K h)}
     {C C' : Submodule K (Poly K m)} (hO : O ≤ O') (hC : C ≤ C') :
     biformImage O C≤biformImage O' C' := by

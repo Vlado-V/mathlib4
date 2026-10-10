@@ -53,7 +53,7 @@ theorem prepared_independent_open (hd : 1 < d)
     (hq : Fintype.card (PreparedParameters.Label q J counts) ≤ finrank K (Forms K m d))
     (hf : f + u ≤ finrank K (Rows K h m (d - 1))) :
     HasIndependentOpen (m := m) (q := q) (f := f) (u := u) (counts := counts) (by omega) hO hJ := by
-  letI : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FullPreparedParameters.FixedPureZeroScalarSpace m d q f u J counts O) :=
     FullPreparedParameters.finite_fixedPureZeroScalarSpace hO
   obtain ⟨P,hP,hgood⟩ := scalar_vector_independence_open hq hf
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback

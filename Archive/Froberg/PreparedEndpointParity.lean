@@ -20,6 +20,7 @@ open Froberg Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 
+omit [Infinite K] in
 theorem zeroScalarEndpointFamily_eq_full (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
@@ -31,6 +32,7 @@ theorem zeroScalarEndpointFamily_eq_full (hd : 0 < d)
   rw [FullPreparedParameters.pureBase_add_variablePrivateZeroScalar]
   rfl
 
+omit [Infinite K] in
 theorem oddGenerator_parity (hdodd : d % 2 = 1)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
     (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :

@@ -94,7 +94,7 @@ theorem finite_quartic_extended_reduction_open
         exact hQ
       obtain ⟨p,hp,hext⟩ := exists_strong_quartic_empty_row_parameter T hz R hR S hS hm Q hQ'
       have hzero : counts R.val=0 := hz R.val R.property hR
-      letI : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
+      let : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
       exact ⟨coreExtension z p,linearIndependent_empty_type,
         empty_row_core_extended_exact_zero (fun _ _ => inf_le_left)
           (fun _ hj => (mem_allEvenIndices.mp hj).2.1) R (by omega) hzero p hext ell hell⟩

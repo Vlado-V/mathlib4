@@ -21,10 +21,10 @@ variable {K : Type*} [Field K] {n d m c : ℕ}
 set_option backward.isDefEq.respectTransparency false
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
-private theorem basis_transport_repr {V ι : Type*} [AddCommGroup V] [Module K V]
+private theorem basis_map_repr {V ι : Type*} [AddCommGroup V] [Module K V]
     (P Q : Submodule K V) (h : P = Q) (b : Basis ι K Q) (L : ι → V → K)
     (hb : ∀ p i, b.repr p i = L i p.val) (p : P) (i : ι) :
-    ((congrArg (fun S : Submodule K V => Basis ι K S) h).mpr b).repr p i = L i p.val := by
+    (b.map (LinearEquiv.ofEq Q P h.symm)).repr p i = L i p.val := by
   subst Q
   exact hb p i
 
@@ -32,10 +32,17 @@ set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem formsBasis_equivFun_coeff (p : Forms K n d) (s : Sym (Fin n) d) :
     (formsBasis K n d).equivFun p s = p.val.coeff (exponentEquiv n d s).val := by
   rw [Basis.equivFun_apply]
-  simpa only [formsBasis,eq_mpr_eq_cast,cast_cast] using basis_transport_repr (Forms K n d) _
+  simp only [formsBasis, basisHomogeneousSym, Basis.repr_reindex_apply,
+    Equiv.symm_symm, basisHomogeneous]
+  convert basis_map_repr (K := K) (Forms K n d) _
     (homogeneousSubmodule_eq_finsupp_supported (Fin n) K d)
-    ((basisRestrictSupport K {e : Fin n →₀ ℕ | e.degree = d}).reindex (exponentEquiv n d).symm)
-    (fun s p => p.coeff (exponentEquiv n d s).val) (fun _ _ => rfl) p s
+    (basisRestrictSupport K {e : Fin n →₀ ℕ | e.degree = d})
+    (fun e p => p.coeff e.val) (fun _ _ => rfl) p (exponentEquiv n d s) using 1
+  congr 1
+  unfold exponentEquiv
+  congr 1
+  exact congrArg (fun e : DecidableEq (Fin n) => @Sym.equivNatSum (Fin n) e d)
+    (Subsingleton.elim _ _)
 
 set_option maxHeartbeats 400000 in -- Preserve the budget during this port.
 theorem exponentEquiv_one (i : Fin n) :

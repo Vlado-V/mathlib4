@@ -53,7 +53,7 @@ theorem sum_targetLayerCount {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ) :
     apply Finset.sum_congr rfl
     intro j hj
     have hj4 := (mem_filter.mp hj).2
-    simp only [targetLayerCount,if_neg (show j≠2 by omega)]
+    simp only [targetLayerCount,ite_eq_right (show j≠2 by omega)]
   · intro hj
     have := (mem_filter.mp hj).2
     omega

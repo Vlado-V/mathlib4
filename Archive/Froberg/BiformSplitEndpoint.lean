@@ -42,6 +42,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def biformSplitEndpointParity : Fin (q+f) → ZMod 2 := biformSplitParity ∘ finSumFinEquiv.symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformSplitEndpoint_parity (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (i : Fin (q + f)) :
     (biformSplitEndpoint Q F i).val.IsWeightedHomogeneous (coreParity h m)
@@ -52,6 +53,7 @@ theorem biformSplitEndpoint_parity (Q : Fin q → biformParitySpace K h m d 0)
     biformSplitParity (biformSplitFamily Q F) i
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformSplitEndpoint_back (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (i : Fin q ⊕ Fin f) :
     rename finSumFinEquiv.symm (biformSplitEndpoint Q F (finSumFinEquiv i)).val=
@@ -66,6 +68,7 @@ theorem biformSplitEndpoint_back (Q : Fin q → biformParitySpace K h m d 0)
   cases i <;> rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_split_endpoint (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (H : OddSplitExact Q F)
     (a : (endpointMultiplication (biformSplitEndpoint Q F)).ker)
@@ -84,11 +87,11 @@ theorem odd_split_endpoint (Q : Fin q → biformParitySpace K h m d 0)
   let c : Fin q → biformParitySpace K h m d 1 := fun i =>
     ⟨rename finSumFinEquiv.symm (a.val (idx (Sum.inl i))).val,
       (a.val (idx (Sum.inl i))).property.rename_isHomogeneous,by
-        convert hpar (Sum.inl i) using 1 <;> norm_num [biformSplitParity]⟩
+        convert hpar (Sum.inl i) using 1; norm_num [biformSplitParity]⟩
   let v : Fin f → biformParitySpace K h m d 0 := fun i =>
     ⟨rename finSumFinEquiv.symm (a.val (idx (Sum.inr i))).val,
       (a.val (idx (Sum.inr i))).property.rename_isHomogeneous,by
-        convert hpar (Sum.inr i) using 1 <;> norm_num [biformSplitParity]⟩
+        convert hpar (Sum.inr i) using 1; norm_num [biformSplitParity]⟩
   have hcycle : (∑ i,(Q i).val*(c i).val)+(∑ j,(F j).val*(v j).val)=0 := by
     have hz := congrArg (fun x : Forms K (h+m) (2*d) => rename finSumFinEquiv.symm x.val) a.property
     rw [endpointMultiplication_val] at hz

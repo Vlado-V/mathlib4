@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h m d t c q b : ℕ}
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem mem_scalarCoefficientRow_range
     (Q : Fin q → Forms K m d) (g : Fin c → Poly K m)
     (hg : ∀ k, g k ∈ familySpace Q * Forms K m t) :
@@ -48,11 +49,9 @@ theorem polynomialTensorSpace_product_scalar_range
   rintro _ ⟨v,rfl⟩ _ ⟨w,rfl⟩
   change preparedQuadraticDetector T (polynomialTensorMap A B v*polynomialTensorMap C D w)∈
     (scalarCoefficientRow (t := t) Q).range
-  induction v using TensorProduct.induction_on with
-  | zero => simp
+  induction v using TensorProduct.inductionOn with
   | tmul a b =>
-    induction w using TensorProduct.induction_on with
-    | zero => simp
+    induction w using TensorProduct.inductionOn with
     | tmul x y =>
       apply mem_scalarCoefficientRow_range Q
       intro k
@@ -65,6 +64,7 @@ theorem polynomialTensorSpace_product_scalar_range
     simpa only [map_add,add_mul] using Submodule.add_mem _ hu hv
 
 set_option maxHeartbeats 2200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem polynomialTensorSpace_rename_back
     (A : Submodule K (Poly K h)) (B : Submodule K (Poly K m))
     {p : Poly K (h + m)} (hp : p ∈ polynomialTensorSpace A B) :

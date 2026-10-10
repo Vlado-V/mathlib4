@@ -25,6 +25,7 @@ def renamedGenerator (U : Fin u → Forms K h d)
     (p : Space m d q f u J counts O) (i : Label q f u J counts) : Poly K (h+m) :=
   rename finSumFinEquiv (generator U P p i)
 
+omit [Infinite K] in
 @[simp] theorem renamedGenerator_prepared (U : Fin u → Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
     (p : Space m d q f u J counts O) (i : PreparedParameters.Label q J counts) :
@@ -42,6 +43,7 @@ def renamedGenerator (U : Fin u → Forms K h d)
   change (p.2.1 i).val=(sumBiformEquiv (sumBiformEquiv.symm (p.2.1 i))).val
   rw [LinearEquiv.apply_symm_apply]
 
+omit [Infinite K] in
 theorem renamedGenerator_private (U : Fin u → Forms K h d)
     (P : Fin u → MvPolynomial (Fin h ⊕ Fin m) K)
     (p : Space m d q f u J counts O) (i : Fin u) :

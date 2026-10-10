@@ -52,6 +52,7 @@ def faithfulProjectedCoefficients (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin 
   c.ker.liftQ c le_rfl
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] [IsAlgClosed K] [FiniteDimensional K Z] in
 theorem faithfulProjectedCoefficients_injective (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r → Forms
   K
   n d) (hq : LinearIndependent K q)
@@ -61,6 +62,7 @@ theorem faithfulProjectedCoefficients_injective (pi : Forms K n (2 * d) →ₗ[K
   LinearMap.ker_eq_bot.mp (Submodule.ker_liftQ_eq_bot _ _ _ le_rfl)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [IsAlgClosed K] in
 /-- Literal product compatibility implies the exact coordinate factorization
 of the projected normal map through its faithful coefficients. -/
 theorem projectedNormalMap_coordinate_factorization (pi : Forms K n (2 * d) →ₗ[K] Z) (q : Fin r →

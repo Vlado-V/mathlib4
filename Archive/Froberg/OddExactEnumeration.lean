@@ -23,6 +23,7 @@ def indexedSplitParity (idx : Fin q ⊕ Fin f ≃ Fin r) : Fin r → ZMod 2 :=
   biformSplitParity ∘ idx.symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem odd_split_endpoint_of_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -44,11 +45,11 @@ theorem odd_split_endpoint_of_back
   let c : Fin q → biformParitySpace K h m d 1 := fun i =>
     ⟨rename finSumFinEquiv.symm (a.val (idx (Sum.inl i))).val,
       (a.val (idx (Sum.inl i))).property.rename_isHomogeneous,by
-        convert hpar (Sum.inl i) using 1 <;> norm_num [biformSplitParity]⟩
+        convert hpar (Sum.inl i) using 1; norm_num [biformSplitParity]⟩
   let v : Fin f → biformParitySpace K h m d 0 := fun i =>
     ⟨rename finSumFinEquiv.symm (a.val (idx (Sum.inr i))).val,
       (a.val (idx (Sum.inr i))).property.rename_isHomogeneous,by
-        convert hpar (Sum.inr i) using 1 <;> norm_num [biformSplitParity]⟩
+        convert hpar (Sum.inr i) using 1; norm_num [biformSplitParity]⟩
   have hcycle : (∑ i,(Q i).val*(c i).val)+(∑ j,(F j).val*(v j).val)=0 := by
     have hz := congrArg (fun x : Forms K (h+m) (2*d) => rename finSumFinEquiv.symm x.val) a.property
     rw [endpointMultiplication_val] at hz
@@ -78,6 +79,7 @@ def backgroundSplitIndex : Fin q ⊕ Fin (f+u) ≃ Fin (Fintype.card (Background
   (Equiv.sumCongr (Equiv.refl _) finSumFinEquiv.symm).trans (Fintype.equivFin _)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_back
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)
@@ -141,6 +143,7 @@ theorem background_split_parity_eq :
     simp [indexedSplitParity,backgroundSplitIndex,biformSplitParity,backgroundParity]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem backgroundEnumeratedForms_split_parity
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1)

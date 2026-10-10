@@ -65,7 +65,7 @@ theorem eventually_actual_middle_extended_reduction_open_late_output {d : ℕ}
     simpa only [two_mul] using hq (Fin w × Bool) (constrainedOutputs T) hO hcb
   obtain ⟨ell,hell⟩ := exists_two_core_linear_forms (K := K) (by omega : 2≤v+v)
   let I := Label (q (v+v)) (allEvenIndices d) (counts (v+v))
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   have hc' := hc X T hX hO hT
   exact small_extended_reduction_open hd T
     (fun j _ hj2 hj4 => allEvenCount_off_two_four_small hd8 _ _ _ hj2 hj4)

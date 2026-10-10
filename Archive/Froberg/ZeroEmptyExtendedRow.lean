@@ -32,8 +32,8 @@ theorem empty_row_core_extended_exact_zero
     (row hO R (coreExtension z p₀)).ker=
       (rowConstants hO R (coreExtension z p₀)).range := by
   classical
-  letI : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
-  letI : Module.Finite K (homogeneousSubmodule σ K R.val) :=
+  let : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
+  let : Module.Finite K (homogeneousSubmodule σ K R.val) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ R.val)
   let bo := Module.finBasis K (homogeneousSubmodule σ K R.val)
   let o := fun i => (bo i).val
@@ -49,7 +49,7 @@ theorem empty_row_core_extended_exact_zero
   have he : ∀ i,(e i).degree=d-R.val := fun i => isEmptyElim i
   have hE : ∀ j∈J,∀ i,layers p₀ j i∈biformImage (O j) (Forms K a (d-j)) := by
     intro j hj i
-    simpa only [layers,dif_pos hj] using (p₀.2 ⟨j,hj⟩ i).property
+    simpa only [layers,dite_eq_left hj] using (p₀.2 ⟨j,hj⟩ i).property
   let c := fullBiformCoordinates (n := a) (s := d-R.val) o ho hdeg
   have hidx := bilinearKoszulRow_exact_reindex f.symm (Equiv.refl (Fin (counts R.val)))
     fullBiformScalarProduct (fun i => scalarMap i p₀) (fun i => intrinsicLayerMap hO R i p₀)
@@ -88,7 +88,7 @@ theorem empty_row_core_extended_exact_zero
       rfl
     · funext j i
       apply Subtype.ext
-      simp only [ofPolynomialFamilies,layers,dif_pos j.property]
+      simp only [ofPolynomialFamilies,layers,dite_eq_left j.property]
   have hext' : (row hO R (coreExtension z (ofPolynomialFamilies (Q ∘ f) (layers p₀) hE))).ker=
       (rowConstants hO R (coreExtension z (ofPolynomialFamilies (Q ∘ f) (layers p₀)
         hE))).range := hext.2

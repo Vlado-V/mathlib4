@@ -41,7 +41,7 @@ theorem multiplication_empty_off_two_four (e : ℕ → ℕ) (J : Finset ℕ)
       omega
     have hbound := r.val.isLt
     omega
-  letI := hempty
+  let := hempty
   exact linearIndependent_empty_type
 
 end Froberg.ProductRows
@@ -98,7 +98,7 @@ theorem finite_middle_small_witnesses
         (2*((d-4)/2)) := by
     intro hd5
     exact exists_strong_fourth_profile_parameter_equiv (q := q) ediag hh hfour T hT hz
-      (balancedScalarHalf v) hS (by simpa only [if_neg hd5,balancedScalarHalf_card] using
+      (balancedScalarHalf v) hS (by simpa only [ite_eq_right hd5,balancedScalarHalf_card] using
         hdiagonal₄)
   have h8 : ∃ p : Space (v+v) d q (allEvenIndices d) counts (constrainedOutputs T),
       Function.Injective (ProductRows.multiplication counts (layers p) (allEvenIndices d) 8) := by

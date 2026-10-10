@@ -60,7 +60,7 @@ theorem exists_quadratic_private_row_parameter {a z d q b t h c : ℕ}
       exact hmem i
     · rw [show E j i=0 by simp [E,heq]]
       exact Submodule.zero_mem _
-  letI : IsEmpty (ProductRows.Row J 2) := ProductRows.first_even_row_empty hJ
+  let : IsEmpty (ProductRows.Row J 2) := ProductRows.first_even_row_empty hJ
   have hrow' := addRow_exact_of_subsingleton (polynomialIntermediateRow o e v he Q)
     (ProductRows.multiplication counts E J 2) (intermediateKoszul e v he Q) hrow
   let p₀ := ofPolynomialFamilies (Q ∘ Fintype.equivFin (Label q J counts)) E hEmem
@@ -72,7 +72,7 @@ theorem exists_quadratic_private_row_parameter {a z d q b t h c : ℕ}
   · intro i
     apply biformVectorDetector_eq_zero T (O 2) (Forms K (a+z) (d-2)) hOT
     change layers p 2 i∈biformImage (O 2) (Forms K (a+z) (d-2))
-    simpa only [layers,dif_pos h2] using (p.2 ⟨2,h2⟩ i).property
+    simpa only [layers,dite_eq_left h2] using (p.2 ⟨2,h2⟩ i).property
   · apply LinearMap.ext
     intro x
     have hx : x=0 := Subsingleton.elim _ _

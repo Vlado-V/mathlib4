@@ -38,6 +38,7 @@ def endpointSplitParity : Fin (Fintype.card (Label q f u J counts)) → ZMod 2 :
   splitParity ∘ (Fintype.equivFin _).symm
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem zeroScalarEndpointFamily_back (hd : 0 < d)
     (hO : ∀ j ∈ J, O j ≤ Forms K h j) (hJ : ∀ j ∈ J, j ≤ d)
     (U : Fin u → Forms K h d) (P : OuterSpace K (Fin h) m d u)
@@ -58,7 +59,7 @@ theorem zeroScalarEndpointFamily_back (hd : 0 < d)
   rcases i with i | (i | i)
   · simp only [forms_val,generator_prepared,zeroPrivateScalar_apply,Sum.elim_inl]
   · simp [forms_val,generator_outer,zeroPrivateScalar,oddGenerator,combinedLinear,combinedPure]
-  · simp [forms_val,zeroPrivateScalar_generator_private,oddGenerator,combinedLinear,combinedPure,
+  · simp [forms_val,oddGenerator,combinedLinear,combinedPure,
     add_comm]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
@@ -93,11 +94,13 @@ theorem odd_cycles_endpoint (hd : 0 < d)
   have hcp : ∀ i α,(c i).coeff α≠0 → Finsupp.weight (blockWeight h m) α%2=1 := by
     intro i
     apply (parity_homogeneous_iff (blockWeight h m) (c i) 1 (by decide)).mp
-    convert hpar (Sum.inl i) using 1 <;> norm_num [splitParity]
+    convert hpar (Sum.inl i) using 1
+    norm_num [splitParity]
   have hvp : ∀ j α,(v j).coeff α≠0 → Finsupp.weight (blockWeight h m) α%2=0 := by
     intro j
     apply (parity_homogeneous_iff (blockWeight h m) (v j) 0 (by decide)).mp
-    convert hpar (Sum.inr j) using 1 <;> norm_num [splitParity]
+    convert hpar (Sum.inr j) using 1
+    norm_num [splitParity]
   have hcycle : (∑ i,PreparedParameters.generator p.1 i*c i)+
       (∑ j,oddGenerator U P p.2 j*v j)=0 := by
     have hz := congrArg (fun x : Forms K (h+m) (2*d) => rename finSumFinEquiv.symm x.val) a.property

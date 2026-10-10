@@ -47,7 +47,7 @@ theorem exists_quadratic_extended_row_parameter {σ : Type*} [Fintype σ]
       exact hmem i
     · rw [show E j i=0 by simp [E,heq]]
       exact Submodule.zero_mem _
-  letI : IsEmpty (ProductRows.Row J 2) := ProductRows.first_even_row_empty hJ
+  let : IsEmpty (ProductRows.Row J 2) := ProductRows.first_even_row_empty hJ
   have hrow' := addRow_exact_of_subsingleton (polynomialIntermediateRow o e v he Q)
     (ProductRows.multiplication counts E J 2) (intermediateKoszul e v he Q) hrow
   let p₀ := ofPolynomialFamilies (Q ∘ Fintype.equivFin (Label q J counts)) E hEmem

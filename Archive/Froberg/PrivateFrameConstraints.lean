@@ -49,16 +49,18 @@ def pairedFrameConstraint (f : (Fin w × Bool) ≃ Fin h)
   if j=2 then (quadraticPolynomialDetector L).comp (rename f).toLinearMap else 0
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem pairedFrameConstraint_two (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) :
     pairedFrameConstraint f L 2=(quadraticPolynomialDetector L).comp (rename f).toLinearMap := by
   simp only [pairedFrameConstraint,ite_true]
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pairedFrameConstraint_ne_two (f : (Fin w × Bool) ≃ Fin h)
     (L : Forms K h 2 →ₗ[K] (Fin c → K)) {j : ℕ} (hj : j ≠ 2) :
     pairedFrameConstraint f L j=0 := by
-  simp only [pairedFrameConstraint,if_neg hj]
+  simp only [pairedFrameConstraint,ite_eq_right hj]
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_ge_four (f : (Fin w × Bool) ≃ Fin h)
@@ -120,7 +122,7 @@ theorem pairedFrameConstraint_spaces_map (f : (Fin w × Bool) ≃ Fin h)
   by_cases hj : j=2
   · subst j
     simpa only [ite_true] using pairedFrameConstraint_space_map f frame L hL
-  · simpa only [if_neg hj] using pairedFrameConstraint_space_map_ne_two f L hj
+  · simpa only [ite_eq_right hj] using pairedFrameConstraint_space_map_ne_two f L hj
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
 theorem pairedFrameConstraint_space_finrank (f : (Fin w × Bool) ≃ Fin h)
@@ -136,6 +138,7 @@ theorem pairedFrameConstraint_space_finrank (f : (Fin w × Bool) ≃ Fin h)
   exact hh.symm.trans (outputFrameSpace_finrank frame hframe)
 
 set_option maxHeartbeats 500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem quadratic_frame_quotient_finrank
     (frame : Fin H → Forms K h 2) (hframe : LinearIndependent K frame) :
     finrank K (Forms K h 2 ⧸ Submodule.span K (Set.range frame))=

@@ -21,6 +21,7 @@ variable {K : Type} [Field K] [Infinite K] {h m d q b : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ} {O : ℕ → Submodule K (Poly K h)}
 attribute [local instance] tensorGroup
 
+omit [Infinite K] in
 theorem scalar_rename_core_weight_zero (f : Forms K m d) :
     (rename (Fin.natAdd h) f.val).IsWeightedHomogeneous (coreWeight h m) 0 := by
   have hh := ambientBiform_weighted (constantOneForm K h ⊗ₜ[K] f)
@@ -49,6 +50,7 @@ theorem prepared_layer_components (p : PreparedParameters.Space m d q J counts O
   exact scalar_shift_top_components (coreWeight h m) _ _ ha
     (scalar_rename_core_weight_zero _) (ambientBiform_weighted _)
 
+omit [Infinite K] in
 theorem span_products_subfamily {α β : Type*} (p : β → Poly K (h + m)) (f : α → β) :
     (Submodule.span K (Set.range (p ∘ f)))*Forms K (h+m) d ≤
       (Submodule.span K (Set.range p))*Forms K (h+m) d :=

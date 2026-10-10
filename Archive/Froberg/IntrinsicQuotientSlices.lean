@@ -27,6 +27,7 @@ variable {K P V W W₀ : Type} [Field K] [Infinite K]
 variable {q s : ℕ}
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem exists_detecting_vectors {X : Type} [AddCommGroup X] [Module K X]
     [FiniteDimensional K X] (hs : finrank K X ≤ s) :
     ∃ Z : Fin s → X,∀ ell : X →ₗ[K] K,(∀ i,ell (Z i)=0) → ell=0 := by
@@ -38,7 +39,7 @@ theorem exists_detecting_vectors {X : Type} [AddCommGroup X] [Module K X]
   apply (Module.finBasis K X).ext
   intro i
   have hz := hell (i.castLE hs)
-  simpa only [Z,Fin.coe_castLE,dif_pos i.isLt,LinearMap.zero_apply] using hz
+  simpa only [Z,Fin.val_castLE,dite_eq_left i.isLt,LinearMap.zero_apply] using hz
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
 theorem kernel_avoidance_quotient_slices

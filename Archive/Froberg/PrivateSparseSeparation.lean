@@ -50,6 +50,7 @@ def avoidsPrivatePowers (ι : Fin b ↪ Fin z) (f : Fin c → Poly K (a + z)) : 
   ∀ k δ i,privateExponent a s ι i ≤ δ → (f k).coeff δ=0
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- The scalar/existing-product side avoids private powers whenever all of
 its private coefficient polynomials above degree s−1 vanish. -/
 theorem avoidsPrivatePowers_of_free_degree_lt (ι : Fin b ↪ Fin z)
@@ -61,9 +62,11 @@ theorem avoidsPrivatePowers_of_free_degree_lt (ι : Fin b ↪ Fin z)
     simpa [freeExponent] using (privateExponent_le_iff ι i δ).mp hi
   have hd : s ≤ (freeExponent δ).degree := hval.trans (Finsupp.le_degree (ι i) (freeExponent δ))
   have hh := congrArg (fun p : Poly K a => p.coeff (coreExponent δ)) (hf k _ hd)
-  simpa only [freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,Finsupp.zero_apply] using hh
+  simpa only [freeCoeff_coeff,merge_core_free,AddMonoidAlgebra.coeff_zero,
+    Finsupp.zero_apply] using hh
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- A private target coefficient with only one eligible private power lies
 in exactly that column's output image. -/
 theorem private_coefficient_mem_range (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
@@ -79,7 +82,7 @@ theorem private_coefficient_mem_range (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
   rw [Finset.sum_eq_single i]
   · simp only [(privateExponent_le_merge ι i α β).mpr hi,ite_true]
   · intro j _ hji
-    rw [if_neg]
+    rw [ite_eq_right]
     intro hj
     exact hji (private_unique_of_small_free_degree hs ι β hβ j i
       ((privateExponent_le_merge ι j α β).mp hj) hi)
@@ -126,8 +129,8 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
               map_sum,freeCoeff_rename_mul,AttachedMultiplication.multiplication_apply,u]
           change (freeCoeff β (H k+P k+res k)).coeff α=(freeCoeff β 0).coeff α at hh
           rw [map_add,map_add,hE] at hh
-          simp only [MvPolynomial.coeff_add,AttachedMultiplication.coefficient_formula,
-            freeCoeff_coeff,map_zero,MvPolynomial.coeff_zero,
+          simp only [AddMonoidAlgebra.coeff_add,AttachedMultiplication.coefficient_formula,
+            freeCoeff_coeff,map_zero,AddMonoidAlgebra.coeff_zero,
             Finsupp.zero_apply,hzero,add_zero] at hh
           simpa only [sparseOutputCoefficient,Finset.sum_apply,Pi.smul_apply,smul_eq_mul,
             Pi.neg_apply]
@@ -147,7 +150,8 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
       simp only [H,extendedCorePolynomialMatrix,LinearMap.coe_mk,AddHom.coe_mk,
         map_sum,freeCoeff_rename_mul,hpβ β j hj',mul_zero,Finset.sum_const_zero]
     have hh := congrArg (fun f : Poly K a => f.coeff (coreExponent δ)) hz
-    simpa only [β,freeCoeff_coeff,merge_core_free,MvPolynomial.coeff_zero,Finsupp.zero_apply] using
+    simpa only [β,freeCoeff_coeff,merge_core_free,AddMonoidAlgebra.coeff_zero,
+      Finsupp.zero_apply] using
       hh
   funext k
   apply MvPolynomial.ext
@@ -156,13 +160,13 @@ theorem private_sparse_separation (hs : 2 ≤ s) (ι : Fin b ↪ Fin z)
   · obtain ⟨j,hj⟩ := hd
     have hh := congrArg (fun f : Fin c → Poly K (a+z) => (f k).coeff δ) hrel
     change (H k+P k+res k).coeff δ=(0 : Poly K (a+z)).coeff δ at hh
-    simpa only [MvPolynomial.coeff_add,hH k δ j hj,hres k δ j hj,zero_add,add_zero,
-      P,Pi.zero_apply,MvPolynomial.coeff_zero,Finsupp.zero_apply] using hh
+    simpa only [AddMonoidAlgebra.coeff_add,hH k δ j hj,hres k δ j hj,zero_add,add_zero,
+      P,Pi.zero_apply,AddMonoidAlgebra.coeff_zero,Finsupp.zero_apply] using hh
   · rw [privatePolynomialMapAt_coefficient]
     simp only [privateCoefficient,Finset.sum_apply]
     apply Finset.sum_eq_zero
     intro j _
-    rw [if_neg (fun hj => hd ⟨j,hj⟩)]
+    rw [ite_eq_right (fun hj => hd ⟨j,hj⟩)]
     rfl
 
 set_option maxHeartbeats 2000000 in -- Preserve the budget during this port.

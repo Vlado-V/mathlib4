@@ -38,7 +38,7 @@ def preparedOddVectorParameters :
         (Sum.elim (a • p.2.2) (a • p.1) (finSumFinEquiv.symm i))=
         a • outerVectorEquiv.symm (Sum.elim p.2.2 p.1 (finSumFinEquiv.symm i))
       rcases hi : (finSumFinEquiv.symm i : Fin f ⊕ Fin u) with j | j <;>
-        simp only [hi,Sum.elim_inl,Sum.elim_inr,Pi.smul_apply,map_smul]
+        simp only [Sum.elim_inl,Sum.elim_inr,Pi.smul_apply,map_smul]
     · rfl
 
 theorem preparedOddVectorParameters_surjective : Function.Surjective

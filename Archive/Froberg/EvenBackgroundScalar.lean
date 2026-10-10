@@ -71,6 +71,7 @@ def evenBackgroundScalar (hdp : 1 ≤ d)
     rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem evenBackgroundScalar_mk (hdp : 1 ≤ d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (p : Forms K m d) (v : biformParitySpace K h m d 1) :
@@ -80,6 +81,7 @@ set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
         (evenScalarOddProduct (scalarEvenBiform p) v) := rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenBackgroundScalar_higher_projection {j : ℕ}
     (hdp : 1 ≤ d) (hj : 1 ≤ j) (hjd : j ≤ d) (ho : j % 2 = 1)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))

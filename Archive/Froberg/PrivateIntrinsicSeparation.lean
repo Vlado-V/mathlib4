@@ -22,7 +22,8 @@ variable {K : Type} [Field K] [Infinite K] {σ : Type*} [Fintype σ]
 variable {a z d R b q m hi ho g : ℕ}
 
  set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
-theorem private_intrinsic_row_zero (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
+omit [Fintype σ] in
+theorem private_intrinsic_row_zero [Finite σ] (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 ≤ d)
     (bi : Basis (Fin hi) K (homogeneousSubmodule σ K R))
     (bo : Basis (Fin ho) K (homogeneousSubmodule σ K (R + 1)))
     (w : Fin b → homogeneousSubmodule σ K 1) (hw : ∀ i, w i ≠ 0)
@@ -42,6 +43,8 @@ theorem private_intrinsic_row_zero (hd : 3 ≤ d) (hR : 2 ≤ R) (hRd : R + 1 �
       (∑ i,(rename Sum.inl (w i).val*
         rename Sum.inr (monomial (privateExponent a (d-1) ι i) (1:K)))*(u i).val)=0) :
     u=0 := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
   let p' : Fin m → Forms K (a+z) ((d-1)+1) := fun i =>
     ⟨(p i).val,by simpa only [Nat.sub_add_cancel (by omega : 1≤d)] using (p i).property⟩
   have hh := private_biform_row_zero (s := d-1) (r := d-R) (t := d-(R+1))

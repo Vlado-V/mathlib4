@@ -22,6 +22,7 @@ open Module MvPolynomial
 variable {K : Type} [Field K] [Infinite K] {h m d q f u e : ℕ}
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem evenScalarOddFamily_append_apply
     (Q : Fin q → biformParitySpace K h m d 0)
     (E : Fin e → biformParitySpace K h m d 0)
@@ -77,6 +78,7 @@ def oddEvenRelativeMap
   ∑ i,(oddBackgroundQuotientProduct Q F G (E i)).comp (LinearMap.proj i)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem oddEvenRelativeMap_apply
     (Q : Fin q → biformParitySpace K h m d 0)
     (F : Fin f → biformParitySpace K h m d 1) (G : Fin u → biformParitySpace K h m d 1)

@@ -35,6 +35,7 @@ def renamedPrivateColumn (f : σ ≃ Fin h)
   (homogeneousVariableEquiv (K := K) f 1).symm (e w)
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem renamedPrivateBasis_column (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin h → K) :
     (renamedPrivateBasis f e).equivFun (renamedPrivateColumn f e w)=w := by
@@ -56,6 +57,7 @@ theorem renamedPrivateColumn_ne_zero (f : σ ≃ Fin h)
     _=0 := (renamedPrivateBasis f e).equivFun.map_zero
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem rename_renamedPrivateColumn (f : σ ≃ Fin h)
     (e : (Fin h → K) ≃ₗ[K] Forms K h 1) (w : Fin h → K) :
     rename f (renamedPrivateColumn f e w).val=(e w).val := by
@@ -86,12 +88,15 @@ theorem renamed_private_detector_column (f : σ ≃ Fin h)
   exact quadraticPolynomialDetector_form L (mulForm (e w) (e (Pi.single j 1)))
 
 set_option maxHeartbeats 300000 in -- Preserve the budget during this port.
-theorem privatePowerBiform_output_rename [Fintype σ] {d : ℕ}
+omit [Infinite K] in
+theorem privatePowerBiform_output_rename {d : ℕ}
     (f : σ ≃ Fin h) (l : Fin b → homogeneousSubmodule σ K 1)
     (ι : Fin b ↪ Fin z) (i : Fin b) :
     (privatePowerBiform (a := a) (d := d)
       (fun i => homogeneousVariableEquiv f 1 (l i)) ι i).val=
     rename (Sum.map f id) (privatePowerBiform (a := a) (d := d) l ι i).val := by
+  classical
+  let : Fintype σ := Fintype.ofEquiv (Fin h) f.symm
   simp only [privatePowerBiform_val,coe_homogeneousVariableEquiv,map_mul,rename_rename]
   rfl
 

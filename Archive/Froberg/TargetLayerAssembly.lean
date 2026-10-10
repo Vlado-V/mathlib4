@@ -46,9 +46,10 @@ def targetLayerFamily (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
     subst a
     exact framedBiformFamily frame c
   · unfold targetLayerCount
-    rw [if_neg ha]
+    rw [ite_eq_right ha]
     exact G ⟨a.val,activeEven_ne_two_is_higher hd a ha⟩
 
+omit [Infinite K] in
 @[simp] theorem targetLayerFamily_quadratic (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
     (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
@@ -57,6 +58,7 @@ def targetLayerFamily (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
       hd⟩ i=framedBiformFamily frame c i := by
   simp [targetLayerFamily]
 
+omit [Infinite K] in
 theorem targetLayerFamily_higher_surjective (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
     (c : Fin r → Fin H → Forms K m (d - 2))
     (G : BiformLayerFamily K h m (fun j : HigherLayerIndex d => j.val)
@@ -73,8 +75,8 @@ theorem targetLayerFamily_higher_surjective (hd : 3 ≤ d) (frame : Fin H → Fo
     subst n
     exact hG
   have hN : higherGeneratorCount d h m a.val=targetLayerCount d h m r a.val := by
-    simp only [targetLayerCount,if_neg ha]
-  simpa only [targetLayerFamily,dif_neg ha,id_eq,eq_mpr_eq_cast] using hcast _ hN
+    simp only [targetLayerCount,ite_eq_right ha]
+  simpa only [targetLayerFamily,dite_eq_right ha,id_eq,eq_mpr_eq_cast] using hcast _ hN
 
 theorem targetLayerOutput_homogeneous (frame : Fin H → Forms K h 2) (a : ℕ) :
     targetLayerOutput frame a≤Forms K h a := by
@@ -98,7 +100,7 @@ theorem targetLayerFamily_mem (hd : 3 ≤ d) (frame : Fin H → Forms K h 2)
     subst a
     simpa [targetLayerOutput,targetLayerFamily] using
       framed_coefficients_mem_prepared frame c i
-  · rw [targetLayerOutput,if_neg ha,←sumBiform_range]
+  · rw [targetLayerOutput,ite_eq_right ha,←sumBiform_range]
     exact ⟨targetLayerFamily hd frame c G a i,rfl⟩
 
 end Froberg

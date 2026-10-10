@@ -27,6 +27,7 @@ def outputFrameSpace (frame : Fin H → Forms K h j) : Submodule K (Poly K h) :=
   Submodule.span K (Set.range (fun a => (frame a).val))
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem outputFrameSpace_homogeneous (frame : Fin H → Forms K h j) :
     outputFrameSpace frame≤Forms K h j := by
   apply Submodule.span_le.mpr
@@ -34,6 +35,7 @@ theorem outputFrameSpace_homogeneous (frame : Fin H → Forms K h j) :
   exact (frame a).property
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem outputFrameSpace_finrank (frame : Fin H → Forms K h j)
     (hframe : LinearIndependent K frame) : finrank K (outputFrameSpace frame)=H := by
   have hi : LinearIndependent K (fun a => (frame a).val) :=
@@ -41,6 +43,7 @@ theorem outputFrameSpace_finrank (frame : Fin H → Forms K h j)
   simpa only [outputFrameSpace,Fintype.card_fin] using finrank_span_eq_card hi
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 /-- An output frame gives all allowed coefficients of the prepared family;
 there is no decomposability restriction on its entries. -/
 theorem outputFrame_coefficients_surjective (frame : Fin H → Forms K h j)
@@ -67,6 +70,7 @@ def sumBiform : (Forms K h j ⊗[K] Forms K m e) →ₗ[K]
     (TensorProduct.map (Forms K h j).subtype (Forms K m e).subtype)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem sumBiform_injective : Function.Injective
     (sumBiform (K := K) (h := h) (m := m) (j := j) (e := e)) :=
   (tensorEquivSum K (Fin h) (Fin m) K).injective.comp
@@ -74,6 +78,7 @@ theorem sumBiform_injective : Function.Injective
       (Forms K h j).injective_subtype (Forms K m e).injective_subtype)
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem sumBiform_range :
     (sumBiform (K := K) (h := h) (m := m) (j := j) (e := e)).range=
       biformImage (Forms K h j) (Forms K m e) := by
@@ -91,12 +96,14 @@ set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
     (sumBiformEquiv u).val=sumBiform u := rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem rename_sumBiform (u : Forms K h j ⊗[K] Forms K m e) :
     rename finSumFinEquiv (sumBiform u)=ambientBiform u := by
   rw [ambientBiform_eq_split]
   rfl
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem sumBiform_tmul (a : Forms K h j) (b : Forms K m e) :
     sumBiform (a ⊗ₜ[K] b)=rename Sum.inl a.val*rename Sum.inr b.val := by
   simp only [sumBiform,LinearMap.comp_apply,TensorProduct.map_tmul,Submodule.subtype_apply,

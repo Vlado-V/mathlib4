@@ -75,7 +75,7 @@ theorem restored_outer_odd_open (hh : 0 < h) (hm : 0 < m) (hd : 3 ≤ d) (hdeven
         OddSplitExact (restoredBiformFamily hdeven hO hJ heven idx slot p.1)
           (fun j => linearOddForm (by omega : 1≤d) (PreparedTarget.outerVectorEquiv.symm (p.2
             j))) := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   obtain ⟨P,hP,hgood⟩ := scalar_vector_rows_open hh hm (by omega) D hD hmodel hscalar hupper
   obtain ⟨E,hE,hEgood⟩ := principal_open_linear_pullback (restoredOuterVectorParameters (O := O)
     idx)

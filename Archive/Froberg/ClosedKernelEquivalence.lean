@@ -25,6 +25,10 @@ variable {K P V W P' V' W' : Type*} [Field K]
   [AddCommGroup W'] [Module K W'] [FiniteDimensional K W']
 
  set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K P] [FiniteDimensional K V] [FiniteDimensional K W]
+    [FiniteDimensional K P']
+    [FiniteDimensional K V']
+    [FiniteDimensional K W'] in
 theorem relation_kernel_equivalence
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')
@@ -49,6 +53,8 @@ theorem relation_kernel_equivalence
     exact DFunLike.congr_fun hv p
 
 set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
+omit [FiniteDimensional K P] [FiniteDimensional K V] [FiniteDimensional K W]
+    [FiniteDimensional K P'] [FiniteDimensional K V'] [FiniteDimensional K W'] in
 theorem relation_kernel_finrank_equivalence
     (eP : P ≃ₗ[K] P') (eV : V ≃ₗ[K] V') (eW : W ≃ₗ[K] W')
     (mu : P →ₗ[K] V →ₗ[K] W) (nu : P' →ₗ[K] V' →ₗ[K] W')

@@ -104,13 +104,13 @@ theorem quadraticExtraLayer_cover {d : ℕ} (hd : 3 ≤ d) (h m e : ℕ)
       lt_of_lt_of_eq i.isLt hcount
     have hj : j=2 := by
       by_contra hj
-      rw [if_neg hj] at hil
+      rw [ite_eq_right hj] at hil
       omega
     subst j
     have he : allEvenCount d h m e 2=e := by
       simp only [allEvenCount_active h m _ (two_mem_activeEvenIndices hd),targetLayerCount,ite_true]
     have hv : i.val=e := by
-      rw [if_pos rfl,he] at hil
+      rw [ite_eq_left rfl,he] at hil
       rw [he] at hi
       omega
     congr 1

@@ -37,17 +37,17 @@ def allEvenCount (d h n e j : ℕ) : ℕ :=
 
 @[simp] theorem allEvenCount_active {d j : ℕ} (h n e : ℕ) (hj : j ∈ activeEvenIndices d) :
     allEvenCount d h n e j=targetLayerCount d h n e j := by
-  simp only [allEvenCount,if_pos hj]
+  simp only [allEvenCount,ite_eq_left hj]
 
 @[simp] theorem allEvenCount_inactive {d j : ℕ} (h n e : ℕ) (hj : j ∉ activeEvenIndices d) :
-    allEvenCount d h n e j=0 := by simp only [allEvenCount,if_neg hj]
+    allEvenCount d h n e j=0 := by simp only [allEvenCount,ite_eq_right hj]
 
 def allEvenLabelEquiv {d : ℕ} (hd : 3 ≤ d) (q h n e : ℕ) :
     Label q (activeEvenIndices d) (targetLayerCount d h n e) ≃
       Label q (allEvenIndices d) (allEvenCount d h n e) :=
   zeroLabelEquiv (activeEven_subset_allEven hd)
-    (fun j hj => (allEvenCount_active h n e hj).symm)
-    (fun j _ hj => allEvenCount_inactive h n e hj)
+    (fun _j hj => (allEvenCount_active h n e hj).symm)
+    (fun _j _ hj => allEvenCount_inactive h n e hj)
 
 theorem allEvenLabel_card {d : ℕ} (hd : 3 ≤ d) (q h n e : ℕ) :
     Fintype.card (Label q (allEvenIndices d) (allEvenCount d h n e))=

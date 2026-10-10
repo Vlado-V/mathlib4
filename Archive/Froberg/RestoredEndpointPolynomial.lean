@@ -86,7 +86,7 @@ theorem restored_upper_open_of_witness (hdp : 1 ≤ d) (hd : d % 2 = 0)
       ∀ p : RestoredOuterSpace m d q f J counts O,eval ((Module.finBasis K _).equivFun p) P≠0 →
         Function.Surjective (upperTargetMap (restoredOuterEndpoint hdp hd hO hJ heven idx slot
           p)) := by
-  letI : Module.Finite K (Space m d q J counts O) := finite_space hO
+  let : Module.Finite K (Space m d q J counts O) := finite_space hO
   let coord := (Module.finBasis K (RestoredOuterSpace m d q f J counts O)).equivFun
   let L := restoredOuterEndpointLinear (m := m) (f := f) hdp hd hO hJ heven idx slot
   obtain ⟨P,hP,hgood⟩ := upperTarget_principal_open (fun a => L (coord.symm a))

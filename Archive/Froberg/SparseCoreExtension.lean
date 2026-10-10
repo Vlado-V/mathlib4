@@ -24,6 +24,7 @@ variable {σ : Type*} {a z s d h m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W]
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem sparse_endpoint_coordinate_constants
     (o : Fin h → MvPolynomial σ K)
     (e : Fin m → Fin a →₀ ℕ) (v : Fin m → Fin h → K) (he : ∀ i, (e i).degree = s)

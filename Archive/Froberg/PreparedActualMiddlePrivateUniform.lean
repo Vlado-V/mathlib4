@@ -60,7 +60,7 @@ theorem eventually_actual_middle_private_reduction_open_uniform {d : ℕ}
       with w hmiddle hfourth hquadratic hprojected
   intro hdiv z extra e he
   have hproj := hprojected ⟨4,h4⟩ (by change (4 : ℕ)≠2; omega)
-  simp only [if_pos h4a] at hproj
+  simp only [ite_eq_left h4a] at hproj
   filter_upwards [hmiddle hdiv z extra e he,
     hfourth z extra e he,hquadratic z extra e he,
     eventually_gt_atTop (0 : ℕ)] with v hmv hfv hqv hv
@@ -70,7 +70,7 @@ theorem eventually_actual_middle_private_reduction_open_uniform {d : ℕ}
   have hqv := hqv X T hO
   let counts := allEvenCount d (2*w) (v+v+z) (e (v+v+z)+extra)
   let I := Label (upperCount (v+v+z) d) (allEvenIndices d) counts
-  letI : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
+  let : LinearOrder I := LinearOrder.lift' (Fintype.equivFin I) (Fintype.equivFin I).injective
   exact private_small_reduction_open_of_core_witnesses (by omega) hodd hv
     (fun _ hj => (mem_allEvenIndices.mp hj).1)
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)

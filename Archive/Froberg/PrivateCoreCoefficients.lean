@@ -50,14 +50,14 @@ def corePolynomialMatrix (q : J → I → Poly K a) :
     (I → Forms K a t) →ₗ[K] (J → Poly K a) where
   toFun p j := ∑ i,q j i*(p i).val
   map_add' p p' := by ext j; simp [mul_add,Finset.sum_add_distrib]
-  map_smul' c p := by ext j; simp [mul_smul_comm,Finset.smul_sum]
+  map_smul' c p := by ext j; simp [Finset.smul_sum]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 def extendedCorePolynomialMatrix (q : J → I → Poly K a) :
     (I → Forms K (a+z) t) →ₗ[K] (J → Poly K (a+z)) where
   toFun p j := ∑ i,rename (Fin.castAdd z) (q j i)*(p i).val
   map_add' p p' := by ext j; simp [mul_add,Finset.sum_add_distrib]
-  map_smul' c p := by ext j; simp [mul_smul_comm,Finset.smul_sum]
+  map_smul' c p := by ext j; simp [Finset.smul_sum]
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 /-- Actual lower-degree injectivity is preserved on adjoining any number

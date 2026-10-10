@@ -22,6 +22,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {h n d t c q f R s : ℕ}
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarCoefficientRow_injective (Q : Fin q → Forms K n d)
     (hQ : Function.Injective (prefixMultiplication Q t)) :
     Function.Injective (scalarCoefficientRow (c := c) (t := t) Q) := by
@@ -35,6 +36,7 @@ theorem scalarCoefficientRow_injective (Q : Fin q → Forms K n d)
   exact congrFun (hk k) i
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem scalarCoefficientRow_mem (Q : Fin q → Forms K n d)
     (x : Fin q → Fin c → Forms K n t) (k : Fin c) :
     scalarCoefficientRow Q x k ∈ familySpace Q*Forms K n t := by
@@ -60,7 +62,7 @@ theorem scalar_detected_biform_separation
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem exists_scalar_separated_biform_family
-    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    {ι : Type*} [Fintype ι]
     (Q : Fin q → Forms K n d)
     (o : ι → Forms K h 1) (T : Poly K h →ₗ[K] (Fin c → K))
     (ho : LinearIndependent K (fun p => T (pairProducts (fun i => (o i).val) p)))
@@ -74,6 +76,7 @@ theorem exists_scalar_separated_biform_family
         scalarCoefficientRow Q x+
           detectedSymmetricProductRow (FullBiform K (Fin h) n 1 (d-1)).subtype
             (biformVectorDetector T) F a=0 → a=0 := by
+  classical
   obtain ⟨F,hF⟩ := exists_detected_biform_family o T ho C (C*C)
     (familySpace Q*Forms K n (d-2)) hCdeg hC le_rfl hCQ hf
   have hprod : LinearIndependent K (pairProducts (fun i => (F i).val)) := by

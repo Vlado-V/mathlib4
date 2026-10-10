@@ -21,13 +21,15 @@ variable {σ : Type*} [Fintype σ] {a z d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
-theorem quadratic_only_extended_leading
+omit [Fintype σ] in
+theorem quadratic_only_extended_leading [Finite σ]
     (hd : 3 ≤ d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, 2 ≤ j) (hJd : ∀ j ∈ J, j ≤ d) (h2 : 2 ∈ J)
     (hz : ∀ j ∈ J, j ≠ 2 → counts j = 0)
     (hquad : ∃ b, QuadraticRowCapacity a d q b J counts O)
     (ell : Fin 2 → Forms K a 1) (hell : LinearIndependent K ell) :
     ∀ R : J,∃ p : Space (a+z) d q J counts O,LinearIndependent K (p.2 R) := by
+  let : Fintype σ := Fintype.ofFinite σ
   classical
   intro R
   by_cases hR : R.val=2
@@ -38,7 +40,7 @@ theorem quadratic_only_extended_leading
       hd hO hJ hJd h2 hb ell hell
     exact ⟨p,(intrinsicLayer_independent_iff hO p ⟨2,h2⟩).mp hp⟩
   · have hzero := hz R.val R.property hR
-    letI : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
+    let : IsEmpty (Fin (counts R.val)) := ⟨fun i => by have := i.isLt; omega⟩
     exact ⟨0,linearIndependent_empty_type⟩
 
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]

@@ -18,6 +18,7 @@ namespace Froberg
 open Module
 variable {K : Type} [Field K] [Infinite K] {h m d r s : ℕ}
 
+omit [Infinite K] in
 theorem rename_endpoint_range_le_of_generators {a b t : ℕ}
     (f : Fin a → Fin b) (Q : Fin t → Forms K a d) (q : Fin r → Forms K b d)
     (hgen : ∀ i, (renameForm f (Q i)).val ∈

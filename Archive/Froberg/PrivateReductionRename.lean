@@ -24,6 +24,7 @@ variable {K : Type} [Field K] [Infinite K]
 variable {σ τ : Type*} [Fintype σ] [Fintype τ] {n : ℕ}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem output_rename_weighted {M : Type*} [AddCommMonoid M]
     (e : σ ≃ τ) (x y r : M) (f : MvPolynomial (σ ⊕ Fin n) K)
     (hf : f.IsWeightedHomogeneous (Sum.elim (fun _ : σ => x) (fun _ : Fin n => y)) r) :
@@ -35,12 +36,14 @@ theorem output_rename_weighted {M : Type*} [AddCommMonoid M]
   cases a <;> rfl
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem output_rename_parity (e : σ ≃ τ) (p : ℕ) (hp : p < 2)
     (f : MvPolynomial (σ ⊕ Fin n) K)
     (hf : ∀ a, f.coeff a ≠ 0 → Finsupp.weight
       (Sum.elim (fun _ : σ => 1) (fun _ : Fin n => 0)) a%2=p) :
     ∀ a,(rename (Sum.map e id) f).coeff a≠0 → Finsupp.weight
       (Sum.elim (fun _ : τ => 1) (fun _ : Fin n => 0)) a%2=p := by
+  classical
   apply (parity_homogeneous_iff _ _ p hp).mp
   have hcastτ : (fun i : τ ⊕ Fin n =>
       ((Sum.elim (fun _ : τ => (1 : ℕ)) (fun _ : Fin n => 0) i : ℕ) : ZMod 2))=
@@ -57,7 +60,8 @@ variable {d q b : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem private_positive_reduction_output_rename
+omit [Fintype σ] [Fintype τ] in
+theorem private_positive_reduction_output_rename [Finite σ] [Finite τ]
     (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
     (p : Space n d q J counts O) (P : Fin b → FullBiform K σ n 1 (d - 1))
@@ -66,6 +70,8 @@ theorem private_positive_reduction_output_rename
     (hp : PrivatePositiveReduction p P) :
     PrivatePositiveReduction (outputRename e p) P' := by
   classical
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Fintype τ := Fintype.ofFinite τ
   let E := e.sumCongr (Equiv.refl (Fin n))
   let F := renameEquiv K E
   have hF (a : MvPolynomial (σ ⊕ Fin n) K) : F a=rename (Sum.map e id) a := rfl
@@ -142,7 +148,8 @@ theorem private_positive_reduction_output_rename
     exact ⟨(hzw i).1.rename_isHomogeneous,output_rename_weighted e 1 0 0 (z i) (hzw i).2⟩
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
-theorem private_positive_reduction_open_output_rename
+omit [Fintype σ] [Fintype τ] in
+theorem private_positive_reduction_open_output_rename [Finite σ] [Finite τ]
     [Module.Finite K (Space n d q J counts O)]
     (hd : 0 < d) (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hJ : ∀ j ∈ J, j ≤ d) (e : σ ≃ τ)
@@ -160,6 +167,9 @@ theorem private_positive_reduction_open_output_rename
         eval ((Module.finBasis K _).equivFun p) D'≠0) ∧
       ∀ p : Space n d q J counts (fun j => (O j).map (rename e).toLinearMap),
         eval ((Module.finBasis K _).equivFun p) D'≠0 → PrivatePositiveReduction p P' := by
+  classical
+  let : Fintype σ := Fintype.ofFinite σ
+  let : Fintype τ := Fintype.ofFinite τ
   let F := outputRenameEquiv (n := n) (d := d) (q := q) (J := J) (counts := counts) (O := O) e
   obtain ⟨D',hD',hgood'⟩ := principal_open_linear_pullback F.symm.toLinearMap
     F.symm.surjective D hD (fun p => PrivatePositiveReduction p P) hgood

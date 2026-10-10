@@ -74,6 +74,7 @@ theorem rightFinal_eq : (rightFinal (a := a) (b := b) (v := v)) =
   cases z <;> rfl
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem cross_independent {r t : ℕ}
     (f : Fin r → MvPolynomial (Fin a ⊕ Fin v) K)
     (g : Fin t → MvPolynomial (Fin b ⊕ Fin v) K)
@@ -115,9 +116,9 @@ theorem exists_unequal_constrained_cross_pair
       LinearIndependent K (fun p : Fin r × Fin u => f p.1*g p.2) := by
   let O₁ := Forms K a j⊓(T₁.comp (rename (Fin.castAdd b)).toLinearMap).ker
   let O₂ := Forms K b l⊓(T₂.comp (rename (Fin.natAdd a)).toLinearMap).ker
-  letI : Module.Finite K O₁ := Submodule.finiteDimensional_of_le (show O₁≤Forms K a j from
+  let : Module.Finite K O₁ := Submodule.finiteDimensional_of_le (show O₁≤Forms K a j from
     inf_le_left)
-  letI : Module.Finite K O₂ := Submodule.finiteDimensional_of_le (show O₂≤Forms K b l from
+  let : Module.Finite K O₂ := Submodule.finiteDimensional_of_le (show O₂≤Forms K b l from
     inf_le_left)
   have hdim₁ := finrank_intersection_kernel_lower_bound (Forms K a j)
     (T₁.comp (rename (Fin.castAdd b)).toLinearMap)

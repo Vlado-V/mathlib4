@@ -37,7 +37,7 @@ theorem exists_higher_extended_row_parameter {w v z d q b : ℕ}
       (row hO R p).ker=(rowConstants hO R p).range := by
   classical
   dsimp only
-  letI : Module.Finite K (homogeneousSubmodule (Fin w × Bool) K R.val) :=
+  let : Module.Finite K (homogeneousSubmodule (Fin w × Bool) K R.val) :=
     Module.Finite.of_fg (homogeneousSubmodule_fg _ _ _)
   let bo := Module.finBasis K (homogeneousSubmodule (Fin w × Bool) K R.val)
   obtain ⟨e,zv,he,Q,E,hproj,hER,hRdeg,hrest,hfull,hker⟩ :=

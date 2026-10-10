@@ -31,7 +31,7 @@ theorem eventually_uniform_prepared_outer_open_from_shared_detector {d h : ℕ}
     ∀ᶠ n : ℕ in atTop, ∀ (K : Type) [Field K] [Infinite K],
       ∀ (J : Finset ℕ) (counts : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
         (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-        (hmin : ∀ j∈J,2≤j) (idx : Fin (r n) ≃ PreparedParameters.Label (upperCount n d) J counts)
+        (_hmin : ∀ j∈J,2≤j) (_idx : Fin (r n) ≃ PreparedParameters.Label (upperCount n d) J counts)
         (c : ℕ) (e : (Fin h → K) ≃ₗ[K] Forms K h 1)
         (L : Forms K h 2 →ₗ[K] (Fin c → K)) (w : Fin u → Fin h → K)
         (o : Fin (outerColumnCount d h) → Forms K h 1),
@@ -77,8 +77,8 @@ theorem eventually_uniform_counted_prepared_outer_open {d : ℕ} (hd : 3 ≤ d) 
             eval ((Module.finBasis K _).equivFun frame) P≠0 →
             ∀ (J : Finset ℕ) (counts : ℕ → ℕ) (O : ℕ → Submodule K (Poly K h))
               (hO : ∀ j∈J,O j≤Forms K h j) (hJ : ∀ j∈J,j≤d) (heven : ∀ j∈J,j%2=0)
-              (hmin : ∀ j∈J,2≤j)
-              (idx : Fin (r n) ≃ PreparedParameters.Label (upperCount n d) J counts),
+              (_hmin : ∀ j∈J,2≤j)
+              (_idx : Fin (r n) ≃ PreparedParameters.Label (upperCount n d) J counts),
               O 2≤outputFrameSpace frame →
               HasUniformPreparedOuterOpen (n := n) (q := upperCount n d) (f := f n) (u := u)
                 (counts := counts) (by omega) ho hO hJ heven := by

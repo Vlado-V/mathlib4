@@ -85,7 +85,7 @@ theorem exists_restored_appended_basis (hd : 3 ≤ d) (he : d % 2 = 0)
         ∃ (M : Fin r → Fin r → K)
           (z : retainedScalarCoefficients (K := K) outputWeight d (fun i => degree (idx i))),
           c-coefficientBoundary (restoredAppendedFamily hd he hO p idx u) M=z.val := by
-  letI : Module.Finite K (homogeneousSubmodule σ K d) :=
+  let : Module.Finite K (homogeneousSubmodule σ K d) :=
     Module.Finite.of_basis (finiteVariableFormsBasis σ d)
   obtain ⟨u,hu,hreduce⟩ := restore_even_prepared_basis he hO
     (fun _ hj => (mem_allEvenIndices.mp hj).2.1)

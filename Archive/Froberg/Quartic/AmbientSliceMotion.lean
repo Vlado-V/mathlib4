@@ -25,6 +25,7 @@ set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
 abbrev Threshold (a c : ℕ) := Fin (a-c+1)
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [IsAlgClosed K] in
 theorem kernel_lower
     (mu : (Fin b → K) →ₗ[K] (Fin a → K) →ₗ[K] (Fin T → K))
     (E : Fin c → Fin a → K) (hE : LinearIndependent K E) (ell : Fin T → K)

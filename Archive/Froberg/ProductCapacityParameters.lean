@@ -21,6 +21,7 @@ open scoped Topology
 variable {K : Type} [Field K] [Infinite K]
 variable {X : Type*} [AddCommGroup X] [Module K X] [Module.Finite K X]
 
+omit [Infinite K] [Module.Finite K X] in
 theorem productRowCapacity_of_individual_bounds {w v d : ℕ} {J : Finset ℕ}
     {counts : ℕ → ℕ} (hw : 0 < w) (hv : 0 < v)
     (hev : ∀ j ∈ J, Even j) (hdeg : ∀ j ∈ J, j ≤ d)
@@ -67,7 +68,7 @@ theorem eventually_product_row_capacities {d : ℕ} (hd : 9 ≤ d) :
       simpa only [targetLayerCount,ite_true] using hquad r
         (by simpa only [Nat.cast_mul,Nat.cast_ofNat] using hr)
     · have hjhigher := activeEven_ne_two_is_higher (by omega : 3≤d) ⟨j,hj⟩ hj2
-      simpa only [targetLayerCount,if_neg hj2] using hhigher ⟨j,hjhigher⟩
+      simpa only [targetLayerCount,ite_eq_right hj2] using hhigher ⟨j,hjhigher⟩
   apply productRowCapacity_of_individual_bounds hw hv
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).2.2)
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).2.1.le)

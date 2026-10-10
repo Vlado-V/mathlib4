@@ -25,6 +25,7 @@ variable {h m d q r f u c : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (Poly K h)}
 
 set_option maxHeartbeats 1800000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem preparedScalarSpace_eq_familySpace
     (idx : Fin r ≃ PreparedParameters.Label q J counts)
     (p : PreparedParameters.Space m d q J counts O) :
@@ -81,7 +82,7 @@ theorem prepared_outer_separation_principal_open
       ∀ p : FixedPureZeroScalarSpace m d q f u J counts O,
         eval ((Module.finBasis K _).equivFun p) D≠0 →
           PreparedOuterSeparation (by omega) ho hO hJ heven U p := by
-  letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   obtain ⟨D,hD,hgood⟩ := prepared_quadratic_separation_principal_open hO idx
     (biformVectorDetector T) Q₀ P₀ F₀ hexact hsep
@@ -111,7 +112,7 @@ theorem prepared_outer_separation_principal_open_uniform
       ∀ (U : Fin u → Forms K h d) (p : FixedPureZeroScalarSpace m d q f u J counts O),
         eval ((Module.finBasis K _).equivFun p) D≠0 →
           PreparedOuterSeparation (by omega) ho hO hJ heven U p := by
-  letI : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
+  let : Module.Finite K (FixedPureZeroScalarSpace m d q f u J counts O) :=
     finite_fixedPureZeroScalarSpace hO
   obtain ⟨D,hD,hgood⟩ := prepared_quadratic_separation_principal_open hO idx
     (biformVectorDetector T) Q₀ P₀ F₀ hexact hsep

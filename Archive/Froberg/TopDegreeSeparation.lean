@@ -20,6 +20,7 @@ attribute [local instance] tensorFormGroup
 variable {K : Type} [Field K] [Infinite K] {h m a b c e d q f n : ℕ}
 
 set_option maxHeartbeats 1000000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem biformDegreeTransport_disjoint
     (ha : a = b) (hc : c = e)
     (P : Submodule K (Forms K h b)) (Q : Submodule K (Forms K m e))

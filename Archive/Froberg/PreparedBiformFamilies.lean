@@ -30,6 +30,7 @@ def preparedEvenBiform (hO : ∀ j ∈ J, O j ≤ Forms K h j)
       ((mem_weightedParitySpace_iff _ _ _).mp (PreparedParameters.generator_even hO heven p i))⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem oddGenerator_homogeneous (hd : 0 < d) (U : Fin u → Forms K h d)
     (P : OuterSpace K (Fin h) m d u) (F : OuterSpace K (Fin h) m d f) (k : Fin f ⊕ Fin u) :
     (oddGenerator U P F k).IsHomogeneous d := by

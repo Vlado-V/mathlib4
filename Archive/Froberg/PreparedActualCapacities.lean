@@ -30,7 +30,7 @@ theorem oddOutputDimension_eventually_positive {R : ℕ} (hR : 0 < R) :
     hp)] with w hw
   apply Nat.pos_of_ne_zero
   intro hz
-  simpa only [hz,Nat.cast_zero,zero_div,lt_self_iff_false] using hw
+  simp only [hz,Nat.cast_zero,zero_div,lt_self_iff_false] at hw
 
 theorem eventually_actual_even_capacities {d : ℕ} (hd : 9 ≤ d) :
     ∀ᶠ w : ℕ in atTop,

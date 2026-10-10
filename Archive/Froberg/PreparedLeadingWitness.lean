@@ -21,6 +21,7 @@ variable {σ : Type*} [Fintype σ] {m d q : ℕ}
 variable {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] in
 theorem intrinsicLayer_independent_iff
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (p : Space m d q J counts O) (j : J) :
@@ -28,7 +29,7 @@ theorem intrinsicLayer_independent_iff
       LinearIndependent K (p.2 j) := by
   have heq (i : Fin (counts j.val)) : (intrinsicLayerMap hO j i p).val=(p.2 j i).val := by
     change layerMap j.val i p=(p.2 j i).val
-    rw [layerMap_apply,layers,dif_pos j.property]
+    rw [layerMap_apply,layers,dite_eq_left j.property]
   constructor
   · intro hi
     apply LinearIndependent.of_comp (biformImage (O j.val) (Forms K m (d-j.val))).subtype
@@ -40,6 +41,7 @@ theorem intrinsicLayer_independent_iff
       _)
     simpa only [Function.comp_def,Submodule.subtype_apply,heq] using hh
 
+omit [Infinite K] in
 theorem leading_witnesses_of_intrinsic
     (hO : ∀ j ∈ J, O j ≤ homogeneousSubmodule σ K j)
     (hw : ∀ j : J,∃ p : Space m d q J counts O,

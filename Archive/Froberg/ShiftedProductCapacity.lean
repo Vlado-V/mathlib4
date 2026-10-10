@@ -59,7 +59,7 @@ theorem eventually_higher_product_capacity_shift {d j : ℕ} (hd : 9 ≤ d)
   filter_upwards [hh,he] with m hm hem
   have hdiag : higherGeneratorCount d h (m+z) j≤diagonalProductCount d j h m := by
     simp only [Nat.add_zero] at hem
-    exact hem.trans (by simpa only [intermediateDensity,if_neg (show j≠2 by omega)] using hm)
+    exact hem.trans (by simpa only [intermediateDensity,ite_eq_right (show j≠2 by omega)] using hm)
   exact ⟨hdiag,hdiag.trans (diagonalProductCount_le_cross (by omega) hb.2.1)⟩
 
 namespace PreparedParameters
@@ -94,7 +94,7 @@ theorem eventually_product_row_capacities_shift {d : ℕ} (hd : 9 ≤ d) :
       simpa only [targetLayerCount,ite_true] using hquad r
         (by simpa only [Nat.cast_mul,Nat.cast_ofNat] using hr)
     · have hjhigher := activeEven_ne_two_is_higher (by omega : 3≤d) ⟨j,hj⟩ hj2
-      simpa only [targetLayerCount,if_neg hj2] using hhigher ⟨j,hjhigher⟩
+      simpa only [targetLayerCount,ite_eq_right hj2] using hhigher ⟨j,hjhigher⟩
   apply productRowCapacity_of_individual_bounds hw hv
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).2.2)
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).2.1.le)

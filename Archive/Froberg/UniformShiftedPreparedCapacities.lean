@@ -96,7 +96,7 @@ theorem eventually_actual_even_capacities_shift_uniform {d : ℕ} (hd : 9 ≤ d)
     obtain ⟨hRlow,hRd,hRe⟩ := mem_allEvenIndices.mp R.property
     have hR4 : 4≤R.val := by omega
     by_cases ha : R.val∈activeEvenIndices d
-    · rw [if_pos ha]
+    · rw [ite_eq_left ha]
       have hRa : R.val∈activeHigherIndices d := Finset.mem_filter.mpr ⟨ha,hR4⟩
       have hsparse := hhigher ⟨R.val,hRa⟩
       have hbudget := tendsto_twice_nat.eventually (hsparse.2.2 r hcount)
@@ -122,13 +122,13 @@ theorem eventually_actual_even_capacities_shift_uniform {d : ℕ} (hd : 9 ≤ d)
               cross := (hprod R.val).cross
               output_positive := hsparse.1
               enough_generators := by
-                simpa only [counts,allEvenCount_active _ _ _ ha,targetLayerCount,if_neg hR2,
+                simpa only [counts,allEvenCount_active _ _ _ ha,targetLayerCount,ite_eq_right hR2,
                   higherGeneratorCount,Nat.cast_mul,Nat.cast_ofNat,Nat.add_zero,two_mul,
                     Nat.cast_add] using hc
               divisor_capacity := hsparse.2.1
               incidence := by simpa only [r,two_mul] using hb.2
               scalar_open := ⟨D,hD,fun Q hQ => (hgood Q hQ).1⟩ }
-    · rw [if_neg ha]
+    · rw [ite_eq_right ha]
       have hempty := eventually_empty_higher_capacity (K := K) (X := X) hd (allEvenIndices d) R
         hR4 hRd T (hT _ hR4) (hpos R) q counts
         (fun n => allEvenCount_inactive _ _ _ ha) hcount

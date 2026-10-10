@@ -52,8 +52,7 @@ theorem private_core_row_separation
     apply ProductRows.multiplication_range_full_biform (layers p₀) (by omega)
       (fun j hj i => (homogeneousLayerMap hO hJ j i p₀).property)
       (fun j hj i => biformImage_output_weight _ _ (hO j hj) (by
-        change layers p₀ j i∈biformImage (O j) (Forms K a (d-j))
-        simpa only [layers,dif_pos hj] using (p₀.2 ⟨j,hj⟩ i).property))
+        simpa only [layers,dite_eq_left hj] using (p₀.2 ⟨j,hj⟩ i).property))
     exact ⟨x.2,rfl⟩
   have hraw := private_intrinsic_row_zero hd hR hRd bi bo w hw ι e v hproj
     (fun i => p₀.1 (f.symm i)) (fun i => x.1.1 (f.symm i)) x.1.2

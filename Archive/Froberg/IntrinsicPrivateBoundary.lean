@@ -30,6 +30,7 @@ def intrinsicPrivateBoundary (P : Fin b → FullBiform K σ n 1 (d - 1)) :
     funext i
     simp only [Pi.smul_apply,smul_smul,Finset.smul_sum,smul_sub,RingHom.id_apply,smul_eq_mul]
 
+omit [Infinite K] [Fintype σ] in
 @[simp] theorem intrinsicPrivateBoundary_val (P : Fin b → FullBiform K σ n 1 (d - 1))
     (C : Fin b → Fin b → K) (i : Fin b) :
     (intrinsicPrivateBoundary P C i).val=matrixBoundary (fun j => (P j).val) C i := by
@@ -37,6 +38,7 @@ def intrinsicPrivateBoundary (P : Fin b → FullBiform K σ n 1 (d - 1)) :
     matrixBoundary,matrixCombination,Pi.sub_apply,Submodule.coe_sub,Submodule.coe_sum,
       Submodule.coe_smul]
 
+omit [Infinite K] [Fintype σ] in
 theorem intrinsicPrivateBoundary_cycle (P : Fin b → FullBiform K σ n 1 (d - 1)) :
     (PreparedParameters.privateRowMap (d := d) (fun i => (P i).val) 2).comp
       (intrinsicPrivateBoundary P)=0 := by
@@ -46,6 +48,7 @@ theorem intrinsicPrivateBoundary_cycle (P : Fin b → FullBiform K σ n 1 (d - 1
   simp only [intrinsicPrivateBoundary_val]
   exact matrixBoundary_cycle (fun i => (P i).val) C
 
+omit [Infinite K] [Fintype σ] in
 theorem intrinsicPrivateBoundary_mem_of_polynomial
     (P : Fin b → FullBiform K σ n 1 (d - 1))
     (u : Fin b → FullBiform K σ n 1 (d - 1))
@@ -58,6 +61,7 @@ theorem intrinsicPrivateBoundary_mem_of_polynomial
   rw [intrinsicPrivateBoundary_val]
   exact congrFun hC i
 
+omit [Infinite K] in
 theorem addRow_exact_of_boundary_separation
     {A B U Z V : Type*} [AddCommGroup A] [Module K A] [AddCommGroup B] [Module K B]
     [AddCommGroup U] [Module K U] [AddCommGroup Z] [Module K Z] [AddCommGroup V] [Module K V]

@@ -23,7 +23,8 @@ variable {σ : Type*} [Fintype σ] {a z s d R m q : ℕ}
 variable {W : Type*} [AddCommGroup W] [Module K W]
 
  set_option maxHeartbeats 1600000 in -- Preserve the budget during this port.
-theorem extended_polynomial_row_relation_constants_zero (hs : s = 0) (hsd : s ≤ d)
+omit [Fintype σ] in
+theorem extended_polynomial_row_relation_constants_zero [Finite σ] (hs : s = 0) (hsd : s ≤ d)
     (o : Fin (finrank K (homogeneousSubmodule σ K R)) → MvPolynomial σ K)
     (ho : LinearIndependent K o) (hdeg : ∀ i, (o i).IsHomogeneous R)
     (e : Fin m → Fin a →₀ ℕ)
@@ -47,6 +48,7 @@ theorem extended_polynomial_row_relation_constants_zero (hs : s = 0) (hsd : s �
     ∃ C : Fin q → Fin m → K,
       (∀ i,U i=∑ k,C i k • rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v k)) ∧
       (∀ k,(B k).val = -∑ i,C i k • rename (Fin.castAdd z) (Q i).val) ∧ p=0 := by
+  let := Fintype.ofFinite σ
   have hcoords (i : Fin q) : ∃ u : Fin (finrank K (homogeneousSubmodule σ K R)) → Forms K (a+z) s,
       polynomialFormVector o s u=U i := by
     change U i∈(polynomialFormVector o s).range
@@ -71,7 +73,7 @@ theorem extended_polynomial_row_relation_constants_zero (hs : s = 0) (hsd : s �
             (∑ k,rename (Sum.map id (Fin.castAdd z)) (attachedPolynomialFamily o e v k)*
               rename Sum.inr (B k).val)+rename (Sum.map id (Fin.castAdd z)) p := by
           simp only [←hx,←hpc,polynomialFormVector_apply,attachedPolynomialFamily,
-            polynomialVector_core_extension,polynomialVector_apply,map_sum,map_mul,
+            polynomialVector_apply,map_sum,map_mul,
             Finset.sum_mul,Finset.mul_sum,Finset.sum_add_distrib,map_add,mul_add,rename_rename,
               Function.comp_def,Sum.map_inl,Sum.map_inr,id_eq]
           apply congrArg₂ (·+·)

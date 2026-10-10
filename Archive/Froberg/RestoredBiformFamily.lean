@@ -33,6 +33,7 @@ def restoredBiformFamily (hd : d % 2 = 0)
         (restoredFamilyLinear hd hO hJ heven idx slot p i).property.2)⟩
 
 set_option maxHeartbeats 1500000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem pureShift_weight (hd : d % 2 = 0)
     (slot : Fin (finrank K (Forms K h d)) → Fin r)
     (U : Fin (finrank K (Forms K h d)) → Forms K h d) (i : Fin r) :
@@ -64,7 +65,8 @@ theorem restoredBiformFamily_scalar_component (hdp : 0 < d) (hd : d % 2 = 0)
   change weightedHomogeneousComponent (blockWeight h m) 0
     (generator p.1 (idx i)+(PolynomialRestoration.pureShift (pureEvenEmbed hd) slot p.2 i).val)=_
   rw [map_add,PreparedTarget.prepared_generator_component_zero hO hpos,
-    weightedHomogeneousComponent_of_mem (pureShift_weight hd slot p.2 i),if_neg (by omega),add_zero]
+    weightedHomogeneousComponent_of_mem (pureShift_weight hd slot p.2 i),
+    ite_eq_right (by omega),add_zero]
   rfl
 
 end Froberg.PreparedParameters

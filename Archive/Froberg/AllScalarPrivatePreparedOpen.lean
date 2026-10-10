@@ -46,8 +46,8 @@ def PrivatePreparedFrameOpen {d : ℕ} (hd : 0 < d) (hodd : d % 2 = 1)
         ∀ p : S,eval ((Module.finBasis K S).equivFun p) D≠0 →
           PrivateSplitReduction hd hodd
             (fun j _ => targetLayerOutput_homogeneous frame j)
-            (fun j hj => (mem_allEvenIndices.mp hj).2.1)
-            (fun j hj => (mem_allEvenIndices.mp hj).2.2) label U p
+            (fun _ hj => (mem_allEvenIndices.mp hj).2.1)
+            (fun _ hj => (mem_allEvenIndices.mp hj).2.2) label U p
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
 theorem counted_private_prepared_all_scalars {d w : ℕ}

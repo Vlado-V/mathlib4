@@ -68,7 +68,7 @@ theorem coreComponent_exists_block (p : Forms K (h + m) (i + j)) :
   · rw [freeCoeff_blockPolynomial_of_degree_ne u b hb,sub_zero]
     by_cases hd : b.degree ≤ i+j
     · have hp := freeCoeff_homogeneous p.val p.property b
-      rw [homogeneousComponent_of_mem hp,if_neg]
+      rw [homogeneousComponent_of_mem hp,ite_eq_right]
       omega
     · rw [freeCoeff_eq_zero_of_degree_lt p.val p.property b (by omega),map_zero]
 
@@ -94,7 +94,7 @@ theorem coreCoefficientSpace_eq_biform_range :
   · rintro ⟨v,rfl⟩
     refine ⟨ambientBiform v,?_,?_⟩
     · exact (Quartic.SplitTensor.polynomialEmbedding v).property
-    · rw [ambientBiform_eq_block,LinearMap.comp_apply,coreComponent_blockPolynomial,if_pos rfl]
+    · rw [ambientBiform_eq_block,LinearMap.comp_apply,coreComponent_blockPolynomial,ite_eq_left rfl]
 
 /-- The biform embedding is exactly the split polynomial algebra equivalence. -/
 theorem ambientBiform_eq_split :
@@ -105,9 +105,7 @@ theorem ambientBiform_eq_split :
   ext x y : 2
   change (Quartic.SplitTensor.polynomialEmbedding (x ⊗ₜ[K] y)).val =
     splitPolynomialEquiv (K := K) h m (x.val ⊗ₜ[K] y.val)
-  simp only [ambientBiform,LinearMap.comp_apply,Submodule.subtype_apply,
-    Quartic.SplitTensor.polynomialEmbedding_tmul_val,TensorProduct.map_tmul,
-    LinearEquiv.coe_coe,AlgEquiv.toLinearMap_apply,splitPolynomialEquiv_tmul]
+  simp only [Quartic.SplitTensor.polynomialEmbedding_tmul_val, splitPolynomialEquiv_tmul]
 
 /-- Exact tensor-algebra description of every X-degree coefficient space. -/
 theorem coreCoefficientSpace_eq_split_range :

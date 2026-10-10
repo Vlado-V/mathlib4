@@ -74,6 +74,7 @@ def oddHigherPureEquiv (hd1 : 1 ≤ d)
     (biformDegreeTransport hr.symm (by omega : 0=d-(2*r.val.val+1)))
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 @[simp] theorem sumBiformMap_oddHigherPureEquiv (hd1 : 1 ≤ d)
     (r : {r : Fin ((d+1)/2) // r≠oddBottomIndex hd1}) (hr : 2 * r.val.val + 1 = d)
     (v : Forms K h d) :

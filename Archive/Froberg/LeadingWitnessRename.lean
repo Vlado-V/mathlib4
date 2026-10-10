@@ -19,6 +19,7 @@ variable {σ τ : Type*} [Fintype σ] [Fintype τ]
 variable {n d q : ℕ} {J : Finset ℕ} {counts : ℕ → ℕ}
 variable {O : ℕ → Submodule K (MvPolynomial σ K)}
 
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem leading_independent_output_rename (e : σ ≃ τ)
     (p : Space n d q J counts O) (j : J) (hp : LinearIndependent K (p.2 j)) :
     LinearIndependent K ((outputRename e p).2 j) := by
@@ -31,6 +32,7 @@ theorem leading_independent_output_rename (e : σ ≃ τ)
     (biformImage ((O j.val).map (rename e).toLinearMap) (Forms K n (d-j.val))).subtype
   exact h₁
 
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem leading_witnesses_output_rename (e : σ ≃ τ)
     (hw : ∀ j : J,∃ p : Space n d q J counts O,LinearIndependent K (p.2 j)) :
     ∀ j : J,∃ p : Space n d q J counts (fun j => (O j).map (rename e).toLinearMap),
@@ -39,6 +41,7 @@ theorem leading_witnesses_output_rename (e : σ ≃ τ)
   obtain ⟨p,hp⟩ := hw j
   exact ⟨outputRename e p,leading_independent_output_rename e p j hp⟩
 
+omit [Infinite K] [Fintype σ] in
 theorem leading_witnesses_congr_outputs
     {O O' : ℕ → Submodule K (MvPolynomial σ K)} (hO : O = O') :
     (∀ j : J,∃ p : Space n d q J counts O,LinearIndependent K (p.2 j)) ↔
@@ -46,6 +49,7 @@ theorem leading_witnesses_congr_outputs
   subst O'
   rfl
 
+omit [Infinite K] [Fintype σ] in
 theorem leading_witnesses_congr_counts
     {counts counts' : ℕ → ℕ} (O : ℕ → Submodule K (MvPolynomial σ K))
     (hcounts : counts = counts') :
@@ -54,6 +58,7 @@ theorem leading_witnesses_congr_counts
   subst counts'
   rfl
 
+omit [Infinite K] [Fintype σ] [Fintype τ] in
 theorem leading_witnesses_constraint_rename
     {X : Type*} [AddCommGroup X] [Module K X]
     (T : ℕ → MvPolynomial τ K →ₗ[K] X) (e : σ ≃ τ)

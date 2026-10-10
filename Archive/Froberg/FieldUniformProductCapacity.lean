@@ -48,7 +48,7 @@ theorem eventually_field_uniform_allEven_product_capacities_shift {d : ℕ} (hd 
       simpa only [targetLayerCount,ite_true] using hquad r
         (by simpa only [Nat.cast_mul,Nat.cast_ofNat] using hr)
     · have hjhigher := activeEven_ne_two_is_higher (by omega : 3≤d) ⟨j,hj⟩ hj2
-      simpa only [targetLayerCount,if_neg hj2] using hhigher ⟨j,hjhigher⟩
+      simpa only [targetLayerCount,ite_eq_right hj2] using hhigher ⟨j,hjhigher⟩
   apply productRowCapacity_of_individual_bounds hw hv
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).2.2)
     (fun j hj => (activeEvenIndices_bounds (by omega) hj).2.1.le)

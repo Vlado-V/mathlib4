@@ -39,8 +39,8 @@ theorem eventually_field_uniform_private_projected_capacity {d : ℕ} (hd : 3 �
         have hm := mem_allEvenIndices.mp R.property
         omega
       filter_upwards [eventually_higher_sparse_projected_capacity hd hR] with w hw _
-      simpa only [if_pos ha] using hw
-    · exact Eventually.of_forall fun _ _ => by simp only [if_neg ha,zero_mul,Nat.zero_le]
+      simpa only [ite_eq_left ha] using hw
+    · exact Eventually.of_forall fun _ _ => by simp only [ite_eq_right ha,zero_mul,Nat.zero_le]
   filter_upwards [hall] with w hw
   intro K _ _ R hR
   simpa only [paired_output_finrank] using hw R hR

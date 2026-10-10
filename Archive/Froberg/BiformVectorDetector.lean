@@ -24,6 +24,7 @@ def biformVectorDetector (T : MvPolynomial σ K →ₗ[K] (Fin c → K)) :
     (TensorProduct.map (LinearMap.proj k) (LinearMap.id : Poly K n →ₗ[K] Poly K n))).comp
       (biformOutputMap T)
 
+omit [Infinite K] in
 @[simp] theorem biformVectorDetector_tmul (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (a : MvPolynomial σ K) (b : Poly K n) (k : Fin c) :
     biformVectorDetector T (rename Sum.inl a*rename Sum.inr b) k=T a k • b := by
@@ -52,6 +53,7 @@ theorem biformVectorDetector_homogeneous
   | add a b ha hb =>
     simpa only [map_add,Pi.add_apply] using ha.add hb
 
+omit [Infinite K] in
 theorem biformVectorDetector_eq_zero
     (T : MvPolynomial σ K →ₗ[K] (Fin c → K))
     (O : Submodule K (MvPolynomial σ K)) (C : Submodule K (Poly K n))

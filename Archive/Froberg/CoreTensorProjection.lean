@@ -59,8 +59,7 @@ theorem splitPolynomialDetector_supported {X : Type*} [AddCommGroup X] [Module K
   apply LinearMap.ext
   intro p
   obtain ⟨v,rfl⟩ := (splitPolynomialEquiv (K := K) h m).surjective p
-  induction v using TensorProduct.induction_on with
-  | zero => simp
+  induction v using TensorProduct.inductionOn with
   | tmul a b =>
     change splitPolynomialDetector T Q (coreComponent h m i (splitPolynomialEquiv (K := K) h m (a
       ⊗ₜ[K] b))) = _

@@ -58,6 +58,7 @@ theorem ambientTopMap_background (hdp : 1 ≤ d) (hd : Odd d)
   exact topRow_range_comparison hdp Q F
 
 set_option maxHeartbeats 1200000 in -- Preserve the budget during this port.
+omit [Infinite K] in
 theorem ambientTopMap_private_mem (hdp : 1 ≤ d) (hd : Odd d) (hd1 : 1 < d)
     (Q : Fin q → Forms K m d) (F : Fin f → Forms K h 1 ⊗[K] Forms K m (d - 1))
     (U : Fin u → Forms K h d) (P : Fin u → Forms K h 1 ⊗[K] Forms K m (d - 1))
