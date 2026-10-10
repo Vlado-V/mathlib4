@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.ScalarSeparationAsymptotic
+public import Mathlib.Algebra.BigOperators.Field
 
 /-! The exact number of C.13 coefficient equations is lower order than
 the graph and scalar-shadow scales used in C.4. -/

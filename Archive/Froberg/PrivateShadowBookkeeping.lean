@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.DisjointShadowSum
+public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
 
 /-! Exact finite shadow accounting for an injectively indexed collection of
 private source fibers. -/

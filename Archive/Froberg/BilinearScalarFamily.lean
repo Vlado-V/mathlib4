@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Quartic.BilinearGeneric
 public import Archive.Froberg.Quartic.BilinearImage
+public import Mathlib.Basic.Real.Basic
 
 /-! Scalar families for any actual bilinear multiplication, with an explicit
 strict-shadow criterion for generic injectivity. -/

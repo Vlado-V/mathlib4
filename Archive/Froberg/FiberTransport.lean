@@ -10,6 +10,7 @@ public import Mathlib.Basic.Real.Basic
 public import Mathlib.Data.Fintype.BigOperators
 public import Mathlib.Data.Fintype.Prod
 public import Mathlib.Tactic.Ring
+public import Mathlib.Algebra.BigOperators.Field
 
 /-! Lifting a finite profile transport through uniform couplings of its
 fibers.  This is the exact normalization step in the monomial transport. -/

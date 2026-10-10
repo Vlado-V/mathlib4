@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.MonomialIncidence
+public import Mathlib.Basic.Real.Basic
 
 /-! The uniform divisibility coupling, with exact source and target
 marginals for all monomials, including repeated variables. -/

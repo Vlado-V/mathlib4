@@ -6,6 +6,8 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.TransportVariance
+public import Mathlib.Algebra.BigOperators.Field
+public import Mathlib.Tactic.FieldSimp
 
 /-! Conditional kernels of finite joint distributions and a direct
 minorization from a family of distinct common target monomials. -/

@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.CriticalLimits
+public import Mathlib.Algebra.BigOperators.Field
 
 /-! Rounding and finite lower-order auxiliary counts do not change the
 leading normalized generator budget. -/

@@ -6,6 +6,10 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.DivertedTransport
+public import Mathlib.Algebra.Polynomial.Eval.Degree
+public import Mathlib.Algebra.BigOperators.Field
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Tactic.ComputeDegree
 
 /-! Finite binomial weights and their polynomial generating functions.
 These supply exact, rather than asymptotic, profile identities. -/

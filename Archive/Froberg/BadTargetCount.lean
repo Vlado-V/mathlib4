@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.MonomialIncidence
+public import Mathlib.Basic.Real.Basic
 
 /-! A direct substitute for the small-defect monomial growth estimate in B.2.
 Splitting a target into two source monomials and one variable suffices. -/

@@ -7,6 +7,7 @@ module
 
 public import Archive.Froberg.Quartic.FiniteCounts
 public import Archive.Froberg.Quartic.UniformCertificate
+public import Mathlib.Analysis.Real.Sqrt
 
 /-!
 # Actual endpoint parameters in the uniform Bernstein rectangle

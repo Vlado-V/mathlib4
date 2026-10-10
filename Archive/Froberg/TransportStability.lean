@@ -11,6 +11,7 @@ public import Mathlib.Topology.Algebra.Ring.Real
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring
 public import Mathlib.Tactic.SplitIfs
+public import Mathlib.Topology.Algebra.Group.ContinuousDiv
 
 /-! Stability of a strictly positive finite transport. The allowed graph
 has a column adjacent to every row; every other column has a chosen parent.

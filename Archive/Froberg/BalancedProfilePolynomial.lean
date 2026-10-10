@@ -6,6 +6,7 @@ Authors: Vlado Vojdanovski
 module
 
 public import Archive.Froberg.BalancedWeightPolynomial
+public import Mathlib.Algebra.BigOperators.Field
 
 /-! A strict binomial-probability margin gives the corresponding eventual
 weighted row margin in two balanced variable blocks. -/

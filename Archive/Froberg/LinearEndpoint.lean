@@ -7,6 +7,8 @@ module
 
 public import Archive.Froberg.GenericDimensions
 public import Archive.Froberg.Quartic.CubicCoordinateProducts
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Data.Nat.Choose.Cast
 
 /-! The linear-degree endpoint, by an actual polynomial change of coordinates.
 The coordinate calculation adapts the earlier cubic calculation to quadratics. -/
